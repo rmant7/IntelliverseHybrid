@@ -83,8 +83,8 @@ class GroqUseCase @Inject constructor(
 
     /** `null` on any failure (network, auth, parse, ...) -- distinguished from "account has zero models". */
     private fun fetchAccountModelIds(apiKey: String): List<String>? {
+        val connection = URL("$BASE_URL/models").openConnection() as HttpURLConnection
         return try {
-            val connection = URL("$BASE_URL/models").openConnection() as HttpURLConnection
             connection.setRequestProperty("Authorization", "Bearer $apiKey")
             connection.connectTimeout = 15_000
             connection.readTimeout = 15_000
@@ -92,7 +92,19 @@ class GroqUseCase @Inject constructor(
             val data = JSONObject(body).getJSONArray("data")
             List(data.length()) { i -> data.getJSONObject(i).getString("id") }
         } catch (e: Exception) {
-            Timber.w(e, "Failed to fetch Groq's model list for this key; falling back to the hardcoded list")
+            // HttpURLConnection throws a plain FileNotFoundException from
+            // .inputStream on ANY non-2xx status, with the real status only
+            // reachable via .responseCode/.errorStream -- read it here so
+            // "the account's key is rejected outright" (401/403) doesn't
+            // look identical to an ordinary network hiccup. A 401/403 here
+            // means this key is bad for every model, not just this
+            // endpoint -- resolveModelCandidates' caller still marks it
+            // exhausted itself once the real generate() call also gets one.
+            val status = runCatching { connection.responseCode }.getOrDefault(-1)
+            Timber.w(
+                e,
+                "Failed to fetch Groq's model list for this key (HTTP $status); falling back to the hardcoded list"
+            )
             null
         }
     }
@@ -207,7 +219,14 @@ class GroqUseCase @Inject constructor(
                         continue
                     }
                     Timber.e(e, "Groq model $modelName failed")
-                    if (httpException?.code() == 429) {
+                    // 401/403 alongside 429: a real device log caught a
+                    // plain "Forbidden" (no error type/code, unlike the
+                    // structured model_not_found/model_decommissioned
+                    // bodies) on this exact key, on every model tried,
+                    // right after this same key's own GET /models call
+                    // also failed -- consistent with a rate-limited or
+                    // otherwise rejected key, not a per-model problem.
+                    if (httpException?.code() in setOf(401, 403, 429)) {
                         apiKeyRotator.markExhausted(keyEntry.id)
                     }
                     return Result.failure(e)
