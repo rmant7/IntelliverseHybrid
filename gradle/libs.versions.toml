@@ -1,6 +1,6 @@
 [versions]
 accompanistPermissions = "0.36.0"
-agp = "8.6.0"
+agp = "8.13.0" # 8.6.0 predates compileSdk 37 (Android 17) support, which needs AGP >= 8.9
 analytics = "7.2.0"
 ktor = "2.2.3"
 
