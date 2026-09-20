@@ -39,7 +39,7 @@ Android-приложение Intelliverse (модуль `app` + под-прил�
 Кроме Gemini и GPT, параллельно опрашивается:
 - **Groq (api.groq.com)** — `GroqUseCase`, тот же OpenAI-совместимый протокол, что
   и у GPT (langchain4j с `baseUrl = https://api.groq.com/openai/v1`), модель
-  `meta-llama/llama-4-scout-17b-16e-instruct` (одна из немногих на Groq, реально
+  `meta-llama/llama-4-maverick-17b-128e-instruct` (одна из немногих на Groq, реально
   принимающих картинки — их gpt-oss-модели картинки не понимают вовсе), с
   картинками (base64).
 
@@ -104,8 +104,9 @@ app_metrica_api_key=ВАШ_КЛЮЧ_APPMETRICA
 # APK: app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Собрать релизный APK можно через `./gradlew assembleRelease` (потребуется настройка
-подписи в `app/build.gradle.kts`).
+Собрать релизный APK можно через `./gradlew assembleRelease` — он подписан тем же
+отладочным ключом AGP (см. `signingConfig` в `app/build.gradle.kts`), поэтому сразу
+ставится на устройство, но не годится для публикации в Play Store.
 
 **Важно**: в этой рабочей среде (Claude Code on the web) собрать APK нельзя — здесь нет
 Android SDK, а инфраструктурная политика сети блокирует доступ к `dl.google.com`
@@ -114,9 +115,9 @@ Android SDK, а инфраструктурная политика сети бл�
 
 ## Сборка через GitHub Actions
 
-Workflow `.github/workflows/build-apk.yml` собирает debug- и (несигнованный)
-release-APK при пуше в `main`/`claude/**`, в pull request и вручную (Actions →
-Build APK → Run workflow).
+Workflow `.github/workflows/build-apk.yml` собирает один APK (`assembleRelease`,
+подписанный отладочным ключом AGP — см. ниже) при пуше в `main`/`claude/**`, в
+pull request и вручную (Actions → Build APK → Run workflow).
 
 1. Repo → Settings → Secrets and variables → Actions → New repository secret:
    `GEMINI_API_KEY_1`, `GROQ_API_KEY_1`, `GIGACHAT_API_KEY_1`, `APP_METRICA_API_KEY` —
@@ -128,15 +129,17 @@ Build APK → Run workflow).
    через запятую к первому (`ApiKeyRotator` сам разберёт список и будет
    переключаться между ключами при HTTP 429).
 2. Самый удобный способ забрать APK — **Releases**:
-   https://github.com/rmant7/IntelliverseHybrid/releases/tag/latest-debug
-   Релиз `latest-debug` — один и тот же, перезаписывается при каждом успешном
-   пуше (не отдельная версия на коммит, иначе список зарос бы за первый же
-   день). Ссылка постоянная, скачивание — без входа в GitHub, в отличие от
-   артефактов Actions.
-3. Артефакты Actions (`intelliverse-debug-apk`, `intelliverse-release-apk-unsigned`)
-   тоже собираются на каждый run (Actions → нужный run → низ страницы), но
-   живут 90 дней (лимит GitHub по умолчанию) и требуют быть залогиненным
-   в GitHub, чтобы скачать.
-4. Debug APK подписан отладочным ключом AGP и сразу ставится на устройство/эмулятор.
-   Release APK не подписан — для публикации в Play Store нужно добавить
-   `signingConfig` в `app/build.gradle.kts` и секреты с keystore.
+   https://github.com/rmant7/IntelliverseHybrid/releases/tag/latest
+   Релиз `latest` — один и тот же, перезаписывается при каждом успешном пуше
+   (не отдельная версия на коммит, иначе список зарос бы за первый же день),
+   с единственным файлом `Intelliverse-<номер сборки>.apk`. Ссылка постоянная,
+   скачивание — без входа в GitHub, в отличие от артефактов Actions. Тот же
+   номер сборки виден внутри приложения на экране Log (три точки на главном
+   экране → Log).
+3. Артефакт Actions (`Intelliverse-<номер сборки>`) тоже собирается на каждый
+   run (Actions → нужный run → низ страницы), но живёт 90 дней (лимит GitHub
+   по умолчанию) и требует быть залогиненным в GitHub, чтобы скачать.
+4. APK подписан отладочным ключом AGP (`signingConfig` в `app/build.gradle.kts`
+   указывает на debug-конфигурацию) — этого достаточно, чтобы ставить его на
+   устройство напрямую, но не для публикации в Play Store: там нужен отдельный
+   релизный keystore и секреты для него.

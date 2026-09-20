@@ -161,7 +161,7 @@ private fun buildHeader(context: Context): String {
     }
     fun gb(bytes: Long) = "%.1f GB".format(bytes / 1_000_000_000.0)
 
-    val buildLine = "Build: ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}), " +
+    val buildLine = "Build: #${BuildConfig.BUILD_NUMBER} (v${BuildConfig.VERSION_NAME}, code ${BuildConfig.VERSION_CODE}), " +
         if (BuildConfig.DEBUG) "debug" else "release"
     val deviceLine = "Device: ${Build.MANUFACTURER} ${Build.MODEL}, " +
         "Android ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT}), " +

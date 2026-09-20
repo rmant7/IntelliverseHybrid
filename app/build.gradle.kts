@@ -15,6 +15,13 @@ if (localPropertiesFile.exists()) {
 }
 val appMetricaApiKey = localProperties.getProperty("app_metrica_api_key")
 
+// Set by CI via -PbuildNumber=<github.run_number> so a build coming off the
+// "latest" release can be identified from inside the app itself (Log screen
+// header) -- matches the Intelliverse-<run_number>.apk filename in the
+// workflow. "local" for anyone building outside CI, where there is no run
+// number at all.
+val buildNumber = (project.findProperty("buildNumber") as String?) ?: "local"
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -66,9 +73,18 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 //"proguard-rules.pro"
             )
+            // Without a signingConfig, assembleRelease produces an unsigned
+            // APK that Android's package manager refuses to install at all --
+            // fine for a Play Store upload (which signs it itself), useless
+            // as the one APK someone is expected to actually install and test.
+            // The debug keystore is not a real release signature: this build
+            // still isn't suitable for the Play Store, only for installing
+            // and testing outside it.
+            signingConfig = signingConfigs.getByName("debug")
         }
         all {
             buildConfigField("String", "app_metrica_api_key", "\"$appMetricaApiKey\"")
+            buildConfigField("String", "BUILD_NUMBER", "\"$buildNumber\"")
         }
     }
     compileOptions {

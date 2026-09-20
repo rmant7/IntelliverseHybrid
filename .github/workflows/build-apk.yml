@@ -51,50 +51,55 @@ jobs:
           echo "gigachat_api_key=${{ secrets.GIGACHAT_API_KEY_1 }}" >> local.properties
           echo "app_metrica_api_key=${{ secrets.APP_METRICA_API_KEY }}" >> local.properties
 
-      - name: Build debug APK
-        run: ./gradlew assembleDebug --no-daemon
+      # Debug-signed (see app/build.gradle.kts's release signingConfig), not
+      # a real Play Store release build -- just the one APK someone is
+      # actually meant to install and test. No separate debug variant: it
+      # only ever differed by BuildConfig.DEBUG and the signing key, and
+      # this project's own diagnostic logging (AppLogTree) is planted
+      # unconditionally either way.
+      - name: Build APK
+        run: ./gradlew assembleRelease --no-daemon -PbuildNumber=${{ github.run_number }}
 
-      - name: Build release APK (unsigned)
-        run: ./gradlew assembleRelease --no-daemon
+      - name: Rename APK with the build number
+        run: |
+          mkdir -p app/build/outputs/apk/release/named
+          cp app/build/outputs/apk/release/app-release.apk \
+            "app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
 
-      - name: Upload debug APK
+      - name: Upload APK (workflow artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: intelliverse-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: Intelliverse-${{ github.run_number }}
+          path: app/build/outputs/apk/release/named/*.apk
           if-no-files-found: error
 
-      - name: Upload release APK (unsigned)
-        uses: actions/upload-artifact@v4
-        with:
-          name: intelliverse-release-apk-unsigned
-          path: app/build/outputs/apk/release/*.apk
-          if-no-files-found: error
-
-      # Workflow artifacts (the two upload-artifact steps above) expire after
-      # 90 days and require being signed into the Actions UI to download.
-      # A GitHub Release is a permanent, directly-downloadable link instead.
-      # One rolling release ("latest-debug"), overwritten on every push,
-      # rather than a new release per commit -- this branch pushes often
-      # enough that per-commit releases would flood the Releases page.
-      - name: Publish to the "latest-debug" release
+      # Workflow artifacts (the upload-artifact step above) expire after 90
+      # days and require being signed into the Actions UI to download. A
+      # GitHub Release is a permanent, directly-downloadable link instead.
+      # One rolling release ("latest"), overwritten on every push, rather
+      # than a new release per commit -- this branch pushes often enough
+      # that per-commit releases would flood the Releases page. Old asset
+      # is deleted first: its filename includes the build number, which
+      # changes every run, so a plain upload would just pile up a new file
+      # instead of replacing the old one.
+      - name: Publish to the "latest" release
         if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          NOTES="Automatic build from commit ${{ github.sha }} (run #${{ github.run_number }}), branch \`${{ github.ref_name }}\`.
+          NOTES="Intelliverse, build #${{ github.run_number }} -- commit ${{ github.sha }}, branch \`${{ github.ref_name }}\`.
           Always overwritten by the next push -- not a pinned version, just the latest build."
-          if gh release view latest-debug --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            gh release upload latest-debug \
-              app/build/outputs/apk/debug/*.apk \
-              app/build/outputs/apk/release/*.apk \
-              --repo "$GITHUB_REPOSITORY" --clobber
-            gh release edit latest-debug --repo "$GITHUB_REPOSITORY" --notes "$NOTES"
+          APK="app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
+          if gh release view latest --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            for asset in $(gh release view latest --repo "$GITHUB_REPOSITORY" --json assets -q '.assets[].name'); do
+              gh release delete-asset latest "$asset" --repo "$GITHUB_REPOSITORY" --yes
+            done
+            gh release upload latest "$APK" --repo "$GITHUB_REPOSITORY"
+            gh release edit latest --repo "$GITHUB_REPOSITORY" \
+              --title "Intelliverse -- build #${{ github.run_number }}" --notes "$NOTES"
           else
-            gh release create latest-debug \
-              app/build/outputs/apk/debug/*.apk \
-              app/build/outputs/apk/release/*.apk \
+            gh release create latest "$APK" \
               --repo "$GITHUB_REPOSITORY" \
-              --title "Latest build (debug + unsigned release)" \
+              --title "Intelliverse -- build #${{ github.run_number }}" \
               --notes "$NOTES"
           fi

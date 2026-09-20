@@ -27,6 +27,12 @@ import javax.inject.Named
  * accept image input at all, while this app's core flows are photo-driven
  * (diet photos, homework photos, ...), so a vision-capable model is the
  * only sane default here.
+ *
+ * NOTE: a real device log confirmed "meta-llama/llama-4-scout-17b-16e-instruct"
+ * returns HTTP 400 model_not_found on this account -- switched to its Llama 4
+ * sibling below. This has NOT been verified against a live Groq account from
+ * here (no network access to api.groq.com in this environment); check
+ * console.groq.com/docs/models for the current model ID if this one also 404s.
  */
 class GroqUseCase @Inject constructor(
     @Named(ApiProviderIds.GROQ) private val apiKeyRotator: ApiKeyRotator,
@@ -91,6 +97,6 @@ class GroqUseCase @Inject constructor(
 
     private companion object {
         const val BASE_URL = "https://api.groq.com/openai/v1"
-        const val DEFAULT_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
+        const val DEFAULT_MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct"
     }
 }
