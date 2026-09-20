@@ -59,6 +59,15 @@ fun decodeTripSolutionResponse(jsonResponse: String): Pair<String, String> {
     val cleanedJson = jsonResponse.trim()
         .removeSurrounding("```json", "```")
         .trim()
+        // Confirmed on a real device (GigaChat): a model occasionally emits
+        // ';' where JSON requires ',' between a closing quote and the next
+        // key/value's opening quote (e.g. `"...холма.";\n  "time": ...`
+        // instead of `"...холма.",`). Safe to repair unconditionally,
+        // unlike ':' or ',' themselves: ';' is never a valid JSON
+        // structural character in ANY position (key/value separator is
+        // always ':', element/member separator always ','), so there's no
+        // legitimate case this could be mis-firing on.
+        .replace(Regex("\";(\\s*)\""), "\",$1\"")
 
     val solution: TripSolutionResponse = json.decodeFromString(cleanedJson)
 
