@@ -3,6 +3,8 @@ package com.schoolkiller.presentation.screens.output.result
 import androidx.lifecycle.SavedStateHandle
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
+import com.example.shared.domain.usecases.ai.GigaChatUseCase
+import com.example.shared.domain.usecases.ai.GrokUseCase
 import com.example.shared.domain.usecases.ai.OpenAiUseCase
 import com.example.shared.domain.usecases.AudioPlayer
 import com.example.shared.domain.usecases.ImageUtils
@@ -21,11 +23,13 @@ class ResultViewModel @Inject constructor(
     imageUtils: ImageUtils,
     geminiUseCaseClient: GeminiUseCaseClient,
     openAiUseCase: OpenAiUseCase,
+    grokUseCase: GrokUseCase,
+    gigaChatUseCase: GigaChatUseCase,
     interstitialAdUseCase: InterstitialAdUseCase,
     speechConverter: SpeechConverter,
     audioPlayer: AudioPlayer,
     savedStateHandle: SavedStateHandle
-) : BaseResultViewModel(imageUtils, geminiUseCaseClient, openAiUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
+) : BaseResultViewModel(imageUtils, geminiUseCaseClient, openAiUseCase, grokUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
 
     override val audioPrefixName: String
         get() = "schoolkiller"

@@ -16,6 +16,8 @@ import com.example.shared.domain.usecases.AudioPlayer.Companion.playbackSpeeds
 import com.example.shared.domain.usecases.ImageUtils
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.TextUtils
+import com.example.shared.domain.usecases.ai.GigaChatUseCase
+import com.example.shared.domain.usecases.ai.GrokUseCase
 import com.example.shared.domain.usecases.ai.OpenAiUseCase
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
 import com.example.shared.presentation.screens.AIService
@@ -35,6 +37,8 @@ abstract class BaseResultViewModel(
     private val imageUtils: ImageUtils,
     private val geminiUseCaseClient: GeminiUseCaseClient,
     private val openAiUseCase: OpenAiUseCase,
+    private val grokUseCase: GrokUseCase,
+    private val gigaChatUseCase: GigaChatUseCase,
     private val interstitialAdUseCase: InterstitialAdUseCase,
     protected val speechConverter: SpeechConverter,
     val audioPlayer: AudioPlayer,
@@ -49,8 +53,8 @@ abstract class BaseResultViewModel(
     private var generativeLanguageURLs: MutableList<String> = mutableListOf()
     protected var passedEditedResult: String = ""
 
-    /** Solutions max capacity */
-    private val maxSolutionResultsCapacity = 2
+    /** Solutions max capacity: GEMINI_THINKING, GPT, GROK, GIGACHAT */
+    private val maxSolutionResultsCapacity = 4
     private val geminiAttempts: AtomicInteger = AtomicInteger(2)
     private val geminiThinkingAttempts: AtomicInteger = AtomicInteger(2)
     /** System instructions and OpenAI prompt*/
@@ -260,7 +264,7 @@ abstract class BaseResultViewModel(
                         updateSolutionResults(aiService, null)
                     }
                 }
-                AIService.GPT -> {
+                AIService.GPT, AIService.GROK, AIService.GIGACHAT -> {
                     updateSolutionResults(aiService, null)
                 }
             }
@@ -299,10 +303,7 @@ abstract class BaseResultViewModel(
         geminiAttempts.set(2)
         geminiThinkingAttempts.set(2)
         setGenerativeLangUrlsAndSolveGeminiWithinApp()
-        gpt()
-    }
 
-    private fun gpt() = viewModelScope.launch(Dispatchers.IO) {
         val imagesBase64 = if (imageUsed) {
             passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) }
                 .map { Base64.encodeToString(it, Base64.NO_WRAP) }
@@ -312,9 +313,15 @@ abstract class BaseResultViewModel(
 
         if (imageUsed && imagesBase64.isEmpty()) {
             onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT)
-            return@launch
+            onSolutionResult(Result.failure(UnableToAssistException), AIService.GROK)
+        } else {
+            gpt(imagesBase64)
+            grok(imagesBase64)
         }
+        gigaChat()
+    }
 
+    private fun gpt(imagesBase64: List<String>) = viewModelScope.launch(Dispatchers.IO) {
         val result = openAiUseCase.generateOpenAiSolution(
             imagesBase64 = imagesBase64,
             prompt = prompt
@@ -337,6 +344,56 @@ abstract class BaseResultViewModel(
         }
         result.onFailure {
             onSolutionResult(Result.failure(it), AIService.GPT)
+        }
+    }
+
+    private fun grok(imagesBase64: List<String>) = viewModelScope.launch(Dispatchers.IO) {
+        val result = grokUseCase.generateGrokSolution(
+            imagesBase64 = imagesBase64,
+            prompt = prompt
+        )
+        result.onSuccess {
+            try {
+                val decodedResponse = decodeSolutionResponse(it)
+                onSolutionResult(Result.success(decodedResponse.first), AIService.GROK)
+                if (imageUsed && sharedViewModel.ocrResults.value[AIService.GROK].isNullOrBlank()) {
+                    sharedViewModel.updateOcrResults(
+                        AIService.GROK,
+                        decodedResponse.second,
+                        override = false
+                    )
+                }
+            } catch (e: SerializationException) {
+                Timber.d("Failed to serialize response for Grok: ${e.message}")
+                onSolutionResult(Result.failure(e), AIService.GROK)
+            }
+        }
+        result.onFailure {
+            onSolutionResult(Result.failure(it), AIService.GROK)
+        }
+    }
+
+    /** GigaChat gets no image: its endpoint does not accept this app's inline-image request shape (see GigaChatUseCase). */
+    private fun gigaChat() = viewModelScope.launch(Dispatchers.IO) {
+        val result = gigaChatUseCase.generateGigaChatSolution(prompt = prompt)
+        result.onSuccess {
+            try {
+                val decodedResponse = decodeSolutionResponse(it)
+                onSolutionResult(Result.success(decodedResponse.first), AIService.GIGACHAT)
+                if (imageUsed && sharedViewModel.ocrResults.value[AIService.GIGACHAT].isNullOrBlank()) {
+                    sharedViewModel.updateOcrResults(
+                        AIService.GIGACHAT,
+                        decodedResponse.second,
+                        override = false
+                    )
+                }
+            } catch (e: SerializationException) {
+                Timber.d("Failed to serialize response for GigaChat: ${e.message}")
+                onSolutionResult(Result.failure(e), AIService.GIGACHAT)
+            }
+        }
+        result.onFailure {
+            onSolutionResult(Result.failure(it), AIService.GIGACHAT)
         }
     }
 
