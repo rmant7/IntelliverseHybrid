@@ -165,6 +165,19 @@ class IntelliverseApplication : Application() {
             // Automatic tracking of user activity.
             // Probably doesn't work for older api.
             AppMetrica.enableActivityAutoTracking(this@IntelliverseApplication)
+
+            // A confirmation, not just an error path: a key that's present but
+            // wrong (typo, wrong console project, trailing whitespace from a
+            // copy-paste into the GitHub secret) activates without throwing --
+            // AppMetrica.activate() doesn't validate against the server
+            // synchronously -- so "nothing in the log" would otherwise look
+            // identical to "activated fine, dashboard just hasn't caught up
+            // yet." This line at least confirms which of those it is, and
+            // the key's last 4 characters are enough to tell whether it's
+            // the one actually configured in the AppMetrica console.
+            Timber.i(
+                "AppMetrica activated for package=$packageName, key ending in ...${apiKey.takeLast(4)}"
+            )
         } catch (e: Exception) {
             // This runs unsupervised (no parent Job to catch an uncaught
             // failure), and it's called synchronously from onCreate(), so any
