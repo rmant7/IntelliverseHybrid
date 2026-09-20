@@ -66,8 +66,18 @@ class OpenAiUseCase @Inject constructor() {
         } catch (e: ServerException) {
             Timber.e(e)
             return Result.failure(e)
-        } catch (e: OpenAiHttpException) {
-            if (e.code() == 429) {
+        } catch (e: RuntimeException) {
+            // langchain4j's RetryUtils.withRetry() (which OpenAiChatModel.generate()
+            // goes through) NEVER lets the original OpenAiHttpException escape
+            // directly: after exhausting its retries it always rethrows
+            // `new RuntimeException(originalException)`, discarding the
+            // specific type and keeping it only as .cause. A `catch (e:
+            // OpenAiHttpException)` clause here previously looked correct
+            // but could never actually match -- confirmed by checking
+            // RetryUtils' own source, since a real device log kept showing
+            // this branch's behavior never taking effect.
+            val httpException = e as? OpenAiHttpException ?: e.cause as? OpenAiHttpException
+            if (httpException?.code() == 429) {
                 // The "demo" key above is langchain4j's own free, shared
                 // proxy quota (see its own doc comment) -- with no real
                 // OpenAI key configured, this is its permanent, expected
@@ -79,12 +89,6 @@ class OpenAiUseCase @Inject constructor() {
             } else {
                 Timber.e(e)
             }
-            return Result.failure(e)
-        } catch (e: IllegalArgumentException) {
-            Timber.e(e)
-            return Result.failure(e)
-        } catch (e: RuntimeException) {
-            Timber.e(e)
             return Result.failure(e)
         }
     }

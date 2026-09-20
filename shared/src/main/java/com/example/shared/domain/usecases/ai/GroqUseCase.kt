@@ -46,14 +46,20 @@ class GroqUseCase @Inject constructor(
         ) { matchResult -> "$$${matchResult.groupValues[1]}$$" }
     }
 
-    // Deliberately not also checking e.code() == 400: a real device log
-    // showed the fallback loop bailing out after just the first candidate
-    // instead of trying the rest, which only makes sense if Groq's actual
-    // HTTP status for this error isn't 400 -- the "code":"model_not_found"
-    // field in the JSON body is Groq's own stable signal, unlike the HTTP
-    // status this code guessed wrong once already.
     private fun isModelNotFound(e: OpenAiHttpException): Boolean =
         e.message?.contains("model_not_found") == true
+
+    // langchain4j's RetryUtils.withRetry() (which OpenAiChatModel.generate()
+    // goes through) never lets the original OpenAiHttpException escape
+    // directly: after exhausting its retries it always rethrows
+    // `new RuntimeException(originalException)`, discarding the specific
+    // type and keeping it only as .cause. A `catch (e: OpenAiHttpException)`
+    // clause here previously looked correct but could never actually match
+    // -- confirmed by checking RetryUtils' own source, since a real device
+    // log kept showing the model-skip logic below never taking effect even
+    // after fixing isModelNotFound() itself.
+    private fun httpExceptionOf(e: Throwable): OpenAiHttpException? =
+        e as? OpenAiHttpException ?: e.cause as? OpenAiHttpException
 
     /** Generate a Groq solution using text and optionally one or more base64-encoded JPEG images. */
     fun generateGroqSolution(
@@ -94,8 +100,9 @@ class GroqUseCase @Inject constructor(
                     model.generate(SystemMessage.from(systemInstruction), userMessage)
                 }
                 return Result.success(cleanResult(response.content().text()))
-            } catch (e: OpenAiHttpException) {
-                if (isModelNotFound(e)) {
+            } catch (e: RuntimeException) {
+                val httpException = httpExceptionOf(e)
+                if (httpException != null && isModelNotFound(httpException)) {
                     // Expected/handled, not a real error -- the next
                     // candidate is tried immediately. A one-line note, not
                     // the full stack trace every OTHER failure here gets,
@@ -106,15 +113,9 @@ class GroqUseCase @Inject constructor(
                     continue
                 }
                 Timber.e(e, "Groq model $modelName failed")
-                if (e.code() == 429) {
+                if (httpException?.code() == 429) {
                     apiKeyRotator.markExhausted(keyEntry.id)
                 }
-                return Result.failure(e)
-            } catch (e: IllegalArgumentException) {
-                Timber.e(e, "Groq model $modelName failed")
-                return Result.failure(e)
-            } catch (e: RuntimeException) {
-                Timber.e(e, "Groq model $modelName failed")
                 return Result.failure(e)
             }
         }
