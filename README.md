@@ -127,8 +127,16 @@ Build APK → Run workflow).
    второй ключ Groq, заведите секрет `GROQ_API_KEY_2` и допишите его в workflow
    через запятую к первому (`ApiKeyRotator` сам разберёт список и будет
    переключаться между ключами при HTTP 429).
-2. После завершения workflow — во вкладке Actions у соответствующего run внизу
-   будут артефакты `intelliverse-debug-apk` и `intelliverse-release-apk-unsigned`.
-3. Debug APK подписан отладочным ключом AGP и сразу ставится на устройство/эмулятор.
+2. Самый удобный способ забрать APK — **Releases**:
+   https://github.com/rmant7/IntelliverseHybrid/releases/tag/latest-debug
+   Релиз `latest-debug` — один и тот же, перезаписывается при каждом успешном
+   пуше (не отдельная версия на коммит, иначе список зарос бы за первый же
+   день). Ссылка постоянная, скачивание — без входа в GitHub, в отличие от
+   артефактов Actions.
+3. Артефакты Actions (`intelliverse-debug-apk`, `intelliverse-release-apk-unsigned`)
+   тоже собираются на каждый run (Actions → нужный run → низ страницы), но
+   живут 90 дней (лимит GitHub по умолчанию) и требуют быть залогиненным
+   в GitHub, чтобы скачать.
+4. Debug APK подписан отладочным ключом AGP и сразу ставится на устройство/эмулятор.
    Release APK не подписан — для публикации в Play Store нужно добавить
    `signingConfig` в `app/build.gradle.kts` и секреты с keystore.

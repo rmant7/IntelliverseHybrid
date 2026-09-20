@@ -13,6 +13,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -65,6 +66,7 @@ class LogViewModel @Inject constructor(
  * into a computer and pull logcat. Reachable from the start screen's own
  * overflow menu.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewModel()) {
     val context = LocalContext.current
