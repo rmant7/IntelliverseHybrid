@@ -60,7 +60,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
             _state.value = _state.value.copy(isLoading = true, error = null)
             try {
                 val userLanguage = sharedPreferences.getString("userLanguage", "English")!!
-                val questionType = "behavioral"
+                val questionType = sharedPreferences.getString(PrefKeys.USER_QUESTION_TYPE, "behavioral") ?: "behavioral"
                 val role = "Parent"
 
                 val analysisResult = geminiRepository.submitAnalysis(
@@ -189,14 +189,14 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                 val language = sharedPreferences.getString("userLanguage", "English")!!
                 val age = sharedPreferences.getString(PrefKeys.USER_AGE, "25")!!.toIntOrNull() ?: 25
                 val difficulty = sharedPreferences.getString(PrefKeys.USER_DIFFICULTY, "normal")!!.lowercase()
-                val questionType = "behavioral"
-                val subType = "scenario_analysis"
+                val questionType = sharedPreferences.getString(PrefKeys.USER_QUESTION_TYPE, "behavioral") ?: "behavioral"
+                val subType = sharedPreferences.getString(PrefKeys.USER_SUBTYPE, "scenario_analysis") ?: "scenario_analysis"
                 val sex = sharedPreferences.getString(PrefKeys.USER_GENDER, "any")!!
 
                 val previousAnswers = _state.value.userChoices
                 val previousCases = allCasesList
 
-                Timber.d("AIViewModel: generating cases for turn $turn...")
+                Timber.d("AIViewModel: generating cases for turn $turn (questionType=$questionType, subType=$subType)...")
 
                 val responseCases = geminiRepository.generateCases(
                     language = language,
