@@ -49,6 +49,15 @@ import javax.inject.Named
 class GroqUseCase @Inject constructor(
     @Named(ApiProviderIds.GROQ) private val apiKeyRotator: ApiKeyRotator,
 ) {
+    // TEMPORARY diagnostic: which candidate actually answered, since the
+    // model list is now discovered per-account rather than fixed -- read
+    // by BaseResultViewModel right after a successful call to append a
+    // "provider (model)" footer to the answer. Remove both sides once
+    // multi-provider testing no longer needs this visible in the answer
+    // itself (the Log screen already records it either way).
+    var lastUsedModel: String? = null
+        private set
+
     private fun cleanResult(response: String): String {
         return response.replace(
             Regex("""\\\[(.*?)\\]""", RegexOption.DOT_MATCHES_ALL)
@@ -171,6 +180,7 @@ class GroqUseCase @Inject constructor(
                     } else {
                         model.generate(SystemMessage.from(systemInstruction), userMessage)
                     }
+                    lastUsedModel = modelName
                     return Result.success(cleanResult(response.content().text()))
                 } catch (e: RuntimeException) {
                     val httpException = httpExceptionOf(e)

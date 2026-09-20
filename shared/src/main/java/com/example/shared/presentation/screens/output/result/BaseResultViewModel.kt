@@ -354,6 +354,17 @@ abstract class BaseResultViewModel(
         }
     }
 
+    // TEMPORARY diagnostic: appended to the displayed answer text (after
+    // decoding, never before -- some sub-apps' decodeSolutionResponse
+    // parses the raw response as JSON, which this would break if applied
+    // any earlier) so it's visible on-screen which provider AND which
+    // specific model actually answered. Most useful for Groq, whose model
+    // is now discovered per-account rather than fixed. Remove the helper
+    // and its four call sites once multi-provider testing is done -- the
+    // Log screen already records this regardless.
+    private fun withProviderFooter(text: String, provider: String, model: String): String =
+        "$text\n\n— $provider ($model)"
+
     private suspend fun gpt(imagesBase64: List<String>) {
         val result = openAiUseCase.generateOpenAiSolution(
             imagesBase64 = imagesBase64,
@@ -362,7 +373,8 @@ abstract class BaseResultViewModel(
         result.onSuccess {
             try {
                 val decodedResponse = decodeSolutionResponse(it)
-                onSolutionResult(Result.success(decodedResponse.first), AIService.GPT)
+                val textWithFooter = withProviderFooter(decodedResponse.first, "GPT", "gpt-4o-mini")
+                onSolutionResult(Result.success(textWithFooter), AIService.GPT)
                 if (imageUsed && sharedViewModel.ocrResults.value[AIService.GPT].isNullOrBlank()) {
                     sharedViewModel.updateOcrResults(
                         AIService.GPT,
@@ -391,7 +403,10 @@ abstract class BaseResultViewModel(
         result.onSuccess {
             try {
                 val decodedResponse = decodeSolutionResponse(it)
-                onSolutionResult(Result.success(decodedResponse.first), AIService.GROQ)
+                val textWithFooter = withProviderFooter(
+                    decodedResponse.first, "Groq", groqUseCase.lastUsedModel ?: "unknown model"
+                )
+                onSolutionResult(Result.success(textWithFooter), AIService.GROQ)
                 if (imageUsed && sharedViewModel.ocrResults.value[AIService.GROQ].isNullOrBlank()) {
                     sharedViewModel.updateOcrResults(
                         AIService.GROQ,
@@ -419,7 +434,8 @@ abstract class BaseResultViewModel(
         result.onSuccess {
             try {
                 val decodedResponse = decodeSolutionResponse(it)
-                onSolutionResult(Result.success(decodedResponse.first), AIService.GIGACHAT)
+                val textWithFooter = withProviderFooter(decodedResponse.first, "GigaChat", "GigaChat-2")
+                onSolutionResult(Result.success(textWithFooter), AIService.GIGACHAT)
                 if (imageUsed && sharedViewModel.ocrResults.value[AIService.GIGACHAT].isNullOrBlank()) {
                     sharedViewModel.updateOcrResults(
                         AIService.GIGACHAT,
@@ -449,7 +465,8 @@ abstract class BaseResultViewModel(
         result.onSuccess {
             try {
                 val decodedResponse = decodeSolutionResponse(it)
-                onSolutionResult(Result.success(decodedResponse.first), aiService)
+                val textWithFooter = withProviderFooter(decodedResponse.first, "Gemini", modelName)
+                onSolutionResult(Result.success(textWithFooter), aiService)
                 if (imageUsed && sharedViewModel.ocrResults.value[aiService].isNullOrBlank()) {
                     sharedViewModel.updateOcrResults(
                         aiService,
