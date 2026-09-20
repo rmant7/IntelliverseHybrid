@@ -73,7 +73,14 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.intelliverse"
+        // Differs from the other active branch's "com.intelliverse" on
+        // purpose (this branch only) so both branches' APKs can be
+        // installed on the same device at once instead of colliding as
+        // the same package. namespace above stays "com.intelliverse" --
+        // only the generated R class package, not the installable
+        // identity, so changing it would just ripple through every
+        // source file's R imports for no benefit.
+        applicationId = "com.intelliverse.matterofchoice"
         minSdk = 23
         targetSdk = 35
         versionCode = 23
