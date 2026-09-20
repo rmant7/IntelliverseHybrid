@@ -1,6 +1,5 @@
 package com.matterofchoice.api
 
-import android.util.Log
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.RequestOptions
 import com.google.ai.client.generativeai.type.generationConfig
@@ -8,6 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import com.matterofchoice.model.Case
+import timber.log.Timber
 import java.io.IOException
 import java.util.UUID
 object Prompts {
@@ -168,13 +168,13 @@ class GeminiRepository {
             else -> throw IllegalArgumentException("Invalid mode: $mode. Use 'generate' or 'analyze'.")
         }
 
-        Log.d("GeminiRepository", "Executing $mode prompt...")
+        Timber.d("GeminiRepository: executing $mode prompt...")
 
         var responseText: String? = null
         try {
             val response = model.generateContent(prompt)
             responseText = response.text ?: throw IOException("Empty response from Gemini")
-            Log.d("GeminiRepository", "Gemini raw response (${responseText.length} chars)")
+            Timber.d("GeminiRepository: raw response (${responseText.length} chars)")
 
             val cleanJson = extractJson(responseText)
 
@@ -187,11 +187,36 @@ class GeminiRepository {
                 gson.fromJson(cleanJson, AnalysisResultResponse::class.java)
             }
         } catch (e: JsonSyntaxException) {
-            Log.e("GeminiRepository", "JSON parsing failed: ${e.message}\nResponse: $responseText")
+            Timber.e(e, "GeminiRepository: JSON parsing failed during $mode. Response: $responseText")
             throw IOException("Gemini returned invalid JSON.", e)
         } catch (e: Exception) {
-            Log.e("GeminiRepository", "Gemini error during $mode: ${e.message}", e)
+            logGeminiError(mode, e)
             throw e
+        }
+    }
+
+    /**
+     * Gemini's own SDK surfaces a non-2xx HTTP response as an exception whose
+     * message is the raw error body (e.g. `{"error": {"code": 400, "message":
+     * "...", "status": "FAILED_PRECONDITION"}}`). Pulling code/status out with
+     * a regex -- rather than catching a specific SDK exception subtype -- keeps
+     * this working regardless of which exception class the SDK actually throws
+     * for a given failure, and still logs something useful (just without a
+     * code/status) for failures that never got an HTTP response at all, like a
+     * timeout or connection reset.
+     */
+    private fun logGeminiError(mode: String, e: Exception) {
+        val raw = e.message ?: e.toString()
+        val code = Regex("\"code\"\\s*:\\s*(\\d+)").find(raw)?.groupValues?.get(1)
+        val status = Regex("\"status\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.get(1)
+
+        if (code != null || status != null) {
+            Timber.e(
+                e,
+                "GeminiRepository: API error during $mode -- code=${code ?: "?"} status=${status ?: "?"}"
+            )
+        } else {
+            Timber.e(e, "GeminiRepository: call failed during $mode (no structured error code -- likely network/timeout)")
         }
     }
 
