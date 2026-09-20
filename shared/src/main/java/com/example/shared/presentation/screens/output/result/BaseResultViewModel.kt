@@ -339,10 +339,17 @@ abstract class BaseResultViewModel(
                 geminiWithinApp(GeminiApiService.GeminiModel.GEMINI_2_5_FLASH, AIService.GEMINI_THINKING)
             }
             if (imageUsed && imagesBase64.isEmpty()) {
-                onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT)
                 onSolutionResult(Result.failure(UnableToAssistException), AIService.GROQ)
             } else {
-                launch { gpt(imagesBase64) }
+                // GPT commented out: langchain4j's "demo" key (see
+                // OpenAiUseCase's own doc comment) never once produced an
+                // answer across this whole round of testing -- always the
+                // same 429 from its shared, worldwide, non-configurable
+                // quota. gpt() itself and OpenAiUseCase are left as-is
+                // (only removed from PRIMARY_SERVICES below, and this one
+                // launch{} call), so re-enabling this later (a real paid
+                // key) is one line, not a rewrite.
+                // launch { gpt(imagesBase64) }
                 launch { groq(imagesBase64) }
             }
         }
@@ -499,7 +506,13 @@ abstract class BaseResultViewModel(
     abstract fun decodeSolutionResponse(response: String): Pair<String, String>
 
     private companion object {
-        /** Run in parallel on every [generateSolutions] call; GIGACHAT is a fallback, not one of these. */
-        val PRIMARY_SERVICES = listOf(AIService.GEMINI_THINKING, AIService.GPT, AIService.GROQ)
+        /**
+         * Run in parallel on every [generateSolutions] call; GIGACHAT is a
+         * fallback, not one of these. GPT excluded while its launch{} call
+         * is commented out above -- otherwise maxSolutionResultsCapacity
+         * would count a result that never arrives, and solutionProgress
+         * would never reach 1f.
+         */
+        val PRIMARY_SERVICES = listOf(AIService.GEMINI_THINKING, AIService.GROQ)
     }
 }
