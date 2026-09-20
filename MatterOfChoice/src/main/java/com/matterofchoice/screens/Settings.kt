@@ -78,6 +78,11 @@ fun UserInput(
     val questionTypeBehavioral = stringResource(id = R.string.question_type_behavioral)
     val questionTypeHiring = stringResource(id = R.string.question_type_hiring)
     val questionTypes = listOf(questionTypeStudy, questionTypeBehavioral, questionTypeHiring)
+    // Canonical, locale-independent keys aligned by index with questionTypes above --
+    // GeminiRepository switches on these exact lowercase literals ("behavioral"/"study"/
+    // "hiring") to pick the analysis aspect. The display list holds localized labels for
+    // the dropdown; only this list is what actually gets persisted/sent to the API.
+    val questionTypeKeys = listOf("study", "behavioral", "hiring")
     val isExposedType = remember { mutableStateOf(false) }
 
     val subtypesBehavioral = stringArrayResource(id = R.array.subtypes_behavioral_array).toList()
@@ -272,7 +277,10 @@ fun UserInput(
                     editor.putString(PrefKeys.USER_SUBJECT, userSubject).apply()
                     editor.putString(PrefKeys.USER_AGE, userAge).apply()
                     editor.putString(PrefKeys.USER_GENDER, userGender.value).apply()
-                    editor.putString(PrefKeys.USER_QUESTION_TYPE, userQuestionType.value).apply()
+                    val selectedQuestionTypeKey = questionTypeKeys.getOrElse(
+                        questionTypes.indexOf(userQuestionType.value)
+                    ) { "behavioral" }
+                    editor.putString(PrefKeys.USER_QUESTION_TYPE, selectedQuestionTypeKey).apply()
                     editor.putString(PrefKeys.USER_SUBTYPE, subtype.value).apply()
                     editor.putString(PrefKeys.USER_DIFFICULTY, difficult.value).apply()
                     editor.apply()
