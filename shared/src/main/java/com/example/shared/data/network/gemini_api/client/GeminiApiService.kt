@@ -17,6 +17,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
+import io.ktor.http.isSuccess
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
@@ -178,7 +179,26 @@ class GeminiApiService @Inject constructor(
                     setBody(requestBody)
                 }
 
-                val plainTextResponse = jsonResponseToString(response.bodyAsText())
+                val bodyText = response.bodyAsText()
+                if (!response.status.isSuccess()) {
+                    // Confirmed on a real device: a 429 here (Gemini's free
+                    // tier quota) never threw ClientRequestException at all
+                    // -- it came back as a plain response whose error-shaped
+                    // body {"error": {...}} just doesn't have "candidates" or
+                    // "promptFeedback", so it silently looked like an empty
+                    // answer with blockReason=null/finishReason=null instead
+                    // of the quota error it actually was. Handling the
+                    // status explicitly here, rather than relying on the
+                    // catch clauses below, is what actually marks the key
+                    // exhausted so the rotator can move on.
+                    if (response.status == HttpStatusCode.TooManyRequests) {
+                        apiKeyRotator.markExhausted(keyEntry.id)
+                    }
+                    Timber.w("Gemini HTTP ${response.status.value} -- ${bodyText.take(500)}")
+                    return Result.failure(UnableToAssistException)
+                }
+
+                val plainTextResponse = jsonResponseToString(bodyText)
                 return if (plainTextResponse.isNullOrEmpty()) {
                     Result.failure(UnableToAssistException)
                 } else {

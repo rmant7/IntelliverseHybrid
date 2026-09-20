@@ -73,6 +73,12 @@ class GigaChatUseCase @Inject constructor(
                 setRequestProperty("Content-Type", "application/json")
                 setRequestProperty("Accept", "application/json")
                 setRequestProperty("Authorization", "Bearer $accessToken")
+                // See GigaChatTokenProvider's own comment on this same header:
+                // a real device log caught SocketException("Software caused
+                // connection abort") on this exact connection, the same
+                // stale-pooled-keep-alive-connection bug Gemini/Groq had via
+                // Ktor's old "android" engine before switching to OkHttp.
+                setRequestProperty("Connection", "close")
             }
             connection.outputStream.use { it.write(requestBody.toByteArray(Charsets.UTF_8)) }
 
