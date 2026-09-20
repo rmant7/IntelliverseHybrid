@@ -4,6 +4,6 @@ enum class AIService {
     GEMINI,
     GEMINI_THINKING,
     GPT,
-    GROK,
+    GROQ,
     GIGACHAT,
 }

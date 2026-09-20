@@ -17,13 +17,19 @@ import javax.inject.Inject
 import javax.inject.Named
 
 /**
- * Grok (xAI) via its OpenAI-compatible endpoint. xAI's API accepts the exact
- * same request/response shape OpenAI's does at a different base URL, so this
- * is [OpenAiUseCase] with [OpenAiChatModel.Builder.baseUrl] pointed at xAI
- * instead of OpenAI, plus key rotation across [apiKeyRotator]'s pool.
+ * Groq (api.groq.com) via its OpenAI-compatible endpoint. Groq accepts the
+ * exact same request/response shape OpenAI's does at a different base URL,
+ * so this is [OpenAiUseCase] with [OpenAiChatModel.Builder.baseUrl] pointed
+ * at Groq instead of OpenAI, plus key rotation across [apiKeyRotator]'s pool.
+ *
+ * Model is a Llama 4 checkpoint rather than Groq's faster gpt-oss models:
+ * Groq's own docs (console.groq.com/docs/vision) confirm gpt-oss does not
+ * accept image input at all, while this app's core flows are photo-driven
+ * (diet photos, homework photos, ...), so a vision-capable model is the
+ * only sane default here.
  */
-class GrokUseCase @Inject constructor(
-    @Named(ApiProviderIds.GROK) private val apiKeyRotator: ApiKeyRotator,
+class GroqUseCase @Inject constructor(
+    @Named(ApiProviderIds.GROQ) private val apiKeyRotator: ApiKeyRotator,
 ) {
     private fun cleanResult(response: String): String {
         return response.replace(
@@ -31,15 +37,15 @@ class GrokUseCase @Inject constructor(
         ) { matchResult -> "$$${matchResult.groupValues[1]}$$" }
     }
 
-    /** Generate a Grok solution using text and optionally one or more base64-encoded JPEG images. */
-    fun generateGrokSolution(
+    /** Generate a Groq solution using text and optionally one or more base64-encoded JPEG images. */
+    fun generateGroqSolution(
         imagesBase64: List<String>,
         prompt: String,
         systemInstruction: String = "",
     ): Result<String> {
         val keyEntry = apiKeyRotator.activeKey()
             ?: return Result.failure(
-                IllegalStateException(apiKeyRotator.exhaustionMessage() ?: "No Grok API key configured")
+                IllegalStateException(apiKeyRotator.exhaustionMessage() ?: "No Groq API key configured")
             )
         val apiKey = keyEntry.key
 
@@ -84,7 +90,7 @@ class GrokUseCase @Inject constructor(
     }
 
     private companion object {
-        const val BASE_URL = "https://api.x.ai/v1"
-        const val DEFAULT_MODEL = "grok-4-fast"
+        const val BASE_URL = "https://api.groq.com/openai/v1"
+        const val DEFAULT_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
     }
 }

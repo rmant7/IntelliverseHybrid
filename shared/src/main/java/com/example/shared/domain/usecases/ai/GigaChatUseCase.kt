@@ -32,7 +32,7 @@ class GigaChatHttpException(val status: Int, val body: String) : Exception(
 /**
  * GigaChat (Sber) via its own (mostly-)OpenAI-compatible `/chat/completions`
  * endpoint. Not routed through [OpenAiUseCase]'s langchain4j client like
- * [GrokUseCase] is: GigaChat's key is not a bearer token by itself — it has
+ * [GroqUseCase] is: GigaChat's key is not a bearer token by itself — it has
  * to be exchanged for one through [GigaChatTokenProvider] first — and its
  * vision support does not match the OpenAI inline-image-url shape (see
  * `CloudProviders.kt`'s notes upstream), so this sends text only for now.

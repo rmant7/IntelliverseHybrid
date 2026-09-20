@@ -17,12 +17,13 @@ import com.example.shared.domain.usecases.ImageUtils
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.TextUtils
 import com.example.shared.domain.usecases.ai.GigaChatUseCase
-import com.example.shared.domain.usecases.ai.GrokUseCase
+import com.example.shared.domain.usecases.ai.GroqUseCase
 import com.example.shared.domain.usecases.ai.OpenAiUseCase
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
 import com.example.shared.presentation.screens.AIService
 import com.example.shared.presentation.screens.output.SharedViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,7 +38,7 @@ abstract class BaseResultViewModel(
     private val imageUtils: ImageUtils,
     private val geminiUseCaseClient: GeminiUseCaseClient,
     private val openAiUseCase: OpenAiUseCase,
-    private val grokUseCase: GrokUseCase,
+    private val groqUseCase: GroqUseCase,
     private val gigaChatUseCase: GigaChatUseCase,
     private val interstitialAdUseCase: InterstitialAdUseCase,
     protected val speechConverter: SpeechConverter,
@@ -53,10 +54,20 @@ abstract class BaseResultViewModel(
     private var generativeLanguageURLs: MutableList<String> = mutableListOf()
     protected var passedEditedResult: String = ""
 
-    /** Solutions max capacity: GEMINI_THINKING, GPT, GROK, GIGACHAT */
-    private val maxSolutionResultsCapacity = 4
+    /**
+     * How many services [generateSolutions] is currently waiting on, for the
+     * progress bar. Starts at 3 (GEMINI_THINKING, GPT, GROQ); GIGACHAT is a
+     * fallback tried only when none of those three answer (see
+     * [generateSolutions]), so it only joins the denominator when it
+     * actually gets invoked for this run.
+     */
+    private var maxSolutionResultsCapacity = PRIMARY_SERVICES.size
     private val geminiAttempts: AtomicInteger = AtomicInteger(2)
-    private val geminiThinkingAttempts: AtomicInteger = AtomicInteger(2)
+    // Only one real attempt reaches Gemini now (the old server-relayed second
+    // attempt was removed along with this app's own backend), so a single
+    // failure must finalize this slot rather than waiting for a second
+    // attempt that will never come.
+    private val geminiThinkingAttempts: AtomicInteger = AtomicInteger(1)
     /** System instructions and OpenAI prompt*/
     protected var selectedLanguage: SolutionLanguageOption
 
@@ -264,7 +275,7 @@ abstract class BaseResultViewModel(
                         updateSolutionResults(aiService, null)
                     }
                 }
-                AIService.GPT, AIService.GROK, AIService.GIGACHAT -> {
+                AIService.GPT, AIService.GROQ, AIService.GIGACHAT -> {
                     updateSolutionResults(aiService, null)
                 }
             }
@@ -295,14 +306,20 @@ abstract class BaseResultViewModel(
         }
     }
 
+    /**
+     * Runs Gemini, GPT and Groq in parallel and waits for all three. GigaChat
+     * is not one of them: it only gets called afterwards, as a fallback, and
+     * only if none of the three primary services produced an answer -- see
+     * the trailing check below.
+     */
     fun generateSolutions() = viewModelScope.launch(Dispatchers.IO) {
         clearSolutionResults()
         clearErrors()
         updateSelectedSolutionService(null)
         updateSolutionProgress(0.0f)
         geminiAttempts.set(2)
-        geminiThinkingAttempts.set(2)
-        setGenerativeLangUrlsAndSolveGeminiWithinApp()
+        geminiThinkingAttempts.set(1)
+        maxSolutionResultsCapacity = PRIMARY_SERVICES.size
 
         val imagesBase64 = if (imageUsed) {
             passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) }
@@ -311,17 +328,28 @@ abstract class BaseResultViewModel(
             emptyList()
         }
 
-        if (imageUsed && imagesBase64.isEmpty()) {
-            onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT)
-            onSolutionResult(Result.failure(UnableToAssistException), AIService.GROK)
-        } else {
-            gpt(imagesBase64)
-            grok(imagesBase64)
+        coroutineScope {
+            launch {
+                setGenerativeLangUrls()
+                geminiWithinApp(GeminiApiService.GeminiModel.GEMINI_2_5_FLASH, AIService.GEMINI_THINKING)
+            }
+            if (imageUsed && imagesBase64.isEmpty()) {
+                onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT)
+                onSolutionResult(Result.failure(UnableToAssistException), AIService.GROQ)
+            } else {
+                launch { gpt(imagesBase64) }
+                launch { groq(imagesBase64) }
+            }
         }
-        gigaChat()
+
+        val anyPrimaryAnswered = PRIMARY_SERVICES.any { !solutionResults.value[it].isNullOrBlank() }
+        if (!anyPrimaryAnswered) {
+            maxSolutionResultsCapacity = PRIMARY_SERVICES.size + 1
+            gigaChat()
+        }
     }
 
-    private fun gpt(imagesBase64: List<String>) = viewModelScope.launch(Dispatchers.IO) {
+    private suspend fun gpt(imagesBase64: List<String>) {
         val result = openAiUseCase.generateOpenAiSolution(
             imagesBase64 = imagesBase64,
             prompt = prompt
@@ -347,34 +375,39 @@ abstract class BaseResultViewModel(
         }
     }
 
-    private fun grok(imagesBase64: List<String>) = viewModelScope.launch(Dispatchers.IO) {
-        val result = grokUseCase.generateGrokSolution(
+    private suspend fun groq(imagesBase64: List<String>) {
+        val result = groqUseCase.generateGroqSolution(
             imagesBase64 = imagesBase64,
             prompt = prompt
         )
         result.onSuccess {
             try {
                 val decodedResponse = decodeSolutionResponse(it)
-                onSolutionResult(Result.success(decodedResponse.first), AIService.GROK)
-                if (imageUsed && sharedViewModel.ocrResults.value[AIService.GROK].isNullOrBlank()) {
+                onSolutionResult(Result.success(decodedResponse.first), AIService.GROQ)
+                if (imageUsed && sharedViewModel.ocrResults.value[AIService.GROQ].isNullOrBlank()) {
                     sharedViewModel.updateOcrResults(
-                        AIService.GROK,
+                        AIService.GROQ,
                         decodedResponse.second,
                         override = false
                     )
                 }
             } catch (e: SerializationException) {
-                Timber.d("Failed to serialize response for Grok: ${e.message}")
-                onSolutionResult(Result.failure(e), AIService.GROK)
+                Timber.d("Failed to serialize response for Groq: ${e.message}")
+                onSolutionResult(Result.failure(e), AIService.GROQ)
             }
         }
         result.onFailure {
-            onSolutionResult(Result.failure(it), AIService.GROK)
+            onSolutionResult(Result.failure(it), AIService.GROQ)
         }
     }
 
-    /** GigaChat gets no image: its endpoint does not accept this app's inline-image request shape (see GigaChatUseCase). */
-    private fun gigaChat() = viewModelScope.launch(Dispatchers.IO) {
+    /**
+     * Fallback only: called from [generateSolutions] after Gemini, GPT and
+     * Groq have all finished, and only when none of them answered. Gets no
+     * image either way: GigaChat's endpoint does not accept this app's
+     * inline-image request shape (see [GigaChatUseCase]).
+     */
+    private suspend fun gigaChat() {
         val result = gigaChatUseCase.generateGigaChatSolution(prompt = prompt)
         result.onSuccess {
             try {
@@ -397,45 +430,34 @@ abstract class BaseResultViewModel(
         }
     }
 
-    private fun setGenerativeLangUrlsAndSolveGeminiWithinApp() = viewModelScope.launch(Dispatchers.IO) {
-        setGenerativeLangUrls()
-        //geminiWithinApp(GeminiApiService.GeminiModel.GEMINI_2_5_FLASH_LITE, AIService.GEMINI)
-        geminiWithinApp(
-            GeminiApiService.GeminiModel.GEMINI_2_5_FLASH,
-            AIService.GEMINI_THINKING
+    private suspend fun geminiWithinApp(modelName: String, aiService: AIService) {
+        val result = geminiUseCaseClient.generateGeminiSolution(
+            generativeLanguageUrls = if (imageUsed) {
+                generativeLanguageURLs
+            } else {
+                emptyList()
+            },
+            prompt = prompt,
+            modelName = modelName
         )
-    }
-
-    private fun geminiWithinApp(modelName: String, aiService: AIService) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = geminiUseCaseClient.generateGeminiSolution(
-                generativeLanguageUrls = if (imageUsed) {
-                    generativeLanguageURLs
-                } else {
-                    emptyList()
-                },
-                prompt = prompt,
-                modelName = modelName
-            )
-            result.onSuccess {
-                try {
-                    val decodedResponse = decodeSolutionResponse(it)
-                    onSolutionResult(Result.success(decodedResponse.first), aiService)
-                    if (imageUsed && sharedViewModel.ocrResults.value[aiService].isNullOrBlank()) {
-                        sharedViewModel.updateOcrResults(
-                            aiService,
-                            decodedResponse.second,
-                            override = false
-                        )
-                    }
-                } catch (e: SerializationException) {
-                    onSolutionResult(Result.failure(e), aiService)
-                    Timber.d("Failed to serialize response for $aiService: ${e.message}")
+        result.onSuccess {
+            try {
+                val decodedResponse = decodeSolutionResponse(it)
+                onSolutionResult(Result.success(decodedResponse.first), aiService)
+                if (imageUsed && sharedViewModel.ocrResults.value[aiService].isNullOrBlank()) {
+                    sharedViewModel.updateOcrResults(
+                        aiService,
+                        decodedResponse.second,
+                        override = false
+                    )
                 }
+            } catch (e: SerializationException) {
+                onSolutionResult(Result.failure(e), aiService)
+                Timber.d("Failed to serialize response for $aiService: ${e.message}")
             }
-            result.onFailure {
-                onSolutionResult(Result.failure(it), aiService)
-            }
+        }
+        result.onFailure {
+            onSolutionResult(Result.failure(it), aiService)
         }
     }
 
@@ -453,4 +475,9 @@ abstract class BaseResultViewModel(
      * and the recognized-properties text which will be displayed on the OCRScreen
      */
     abstract fun decodeSolutionResponse(response: String): Pair<String, String>
+
+    private companion object {
+        /** Run in parallel on every [generateSolutions] call; GIGACHAT is a fallback, not one of these. */
+        val PRIMARY_SERVICES = listOf(AIService.GEMINI_THINKING, AIService.GPT, AIService.GROQ)
+    }
 }

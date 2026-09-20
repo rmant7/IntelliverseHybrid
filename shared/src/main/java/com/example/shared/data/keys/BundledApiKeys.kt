@@ -5,13 +5,13 @@ import com.example.shared.BuildConfig
 /**
  * Provider ids used consistently across [BundledApiKeys], every
  * `ApiKeyRotator`, and each provider's own client (`GeminiApiService`,
- * `GrokUseCase`, `GigaChatUseCase`) — one id per model family, so a new
- * model added under an existing provider (e.g. another Gemini or Grok model)
+ * `GroqUseCase`, `GigaChatUseCase`) — one id per model family, so a new
+ * model added under an existing provider (e.g. another Gemini or Groq model)
  * never needs a new id or a new `local.properties` key of its own.
  */
 object ApiProviderIds {
     const val GEMINI = "gemini"
-    const val GROK = "grok"
+    const val GROQ = "groq"
     const val GIGACHAT = "gigachat"
 }
 
@@ -29,7 +29,7 @@ object BundledApiKeys {
 
     private fun rawFor(providerId: String): String = when (providerId) {
         ApiProviderIds.GEMINI -> BuildConfig.gemini_api_key
-        ApiProviderIds.GROK -> BuildConfig.grok_api_key
+        ApiProviderIds.GROQ -> BuildConfig.groq_api_key
         ApiProviderIds.GIGACHAT -> BuildConfig.gigachat_api_key
         else -> ""
     }

@@ -20,7 +20,7 @@ plugins {
 // invalid Java whenever the value is empty (e.g. an unset CI secret).
 secrets {
     ignoreList.add("gemini_api_key")
-    ignoreList.add("grok_api_key")
+    ignoreList.add("groq_api_key")
     ignoreList.add("gigachat_api_key")
 }
 

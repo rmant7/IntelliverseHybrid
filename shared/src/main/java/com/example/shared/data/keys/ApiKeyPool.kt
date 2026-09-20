@@ -43,7 +43,7 @@ class InMemoryApiKeyStore : ApiKeyStore {
  * takes over on the very next call — nothing to keep in sync, and restarting
  * the app does not forget a cooldown the way an in-memory index would.
  *
- * One rotator per provider (Gemini, Grok, GigaChat, ...); the same class
+ * One rotator per provider (Gemini, Groq, GigaChat, ...); the same class
  * works for all of them, since the whole point is that they all speak the
  * same "list of keys, one of which might be resting" shape regardless of how
  * differently each provider's own API authenticates.

@@ -9,7 +9,7 @@ if (localPropertiesFile.exists()) {
 val isAdvertisementDisabled = localProperties.getProperty("is_advertisement_disabled", "false")
 val geminiApiKey = localProperties.getProperty("gemini_api_key")
 // Comma-separated, same as gemini_api_key: one key today, a rotated pool later, same property name either way.
-val grokApiKey = localProperties.getProperty("grok_api_key")
+val groqApiKey = localProperties.getProperty("groq_api_key")
 val gigachatApiKey = localProperties.getProperty("gigachat_api_key")
 
 plugins {
@@ -45,7 +45,7 @@ android {
         all {
             buildConfigField("boolean", "is_advertisement_disabled", isAdvertisementDisabled)
             buildConfigField("String", "gemini_api_key", "\"$geminiApiKey\"")
-            buildConfigField("String", "grok_api_key", "\"$grokApiKey\"")
+            buildConfigField("String", "groq_api_key", "\"$groqApiKey\"")
             buildConfigField("String", "gigachat_api_key", "\"$gigachatApiKey\"")
         }
     }

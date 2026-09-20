@@ -13,7 +13,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 /**
- * One [ApiKeyRotator] per AI provider (Gemini, Grok, GigaChat, ...), each
+ * One [ApiKeyRotator] per AI provider (Gemini, Groq, GigaChat, ...), each
  * reading the user's own keys from [PrefsApiKeyStore] first and falling back
  * to whichever key(s) `local.properties` baked into this build via
  * [BundledApiKeyStore]/[BundledApiKeys]. Adding a new provider later is one
@@ -41,9 +41,9 @@ object KeysModule {
 
     @Provides
     @Singleton
-    @Named(ApiProviderIds.GROK)
-    fun provideGrokKeyRotator(prefsStore: PrefsApiKeyStore, bundledStore: BundledApiKeyStore): ApiKeyRotator =
-        rotatorFor(ApiProviderIds.GROK, prefsStore, bundledStore)
+    @Named(ApiProviderIds.GROQ)
+    fun provideGroqKeyRotator(prefsStore: PrefsApiKeyStore, bundledStore: BundledApiKeyStore): ApiKeyRotator =
+        rotatorFor(ApiProviderIds.GROQ, prefsStore, bundledStore)
 
     @Provides
     @Singleton

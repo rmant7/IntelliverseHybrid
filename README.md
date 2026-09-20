@@ -36,14 +36,21 @@ Android-приложение Intelliverse (модуль `app` + под-прил�
 не знает о конкретных провайдерах — она просто рендерит все ключи с непустым
 значением, поэтому добавление новой модели не требует правок UI.
 
-Помимо Gemini и GPT, теперь параллельно опрашиваются:
-- **Grok (xAI)** — `GrokUseCase`, тот же OpenAI-совместимый протокол, что и у
-  GPT (langchain4j с `baseUrl = https://api.x.ai/v1`), с картинками (base64).
-- **GigaChat (Sber)** — `GigaChatUseCase`, только текст: GigaChat не понимает
-  формат инлайн-картинок, который отправляют остальные провайдеры (см. комментарий
-  в файле). Требует обмена ключа на OAuth-токен (`GigaChatTokenProvider`) и,
-  на реальном устройстве, доверия российскому корневому сертификату
-  "Минцифры" — без него будет `SSLHandshakeException`, это не баг клиента.
+Кроме Gemini и GPT, параллельно опрашивается:
+- **Groq (api.groq.com)** — `GroqUseCase`, тот же OpenAI-совместимый протокол, что
+  и у GPT (langchain4j с `baseUrl = https://api.groq.com/openai/v1`), модель
+  `meta-llama/llama-4-scout-17b-16e-instruct` (одна из немногих на Groq, реально
+  принимающих картинки — их gpt-oss-модели картинки не понимают вовсе), с
+  картинками (base64).
+
+**GigaChat (Sber)** — `GigaChatUseCase` — не в общей параллельной группе: это
+резервный вариант. `BaseResultViewModel.generateSolutions()` сначала запускает
+Gemini, GPT и Groq параллельно и ждёт все три; только если ни один не ответил,
+вызывается GigaChat. GigaChat также получает только текст: он не понимает формат
+инлайн-картинок, который отправляют остальные провайдеры (см. комментарий в
+файле). Требует обмена ключа на OAuth-токен (`GigaChatTokenProvider`) и, на
+реальном устройстве, доверия российскому корневому сертификату "Минцифры" — без
+него будет `SSLHandshakeException`, это не баг клиента.
 
 Модуль ротации ключей — `shared/.../data/keys/` (`ApiKeyPool.kt`,
 `PrefsApiKeyStore.kt`, `BundledApiKeyStore.kt`, `BundledApiKeys.kt`), портирован
@@ -61,7 +68,7 @@ Android-приложение Intelliverse (модуль `app` + под-прил�
 
 ```properties
 gemini_api_key=КЛЮЧ
-grok_api_key=КЛЮЧ1,КЛЮЧ2
+groq_api_key=КЛЮЧ1,КЛЮЧ2
 gigachat_api_key=АВТОРИЗАЦИОННЫЙ_КЛЮЧ_В_BASE64
 ```
 
@@ -76,7 +83,7 @@ gigachat_api_key=АВТОРИЗАЦИОННЫЙ_КЛЮЧ_В_BASE64
 ```properties
 sdk.dir=/path/to/Android/sdk
 gemini_api_key=ВАШ_КЛЮЧ_GEMINI
-grok_api_key=ВАШ_КЛЮЧ_GROK
+groq_api_key=ВАШ_КЛЮЧ_GROQ
 gigachat_api_key=ВАШ_КЛЮЧ_GIGACHAT
 # Ключ AppMetrica (Yandex) для app/IntelliverseApplication.kt — без него app не
 # компилируется вообще. В отличие от трёх ключей выше (их читает сам
@@ -107,9 +114,13 @@ release-APK при пуше в `main`/`claude/**`, в pull request и вручн
 Build APK → Run workflow).
 
 1. Repo → Settings → Secrets and variables → Actions → New repository secret:
-   `GEMINI_API_KEY`, `GROK_API_KEY`, `GIGACHAT_API_KEY` — без них сборка пройдёт,
-   но соответствующая модель не сможет отвечать. `APP_METRICA_API_KEY` — обязателен,
-   без него `app` не скомпилируется (см. `local.properties` выше).
+   `GEMINI_API_KEY_1`, `GROQ_API_KEY_1`, `GIGACHAT_API_KEY_1` — без них сборка
+   пройдёт, но соответствующая модель не сможет отвечать. `APP_METRICA_API_KEY` —
+   обязателен, без него `app` не скомпилируется (см. `local.properties` выше).
+   Суффикс `_1` — задел на пул из нескольких ключей на провайдера: чтобы добавить
+   второй ключ Groq, заведите секрет `GROQ_API_KEY_2` и допишите его в workflow
+   через запятую к первому (`ApiKeyRotator` сам разберёт список и будет
+   переключаться между ключами при HTTP 429).
 2. После завершения workflow — во вкладке Actions у соответствующего run внизу
    будут артефакты `intelliverse-debug-apk` и `intelliverse-release-apk-unsigned`.
 3. Debug APK подписан отладочным ключом AGP и сразу ставится на устройство/эмулятор.
