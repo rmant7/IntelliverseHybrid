@@ -103,3 +103,15 @@ jobs:
               --title "Intelliverse -- build #${{ github.run_number }}" \
               --notes "$NOTES"
           fi
+
+      # One-time cleanup: "latest-debug" was this same rolling release under
+      # its old name/tag (debug + unsigned-release APK pair), replaced above
+      # by "latest" (single signed APK) -- left behind otherwise as a stale,
+      # confusing second release nothing updates anymore. Tolerant of it
+      # already being gone (a previous run already deleted it, or it never
+      # existed on this repo) rather than failing the whole build over it.
+      - name: Remove the obsolete "latest-debug" release
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release delete latest-debug --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true

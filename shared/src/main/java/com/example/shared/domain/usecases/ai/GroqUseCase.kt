@@ -22,17 +22,20 @@ import javax.inject.Named
  * so this is [OpenAiUseCase] with [OpenAiChatModel.Builder.baseUrl] pointed
  * at Groq instead of OpenAI, plus key rotation across [apiKeyRotator]'s pool.
  *
- * Model is a Llama 4 checkpoint rather than Groq's faster gpt-oss models:
- * Groq's own docs (console.groq.com/docs/vision) confirm gpt-oss does not
- * accept image input at all, while this app's core flows are photo-driven
- * (diet photos, homework photos, ...), so a vision-capable model is the
- * only sane default here.
- *
- * NOTE: a real device log confirmed "meta-llama/llama-4-scout-17b-16e-instruct"
- * returns HTTP 400 model_not_found on this account -- switched to its Llama 4
- * sibling below. This has NOT been verified against a live Groq account from
- * here (no network access to api.groq.com in this environment); check
- * console.groq.com/docs/models for the current model ID if this one also 404s.
+ * Model rotation, not one hardcoded name: two different Llama 4 checkpoints
+ * hardcoded here in turn ("meta-llama/llama-4-scout-17b-16e-instruct", then
+ * its sibling maverick) each came back HTTP 400 model_not_found on a real
+ * account, confirmed via this app's own Log screen -- Groq's free-tier
+ * catalogue drifts faster than this code can be verified against a live
+ * account from this environment (no network access to api.groq.com here).
+ * [MODEL_CANDIDATES] is tried in order per call; a candidate that comes back
+ * model_not_found is skipped in favor of the next one in the SAME call,
+ * rather than being a permanent, unrecoverable failure for the whole
+ * provider. Vision-capable models are listed first since this app's core
+ * flows are photo-driven (diet photos, homework photos, ...) -- Groq's own
+ * docs (console.groq.com/docs/vision) confirm its gpt-oss reasoning models
+ * do not accept image input at all, so those are deliberately not candidates
+ * here.
  */
 class GroqUseCase @Inject constructor(
     @Named(ApiProviderIds.GROQ) private val apiKeyRotator: ApiKeyRotator,
@@ -42,6 +45,9 @@ class GroqUseCase @Inject constructor(
             Regex("""\\\[(.*?)\\]""", RegexOption.DOT_MATCHES_ALL)
         ) { matchResult -> "$$${matchResult.groupValues[1]}$$" }
     }
+
+    private fun isModelNotFound(e: OpenAiHttpException): Boolean =
+        e.code() == 400 && e.message?.contains("model_not_found") == true
 
     /** Generate a Groq solution using text and optionally one or more base64-encoded JPEG images. */
     fun generateGroqSolution(
@@ -55,13 +61,6 @@ class GroqUseCase @Inject constructor(
             )
         val apiKey = keyEntry.key
 
-        val model = OpenAiChatModel.builder()
-            .baseUrl(BASE_URL)
-            .apiKey(apiKey)
-            .modelName(DEFAULT_MODEL)
-            .timeout(Duration.ofSeconds(90L))
-            .build()
-
         val userMessage = if (imagesBase64.isNotEmpty()) {
             val contents = mutableListOf<Content>()
             imagesBase64.mapTo(contents) { base64Data ->
@@ -73,30 +72,61 @@ class GroqUseCase @Inject constructor(
             UserMessage.from(TextContent.from(prompt))
         }
 
-        return try {
-            val response: Response<AiMessage> = if (systemInstruction.isBlank()) {
-                model.generate(userMessage)
-            } else {
-                model.generate(SystemMessage.from(systemInstruction), userMessage)
+        var lastFailure: Throwable? = null
+        for (modelName in MODEL_CANDIDATES) {
+            val model = OpenAiChatModel.builder()
+                .baseUrl(BASE_URL)
+                .apiKey(apiKey)
+                .modelName(modelName)
+                .timeout(Duration.ofSeconds(90L))
+                .build()
+
+            try {
+                val response: Response<AiMessage> = if (systemInstruction.isBlank()) {
+                    model.generate(userMessage)
+                } else {
+                    model.generate(SystemMessage.from(systemInstruction), userMessage)
+                }
+                return Result.success(cleanResult(response.content().text()))
+            } catch (e: OpenAiHttpException) {
+                Timber.e(e, "Groq model $modelName failed")
+                if (isModelNotFound(e)) {
+                    lastFailure = e
+                    continue
+                }
+                if (e.code() == 429) {
+                    apiKeyRotator.markExhausted(keyEntry.id)
+                }
+                return Result.failure(e)
+            } catch (e: IllegalArgumentException) {
+                Timber.e(e, "Groq model $modelName failed")
+                return Result.failure(e)
+            } catch (e: RuntimeException) {
+                Timber.e(e, "Groq model $modelName failed")
+                return Result.failure(e)
             }
-            Result.success(cleanResult(response.content().text()))
-        } catch (e: OpenAiHttpException) {
-            Timber.e(e)
-            if (e.code() == 429) {
-                apiKeyRotator.markExhausted(keyEntry.id)
-            }
-            Result.failure(e)
-        } catch (e: IllegalArgumentException) {
-            Timber.e(e)
-            Result.failure(e)
-        } catch (e: RuntimeException) {
-            Timber.e(e)
-            Result.failure(e)
         }
+        // Every candidate came back model_not_found -- this API key's
+        // account has access to none of them, not a transient issue a retry
+        // would fix. Surfaced as its own message (rather than just the last
+        // model's raw error) so the Log screen shows this is a full-list
+        // exhaustion, not one model's ordinary hiccup.
+        return Result.failure(
+            IllegalStateException(
+                "None of Groq's candidate models (${MODEL_CANDIDATES.joinToString()}) " +
+                    "are accessible with this API key",
+                lastFailure,
+            )
+        )
     }
 
     private companion object {
         const val BASE_URL = "https://api.groq.com/openai/v1"
-        const val DEFAULT_MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct"
+        val MODEL_CANDIDATES = listOf(
+            "meta-llama/llama-4-scout-17b-16e-instruct",
+            "meta-llama/llama-4-maverick-17b-128e-instruct",
+            "llama-3.2-90b-vision-preview",
+            "llama-3.2-11b-vision-preview",
+        )
     }
 }
