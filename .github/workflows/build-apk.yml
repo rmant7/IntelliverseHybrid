@@ -23,8 +23,16 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      # GitHub-hosted ubuntu-latest runners already ship a full Android SDK
+      # (ANDROID_HOME) with cmdline-tools; android-actions/setup-android@v3
+      # is unmaintained and fails on current runners trying to install a
+      # legacy 'tools' package that no longer exists in Google's repository.
+      # Just make sure the platform/build-tools this project needs are
+      # present and licenses are accepted, using the SDK already there.
+      - name: Ensure Android SDK packages
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
