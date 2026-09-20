@@ -1,0 +1,146 @@
+<resources>
+
+    <string name="app_name_matter_of_choice">Matter of choice</string>
+    <string name="matterofchoice_info" translatable="false">Matter Of Choice presents interactive scenarios to help you learn decision-making skills.</string>
+
+    <string name="optional_enter_the_role_e_g_student">Optional: Enter the role, e.g., Student</string>
+    <string name="analysis_my_choices">Analyze my choices</string>
+    <string name="analysis_your_selections">Analysis your selections</string>
+    <string name="rounds">Rounds</string>
+    <string name="score_calculate_based_on_health_wealth_relationships_happiness_knowledge_karma_time_management_environmental_impact_personal_growth_and_social_responsibility">Score calculate based on health, wealth, relationships, happiness, knowledge, karma, time management, environmental impact, personal growth, and social responsibility</string>
+
+    <string name="settings_title">Matter of choice</string>
+    <string name="settings_subtitle">The scenarios will be based on your selections</string>
+    <string name="settings_label_subject">Subject</string>
+    <string name="settings_hint_select_question_type">Question type</string>
+    <string name="settings_hint_select_subtype">Subtype</string>
+    <string name="settings_hint_select_difficulty">Difficulty</string>
+    <string name="settings_hint_select_gender_optional">Gender</string>
+    <string name="settings_label_age">Age</string>
+    <string name="settings_hint_select_language">Language</string>
+    <string name="settings_button_generate_cases">Generate Cases</string>
+
+    <string name="question_type_study">Study</string>
+    <string name="question_type_behavioral">Behavioral</string>
+    <string name="question_type_hiring">Hiring</string>
+    <string-array name="question_types_array">
+        <item>@string/question_type_study</item>
+        <item>@string/question_type_behavioral</item>
+        <item>@string/question_type_hiring</item>
+    </string-array>
+
+    <string name="subtype_behavioral_interpersonal">Interpersonal Skills</string>
+    <string name="subtype_behavioral_ethical">Ethical Dilemmas</string>
+    <string name="subtype_behavioral_stress">Stress Management</string>
+    <string-array name="subtypes_behavioral_array">
+        <item>@string/subtype_behavioral_interpersonal</item>
+        <item>@string/subtype_behavioral_ethical</item>
+        <item>@string/subtype_behavioral_stress</item>
+    </string-array>
+
+    <string name="subtype_study_mastery">Subject Mastery</string>
+    <string name="subtype_study_critical_thinking">Critical Thinking</string>
+    <string name="subtype_study_practical_application">Practical Application</string>
+    <string-array name="subtypes_study_array">
+        <item>@string/subtype_study_mastery</item>
+        <item>@string/subtype_study_critical_thinking</item>
+        <item>@string/subtype_study_practical_application</item>
+    </string-array>
+
+    <string name="subtype_hiring_technical">Technical Skills</string>
+    <string name="subtype_hiring_behavioral_interview">Behavioral Interview</string>
+    <string name="subtype_hiring_situational_judgment">Situational Judgment</string>
+    <string-array name="subtypes_hiring_array">
+        <item>@string/subtype_hiring_technical</item>
+        <item>@string/subtype_hiring_behavioral_interview</item>
+        <item>@string/subtype_hiring_situational_judgment</item>
+    </string-array>
+
+    <string name="difficulty_normal">Normal</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_hard">Hard</string>
+    <string-array name="difficulty_levels_array">
+        <item>@string/difficulty_normal</item>
+        <item>@string/difficulty_easy</item>
+        <item>@string/difficulty_hard</item>
+    </string-array>
+
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_select_prompt">Gender</string>
+    <string-array name="genders_array">
+        <item>@string/gender_select_prompt</item>
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+    </string-array>
+
+    <string name="prefs_file_key" translatable="false">MyPrefs</string>
+    <string name="pref_key_is_first" translatable="false">isFirst</string>
+    <string name="pref_key_user_score" translatable="false">userScore</string>
+    <string name="pref_key_total_score" translatable="false">totalScore</string>
+    <string name="pref_key_rounds" translatable="false">rounds</string>
+
+    <string name="error_something_went_wrong">Something went wrong</string>
+    <string name="button_new_game">New Game</string>
+    <string name="text_round_number">Round %1$d</string>
+    <string name="text_scenario">Scenario</string>
+    <string name="button_next">Next</string>
+    <string name="icon_desc_selected_option">Selected option</string>
+    <string name="analyze">Analyze</string>
+
+    <string-array name="languages">
+        <item>Amharic</item>
+        <item>Arabic</item>
+        <item>Bengali</item>
+        <item>Bulgarian</item>
+        <item>Chinese Simplified</item>
+        <item>Croatian</item>
+        <item>Czech</item>
+        <item>Danish</item>
+        <item>Dutch</item>
+        <item>English</item>
+        <item>Estonian</item>
+        <item>Finnish</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Gujarati</item>
+        <item>Hebrew</item>
+        <item>Hindi</item>
+        <item>Hungarian</item>
+        <item>Indonesian</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Kannada</item>
+        <item>Korean</item>
+        <item>Latvian</item>
+        <item>Lithuanian</item>
+        <item>Malay</item>
+        <item>Marathi</item>
+        <item>Norwegian</item>
+        <item>Pashto</item>
+        <item>Persian</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Romanian</item>
+        <item>Russian</item>
+        <item>Serbian</item>
+        <item>Slovak</item>
+        <item>Slovenian</item>
+        <item>Spanish</item>
+        <item>Swahili</item>
+        <item>Swedish</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Turkish</item>
+        <item>Ukrainian</item>
+        <item>Urdu</item>
+        <item>Vietnamese</item>
+    </string-array>
+
+
+    <string-array name="language_codes" translatable="false">
+        <item>af-ZA</item> <item>ak-GH</item> <item>am-ET</item> <item>ar-AE</item> <item>as-IN</item> <item>ast-ES</item> <item>az-AZ</item> <item>bm-ML</item> <item>be-BY</item> <item>bem-ZM</item> <item>bn-BD</item> <item>bo-CN</item> <item>bs-BA</item> <item>bg-BG</item> <item>ca-ES</item> <item>cs-CZ</item> <item>cy-GB</item> <item>da-DK</item> <item>de-DE</item> <item>dz-BT</item> <item>el-GR</item> <item>en-US</item> <item>et-EE</item> <item>eu-ES</item> <item>ee-GH</item> <item>ee-TG</item> <item>fo-FO</item> <item>fi-FI</item> <item>fr-FR</item> <item>fur-IT</item> <item>gd-GB</item> <item>ga-IE</item> <item>gl-ES</item> <item>gu-IN</item> <item>ha-NE</item> <item>iw-IL</item> <item>hi-IN</item> <item>hr-HR</item> <item>hu-HU</item> <item>hy-AM</item> <item>ig-NG</item> <item>in-ID</item> <item>is-IS</item> <item>it-IT</item> <item>ja-JP</item> <item>kab-DZ</item> <item>kam-KE</item> <item>kn-IN</item> <item>ka-GE</item> <item>kk-KZ</item> <item>kea-CV</item> <item>km-KH</item> <item>ki-KE</item> <item>rw-RW</item> <item>ky-KG</item> <item>ko-KR</item> <item>lo-LA</item> <item>li-NL</item> <item>ln-CG</item> <item>lt-LT</item> <item>lb-LU</item> <item>lg-UG</item> <item>luo-KE</item> <item>lv-LV</item> <item>ml-IN</item> <item>mr-IN</item> <item>mk-MK</item> <item>mg-MG</item> <item>mt-MT</item> <item>mn-MN</item> <item>ms-MY</item> <item>my-MM</item> <item>nl-NL</item> <item>nn-NO</item> <item>nb-NO</item> <item>ne-NP</item> <item>nus-SS</item> <item>om-ET</item> <item>om-KE</item> <item>or-IN</item> <item>pa-IN</item> <item>pl-PL</item> <item>pt-PT</item> <item>fa-AF</item> <item>fa-IR</item> <item>ps-AF</item> <item>qu-BO</item> <item>qu-EC</item> <item>qu-PE</item> <item>ro-RO</item> <item>rn-BI</item> <item>ru-RU</item> <item>sg-CF</item> <item>si-LK</item> <item>sk-SK</item> <item>sl-SI</item> <item>sn-ZW</item> <item>so-SO</item> <item>es-ES</item> <item>sq-AL</item> <item>sr-RS</item> <item>sv-SE</item> <item>sw-KE</item> <item>ta-IN</item> <item>te-IN</item> <item>th-TH</item> <item>tr-TR</item> <item>uk-UA</item> <item>ur-PK</item> <item>ug-CN</item> <item>uz-UZ</item> <item>vi-VN</item> <item>xh-ZA</item> <item>yo-NG</item> <item>yue-HK</item> <item>zh-CN</item> <item>zh-TW</item> <item>zu-ZA</item> </string-array>
+</resources>
