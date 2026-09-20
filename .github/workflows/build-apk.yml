@@ -43,12 +43,11 @@ jobs:
         run: |
           echo "sdk.dir=$ANDROID_HOME" >> local.properties
           # Each provider's rotation pool is one property, comma-separated
-          # (ApiKeyRotator/BundledApiKeys drop blank entries) -- so numbered
-          # secrets like _2/_3 slot in later just by adding another
-          # secrets.<PROVIDER>_API_KEY_N here, with zero other changes.
-          echo "gemini_api_key=${{ secrets.GEMINI_API_KEY_1 }}" >> local.properties
-          echo "groq_api_key=${{ secrets.GROQ_API_KEY_1 }}" >> local.properties
-          echo "gigachat_api_key=${{ secrets.GIGACHAT_API_KEY_1 }}" >> local.properties
+          # (ApiKeyRotator/BundledApiKeys drop blank/"null" entries, so a
+          # not-yet-added _N secret here is harmless, not a broken key).
+          echo "gemini_api_key=${{ secrets.GEMINI_API_KEY_1 }},${{ secrets.GEMINI_API_KEY_2 }}" >> local.properties
+          echo "groq_api_key=${{ secrets.GROQ_API_KEY_1 }},${{ secrets.GROQ_API_KEY_2 }}" >> local.properties
+          echo "gigachat_api_key=${{ secrets.GIGACHAT_API_KEY_1 }},${{ secrets.GIGACHAT_API_KEY_2 }}" >> local.properties
           echo "app_metrica_api_key=${{ secrets.APP_METRICA_API_KEY }}" >> local.properties
 
       # Debug-signed (see app/build.gradle.kts's release signingConfig), not
