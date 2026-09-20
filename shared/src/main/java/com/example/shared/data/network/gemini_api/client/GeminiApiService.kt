@@ -175,7 +175,6 @@ class GeminiApiService @Inject constructor(
 
             val plainTextResponse = jsonResponseToString(response.bodyAsText())
             if (plainTextResponse.isNullOrEmpty()) {
-                Timber.d("response for gemini flow within app is null/empty")
                 Result.failure(UnableToAssistException)
             }
             else
@@ -218,7 +217,22 @@ class GeminiApiService @Inject constructor(
         val geminiJsonResponse = json.decodeFromString<GeminiJsonResponse>(jsonResponse)
         // candidate.content.parts[2].text -> get second result,
         // but multiple candidates aren't supported yet (?)
-        return geminiJsonResponse.candidates?.firstOrNull()?.content?.parts?.firstOrNull()?.text
+        val text = geminiJsonResponse.candidates?.firstOrNull()?.content?.parts?.firstOrNull()?.text
+        if (text.isNullOrEmpty()) {
+            // A blank/missing text used to look identical whether the
+            // model said nothing, refused on a safety filter, or ran out
+            // of its token budget (a real risk for a thinking model, which
+            // spends part of it on reasoning before ever writing an
+            // answer) -- surfaced here at WARN so it actually reaches the
+            // Log screen instead of silently becoming "no answer" with no
+            // way to tell which of those it was.
+            val blockReason = geminiJsonResponse.promptFeedback?.blockReason
+            val finishReason = geminiJsonResponse.candidates?.firstOrNull()?.finishReason
+            Timber.w(
+                "Gemini returned no text -- blockReason=$blockReason, finishReason=$finishReason"
+            )
+        }
+        return text
     }
 
 }
