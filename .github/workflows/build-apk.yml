@@ -73,43 +73,59 @@ jobs:
           path: app/build/outputs/apk/release/named/*.apk
           if-no-files-found: error
 
+      # Each branch gets its own rolling release instead of every branch
+      # sharing one "latest" tag. With more than one branch building in
+      # parallel (e.g. this branch and a matter-of-choice branch developed
+      # alongside it), a single shared "latest" release meant whichever
+      # branch pushed last silently overwrote the other's APK. Slugifying
+      # the branch name into the tag keeps each branch's rolling release
+      # independent; GitHub's own "/releases/latest" convenience link still
+      # resolves to whichever tagged release was published most recently,
+      # so nothing downstream that relied on that link breaks.
+      - name: Compute release tag
+        id: release_tag
+        run: |
+          SLUG=$(echo "${{ github.ref_name }}" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9' '-' | sed 's/-\+/-/g; s/^-//; s/-$//')
+          echo "tag=latest-$SLUG" >> "$GITHUB_OUTPUT"
+
       # Workflow artifacts (the upload-artifact step above) expire after 90
       # days and require being signed into the Actions UI to download. A
       # GitHub Release is a permanent, directly-downloadable link instead.
-      # One rolling release ("latest"), overwritten on every push, rather
-      # than a new release per commit -- this branch pushes often enough
-      # that per-commit releases would flood the Releases page. Old asset
-      # is deleted first: its filename includes the build number, which
-      # changes every run, so a plain upload would just pile up a new file
-      # instead of replacing the old one.
-      - name: Publish to the "latest" release
+      # One rolling release per branch, overwritten on every push to that
+      # same branch, rather than a new release per commit -- this branch
+      # pushes often enough that per-commit releases would flood the
+      # Releases page. Old asset is deleted first: its filename includes
+      # the build number, which changes every run, so a plain upload would
+      # just pile up a new file instead of replacing the old one.
+      - name: Publish to this branch's rolling release
         if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.release_tag.outputs.tag }}
         run: |
           NOTES="Intelliverse, build #${{ github.run_number }} -- commit ${{ github.sha }}, branch \`${{ github.ref_name }}\`.
-          Always overwritten by the next push -- not a pinned version, just the latest build."
+          Always overwritten by the next push to this branch -- not a pinned version, just the latest build."
           APK="app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
-          if gh release view latest --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            for asset in $(gh release view latest --repo "$GITHUB_REPOSITORY" --json assets -q '.assets[].name'); do
-              gh release delete-asset latest "$asset" --repo "$GITHUB_REPOSITORY" --yes
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            for asset in $(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json assets -q '.assets[].name'); do
+              gh release delete-asset "$RELEASE_TAG" "$asset" --repo "$GITHUB_REPOSITORY" --yes
             done
-            gh release upload latest "$APK" --repo "$GITHUB_REPOSITORY"
-            gh release edit latest --repo "$GITHUB_REPOSITORY" \
-              --title "Intelliverse -- build #${{ github.run_number }}" --notes "$NOTES"
+            gh release upload "$RELEASE_TAG" "$APK" --repo "$GITHUB_REPOSITORY"
+            gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+              --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" --notes "$NOTES"
           else
-            gh release create latest "$APK" \
+            gh release create "$RELEASE_TAG" "$APK" \
               --repo "$GITHUB_REPOSITORY" \
-              --title "Intelliverse -- build #${{ github.run_number }}" \
+              --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" \
               --notes "$NOTES"
           fi
 
       # One-time cleanup: "latest-debug" was this same rolling release under
       # its old name/tag (debug + unsigned-release APK pair), replaced above
-      # by "latest" (single signed APK) -- left behind otherwise as a stale,
-      # confusing second release nothing updates anymore. Tolerant of it
-      # already being gone (a previous run already deleted it, or it never
-      # existed on this repo) rather than failing the whole build over it.
+      # by a per-branch tag (single signed APK) -- left behind otherwise as
+      # a stale, confusing second release nothing updates anymore. Tolerant
+      # of it already being gone (a previous run already deleted it, or it
+      # never existed on this repo) rather than failing the whole build.
       - name: Remove the obsolete "latest-debug" release
         if: github.event_name != 'pull_request'
         env:
