@@ -371,7 +371,10 @@ abstract class BaseResultViewModel(
                     )
                 }
             } catch (e: Exception) {
-                Timber.e(e, "Failed to serialize response for GPT")
+                // No separate Timber call here: onSolutionResult's own
+                // onFailure branch already logs this exact throwable --
+                // doing it twice was one more source of the Log screen's
+                // duplicated stack traces.
                 onSolutionResult(Result.failure(e), AIService.GPT)
             }
         }
@@ -397,7 +400,6 @@ abstract class BaseResultViewModel(
                     )
                 }
             } catch (e: Exception) {
-                Timber.e(e, "Failed to serialize response for Groq")
                 onSolutionResult(Result.failure(e), AIService.GROQ)
             }
         }
@@ -426,7 +428,6 @@ abstract class BaseResultViewModel(
                     )
                 }
             } catch (e: Exception) {
-                Timber.e(e, "Failed to serialize response for GigaChat")
                 onSolutionResult(Result.failure(e), AIService.GIGACHAT)
             }
         }
@@ -458,7 +459,6 @@ abstract class BaseResultViewModel(
                 }
             } catch (e: Exception) {
                 onSolutionResult(Result.failure(e), aiService)
-                Timber.e(e, "Failed to serialize response for $aiService")
             }
         }
         result.onFailure {

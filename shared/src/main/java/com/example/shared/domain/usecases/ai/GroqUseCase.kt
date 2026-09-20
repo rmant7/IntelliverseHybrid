@@ -134,6 +134,15 @@ class GroqUseCase @Inject constructor(
                 .apiKey(apiKey)
                 .modelName(modelName)
                 .timeout(Duration.ofSeconds(90L))
+                // Without this, langchain4j sends no max_tokens field at all
+                // and Groq applies its own per-model server-side default --
+                // confirmed too small via a real device log: a genuine,
+                // successful response (a multi-day trip itinerary, for
+                // OneClickTrip) got cut off mid-JSON, failing to decode with
+                // "Expected end of the object '}', but had 'EOF' instead".
+                // 8192 comfortably covers this app's largest structured
+                // response shape with room to spare.
+                .maxTokens(8192)
                 .build()
 
             try {
