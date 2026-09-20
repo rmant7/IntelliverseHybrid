@@ -4,7 +4,9 @@ import com.example.shared.UnableToAssistException
 import com.example.shared.data.keys.ApiKeyRotator
 import com.example.shared.data.keys.ApiProviderIds
 import io.ktor.client.HttpClient
+import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.ClientRequestException
+import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.header
@@ -16,6 +18,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 import io.ktor.utils.io.ByteReadChannel
+import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
@@ -164,49 +167,71 @@ class GeminiApiService @Inject constructor(
                 IllegalStateException(apiKeyRotator.exhaustionMessage() ?: "No Gemini API key configured")
             )
 
-        return try {
-            val response: HttpResponse = client.post(
-                "${HttpRoutes.MODELS_URL}/${modelName}:generateContent?key=${keyEntry.key}"
+        var networkRetriesLeft = NETWORK_RETRY_ATTEMPTS
+        while (true) {
+            try {
+                val response: HttpResponse = client.post(
+                    "${HttpRoutes.MODELS_URL}/${modelName}:generateContent?key=${keyEntry.key}"
 
-            ) {
-                contentType(ContentType.Application.Json)
-                setBody(requestBody)
-            }
+                ) {
+                    contentType(ContentType.Application.Json)
+                    setBody(requestBody)
+                }
 
-            val plainTextResponse = jsonResponseToString(response.bodyAsText())
-            if (plainTextResponse.isNullOrEmpty()) {
-                Result.failure(UnableToAssistException)
-            }
-            else
-                Result.success(plainTextResponse)
+                val plainTextResponse = jsonResponseToString(response.bodyAsText())
+                return if (plainTextResponse.isNullOrEmpty()) {
+                    Result.failure(UnableToAssistException)
+                } else {
+                    Result.success(plainTextResponse)
+                }
 
-        } catch (e: RedirectResponseException) {
-            //3xx - responses
-            Timber.e(e, e.message)
-            Result.failure(e)
-        } catch (e: ClientRequestException) {
-            //4xx - response
-            if (e.response.status == HttpStatusCode.TooManyRequests) {
-                // Gemini's free tier is quota-limited per key/day -- without
-                // this, one exhausted key failed every request for the rest
-                // of the quota window with nothing else to fall back to.
-                apiKeyRotator.markExhausted(keyEntry.id)
+            } catch (e: RedirectResponseException) {
+                //3xx - responses
+                Timber.e(e, e.message)
+                return Result.failure(e)
+            } catch (e: ClientRequestException) {
+                //4xx - response
+                if (e.response.status == HttpStatusCode.TooManyRequests) {
+                    // Gemini's free tier is quota-limited per key/day -- without
+                    // this, one exhausted key failed every request for the rest
+                    // of the quota window with nothing else to fall back to.
+                    apiKeyRotator.markExhausted(keyEntry.id)
+                }
+                Timber.e(e, e.message)
+                return Result.failure(e)
+            } catch (e: ServerResponseException) {
+                //5xx - response
+                Timber.e(e, e.message)
+                return Result.failure(e)
+            } catch (e: UnknownHostException) {
+                // A DNS lookup failure says nothing about Gemini or this key
+                // -- a real device log caught this being treated as a hard
+                // failure on the very first attempt, from a plain transient
+                // connectivity blip. One retry before giving up on it.
+                if (networkRetriesLeft > 0) {
+                    networkRetriesLeft--
+                    Timber.w("Gemini call hit a transient DNS failure, retrying ($networkRetriesLeft attempt(s) left)")
+                    delay(NETWORK_RETRY_DELAY_MS)
+                    continue
+                }
+                Timber.e(e, e.message)
+                return Result.failure(e)
+            } catch (e: Exception) {
+                // HttpRequestTimeoutException and SocketTimeoutException are
+                // both IOException subtypes with no shared marker interface
+                // of their own, so they're matched here rather than as their
+                // own catch clauses -- same transient-retry treatment as an
+                // UnknownHostException above, and everything else keeps its
+                // existing behavior.
+                if ((e is HttpRequestTimeoutException || e is SocketTimeoutException) && networkRetriesLeft > 0) {
+                    networkRetriesLeft--
+                    Timber.w("Gemini call timed out, retrying ($networkRetriesLeft attempt(s) left)")
+                    delay(NETWORK_RETRY_DELAY_MS)
+                    continue
+                }
+                Timber.e(e, e.message)
+                return Result.failure(e)
             }
-            Timber.e(e, e.message)
-            Result.failure(e)
-        } catch (e: ServerResponseException) {
-            //5xx - response
-            Timber.e(e, e.message)
-            Result.failure(e)
-        } catch (e: UnknownHostException) {
-            Timber.e(e, e.message)
-            Result.failure(e)
-        } catch (e: IOException) {
-            Timber.e(e, e.message)
-            Result.failure(e)
-        } catch (e: Exception) {
-            Timber.e(e, e.message)
-            Result.failure(e)
         }
     }
 
@@ -235,6 +260,13 @@ class GeminiApiService @Inject constructor(
         return text
     }
 
+    private companion object {
+        // One retry for a transient network failure (DNS, socket/request
+        // timeout) before giving up -- these are momentary by definition,
+        // not evidence Gemini or this key is actually broken.
+        const val NETWORK_RETRY_ATTEMPTS = 1
+        const val NETWORK_RETRY_DELAY_MS = 500L
+    }
 }
 
 @Serializable

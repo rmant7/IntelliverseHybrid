@@ -91,6 +91,23 @@ class GroqUseCase @Inject constructor(
     private fun isModelUnavailable(e: OpenAiHttpException): Boolean =
         SKIPPABLE_MODEL_ERROR_CODES.any { code -> e.message?.contains(code) == true }
 
+    // A DNS lookup or socket timeout says nothing about this model or key --
+    // a real device log caught "Unable to resolve host api.groq.com" (a
+    // plain transient connectivity blip, confirmed via the user's own
+    // device at the time) being treated as a hard failure that skipped
+    // trying every other candidate, even though nothing about the account
+    // or model was actually wrong. Walks the cause chain since it's usually
+    // wrapped (see httpExceptionOf's own comment on why RetryUtils wraps
+    // everything in a plain RuntimeException).
+    private fun isTransientNetworkError(e: Throwable): Boolean {
+        var cause: Throwable? = e
+        while (cause != null) {
+            if (cause is java.net.UnknownHostException || cause is java.net.SocketTimeoutException) return true
+            cause = cause.cause
+        }
+        return false
+    }
+
     // langchain4j's RetryUtils.withRetry() (which OpenAiChatModel.generate()
     // goes through) never lets the original OpenAiHttpException escape
     // directly: after exhausting its retries it always rethrows
@@ -129,46 +146,62 @@ class GroqUseCase @Inject constructor(
         val modelCandidates = resolveModelCandidates(apiKey)
         var lastFailure: Throwable? = null
         for (modelName in modelCandidates) {
-            val model = OpenAiChatModel.builder()
-                .baseUrl(BASE_URL)
-                .apiKey(apiKey)
-                .modelName(modelName)
-                .timeout(Duration.ofSeconds(90L))
-                // Without this, langchain4j sends no max_tokens field at all
-                // and Groq applies its own per-model server-side default --
-                // confirmed too small via a real device log: a genuine,
-                // successful response (a multi-day trip itinerary, for
-                // OneClickTrip) got cut off mid-JSON, failing to decode with
-                // "Expected end of the object '}', but had 'EOF' instead".
-                // 8192 comfortably covers this app's largest structured
-                // response shape with room to spare.
-                .maxTokens(8192)
-                .build()
+            var networkRetriesLeft = NETWORK_RETRY_ATTEMPTS
+            while (true) {
+                val model = OpenAiChatModel.builder()
+                    .baseUrl(BASE_URL)
+                    .apiKey(apiKey)
+                    .modelName(modelName)
+                    .timeout(Duration.ofSeconds(90L))
+                    // Without this, langchain4j sends no max_tokens field at
+                    // all and Groq applies its own per-model server-side
+                    // default -- confirmed too small via a real device log: a
+                    // genuine, successful response (a multi-day trip
+                    // itinerary, for OneClickTrip) got cut off mid-JSON,
+                    // failing to decode with "Expected end of the object
+                    // '}', but had 'EOF' instead". 8192 comfortably covers
+                    // this app's largest structured response shape with room
+                    // to spare.
+                    .maxTokens(8192)
+                    .build()
 
-            try {
-                val response: Response<AiMessage> = if (systemInstruction.isBlank()) {
-                    model.generate(userMessage)
-                } else {
-                    model.generate(SystemMessage.from(systemInstruction), userMessage)
+                try {
+                    val response: Response<AiMessage> = if (systemInstruction.isBlank()) {
+                        model.generate(userMessage)
+                    } else {
+                        model.generate(SystemMessage.from(systemInstruction), userMessage)
+                    }
+                    return Result.success(cleanResult(response.content().text()))
+                } catch (e: RuntimeException) {
+                    val httpException = httpExceptionOf(e)
+                    if (httpException != null && isModelUnavailable(httpException)) {
+                        // Expected/handled, not a real error -- the next
+                        // candidate is tried immediately. A one-line note,
+                        // not the full stack trace every OTHER failure here
+                        // gets, keeps this from flooding the Log screen
+                        // every time Groq's catalogue drifts under an
+                        // already-broken model.
+                        Timber.w("Groq model $modelName not accessible with this key, trying next candidate")
+                        lastFailure = e
+                        break
+                    }
+                    if (httpException == null && isTransientNetworkError(e) && networkRetriesLeft > 0) {
+                        // Says nothing about this model or key -- worth one
+                        // more try on the exact same candidate before
+                        // treating it as a real failure or moving on.
+                        networkRetriesLeft--
+                        Timber.w(
+                            "Groq model $modelName hit a transient network error, retrying " +
+                                "($networkRetriesLeft attempt(s) left)"
+                        )
+                        continue
+                    }
+                    Timber.e(e, "Groq model $modelName failed")
+                    if (httpException?.code() == 429) {
+                        apiKeyRotator.markExhausted(keyEntry.id)
+                    }
+                    return Result.failure(e)
                 }
-                return Result.success(cleanResult(response.content().text()))
-            } catch (e: RuntimeException) {
-                val httpException = httpExceptionOf(e)
-                if (httpException != null && isModelUnavailable(httpException)) {
-                    // Expected/handled, not a real error -- the next
-                    // candidate is tried immediately. A one-line note, not
-                    // the full stack trace every OTHER failure here gets,
-                    // keeps this from flooding the Log screen every time
-                    // Groq's catalogue drifts under an already-broken model.
-                    Timber.w("Groq model $modelName not accessible with this key, trying next candidate")
-                    lastFailure = e
-                    continue
-                }
-                Timber.e(e, "Groq model $modelName failed")
-                if (httpException?.code() == 429) {
-                    apiKeyRotator.markExhausted(keyEntry.id)
-                }
-                return Result.failure(e)
             }
         }
         // Every candidate came back unavailable (not found, decommissioned,
@@ -226,5 +259,10 @@ class GroqUseCase @Inject constructor(
         val SKIPPABLE_MODEL_ERROR_CODES = setOf("model_not_found", "model_decommissioned")
 
         val modelCacheByKey = ConcurrentHashMap<String, List<String>>()
+
+        // One retry on the same model for a transient network error (DNS,
+        // socket timeout) before giving up on it -- these are momentary by
+        // definition, not evidence the model or key is bad.
+        const val NETWORK_RETRY_ATTEMPTS = 1
     }
 }
