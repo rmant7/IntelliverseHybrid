@@ -86,10 +86,11 @@ gemini_api_key=ВАШ_КЛЮЧ_GEMINI
 groq_api_key=ВАШ_КЛЮЧ_GROQ
 gigachat_api_key=ВАШ_КЛЮЧ_GIGACHAT
 # Ключ AppMetrica (Yandex) для app/IntelliverseApplication.kt — без него app не
-# компилируется вообще. В отличие от трёх ключей выше (их читает сам
-# shared/build.gradle.kts и сам берёт в кавычки), этот читает secrets-gradle-plugin
-# напрямую и вставляет значение как есть в код, поэтому кавычки нужны в значении:
-app_metrica_api_key="ВАШ_КЛЮЧ_APPMETRICA"
+# компилируется вообще. Читается так же, как три ключа выше — напрямую
+# app/build.gradle.kts (не через secrets-gradle-plugin: тот на практике
+# генерировал для этого свойства битое пустое значение что с кавычками
+# в значении, что без):
+app_metrica_api_key=ВАШ_КЛЮЧ_APPMETRICA
 ```
 
 Затем:

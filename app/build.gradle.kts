@@ -1,3 +1,20 @@
+import java.util.Properties
+
+// Load local.properties -- same approach as shared/build.gradle.kts, for the
+// same reason: com.google.android.libraries.mapsplatform.secrets-gradle-plugin's
+// own raw-value insertion turned out to produce an empty (invalid) BuildConfig
+// field for app_metrica_api_key even when the local.properties value was
+// itself a properly quoted Java string literal -- its exact processing isn't
+// documented anywhere reachable from here, so this reads local.properties
+// directly instead of depending on it, exactly like shared already does for
+// gemini_api_key/groq_api_key/gigachat_api_key.
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+val appMetricaApiKey = localProperties.getProperty("app_metrica_api_key")
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -13,15 +30,16 @@ plugins {
 }
 
 // The secrets plugin scans local.properties by default and inserts each
-// value verbatim as BuildConfig source. These three keys are shared's own
-// (com.example.shared.BuildConfig via manual Properties parsing, which adds
-// its own quoting) -- letting this plugin also auto-generate a same-named,
-// unused field here from the same unquoted local.properties value produces
-// invalid Java whenever the value is empty (e.g. an unset CI secret).
+// value verbatim as BuildConfig source. These four keys are read manually
+// above/by shared's own build.gradle.kts instead (which quotes them itself)
+// -- letting this plugin also auto-generate a same-named, unused field from
+// the same local.properties value produced invalid Java in practice for
+// more than one of them, whether the value was empty or already quoted.
 secrets {
     ignoreList.add("gemini_api_key")
     ignoreList.add("groq_api_key")
     ignoreList.add("gigachat_api_key")
+    ignoreList.add("app_metrica_api_key")
 }
 
 android {
@@ -48,6 +66,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 //"proguard-rules.pro"
             )
+        }
+        all {
+            buildConfigField("String", "app_metrica_api_key", "\"$appMetricaApiKey\"")
         }
     }
     compileOptions {
