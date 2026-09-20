@@ -29,10 +29,11 @@ import javax.inject.Named
  * catalogue drifts faster than this code can be verified against a live
  * account from this environment (no network access to api.groq.com here).
  * [MODEL_CANDIDATES] is tried in order per call; a candidate that comes back
- * model_not_found is skipped in favor of the next one in the SAME call,
- * rather than being a permanent, unrecoverable failure for the whole
- * provider. Vision-capable models are listed first since this app's core
- * flows are photo-driven (diet photos, homework photos, ...) -- Groq's own
+ * unavailable (see [SKIPPABLE_MODEL_ERROR_CODES]) is skipped in favor of the
+ * next one in the SAME call, rather than being a permanent, unrecoverable
+ * failure for the whole provider. Vision-capable models are listed first
+ * since this app's core flows are photo-driven (diet photos, homework
+ * photos, ...) -- Groq's own
  * docs (console.groq.com/docs/vision) confirm its gpt-oss reasoning models
  * do not accept image input at all, so those are deliberately not candidates
  * here.
@@ -46,8 +47,8 @@ class GroqUseCase @Inject constructor(
         ) { matchResult -> "$$${matchResult.groupValues[1]}$$" }
     }
 
-    private fun isModelNotFound(e: OpenAiHttpException): Boolean =
-        e.message?.contains("model_not_found") == true
+    private fun isModelUnavailable(e: OpenAiHttpException): Boolean =
+        SKIPPABLE_MODEL_ERROR_CODES.any { code -> e.message?.contains(code) == true }
 
     // langchain4j's RetryUtils.withRetry() (which OpenAiChatModel.generate()
     // goes through) never lets the original OpenAiHttpException escape
@@ -102,7 +103,7 @@ class GroqUseCase @Inject constructor(
                 return Result.success(cleanResult(response.content().text()))
             } catch (e: RuntimeException) {
                 val httpException = httpExceptionOf(e)
-                if (httpException != null && isModelNotFound(httpException)) {
+                if (httpException != null && isModelUnavailable(httpException)) {
                     // Expected/handled, not a real error -- the next
                     // candidate is tried immediately. A one-line note, not
                     // the full stack trace every OTHER failure here gets,
@@ -119,11 +120,12 @@ class GroqUseCase @Inject constructor(
                 return Result.failure(e)
             }
         }
-        // Every candidate came back model_not_found -- this API key's
-        // account has access to none of them, not a transient issue a retry
-        // would fix. Surfaced as its own message (rather than just the last
-        // model's raw error) so the Log screen shows this is a full-list
-        // exhaustion, not one model's ordinary hiccup.
+        // Every candidate came back unavailable (not found, decommissioned,
+        // ...) -- this API key's account has access to none of them, not a
+        // transient issue a retry would fix. Surfaced as its own message
+        // (rather than just the last model's raw error) so the Log screen
+        // shows this is a full-list exhaustion, not one model's ordinary
+        // hiccup.
         return Result.failure(
             IllegalStateException(
                 "None of Groq's candidate models (${MODEL_CANDIDATES.joinToString()}) " +
@@ -141,5 +143,14 @@ class GroqUseCase @Inject constructor(
             "llama-3.2-90b-vision-preview",
             "llama-3.2-11b-vision-preview",
         )
+
+        // Groq uses more than one distinct error code for "this model is not
+        // usable, stop trying it" -- a real device log caught
+        // model_decommissioned (llama-3.2-90b-vision-preview, since retired)
+        // stopping the fallback loop the same way model_not_found once did,
+        // because only the latter was checked for. Any new code found here
+        // in the future almost certainly belongs in this same set rather
+        // than being treated as a real failure.
+        val SKIPPABLE_MODEL_ERROR_CODES = setOf("model_not_found", "model_decommissioned")
     }
 }

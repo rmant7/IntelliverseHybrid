@@ -77,7 +77,13 @@ class OpenAiUseCase @Inject constructor() {
             // RetryUtils' own source, since a real device log kept showing
             // this branch's behavior never taking effect.
             val httpException = e as? OpenAiHttpException ?: e.cause as? OpenAiHttpException
-            if (httpException?.code() == 429) {
+            // Matched on the response body's own text, not httpException.code():
+            // a real device log showed this branch never triggering even after
+            // fixing the RuntimeException-unwrapping bug above, which only makes
+            // sense if the demo proxy's actual HTTP status for "Too Many
+            // Requests" isn't 429 -- the same category of wrong assumption
+            // GroqUseCase's isModelUnavailable() already had to correct once.
+            if (httpException?.message?.contains("Too Many Requests", ignoreCase = true) == true) {
                 // The "demo" key above is langchain4j's own free, shared
                 // proxy quota (see its own doc comment) -- with no real
                 // OpenAI key configured, this is its permanent, expected
