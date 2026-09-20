@@ -13,6 +13,18 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
+// The secrets plugin scans local.properties by default and inserts each
+// value verbatim as BuildConfig source. These three keys are shared's own
+// (com.example.shared.BuildConfig via manual Properties parsing, which adds
+// its own quoting) -- letting this plugin also auto-generate a same-named,
+// unused field here from the same unquoted local.properties value produces
+// invalid Java whenever the value is empty (e.g. an unset CI secret).
+secrets {
+    ignoreList.add("gemini_api_key")
+    ignoreList.add("grok_api_key")
+    ignoreList.add("gigachat_api_key")
+}
+
 android {
     namespace = "com.styletranslator"
     compileSdk = 35
