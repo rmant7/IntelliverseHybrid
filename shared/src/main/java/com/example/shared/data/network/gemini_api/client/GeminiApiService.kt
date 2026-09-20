@@ -253,8 +253,14 @@ class GeminiApiService @Inject constructor(
             // way to tell which of those it was.
             val blockReason = geminiJsonResponse.promptFeedback?.blockReason
             val finishReason = geminiJsonResponse.candidates?.firstOrNull()?.finishReason
+            // Both null (seen on a real device) means the raw response didn't
+            // even carry the shape this points at -- e.g. an empty/absent
+            // candidates list with no promptFeedback either. Logging the raw
+            // body itself (capped, same reasoning as AppLogTree's truncation)
+            // is the only way to find out what Gemini actually sent instead
+            // of guessing at another named cause.
             Timber.w(
-                "Gemini returned no text -- blockReason=$blockReason, finishReason=$finishReason"
+                "Gemini returned no text -- blockReason=$blockReason, finishReason=$finishReason, raw=${jsonResponse.take(500)}"
             )
         }
         return text

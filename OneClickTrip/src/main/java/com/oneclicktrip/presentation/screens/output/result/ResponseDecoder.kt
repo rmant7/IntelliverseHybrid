@@ -19,7 +19,12 @@ data class Activity(
     val time: String,
     val links: List<String>,
     val tips: List<String>,
-    val activityCost: String,
+    // Confirmed on a real device (GigaChat): the model occasionally omits
+    // this field entirely for one activity in a long itinerary rather than
+    // emitting an empty string -- defaulting it avoids a hard decode
+    // failure (MissingFieldException) that otherwise discarded the whole
+    // response over one missing cost on one activity.
+    val activityCost: String = "",
     val midwayStops: List<MidwayStop>? = null
 )
 
