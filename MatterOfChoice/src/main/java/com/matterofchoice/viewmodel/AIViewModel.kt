@@ -36,6 +36,12 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
     fun initiateGame() {
         if (_state.value.currentTurn == 1 && _state.value.casesList.isEmpty()) {
             Timber.d("AIViewModel: starting fresh game for Turn 1")
+            // A fresh game must read 0/0 at its first case -- see commit message
+            // for why MainActivity.onCreate()/resetGame() alone weren't enough.
+            sharedPreferences.edit {
+                putInt("userScore", 0)
+                putInt("totalScore", 0)
+            }
             initiateGameForTurn(1)
         } else {
             Timber.d("AIViewModel: initiateGame skipped (turn: ${_state.value.currentTurn}, cases: ${_state.value.casesList.size})")
