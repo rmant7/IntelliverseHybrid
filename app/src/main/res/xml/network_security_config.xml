@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    GigaChat's own domains (both its OAuth token endpoint and its API) are
+    signed by the Russian Ministry of Digital Development's certificate
+    chain, which most devices -- this app's own test device included --
+    have no reason to already trust: it's not part of the standard public
+    CA set any OS ships with. Without this, every GigaChat call fails with
+    javax.net.ssl.SSLHandshakeException: Trust anchor for certification
+    path not found, confirmed via a real device log. This is not specific
+    to whichever HTTP client makes the call (GigaChatTokenProvider uses
+    Ktor's Android engine, on top of the platform's own HttpsURLConnection)
+    -- a network security config applies to the whole app's TLS trust
+    regardless of which client issues the request.
+
+    Both Sub CA certificates (2022-2027 and 2024-2029) are trusted directly
+    rather than only the Root CA, since either one signs a currently-valid
+    chain depending on when Sberbank's own certificate was last rotated,
+    and trusting an intermediate directly removes any dependency on the
+    server sending a complete chain.
+-->
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">sberbank.ru</domain>
+        <trust-anchors>
+            <certificates src="@raw/russian_trusted_root_ca" />
+            <certificates src="@raw/russian_trusted_sub_ca" />
+            <certificates src="@raw/russian_trusted_sub_ca_2024" />
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+    <!--
+        AndroidManifest.xml's android:usesCleartextTraffic="true" is ignored
+        once a network security config is present at all -- this base-config
+        exists only to keep that same cleartext-allowed behavior for
+        everything outside the domain-config above (targetSdk 35 would
+        otherwise default cleartext to disallowed, a behavior change this
+        file has no business introducing as a side effect of fixing
+        GigaChat's TLS trust).
+    -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

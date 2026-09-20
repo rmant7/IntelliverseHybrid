@@ -53,9 +53,14 @@ Android-приложение Intelliverse (модуль `app` + под-прил�
 Gemini, GPT и Groq параллельно и ждёт все три; только если ни один не ответил,
 вызывается GigaChat. GigaChat также получает только текст: он не понимает формат
 инлайн-картинок, который отправляют остальные провайдеры (см. комментарий в
-файле). Требует обмена ключа на OAuth-токен (`GigaChatTokenProvider`) и, на
-реальном устройстве, доверия российскому корневому сертификату "Минцифры" — без
-него будет `SSLHandshakeException`, это не баг клиента.
+файле). Требует обмена ключа на OAuth-токен (`GigaChatTokenProvider`). Домены Сбера
+(`*.sberbank.ru`) подписаны цепочкой сертификатов Минцифры, которой не
+доверяет ни один сток-Android — без этого был бы `SSLHandshakeException:
+Trust anchor for certification path not found` (подтверждено логом с реального
+устройства). Сертификаты (Root CA + два Sub CA, 2022–2027 и 2024–2029) вшиты
+в `app/src/main/res/raw/` и подключены через
+`app/src/main/res/xml/network_security_config.xml` — трогать их вручную на
+устройстве не нужно.
 
 Модуль ротации ключей — `shared/.../data/keys/` (`ApiKeyPool.kt`,
 `PrefsApiKeyStore.kt`, `BundledApiKeyStore.kt`, `BundledApiKeys.kt`), портирован
