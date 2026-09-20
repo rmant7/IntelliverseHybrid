@@ -96,7 +96,17 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     // Ktor & kotlin Serialization
-    implementation(libs.ktor.client.android)
+    // OkHttp engine, not Android: Ktor's "android" engine is backed by the
+    // platform's own ancient bundled HttpURLConnection/okhttp-internal
+    // classes, which have a long-known bug reusing a pooled keep-alive
+    // connection the server already closed -- surfacing as
+    // EOFException("unexpected end of stream") or
+    // SocketException("Software caused connection abort"), both seen on a
+    // real device hitting Gemini specifically, with connectivity otherwise
+    // confirmed fine at the time. The real, actively maintained OkHttp
+    // engine detects and recovers from a stale connection instead of
+    // handing the caller a raw I/O exception.
+    implementation(libs.ktor.client.okhttp)
     implementation(libs.ktor.client.serialization)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.client.logging.jvm)
