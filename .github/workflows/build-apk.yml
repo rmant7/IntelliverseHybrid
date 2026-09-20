@@ -64,12 +64,12 @@ jobs:
         run: |
           mkdir -p app/build/outputs/apk/release/named
           cp app/build/outputs/apk/release/app-release.apk \
-            "app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
+            "app/build/outputs/apk/release/named/IntelliverseMoC-${{ github.run_number }}.apk"
 
       - name: Upload APK (workflow artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: Intelliverse-${{ github.run_number }}
+          name: IntelliverseMoC-${{ github.run_number }}
           path: app/build/outputs/apk/release/named/*.apk
           if-no-files-found: error
 
@@ -103,20 +103,20 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_TAG: ${{ steps.release_tag.outputs.tag }}
         run: |
-          NOTES="Intelliverse, build #${{ github.run_number }} -- commit ${{ github.sha }}, branch \`${{ github.ref_name }}\`.
+          NOTES="Intelliverse Matter of Choice, build #${{ github.run_number }} -- commit ${{ github.sha }}, branch \`${{ github.ref_name }}\`.
           Always overwritten by the next push to this branch -- not a pinned version, just the latest build."
-          APK="app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
+          APK="app/build/outputs/apk/release/named/IntelliverseMoC-${{ github.run_number }}.apk"
           if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             for asset in $(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json assets -q '.assets[].name'); do
               gh release delete-asset "$RELEASE_TAG" "$asset" --repo "$GITHUB_REPOSITORY" --yes
             done
             gh release upload "$RELEASE_TAG" "$APK" --repo "$GITHUB_REPOSITORY"
             gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
-              --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" --notes "$NOTES"
+              --title "Intelliverse Matter of Choice -- build #${{ github.run_number }}" --notes "$NOTES"
           else
             gh release create "$RELEASE_TAG" "$APK" \
               --repo "$GITHUB_REPOSITORY" \
-              --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" \
+              --title "Intelliverse Matter of Choice -- build #${{ github.run_number }}" \
               --notes "$NOTES"
           fi
 
