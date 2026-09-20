@@ -106,21 +106,42 @@ class IntelliverseApplication : Application() {
     }
 
     private fun initializeAppMetrica() = CoroutineScope(Dispatchers.IO).launch {
-        // Init FirebaseApp for all processes
-        FirebaseApp.initializeApp(this@IntelliverseApplication)
+        try {
+            // Init FirebaseApp for all processes
+            FirebaseApp.initializeApp(this@IntelliverseApplication)
 
-        Timber.d("Creating an extended library configuration.")
-        val config = AppMetricaConfig
-            .newConfigBuilder(BuildConfig.app_metrica_api_key)
-            .withLocationTracking(true)
-            .withSessionsAutoTrackingEnabled(true)
-            .build()
+            val apiKey = BuildConfig.app_metrica_api_key
+            if (apiKey.isNullOrBlank() || apiKey == "null") {
+                // No local.properties entry (e.g. a CI or contributor build with
+                // no AppMetrica project of its own) -- BuildConfig then holds the
+                // literal text "null", which AppMetricaConfig.newConfigBuilder
+                // rejects immediately as an invalid key format, crashing every
+                // launch. Analytics not being configured is not a reason to
+                // crash the whole app.
+                Timber.w("AppMetrica API key is not configured; skipping AppMetrica initialization.")
+                return@launch
+            }
 
-        Timber.d("Initializing the AppMetrica SDK.")
-        AppMetrica.activate(applicationContext, config)
-        // Automatic tracking of user activity.
-        // Probably doesn't work for older api.
-        AppMetrica.enableActivityAutoTracking(this@IntelliverseApplication)
+            Timber.d("Creating an extended library configuration.")
+            val config = AppMetricaConfig
+                .newConfigBuilder(apiKey)
+                .withLocationTracking(true)
+                .withSessionsAutoTrackingEnabled(true)
+                .build()
+
+            Timber.d("Initializing the AppMetrica SDK.")
+            AppMetrica.activate(applicationContext, config)
+            // Automatic tracking of user activity.
+            // Probably doesn't work for older api.
+            AppMetrica.enableActivityAutoTracking(this@IntelliverseApplication)
+        } catch (e: Exception) {
+            // This runs unsupervised (no parent Job to catch an uncaught
+            // failure), and it's called synchronously from onCreate(), so any
+            // exception here -- a malformed key, a Firebase misconfiguration --
+            // used to crash the app on every single launch instead of just
+            // leaving analytics off.
+            Timber.e(e, "Failed to initialize AppMetrica")
+        }
         /* Devs recommended to send events manually if metrica data isn't
            updated consistently, however seems like it doesn't work. */
         //AppMetrica.sendEventsBuffer()

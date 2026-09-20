@@ -85,9 +85,13 @@ sdk.dir=/path/to/Android/sdk
 gemini_api_key=ВАШ_КЛЮЧ_GEMINI
 groq_api_key=ВАШ_КЛЮЧ_GROQ
 gigachat_api_key=ВАШ_КЛЮЧ_GIGACHAT
-# Ключ AppMetrica (Yandex) для app/IntelliverseApplication.kt — без него app не
-# компилируется вообще. Читается так же, как три ключа выше — напрямую
-# app/build.gradle.kts (не через secrets-gradle-plugin: тот на практике
+# Ключ AppMetrica (Yandex) для app/IntelliverseApplication.kt. Опционален:
+# без него компилируется нормально, а initializeAppMetrica() при старте
+# просто пропускает инициализацию (раньше без этой проверки приложение
+# падало на каждом запуске — AppMetricaConfig.newConfigBuilder() бросает
+# исключение на невалидный ключ, а сама инициализация шла в корутине без
+# обработчика ошибок). Читается так же, как три ключа выше — напрямую
+# app/build.gradle.kts, не через secrets-gradle-plugin (тот на практике
 # генерировал для этого свойства битое пустое значение что с кавычками
 # в значении, что без):
 app_metrica_api_key=ВАШ_КЛЮЧ_APPMETRICA
@@ -115,9 +119,10 @@ release-APK при пуше в `main`/`claude/**`, в pull request и вручн
 Build APK → Run workflow).
 
 1. Repo → Settings → Secrets and variables → Actions → New repository secret:
-   `GEMINI_API_KEY_1`, `GROQ_API_KEY_1`, `GIGACHAT_API_KEY_1` — без них сборка
-   пройдёт, но соответствующая модель не сможет отвечать. `APP_METRICA_API_KEY` —
-   обязателен, без него `app` не скомпилируется (см. `local.properties` выше).
+   `GEMINI_API_KEY_1`, `GROQ_API_KEY_1`, `GIGACHAT_API_KEY_1`, `APP_METRICA_API_KEY` —
+   все опциональны для сборки. Без ключа модели она просто не сможет отвечать;
+   без ключа AppMetrica аналитика не инициализируется, но приложение работает
+   нормально (см. `local.properties` выше).
    Суффикс `_1` — задел на пул из нескольких ключей на провайдера: чтобы добавить
    второй ключ Groq, заведите секрет `GROQ_API_KEY_2` и допишите его в workflow
    через запятую к первому (`ApiKeyRotator` сам разберёт список и будет
