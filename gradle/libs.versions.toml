@@ -42,6 +42,7 @@ playServicesAds = "23.5.0"
 roomKtx = "2.6.1"
 runner = "1.6.2"
 common = "0.10.0"
+generativeai = "0.9.0"
 secretsGradlePlugin = "2.0.1"
 timber = "5.0.1"
 playServicesAdsLite = "23.5.0"
@@ -72,7 +73,7 @@ desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref 
 
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
-generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "common" }
+generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
 langchain4j = { module = "dev.langchain4j:langchain4j", version.ref = "devLangchain4jOpenAi" }
 dev-langchain4j-langchain4j-open-ai = { module = "dev.langchain4j:langchain4j-open-ai", version.ref = "devLangchain4jOpenAi" }
 
