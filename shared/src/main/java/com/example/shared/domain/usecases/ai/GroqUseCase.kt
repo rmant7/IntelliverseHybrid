@@ -24,7 +24,7 @@ import javax.inject.Named
  *
  * Model rotation, not one hardcoded name: two different Llama 4 checkpoints
  * hardcoded here in turn ("meta-llama/llama-4-scout-17b-16e-instruct", then
- * its sibling maverick) each came back HTTP 400 model_not_found on a real
+ * its sibling maverick) each came back a model_not_found error on a real
  * account, confirmed via this app's own Log screen -- Groq's free-tier
  * catalogue drifts faster than this code can be verified against a live
  * account from this environment (no network access to api.groq.com here).
@@ -46,8 +46,14 @@ class GroqUseCase @Inject constructor(
         ) { matchResult -> "$$${matchResult.groupValues[1]}$$" }
     }
 
+    // Deliberately not also checking e.code() == 400: a real device log
+    // showed the fallback loop bailing out after just the first candidate
+    // instead of trying the rest, which only makes sense if Groq's actual
+    // HTTP status for this error isn't 400 -- the "code":"model_not_found"
+    // field in the JSON body is Groq's own stable signal, unlike the HTTP
+    // status this code guessed wrong once already.
     private fun isModelNotFound(e: OpenAiHttpException): Boolean =
-        e.code() == 400 && e.message?.contains("model_not_found") == true
+        e.message?.contains("model_not_found") == true
 
     /** Generate a Groq solution using text and optionally one or more base64-encoded JPEG images. */
     fun generateGroqSolution(

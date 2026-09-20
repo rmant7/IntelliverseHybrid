@@ -202,6 +202,15 @@ fun ResultScreenContent(
     shareSolutionLabel: String,
     shareUserText: String
 ) {
+    // Tab/index order for the results that actually came back -- by AIService's
+    // own declared order (GEMINI, GEMINI_THINKING, GPT, GROQ, GIGACHAT), not
+    // by whichever happened to finish first. GigaChat is declared last there
+    // specifically so it always sorts last here too: it's the fallback,
+    // only ever invoked once the primary services are already done, and
+    // future local/on-device models are expected to land after it in that
+    // same enum for the same reason (slower, only worth showing last).
+    val orderedResults = solutionResults.filterValues { it != null }.keys.sortedBy { it.ordinal }
+
     if (shouldShowErrorDialog) {
 
         fun onErrorFound() {
@@ -248,7 +257,7 @@ fun ResultScreenContent(
         val isEnabled = !content.isNullOrBlank()
 
         if (isEnabled) {
-            val index = solutionResults.filterValues { it != null }.keys.indexOf(selectedSolutionService)
+            val index = orderedResults.indexOf(selectedSolutionService)
             HtmlTextView(
                 modifier = Modifier.fillMaxSize().clip(RectangleShape),
                 htmlContent = content ?: invalidSolutionText,
@@ -274,7 +283,7 @@ fun ResultScreenContent(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        items(solutionResults.filterValues { it != null }.keys.toList()) { aiService ->
+        items(orderedResults) { aiService ->
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
