@@ -312,10 +312,13 @@ abstract class BaseResultViewModel(
     }
 
     /**
-     * Runs Gemini, GPT and Groq in parallel and waits for all three. GigaChat
-     * is not one of them: it only gets called afterwards, as a fallback, and
-     * only if none of the three primary services produced an answer -- see
-     * the trailing check below.
+     * Runs Gemini, Groq, and GigaChat all in parallel and waits for all
+     * three. GigaChat was originally fallback-only (called after the others,
+     * only if neither answered), changed to always-parallel so it can
+     * actually be exercised/verified on demand instead of waiting for a
+     * run where every other provider happens to fail. Its tab still sorts
+     * last regardless (see [SharableResultScreen]'s orderedResults, sorted
+     * by [AIService]'s own declared order with GIGACHAT last).
      */
     fun generateSolutions() = viewModelScope.launch(Dispatchers.IO) {
         clearSolutionResults()
@@ -324,7 +327,7 @@ abstract class BaseResultViewModel(
         updateSolutionProgress(0.0f)
         geminiAttempts.set(2)
         geminiThinkingAttempts.set(1)
-        maxSolutionResultsCapacity = PRIMARY_SERVICES.size
+        maxSolutionResultsCapacity = PRIMARY_SERVICES.size + 1 // +1 for GigaChat, always attempted now
 
         val imagesBase64 = if (imageUsed) {
             passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) }
@@ -352,12 +355,7 @@ abstract class BaseResultViewModel(
                 // launch { gpt(imagesBase64) }
                 launch { groq(imagesBase64) }
             }
-        }
-
-        val anyPrimaryAnswered = PRIMARY_SERVICES.any { !solutionResults.value[it].isNullOrBlank() }
-        if (!anyPrimaryAnswered) {
-            maxSolutionResultsCapacity = PRIMARY_SERVICES.size + 1
-            gigaChat()
+            launch { gigaChat() }
         }
     }
 
@@ -431,10 +429,12 @@ abstract class BaseResultViewModel(
     }
 
     /**
-     * Fallback only: called from [generateSolutions] after Gemini, GPT and
-     * Groq have all finished, and only when none of them answered. Gets no
-     * image either way: GigaChat's endpoint does not accept this app's
-     * inline-image request shape (see [GigaChatUseCase]).
+     * Now always run in parallel with Gemini/Groq (was fallback-only,
+     * called after them and only if neither answered -- changed so it can
+     * actually be tested/verified instead of waiting for a run where every
+     * other provider happens to fail). Gets no image either way: GigaChat's
+     * endpoint does not accept this app's inline-image request shape (see
+     * [GigaChatUseCase]).
      */
     private suspend fun gigaChat() {
         val result = gigaChatUseCase.generateGigaChatSolution(prompt = prompt)
@@ -507,11 +507,13 @@ abstract class BaseResultViewModel(
 
     private companion object {
         /**
-         * Run in parallel on every [generateSolutions] call; GIGACHAT is a
-         * fallback, not one of these. GPT excluded while its launch{} call
-         * is commented out above -- otherwise maxSolutionResultsCapacity
-         * would count a result that never arrives, and solutionProgress
-         * would never reach 1f.
+         * Used for [maxSolutionResultsCapacity]'s "+1" (GigaChat, always
+         * attempted separately -- see [generateSolutions]) rather than to
+         * gate GigaChat on these having failed, which is no longer how it
+         * works. GPT excluded while its launch{} call is commented out in
+         * [generateSolutions] -- otherwise maxSolutionResultsCapacity would
+         * count a result that never arrives, and solutionProgress would
+         * never reach 1f.
          */
         val PRIMARY_SERVICES = listOf(AIService.GEMINI_THINKING, AIService.GROQ)
     }
