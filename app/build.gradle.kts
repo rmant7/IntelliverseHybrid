@@ -53,6 +53,25 @@ android {
     namespace = "com.intelliverse"
     compileSdk = 35
 
+    signingConfigs {
+        // AGP's built-in "debug" signingConfig otherwise falls back to
+        // ~/.android/debug.keystore, auto-generated on first use with a
+        // RANDOM key if it doesn't already exist. On GitHub Actions that
+        // file never exists (every run is a fresh VM), so every CI build
+        // used to get a different signing key -- installing a new build
+        // over an old one then fails as a signature mismatch
+        // (INSTALL_FAILED_UPDATE_INCOMPATIBLE) unless the old one is
+        // uninstalled first. Pointing "debug" at a keystore committed to
+        // the repo instead makes every build -- local or CI -- share the
+        // same key, so installs upgrade normally.
+        getByName("debug") {
+            storeFile = file("keystore/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.intelliverse"
         minSdk = 23

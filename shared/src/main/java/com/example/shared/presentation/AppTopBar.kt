@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -48,6 +51,7 @@ fun AppTopBar(navController: NavHostController?, appName: String, infoDialog: St
     // State to control the visibility of the AlertDialog
     var showDialog by remember { mutableStateOf(false) }
     var showInfoDialog by remember { mutableStateOf(false) }
+    var menuExpanded by remember { mutableStateOf(false) }
 
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -101,6 +105,28 @@ fun AppTopBar(navController: NavHostController?, appName: String, infoDialog: St
                     modifier = Modifier.size(36.dp),
                     tint = MaterialTheme.colorScheme.onPrimary
                 )
+            }
+            // Same overflow menu as the start screen's own -- previously
+            // only there, leaving every sub-app screen (most of the app's
+            // actual usage) with no way to reach the Log screen without
+            // first backing all the way out to start.
+            if (navController != null) {
+                IconButton(onClick = { menuExpanded = true }) {
+                    Icon(
+                        imageVector = Icons.Default.MoreVert,
+                        contentDescription = "Menu",
+                        tint = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+                DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
+                    DropdownMenuItem(
+                        text = { Text("Log") },
+                        onClick = {
+                            menuExpanded = false
+                            navController.navigate("log")
+                        }
+                    )
+                }
             }
         }
     )

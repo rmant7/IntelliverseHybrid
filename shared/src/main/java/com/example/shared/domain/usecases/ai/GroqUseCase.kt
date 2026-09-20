@@ -89,11 +89,17 @@ class GroqUseCase @Inject constructor(
                 }
                 return Result.success(cleanResult(response.content().text()))
             } catch (e: OpenAiHttpException) {
-                Timber.e(e, "Groq model $modelName failed")
                 if (isModelNotFound(e)) {
+                    // Expected/handled, not a real error -- the next
+                    // candidate is tried immediately. A one-line note, not
+                    // the full stack trace every OTHER failure here gets,
+                    // keeps this from flooding the Log screen every time
+                    // Groq's catalogue drifts under an already-broken model.
+                    Timber.w("Groq model $modelName not accessible with this key, trying next candidate")
                     lastFailure = e
                     continue
                 }
+                Timber.e(e, "Groq model $modelName failed")
                 if (e.code() == 429) {
                     apiKeyRotator.markExhausted(keyEntry.id)
                 }

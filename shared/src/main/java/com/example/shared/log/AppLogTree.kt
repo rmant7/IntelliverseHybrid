@@ -24,8 +24,13 @@ import timber.log.Timber
 class AppLogTree(private val appLog: AppLog) : Timber.Tree() {
     override fun isLoggable(tag: String?, priority: Int): Boolean = priority >= Log.INFO
 
+    // Timber.Tree.log() is always reached through its own prepareLog(), which
+    // -- when a throwable was passed to Timber.e/w/etc. -- already appends
+    // Utils.getStackTraceString(t) to `message` itself before any Tree ever
+    // sees it. Appending it again here duplicated the entire stack trace
+    // (including its "Caused by" chain) in every single logged error, which
+    // is most of why the Log screen filled up with repeated text.
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-        val full = if (t != null) "$message\n${Log.getStackTraceString(t)}" else message
-        appLog.record(tag ?: "App", full)
+        appLog.record(tag ?: "App", message)
     }
 }
