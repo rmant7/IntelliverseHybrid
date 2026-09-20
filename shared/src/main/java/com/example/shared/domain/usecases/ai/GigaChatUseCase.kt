@@ -92,7 +92,7 @@ class GigaChatUseCase @Inject constructor(
 
             Result.success(content)
         } catch (e: Exception) {
-            Timber.d(e)
+            Timber.e(e)
             Result.failure(e)
         }
     }

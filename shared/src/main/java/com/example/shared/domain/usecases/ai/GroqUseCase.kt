@@ -75,16 +75,16 @@ class GroqUseCase @Inject constructor(
             }
             Result.success(cleanResult(response.content().text()))
         } catch (e: OpenAiHttpException) {
-            Timber.d(e)
+            Timber.e(e)
             if (e.code() == 429) {
                 apiKeyRotator.markExhausted(keyEntry.id)
             }
             Result.failure(e)
         } catch (e: IllegalArgumentException) {
-            Timber.d(e)
+            Timber.e(e)
             Result.failure(e)
         } catch (e: RuntimeException) {
-            Timber.d(e)
+            Timber.e(e)
             Result.failure(e)
         }
     }

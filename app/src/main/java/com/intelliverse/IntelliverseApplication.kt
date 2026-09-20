@@ -8,6 +8,8 @@ import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import com.example.shared.ads.InterstitialAdUseCase
 import com.example.shared.ads.OpenAdUseCase
+import com.example.shared.log.AppLog
+import com.example.shared.log.AppLogTree
 import com.example.shared.setPropertiesByAppContext
 import dagger.hilt.android.HiltAndroidApp
 import io.appmetrica.analytics.AppMetrica
@@ -27,8 +29,18 @@ class IntelliverseApplication : Application() {
     @Inject
     lateinit var interstitialAdUseCase: InterstitialAdUseCase
 
+    @Inject
+    lateinit var appLog: AppLog
+
     override fun onCreate() {
         super.onCreate()
+
+        // Planted first and unconditionally (not just in debug builds): a
+        // release or CI-built debug APK is exactly the case with no attached
+        // computer to pull logcat from, which is the whole reason this
+        // exists -- reachable from the start screen's own overflow menu.
+        Timber.plant(AppLogTree(appLog))
+        appLog.recordProcessExitIfNotable()
 
         if (BuildConfig.DEBUG) {
             /*
@@ -61,25 +73,22 @@ class IntelliverseApplication : Application() {
         // For WebView if sdk >= 28
         setWebViewDataDirectorySuffix()
 
-        MobileAds.initialize(this@IntelliverseApplication) {}
+        initializeAds()
 
-        /*// Ensure Family-Safe Ads are enforced
-        val requestConfiguration = RequestConfiguration.Builder()
-            .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE) // COPPA Compliance
-            .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G) // Family-friendly ads only
-            .build()
-
-        MobileAds.setRequestConfiguration(requestConfiguration)*/
-
-        MobileAds.setAppMuted(true)
-
-        setPropertiesByAppContext(AppId.INTELLIVERSE)
+        try {
+            setPropertiesByAppContext(AppId.INTELLIVERSE)
+        } catch (e: Exception) {
+            Timber.e(e, "Failed to set app-wide properties")
+        }
 
         // preloading ads
         //todo: right now OpenAd doesn't work well
         //openAdUseCase.load()
-        interstitialAdUseCase.load()
-
+        try {
+            interstitialAdUseCase.load()
+        } catch (e: Exception) {
+            Timber.e(e, "Failed to preload the interstitial ad")
+        }
 
         // Initialize AppMetrica in a background thread.
         initializeAppMetrica()
@@ -93,15 +102,37 @@ class IntelliverseApplication : Application() {
                 cacheDir.deleteRecursively()
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Timber.e(e, "Failed to clear the cache directory")
         }
     }
 
     private fun setWebViewDataDirectorySuffix() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) return
-        val processName = getProcessName()
-        if (!packageName.equals(processName)) {
-            WebView.setDataDirectorySuffix(processName)
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) return
+            val processName = getProcessName()
+            if (!packageName.equals(processName)) {
+                WebView.setDataDirectorySuffix(processName)
+            }
+        } catch (e: Exception) {
+            Timber.e(e, "Failed to set the WebView data directory suffix")
+        }
+    }
+
+    private fun initializeAds() {
+        try {
+            MobileAds.initialize(this@IntelliverseApplication) {}
+
+            /*// Ensure Family-Safe Ads are enforced
+            val requestConfiguration = RequestConfiguration.Builder()
+                .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE) // COPPA Compliance
+                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G) // Family-friendly ads only
+                .build()
+
+            MobileAds.setRequestConfiguration(requestConfiguration)*/
+
+            MobileAds.setAppMuted(true)
+        } catch (e: Exception) {
+            Timber.e(e, "Failed to initialize MobileAds")
         }
     }
 

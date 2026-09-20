@@ -75,7 +75,7 @@ class SaveFileRepository @Inject constructor(
             }
             return@withContext uri
         } catch (e: Exception) {
-            Timber.d(e)
+            Timber.e(e)
             resolver.delete(uri, null, null)
             return@withContext null // Return null if an error occurs
         } finally {

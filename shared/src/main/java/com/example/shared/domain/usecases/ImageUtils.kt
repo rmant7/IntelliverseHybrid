@@ -38,13 +38,13 @@ class ImageUtils @Inject constructor(
             byteArrayOutputStream.close()
             return byteArray
         } catch (e: SecurityException) {
-            Timber.d(e)
+            Timber.e(e)
             null
         } catch (e: NullPointerException) {
-            Timber.d(e)
+            Timber.e(e)
             null
         } catch (e: Exception) {
-            Timber.d(e)
+            Timber.e(e)
             null
         } finally {
             inputStream?.close()

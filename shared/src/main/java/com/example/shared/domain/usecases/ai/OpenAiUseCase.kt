@@ -51,16 +51,16 @@ class OpenAiUseCase @Inject constructor() {
             val contentText = response.content().text()
             return Result.success(cleanOpenAiResult(contentText))
         } catch (e: ServerException) {
-            Timber.d(e)
+            Timber.e(e)
             return Result.failure(e)
         } catch (e: OpenAiHttpException) {
-            Timber.d(e)
+            Timber.e(e)
             return Result.failure(e)
         } catch (e: IllegalArgumentException) {
-            Timber.d(e)
+            Timber.e(e)
             return Result.failure(e)
         } catch (e: RuntimeException) {
-            Timber.d(e)
+            Timber.e(e)
             return Result.failure(e)
         }
     }

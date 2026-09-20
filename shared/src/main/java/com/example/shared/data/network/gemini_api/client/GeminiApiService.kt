@@ -68,24 +68,24 @@ class GeminiApiService @Inject constructor(
 
         } catch (e: RedirectResponseException) {
             //3xx - responses
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: ClientRequestException) {
             //4xx - response
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: ServerResponseException) {
             //5xx - response
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: UnknownHostException) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: IOException) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: Exception) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         }
     }
@@ -111,24 +111,24 @@ class GeminiApiService @Inject constructor(
 
         } catch (e: RedirectResponseException) {
             //3xx - responses
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: ClientRequestException) {
             //4xx - response
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: ServerResponseException) {
             //5xx - response
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: UnknownHostException) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: IOException) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: Exception) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         }
     }
@@ -154,24 +154,24 @@ class GeminiApiService @Inject constructor(
 
         } catch (e: RedirectResponseException) {
             //3xx - responses
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: ClientRequestException) {
             //4xx - response
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: ServerResponseException) {
             //5xx - response
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: UnknownHostException) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: IOException) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         } catch (e: Exception) {
-            Timber.d(e.message)
+            Timber.e(e, e.message)
             Result.failure(e)
         }
     }

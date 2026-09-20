@@ -29,7 +29,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.serialization.SerializationException
 import timber.log.Timber
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicInteger
@@ -245,6 +244,11 @@ abstract class BaseResultViewModel(
         result.onSuccess {
 
             if (it.isBlank()) {
+                // A "successful" call with nothing usable in it (safety filter,
+                // empty completion, ...) looks identical to no answer at all in
+                // the UI, so without this line there is nothing in the log
+                // explaining why a service that didn't error still shows blank.
+                Timber.w("$aiService returned a blank response; treating as no answer")
                 updateSolutionResults(aiService, null)
                 return
             }
@@ -260,6 +264,7 @@ abstract class BaseResultViewModel(
         }
 
         result.onFailure {
+            Timber.w(it, "$aiService failed to produce a solution")
             when (aiService) {
                 AIService.GEMINI -> {
                     val remainedAttempts = geminiAttempts.decrementAndGet()
@@ -365,8 +370,8 @@ abstract class BaseResultViewModel(
                         override = false
                     )
                 }
-            } catch (e: SerializationException) {
-                Timber.d("Failed to serialize response for GPT: ${e.message}")
+            } catch (e: Exception) {
+                Timber.e(e, "Failed to serialize response for GPT")
                 onSolutionResult(Result.failure(e), AIService.GPT)
             }
         }
@@ -391,8 +396,8 @@ abstract class BaseResultViewModel(
                         override = false
                     )
                 }
-            } catch (e: SerializationException) {
-                Timber.d("Failed to serialize response for Groq: ${e.message}")
+            } catch (e: Exception) {
+                Timber.e(e, "Failed to serialize response for Groq")
                 onSolutionResult(Result.failure(e), AIService.GROQ)
             }
         }
@@ -420,8 +425,8 @@ abstract class BaseResultViewModel(
                         override = false
                     )
                 }
-            } catch (e: SerializationException) {
-                Timber.d("Failed to serialize response for GigaChat: ${e.message}")
+            } catch (e: Exception) {
+                Timber.e(e, "Failed to serialize response for GigaChat")
                 onSolutionResult(Result.failure(e), AIService.GIGACHAT)
             }
         }
@@ -451,9 +456,9 @@ abstract class BaseResultViewModel(
                         override = false
                     )
                 }
-            } catch (e: SerializationException) {
+            } catch (e: Exception) {
                 onSolutionResult(Result.failure(e), aiService)
-                Timber.d("Failed to serialize response for $aiService: ${e.message}")
+                Timber.e(e, "Failed to serialize response for $aiService")
             }
         }
         result.onFailure {
