@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator, metni farklı yazı stilleri ve tonları arasında dönüştürür.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Okul Asistanı Resmi</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI Okul Asistanına Yükle Resmi</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Çözümü Kontrol Et AI Okul Asistanı Resmi</string>
+    <string name="ArrowDropDown_icon_content_description">Bir alt menü açar</string>
+    <string name="add_image">Görev ekle</string>
+
+    // Text values
+    <string name="recognized_text_value">Tanınan metin</string>
+    <string name="solution_text_value">Çözüm</string>
+    <string name="user_task_value">Görev</string>
+    <string name="is_ocr_result_included_value">Seçili tanınan metni kullan</string>
+    <string name="home_loading_waiting_text_value">Yükleniyor, lütfen bekleyin...</string>
+    <string name="progress_bar_hint_text_value">Çözüm oluşturma ilerlemesi</string>
+
+    // Button Labels
+    <string name="next_button_label">İleri</string>
+    <string name="solve_button_label">Çöz</string>
+    <string name="check_solution_button_label">Çözümü kontrol et</string>
+    <string name="cheat_sheet_button_label">Kopya kağıdı</string>
+    <string name="start_again">Yeniden başla</string>
+    <string name="try_again">Tekrar dene</string>
+    <string name="pick_images">Resimleri Seç</string>
+    <string name="upload_from_url">Yükle</string>
+    <string name="upload_picture">Resim Yükle</string>
+    <string name="take_a_picture">Resim Çek</string>
+    <string name="recognize_text_button_label">Tanınan metni göster</string>
+
+    // Text Field Labels
+    <string name="sentence">Metin</string>
+    <string name="What_to_solve_TextField_label">Ne çözmek istiyorsun?</string>
+    <string name="rating_TextField_label">Puan</string>
+    <string name="no_solution_chosen">Henüz bir çözüm seçilmedi</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Kız arkadaşımla ilgilenmeyi seviyorum. Her zaman güvende ve korunmuş hissetmesini sağlıyorum. Randevularımızı planlamayı ve onu küçük hediyelerle şaşırtmayı seviyorum. Üzgün olduğunda, bir çözüm bulmaya ve işleri onun için düzeltmeye çalışıyorum.</string>
+    <string name="first_ocr_result_is_not_ready">Metin tanınıyor, lütfen bekleyin…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Çözüm dili</string>
+    <string name="upload_a_file_label">Dosya yükle</string>
+    <string name="explanations_label">Açıklamalar</string>
+    <string name="source_gender_label">Kaynak Cinsiyet</string>
+    <string name="target_gender_label">Hedef Cinsiyet</string>
+    <string name="source_age_label">Kaynak Yaş</string>
+    <string name="target_age_label">Hedef Yaş</string>
+    <string name="category_label">Kategori</string>
+    <string name="tone_label">Ton Tercihi</string>
+    <string name="transformation_level_label">Dönüşüm Seviyesi</string>
+    <string name="style_label">Çeviri Stili</string>
+    <string name="mentality_label">Zihniyet</string>
+    <string name="translation_scale_label">Çeviri Ölçek Faktörü</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Kalori uygulamasının dizin depolama alanından bazı resimleri silmişsiniz gibi görünüyor. Endişelenmeyin, kalori bu resimleri uygulama önbelleğinden tek tek temizlemeye çalışacaktır. Gerekirse, lütfen her resim silme işlemini onaylayın. Boş görünen herhangi bir resim bozuktur. Devam etmek istiyor musunuz?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI, resimden metin tanıyamadı. Lütfen tekrar deneyin.</string>
+    <string name="error_gemini_solution_result_extraction">AI bu sorunu çözemedi. Lütfen tekrar deneyin.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hay aksi! Bir şeyler ters gitti. Lütfen tekrar deneyin!</string>
+    <string name="fail_to_load_Uri">Resim listeye yüklenemedi. Lütfen manuel olarak yüklemeyi deneyin!</string>
+    <string name="corrupted_loaded_file">Bozuk bir dosya yüklediniz!</string>
+    <string name="missing_required_settings">Bazı gerekli ayarlar eksik. Lütfen bunları doldurun.</string>
+    <string name="camera_fail_to_open">Hay aksi! Kamerayla ilgili bir sorun oluştu. Lütfen tekrar deneyin!</string>
+    <string name="upload_image_warning">Lütfen cihazdan bir resim yükleyin</string>
+    <string name="select_image_or_text_warning">Lütfen bir resim seçin veya görev yazın.</string>
+    <string name="prompt_is_empty">Tanınan metin boş. Lütfen tekrar deneyin!</string>
+    <string name="language_not_supported">"Seçilen dil, medya üretimi için kullanılamıyor. Diğer özellikler çalışmaya devam edecektir. Bu özelliği etkinleştirmek için gerekli dil verilerini indirmek ister misiniz?"</string>
+
+    // labels
+    <string name="home">Ana Sayfa</string>
+    <string name="settings">Ayarlar</string>
+    <string name="results">Sonuç</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Ne paylaşacağınızı seçin</string>
+    <string name="share_user_translation">Metnimi Paylaş</string>
+    <string name="share_ocr_result">Tanınan Metni Paylaş</string>
+    <string name="share_solution">Çözümü Paylaş</string>
+    <string name="share_image">Resmi Paylaş</string>
+    <string name="share">Paylaş</string>
+
+    // installation
+    <string name="install">Yükle</string>
+    <string name="install_language">Dili Yükle</string>
+
+    <string name="solved_by_style_translator">StyleTranslator tarafından çözüldü\nGoogle Play\'deki uygulamamıza göz atın</string>
+
+</resources>

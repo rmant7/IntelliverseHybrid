@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>شاعرانه</item>
+        <item>حرفه ای</item>
+        <item>حقوقی</item>
+        <item>فنی</item>
+        <item>آکادمیک</item>
+        <item>روزنامه نگاری</item>
+        <item>خلاقانه</item>
+        <item>متقاعد کننده</item>
+        <item>روایتی</item>
+        <item>توصیفی</item>
+        <item>توضیحی</item>
+        <item>طنزآمیز</item>
+        <item>غیر رسمی</item>
+        <item>تجاری</item>
+        <item>علمی</item>
+        <item>عاشقانه</item>
+        <item>تاریخی</item>
+        <item>فلسفی</item>
+        <item>خود یاری</item>
+        <item>مسافرتی</item>
+        <item>بازاریابی</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>رسمی</item>
+        <item>غیر رسمی</item>
+        <item>دوستانه</item>
+        <item>جدی</item>
+        <item>همدلانه</item>
+        <item>قاطعانه</item>
+        <item>خوش بینانه</item>
+        <item>طنزآمیز</item>
+        <item>خنثی</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>حداقلی</item>
+        <item>متوسط</item>
+        <item>کامل</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>روابط</item>
+        <item>محیط کار</item>
+        <item>تحصیلات</item>
+        <item>سلامتی</item>
+        <item>امور مالی</item>
+        <item>مسافرت</item>
+        <item>فناوری</item>
+        <item>سرگرمی</item>
+        <item>بهبود فردی</item>
+        <item>عمومی</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>روسیه: جمع گرا</item>
+        <item>اروپای شرقی: عمل گرا</item>
+        <item>اروپای غربی: فردگرا</item>
+        <item>جنوب شرقی آسیا: متمرکز بر هماهنگی</item>
+        <item>چین: سلسله مراتبی</item>
+        <item>قفقاز: پایبند به شرافت</item>
+        <item>آمریکای شمالی: کارآفرینی</item>
+        <item>آمریکای لاتین: پرشور</item>
+        <item>خاورمیانه: مهمان نواز</item>
+        <item>آفریقا: اشتراکی</item>
+        <item>کشورهای نوردیک: مساوات طلب</item>
+        <item>جنوب آسیا: خانواده محور</item>
+        <item>ژاپن: هماهنگی گروهی</item>
+        <item>استرالیا: بی خیال</item>
+        <item>مدیترانه: رسا</item>
+        <item>آسیای مرکزی: سنت های کوچ نشینی</item>
+        <item>آلمان: ساختار یافته</item>
+        <item>بالکان: انعطاف پذیر</item>
+        <item>بومیان قطب شمال: مرتبط با طبیعت</item>
+        <item>یهودی: جامعه محور</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>امهری</item>
+        <item>عربی</item>
+        <item>بنگالی</item>
+        <item>بلغاری</item>
+        <item>چینی ساده شده</item>
+        <item>کروات</item>
+        <item>چک</item>
+        <item>دانمارکی</item>
+        <item>هلندی</item>
+        <item>انگلیسی</item>
+        <item>استونیایی</item>
+        <item>فنلاندی</item>
+        <item>فرانسوی</item>
+        <item>آلمانی</item>
+        <item>یونانی</item>
+        <item>گجراتی</item>
+        <item>عبری</item>
+        <item>هندی</item>
+        <item>مجاری</item>
+        <item>اندونزیایی</item>
+        <item>ایتالیایی</item>
+        <item>ژاپنی</item>
+        <item>کانادایی</item>
+        <item>کره ای</item>
+        <item>لتونیایی</item>
+        <item>لیتوانیایی</item>
+        <item>مالایی</item>
+        <item>مراتی</item>
+        <item>نروژی</item>
+        <item>پشتو</item>
+        <item>فارسی</item>
+        <item>لهستانی</item>
+        <item>پرتغالی</item>
+        <item>رومانیایی</item>
+        <item>روسی</item>
+        <item>صربی</item>
+        <item>اسلواکی</item>
+        <item>اسلوونیایی</item>
+        <item>اسپانیایی</item>
+        <item>سواحیلی</item>
+        <item>سوئدی</item>
+        <item>تاگالوگ</item>
+        <item>تامیلی</item>
+        <item>تلوگو</item>
+        <item>تایلندی</item>
+        <item>ترکی</item>
+        <item>اوکراینی</item>
+        <item>اردو</item>
+        <item>ویتنامی</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>نامربوط</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>بدون توضیح</item>
+        <item>توضیح کوتاه</item>
+        <item>توضیح مفصل</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>کم تحرک</item>
+        <item>کمی فعال</item>
+        <item>نسبتاً فعال</item>
+        <item>بسیار فعال</item>
+        <item>فوق العاده فعال</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>مرد</item>
+        <item>زن</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>هواپیما</item>
+        <item>دوچرخه</item>
+        <item>قایق</item>
+        <item>اتوبوس</item>
+        <item>موتورسیکلت</item>
+        <item>ماشین شخصی</item>
+        <item>ماشین اجاره‌ای</item>
+        <item>هم‌سفری</item>
+        <item>مترو</item>
+        <item>تاکسی</item>
+        <item>قطار</item>
+        <item>تراموا</item>
+        <item>پیاده‌روی</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>غذا</item>
+        <item>تاریخ</item>
+        <item>فرهنگ</item>
+        <item>طبیعت</item>
+        <item>استراحت</item>
+        <item>ماجراجویی</item>
+        <item>زندگی شبانه</item>
+        <item>خرید</item>
+        <item>خانواده</item>
+        <item>رمانتیک</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>گرفتن عکس</item>
+        <item>آپلود یک تصویر</item>
+        <item>آپلود یک فایل</item>
+        <item>ارائه یک لینک</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">متاسفیم، این سرویس در روسیه و بلاروس در دسترس نیست، لطفا از vpn استفاده کنید</string>
+    <string name="error_service_not_available_title">سرویس در دسترس نیست</string>
+    <string name="error_common_title">خطا</string>
+    <string name="error_common_message">هنگام اجرای برنامه خطایی رخ داد. سعی کنید برنامه را به روز کنید یا بعداً دوباره امتحان کنید</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">اوه! به نظر می رسد برای این ویژگی به دسترسی دوربین نیاز است. به تنظیمات دستگاه خود بروید، IntelliVerse را در لیست برنامه های خود پیدا کنید و برای باز کردن جادو، مجوز دوربین را اعطا کنید!</string>
+    <string name="permanent_denied_read_media_permission_explanation">اوه! برای استفاده از تصاویر از گالری خود، IntelliVerse به مجوز خواندن عکس های شما نیاز دارد. به تنظیمات دستگاه خود بروید، IntelliVerse را در لیست برنامه های خود پیدا کنید و برای باز کردن جادو، دسترسی به عکس را اعطا کنید!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">اوه! برای ذخیره فایل ها در دستگاه خود، IntelliVerse به مجوز نوشتن در حافظه شما نیاز دارد. به تنظیمات دستگاه خود بروید، IntelliVerse را در لیست برنامه های خود پیدا کنید و برای باز کردن جادو، دسترسی به حافظه را اعطا کنید!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">اوه! برای دسترسی به فایل های موجود در دستگاه خود، IntelliVerse به مجوز خواندن حافظه شما نیاز دارد. به تنظیمات دستگاه خود بروید، IntelliVerse را در لیست برنامه های خود پیدا کنید و برای باز کردن جادو، دسترسی به حافظه را اعطا کنید!</string>
+    <string name="camera_permission_rationale">IntelliVerse برای گرفتن فوری عکس از تمرینات مدرسه شما به دسترسی به دوربین شما نیاز دارد!</string>
+    <string name="read_media_permission_rationale">مجاز کردن دسترسی به عکس‌هایتان به شما این امکان را می‌دهد که تصاویر را از گالری خود برای استفاده در برنامه IntelliVerse انتخاب کنید!</string>
+    <string name="write_storage_permission_rationale">اجازه نوشتن در حافظه شما به برنامه IntelliVerse اجازه می دهد تا فایل ها، مانند عکس هایی که گرفته اید، را مستقیماً در دستگاه شما ذخیره کند!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse برای خواندن فایل ها، مانند عکس ها یا اسناد، در حافظه دستگاه شما به دسترسی نیاز دارد تا بتوانید از آنها در برنامه استفاده کنید.</string>
+
+    // Buttons Labels
+    <string name="Ok">باشه</string>
+
+    <string name="Yes">بله</string>
+    <string name="No">نه</string>
+    <string name="are_you_sure">آیا مطمئن هستید که می خواهید خارج شوید؟</string>
+    <string name="exit">خروج</string>
+
+    <string name="report_content">گزارش محتوا</string>
+    <string name="select_reason">انتخاب دلیل</string>
+    <string name="offensive">توهین آمیز</string>
+    <string name="hate_speech">نفرت پراکنی</string>
+    <string name="incorrect_info">اطلاعات نادرست</string>
+    <string name="other">دیگر</string>
+    <string name="submit">ارسال</string>
+    <string name="cancel">لغو</string>
+
+    <string name="reset_settings">بازنشانی تنظیمات</string>
+    <string name="not_relevant">نامربوط</string>
+
+</resources>

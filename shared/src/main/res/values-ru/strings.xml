@@ -1,0 +1,190 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Поэтический</item>
+        <item>Профессиональный</item>
+        <item>Юридический</item>
+        <item>Технический</item>
+        <item>Академический</item>
+        <item>Журналистский</item>
+        <item>Креативный</item>
+        <item>Убедительный</item>
+        <item>Нарративный</item>
+        <item>Описательный</item>
+        <item>Объяснительный</item>
+        <item>Юмористический</item>
+        <item>Неформальный</item>
+        <item>Деловой</item>
+        <item>Научный</item>
+        <item>Романтический</item>
+        <item>Исторический</item>
+        <item>Философский</item>
+        <item>Самопомощь</item>
+        <item>Путевой</item>
+        <item>Маркетинговый</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Формальный</item>
+        <item>Неформальный</item>
+        <item>Дружелюбный</item>
+        <item>Серьезный</item>
+        <item>Сочувствующий</item>
+        <item>Уверенный</item>
+        <item>Оптимистичный</item>
+        <item>Юмористический</item>
+        <item>Нейтральный</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Минимальный</item>
+        <item>Умеренный</item>
+        <item>Полный</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Отношения</item>
+        <item>Рабочее место</item>
+        <item>Образование</item>
+        <item>Здоровье</item>
+        <item>Финансы</item>
+        <item>Путешествия</item>
+        <item>Технологии</item>
+        <item>Развлечения</item>
+        <item>Саморазвитие</item>
+        <item>Общее</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Россия: Коллективистская</item>
+        <item>Восточная Европа: Прагматичная</item>
+        <item>Западная Европа: Индивидуалистская</item>
+        <item>Юго-Восточная Азия: Ориентированная на гармонию</item>
+        <item>Китай: Иерархическая</item>
+        <item>Кавказ: Честь превыше всего</item>
+        <item>Северная Америка: Предпринимательская</item>
+        <item>Латинская Америка: Страстная</item>
+        <item>Ближний Восток: Гостеприимная</item>
+        <item>Африка: Общинная</item>
+        <item>Скандинавские страны: Эгалитарная</item>
+        <item>Южная Азия: Ориентированная на семью</item>
+        <item>Япония: Групповая гармония</item>
+        <item>Австралия: Расслабленная</item>
+        <item>Средиземноморье: Выразительная</item>
+        <item>Центральная Азия: Кочевые традиции</item>
+        <item>Германия: Структурированная</item>
+        <item>Балканы: Устойчивость</item>
+        <item>Арктические коренные народы: Единение с природой</item>
+        <item>Еврейская: Ориентированная на сообщество</item>
+    </string-array>
+
+    // Drop Down Menu Entries
+    <string-array name="grades">
+        <item>Не важно</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Никаких объяснений</item>-->
+        <item>Краткое объяснение</item>
+        <item>Подробное объяснение</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Сидячий</item>
+        <item>Слегка активный</item>
+        <item>Умеренно активный</item>
+        <item>Очень активный</item>
+        <item>Чрезвычайно активный</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Самолет</item>
+        <item>Велосипед</item>
+        <item>Лодка</item>
+        <item>Автобус</item>
+        <item>Мотоцикл</item>
+        <item>Собственный автомобиль</item>
+        <item>Арендованный автомобиль</item>
+        <item>Совместные поездки</item>
+        <item>Метро</item>
+        <item>Такси</item>
+        <item>Поезд</item>
+        <item>Трамвай</item>
+        <item>Ходьба</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Еда</item>
+        <item>История</item>
+        <item>Культура</item>
+        <item>Природа</item>
+        <item>Отдых</item>
+        <item>Приключения</item>
+        <item>Ночная жизнь</item>
+        <item>Шоппинг</item>
+        <item>Семья</item>
+        <item>Романтика</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Сфотографировать</item>
+        <item>Загрузить изображение</item>
+        <item>Загрузить файл</item>
+        <item>Предоставить ссылку</item>
+    </string-array>
+
+    //Error
+    <string name="error_service_not_available">Извините, сервис не доступен на территории РФ и Белорусии, пожалуйста, используйте vpn.</string>
+    <string name="error_service_not_available_title">Сервис недоступен</string>
+    <string name="error_common_title">Ошибка</string>
+    <string name="error_common_message">Во время работы приложения произошла ошибка. Попробуйте обновить приложение или повторить попытку позднее</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Упс! Кажется, для этой функции нужен доступ к камере. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте разрешение на использование камеры, чтобы раскрыть всю магию!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Упс! Чтобы использовать изображения из вашей галереи, IntelliVerse нуждается в разрешении на чтение ваших фотографий. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте доступ к фотографиям, чтобы раскрыть всю магию!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Упс! Чтобы сохранять файлы на ваше устройство, IntelliVerse нуждается в разрешении на запись в ваше хранилище. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте доступ к хранилищу, чтобы раскрыть всю магию!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Упс! Чтобы получить доступ к файлам на вашем устройстве, IntelliVerse нуждается в разрешении на чтение вашего хранилища. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте доступ к хранилищу, чтобы раскрыть всю магию!</string>
+    <string name="camera_permission_rationale">IntelliVerse нуждается в доступе к вашей камере, чтобы вы могли мгновенно фотографировать свои школьные задания!</string>
+    <string name="read_media_permission_rationale">Предоставление доступа к вашим фотографиям позволяет вам выбирать изображения из галереи для использования в приложении IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Разрешение на запись в ваше хранилище позволяет приложению IntelliVerse сохранять файлы, такие как сделанные вами фотографии, прямо на ваше устройство!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse нуждается в доступе к хранилищу вашего устройства для чтения файлов, таких как фотографии или документы, которые вы можете захотеть использовать в приложении</string>
+
+    // Buttons Labels
+    <string name="Ok">Ок</string>
+
+    <string name="Yes">да</string>
+    <string name="No">нет</string>
+    <string name="are_you_sure">ты уверен что хочешь бросить</string>
+    <string name="exit">бросить</string>
+
+    <string name="report_content">Отчет Содержание</string>
+    <string name="select_reason">Выберите причину</string>
+    <string name="offensive">Оскорбительный</string>
+    <string name="hate_speech">Разжигание ненависти</string>
+    <string name="incorrect_info">Неверная информация</string>
+    <string name="other">Другой</string>
+    <string name="submit">Отправить</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="reset_settings">Сброс настроек</string>
+    <string name="not_relevant">Не актуально</string>
+
+</resources>

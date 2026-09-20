@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker उपयोगकर्ताओं को भोजन में कैलोरी, वसा, प्रोटीन, कार्बोहाइड्रेट, विटामिन और खनिजों की अपनी मात्रा की निगरानी करने में मदद करता है। यह न केवल इन तत्वों को गिनता है, बल्कि यह भी विश्लेषण करता है कि पाचन के बाद शरीर द्वारा क्या अवशोषित किया जाता है। उपयोगकर्ता उत्पादों की छवियां अपलोड कर सकते हैं, एप्लिकेशन सामग्री को पहचानता है और सूची को संपादित करने की क्षमता प्रदान करता है।</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">एआई स्कूल असिस्टेंट इमेज</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">एआई स्कूल असिस्टेंट इमेज पर अपलोड करें</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">एआई स्कूल असिस्टेंट इमेज का समाधान जांचें</string>
+    <string name="ArrowDropDown_icon_content_description">एक सबमेनू खोलता है</string>
+    <string name="add_image">कार्य जोड़ें</string>
+    <string name="guidance_detected_ingredients">पता लगाए गए अवयवों की समीक्षा करें। यदि कोई विवरण गलत या गायब है, तो आप एक नया पोषण विश्लेषण उत्पन्न करने से पहले उन्हें संशोधित कर सकते हैं</string>
+
+    // Text values
+    <string name="ingredients">सामग्री</string>
+    <string name="solution_text_value">समाधान</string>
+    <string name="user_task_value">कार्य</string>
+    <string name="is_ocr_result_included_value">चयनित मान्यता प्राप्त पाठ का उपयोग करें</string>
+    <string name="home_loading_waiting_text_value">लोड हो रहा है, कृपया प्रतीक्षा करें...</string>
+    <string name="progress_bar_hint_text_value">समाधान पीढ़ी की प्रगति</string>
+
+    // Button Labels
+    <string name="next_button_label">अगला</string>
+    <string name="solve_button_label">हल करें</string>
+    <string name="check_solution_button_label">समाधान जांचें</string>
+    <string name="cheat_sheet_button_label">चीट शीट</string>
+    <string name="start_again">फिर से शुरू करें</string>
+    <string name="try_again">पुनः प्रयास करें</string>
+    <string name="pick_images">चित्र चुनें</string>
+    <string name="upload_from_url">अपलोड करें</string>
+    <string name="upload_picture">चित्र अपलोड करें</string>
+    <string name="take_a_picture">एक तस्वीर लें</string>
+    <string name="recognize_text_button_label">मान्यता प्राप्त पाठ दिखाएं</string>
+
+    // Text Field Labels
+    <string name="foods">खाद्य पदार्थ</string>
+    <string name="What_to_solve_TextField_label">आप क्या हल करना चाहते हैं?</string>
+    <string name="rating_TextField_label">रेटिंग</string>
+    <string name="no_solution_chosen">समाधान अभी तक नहीं चुना गया है</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 केले और 1 सेब, सभी मध्यम आकार के।</string>
+    <string name="first_ocr_result_is_not_ready">पाठ पहचाना जा रहा है, कृपया प्रतीक्षा करें...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">समाधान भाषा</string>
+    <string name="upload_a_file_label">एक फ़ाइल अपलोड करें</string>
+    <string name="explanations_label">स्पष्टीकरण</string>
+    <string name="physical_activity_label">शारीरिक गतिविधि</string>
+    <string name="gender_label">लिंग</string>
+    <string name="age_label">उम्र</string>
+    <string name="height_label">ऊंचाई</string>
+    <string name="weight_label">वजन</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">ऐसा लगता है कि आपने कैलोरी ऐप के निर्देशिका भंडारण से कुछ चित्र हटा दिए हैं। चिंता न करें, कैलोरी एप्लिकेशन कैश से इन छवियों को एक-एक करके साफ़ करने का प्रयास करेगी। यदि आवश्यक हो तो प्रत्येक छवि विलोपन की पुष्टि करें। कोई भी छवि जो खाली दिखाई देती है वह दूषित है। क्या आप आगे बढ़ना चाहते हैं?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">एआई छवि से पाठ को पहचानने में सक्षम नहीं था। कृपया, फिर से प्रयास करें।</string>
+    <string name="error_gemini_solution_result_extraction">एआई इस समस्या को हल करने में सक्षम नहीं था। कृपया, फिर से प्रयास करें।</string>
+
+    // Toast messages
+    <string name="something_went_wrong">ऊप्स! कुछ गलत हो गया। फिर से कोशिश करें!</string>
+    <string name="fail_to_load_Uri">छवि को सूची में लोड करने में विफल। कृपया इसे मैन्युअल रूप से लोड करने का प्रयास करें!</string>
+    <string name="corrupted_loaded_file">आपने एक दूषित फ़ाइल लोड की है!</string>
+    <string name="missing_required_settings">कुछ आवश्यक सेटिंग्स गायब हैं। कृपया उन्हें भरें।</string>
+    <string name="camera_fail_to_open">ऊप्स! कैमरे के साथ कुछ गलत हो गया। फिर से कोशिश करें!</string>
+    <string name="upload_image_warning">कृपया डिवाइस से एक छवि अपलोड करें</string>
+    <string name="select_image_or_text_warning">कृपया एक छवि या प्रकार कार्य का चयन करें।</string>
+    <string name="prompt_is_empty">मान्यता प्राप्त पाठ खाली है। फिर से कोशिश करें!</string>
+    <string name="language_not_supported">"चयनित भाषा मीडिया पीढ़ी के लिए उपलब्ध नहीं है। अन्य सुविधाएँ काम करना जारी रखेंगी। क्या आप इस सुविधा को सक्षम करने के लिए आवश्यक भाषा डेटा डाउनलोड करना चाहेंगे?"</string>
+
+    // labels
+    <string name="home">होम</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="results">परिणाम</string>
+    <string name="ocr">ओसीआर</string>
+
+    // sharing
+    <string name="choose_sharing">चुनें कि क्या साझा करना है</string>
+    <string name="share_user_ingredients">मेरी सामग्री साझा करें</string>
+    <string name="share_recognized_ingredients">मान्यता प्राप्त सामग्री साझा करें</string>
+    <string name="share_solution">समाधान साझा करें</string>
+    <string name="share_image">छवि साझा करें</string>
+    <string name="share">शेयर करें</string>
+
+    // installation
+    <string name="install">इंस्टॉल</string>
+    <string name="install_language">भाषा स्थापित करें</string>
+
+    <string name="solved_by_diet_tracker">DietTracker द्वारा हल किया गया\nGoogle Play पर हमारे ऐप को देखें</string>
+
+</resources>

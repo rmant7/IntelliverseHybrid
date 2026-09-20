@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip è il tuo pianificatore di viaggi intelligente alimentato dall\'IA. Descrivi semplicemente il viaggio dei tuoi sogni o carica un\'ispirazione e ricevi immediatamente un itinerario personalizzato giorno per giorno con opzioni di trasporto, link agli hotel, stime di budget e consigli locali — tutto con un solo clic.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Testo riconosciuto</string>
+    <string name="solution_text_value">Soluzione</string>
+    <string name="user_task_value">Compito</string>
+    <string name="progress_bar_hint_text_value">Avanzamento generazione soluzione</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Testo</string>
+    <string name="no_solution_chosen">Nessuna soluzione selezionata</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Vorrei un viaggio rilassante e culturale di 3 giorni con siti storici, cucina locale, passeggiate leggere e un mix di attività guidate e libere in una città o nelle vicinanze.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Lingua della soluzione</string>
+    <string name="max_budget_label">Budget massimo</string>
+    <string name="travelers_number_label">Numero di viaggiatori</string>
+    <string name="trip_duration_label">Durata del viaggio</string>
+    <string name="transportation_type_label">Mezzo di trasporto</string>
+    <string name="trip_style_label">Stile di viaggio</string>
+    <string name="origin_location_label">Località di partenza</string>
+    <string name="trip_type_label">Tipo di viaggio</string>
+    <string name="one_way_trip">Viaggio di sola andata</string>
+    <string name="round_trip">Viaggio di andata e ritorno</string>
+    <string name="days">giorni</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Inserisci il mezzo di trasporto</string>
+    <string name="enter_location">Inserisci la località</string>
+    <string name="add">Aggiungi</string>
+    <string name="travel_path">Percorso di viaggio</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        L\'intelligenza artificiale non è riuscita a risolvere il problema. Riprova.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Ops! Qualcosa è andato storto. Riprova!</string>
+    <string name="fail_to_load_Uri">Impossibile caricare l\'immagine nell\'elenco. Riprova manualmente!</string>
+    <string name="corrupted_loaded_file">Hai caricato un file corrotto!</string>
+    <string name="missing_required_settings">Mancano alcune impostazioni richieste. Completa i campi.</string>
+    <string name="camera_fail_to_open">Ops! Problema nell\'apertura della fotocamera. Riprova!</string>
+    <string name="select_image_or_text_warning">Seleziona un\'immagine o inserisci un compito.</string>
+    <string name="language_not_supported">
+        La lingua selezionata non è disponibile per la generazione di media. Le altre funzioni continueranno a funzionare. Vuoi scaricare i dati linguistici necessari?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Home</string>
+    <string name="settings">Impostazioni</string>
+    <string name="results">Risultato</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Scegli cosa condividere</string>
+    <string name="share_user_translation">Condividi il mio testo</string>
+    <string name="share_ocr_result">Condividi il testo riconosciuto</string>
+    <string name="share_solution">Condividi la soluzione</string>
+    <string name="share_image">Condividi l\'immagine</string>
+    <string name="share">Condividi</string>
+
+    <!-- Installation -->
+    <string name="install">Installa</string>
+    <string name="install_language">Installa lingua</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Risolto da OneClickTrip\nGuarda la nostra app su Google Play</string>
+</resources>

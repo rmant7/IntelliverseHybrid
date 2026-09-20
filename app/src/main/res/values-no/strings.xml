@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">Velkommen til IntelliVerse</string>
+    <string name="cheaptrip_info">CheapTrip er en unik søkemotor som finner de billigste måtene mellom byer, og kombinerer fly, buss, tog og ferger.</string>
+    <string name="matterofchoice_info">Matter Of Choice presenterer interaktive scenarier for å hjelpe deg med å lære ferdigheter i beslutningstaking.</string>
+</resources>

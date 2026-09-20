@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller aitab õpilastel lahendada matemaatilisi ülesandeid ja ka üldiseid probleeme.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI kooliassistendi pilt</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Laadi üles AI kooliassistendi pilti</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Kontrolli lahendust AI kooliassistendi pildis</string>
+    <string name="ArrowDropDown_icon_content_description">Avab alammenüü</string>
+    <string name="add_image">Lisa ülesanne</string>
+    <string name="Guidance">Optimaalsete tulemuste saamiseks esitage oma ülesande kohta üksikasjalik TEKST. Kui lisate pilte, veenduge, et kogu tuvastatud tekst oleks redigeeritud nii, et see vastaks täpselt originaalile.</string>
+
+    // Text values
+    <string name="recognized_text_value">Tuvastatud tekst</string>
+    <string name="solution_text_value">Lahendus</string>
+    <string name="user_task_value">Ülesanne</string>
+    <string name="is_ocr_result_included_value">Kasuta valitud tuvastatud teksti</string>
+    <string name="home_loading_waiting_text_value">Laadimine, palun oota...</string>
+    <string name="progress_bar_hint_text_value">Lahenduste genereerimise edenemine</string>
+
+    // Button Labels
+    <string name="next_button_label">Järgmine</string>
+    <string name="solve_button_label">Lahenda</string>
+    <string name="check_solution_button_label">Kontrolli lahendust</string>
+    <string name="cheat_sheet_button_label">Spikker</string>
+    <string name="start_again">Alusta uuesti</string>
+    <string name="try_again">Proovi uuesti</string>
+    <string name="pick_images">Vali pildid</string>
+    <string name="upload_from_url">Laadi üles</string>
+    <string name="upload_picture">Laadi pilt üles</string>
+    <string name="take_a_picture">Tee pilt</string>
+    <string name="recognize_text_button_label">Näita tuvastatud teksti</string>
+
+    // Text Field Labels
+    <string name="tasks">Ülesanne</string>
+    <string name="What_to_solve_TextField_label">Mida sa soovid lahendada?</string>
+    <string name="rating_TextField_label">Hinnang</string>
+    <string name="no_solution_chosen">Lahendust pole veel valitud</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Räägi mulle Pythagorase teoreemist.</string>
+    <string name="first_ocr_result_is_not_ready">Teksti tuvastatakse, palun oota...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Lahenduse keel</string>
+    <string name="upload_a_file_label">Laadi fail üles</string>
+    <string name="explanations_label">Selgitused</string>
+    <string name="grade_label">"Hinne"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Tundub, et olete mõned pildid SchoolKilleri rakenduse kataloogist kustutanud. Ärge muretsege, SchoolKiller proovib neid pilte ükshaaval rakenduse vahemälust kustutada. Vajadusel kinnitage iga pildi kustutamine. Iga pilt, mis näib tühi, on rikutud. Kas soovite jätkata?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ei suutnud pildilt teksti tuvastada. Palun proovi uuesti.</string>
+    <string name="error_gemini_solution_result_extraction">AI ei suutnud seda probleemi lahendada. Palun proovi uuesti.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Oih! Midagi läks valesti. Palun proovi uuesti!</string>
+    <string name="fail_to_load_Uri">Pildi loendisse laadimine ebaõnnestus. Palun proovige seda käsitsi laadida!</string>
+    <string name="corrupted_loaded_file">Olete laadinud rikutud faili!</string>
+    <string name="camera_fail_to_open">Oih! Kaameraga läks midagi valesti. Palun proovi uuesti!</string>
+    <string name="upload_image_warning">Palun laadige seadmest pilt üles</string>
+    <string name="select_image_or_text_warning">Palun valige pilt või sisestage ülesanne.</string>
+    <string name="prompt_is_empty">Tuvastatud tekst on tühi. Palun proovi uuesti!</string>
+    <string name="language_not_supported">"Valitud keel ei ole meedia genereerimiseks saadaval. Muud funktsioonid töötavad edasi. Kas soovite selle funktsiooni lubamiseks alla laadida vajalikud keeleandmed?"</string>
+
+    // labels
+    <string name="home">Avaleht</string>
+    <string name="settings">Seaded</string>
+    <string name="results">Tulemus</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Vali, mida jagada</string>
+    <string name="share_user_task">Jaga minu ülesannet</string>
+    <string name="share_ocr_result">Jaga tuvastatud teksti</string>
+    <string name="share_solution">Jaga lahendust</string>
+    <string name="share_image">Jaga pilti</string>
+    <string name="share">Jaga</string>
+
+    // installation
+    <string name="install">Installi</string>
+    <string name="install_language">Installi keel</string>
+
+    <string name="solved_by_schoolkiller">Lahendatud SchoolKilleriga\nVaata meie rakendust Google Plays</string>
+
+</resources>

@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTripはAIによって強化されたあなたのスマートな旅行プランナーです。夢の旅を説明するか、インスピレーションをアップロードするだけで、交通手段、ホテルリンク、予算見積もり、ローカル情報を含む日ごとのパーソナライズされた旅程をワンクリックで即座に受け取ることができます。</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">認識されたテキスト</string>
+    <string name="solution_text_value">解決策</string>
+    <string name="user_task_value">タスク</string>
+    <string name="progress_bar_hint_text_value">解決策生成の進捗</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">テキスト</string>
+    <string name="no_solution_chosen">まだ解決策が選択されていません</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        歴史的な場所、地元の料理、軽い散歩、ガイド付きと自由行動のアクティビティを組み合わせた、1つの都市またはその近くでの3日間のリラックスした文化的な旅行を希望します。
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">解決策の言語</string>
+    <string name="max_budget_label">最大予算</string>
+    <string name="travelers_number_label">旅行者数</string>
+    <string name="trip_duration_label">旅行期間</string>
+    <string name="transportation_type_label">交通手段</string>
+    <string name="trip_style_label">旅行スタイル</string>
+    <string name="origin_location_label">出発地</string>
+    <string name="trip_type_label">旅行タイプ</string>
+    <string name="one_way_trip">片道旅行</string>
+    <string name="round_trip">往復旅行</string>
+    <string name="days">日間</string>
+    <string name="new_york">ニューヨーク</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">交通手段を入力してください</string>
+    <string name="enter_location">場所を入力してください</string>
+    <string name="add">追加</string>
+    <string name="travel_path">旅行ルート</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AIはこの問題を解決できませんでした。もう一度お試しください。
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">おっと！問題が発生しました。もう一度お試しください！</string>
+    <string name="fail_to_load_Uri">リストに画像を読み込めませんでした。手動でお試しください！</string>
+    <string name="corrupted_loaded_file">破損したファイルが読み込まれました！</string>
+    <string name="missing_required_settings">必要な設定が不足しています。入力してください。</string>
+    <string name="camera_fail_to_open">おっと！カメラを開けませんでした。もう一度お試しください！</string>
+    <string name="select_image_or_text_warning">画像を選択するか、タスクを入力してください。</string>
+    <string name="language_not_supported">
+        選択された言語はメディア生成に利用できません。他の機能は引き続き使用可能です。必要な言語データをダウンロードしますか？
+    </string>
+
+    <!-- Labels -->
+    <string name="home">ホーム</string>
+    <string name="settings">設定</string>
+    <string name="results">結果</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">共有する内容を選択してください</string>
+    <string name="share_user_translation">自分のテキストを共有する</string>
+    <string name="share_ocr_result">認識されたテキストを共有する</string>
+    <string name="share_solution">解決策を共有する</string>
+    <string name="share_image">画像を共有する</string>
+    <string name="share">共有</string>
+
+    <!-- Installation -->
+    <string name="install">インストール</string>
+    <string name="install_language">言語をインストールする</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">OneClickTripによって解決\nGoogle Playで私たちのアプリをチェックしてください</string>
+</resources>

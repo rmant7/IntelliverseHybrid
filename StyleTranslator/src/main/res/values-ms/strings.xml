@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator menukar teks antara gaya dan nada penulisan yang berbeza.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Imej Pembantu Sekolah AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Muat Naik ke Imej Pembantu Sekolah AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Semak Penyelesaian Imej Pembantu Sekolah AI</string>
+    <string name="ArrowDropDown_icon_content_description">Membuka submenu</string>
+    <string name="add_image">Tambah tugasan</string>
+
+    // Text values
+    <string name="recognized_text_value">Teks yang dikenali</string>
+    <string name="solution_text_value">Penyelesaian</string>
+    <string name="user_task_value">Tugasan</string>
+    <string name="is_ocr_result_included_value">Gunakan teks yang dikenali yang dipilih</string>
+    <string name="home_loading_waiting_text_value">Memuat, sila tunggu...</string>
+    <string name="progress_bar_hint_text_value">Kemajuan penjanaan penyelesaian</string>
+
+    // Button Labels
+    <string name="next_button_label">Seterusnya</string>
+    <string name="solve_button_label">Selesaikan</string>
+    <string name="check_solution_button_label">Semak penyelesaian</string>
+    <string name="cheat_sheet_button_label">Lembaran rujukan</string>
+    <string name="start_again">Mula semula</string>
+    <string name="try_again">Cuba lagi</string>
+    <string name="pick_images">Pilih Imej</string>
+    <string name="upload_from_url">Muat Naik</string>
+    <string name="upload_picture">Muat Naik Gambar</string>
+    <string name="take_a_picture">Ambil Gambar</string>
+    <string name="recognize_text_button_label">Tunjukkan teks yang dikenali</string>
+
+    // Text Field Labels
+    <string name="sentence">Teks</string>
+    <string name="What_to_solve_TextField_label">Apa yang anda ingin selesaikan?</string>
+    <string name="rating_TextField_label">Penilaian</string>
+    <string name="no_solution_chosen">Penyelesaian belum dipilih</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Saya suka menjaga teman wanita saya. Saya sentiasa memastikan dia berasa selamat dan dilindungi. Saya suka merancang temu janji kami dan mengejutkannya dengan hadiah kecil. Apabila dia kecewa, saya cuba mencari penyelesaian dan membetulkan keadaan untuknya.</string>
+    <string name="first_ocr_result_is_not_ready">Teks sedang dikenali, sila tunggu...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Bahasa penyelesaian</string>
+    <string name="upload_a_file_label">Muat naik fail</string>
+    <string name="explanations_label">Penjelasan</string>
+    <string name="source_gender_label">Jantina Sumber</string>
+    <string name="target_gender_label">Jantina Sasaran</string>
+    <string name="source_age_label">Umur Sumber</string>
+    <string name="target_age_label">Umur Sasaran</string>
+    <string name="category_label">Kategori</string>
+    <string name="tone_label">Keutamaan Nada</string>
+    <string name="transformation_level_label">Tahap Transformasi</string>
+    <string name="style_label">Gaya Terjemahan</string>
+    <string name="mentality_label">Mentaliti</string>
+    <string name="translation_scale_label">Faktor Skala Terjemahan</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Nampaknya anda telah memadamkan beberapa imej daripada storan direktori aplikasi kalori. Jangan risau, kalori akan cuba mengosongkan imej ini satu demi satu daripada cache aplikasi. Sila sahkan setiap pemadaman imej, jika diperlukan. Sebarang imej yang kelihatan kosong adalah imej yang rosak. Adakah anda ingin meneruskan?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI tidak dapat mengenal pasti teks daripada imej. Sila cuba lagi.</string>
+    <string name="error_gemini_solution_result_extraction">AI tidak dapat menyelesaikan masalah ini. Sila cuba lagi.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Aduh! Ada sesuatu yang tidak kena. Sila cuba lagi!</string>
+    <string name="fail_to_load_Uri">Gagal memuatkan imej ke dalam senarai. Sila cuba muatkannya secara manual!</string>
+    <string name="corrupted_loaded_file">Anda telah memuatkan fail yang rosak!</string>
+    <string name="missing_required_settings">Beberapa tetapan yang diperlukan hilang. Sila isikannya.</string>
+    <string name="camera_fail_to_open">Aduh! Ada sesuatu yang tidak kena dengan kamera. Sila cuba lagi!</string>
+    <string name="upload_image_warning">Sila muat naik imej daripada peranti</string>
+    <string name="select_image_or_text_warning">Sila pilih imej atau taip tugasan.</string>
+    <string name="prompt_is_empty">Teks yang dikenali kosong. Sila cuba lagi!</string>
+    <string name="language_not_supported">"Bahasa yang dipilih tidak tersedia untuk penjanaan media. Ciri-ciri lain akan terus berfungsi. Adakah anda ingin memuat turun data bahasa yang diperlukan untuk mendayakan ciri ini?"</string>
+
+    // labels
+    <string name="home">Laman Utama</string>
+    <string name="settings">Tetapan</string>
+    <string name="results">Keputusan</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Pilih apa yang hendak dikongsi</string>
+    <string name="share_user_translation">Kongsi Teks Saya</string>
+    <string name="share_ocr_result">Kongsi Teks Yang Dikenali</string>
+    <string name="share_solution">Kongsi Penyelesaian</string>
+    <string name="share_image">Kongsi Imej</string>
+    <string name="share">Kongsi</string>
+
+    // installation
+    <string name="install">Pasang</string>
+    <string name="install_language">Pasang Bahasa</string>
+
+    <string name="solved_by_style_translator">Diselesaikan oleh StyleTranslator\nLihat aplikasi kami di Google Play</string>
+
+</resources>

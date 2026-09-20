@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip je vaš pametni planer putovanja koji pokreće veštačka inteligencija. Samo opišite svoje putovanje iz snova ili otpremite inspiraciju i odmah ćete dobiti personalizovani dnevni plan sa opcijama prevoza, linkovima ka hotelima, procenama budžeta i lokalnim savetima — sve jednim klikom.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Препознат текст</string>
+    <string name="solution_text_value">Решење</string>
+    <string name="user_task_value">Задатак</string>
+    <string name="progress_bar_hint_text_value">Напредак у генерисању решења</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Текст</string>
+    <string name="no_solution_chosen">Решење још није изабрано</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Желим тродневно опуштајуће и културолошко путовање са историјским локацијама, локалном храном, лаганим шетњама и комбинацијом вођених и самосталних активности у једном граду или у близини.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Језик решења</string>
+    <string name="max_budget_label">Максимални буџет</string>
+    <string name="travelers_number_label">Број путника</string>
+    <string name="trip_duration_label">Трајање путовања</string>
+    <string name="transportation_type_label">Тип превоза</string>
+    <string name="trip_style_label">Стил путовања</string>
+    <string name="origin_location_label">Полазна тачка</string>
+    <string name="trip_type_label">Тип путовања</string>
+    <string name="one_way_trip">Једносмерно путовање</string>
+    <string name="round_trip">Путовање у оба смера</string>
+    <string name="days">дана</string>
+    <string name="new_york">Њујорк</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Унесите тип превоза</string>
+    <string name="enter_location">Унесите локацију</string>
+    <string name="add">Додај</string>
+    <string name="travel_path">Путна рута</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Вештачка интелигенција није успела да реши проблем. Покушајте поново.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Упс! Нешто је пошло наопако. Покушајте поново!</string>
+    <string name="fail_to_load_Uri">Није успело учитавање слике у листу. Покушајте ручно!</string>
+    <string name="corrupted_loaded_file">Учитали сте оштећену датотеку!</string>
+    <string name="missing_required_settings">Недостају обавезна подешавања. Попуните их.</string>
+    <string name="camera_fail_to_open">Упс! Камера се није отворила. Покушајте поново!</string>
+    <string name="select_image_or_text_warning">Изаберите слику или унесите задатак.</string>
+    <string name="language_not_supported">
+        Одабрани језик није доступан за генерисање медија. Остале функције ће и даље радити. Да ли желите да преузмете неопходне језичке податке?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Почетна</string>
+    <string name="settings">Подешавања</string>
+    <string name="results">Резултат</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Изаберите шта желите да делите</string>
+    <string name="share_user_translation">Подели мој текст</string>
+    <string name="share_ocr_result">Подели препознат текст</string>
+    <string name="share_solution">Подели решење</string>
+    <string name="share_image">Подели слику</string>
+    <string name="share">Подели</string>
+
+    <!-- Installation -->
+    <string name="install">Инсталирај</string>
+    <string name="install_language">Инсталирај језик</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Решено помоћу OneClickTrip\nПогледајте нашу апликацију на Google Play</string>
+</resources>

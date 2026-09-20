@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker palīdz lietotājiem uzraudzīt kaloriju, tauku, olbaltumvielu, ogļhidrātu, vitamīnu un minerālvielu uzņemšanu pārtikā. Tas ne tikai skaita šos elementus, bet arī analizē, ko organisms absorbē pēc gremošanas. Lietotāji var augšupielādēt produktu attēlus, lietojumprogramma atpazīst sastāvdaļas un nodrošina iespēju rediģēt sarakstu.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Skolas asistenta attēls</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Augšupielādēt AI Skolas asistenta attēlu</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Pārbaudīt risinājumu AI Skolas asistenta attēlā</string>
+    <string name="ArrowDropDown_icon_content_description">Atver apakšizvēlni</string>
+    <string name="add_image">Pievienot uzdevumu</string>
+    <string name="guidance_detected_ingredients">Pārskatiet atpazītās sastāvdaļas. Ja kāda informācija ir nepareiza vai trūkst, varat to modificēt pirms jaunas uzturvērtības analīzes ģenerēšanas</string>
+
+    // Text values
+    <string name="ingredients">Sastāvdaļas</string>
+    <string name="solution_text_value">Risinājums</string>
+    <string name="user_task_value">Uzdevums</string>
+    <string name="is_ocr_result_included_value">Izmantot atlasīto atpazīto tekstu</string>
+    <string name="home_loading_waiting_text_value">Notiek ielāde, lūdzu, uzgaidiet...</string>
+    <string name="progress_bar_hint_text_value">Risinājumu ģenerēšanas gaita</string>
+
+    // Button Labels
+    <string name="next_button_label">Nākamais</string>
+    <string name="solve_button_label">Atrisināt</string>
+    <string name="check_solution_button_label">Pārbaudīt risinājumu</string>
+    <string name="cheat_sheet_button_label">Špikeris</string>
+    <string name="start_again">Sākt no jauna</string>
+    <string name="try_again">Mēģināt vēlreiz</string>
+    <string name="pick_images">Izvēlēties attēlus</string>
+    <string name="upload_from_url">Augšupielādēt</string>
+    <string name="upload_picture">Augšupielādēt attēlu</string>
+    <string name="take_a_picture">Uzņemt attēlu</string>
+    <string name="recognize_text_button_label">Parādīt atpazīto tekstu</string>
+
+    // Text Field Labels
+    <string name="foods">Ēdieni</string>
+    <string name="What_to_solve_TextField_label">Ko vēlaties atrisināt?</string>
+    <string name="rating_TextField_label">Vērtējums</string>
+    <string name="no_solution_chosen">Risinājums vēl nav atlasīts</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 banāni un 1 ābols, visi vidēja izmēra.</string>
+    <string name="first_ocr_result_is_not_ready">Notiek teksta atpazīšana, lūdzu, uzgaidiet…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Risinājuma valoda</string>
+    <string name="upload_a_file_label">Augšupielādēt failu</string>
+    <string name="explanations_label">Paskaidrojumi</string>
+    <string name="physical_activity_label">Fiziskā aktivitāte</string>
+    <string name="gender_label">Dzimums</string>
+    <string name="age_label">Vecums</string>
+    <string name="height_label">Augums</string>
+    <string name="weight_label">Svars</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Šķiet, ka esat izdzēsis dažus attēlus no kaloriju lietotnes direktorijas krātuves. Neuztraucieties, kalorijas mēģinās notīrīt šos attēlus pa vienam no lietojumprogrammas kešatmiņas. Lūdzu, apstipriniet katru attēla dzēšanu, ja nepieciešams. Jebkurš attēls, kas parādās tukšs, ir bojāts. Vai vēlaties turpināt?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nespēja atpazīt tekstu no attēla. Lūdzu, mēģiniet vēlreiz.</string>
+    <string name="error_gemini_solution_result_extraction">AI nespēja atrisināt šo problēmu. Lūdzu, mēģiniet vēlreiz.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz!</string>
+    <string name="fail_to_load_Uri">Neizdevās ielādēt attēlu sarakstā. Lūdzu, mēģiniet to ielādēt manuāli!</string>
+    <string name="corrupted_loaded_file">Jūs esat ielādējis bojātu failu!</string>
+    <string name="missing_required_settings">Trūkst dažu nepieciešamo iestatījumu. Lūdzu, aizpildiet tos.</string>
+    <string name="camera_fail_to_open">Ups! Kaut kas nogāja greizi ar kameru. Lūdzu, mēģiniet vēlreiz!</string>
+    <string name="upload_image_warning">Lūdzu, augšupielādējiet attēlu no ierīces</string>
+    <string name="select_image_or_text_warning">Lūdzu, atlasiet attēlu vai ierakstiet uzdevumu.</string>
+    <string name="prompt_is_empty">Atpazītais teksts ir tukšs. Lūdzu, mēģiniet vēlreiz!</string>
+    <string name="language_not_supported">"Atlasītā valoda nav pieejama multivides ģenerēšanai. Citas funkcijas turpinās darboties. Vai vēlaties lejupielādēt nepieciešamos valodas datus, lai iespējotu šo funkciju?"</string>
+
+    // labels
+    <string name="home">Sākums</string>
+    <string name="settings">Iestatījumi</string>
+    <string name="results">Rezultāts</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Izvēlieties, ko kopīgot</string>
+    <string name="share_user_ingredients">Dalīties ar manām sastāvdaļām</string>
+    <string name="share_recognized_ingredients">Dalīties ar atpazītām sastāvdaļām</string>
+    <string name="share_solution">Dalīties ar risinājumu</string>
+    <string name="share_image">Dalīties ar attēlu</string>
+    <string name="share">Dalīties</string>
+
+    // installation
+    <string name="install">Instalēt</string>
+    <string name="install_language">Instalēt valodu</string>
+
+    <string name="solved_by_diet_tracker">Atrisināja DietTracker\nApskatiet mūsu lietotni Google Play</string>
+
+</resources>

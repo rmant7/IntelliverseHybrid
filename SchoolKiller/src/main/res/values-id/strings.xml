@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller membantu siswa menyelesaikan masalah matematika secara khusus, serta masalah umum.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Gambar Asisten Sekolah AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Unggah Ke Gambar Asisten Sekolah AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Periksa Gambar Asisten Sekolah AI Solusi</string>
+    <string name="ArrowDropDown_icon_content_description">Membuka submenu</string>
+    <string name="add_image">Tambahkan tugas</string>
+    <string name="Guidance">Untuk hasil optimal, berikan TEKS terperinci untuk tugas Anda. Jika Anda melampirkan gambar, pastikan teks yang dikenali diedit agar sesuai dengan aslinya secara akurat.</string>
+
+    // Text values
+    <string name="recognized_text_value">Teks yang dikenali</string>
+    <string name="solution_text_value">Solusi</string>
+    <string name="user_task_value">Tugas</string>
+    <string name="is_ocr_result_included_value">Gunakan teks yang dikenali yang dipilih</string>
+    <string name="home_loading_waiting_text_value">Memuat, mohon tunggu...</string>
+    <string name="progress_bar_hint_text_value">Progres pembuatan solusi</string>
+
+    // Button Labels
+    <string name="next_button_label">Selanjutnya</string>
+    <string name="solve_button_label">Selesaikan</string>
+    <string name="check_solution_button_label">Periksa solusi</string>
+    <string name="cheat_sheet_button_label">Lembar contekan</string>
+    <string name="start_again">Mulai lagi</string>
+    <string name="try_again">Coba lagi</string>
+    <string name="pick_images">Pilih Gambar</string>
+    <string name="upload_from_url">Unggah</string>
+    <string name="upload_picture">Unggah Gambar</string>
+    <string name="take_a_picture">Ambil Gambar</string>
+    <string name="recognize_text_button_label">Tampilkan teks yang dikenali</string>
+
+    // Text Field Labels
+    <string name="tasks">Tugas</string>
+    <string name="What_to_solve_TextField_label">Apa yang ingin Anda selesaikan?</string>
+    <string name="rating_TextField_label">Peringkat</string>
+    <string name="no_solution_chosen">Solusi belum dipilih</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Ceritakan tentang teorema Pythagoras.</string>
+    <string name="first_ocr_result_is_not_ready">Teks sedang dikenali, mohon tunggu…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Bahasa solusi</string>
+    <string name="upload_a_file_label">Unggah sebuah berkas</string>
+    <string name="explanations_label">Penjelasan</string>
+    <string name="grade_label">"Nilai"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Sepertinya Anda telah menghapus beberapa gambar dari penyimpanan direktori aplikasi SchoolKiller. Jangan khawatir, SchoolKiller akan mencoba menghapus gambar-gambar ini satu per satu dari cache aplikasi. Harap konfirmasi setiap penghapusan gambar, jika diperlukan. Gambar apa pun yang tampak kosong adalah gambar yang rusak. Apakah Anda ingin melanjutkan?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI tidak dapat mengenali teks dari gambar. Silakan coba lagi.</string>
+    <string name="error_gemini_solution_result_extraction">AI tidak dapat menyelesaikan masalah ini. Silakan coba lagi.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Terjadi kesalahan. Silakan coba lagi!</string>
+    <string name="fail_to_load_Uri">Gagal memuat gambar ke daftar. Silakan coba memuatnya secara manual!</string>
+    <string name="corrupted_loaded_file">Anda telah memuat file yang rusak!</string>
+    <string name="camera_fail_to_open">Ups! Terjadi kesalahan dengan kamera. Silakan coba lagi!</string>
+    <string name="upload_image_warning">Silakan unggah gambar dari perangkat</string>
+    <string name="select_image_or_text_warning">Silakan pilih gambar atau ketik tugas.</string>
+    <string name="prompt_is_empty">Teks yang dikenali kosong. Silakan coba lagi!</string>
+    <string name="language_not_supported">"Bahasa yang dipilih tidak tersedia untuk pembuatan media. Fitur lain akan tetap berfungsi. Apakah Anda ingin mengunduh data bahasa yang diperlukan untuk mengaktifkan fitur ini?"</string>
+
+    // labels
+    <string name="home">Beranda</string>
+    <string name="settings">Pengaturan</string>
+    <string name="results">Hasil</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Pilih apa yang ingin dibagikan</string>
+    <string name="share_user_task">Bagikan Tugas Saya</string>
+    <string name="share_ocr_result">Bagikan Teks yang Dikenali</string>
+    <string name="share_solution">Bagikan Solusi</string>
+    <string name="share_image">Bagikan Gambar</string>
+    <string name="share">Bagikan</string>
+
+    // installation
+    <string name="install">Instal</string>
+    <string name="install_language">Instal Bahasa</string>
+
+    <string name="solved_by_schoolkiller">Diselesaikan oleh SchoolKiller\nLihat aplikasi kami di Google Play</string>
+
+</resources>

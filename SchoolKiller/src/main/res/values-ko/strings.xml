@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller는 학생들이 수학 문제, 특히 일반적인 문제를 해결하는 데 도움을 줍니다.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI 학교 도우미 이미지</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI 학교 도우미 이미지에 업로드</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">AI 학교 도우미 이미지 솔루션 확인</string>
+    <string name="ArrowDropDown_icon_content_description">하위 메뉴 열기</string>
+    <string name="add_image">작업 추가</string>
+    <string name="Guidance">최적의 결과를 얻으려면 작업에 대한 자세한 텍스트를 제공하십시오. 이미지를 첨부하는 경우 인식된 텍스트가 원본과 정확히 일치하도록 편집하십시오.</string>
+
+    // Text values
+    <string name="recognized_text_value">인식된 텍스트</string>
+    <string name="solution_text_value">솔루션</string>
+    <string name="user_task_value">작업</string>
+    <string name="is_ocr_result_included_value">선택한 인식된 텍스트 사용</string>
+    <string name="home_loading_waiting_text_value">로드 중입니다. 잠시만 기다려 주십시오...</string>
+    <string name="progress_bar_hint_text_value">솔루션 생성 진행률</string>
+
+    // Button Labels
+    <string name="next_button_label">다음</string>
+    <string name="solve_button_label">풀기</string>
+    <string name="check_solution_button_label">솔루션 확인</string>
+    <string name="cheat_sheet_button_label">치트 시트</string>
+    <string name="start_again">다시 시작</string>
+    <string name="try_again">다시 시도</string>
+    <string name="pick_images">이미지 선택</string>
+    <string name="upload_from_url">업로드</string>
+    <string name="upload_picture">사진 업로드</string>
+    <string name="take_a_picture">사진 찍기</string>
+    <string name="recognize_text_button_label">인식된 텍스트 표시</string>
+
+    // Text Field Labels
+    <string name="tasks">작업</string>
+    <string name="What_to_solve_TextField_label">무엇을 풀고 싶으세요?</string>
+    <string name="rating_TextField_label">평가</string>
+    <string name="no_solution_chosen">솔루션이 아직 선택되지 않았습니다.</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">피타고라스 정리에 대해 알려주세요.</string>
+    <string name="first_ocr_result_is_not_ready">텍스트가 인식되는 중입니다. 잠시만 기다려 주십시오…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">솔루션 언어</string>
+    <string name="upload_a_file_label">파일 업로드</string>
+    <string name="explanations_label">설명</string>
+    <string name="grade_label">"학년"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">SchoolKiller 앱의 디렉토리 저장소에서 일부 이미지를 삭제한 것 같습니다. 걱정하지 마세요. SchoolKiller가 애플리케이션 캐시에서 이러한 이미지를 하나씩 제거하려고 시도합니다. 필요한 경우 각 이미지 삭제를 확인하십시오. 비어 보이는 이미지는 손상된 이미지입니다. 계속하시겠습니까?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI가 이미지에서 텍스트를 인식할 수 없습니다. 다시 시도해주세요.</string>
+    <string name="error_gemini_solution_result_extraction">AI가 이 문제를 해결할 수 없습니다. 다시 시도해주세요.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">저런! 문제가 발생했습니다. 다시 시도해주세요!</string>
+    <string name="fail_to_load_Uri">이미지를 목록에 로드하지 못했습니다. 수동으로 로드하십시오!</string>
+    <string name="corrupted_loaded_file">손상된 파일을 로드했습니다!</string>
+    <string name="camera_fail_to_open">저런! 카메라에 문제가 발생했습니다. 다시 시도해주세요!</string>
+    <string name="upload_image_warning">장치에서 이미지를 업로드하십시오.</string>
+    <string name="select_image_or_text_warning">이미지를 선택하거나 작업을 입력하십시오.</string>
+    <string name="prompt_is_empty">인식된 텍스트가 비어 있습니다. 다시 시도해주세요!</string>
+    <string name="language_not_supported">"선택한 언어는 미디어 생성에 사용할 수 없습니다. 다른 기능은 계속 작동합니다. 이 기능을 사용하려면 필요한 언어 데이터를 다운로드하시겠습니까?"</string>
+
+    // labels
+    <string name="home">홈</string>
+    <string name="settings">설정</string>
+    <string name="results">결과</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">공유할 항목 선택</string>
+    <string name="share_user_task">내 작업 공유</string>
+    <string name="share_ocr_result">인식된 텍스트 공유</string>
+    <string name="share_solution">솔루션 공유</string>
+    <string name="share_image">이미지 공유</string>
+    <string name="share">공유</string>
+
+    // installation
+    <string name="install">설치</string>
+    <string name="install_language">언어 설치</string>
+
+    <string name="solved_by_schoolkiller">SchoolKiller에서 해결함\nGoogle Play에서 저희 앱을 확인하세요</string>
+
+</resources>

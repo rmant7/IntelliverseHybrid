@@ -1,0 +1,18 @@
+# Ignore Gradle files
+.gradle/
+
+local.properties
+
+# Ignore IDE files (for IntelliJ/Android Studio)
+.idea/
+
+# Ignore build directory
+app/build/
+
+app/google-services.json
+
+# Ignore OS-specific files
+gradle/.DS_Store
+.DS_Store
+
+build/

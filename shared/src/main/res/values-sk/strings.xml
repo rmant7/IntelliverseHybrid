@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poetický</item>
+        <item>Profesionálny</item>
+        <item>Právny</item>
+        <item>Technický</item>
+        <item>Akademický</item>
+        <item>Žurnalistický</item>
+        <item>Kreatívny</item>
+        <item>Presvedčivý</item>
+        <item>Rozprávací</item>
+        <item>Opisný</item>
+        <item>Výkladový</item>
+        <item>Humorný</item>
+        <item>Neformálny</item>
+        <item>Obchodný</item>
+        <item>Vedecký</item>
+        <item>Romantický</item>
+        <item>Historický</item>
+        <item>Filozofický</item>
+        <item>Svojpomocný</item>
+        <item>Cestovný</item>
+        <item>Marketingový</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formálny</item>
+        <item>Neformálny</item>
+        <item>Priateľský</item>
+        <item>Vážny</item>
+        <item>Empatický</item>
+        <item>Asertívny</item>
+        <item>Optimistický</item>
+        <item>Humorný</item>
+        <item>Neutrálny</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimálna</item>
+        <item>Mierna</item>
+        <item>Kompletná</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Vzťah</item>
+        <item>Pracovisko</item>
+        <item>Vzdelávanie</item>
+        <item>Zdravie</item>
+        <item>Financie</item>
+        <item>Cestovanie</item>
+        <item>Technológia</item>
+        <item>Zábava</item>
+        <item>Sebazdokonaľovanie</item>
+        <item>Všeobecné</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusko: Kolektivistické</item>
+        <item>Východná Európa: Pragmatická</item>
+        <item>Západná Európa: Individualistická</item>
+        <item>Juhovýchodná Ázia: Zameraná na harmóniu</item>
+        <item>Čína: Hierarchická</item>
+        <item>Kaukaz: Zviazaný cťou</item>
+        <item>Severná Amerika: Podnikateľská</item>
+        <item>Latinská Amerika: Vášnivá</item>
+        <item>Stredný východ: Zameraný na pohostinnosť</item>
+        <item>Afrika: Komunitná</item>
+        <item>Severské krajiny: Rovnostárska</item>
+        <item>Južná Ázia: Zameraná na rodinu</item>
+        <item>Japonsko: Harmónia skupiny</item>
+        <item>Austrália: Uvoľnená</item>
+        <item>Stredomorie: Expresívna</item>
+        <item>Stredná Ázia: Kočovné tradície</item>
+        <item>Nemecko: Štruktúrované</item>
+        <item>Balkán: Odolný</item>
+        <item>Arktickí domorodci: Spojení s prírodou</item>
+        <item>Židovská: Orientovaná na komunitu</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharčina</item>
+        <item>Arabčina</item>
+        <item>Bengálčina</item>
+        <item>Bulharčina</item>
+        <item>Zjednodušená čínština</item>
+        <item>Chorvátčina</item>
+        <item>Čeština</item>
+        <item>Dánčina</item>
+        <item>Holandčina</item>
+        <item>Angličtina</item>
+        <item>Estónčina</item>
+        <item>Fínčina</item>
+        <item>Francúzština</item>
+        <item>Nemčina</item>
+        <item>Gréčtina</item>
+        <item>Gudžarátčina</item>
+        <item>Hebrejčina</item>
+        <item>Hindčina</item>
+        <item>Maďarčina</item>
+        <item>Indonézština</item>
+        <item>Taliančina</item>
+        <item>Japončina</item>
+        <item>Kannadčina</item>
+        <item>Kórejčina</item>
+        <item>Lotyština</item>
+        <item>Litovčina</item>
+        <item>Malajčina</item>
+        <item>Maráthčina</item>
+        <item>Nórčina</item>
+        <item>Paštčina</item>
+        <item>Perzština</item>
+        <item>Poľština</item>
+        <item>Portugalčina</item>
+        <item>Rumunčina</item>
+        <item>Ruština</item>
+        <item>Srbčina</item>
+        <item>Slovenčina</item>
+        <item>Slovinčina</item>
+        <item>Španielčina</item>
+        <item>Svahilčina</item>
+        <item>Švédčina</item>
+        <item>Tagalčina</item>
+        <item>Tamilčina</item>
+        <item>Telugčina</item>
+        <item>Thajčina</item>
+        <item>Turečtina</item>
+        <item>Ukrajinčina</item>
+        <item>Urdčina</item>
+        <item>Vietnamčina</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Nerelevantné</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Žiadne vysvetlenie</item>
+        <item>Krátke vysvetlenie</item>
+        <item>Podrobné vysvetlenie</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sedavý</item>
+        <item>Ľahko aktívny</item>
+        <item>Stredne aktívny</item>
+        <item>Veľmi aktívny</item>
+        <item>Extrémne aktívny</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Muž</item>
+        <item>Žena</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Lietadlo</item>
+        <item>Bicykel</item>
+        <item>Loď</item>
+        <item>Autobus</item>
+        <item>Motocykel</item>
+        <item>Vlastné auto</item>
+        <item>Požičané auto</item>
+        <item>Zdieľaná jazda</item>
+        <item>Metro</item>
+        <item>Taxi</item>
+        <item>Vlak</item>
+        <item>Električka</item>
+        <item>Chôdza</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Jedlo</item>
+        <item>História</item>
+        <item>Kultúra</item>
+        <item>Príroda</item>
+        <item>Relaxácia</item>
+        <item>Dobrodružstvo</item>
+        <item>Nočný život</item>
+        <item>Nákupy</item>
+        <item>Rodina</item>
+        <item>Romantika</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Odfotiť</item>
+        <item>Nahrať obrázok</item>
+        <item>Nahrať súbor</item>
+        <item>Poskytnúť odkaz</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Prepáčte, služba nie je dostupná v Rusku a Bielorusku, použite VPN</string>
+    <string name="error_service_not_available_title">Služba nie je dostupná</string>
+    <string name="error_common_title">Chyba</string>
+    <string name="error_common_message">Počas behu aplikácie sa vyskytla chyba. Skúste aktualizovať aplikáciu alebo to skúste znova neskôr</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Jejda! Zdá sa, že na túto funkciu je potrebný prístup k fotoaparátu. Prejdite do nastavení zariadenia, vyhľadajte IntelliVerse v zozname aplikácií a udeľte povolenie na prístup k fotoaparátu, aby ste odomkli kúzlo!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Jejda! Na používanie obrázkov z vašej galérie potrebuje IntelliVerse povolenie na čítanie vašich fotografií. Prejdite do nastavení zariadenia, vyhľadajte IntelliVerse v zozname aplikácií a udeľte prístup k fotografiám, aby ste odomkli kúzlo!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Jejda! Na ukladanie súborov do vášho zariadenia potrebuje IntelliVerse povolenie na zápis do vášho úložiska. Prejdite do nastavení zariadenia, vyhľadajte IntelliVerse v zozname aplikácií a udeľte prístup k úložisku, aby ste odomkli kúzlo!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Jejda! Na prístup k súborom vo vašom zariadení potrebuje IntelliVerse povolenie na čítanie z vášho úložiska. Prejdite do nastavení zariadenia, vyhľadajte IntelliVerse v zozname aplikácií a udeľte prístup k úložisku, aby ste odomkli kúzlo!</string>
+    <string name="camera_permission_rationale">IntelliVerse potrebuje prístup k vášmu fotoaparátu, aby ste mohli okamžite snímať fotografie svojich školských úloh!</string>
+    <string name="read_media_permission_rationale">Povolenie prístupu k vašim fotografiám vám umožňuje vybrať obrázky z vašej galérie na použitie v aplikácii IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Povolenie zápisu do vášho úložiska umožňuje aplikácii IntelliVerse ukladať súbory, ako napríklad fotografie, ktoré ste urobili, priamo do vášho zariadenia!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse potrebuje prístup do úložiska vášho zariadenia na čítanie súborov, ako sú fotografie alebo dokumenty, ktoré by ste chceli použiť v aplikácii.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Áno</string>
+    <string name="No">Nie</string>
+    <string name="are_you_sure">Ste si istý, že chcete ukončiť</string>
+    <string name="exit">Koniec</string>
+
+    <string name="report_content">Nahlásiť obsah</string>
+    <string name="select_reason">Vyberte dôvod</string>
+    <string name="offensive">Urážlivé</string>
+    <string name="hate_speech">Nenávistné prejavy</string>
+    <string name="incorrect_info">Nesprávne informácie</string>
+    <string name="other">Iné</string>
+    <string name="submit">Odoslať</string>
+    <string name="cancel">Zrušiť</string>
+
+    <string name="reset_settings">Obnoviť nastavenia</string>
+    <string name="not_relevant">Nerelevantné</string>
+
+</resources>

@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker uporabnikom pomaga spremljati vnos kalorij, maščob, beljakovin, ogljikovih hidratov, vitaminov in mineralov v hrani. Ne le šteje teh elementov, ampak tudi analizira, kaj telo absorbira po prebavi. Uporabniki lahko naložijo slike izdelkov, aplikacija prepozna sestavine in omogoča urejanje seznama.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Slika AI šolskega pomočnika</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Slika za nalaganje v AI šolskega pomočnika</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Slika za preverjanje rešitve AI šolskega pomočnika</string>
+    <string name="ArrowDropDown_icon_content_description">Odpre podmeni</string>
+    <string name="add_image">Dodaj nalogo</string>
+    <string name="guidance_detected_ingredients">Preglejte zaznane sestavine. Če so podatki nepravilni ali manjkajo, jih lahko spremenite pred ustvarjanjem nove prehranske analize.</string>
+
+    // Text values
+    <string name="ingredients">Sestavine</string>
+    <string name="solution_text_value">Rešitev</string>
+    <string name="user_task_value">Naloga</string>
+    <string name="is_ocr_result_included_value">Uporabi izbrano prepoznano besedilo</string>
+    <string name="home_loading_waiting_text_value">Nalaganje, prosimo, počakajte...</string>
+    <string name="progress_bar_hint_text_value">Potek ustvarjanja rešitev</string>
+
+    // Button Labels
+    <string name="next_button_label">Naprej</string>
+    <string name="solve_button_label">Reši</string>
+    <string name="check_solution_button_label">Preveri rešitev</string>
+    <string name="cheat_sheet_button_label">Goljufija</string>
+    <string name="start_again">Začni znova</string>
+    <string name="try_again">Poskusite znova</string>
+    <string name="pick_images">Izberite slike</string>
+    <string name="upload_from_url">Naloži</string>
+    <string name="upload_picture">Naloži sliko</string>
+    <string name="take_a_picture">Posnemite sliko</string>
+    <string name="recognize_text_button_label">Pokaži prepoznano besedilo</string>
+
+    // Text Field Labels
+    <string name="foods">Živila</string>
+    <string name="What_to_solve_TextField_label">Kaj želite rešiti?</string>
+    <string name="rating_TextField_label">Ocena</string>
+    <string name="no_solution_chosen">Rešitev še ni izbrana</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 banane in 1 jabolko, vse srednje velikosti.</string>
+    <string name="first_ocr_result_is_not_ready">Besedilo se prepoznava, prosimo, počakajte…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Jezik rešitve</string>
+    <string name="upload_a_file_label">Naloži datoteko</string>
+    <string name="explanations_label">Pojasnila</string>
+    <string name="physical_activity_label">Telesna aktivnost</string>
+    <string name="gender_label">Spol</string>
+    <string name="age_label">Starost</string>
+    <string name="height_label">Višina</string>
+    <string name="weight_label">Teža</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Zdi se, da ste izbrisali nekaj slik iz imenika za shranjevanje aplikacije za kalorije. Brez skrbi, kalorije bodo poskušale počistiti te slike eno za drugo iz predpomnilnika aplikacije. Potrdite vsako brisanje slike, če je potrebno. Vsaka slika, ki se prikaže prazna, je poškodovana. Ali želite nadaljevati?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">UI ni mogel prepoznati besedila s slike. Poskusite znova.</string>
+    <string name="error_gemini_solution_result_extraction">UI ni mogel rešiti te težave. Poskusite znova.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Nekaj je šlo narobe. Poskusite znova!</string>
+    <string name="fail_to_load_Uri">Nalaganje slike na seznam ni uspelo. Poskusite jo naložiti ročno!</string>
+    <string name="corrupted_loaded_file">Naložili ste poškodovano datoteko!</string>
+    <string name="missing_required_settings">Manjkajo nekatere zahtevane nastavitve. Izpolnite jih.</string>
+    <string name="camera_fail_to_open">Ups! Nekaj je šlo narobe s kamero. Poskusite znova!</string>
+    <string name="upload_image_warning">Naložite sliko iz naprave</string>
+    <string name="select_image_or_text_warning">Izberite sliko ali vnesite nalogo.</string>
+    <string name="prompt_is_empty">Prepoznano besedilo je prazno. Poskusite znova!</string>
+    <string name="language_not_supported">"Izbrani jezik ni na voljo za ustvarjanje medijev. Druge funkcije bodo še naprej delovale. Ali želite prenesti potrebne jezikovne podatke za omogočanje te funkcije?"</string>
+
+    // labels
+    <string name="home">Domov</string>
+    <string name="settings">Nastavitve</string>
+    <string name="results">Rezultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Izberite, kaj želite deliti</string>
+    <string name="share_user_ingredients">Deli moje sestavine</string>
+    <string name="share_recognized_ingredients">Deli prepoznane sestavine</string>
+    <string name="share_solution">Deli rešitev</string>
+    <string name="share_image">Deli sliko</string>
+    <string name="share">Deli</string>
+
+    // installation
+    <string name="install">Namesti</string>
+    <string name="install_language">Namesti jezik</string>
+
+    <string name="solved_by_diet_tracker">Rešeno s pomočjo DietTrackerja\nOglejte si našo aplikacijo v Googlu Play</string>
+
+</resources>

@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator chuyển đổi văn bản giữa các phong cách và giọng văn khác nhau.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Hình ảnh Trợ lý Trường học AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Tải lên Hình ảnh Trợ lý Trường học AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Kiểm tra Hình ảnh Trợ lý Trường học AI</string>
+    <string name="ArrowDropDown_icon_content_description">Mở một menu con</string>
+    <string name="add_image">Thêm nhiệm vụ</string>
+
+    // Text values
+    <string name="recognized_text_value">Văn bản đã nhận dạng</string>
+    <string name="solution_text_value">Giải pháp</string>
+    <string name="user_task_value">Nhiệm vụ</string>
+    <string name="is_ocr_result_included_value">Sử dụng văn bản đã nhận dạng được chọn</string>
+    <string name="home_loading_waiting_text_value">Đang tải, vui lòng đợi...</string>
+    <string name="progress_bar_hint_text_value">Tiến trình tạo giải pháp</string>
+
+    // Button Labels
+    <string name="next_button_label">Tiếp theo</string>
+    <string name="solve_button_label">Giải</string>
+    <string name="check_solution_button_label">Kiểm tra giải pháp</string>
+    <string name="cheat_sheet_button_label">Tài liệu tham khảo</string>
+    <string name="start_again">Bắt đầu lại</string>
+    <string name="try_again">Thử lại</string>
+    <string name="pick_images">Chọn ảnh</string>
+    <string name="upload_from_url">Tải lên</string>
+    <string name="upload_picture">Tải ảnh lên</string>
+    <string name="take_a_picture">Chụp ảnh</string>
+    <string name="recognize_text_button_label">Hiển thị văn bản đã nhận dạng</string>
+
+    // Text Field Labels
+    <string name="sentence">Văn bản</string>
+    <string name="What_to_solve_TextField_label">Bạn muốn giải quyết điều gì?</string>
+    <string name="rating_TextField_label">Đánh giá</string>
+    <string name="no_solution_chosen">Chưa chọn giải pháp</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Tôi thích chăm sóc bạn gái của mình. Tôi luôn đảm bảo cô ấy cảm thấy an toàn và được bảo vệ. Tôi thích lên kế hoạch cho những buổi hẹn hò của chúng tôi và làm cô ấy ngạc nhiên với những món quà nhỏ. Khi cô ấy buồn, tôi cố gắng tìm ra giải pháp và sửa chữa mọi thứ cho cô ấy.</string>
+    <string name="first_ocr_result_is_not_ready">Văn bản đang được nhận dạng, vui lòng đợi…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Ngôn ngữ giải pháp</string>
+    <string name="upload_a_file_label">Tải một tập tin lên</string>
+    <string name="explanations_label">Giải thích</string>
+    <string name="source_gender_label">Giới tính nguồn</string>
+    <string name="target_gender_label">Giới tính đích</string>
+    <string name="source_age_label">Độ tuổi nguồn</string>
+    <string name="target_age_label">Độ tuổi đích</string>
+    <string name="category_label">Danh mục</string>
+    <string name="tone_label">Ưu tiên giọng văn</string>
+    <string name="transformation_level_label">Mức độ chuyển đổi</string>
+    <string name="style_label">Kiểu dịch</string>
+    <string name="mentality_label">Tư duy</string>
+    <string name="translation_scale_label">Hệ số tỷ lệ dịch</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Có vẻ như bạn đã xóa một số hình ảnh khỏi thư mục lưu trữ của ứng dụng calories. Đừng lo lắng, calories sẽ cố gắng xóa từng hình ảnh này khỏi bộ nhớ cache của ứng dụng. Vui lòng xác nhận việc xóa từng hình ảnh, nếu cần. Bất kỳ hình ảnh nào xuất hiện trống là hình ảnh bị hỏng. Bạn có muốn tiếp tục không?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI không thể nhận dạng văn bản từ hình ảnh. Vui lòng thử lại.</string>
+    <string name="error_gemini_solution_result_extraction">AI không thể giải quyết vấn đề này. Vui lòng thử lại.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Rất tiếc! Đã xảy ra lỗi. Vui lòng thử lại!</string>
+    <string name="fail_to_load_Uri">Không thể tải hình ảnh vào danh sách. Vui lòng thử tải thủ công!</string>
+    <string name="corrupted_loaded_file">Bạn đã tải một tập tin bị hỏng!</string>
+    <string name="missing_required_settings">Thiếu một số cài đặt bắt buộc. Vui lòng điền vào.</string>
+    <string name="camera_fail_to_open">Rất tiếc! Đã xảy ra lỗi với máy ảnh. Vui lòng thử lại!</string>
+    <string name="upload_image_warning">Vui lòng tải lên một hình ảnh từ thiết bị</string>
+    <string name="select_image_or_text_warning">Vui lòng chọn một hình ảnh hoặc nhập nhiệm vụ.</string>
+    <string name="prompt_is_empty">Văn bản đã nhận dạng trống. Vui lòng thử lại!</string>
+    <string name="language_not_supported">"Ngôn ngữ đã chọn không khả dụng cho việc tạo phương tiện. Các tính năng khác sẽ tiếp tục hoạt động. Bạn có muốn tải xuống dữ liệu ngôn ngữ cần thiết để kích hoạt tính năng này không?"</string>
+
+    // labels
+    <string name="home">Trang chủ</string>
+    <string name="settings">Cài đặt</string>
+    <string name="results">Kết quả</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Chọn nội dung chia sẻ</string>
+    <string name="share_user_translation">Chia sẻ văn bản của tôi</string>
+    <string name="share_ocr_result">Chia sẻ văn bản đã nhận dạng</string>
+    <string name="share_solution">Chia sẻ giải pháp</string>
+    <string name="share_image">Chia sẻ hình ảnh</string>
+    <string name="share">Chia sẻ</string>
+
+    // installation
+    <string name="install">Cài đặt</string>
+    <string name="install_language">Cài đặt ngôn ngữ</string>
+
+    <string name="solved_by_style_translator">Giải quyết bởi StyleTranslator\nHãy xem ứng dụng của chúng tôi trên Google Play</string>
+
+</resources>

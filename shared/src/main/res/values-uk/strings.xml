@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Поетичний</item>
+        <item>Професійний</item>
+        <item>Юридичний</item>
+        <item>Технічний</item>
+        <item>Академічний</item>
+        <item>Журналістський</item>
+        <item>Креативний</item>
+        <item>Переконливий</item>
+        <item>Оповідний</item>
+        <item>Описовий</item>
+        <item>Пояснювальний</item>
+        <item>Гумористичний</item>
+        <item>Неформальний</item>
+        <item>Діловий</item>
+        <item>Науковий</item>
+        <item>Романтичний</item>
+        <item>Історичний</item>
+        <item>Філософський</item>
+        <item>Самодопомога</item>
+        <item>Подорожі</item>
+        <item>Маркетинг</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Офіційний</item>
+        <item>Неофіційний</item>
+        <item>Дружній</item>
+        <item>Серйозний</item>
+        <item>Емпатичний</item>
+        <item>Наполегливий</item>
+        <item>Оптимістичний</item>
+        <item>Гумористичний</item>
+        <item>Нейтральний</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Мінімальний</item>
+        <item>Помірний</item>
+        <item>Повний</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Відносини</item>
+        <item>Робоче місце</item>
+        <item>Освіта</item>
+        <item>Здоров\'я</item>
+        <item>Фінанси</item>
+        <item>Подорожі</item>
+        <item>Технології</item>
+        <item>Розваги</item>
+        <item>Саморозвиток</item>
+        <item>Загальне</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Росія: Колективістська</item>
+        <item>Східна Європа: Прагматична</item>
+        <item>Західна Європа: Індивідуалістична</item>
+        <item>Південно-Східна Азія: Орієнтована на гармонію</item>
+        <item>Китай: Ієрархічна</item>
+        <item>Кавказ: Зобов\'язаний честю</item>
+        <item>Північна Америка: Підприємницька</item>
+        <item>Латинська Америка: Пристрасна</item>
+        <item>Близький Схід: Орієнтований на гостинність</item>
+        <item>Африка: Комунальна</item>
+        <item>Скандинавські країни: Егалітарна</item>
+        <item>Південна Азія: Орієнтована на сім\'ю</item>
+        <item>Японія: Гармонія групи</item>
+        <item>Австралія: Безтурботна</item>
+        <item>Середземномор\'я: Експресивна</item>
+        <item>Центральна Азія: Кочові традиції</item>
+        <item>Німеччина: Структурована</item>
+        <item>Балкани: Стійкі</item>
+        <item>Арктичні корінні народи: Зв\'язок з природою</item>
+        <item>Єврейська: Орієнтована на громаду</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Амхарська</item>
+        <item>Арабська</item>
+        <item>Бенгальська</item>
+        <item>Болгарська</item>
+        <item>Китайська спрощена</item>
+        <item>Хорватська</item>
+        <item>Чеська</item>
+        <item>Датська</item>
+        <item>Нідерландська</item>
+        <item>Англійська</item>
+        <item>Естонська</item>
+        <item>Фінська</item>
+        <item>Французька</item>
+        <item>Німецька</item>
+        <item>Грецька</item>
+        <item>Гуджараті</item>
+        <item>Іврит</item>
+        <item>Хінді</item>
+        <item>Угорська</item>
+        <item>Індонезійська</item>
+        <item>Італійська</item>
+        <item>Японська</item>
+        <item>Каннада</item>
+        <item>Корейська</item>
+        <item>Латвійська</item>
+        <item>Литовська</item>
+        <item>Малайська</item>
+        <item>Маратхі</item>
+        <item>Норвезька</item>
+        <item>Пушту</item>
+        <item>Перська</item>
+        <item>Польська</item>
+        <item>Португальська</item>
+        <item>Румунська</item>
+        <item>Російська</item>
+        <item>Сербська</item>
+        <item>Словацька</item>
+        <item>Словенська</item>
+        <item>Іспанська</item>
+        <item>Суахілі</item>
+        <item>Шведська</item>
+        <item>Тагальська</item>
+        <item>Тамільська</item>
+        <item>Телугу</item>
+        <item>Тайська</item>
+        <item>Турецька</item>
+        <item>Українська</item>
+        <item>Урду</item>
+        <item>В\'єтнамська</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Не має значення</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Без пояснень</item>
+        <item>Коротке пояснення</item>
+        <item>Детальне пояснення</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Сидячий</item>
+        <item>Легка активність</item>
+        <item>Помірна активність</item>
+        <item>Дуже активний</item>
+        <item>Надзвичайно активний</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Чоловіча</item>
+        <item>Жіноча</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Літак</item>
+        <item>Велосипед</item>
+        <item>Човен</item>
+        <item>Автобус</item>
+        <item>Мотоцикл</item>
+        <item>Власний автомобіль</item>
+        <item>Орендований автомобіль</item>
+        <item>Спільна поїздка</item>
+        <item>Метро</item>
+        <item>Таксі</item>
+        <item>Поїзд</item>
+        <item>Трамвай</item>
+        <item>Ходьба</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Їжа</item>
+        <item>Історія</item>
+        <item>Культура</item>
+        <item>Природа</item>
+        <item>Відпочинок</item>
+        <item>Пригоди</item>
+        <item>Нічне життя</item>
+        <item>Шопінг</item>
+        <item>Сім\'я</item>
+        <item>Романтика</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Зробити знімок</item>
+        <item>Завантажити зображення</item>
+        <item>Завантажити файл</item>
+        <item>Надати посилання</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Вибачте, сервіс недоступний в Росії та Білорусі, будь ласка, використовуйте VPN</string>
+    <string name="error_service_not_available_title">Сервіс недоступний</string>
+    <string name="error_common_title">Помилка</string>
+    <string name="error_common_message">Під час роботи програми сталася помилка. Спробуйте оновити програму або повторіть спробу пізніше</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Ой! Схоже, для цієї функції потрібен доступ до камери. Перейдіть до налаштувань вашого пристрою, знайдіть IntelliVerse у списку програм і надайте дозвіл камері, щоб розблокувати магію!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Ой! Щоб використовувати зображення з вашої галереї, IntelliVerse потрібен дозвіл на читання ваших фотографій. Перейдіть до налаштувань вашого пристрою, знайдіть IntelliVerse у списку програм і надайте дозвіл на доступ до фотографій, щоб розблокувати магію!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Ой! Щоб зберігати файли на вашому пристрої, IntelliVerse потрібен дозвіл на запис у ваше сховище. Перейдіть до налаштувань вашого пристрою, знайдіть IntelliVerse у списку програм і надайте дозвіл на доступ до сховища, щоб розблокувати магію!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Ой! Щоб отримати доступ до файлів на вашому пристрої, IntelliVerse потрібен дозвіл на читання вашого сховища. Перейдіть до налаштувань вашого пристрою, знайдіть IntelliVerse у списку програм і надайте дозвіл на доступ до сховища, щоб розблокувати магію!</string>
+    <string name="camera_permission_rationale">IntelliVerse потрібен доступ до вашої камери, щоб ви могли миттєво фотографувати свої шкільні вправи!</string>
+    <string name="read_media_permission_rationale">Надання доступу до ваших фотографій дозволяє вибирати зображення з вашої галереї для використання в програмі IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Дозвіл на запис у ваше сховище дозволяє програмі IntelliVerse зберігати файли, як-от фотографії, які ви зробили, прямо на вашому пристрої!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse потрібен доступ до сховища вашого пристрою для читання файлів, таких як фотографії або документи, які ви можете захотіти використовувати в програмі.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Так</string>
+    <string name="No">Ні</string>
+    <string name="are_you_sure">Ви впевнені, що хочете вийти?</string>
+    <string name="exit">Вихід</string>
+
+    <string name="report_content">Повідомити про контент</string>
+    <string name="select_reason">Виберіть причину</string>
+    <string name="offensive">Образливий</string>
+    <string name="hate_speech">Мова ворожнечі</string>
+    <string name="incorrect_info">Невірна інформація</string>
+    <string name="other">Інше</string>
+    <string name="submit">Підтвердити</string>
+    <string name="cancel">Скасувати</string>
+
+    <string name="reset_settings">Скинути налаштування</string>
+    <string name="not_relevant">Не має значення</string>
+
+</resources>

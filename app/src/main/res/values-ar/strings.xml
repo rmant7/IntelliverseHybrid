@@ -1,0 +1,5 @@
+<resources>
+    <string name="welcome_to_intelliverse">مرحبًا بك في IntelliVerse</string>
+    <string name="cheaptrip_info">CheapTrip هو محرك بحث فريد يجد أرخص الطرق بين المدن، من خلال الجمع بين الرحلات الجوية والحافلات والقطارات والعبّارات.</string>
+    <string name="matterofchoice_info">يقدم Matter Of Choice سيناريوهات تفاعلية لمساعدتك على تعلم مهارات اتخاذ القرار.</string>
+</resources>

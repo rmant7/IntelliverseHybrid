@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker વપરાશકર્તાઓને ખોરાકમાં કેલરી, ચરબી, પ્રોટીન, કાર્બોહાઇડ્રેટ્સ, વિટામિન્સ અને ખનિજોના સેવન પર નજર રાખવામાં મદદ કરે છે. તે ફક્ત આ તત્વોની ગણતરી જ કરતું નથી, પરંતુ પાચન પછી શરીરમાં શું શોષાય છે તેનું પણ વિશ્લેષણ કરે છે. વપરાશકર્તાઓ ઉત્પાદનોની છબીઓ અપલોડ કરી શકે છે, એપ્લિકેશન ઘટકોને ઓળખે છે અને સૂચિને સંપાદિત કરવાની ક્ષમતા પ્રદાન કરે છે.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI શાળા સહાયક છબી</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI શાળા છબી સહાયક પર અપલોડ કરો</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">ઉકેલ તપાસો AI શાળા છબી સહાયક</string>
+    <string name="ArrowDropDown_icon_content_description">એક સબમેનુ ખોલે છે</string>
+    <string name="add_image">ટાસ્ક ઉમેરો</string>
+    <string name="guidance_detected_ingredients">શોધાયેલા ઘટકોની સમીક્ષા કરો. જો કોઈ વિગતો ખોટી અથવા ગુમ હોય, તો તમે નવું પોષણ વિશ્લેષણ જનરેટ કરતા પહેલાં તેમાં ફેરફાર કરી શકો છો</string>
+
+    // Text values
+    <string name="ingredients">ઘટકો</string>
+    <string name="solution_text_value">ઉકેલ</string>
+    <string name="user_task_value">ટાસ્ક</string>
+    <string name="is_ocr_result_included_value">પસંદ કરેલ ઓળખાયેલ ટેક્સ્ટનો ઉપયોગ કરો</string>
+    <string name="home_loading_waiting_text_value">લોડ થઈ રહ્યું છે, કૃપા કરીને રાહ જુઓ...</string>
+    <string name="progress_bar_hint_text_value">ઉકેલો જનરેશન પ્રગતિ</string>
+
+    // Button Labels
+    <string name="next_button_label">આગળ</string>
+    <string name="solve_button_label">ઉકેલો</string>
+    <string name="check_solution_button_label">ઉકેલ તપાસો</string>
+    <string name="cheat_sheet_button_label">ચીટ શીટ</string>
+    <string name="start_again">ફરીથી શરૂ કરો</string>
+    <string name="try_again">ફરી પ્રયાસ કરો</string>
+    <string name="pick_images">છબીઓ પસંદ કરો</string>
+    <string name="upload_from_url">અપલોડ કરો</string>
+    <string name="upload_picture">ચિત્ર અપલોડ કરો</string>
+    <string name="take_a_picture">ચિત્ર લો</string>
+    <string name="recognize_text_button_label">ઓળખાયેલ ટેક્સ્ટ બતાવો</string>
+
+    // Text Field Labels
+    <string name="foods">ખોરાક</string>
+    <string name="What_to_solve_TextField_label">તમે શું ઉકેલવા માંગો છો?</string>
+    <string name="rating_TextField_label">રેટિંગ</string>
+    <string name="no_solution_chosen">ઉકેલ હજી સુધી પસંદ કરવામાં આવ્યો નથી</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 કેળા અને 1 સફરજન, બધા મધ્યમ કદના.</string>
+    <string name="first_ocr_result_is_not_ready">ટેક્સ્ટ ઓળખાઈ રહી છે, કૃપા કરીને રાહ જુઓ...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">ઉકેલ ભાષા</string>
+    <string name="upload_a_file_label">ફાઇલ અપલોડ કરો</string>
+    <string name="explanations_label">સમજૂતીઓ</string>
+    <string name="physical_activity_label">શારીરિક પ્રવૃત્તિ</string>
+    <string name="gender_label">જાતિ</string>
+    <string name="age_label">ઉંમર</string>
+    <string name="height_label">ઊંચાઈ</string>
+    <string name="weight_label">વજન</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">એવું લાગે છે કે તમે કેલરી એપ્લિકેશનની ડિરેક્ટરી સ્ટોરેજમાંથી કેટલીક છબીઓ કાઢી નાખી છે. ચિંતા કરશો નહીં, કેલરી એપ્લિકેશન કેશમાંથી આ છબીઓને એક પછી એક સાફ કરવાનો પ્રયાસ કરશે. જો જરૂરી હોય તો, કૃપા કરીને દરેક છબી કાઢી નાખવાની પુષ્ટિ કરો. ખાલી દેખાતી કોઈપણ છબી ક્ષતિગ્રસ્ત છે. શું તમે આગળ વધવા માંગો છો?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI છબીમાંથી ટેક્સ્ટને ઓળખવામાં સક્ષમ ન હતું. કૃપા કરીને ફરી પ્રયાસ કરો.</string>
+    <string name="error_gemini_solution_result_extraction">AI આ સમસ્યાને ઉકેલવામાં સક્ષમ ન હતું. કૃપા કરીને ફરી પ્રયાસ કરો.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">ઉપ્સ! કંઈક ખોટું થયું. કૃપા કરીને ફરી પ્રયાસ કરો!</string>
+    <string name="fail_to_load_Uri">છબીને સૂચિમાં લોડ કરવામાં નિષ્ફળ. કૃપા કરીને તેને જાતે લોડ કરવાનો પ્રયાસ કરો!</string>
+    <string name="corrupted_loaded_file">તમે ક્ષતિગ્રસ્ત ફાઇલ લોડ કરી છે!</string>
+    <string name="missing_required_settings">કેટલીક જરૂરી સેટિંગ્સ ખૂટે છે. કૃપા કરીને તેમને ભરો.</string>
+    <string name="camera_fail_to_open">ઉપ્સ! કેમેરામાં કંઈક ખોટું થયું. કૃપા કરીને ફરી પ્રયાસ કરો!</string>
+    <string name="upload_image_warning">કૃપા કરીને ઉપકરણમાંથી એક છબી અપલોડ કરો</string>
+    <string name="select_image_or_text_warning">કૃપા કરીને એક છબી પસંદ કરો અથવા ટાસ્ક ટાઈપ કરો.</string>
+    <string name="prompt_is_empty">ઓળખાયેલ ટેક્સ્ટ ખાલી છે. કૃપા કરીને ફરી પ્રયાસ કરો!</string>
+    <string name="language_not_supported">"પસંદ કરેલી ભાષા મીડિયા જનરેશન માટે ઉપલબ્ધ નથી. અન્ય સુવિધાઓ કાર્ય કરવાનું ચાલુ રાખશે. શું તમે આ સુવિધાને સક્ષમ કરવા માટે જરૂરી ભાષા ડેટા ડાઉનલોડ કરવા માંગો છો?"</string>
+
+    // labels
+    <string name="home">ઘર</string>
+    <string name="settings">સેટિંગ્સ</string>
+    <string name="results">પરિણામ</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">શું શેર કરવું તે પસંદ કરો</string>
+    <string name="share_user_ingredients">મારા ઘટકો શેર કરો</string>
+    <string name="share_recognized_ingredients">ઓળખાયેલા ઘટકો શેર કરો</string>
+    <string name="share_solution">ઉકેલ શેર કરો</string>
+    <string name="share_image">છબી શેર કરો</string>
+    <string name="share">શેર કરો</string>
+
+    // installation
+    <string name="install">સ્થાપિત કરો</string>
+    <string name="install_language">ભાષા સ્થાપિત કરો</string>
+
+    <string name="solved_by_diet_tracker">DietTracker દ્વારા ઉકેલાયેલ\nGoogle Play પર અમારી એપ્લિકેશન તપાસો</string>
+
+</resources>

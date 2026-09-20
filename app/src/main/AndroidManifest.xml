@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.intelliverse">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- For apps targeting Android 13 or higher & GMA SDK version 20.3.0 or lower -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name="com.intelliverse.IntelliverseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_intelliverse_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_intelliverse_launcher_round"
+        tools:replace="android:icon,android:roundIcon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SchoolKiller"
+        android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="adjustPan"
+        tools:targetApi="35"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7574006463043131~5827257344" />
+        <activity
+            android:name="com.intelliverse.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SchoolKiller">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

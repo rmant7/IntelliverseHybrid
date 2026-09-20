@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">به IntelliVerse خوش آمدید</string>
+    <string name="cheaptrip_info">CheapTrip یک موتور جستجوی منحصر به فرد است که ارزان‌ترین راه‌های بین شهرها را با ترکیب پروازها، اتوبوس‌ها، قطارها و کشتی‌ها پیدا می‌کند.</string>
+    <string name="matterofchoice_info">Matter Of Choice سناریوهای تعاملی را ارائه می‌دهد تا به شما در یادگیری مهارت‌های تصمیم‌گیری کمک کند.</string>
+</resources>

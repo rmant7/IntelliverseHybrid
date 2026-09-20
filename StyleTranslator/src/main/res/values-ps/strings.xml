@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">سټایل ژباړونکی</string>
+    <string name="styletranslator_info">د سټایل ژباړونکی متن د مختلف لیکنې سټایلونو او ټونونو ترمنځ بدلوي.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">د AI ښوونځي مرستیال انځور</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">د AI ښوونځي مرستیال انځور ته پورته کول</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">د حل د کتلو لپاره د AI ښوونځي مرستیال انځور</string>
+    <string name="ArrowDropDown_icon_content_description">یو فرعي مینو پرانیزي</string>
+    <string name="add_image">دنده اضافه کړئ</string>
+
+    // Text values
+    <string name="recognized_text_value">پیژندل شوی متن</string>
+    <string name="solution_text_value">حل</string>
+    <string name="user_task_value">دنده</string>
+    <string name="is_ocr_result_included_value">انتخاب شوی پیژندل شوی متن وکاروئ</string>
+    <string name="home_loading_waiting_text_value">بارول کیږي، مهرباني وکړئ انتظار وکړئ...</string>
+    <string name="progress_bar_hint_text_value">د حل لارو د جوړولو پرمختګ</string>
+
+    // Button Labels
+    <string name="next_button_label">بل</string>
+    <string name="solve_button_label">حل کړئ</string>
+    <string name="check_solution_button_label">حل وګورئ</string>
+    <string name="cheat_sheet_button_label">د درغلۍ پاڼه</string>
+    <string name="start_again">بیا پیل کړئ</string>
+    <string name="try_again">بیا هڅه وکړئ</string>
+    <string name="pick_images">انځورونه غوره کړئ</string>
+    <string name="upload_from_url">پورته کول</string>
+    <string name="upload_picture">انځور پورته کړئ</string>
+    <string name="take_a_picture">انځور واخلئ</string>
+    <string name="recognize_text_button_label">پیژندل شوی متن وښایاست</string>
+
+    // Text Field Labels
+    <string name="sentence">متن</string>
+    <string name="What_to_solve_TextField_label">تاسو څه غواړئ حل کړئ؟</string>
+    <string name="rating_TextField_label">درجه بندي</string>
+    <string name="no_solution_chosen">حل لا نه دی ټاکل شوی</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">زه د خپلې ملګرې پالنه خوښوم. زه تل ډاډ ترلاسه کوم چې هغه خوندي او خوندي احساس کوي. زه زموږ د نیټو پلانول او د وړو ډالیو سره هغې حیرانول خوښوم. کله چې هغه خپه وي، زه هڅه کوم چې یو حل ومومم او د هغې لپاره شیان سم کړم.</string>
+    <string name="first_ocr_result_is_not_ready">متن پیژندل کیږي، مهرباني وکړئ انتظار وکړئ...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">د حل ژبه</string>
+    <string name="upload_a_file_label">دوتنه پورته کړئ</string>
+    <string name="explanations_label">تشریحات</string>
+    <string name="source_gender_label">د سرچینې جنس</string>
+    <string name="target_gender_label">د هدف جنس</string>
+    <string name="source_age_label">د سرچینې عمر</string>
+    <string name="target_age_label">د هدف عمر</string>
+    <string name="category_label">ډول</string>
+    <string name="tone_label">د غږ غوره توب</string>
+    <string name="transformation_level_label">د بدلون کچه</string>
+    <string name="style_label">د ژباړې سټایل</string>
+    <string name="mentality_label">ذهنیت</string>
+    <string name="translation_scale_label">د ژباړې پیمانه فاکتور</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">داسې ښکاري چې تاسو د کالوري ایپ له لارښود ذخیره کولو څخه ځینې عکسونه حذف کړي دي. اندیښنه مه کوئ، کالوري به هڅه وکړي چې دا عکسونه یو په یو د غوښتنلیک له پټنځای څخه پاک کړي. مهرباني وکړئ د هر عکس حذف کول تایید کړئ، که اړتیا وي. هر هغه عکس چې خالي ښکاري خراب شوی دی. ایا تاسو غواړئ پرمخ لاړ شئ؟</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ونه توانید د عکس څخه متن وپیژني. مهرباني وکړئ بیا هڅه وکړئ.</string>
+    <string name="error_gemini_solution_result_extraction">AI ونه توانید چې دا ستونزه حل کړي. مهرباني وکړئ بیا هڅه وکړئ.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">اوپس! یو څه غلط شول. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="fail_to_load_Uri">و نه توانید انځور لیست ته پورته کړئ. مهرباني وکړئ په لاسي ډول یې پورته کولو هڅه وکړئ!</string>
+    <string name="corrupted_loaded_file">تاسو یو خراب شوی فایل پورته کړی دی!</string>
+    <string name="missing_required_settings">ځینې اړین ترتیبات ورک دي. مهرباني وکړئ دوی ډک کړئ.</string>
+    <string name="camera_fail_to_open">اوپس! د کیمرې سره یو څه غلط شول. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="upload_image_warning">مهرباني وکړئ د وسیلې څخه یو عکس پورته کړئ</string>
+    <string name="select_image_or_text_warning">مهرباني وکړئ یو عکس یا دنده ولیکئ.</string>
+    <string name="prompt_is_empty">پیژندل شوی متن خالي دی. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="language_not_supported">"ټاکل شوې ژبه د رسنیو تولید لپاره شتون نلري. نورې ځانګړتیاوې به کار ته دوام ورکړي. ایا تاسو غواړئ د دې ځانګړتیا فعالولو لپاره اړین ژبني معلومات ډاونلوډ کړئ؟"</string>
+
+    // labels
+    <string name="home">کور</string>
+    <string name="settings">ترتیبات</string>
+    <string name="results">پایله</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">غوره کړئ چې څه شریک کړئ</string>
+    <string name="share_user_translation">زما متن شریک کړئ</string>
+    <string name="share_ocr_result">پیژندل شوی متن شریک کړئ</string>
+    <string name="share_solution">حل شریک کړئ</string>
+    <string name="share_image">انځور شریک کړئ</string>
+    <string name="share">شریکول</string>
+
+    // installation
+    <string name="install">لګول</string>
+    <string name="install_language">ژبه لګول</string>
+
+    <string name="solved_by_style_translator">د سټایل ژباړونکي لخوا حل شوی\nپه ګوګل پلی کې زموږ ایپ وګورئ</string>
+
+</resources>

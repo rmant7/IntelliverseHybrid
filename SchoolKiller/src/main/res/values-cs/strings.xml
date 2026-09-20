@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller pomáhá studentům řešit matematické problémy a také obecné problémy.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Obrázek AI školního asistenta</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Obrázek pro nahrání do AI školního asistenta</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Obrázek pro kontrolu řešení pomocí AI školního asistenta</string>
+    <string name="ArrowDropDown_icon_content_description">Otevře podnabídku</string>
+    <string name="add_image">Přidat úkol</string>
+    <string name="Guidance">Pro optimální výsledky uveďte podrobný TEXT pro váš úkol. Pokud připojíte obrázky, ujistěte se, že veškerý rozpoznaný text je upraven tak, aby přesně odpovídal originálu.</string>
+
+    // Text values
+    <string name="recognized_text_value">Rozpoznaný text</string>
+    <string name="solution_text_value">Řešení</string>
+    <string name="user_task_value">Úkol</string>
+    <string name="is_ocr_result_included_value">Použít vybraný rozpoznaný text</string>
+    <string name="home_loading_waiting_text_value">Načítání, prosím, čekejte...</string>
+    <string name="progress_bar_hint_text_value">Průběh generování řešení</string>
+
+    // Button Labels
+    <string name="next_button_label">Další</string>
+    <string name="solve_button_label">Vyřešit</string>
+    <string name="check_solution_button_label">Zkontrolovat řešení</string>
+    <string name="cheat_sheet_button_label">Tahák</string>
+    <string name="start_again">Začít znovu</string>
+    <string name="try_again">Zkusit znovu</string>
+    <string name="pick_images">Vybrat obrázky</string>
+    <string name="upload_from_url">Nahrát</string>
+    <string name="upload_picture">Nahrát obrázek</string>
+    <string name="take_a_picture">Vyfotit</string>
+    <string name="recognize_text_button_label">Zobrazit rozpoznaný text</string>
+
+    // Text Field Labels
+    <string name="tasks">Úkol</string>
+    <string name="What_to_solve_TextField_label">Co chcete vyřešit?</string>
+    <string name="rating_TextField_label">Hodnocení</string>
+    <string name="no_solution_chosen">Řešení ještě nebylo vybráno</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Řekni mi o Pythagorově větě.</string>
+    <string name="first_ocr_result_is_not_ready">Text se rozpoznává, prosím, čekejte…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Jazyk řešení</string>
+    <string name="upload_a_file_label">Nahrát soubor</string>
+    <string name="explanations_label">Vysvětlení</string>
+    <string name="grade_label">"Známka"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Zdá se, že jste smazali některé obrázky z adresáře úložiště aplikace SchoolKiller. Nebojte se, SchoolKiller se pokusí tyto obrázky jeden po druhém vymazat z mezipaměti aplikace. Potvrďte prosím smazání každého obrázku, pokud je to nutné. Jakýkoli obrázek, který se zobrazí prázdný, je poškozený. Chcete pokračovat?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nedokázala rozpoznat text z obrázku. Zkuste to prosím znovu.</string>
+    <string name="error_gemini_solution_result_extraction">AI nedokázala tento problém vyřešit. Zkuste to prosím znovu.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Jejda! Něco se pokazilo. Zkuste to prosím znovu!</string>
+    <string name="fail_to_load_Uri">Nepodařilo se načíst obrázek do seznamu. Zkuste jej načíst ručně!</string>
+    <string name="corrupted_loaded_file">Načetli jste poškozený soubor!</string>
+    <string name="camera_fail_to_open">Jejda! Něco se pokazilo s kamerou. Zkuste to prosím znovu!</string>
+    <string name="upload_image_warning">Nahrajte obrázek ze zařízení</string>
+    <string name="select_image_or_text_warning">Vyberte obrázek nebo zadejte úkol.</string>
+    <string name="prompt_is_empty">Rozpoznaný text je prázdný. Zkuste to prosím znovu!</string>
+    <string name="language_not_supported">"Vybraný jazyk není k dispozici pro generování médií. Ostatní funkce budou fungovat i nadále. Chcete si stáhnout potřebná jazyková data pro aktivaci této funkce?"</string>
+
+    // labels
+    <string name="home">Domů</string>
+    <string name="settings">Nastavení</string>
+    <string name="results">Výsledek</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Vyberte, co chcete sdílet</string>
+    <string name="share_user_task">Sdílet můj úkol</string>
+    <string name="share_ocr_result">Sdílet rozpoznaný text</string>
+    <string name="share_solution">Sdílet řešení</string>
+    <string name="share_image">Sdílet obrázek</string>
+    <string name="share">Sdílet</string>
+
+    // installation
+    <string name="install">Instalovat</string>
+    <string name="install_language">Nainstalovat jazyk</string>
+
+    <string name="solved_by_schoolkiller">Vyřešeno pomocí SchoolKiller\nPodívejte se na naši aplikaci na Google Play</string>
+
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">ইন্টেল্লিভার্সে স্বাগতম</string>
+    <string name="cheaptrip_info">চিপট্রিপ একটি অনন্য সার্চ ইঞ্জিন যা ফ্লাইট, বাস, ট্রেন এবং ফেরি একত্রিত করে শহরগুলোর মধ্যে সস্তার উপায় খুঁজে বের করে।</string>
+    <string name="matterofchoice_info">ম্যাটার অফ চয়েস আপনাকে সিদ্ধান্ত নেওয়ার দক্ষতা শিখতে সাহায্য করার জন্য ইন্টারেক্টিভ পরিস্থিতি উপস্থাপন করে।</string>
+
+</resources>

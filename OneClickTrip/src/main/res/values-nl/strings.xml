@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip is jouw slimme reisplanner aangedreven door AI. Beschrijf gewoon je droomreis of upload inspiratie, en ontvang direct een gepersonaliseerd dag-tot-dag reisschema met vervoersopties, hotellinks, budgetschattingen en lokale tips — allemaal met één klik.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Herkende tekst</string>
+    <string name="solution_text_value">Oplossing</string>
+    <string name="user_task_value">Taak</string>
+    <string name="progress_bar_hint_text_value">Voortgang van oplossingen genereren</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Tekst</string>
+    <string name="no_solution_chosen">Nog geen oplossing gekozen</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Ik wil een ontspannende en culturele reis van drie dagen met historische bezienswaardigheden, lokaal eten, lichte wandelingen en een mix van begeleide en zelfstandige activiteiten in één stad of omgeving.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Taal van de oplossing</string>
+    <string name="max_budget_label">Maximaal budget</string>
+    <string name="travelers_number_label">Aantal reizigers</string>
+    <string name="trip_duration_label">Reisduur</string>
+    <string name="transportation_type_label">Vervoermiddel</string>
+    <string name="trip_style_label">Reisstijl</string>
+    <string name="origin_location_label">Vertreklocatie</string>
+    <string name="trip_type_label">Reistype</string>
+    <string name="one_way_trip">Enkele reis</string>
+    <string name="round_trip">Retourreis</string>
+    <string name="days">dagen</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Voer vervoermiddel in</string>
+    <string name="enter_location">Voer locatie in</string>
+    <string name="add">Toevoegen</string>
+    <string name="travel_path">Reisroute</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI kon het probleem niet oplossen. Probeer het opnieuw.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Oeps! Er is iets misgegaan. Probeer het opnieuw!</string>
+    <string name="fail_to_load_Uri">Kon de afbeelding niet laden in de lijst. Probeer handmatig!</string>
+    <string name="corrupted_loaded_file">Je hebt een beschadigd bestand geladen!</string>
+    <string name="missing_required_settings">Sommige vereiste instellingen ontbreken. Vul ze in.</string>
+    <string name="camera_fail_to_open">Oeps! Probleem met het openen van de camera. Probeer opnieuw!</string>
+    <string name="select_image_or_text_warning">Selecteer een afbeelding of typ een taak.</string>
+    <string name="language_not_supported">
+        De geselecteerde taal is niet beschikbaar voor mediageneratie. Andere functies blijven werken. Wil je de benodigde taaldata downloaden?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Home</string>
+    <string name="settings">Instellingen</string>
+    <string name="results">Resultaat</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Kies wat je wilt delen</string>
+    <string name="share_user_translation">Deel mijn tekst</string>
+    <string name="share_ocr_result">Deel herkende tekst</string>
+    <string name="share_solution">Deel oplossing</string>
+    <string name="share_image">Deel afbeelding</string>
+    <string name="share">Delen</string>
+
+    <!-- Installation -->
+    <string name="install">Installeren</string>
+    <string name="install_language">Taal installeren</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Opgelost met OneClickTrip\nBekijk onze app op Google Play</string>
+</resources>

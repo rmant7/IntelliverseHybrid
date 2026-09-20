@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker padeda vartotojams stebėti kalorijų, riebalų, baltymų, angliavandenių, vitaminų ir mineralų suvartojimą maiste. Jis ne tik skaičiuoja šiuos elementus, bet ir analizuoja, kas yra absorbuojama organizmo po virškinimo. Vartotojai gali įkelti produktų nuotraukas, o programa atpažįsta ingredientus ir suteikia galimybę redaguoti sąrašą.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI mokyklos asistento paveikslėlis</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Įkelti į AI mokyklos asistento paveikslėlį</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Patikrinti sprendimą AI mokyklos asistento paveikslėlyje</string>
+    <string name="ArrowDropDown_icon_content_description">Atidaro submeniu</string>
+    <string name="add_image">Pridėti užduotį</string>
+    <string name="guidance_detected_ingredients">Peržiūrėkite aptiktus ingredientus. Jei bet kokia informacija yra neteisinga arba trūksta, galite ją pakeisti prieš generuodami naują maistinę analizę</string>
+
+    // Text values
+    <string name="ingredients">Ingredientai</string>
+    <string name="solution_text_value">Sprendimas</string>
+    <string name="user_task_value">Užduotis</string>
+    <string name="is_ocr_result_included_value">Naudoti pasirinktą atpažintą tekstą</string>
+    <string name="home_loading_waiting_text_value">Kraunama, palaukite...</string>
+    <string name="progress_bar_hint_text_value">Sprendimų generavimo eiga</string>
+
+    // Button Labels
+    <string name="next_button_label">Kitas</string>
+    <string name="solve_button_label">Išspręsti</string>
+    <string name="check_solution_button_label">Patikrinti sprendimą</string>
+    <string name="cheat_sheet_button_label">Pagalbos lapas</string>
+    <string name="start_again">Pradėti iš naujo</string>
+    <string name="try_again">Bandyti dar kartą</string>
+    <string name="pick_images">Pasirinkti nuotraukas</string>
+    <string name="upload_from_url">Įkelti</string>
+    <string name="upload_picture">Įkelti nuotrauką</string>
+    <string name="take_a_picture">Nufotografuoti</string>
+    <string name="recognize_text_button_label">Rodyti atpažintą tekstą</string>
+
+    // Text Field Labels
+    <string name="foods">Maistas</string>
+    <string name="What_to_solve_TextField_label">Ką norite išspręsti?</string>
+    <string name="rating_TextField_label">Įvertinimas</string>
+    <string name="no_solution_chosen">Sprendimas dar nepasirinktas</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 bananai ir 1 obuolys, visi vidutinio dydžio.</string>
+    <string name="first_ocr_result_is_not_ready">Tekstas atpažįstamas, palaukite…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Sprendimo kalba</string>
+    <string name="upload_a_file_label">Įkelti failą</string>
+    <string name="explanations_label">Paaiškinimai</string>
+    <string name="physical_activity_label">Fizinis aktyvumas</string>
+    <string name="gender_label">Lytis</string>
+    <string name="age_label">Amžius</string>
+    <string name="height_label">Ūgis</string>
+    <string name="weight_label">Svoris</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Atrodo, kad ištrynėte kai kuriuos vaizdus iš kalorijų programėlės katalogo saugyklos. Nesijaudinkite, kalorijos bandys išvalyti šiuos vaizdus po vieną iš programos talpyklos. Jei reikia, patvirtinkite kiekvieną vaizdo pašalinimą. Bet kuris vaizdas, kuris atrodo tuščias, yra sugadintas. Ar norite tęsti?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nepavyko atpažinti teksto iš vaizdo. Bandykite dar kartą.</string>
+    <string name="error_gemini_solution_result_extraction">AI nepavyko išspręsti šios problemos. Bandykite dar kartą.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Oi! Kažkas nepavyko. Bandykite dar kartą!</string>
+    <string name="fail_to_load_Uri">Nepavyko įkelti vaizdo į sąrašą. Bandykite jį įkelti rankiniu būdu!</string>
+    <string name="corrupted_loaded_file">Įkėlėte sugadintą failą!</string>
+    <string name="missing_required_settings">Trūksta kai kurių privalomų nustatymų. Užpildykite juos.</string>
+    <string name="camera_fail_to_open">Oi! Kažkas negerai su kamera. Bandykite dar kartą!</string>
+    <string name="upload_image_warning">Įkelkite vaizdą iš įrenginio</string>
+    <string name="select_image_or_text_warning">Pasirinkite vaizdą arba įveskite užduotį.</string>
+    <string name="prompt_is_empty">Atpažintas tekstas yra tuščias. Bandykite dar kartą!</string>
+    <string name="language_not_supported">"Pasirinkta kalba negalima generuojant mediją. Kitos funkcijos veiks toliau. Ar norėtumėte atsisiųsti reikiamus kalbos duomenis, kad įgalintumėte šią funkciją?"</string>
+
+    // labels
+    <string name="home">Pagrindinis</string>
+    <string name="settings">Nustatymai</string>
+    <string name="results">Rezultatas</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Pasirinkite, ką norite bendrinti</string>
+    <string name="share_user_ingredients">Dalintis Mano Ingredientais</string>
+    <string name="share_recognized_ingredients">Dalintis Atpažintais Ingredientais</string>
+    <string name="share_solution">Dalintis Sprendimu</string>
+    <string name="share_image">Dalintis Nuotrauka</string>
+    <string name="share">Dalintis</string>
+
+    // installation
+    <string name="install">Įdiegti</string>
+    <string name="install_language">Įdiegti kalbą</string>
+
+    <string name="solved_by_diet_tracker">Išsprendė DietTracker\nPeržiūrėkite mūsų programą „Google Play“</string>
+
+</resources>

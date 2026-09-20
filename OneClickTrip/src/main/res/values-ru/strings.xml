@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip — это ваш умный планировщик путешествий на базе ИИ. Просто опишите свое путешествие мечты или загрузите вдохновение, и мгновенно получите персонализированный план на каждый день с вариантами транспорта, ссылками на отели, оценками бюджета и местными советами — все в один клик.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Распознанный текст</string>
+    <string name="solution_text_value">Решение</string>
+    <string name="user_task_value">Задача</string>
+    <string name="progress_bar_hint_text_value">Прогресс генерации решений</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Текст</string>
+    <string name="no_solution_chosen">Решение еще не выбрано</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Я хочу расслабляющую и культурную поездку на 3 дня с историческими достопримечательностями, местной кухней, легкими прогулками и сочетанием организованных и самостоятельных мероприятий в одном городе или рядом.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Язык решения</string>
+    <string name="max_budget_label">Максимальный бюджет</string>
+    <string name="travelers_number_label">Количество путешественников</string>
+    <string name="trip_duration_label">Продолжительность поездки</string>
+    <string name="transportation_type_label">Вид транспорта</string>
+    <string name="trip_style_label">Стиль поездки</string>
+    <string name="origin_location_label">Место отправления</string>
+    <string name="trip_type_label">Тип поездки</string>
+    <string name="one_way_trip">Поездка в одну сторону</string>
+    <string name="round_trip">Поездка туда и обратно</string>
+    <string name="days">дней</string>
+    <string name="new_york">Нью-Йорк</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Введите вид транспорта</string>
+    <string name="enter_location">Введите место</string>
+    <string name="add">Добавить</string>
+    <string name="travel_path">Маршрут поездки</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        ИИ не смог решить эту задачу. Пожалуйста, попробуйте снова.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Упс! Что-то пошло не так. Попробуйте снова!</string>
+    <string name="fail_to_load_Uri">Не удалось загрузить изображение в список. Попробуйте вручную!</string>
+    <string name="corrupted_loaded_file">Вы загрузили поврежденный файл!</string>
+    <string name="missing_required_settings">Некоторые обязательные настройки отсутствуют. Пожалуйста, заполните их.</string>
+    <string name="camera_fail_to_open">Упс! Не удалось открыть камеру. Попробуйте снова!</string>
+    <string name="select_image_or_text_warning">Пожалуйста, выберите изображение или введите задачу.</string>
+    <string name="language_not_supported">
+        Выбранный язык недоступен для генерации медиа. Остальные функции продолжат работать. Хотите загрузить необходимые языковые данные?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Главная</string>
+    <string name="settings">Настройки</string>
+    <string name="results">Результат</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Выберите, что хотите поделиться</string>
+    <string name="share_user_translation">Поделиться моим текстом</string>
+    <string name="share_ocr_result">Поделиться распознанным текстом</string>
+    <string name="share_solution">Поделиться решением</string>
+    <string name="share_image">Поделиться изображением</string>
+    <string name="share">Поделиться</string>
+
+    <!-- Installation -->
+    <string name="install">Установить</string>
+    <string name="install_language">Установить язык</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Решено с помощью OneClickTrip\nСмотрите наше приложение в Google Play</string>
+</resources>

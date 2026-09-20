@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator ጽሑፍን በተለያዩ የአጻጻፍ ስልቶች እና ቃናዎች መካከል ይለውጣል።</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI ትምህርት ቤት ረዳት ምስል</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">ወደ AI ትምህርት ቤት ምስል ረዳት ስቀል</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">መፍትሄን AI ትምህርት ቤት ምስል ረዳት ላይ ፈትሽ</string>
+    <string name="ArrowDropDown_icon_content_description">ንዑስ ምናሌን ይከፍታል</string>
+    <string name="add_image">ተግባር ጨምር</string>
+
+    // Text values
+    <string name="recognized_text_value">የታወቀ ጽሑፍ</string>
+    <string name="solution_text_value">መፍትሄ</string>
+    <string name="user_task_value">ተግባር</string>
+    <string name="is_ocr_result_included_value">የተመረጠውን የታወቀ ጽሑፍ ተጠቀም</string>
+    <string name="home_loading_waiting_text_value">በመጫን ላይ፣ እባክዎ ይጠብቁ...</string>
+    <string name="progress_bar_hint_text_value">የመፍትሄ ትውልድ ሂደት</string>
+
+    // Button Labels
+    <string name="next_button_label">ቀጣይ</string>
+    <string name="solve_button_label">ፍታ</string>
+    <string name="check_solution_button_label">መፍትሄን ፈትሽ</string>
+    <string name="cheat_sheet_button_label">የማጭበርበሪያ ወረቀት</string>
+    <string name="start_again">እንደገና ጀምር</string>
+    <string name="try_again">እንደገና ሞክር</string>
+    <string name="pick_images">ምስሎችን ምረጥ</string>
+    <string name="upload_from_url">ስቀል</string>
+    <string name="upload_picture">ምስል ስቀል</string>
+    <string name="take_a_picture">ፎቶ አንሳ</string>
+    <string name="recognize_text_button_label">የታወቀ ጽሑፍ አሳይ</string>
+
+    // Text Field Labels
+    <string name="sentence">ጽሑፍ</string>
+    <string name="What_to_solve_TextField_label">ምን መፍታት ይፈልጋሉ?</string>
+    <string name="rating_TextField_label">ደረጃ</string>
+    <string name="no_solution_chosen">መፍትሄ ገና አልተመረጠም</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">የሴት ጓደኛዬን መንከባከብ ያስደስተኛል። ሁልጊዜ ደህንነት እንደተሰማት እና እንደተጠበቀች አረጋግጣለሁ። ቀኖቻችንን ማቀድ እና በትንሽ ስጦታዎች መደነቅ እወዳለሁ። ስትበሳጭ መፍትሄ ፈልጌ ነገሮችን ለማስተካከል እሞክራለሁ።</string>
+    <string name="first_ocr_result_is_not_ready">ጽሑፉ በመታወቅ ላይ ነው፣ እባክዎ ይጠብቁ...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">የመፍትሄ ቋንቋ</string>
+    <string name="upload_a_file_label">ፋይል ስቀል</string>
+    <string name="explanations_label">ማብራሪያዎች</string>
+    <string name="source_gender_label">የምንጭ ጾታ</string>
+    <string name="target_gender_label">የዒላማ ጾታ</string>
+    <string name="source_age_label">የምንጭ ዕድሜ</string>
+    <string name="target_age_label">የዒላማ ዕድሜ</string>
+    <string name="category_label">ምድብ</string>
+    <string name="tone_label">የድምፅ ምርጫ</string>
+    <string name="transformation_level_label">የለውጥ ደረጃ</string>
+    <string name="style_label">የትርጉም ስልት</string>
+    <string name="mentality_label">አስተሳሰብ</string>
+    <string name="translation_scale_label">የትርጉም መጠን ምክንያት</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">ከካሎሪ መተግበሪያ ማከማቻ የተወሰኑ ምስሎችን የሰረዙ ይመስላል። አይጨነቁ፣ ካሎሪ እነዚህን ምስሎች ከመተግበሪያው መሸጎጫ አንድ በአንድ ለማጽዳት ይሞክራል። አስፈላጊ ከሆነ እያንዳንዱን የምስል መሰረዝ ያረጋግጡ። ባዶ የሚመስል ማንኛውም ምስል የተበላሸ ነው። መቀጠል ይፈልጋሉ?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ከምስሉ ላይ ጽሑፍን መለየት አልቻለም። እባክዎ እንደገና ይሞክሩ።</string>
+    <string name="error_gemini_solution_result_extraction">AI ይህን ችግር መፍታት አልቻለም። እባክዎ እንደገና ይሞክሩ።</string>
+
+    // Toast messages
+    <string name="something_went_wrong">ኧረ! የሆነ ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="fail_to_load_Uri">ምስሉን ወደ ዝርዝሩ መጫን አልተሳካም። እባክዎ በእጅ ለመጫን ይሞክሩ!</string>
+    <string name="corrupted_loaded_file">የተበላሸ ፋይል ጭነዋል!</string>
+    <string name="missing_required_settings">አንዳንድ አስፈላጊ ቅንብሮች ጠፍተዋል። እባክዎ ይሙሏቸው።</string>
+    <string name="camera_fail_to_open">ኧረ! በካሜራው ላይ የሆነ ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="upload_image_warning">እባክዎ ከመሣሪያው ምስል ይስቀሉ</string>
+    <string name="select_image_or_text_warning">እባክዎ ምስል ይምረጡ ወይም ተግባር ይተይቡ።</string>
+    <string name="prompt_is_empty">የታወቀው ጽሑፍ ባዶ ነው። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="language_not_supported">"የተመረጠው ቋንቋ ለሚዲያ ትውልድ አይገኝም። ሌሎች ባህሪዎች መስራታቸውን ይቀጥላሉ። ይህን ባህሪ ለማንቃት አስፈላጊውን የቋንቋ ውሂብ ማውረድ ይፈልጋሉ?"</string>
+
+    // labels
+    <string name="home">ቤት</string>
+    <string name="settings">ቅንብሮች</string>
+    <string name="results">ውጤት</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">ምን ማጋራት እንደሚፈልጉ ይምረጡ</string>
+    <string name="share_user_translation">የእኔን ጽሑፍ አጋራ</string>
+    <string name="share_ocr_result">የታወቀውን ጽሑፍ አጋራ</string>
+    <string name="share_solution">መፍትሄ አጋራ</string>
+    <string name="share_image">ምስል አጋራ</string>
+    <string name="share">አጋራ</string>
+
+    // installation
+    <string name="install">ጫን</string>
+    <string name="install_language">ቋንቋ ጫን</string>
+
+    <string name="solved_by_style_translator">በስታይል ተርጓሚ ተፈቷል\nመተግበሪያችንን በGoogle Play ላይ ይመልከቱ</string>
+
+</resources>

@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip yra jūsų išmanus kelionių planuotojas, paremtas dirbtiniu intelektu. Tiesiog aprašykite savo svajonių kelionę arba įkelkite įkvėpimą ir akimirksniu gaukite suasmenintą, diena po dienos kelionės planą su transporto galimybėmis, viešbučių nuorodomis, biudžeto įvertinimais ir vietiniais patarimais — visa tai vos vienu spustelėjimu.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Atpažintas tekstas</string>
+    <string name="solution_text_value">Sprendimas</string>
+    <string name="user_task_value">Užduotis</string>
+    <string name="progress_bar_hint_text_value">Sprendimų generavimo progresas</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Tekstas</string>
+    <string name="no_solution_chosen">Sprendimas dar nepasirinktas</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Noriu 3 dienų raminančios ir kultūrinės kelionės su istorinėmis vietomis, vietiniu maistu, lengvais pasivaikščiojimais ir įvairiomis vedamomis bei savarankiškomis veiklomis viename mieste ar šalia jo.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Sprendimo kalba</string>
+    <string name="max_budget_label">Maksimalus biudžetas</string>
+    <string name="travelers_number_label">Kelionių dalyvių skaičius</string>
+    <string name="trip_duration_label">Kelionės trukmė</string>
+    <string name="transportation_type_label">Transporto tipas</string>
+    <string name="trip_style_label">Kelionės stilius</string>
+    <string name="origin_location_label">Išvykimo vieta</string>
+    <string name="trip_type_label">Kelionės tipas</string>
+    <string name="one_way_trip">Kelionė į vieną pusę</string>
+    <string name="round_trip">Kelionė pirmyn ir atgal</string>
+    <string name="days">dienos</string>
+    <string name="new_york">Niujorkas</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Įveskite transporto tipą</string>
+    <string name="enter_location">Įveskite vietą</string>
+    <string name="add">Pridėti</string>
+    <string name="travel_path">Kelionės maršrutas</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Dirbtinis intelektas nepavyko išspręsti šios problemos. Prašome bandyti dar kartą.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Oi! Kažkas nutiko. Prašome bandyti dar kartą!</string>
+    <string name="fail_to_load_Uri">Nepavyko įkelti vaizdo į sąrašą. Pabandykite įkelti rankiniu būdu!</string>
+    <string name="corrupted_loaded_file">Įkėlėte sugadintą failą!</string>
+    <string name="missing_required_settings">Trūksta kai kurių būtinų nustatymų. Užpildykite juos.</string>
+    <string name="camera_fail_to_open">Oi! Nepavyko atidaryti kameros. Pabandykite dar kartą!</string>
+    <string name="select_image_or_text_warning">Pasirinkite vaizdą arba įveskite užduotį.</string>
+    <string name="language_not_supported">
+        Pasirinkta kalba negalima medijų generavimui. Kitos funkcijos veiks toliau. Ar norite atsisiųsti reikalingus kalbos duomenis?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Pagrindinis</string>
+    <string name="settings">Nustatymai</string>
+    <string name="results">Rezultatas</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Pasirinkite, ką norite bendrinti</string>
+    <string name="share_user_translation">Bendrinti mano tekstą</string>
+    <string name="share_ocr_result">Bendrinti atpažintą tekstą</string>
+    <string name="share_solution">Bendrinti sprendimą</string>
+    <string name="share_image">Bendrinti vaizdą</string>
+    <string name="share">Bendrinti</string>
+
+    <!-- Installation -->
+    <string name="install">Įdiegti</string>
+    <string name="install_language">Įdiegti kalbą</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Išspręsta su OneClickTrip\nPeržiūrėkite mūsų programėlę Google Play</string>
+</resources>

@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator pretvarja besedilo med različnimi slogi in toni pisanja.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Slika pomočnika AI šole</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Naloži sliko pomočniku AI šole</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Preveri rešitev slika pomočnika AI šole</string>
+    <string name="ArrowDropDown_icon_content_description">Odpre podmeni</string>
+    <string name="add_image">Dodaj nalogo</string>
+
+    // Text values
+    <string name="recognized_text_value">Prepoznano besedilo</string>
+    <string name="solution_text_value">Rešitev</string>
+    <string name="user_task_value">Naloga</string>
+    <string name="is_ocr_result_included_value">Uporabi izbrano prepoznano besedilo</string>
+    <string name="home_loading_waiting_text_value">Nalaganje, prosim, počakajte...</string>
+    <string name="progress_bar_hint_text_value">Napredek generiranja rešitev</string>
+
+    // Button Labels
+    <string name="next_button_label">Naprej</string>
+    <string name="solve_button_label">Reši</string>
+    <string name="check_solution_button_label">Preveri rešitev</string>
+    <string name="cheat_sheet_button_label">Goljufija</string>
+    <string name="start_again">Začni znova</string>
+    <string name="try_again">Poskusite znova</string>
+    <string name="pick_images">Izberite slike</string>
+    <string name="upload_from_url">Naloži</string>
+    <string name="upload_picture">Naloži sliko</string>
+    <string name="take_a_picture">Posnemite sliko</string>
+    <string name="recognize_text_button_label">Prikaži prepoznano besedilo</string>
+
+    // Text Field Labels
+    <string name="sentence">Besedilo</string>
+    <string name="What_to_solve_TextField_label">Kaj želite rešiti?</string>
+    <string name="rating_TextField_label">Ocena</string>
+    <string name="no_solution_chosen">Rešitev še ni izbrana</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Rad skrbim za svoje dekle. Vedno poskrbim, da se počuti varno in zaščiteno. Rad načrtujem najine zmenke in jo presenečam z majhnimi darili. Ko je vznemirjena, poskušam najti rešitev in popraviti stvari zanjo.</string>
+    <string name="first_ocr_result_is_not_ready">Besedilo se prepoznava, prosim, počakajte...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Jezik rešitve</string>
+    <string name="upload_a_file_label">Naloži datoteko</string>
+    <string name="explanations_label">Pojasnila</string>
+    <string name="source_gender_label">Spol vira</string>
+    <string name="target_gender_label">Spol cilja</string>
+    <string name="source_age_label">Starost vira</string>
+    <string name="target_age_label">Starost cilja</string>
+    <string name="category_label">Kategorija</string>
+    <string name="tone_label">Želeni ton</string>
+    <string name="transformation_level_label">Raven transformacije</string>
+    <string name="style_label">Slog prevoda</string>
+    <string name="mentality_label">Mentaliteta</string>
+    <string name="translation_scale_label">Faktor lestvice prevajanja</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Zdi se, da ste izbrisali nekatere slike iz shrambe imenika aplikacije calories. Brez skrbi, calories bo poskušal te slike eno za drugo izbrisati iz predpomnilnika aplikacije. Po potrebi potrdite vsak izbris slike. Vsaka slika, ki se prikaže prazna, je poškodovana. Ali želite nadaljevati?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ni mogel prepoznati besedila s slike. Prosim, poskusite znova.</string>
+    <string name="error_gemini_solution_result_extraction">AI ni mogel rešiti te težave. Prosim, poskusite znova.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Nekaj je šlo narobe. Prosim, poskusite znova!</string>
+    <string name="fail_to_load_Uri">Nalaganje slike na seznam ni uspelo. Prosim, poskusite jo naložiti ročno!</string>
+    <string name="corrupted_loaded_file">Naložili ste poškodovano datoteko!</string>
+    <string name="missing_required_settings">Manjkajo nekatere obvezne nastavitve. Prosim, izpolnite jih.</string>
+    <string name="camera_fail_to_open">Ups! Nekaj je šlo narobe s kamero. Prosim, poskusite znova!</string>
+    <string name="upload_image_warning">Prosim, naložite sliko iz naprave</string>
+    <string name="select_image_or_text_warning">Prosim, izberite sliko ali vnesite nalogo.</string>
+    <string name="prompt_is_empty">Prepoznano besedilo je prazno. Prosim, poskusite znova!</string>
+    <string name="language_not_supported">"Izbrani jezik ni na voljo za generiranje medijev. Druge funkcije bodo še naprej delovale. Ali želite prenesti potrebne jezikovne podatke, da omogočite to funkcijo?"</string>
+
+    // labels
+    <string name="home">Domov</string>
+    <string name="settings">Nastavitve</string>
+    <string name="results">Rezultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Izberite, kaj želite deliti</string>
+    <string name="share_user_translation">Deli moje besedilo</string>
+    <string name="share_ocr_result">Deli prepoznano besedilo</string>
+    <string name="share_solution">Deli rešitev</string>
+    <string name="share_image">Deli sliko</string>
+    <string name="share">Deli</string>
+
+    // installation
+    <string name="install">Namesti</string>
+    <string name="install_language">Namesti jezik</string>
+
+    <string name="solved_by_style_translator">Rešeno s StyleTranslatorjem\nOglejte si našo aplikacijo na Google Play</string>
+
+</resources>

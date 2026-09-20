@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker помага на потребителите да следят приема си на калории, мазнини, протеини, въглехидрати, витамини и минерали в храната. Той не само брои тези елементи, но и анализира какво се абсорбира от тялото след храносмилане. Потребителите могат да качват изображения на продукти, приложението разпознава съставките и предоставя възможност за редактиране на списъка.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Изображение на AI училищен асистент</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Качване към изображение на AI училищен асистент</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Проверете решението Изображение на AI училищен асистент</string>
+    <string name="ArrowDropDown_icon_content_description">Отваря подменю</string>
+    <string name="add_image">Добави задача</string>
+    <string name="guidance_detected_ingredients">Прегледайте откритите съставки. Ако някакви детайли са неверни или липсват, можете да ги промените преди да генерирате нов хранителен анализ</string>
+
+    // Text values
+    <string name="ingredients">Съставки</string>
+    <string name="solution_text_value">Решение</string>
+    <string name="user_task_value">Задача</string>
+    <string name="is_ocr_result_included_value">Използвай избран разпознат текст</string>
+    <string name="home_loading_waiting_text_value">Зареждане, моля, изчакайте...</string>
+    <string name="progress_bar_hint_text_value">Напредък на генериране на решения</string>
+
+    // Button Labels
+    <string name="next_button_label">Напред</string>
+    <string name="solve_button_label">Реши</string>
+    <string name="check_solution_button_label">Провери решение</string>
+    <string name="cheat_sheet_button_label">Материали</string>
+    <string name="start_again">Започни отначало</string>
+    <string name="try_again">Опитай пак</string>
+    <string name="pick_images">Избери изображения</string>
+    <string name="upload_from_url">Качи</string>
+    <string name="upload_picture">Качи снимка</string>
+    <string name="take_a_picture">Направи снимка</string>
+    <string name="recognize_text_button_label">Покажи разпознат текст</string>
+
+    // Text Field Labels
+    <string name="foods">Храни</string>
+    <string name="What_to_solve_TextField_label">Какво искате да решите?</string>
+    <string name="rating_TextField_label">Оценка</string>
+    <string name="no_solution_chosen">Решението все още не е избрано</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 банана и 1 ябълка, всички със среден размер.</string>
+    <string name="first_ocr_result_is_not_ready">Текстът се разпознава, моля, изчакайте…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Език на решението</string>
+    <string name="upload_a_file_label">Качи файл</string>
+    <string name="explanations_label">Обяснения</string>
+    <string name="physical_activity_label">Физическа активност</string>
+    <string name="gender_label">Пол</string>
+    <string name="age_label">Възраст</string>
+    <string name="height_label">Височина</string>
+    <string name="weight_label">Тегло</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Изглежда сте изтрили някои изображения от директорията за съхранение на приложението за калории. Не се притеснявайте, приложението за калории ще се опита да изчисти тези изображения едно по едно от кеша на приложението. Моля, потвърдете всяко изтриване на изображение, ако е необходимо. Всяко изображение, което изглежда празно, е повредено. Искате ли да продължите?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI не успя да разпознае текст от изображението. Моля, опитайте пак.</string>
+    <string name="error_gemini_solution_result_extraction">AI не успя да реши този проблем. Моля, опитайте пак.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Опа! Нещо се обърка. Моля, опитайте отново!</string>
+    <string name="fail_to_load_Uri">Неуспешно зареждане на изображението в списъка. Моля, опитайте да го заредите ръчно!</string>
+    <string name="corrupted_loaded_file">Заредили сте повреден файл!</string>
+    <string name="missing_required_settings">Липсват някои задължителни настройки. Моля, попълнете ги.</string>
+    <string name="camera_fail_to_open">Опа! Нещо се обърка с камерата. Моля, опитайте отново!</string>
+    <string name="upload_image_warning">Моля, качете изображение от устройството</string>
+    <string name="select_image_or_text_warning">Моля, изберете изображение или въведете задача.</string>
+    <string name="prompt_is_empty">Разпознатият текст е празен. Моля, опитайте отново!</string>
+    <string name="language_not_supported">"Избраният език не е наличен за генериране на медии. Другите функции ще продължат да работят. Искате ли да изтеглите необходимите езикови данни, за да активирате тази функция?"</string>
+
+    // labels
+    <string name="home">Начало</string>
+    <string name="settings">Настройки</string>
+    <string name="results">Резултат</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Изберете какво да споделите</string>
+    <string name="share_user_ingredients">Споделете моите съставки</string>
+    <string name="share_recognized_ingredients">Споделете разпознатите съставки</string>
+    <string name="share_solution">Споделете решение</string>
+    <string name="share_image">Споделете изображение</string>
+    <string name="share">Споделяне</string>
+
+    // installation
+    <string name="install">Инсталиране</string>
+    <string name="install_language">Инсталиране на език</string>
+
+    <string name="solved_by_diet_tracker">Решено от DietTracker\nРазгледайте нашето приложение в Google Play</string>
+
+</resources>

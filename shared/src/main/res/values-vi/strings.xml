@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Thơ mộng</item>
+        <item>Chuyên nghiệp</item>
+        <item>Pháp lý</item>
+        <item>Kỹ thuật</item>
+        <item>Học thuật</item>
+        <item>Báo chí</item>
+        <item>Sáng tạo</item>
+        <item>Thuyết phục</item>
+        <item>Tường thuật</item>
+        <item>Mô tả</item>
+        <item>Giải thích</item>
+        <item>Hài hước</item>
+        <item>Không trang trọng</item>
+        <item>Kinh doanh</item>
+        <item>Khoa học</item>
+        <item>Lãng mạn</item>
+        <item>Lịch sử</item>
+        <item>Triết học</item>
+        <item>Tự giúp đỡ</item>
+        <item>Du lịch</item>
+        <item>Tiếp thị</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Trang trọng</item>
+        <item>Thông thường</item>
+        <item>Thân thiện</item>
+        <item>Nghiêm túc</item>
+        <item>Đồng cảm</item>
+        <item>Quyết đoán</item>
+        <item>Lạc quan</item>
+        <item>Hài hước</item>
+        <item>Trung lập</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Tối thiểu</item>
+        <item>Vừa phải</item>
+        <item>Hoàn toàn</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Mối quan hệ</item>
+        <item>Nơi làm việc</item>
+        <item>Giáo dục</item>
+        <item>Sức khỏe</item>
+        <item>Tài chính</item>
+        <item>Du lịch</item>
+        <item>Công nghệ</item>
+        <item>Giải trí</item>
+        <item>Tự cải thiện</item>
+        <item>Tổng quát</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Nga: Tập thể</item>
+        <item>Đông Âu: Thực dụng</item>
+        <item>Tây Âu: Cá nhân</item>
+        <item>Đông Nam Á: Tập trung vào sự hài hòa</item>
+        <item>Trung Quốc: Phân cấp</item>
+        <item>Caucasus: Coi trọng danh dự</item>
+        <item>Bắc Mỹ: Khởi nghiệp</item>
+        <item>Châu Mỹ Latinh: Đam mê</item>
+        <item>Trung Đông: Hướng đến lòng hiếu khách</item>
+        <item>Châu Phi: Cộng đồng</item>
+        <item>Các nước Bắc Âu: Bình đẳng</item>
+        <item>Nam Á: Lấy gia đình làm trung tâm</item>
+        <item>Nhật Bản: Hòa hợp nhóm</item>
+        <item>Úc: Thoải mái</item>
+        <item>Địa Trung Hải: Biểu cảm</item>
+        <item>Trung Á: Truyền thống du mục</item>
+        <item>Đức: Có cấu trúc</item>
+        <item>Balkans: Kiên cường</item>
+        <item>Bản địa Bắc Cực: Kết nối với thiên nhiên</item>
+        <item>Do Thái: Hướng đến cộng đồng</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharic</item>
+        <item>Ả Rập</item>
+        <item>Bengal</item>
+        <item>Bulgaria</item>
+        <item>Tiếng Trung giản thể</item>
+        <item>Croatia</item>
+        <item>Séc</item>
+        <item>Đan Mạch</item>
+        <item>Hà Lan</item>
+        <item>Tiếng Anh</item>
+        <item>Estonia</item>
+        <item>Phần Lan</item>
+        <item>Pháp</item>
+        <item>Đức</item>
+        <item>Hy Lạp</item>
+        <item>Gujarati</item>
+        <item>Do Thái</item>
+        <item>Tiếng Hindi</item>
+        <item>Hungary</item>
+        <item>Indonesia</item>
+        <item>Ý</item>
+        <item>Nhật Bản</item>
+        <item>Kannada</item>
+        <item>Hàn Quốc</item>
+        <item>Latvia</item>
+        <item>Litva</item>
+        <item>Malay</item>
+        <item>Marathi</item>
+        <item>Na Uy</item>
+        <item>Pashto</item>
+        <item>Ba Tư</item>
+        <item>Ba Lan</item>
+        <item>Bồ Đào Nha</item>
+        <item>Rumani</item>
+        <item>Nga</item>
+        <item>Serbia</item>
+        <item>Slovak</item>
+        <item>Slovenia</item>
+        <item>Tây Ban Nha</item>
+        <item>Swahili</item>
+        <item>Thụy Điển</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thái Lan</item>
+        <item>Thổ Nhĩ Kỳ</item>
+        <item>Ukraina</item>
+        <item>Urdu</item>
+        <item>Tiếng Việt</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Không liên quan</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Không giải thích</item>
+        <item>Giải thích ngắn gọn</item>
+        <item>Giải thích chi tiết</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Ít vận động</item>
+        <item>Hoạt động nhẹ</item>
+        <item>Hoạt động vừa phải</item>
+        <item>Rất năng động</item>
+        <item>Cực kỳ năng động</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Nam</item>
+        <item>Nữ</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Máy bay</item>
+        <item>Xe đạp</item>
+        <item>Thuyền</item>
+        <item>Xe buýt</item>
+        <item>Xe máy</item>
+        <item>Xe riêng</item>
+        <item>Xe thuê</item>
+        <item>Đi chung xe</item>
+        <item>Tàu điện ngầm</item>
+        <item>Taxi</item>
+        <item>Tàu hỏa</item>
+        <item>Xe điện</item>
+        <item>Đi bộ</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Ẩm thực</item>
+        <item>Lịch sử</item>
+        <item>Văn hóa</item>
+        <item>Thiên nhiên</item>
+        <item>Thư giãn</item>
+        <item>Phiêu lưu</item>
+        <item>Cuộc sống về đêm</item>
+        <item>Mua sắm</item>
+        <item>Gia đình</item>
+        <item>Lãng mạn</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Chụp ảnh</item>
+        <item>Tải lên ảnh</item>
+        <item>Tải lên tệp</item>
+        <item>Cung cấp một liên kết</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Rất tiếc, dịch vụ không khả dụng ở Nga và Belarus, vui lòng sử dụng vpn</string>
+    <string name="error_service_not_available_title">Dịch vụ không khả dụng</string>
+    <string name="error_common_title">Lỗi</string>
+    <string name="error_common_message">Đã xảy ra lỗi trong khi ứng dụng đang chạy. Hãy thử cập nhật ứng dụng hoặc thử lại sau</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Rất tiếc! Có vẻ như cần quyền truy cập máy ảnh cho tính năng này. Hãy truy cập cài đặt thiết bị của bạn, tìm IntelliVerse trong danh sách ứng dụng và cấp quyền máy ảnh để mở khóa điều kỳ diệu!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Rất tiếc! Để sử dụng hình ảnh từ thư viện của bạn, IntelliVerse cần quyền đọc ảnh của bạn. Hãy truy cập cài đặt thiết bị của bạn, tìm IntelliVerse trong danh sách ứng dụng và cấp quyền truy cập ảnh để mở khóa điều kỳ diệu!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Rất tiếc! Để lưu tệp vào thiết bị của bạn, IntelliVerse cần quyền ghi vào bộ nhớ của bạn. Hãy truy cập cài đặt thiết bị của bạn, tìm IntelliVerse trong danh sách ứng dụng và cấp quyền truy cập bộ nhớ để mở khóa điều kỳ diệu!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Rất tiếc! Để truy cập các tệp trên thiết bị của bạn, IntelliVerse cần quyền đọc bộ nhớ của bạn. Hãy truy cập cài đặt thiết bị của bạn, tìm IntelliVerse trong danh sách ứng dụng và cấp quyền truy cập bộ nhớ để mở khóa điều kỳ diệu!</string>
+    <string name="camera_permission_rationale">IntelliVerse cần quyền truy cập vào máy ảnh của bạn để bạn có thể chụp nhanh các bài tập ở trường của mình!</string>
+    <string name="read_media_permission_rationale">Cho phép truy cập vào ảnh của bạn cho phép bạn chọn hình ảnh từ thư viện của mình để sử dụng trong ứng dụng IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Quyền ghi vào bộ nhớ của bạn cho phép ứng dụng IntelliVerse lưu các tệp, như ảnh bạn đã chụp, ngay vào thiết bị của bạn!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse cần quyền truy cập vào bộ nhớ của thiết bị của bạn để đọc các tệp, như ảnh hoặc tài liệu, mà bạn có thể muốn sử dụng trong ứng dụng.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Có</string>
+    <string name="No">Không</string>
+    <string name="are_you_sure">Bạn có chắc chắn muốn thoát không?</string>
+    <string name="exit">Thoát</string>
+
+    <string name="report_content">Báo cáo nội dung</string>
+    <string name="select_reason">Chọn lý do</string>
+    <string name="offensive">Xúc phạm</string>
+    <string name="hate_speech">Ngôn từ kích động thù địch</string>
+    <string name="incorrect_info">Thông tin không chính xác</string>
+    <string name="other">Khác</string>
+    <string name="submit">Gửi</string>
+    <string name="cancel">Hủy</string>
+
+    <string name="reset_settings">Đặt lại cài đặt</string>
+    <string name="not_relevant">Không liên quan</string>
+
+</resources>

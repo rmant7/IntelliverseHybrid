@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTrackerは、食品中のカロリー、脂肪、タンパク質、炭水化物、ビタミン、ミネラルの摂取量を監視するのに役立ちます。 これらの要素をカウントするだけでなく、消化後に体内に吸収されるものを分析します。 ユーザーは製品の画像をアップロードでき、アプリケーションは成分を認識し、リストを編集する機能を提供します。</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AIスクールアシスタントの画像</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AIスクールアシスタント画像にアップロード</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">AIスクールアシスタント画像の解決策を確認</string>
+    <string name="ArrowDropDown_icon_content_description">サブメニューを開きます</string>
+    <string name="add_image">タスクを追加</string>
+    <string name="guidance_detected_ingredients">検出された材料を確認してください。詳細が間違っているか不足している場合は、新しい栄養分析を生成する前に修正できます</string>
+
+    // Text values
+    <string name="ingredients">材料</string>
+    <string name="solution_text_value">解決策</string>
+    <string name="user_task_value">タスク</string>
+    <string name="is_ocr_result_included_value">選択した認識済みテキストを使用する</string>
+    <string name="home_loading_waiting_text_value">読み込み中、お待ちください...</string>
+    <string name="progress_bar_hint_text_value">解決策の生成の進行状況</string>
+
+    // Button Labels
+    <string name="next_button_label">次へ</string>
+    <string name="solve_button_label">解決</string>
+    <string name="check_solution_button_label">解決策を確認</string>
+    <string name="cheat_sheet_button_label">チートシート</string>
+    <string name="start_again">再開</string>
+    <string name="try_again">再試行</string>
+    <string name="pick_images">画像を選択</string>
+    <string name="upload_from_url">アップロード</string>
+    <string name="upload_picture">写真をアップロード</string>
+    <string name="take_a_picture">写真を撮る</string>
+    <string name="recognize_text_button_label">認識されたテキストを表示</string>
+
+    // Text Field Labels
+    <string name="foods">食品</string>
+    <string name="What_to_solve_TextField_label">何を解決したいですか？</string>
+    <string name="rating_TextField_label">評価</string>
+    <string name="no_solution_chosen">解決策はまだ選択されていません</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">バナナ3本とリンゴ1個、すべて中サイズ。</string>
+    <string name="first_ocr_result_is_not_ready">テキストを認識中です。しばらくお待ちください...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">解決策の言語</string>
+    <string name="upload_a_file_label">ファイルをアップロード</string>
+    <string name="explanations_label">説明</string>
+    <string name="physical_activity_label">運動</string>
+    <string name="gender_label">性別</string>
+    <string name="age_label">年齢</string>
+    <string name="height_label">身長</string>
+    <string name="weight_label">体重</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">カロリーアプリのディレクトリストレージから一部の画像を削除したようです。ご心配なく、カロリーはこれらの画像をアプリケーションキャッシュから1つずつクリアしようとします。必要に応じて、各画像の削除を確認してください。空白に見える画像は破損しています。続行しますか？</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AIは画像からテキストを認識できませんでした。もう一度お試しください。</string>
+    <string name="error_gemini_solution_result_extraction">AIはこの問題を解決できませんでした。もう一度お試しください。</string>
+
+    // Toast messages
+    <string name="something_went_wrong">おっと！何かがうまくいきませんでした。もう一度お試しください！</string>
+    <string name="fail_to_load_Uri">画像をリストにロードできませんでした。手動でロードしてください！</string>
+    <string name="corrupted_loaded_file">破損したファイルをロードしました！</string>
+    <string name="missing_required_settings">必須の設定がいくつか不足しています。入力してください。</string>
+    <string name="camera_fail_to_open">おっと！カメラで何か問題が発生しました。もう一度お試しください！</string>
+    <string name="upload_image_warning">デバイスから画像をアップロードしてください</string>
+    <string name="select_image_or_text_warning">画像を選択するか、タスクを入力してください。</string>
+    <string name="prompt_is_empty">認識されたテキストが空です。もう一度お試しください！</string>
+    <string name="language_not_supported">"選択した言語は、メディアの生成には使用できません。他の機能は引き続き動作します。この機能を有効にするために必要な言語データをダウンロードしますか？"</string>
+
+    // labels
+    <string name="home">ホーム</string>
+    <string name="settings">設定</string>
+    <string name="results">結果</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">共有するものを選択</string>
+    <string name="share_user_ingredients">自分の材料を共有</string>
+    <string name="share_recognized_ingredients">認識された材料を共有</string>
+    <string name="share_solution">解決策を共有</string>
+    <string name="share_image">画像を共有</string>
+    <string name="share">共有</string>
+
+    // installation
+    <string name="install">インストール</string>
+    <string name="install_language">言語をインストール</string>
+
+    <string name="solved_by_diet_tracker">DietTrackerによって解決されました\nGoogle Playで私たちのアプリをチェックしてください</string>
+
+</resources>

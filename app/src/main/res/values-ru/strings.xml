@@ -1,0 +1,5 @@
+<resources>
+    <string name="welcome_to_intelliverse">добро пожаловать в IntelliVerse</string>
+    <string name="cheaptrip_info">CheapTrip — это уникальная поисковая система, которая находит самые дешевые маршруты между городами, комбинируя авиаперелеты, автобусы, поезда и паромы.</string>
+    <string name="matterofchoice_info">Matter Of Choice предлагает интерактивные сценарии, помогающие обучиться принятию решений.</string>
+</resources>

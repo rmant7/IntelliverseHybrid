@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip คือผู้ช่วยวางแผนการเดินทางอัจฉริยะของคุณที่ขับเคลื่อนด้วย AI เพียงแค่บรรยายการเดินทางในฝันของคุณหรืออัปโหลดแรงบันดาลใจ แล้วคุณจะได้รับแผนการเดินทางแบบรายวันที่ปรับให้เหมาะสมพร้อมตัวเลือกการเดินทาง ลิงก์โรงแรม ประมาณงบประมาณ และเคล็ดลับท้องถิ่น — ทั้งหมดนี้เพียงคลิกเดียว.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">ข้อความที่รู้จำได้</string>
+    <string name="solution_text_value">วิธีแก้ไข</string>
+    <string name="user_task_value">งาน</string>
+    <string name="progress_bar_hint_text_value">ความคืบหน้าในการสร้างวิธีแก้ไข</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">ข้อความ</string>
+    <string name="no_solution_chosen">ยังไม่ได้เลือกวิธีแก้ไข</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        ฉันต้องการการเดินทางแบบผ่อนคลายและวัฒนธรรม 3 วันพร้อมสถานที่ทางประวัติศาสตร์ อาหารท้องถิ่น เดินเบาๆ และกิจกรรมที่มีทั้งแบบมีไกด์และแบบอิสระในเมืองหนึ่งหรือละแวกใกล้เคียง
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">ภาษาของวิธีแก้ไข</string>
+    <string name="max_budget_label">งบประมาณสูงสุด</string>
+    <string name="travelers_number_label">จำนวนผู้เดินทาง</string>
+    <string name="trip_duration_label">ระยะเวลาเดินทาง</string>
+    <string name="transportation_type_label">ประเภทการขนส่ง</string>
+    <string name="trip_style_label">รูปแบบการเดินทาง</string>
+    <string name="origin_location_label">สถานที่เริ่มต้น</string>
+    <string name="trip_type_label">ประเภทการเดินทาง</string>
+    <string name="one_way_trip">การเดินทางเที่ยวเดียว</string>
+    <string name="round_trip">การเดินทางไปกลับ</string>
+    <string name="days">วัน</string>
+    <string name="new_york">นิวยอร์ก</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">กรอกประเภทการขนส่ง</string>
+    <string name="enter_location">กรอกสถานที่</string>
+    <string name="add">เพิ่ม</string>
+    <string name="travel_path">เส้นทางการเดินทาง</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI ไม่สามารถแก้ปัญหานี้ได้ กรุณาลองใหม่อีกครั้ง
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">อ๊ะ! เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง!</string>
+    <string name="fail_to_load_Uri">ไม่สามารถโหลดรูปภาพเข้าสู่รายการได้ กรุณาลองด้วยตนเอง!</string>
+    <string name="corrupted_loaded_file">คุณได้อัปโหลดไฟล์ที่เสียหาย!</string>
+    <string name="missing_required_settings">ขาดการตั้งค่าบางอย่าง กรุณากรอกให้ครบ</string>
+    <string name="camera_fail_to_open">อ๊ะ! ไม่สามารถเปิดกล้องได้ กรุณาลองใหม่!</string>
+    <string name="select_image_or_text_warning">โปรดเลือกรูปภาพหรือป้อนงาน</string>
+    <string name="language_not_supported">
+        ไม่รองรับภาษาที่เลือกสำหรับการสร้างสื่อ ฟีเจอร์อื่นยังคงทำงานต่อ ต้องการดาวน์โหลดข้อมูลภาษาหรือไม่?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">หน้าหลัก</string>
+    <string name="settings">การตั้งค่า</string>
+    <string name="results">ผลลัพธ์</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">เลือกสิ่งที่จะแชร์</string>
+    <string name="share_user_translation">แชร์ข้อความของฉัน</string>
+    <string name="share_ocr_result">แชร์ข้อความที่รู้จำได้</string>
+    <string name="share_solution">แชร์วิธีแก้ไข</string>
+    <string name="share_image">แชร์รูปภาพ</string>
+    <string name="share">แชร์</string>
+
+    <!-- Installation -->
+    <string name="install">ติดตั้ง</string>
+    <string name="install_language">ติดตั้งภาษา</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">แก้ไขโดย OneClickTrip\nดูแอปของเราบน Google Play</string>
+</resources>

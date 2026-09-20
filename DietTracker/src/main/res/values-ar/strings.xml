@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="diet_tracker_info">يساعد DietTracker المستخدمين على تتبع استهلاك السعرات الحرارية والدهون والبروتينات والكربوهيدرات والفيتامينات والمعادن في الطعام. لا يكتفي بعدّ هذه العناصر فحسب، بل يحلل أيضًا ما يمتصه الجسم بعد الهضم. يمكن للمستخدمين تحميل صور المنتجات، حيث يتعرف التطبيق على المكونات ويوفر إمكانية تعديل القائمة.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI School Assistant Image</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">حمل ل AI School Assistant Image</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">تحقق من صورة المساعد للحصول على الحل</string>
+    <string name="ArrowDropDown_icon_content_description">قائمة</string>
+    <string name="add_image">اضف مهمة</string>
+    <string name="guidance_detected_ingredients">قم بمراجعة المكونات المكتشفة. إذا كانت أي تفاصيل غير صحيحة أو مفقودة، فيمكنك تعديلها قبل إنشاء تحليل غذائي جديد</string>
+
+
+    // Button Labels
+    <string name="solution_text_value">اجابة</string>
+    <string name="is_ocr_result_included_value">استخدم النص المحدد</string>
+    <string name="home_loading_waiting_text_value">جاري التحميل، الرجاء الإنتظار...</string>
+    <string name="progress_bar_hint_text_value">إنشاء الحل</string>
+    <string name="next_button_label">التالي</string>
+    <string name="solve_button_label">قم بالاجابة</string>
+    <string name="check_solution_button_label">قم بفحص الاجابة</string>
+    <string name="cheat_sheet_button_label">ورقة المساعدة</string>
+    <string name="start_again">ابدأ من جديد</string>
+    <string name="try_again">حاول مرة اخرى</string>
+    <string name="pick_images">اختر الصور</string>
+
+    // Text Field Labels
+    <string name="recognize_text_button_label">التعرف على النص</string>
+    <string name="foods">الأطعمة</string>
+    <string name="What_to_solve_TextField_label">على ماذا ترد الاجابة؟</string>
+<!--    <string name="What_to_solve_TextField_label">على ماذا ترد الاجابة؟</string>-->
+    <string name="rating_TextField_label">تصنيف</string>
+
+    // Text Field PlaceHolders
+    <string name="no_solution_chosen">لم يتم تحديد أي حل</string>
+    <string name="additional_info_TextField_placeholder_text_calories">3 موز و 1 تفاحة متوسطة.</string>
+
+
+    // Drop Down Menu Labels
+    <string name="first_ocr_result_is_not_ready">يتم التعرف على النص، يرجى الانتظار...</string>
+    <string name="solution_language_label">لغة الاجابة</string>
+    <string name="upload_a_file_label">تحميل ملف</string>
+    <string name="explanations_label">شرح</string>
+    <string name="physical_activity_label">النشاط البدني</string>
+    <string name="gender_label">الجنس</string>
+    <string name="age_label">عمر</string>
+    <string name="height_label">ارتفاع</string>
+    <string name="weight_label">وزن</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">يبدو أنك قمت بحذف بعض الصور من مساحة تخزين مكتبة التطبيق. لا تقلق، سيحاول التطبيق مسح هذه الصور واحدة تلو الأخرى من ذاكرة التخزين المؤقت للتطبيق. يرجى تأكيد حذف كل صورة، إذا لزم الأمر. هل تريد الاستمرار؟</string>
+
+    // Toast
+    <string name="error_gemini_solution_result_extraction">لم يتمكن البرنامج من حل هذه المشكلة. من فضلك، حاول مرة أخرى.</string>
+    <string name="something_went_wrong">أووبس! حدث خطأ ما. يرجى المحاولة مرة أخرى!</string>
+    <string name="fail_to_load_Uri">فشل تحميل الصورة إلى القائمة. يرجى محاولة تحميله يدويًا!</string>
+    <string name="corrupted_loaded_file">لقد قمت بتحميل ملف تالف!</string>
+    <string name="missing_required_settings">بعض الإعدادات المطلوبة مفقودة. يرجى ملئها.</string>
+    <string name="camera_fail_to_open">أووبس! حدث خطأ ما في الكاميرا. يرجى المحاولة مرة أخرى!</string>
+    <string name="upload_image_warning">يرجى تحميل الصورة من الجهاز.</string>
+    <string name="select_image_or_text_warning">الرجاء اختيار صورة أو كتابة مهمة بسيطة.</string>
+    <string name="upload_from_url">تحميل</string>
+    <string name="upload_picture">تحميل صورة</string>
+    <string name="take_a_picture">تصوير صورة</string>
+    <string name="ingredients">المكونات</string>
+    <string name="error_gemini_ocr_result_extraction">البرنامج لم يتعرف على النص من الصورة. حاول مرة أخرى.</string>
+    <string name="prompt_is_empty">النص المحدد فارغ, حاول مرة أخرى!</string>
+    <string name="language_not_supported">"اللغة المحددة غير متاحة لإنشاء الوسائط. وستستمر الميزات الأخرى في العمل. هل ترغب في تنزيل بيانات اللغة اللازمة لتمكين هذه الميزة؟"</string>
+
+    // labels
+    <string name="home">صفحة البيت</string>
+    <string name="settings">الاعدادات</string>
+    <string name="results">حل</string>
+    <string name="ocr">نص</string>
+
+    // sharing
+    <string name="choose_sharing">اختر ما تريد مشاركته</string>
+    <string name="share_user_ingredients">مشاركة مكوناتي</string>
+    <string name="share_recognized_ingredients">مشاركة المكونات المعترف بها</string>
+    <string name="share_solution">شارك الحل</string>
+    <string name="share_image">مشاركة الصورة</string>
+    <string name="share">يشارك</string>
+
+    // installation
+    <string name="install">ثابت</string>
+    <string name="install_language">تثبيت اللغة</string>
+
+    <string name="user_task_value">مهمة</string>
+    <string name="solved_by_diet_tracker">تم الحل بواسطة DietTracker\nتحقق من تطبيقنا على Google Play</string>
+
+</resources>

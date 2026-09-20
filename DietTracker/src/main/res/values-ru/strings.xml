@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="diet_tracker_info">DietTracker помогает пользователям отслеживать потребление калорий, жиров, белков, углеводов, витаминов и минералов в пище. Он не только учитывает эти элементы, но и анализирует, что усваивается организмом после пищеварения. Пользователи могут загружать изображения продуктов, приложение распознает ингредиенты и предоставляет возможность редактировать список.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Изображение AI School Assistant</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Загрузить изображение AI School Assistant</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Проверьте решение AI School Assistant Image</string>
+    <string name="ArrowDropDown_icon_content_description">Открыть sub-меню</string>
+    <string name="add_image">Добавьте задание</string>
+    <string name="guidance_detected_ingredients">Просмотрите найденные ингредиенты. Если какие-либо данные неверны или отсутствуют, вы можете отредактировать их перед созданием нового анализа пищевой ценности</string>
+
+	// Button Labels
+    <string name="solution_text_value">Решение</string>
+    <string name="is_ocr_result_included_value">Использовать выбранный распознанный текст.</string>
+    <string name="home_loading_waiting_text_value">Данные загружаются, пожалуйста, подождите..</string>
+    <string name="progress_bar_hint_text_value">Прогресс генерации решений</string>
+    <string name="next_button_label">Дальше</string>
+    <string name="solve_button_label">Решить</string>
+    <string name="check_solution_button_label">Проверить решение</string>
+    <string name="cheat_sheet_button_label">Шпаргалка</string>
+    <string name="start_again">Начать заново</string>
+    <string name="try_again">Попробуйте снова</string>
+    <string name="pick_images">Выберите изобраажения</string>
+
+    // Text Field Labels
+    <string name="recognize_text_button_label">Показать распознанный текст</string>
+    <string name="foods">Продукты</string>
+    <string name="What_to_solve_TextField_label">Что решить?</string>
+
+    // Drop Down Menu Labels
+    <string name="first_ocr_result_is_not_ready">Текст распознается, пожалуйста, подождите...</string>
+    <string name="solution_language_label">Язык решения</string>
+    <string name="upload_a_file_label">Загрузить файл</string>
+    <string name="explanations_label">Пояснения</string>
+    <string name="physical_activity_label">Физическая активность</string>
+    <string name="gender_label">род</string>
+    <string name="age_label">Возраст</string>
+    <string name="height_label">Высота</string>
+    <string name="weight_label">Масса</string>
+
+
+    <string name="rating_TextField_label">Оценка</string>
+    <string name="no_solution_chosen">Решение не выбрано</string>
+    <string name="additional_info_TextField_placeholder_text_calories">3 банана и 1 яблоко среднего размера.</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Похоже, вы удалили некоторые изображения из хранилища каталога приложения calories. Не беспокойтесь, calories попытается очистить эти изображения одно за другим из кеша приложения. Пожалуйста, подтвердите удаление каждого изображения, если это необходимо. Любое изображение, которое отображается пустым, является поврежденным. Вы хотите продолжить?</string>
+
+
+    // Toast
+    <string name="error_gemini_solution_result_extraction">ИИ не смог решить задачу. Пожалуйста, попробуйте снова.</string>
+    <string name="something_went_wrong">Упс! Что-то пошло не так. Пожалуйста, попробуйте еще раз!</string>
+    <string name="fail_to_load_Uri">Не удалось загрузить изображение в список. Пожалуйста, попробуйте загрузить его вручную!</string>
+    <string name="corrupted_loaded_file">Вы загрузили поврежденный файл!</string>
+    <string name="missing_required_settings">Некоторые из требуемых настроек отсутствуют. Пожалуйста, заполните их.</string>
+    <string name="camera_fail_to_open">Упс! Что-то пошло не так с камерой. Пожалуйста, попробуйте еще раз!</string>
+    <string name="upload_image_warning">Пожалуйста, загрузите изображение с устройства.</string>
+    <string name="select_image_or_text_warning">Пожалуйста, выберите изображение или напишите текст с задачей.</string>
+    <string name="upload_from_url">Загрузить</string>
+    <string name="upload_picture">Загрузить картинку</string>
+    <string name="take_a_picture">Фото</string>
+    <string name="ingredients">Ингредиенты</string>
+    <string name="error_gemini_ocr_result_extraction">ИИ не смог распознать текст. Пожалуйста, попробуйте снова.</string>
+    <string name="prompt_is_empty">Поле распознанного текста пустое. Пожалуйста, попробуйте снова!</string>
+    <string name="language_not_supported">"Выбранный язык недоступен для создания мультимедиа. Остальные функции продолжат работать. Хотите ли вы загрузить необходимые языковые данные для включения этой функции?"</string>
+
+    // labels
+    <string name="home">дом</string>
+    <string name="settings">настройки</string>
+    <string name="results">решения</string>
+    <string name="ocr">текст</string>
+
+    // sharing
+    <string name="choose_sharing">Выберите, чем поделиться</string>
+    <string name="share_user_ingredients">Поделиться моими ингредиентами</string>
+    <string name="share_recognized_ingredients">поделитесь признанными ингредиентами</string>
+    <string name="share_solution">Поделиться решением</string>
+    <string name="share_image">Поделиться изображением</string>
+    <string name="share">Делиться</string>
+
+    // installation
+    <string name="install">установить</string>
+    <string name="install_language">Установить язык</string>
+
+    <string name="user_task_value">Задача</string>
+    <string name="solved_by_diet_tracker">Решено с помощью DietTracker\nОзнакомьтесь с нашим приложением в Google Play</string>
+
+</resources>

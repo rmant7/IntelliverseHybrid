@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller மாணவர்கள் கணிதப் பிரச்சனைகளை குறிப்பாகவும், பொதுவான பிரச்சனைகளை பொதுப்படையாகவும் தீர்க்க உதவுகிறது.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI பள்ளி உதவியாளர் படம்</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI பள்ளி உதவிப் படத்திற்குப் பதிவேற்றுக</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">AI பள்ளி உதவிப் படத்திற்குத் தீர்வு பார்க்க</string>
+    <string name="ArrowDropDown_icon_content_description">ஒரு துணைப்பட்டியலைத் திறக்கும்</string>
+    <string name="add_image">வேலையைச் சேர்க்க</string>
+    <string name="Guidance">சிறந்த முடிவுகளுக்கு, உங்கள் வேலைக்கான விரிவான உரையை வழங்கவும். நீங்கள் படங்களை இணைத்தால், அங்கீகரிக்கப்பட்ட எந்த உரையும் அசல் துல்லியத்துடன் பொருந்தும் வகையில் திருத்தப்பட்டுள்ளதா என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்.</string>
+
+    // Text values
+    <string name="recognized_text_value">அங்கீகரிக்கப்பட்ட உரை</string>
+    <string name="solution_text_value">தீர்வு</string>
+    <string name="user_task_value">வேலை</string>
+    <string name="is_ocr_result_included_value">தேர்ந்தெடுக்கப்பட்ட அங்கீகரிக்கப்பட்ட உரையைப் பயன்படுத்தவும்</string>
+    <string name="home_loading_waiting_text_value">ஏற்றுகிறது, காத்திருங்கள்...</string>
+    <string name="progress_bar_hint_text_value">தீர்வு உருவாக்கம் முன்னேற்றம்</string>
+
+    // Button Labels
+    <string name="next_button_label">அடுத்து</string>
+    <string name="solve_button_label">தீர்வு</string>
+    <string name="check_solution_button_label">தீர்வைச் சரிபார்க்கவும்</string>
+    <string name="cheat_sheet_button_label">ஏமாற்றுத் தாள்</string>
+    <string name="start_again">மீண்டும் தொடங்கவும்</string>
+    <string name="try_again">மீண்டும் முயற்சி செய்யவும்</string>
+    <string name="pick_images">படங்களைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="upload_from_url">பதிவேற்றவும்</string>
+    <string name="upload_picture">படத்தைப் பதிவேற்றவும்</string>
+    <string name="take_a_picture">படம் எடுக்கவும்</string>
+    <string name="recognize_text_button_label">அங்கீகரிக்கப்பட்ட உரையை காட்டு</string>
+
+    // Text Field Labels
+    <string name="tasks">வேலை</string>
+    <string name="What_to_solve_TextField_label">நீங்கள் என்ன தீர்க்க விரும்புகிறீர்கள்?</string>
+    <string name="rating_TextField_label">மதிப்பீடு</string>
+    <string name="no_solution_chosen">தீர்வு இன்னும் தேர்ந்தெடுக்கப்படவில்லை</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">பித்தகோரஸ் தேற்றம் பற்றி எனக்கு சொல்லுங்கள்.</string>
+    <string name="first_ocr_result_is_not_ready">உரை அங்கீகரிக்கப்படுகிறது, காத்திருங்கள்...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">தீர்வு மொழி</string>
+    <string name="upload_a_file_label">கோப்பைப் பதிவேற்றுக</string>
+    <string name="explanations_label">விளக்கங்கள்</string>
+    <string name="grade_label">"தரம்"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">SchoolKiller பயன்பாட்டின் கோப்பக சேமிப்பகத்திலிருந்து சில படங்களை நீக்கியுள்ளீர்கள் என்று தெரிகிறது. கவலைப்பட வேண்டாம், SchoolKiller இந்த படங்களை ஒவ்வொன்றாக பயன்பாட்டு தற்காலிக சேமிப்பிலிருந்து அழிக்க முயற்சிக்கும். தேவைப்பட்டால், ஒவ்வொரு பட நீக்கத்தையும் உறுதிப்படுத்தவும். வெற்று என்று தோன்றும் எந்த படமும் சிதைந்த ஒன்று. நீங்கள் தொடர விரும்புகிறீர்களா?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI படத்திலிருந்து உரையை அடையாளம் காண முடியவில்லை. மீண்டும் முயற்சிக்கவும்.</string>
+    <string name="error_gemini_solution_result_extraction">AI இந்த சிக்கலை தீர்க்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">ஆ! ஏதோ தவறு நடந்துவிட்டது. மீண்டும் முயற்சிக்கவும்!</string>
+    <string name="fail_to_load_Uri">படத்தை பட்டியலில் ஏற்ற முடியவில்லை. அதை நீங்களே ஏற்ற முயற்சிக்கவும்!</string>
+    <string name="corrupted_loaded_file">நீங்கள் ஒரு சிதைந்த கோப்பை ஏற்றியுள்ளீர்கள்!</string>
+    <string name="camera_fail_to_open">ஆ! கேமராவில் ஏதோ தவறு நடந்துவிட்டது. மீண்டும் முயற்சிக்கவும்!</string>
+    <string name="upload_image_warning">சாதனத்திலிருந்து ஒரு படத்தை பதிவேற்றவும்</string>
+    <string name="select_image_or_text_warning">ஒரு படத்தை தேர்வு செய்யவும் அல்லது பணியை டைப் செய்யவும்.</string>
+    <string name="prompt_is_empty">அங்கீகரிக்கப்பட்ட உரை காலியாக உள்ளது. மீண்டும் முயற்சிக்கவும்!</string>
+    <string name="language_not_supported">"தேர்ந்தெடுக்கப்பட்ட மொழி மீடியா உருவாக்கத்திற்கு கிடைக்கவில்லை. பிற அம்சங்கள் தொடர்ந்து வேலை செய்யும். இந்த அம்சத்தை இயக்க தேவையான மொழி தரவை பதிவிறக்கம் செய்ய விரும்புகிறீர்களா?"</string>
+
+    // labels
+    <string name="home">வீடு</string>
+    <string name="settings">அமைப்புகள்</string>
+    <string name="results">முடிவு</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">பகிர்வதற்கு என்னவென்று தேர்வு செய்யவும்</string>
+    <string name="share_user_task">எனது பணியை பகிர்</string>
+    <string name="share_ocr_result">அங்கீகரிக்கப்பட்ட உரையை பகிர்</string>
+    <string name="share_solution">தீர்வை பகிர்</string>
+    <string name="share_image">படத்தைப் பகிர்</string>
+    <string name="share">பகிர்</string>
+
+    // installation
+    <string name="install">நிறுவு</string>
+    <string name="install_language">மொழியை நிறுவு</string>
+
+    <string name="solved_by_schoolkiller">SchoolKiller மூலம் தீர்க்கப்பட்டது\nGoogle Play இல் எங்கள் பயன்பாட்டைப் பார்க்கவும்</string>
+
+</resources>

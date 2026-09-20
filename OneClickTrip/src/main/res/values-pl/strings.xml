@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip to Twój inteligentny planer podróży wspierany przez sztuczną inteligencję. Wystarczy opisać wymarzoną podróż lub przesłać inspirację i natychmiast otrzymasz spersonalizowany, codzienny plan podróży z opcjami transportu, linkami do hoteli, szacunkami budżetowymi i lokalnymi wskazówkami — wszystko za pomocą jednego kliknięcia.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Rozpoznany tekst</string>
+    <string name="solution_text_value">Rozwiązanie</string>
+    <string name="user_task_value">Zadanie</string>
+    <string name="progress_bar_hint_text_value">Postęp generowania rozwiązania</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Tekst</string>
+    <string name="no_solution_chosen">Nie wybrano jeszcze rozwiązania</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Chciałbym odbyć trzydniową, relaksującą i kulturalną podróż z zabytkami, lokalną kuchnią, lekkimi spacerami i połączeniem aktywności z przewodnikiem i samodzielnych w jednym mieście lub w jego pobliżu.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Język rozwiązania</string>
+    <string name="max_budget_label">Maksymalny budżet</string>
+    <string name="travelers_number_label">Liczba podróżnych</string>
+    <string name="trip_duration_label">Czas trwania podróży</string>
+    <string name="transportation_type_label">Środek transportu</string>
+    <string name="trip_style_label">Styl podróży</string>
+    <string name="origin_location_label">Miejsce początkowe</string>
+    <string name="trip_type_label">Typ podróży</string>
+    <string name="one_way_trip">Podróż w jedną stronę</string>
+    <string name="round_trip">Podróż w obie strony</string>
+    <string name="days">dni</string>
+    <string name="new_york">Nowy Jork</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Wprowadź środek transportu</string>
+    <string name="enter_location">Wprowadź lokalizację</string>
+    <string name="add">Dodaj</string>
+    <string name="travel_path">Trasa podróży</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Sztuczna inteligencja nie była w stanie rozwiązać tego problemu. Spróbuj ponownie.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Ups! Coś poszło nie tak. Spróbuj ponownie!</string>
+    <string name="fail_to_load_Uri">Nie udało się załadować obrazu na listę. Spróbuj ręcznie!</string>
+    <string name="corrupted_loaded_file">Załadowano uszkodzony plik!</string>
+    <string name="missing_required_settings">Brakuje niektórych wymaganych ustawień. Proszę je uzupełnić.</string>
+    <string name="camera_fail_to_open">Ups! Nie udało się otworzyć kamery. Spróbuj ponownie!</string>
+    <string name="select_image_or_text_warning">Wybierz obraz lub wpisz zadanie.</string>
+    <string name="language_not_supported">
+        Wybrany język nie jest dostępny do generowania multimediów. Inne funkcje będą działać. Czy chcesz pobrać wymagane dane językowe?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Strona główna</string>
+    <string name="settings">Ustawienia</string>
+    <string name="results">Wynik</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Wybierz co udostępnić</string>
+    <string name="share_user_translation">Udostępnij mój tekst</string>
+    <string name="share_ocr_result">Udostępnij rozpoznany tekst</string>
+    <string name="share_solution">Udostępnij rozwiązanie</string>
+    <string name="share_image">Udostępnij obraz</string>
+    <string name="share">Udostępnij</string>
+
+    <!-- Installation -->
+    <string name="install">Zainstaluj</string>
+    <string name="install_language">Zainstaluj język</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Rozwiązane przez OneClickTrip\nSprawdź naszą aplikację w Google Play</string>
+</resources>

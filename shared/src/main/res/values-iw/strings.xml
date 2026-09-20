@@ -1,0 +1,192 @@
+<resources>
+
+    <string-array name="styles">
+        <item>פואטי</item>
+        <item>מקצועי</item>
+        <item>משפטי</item>
+        <item>טכני</item>
+        <item>אקדמי</item>
+        <item>עיתונאי</item>
+        <item>יצירתי</item>
+        <item>משכנע</item>
+        <item>נרטיבי</item>
+        <item>תיאורי</item>
+        <item>הסברתי</item>
+        <item>הומוריסטי</item>
+        <item>לא פורמלי</item>
+        <item>עסקי</item>
+        <item>מדעי</item>
+        <item>רומנטי</item>
+        <item>היסטורי</item>
+        <item>פילוסופי</item>
+        <item>עזרה עצמית</item>
+        <item>טיולים</item>
+        <item>שיווקי</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>רשמי</item>
+        <item>לא רשמי</item>
+        <item>ידידותי</item>
+        <item>רציני</item>
+        <item>אמפתי</item>
+        <item>תקיף</item>
+        <item>אופטימי</item>
+        <item>הומוריסטי</item>
+        <item>ניטרלי</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>מינימלי</item>
+        <item>מתון</item>
+        <item>מלא</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>מערכות יחסים</item>
+        <item>מקום עבודה</item>
+        <item>חינוך</item>
+        <item>בריאות</item>
+        <item>פיננסים</item>
+        <item>טיולים</item>
+        <item>טכנולוגיה</item>
+        <item>בידור</item>
+        <item>שיפור עצמי</item>
+        <item>כללי</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>רוסיה: קולקטיביסטית</item>
+        <item>מזרח אירופה: פרגמטית</item>
+        <item>מערב אירופה: אינדיבידואליסטית</item>
+        <item>דרום-מזרח אסיה: ממוקדת בהרמוניה</item>
+        <item>סין: היררכית</item>
+        <item>הקווקז: מבוססת כבוד</item>
+        <item>צפון אמריקה: יזמית</item>
+        <item>אמריקה הלטינית: מלאת תשוקה</item>
+        <item>המזרח התיכון: מבוססת אירוח</item>
+        <item>אפריקה: קהילתית</item>
+        <item>המדינות הנורדיות: שוויונית</item>
+        <item>דרום אסיה: ממוקדת במשפחה</item>
+        <item>יפן: הרמוניה קבוצתית</item>
+        <item>אוסטרליה: רגועה</item>
+        <item>הים התיכון: אקספרסיבית</item>
+        <item>אסיה המרכזית: מסורת נוודים</item>
+        <item>גרמניה: מובנית</item>
+        <item>הבלקן: עמידה</item>
+        <item>ילידי הארקטי: מחוברת לטבע</item>
+        <item>יהודית: ממוקדת בקהילה</item>
+    </string-array>
+
+    // Drop Down Menu Entries
+    <string-array name="grades">
+        <item>כל הכיתות</item>
+        <item>א</item>
+        <item>ב</item>
+        <item>ג</item>
+        <item>ד</item>
+        <item>ה</item>
+        <item>ו</item>
+        <item>ז</item>
+        <item>ח</item>
+        <item>ט</item>
+        <item>י</item>
+        <item>יא</item>
+        <item>יב</item>
+    </string-array>
+
+    // Drop Down Menu Entries
+    <string-array name="explanations">
+        <item>ללא הסבר</item>-->
+        <item>הסבר קצר</item>
+        <item>הסבר מפורט</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>לא פעיל</item>
+        <item>פעיל קלות</item>
+        <item>פעיל בינוני</item>
+        <item>מאוד פעיל</item>
+        <item>פעיל ביותר</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>זכר</item>
+        <item>נקבה</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>מטוס</item>
+        <item>אופניים</item>
+        <item>סירה</item>
+        <item>אוטובוס</item>
+        <item>אופנוע</item>
+        <item>רכב בבעלות אישית</item>
+        <item>רכב שכור</item>
+        <item>נסיעה שיתופית</item>
+        <item>רכבת תחתית</item>
+        <item>מונית</item>
+        <item>רכבת</item>
+        <item>חשמלית</item>
+        <item>הליכה</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>אוכל</item>
+        <item>היסטוריה</item>
+        <item>תרבות</item>
+        <item>טבע</item>
+        <item>מנוחה</item>
+        <item>הרפתקאות</item>
+        <item>חיי לילה</item>
+        <item>קניות</item>
+        <item>משפחתי</item>
+        <item>רומנטי</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>צלם תמונה</item>
+        <item>העלה תמונה</item>
+        <item>העלה קובץ</item>
+        <item>ספק קישור</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">מצטערים, השירות אינו זמין ברוסיה ובבלרוס, אנא השתמש ב-vpn</string>
+    <string name="error_service_not_available_title">השירות אינו זמין</string>
+    <string name="error_common_title">שְׁגִיאָה</string>
+    <string name="error_common_message">אירעה שגיאה בזמן שהאפליקציה פעלה. נסה לעדכן את האפליקציה או נסה שוב מאוחר יותר</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">אופס! כדי לגשת למצלמה במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת המצלמה.</string>
+    <string name="permanent_denied_read_media_permission_explanation">אופס! כדי לגשת לגלריה במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת הגלריה.</string>
+    <string name="permanent_denied_write_storage_permission_explanation">אופס! כדי לשמור קבצים במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת השמירה לאחסון.</string>
+    <string name="permanent_denied_read_storage_permission_explanation">אופס! כדי לגשת לקבצים במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת קריאת לאחסון.</string>
+    <string name="camera_permission_rationale">האפליקציה זקוקה לגישה למצלמה כדי לאפשר לך לצלם</string>
+    <string name="read_media_permission_rationale">מתן גישה לתמונות שלך מאפשר לך לבחור תמונות מהגלריה שלך לשימוש בתוך אפליקציית IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">הרשאה לכתיבה לאחסון שלך מאפשרת לאפליקציית IntelliVerse לשמור קבצים, כמו תמונות שצילמת, ישירות למכשיר שלך!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse זקוקה לגישה לאחסון של המכשיר שלך כדי לקרוא קבצים, כמו תמונות או מסמכים, שברצונך להשתמש בהם באפליקציה</string>
+
+    // Buttons Labels
+    <string name="Ok">בסדר</string>
+
+    <string name="Yes">כן</string>
+    <string name="No">לא</string>
+    <string name="are_you_sure">האם אתה בטוח שאתה רוצה לצאת מ</string>
+    <string name="exit">לצאת מ</string>
+
+    <string name="report_content">דווחו על תוכן</string>
+    <string name="select_reason">בחרו סיבה</string>
+    <string name="offensive">פוגעני</string>
+    <string name="hate_speech">דברי שטנה</string>
+    <string name="incorrect_info">מידע שגוי</string>
+    <string name="other">אחר</string>
+    <string name="submit">שלח</string>
+    <string name="cancel">בטל</string>
+
+    <string name="reset_settings">איפוס הגדרות</string>
+    <string name="not_relevant">לא רלוונטי</string>
+
+
+</resources>

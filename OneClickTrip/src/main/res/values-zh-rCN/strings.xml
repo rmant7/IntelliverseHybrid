@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip 是您由人工智能驱动的智能旅行规划器。只需描述您的梦想之旅或上传灵感，即可立即获得个性化的每日行程，包括交通选项、酒店链接、预算估算和本地提示——一键完成。</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">识别文本</string>
+    <string name="solution_text_value">解决方案</string>
+    <string name="user_task_value">任务</string>
+    <string name="progress_bar_hint_text_value">生成解决方案进度</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">文本</string>
+    <string name="no_solution_chosen">尚未选择解决方案</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        我想要一次为期三天的轻松文化之旅，包括历史遗址、当地美食、轻松步行，以及导览和自助活动的结合，地点在一座城市或附近地区。
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">解决方案语言</string>
+    <string name="max_budget_label">最高预算</string>
+    <string name="travelers_number_label">旅客人数</string>
+    <string name="trip_duration_label">旅行时长</string>
+    <string name="transportation_type_label">交通方式</string>
+    <string name="trip_style_label">旅行风格</string>
+    <string name="origin_location_label">出发地</string>
+    <string name="trip_type_label">行程类型</string>
+    <string name="one_way_trip">单程旅行</string>
+    <string name="round_trip">往返旅行</string>
+    <string name="days">天</string>
+    <string name="new_york">纽约</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">输入交通方式</string>
+    <string name="enter_location">输入位置</string>
+    <string name="add">添加</string>
+    <string name="travel_path">旅行路线</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI未能解决此问题，请重试。
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">哎呀！出现了一些问题，请重试！</string>
+    <string name="fail_to_load_Uri">无法将图片加载到列表，请手动加载！</string>
+    <string name="corrupted_loaded_file">您加载了一个损坏的文件！</string>
+    <string name="missing_required_settings">缺少一些必填设置，请填写。</string>
+    <string name="camera_fail_to_open">哎呀！打开相机失败，请重试！</string>
+    <string name="select_image_or_text_warning">请选择一张图片或输入任务。</string>
+    <string name="language_not_supported">
+        所选语言暂不支持媒体生成，其他功能仍可使用。是否下载所需语言数据以启用此功能？
+    </string>
+
+    <!-- Labels -->
+    <string name="home">首页</string>
+    <string name="settings">设置</string>
+    <string name="results">结果</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">选择要分享的内容</string>
+    <string name="share_user_translation">分享我的文本</string>
+    <string name="share_ocr_result">分享识别文本</string>
+    <string name="share_solution">分享解决方案</string>
+    <string name="share_image">分享图片</string>
+    <string name="share">分享</string>
+
+    <!-- Installation -->
+    <string name="install">安装</string>
+    <string name="install_language">安装语言</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">由 OneClickTrip 解决\n请在 Google Play 查看我们的应用</string>
+</resources>

@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker pomáhá uživatelům sledovat příjem kalorií, tuků, bílkovin, sacharidů, vitamínů a minerálů v potravinách. Nejenže tyto prvky počítá, ale také analyzuje, co se vstřebává do těla po trávení. Uživatelé mohou nahrávat obrázky produktů, aplikace rozpozná ingredience a poskytuje možnost úpravy seznamu.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Obrázek AI School Assistant</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Obrázek Nahrát do AI School Assistant</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Obrázek Zkontrolovat řešení AI School Assistant</string>
+    <string name="ArrowDropDown_icon_content_description">Otevře podnabídku</string>
+    <string name="add_image">Přidat úkol</string>
+    <string name="guidance_detected_ingredients">Zkontrolujte zjištěné ingredience. Pokud jsou některé údaje nesprávné nebo chybí, můžete je upravit před vygenerováním nové nutriční analýzy</string>
+
+    // Text values
+    <string name="ingredients">Ingredience</string>
+    <string name="solution_text_value">Řešení</string>
+    <string name="user_task_value">Úkol</string>
+    <string name="is_ocr_result_included_value">Použít vybraný rozpoznaný text</string>
+    <string name="home_loading_waiting_text_value">Načítání, čekejte prosím...</string>
+    <string name="progress_bar_hint_text_value">Průběh generování řešení</string>
+
+    // Button Labels
+    <string name="next_button_label">Další</string>
+    <string name="solve_button_label">Vyřešit</string>
+    <string name="check_solution_button_label">Zkontrolovat řešení</string>
+    <string name="cheat_sheet_button_label">Tahák</string>
+    <string name="start_again">Začít znovu</string>
+    <string name="try_again">Zkusit znovu</string>
+    <string name="pick_images">Vybrat obrázky</string>
+    <string name="upload_from_url">Nahrát</string>
+    <string name="upload_picture">Nahrát obrázek</string>
+    <string name="take_a_picture">Vyfotit</string>
+    <string name="recognize_text_button_label">Zobrazit rozpoznaný text</string>
+
+    // Text Field Labels
+    <string name="foods">Potraviny</string>
+    <string name="What_to_solve_TextField_label">Co chcete vyřešit?</string>
+    <string name="rating_TextField_label">Hodnocení</string>
+    <string name="no_solution_chosen">Řešení dosud nebylo vybráno</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 banány a 1 jablko, vše střední velikosti.</string>
+    <string name="first_ocr_result_is_not_ready">Text se rozpoznává, čekejte prosím…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Jazyk řešení</string>
+    <string name="upload_a_file_label">Nahrát soubor</string>
+    <string name="explanations_label">Vysvětlení</string>
+    <string name="physical_activity_label">Fyzická aktivita</string>
+    <string name="gender_label">Pohlaví</string>
+    <string name="age_label">Věk</string>
+    <string name="height_label">Výška</string>
+    <string name="weight_label">Váha</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Zdá se, že jste smazali některé obrázky z adresáře úložiště aplikace pro kalorie. Nebojte se, kalorie se pokusí tyto obrázky jeden po druhém vymazat z mezipaměti aplikace. Potvrďte prosím každé smazání obrázku, pokud je to nutné. Jakýkoli obrázek, který se zobrazí jako prázdný, je poškozený. Chcete pokračovat?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nebyla schopna rozpoznat text z obrázku. Zkuste to prosím znovu.</string>
+    <string name="error_gemini_solution_result_extraction">AI nebyla schopna vyřešit tento problém. Zkuste to prosím znovu.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Jejda! Něco se pokazilo. Zkuste to prosím znovu!</string>
+    <string name="fail_to_load_Uri">Nepodařilo se načíst obrázek do seznamu. Zkuste jej načíst ručně!</string>
+    <string name="corrupted_loaded_file">Načetli jste poškozený soubor!</string>
+    <string name="missing_required_settings">Některá povinná nastavení chybí. Vyplňte je prosím.</string>
+    <string name="camera_fail_to_open">Jejda! Něco se pokazilo s kamerou. Zkuste to prosím znovu!</string>
+    <string name="upload_image_warning">Nahrajte prosím obrázek ze zařízení</string>
+    <string name="select_image_or_text_warning">Vyberte prosím obrázek nebo zadejte úkol.</string>
+    <string name="prompt_is_empty">Rozpoznaný text je prázdný. Zkuste to prosím znovu!</string>
+    <string name="language_not_supported">"Vybraný jazyk není pro generování médií k dispozici. Ostatní funkce budou fungovat i nadále. Chcete si stáhnout potřebná jazyková data, abyste tuto funkci povolili?"</string>
+
+    // labels
+    <string name="home">Domů</string>
+    <string name="settings">Nastavení</string>
+    <string name="results">Výsledek</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Vyberte, co chcete sdílet</string>
+    <string name="share_user_ingredients">Sdílet moje ingredience</string>
+    <string name="share_recognized_ingredients">Sdílet rozpoznané ingredience</string>
+    <string name="share_solution">Sdílet řešení</string>
+    <string name="share_image">Sdílet obrázek</string>
+    <string name="share">Sdílet</string>
+
+    // installation
+    <string name="install">Instalovat</string>
+    <string name="install_language">Nainstalovat jazyk</string>
+
+    <string name="solved_by_diet_tracker">Vyřešeno pomocí DietTracker\nPodívejte se na naši aplikaci na Google Play</string>
+
+</resources>

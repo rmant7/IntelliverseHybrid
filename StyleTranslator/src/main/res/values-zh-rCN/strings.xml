@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator 在不同的写作风格和语调之间转换文本。</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI学校助手图片</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">上传到AI学校助手图片</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">检查解决方案AI学校助手图片</string>
+    <string name="ArrowDropDown_icon_content_description">打开子菜单</string>
+    <string name="add_image">添加任务</string>
+
+    // Text values
+    <string name="recognized_text_value">识别的文本</string>
+    <string name="solution_text_value">解决方案</string>
+    <string name="user_task_value">任务</string>
+    <string name="is_ocr_result_included_value">使用选定的识别文本</string>
+    <string name="home_loading_waiting_text_value">正在加载，请稍候...</string>
+    <string name="progress_bar_hint_text_value">解决方案生成进度</string>
+
+    // Button Labels
+    <string name="next_button_label">下一步</string>
+    <string name="solve_button_label">解决</string>
+    <string name="check_solution_button_label">检查解决方案</string>
+    <string name="cheat_sheet_button_label">速查表</string>
+    <string name="start_again">重新开始</string>
+    <string name="try_again">重试</string>
+    <string name="pick_images">选择图片</string>
+    <string name="upload_from_url">上传</string>
+    <string name="upload_picture">上传图片</string>
+    <string name="take_a_picture">拍照</string>
+    <string name="recognize_text_button_label">显示识别的文本</string>
+
+    // Text Field Labels
+    <string name="sentence">文本</string>
+    <string name="What_to_solve_TextField_label">你想解决什么问题？</string>
+    <string name="rating_TextField_label">评分</string>
+    <string name="no_solution_chosen">尚未选择解决方案</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">我喜欢照顾我的女朋友。我总是确保她感到安全和受到保护。我喜欢计划我们的约会，并用小礼物给她惊喜。当她不高兴时，我会尝试找到解决方案并为她解决问题。</string>
+    <string name="first_ocr_result_is_not_ready">正在识别文本，请稍候...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">解决方案语言</string>
+    <string name="upload_a_file_label">上传文件</string>
+    <string name="explanations_label">解释</string>
+    <string name="source_gender_label">源性别</string>
+    <string name="target_gender_label">目标性别</string>
+    <string name="source_age_label">源年龄</string>
+    <string name="target_age_label">目标年龄</string>
+    <string name="category_label">类别</string>
+    <string name="tone_label">语气偏好</string>
+    <string name="transformation_level_label">转换级别</string>
+    <string name="style_label">翻译风格</string>
+    <string name="mentality_label">心态</string>
+    <string name="translation_scale_label">翻译比例因子</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">您似乎已从卡路里应用程序的目录存储中删除了一些图像。 不用担心，卡路里会尝试逐个从应用程序缓存中清除这些图像。 如果需要，请确认每次图像删除。 任何显示为空白的图像都是损坏的。 你要继续吗？</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI无法从图像中识别文本。请重试。</string>
+    <string name="error_gemini_solution_result_extraction">AI无法解决此问题。请重试。</string>
+
+    // Toast messages
+    <string name="something_went_wrong">糟糕！ 出错了。请重试！</string>
+    <string name="fail_to_load_Uri">无法将图像加载到列表中。 请尝试手动加载！</string>
+    <string name="corrupted_loaded_file">您加载了一个损坏的文件！</string>
+    <string name="missing_required_settings">缺少一些必需的设置。 请填写它们。</string>
+    <string name="camera_fail_to_open">糟糕! 相机出了点问题。请重试!</string>
+    <string name="upload_image_warning">请从设备上传图片</string>
+    <string name="select_image_or_text_warning">请选择图片或输入任务。</string>
+    <string name="prompt_is_empty">识别的文本为空。请重试！</string>
+    <string name="language_not_supported">"所选语言不适用于媒体生成。其他功能将继续工作。您想下载必要的语言数据以启用此功能吗？"</string>
+
+    // labels
+    <string name="home">主页</string>
+    <string name="settings">设置</string>
+    <string name="results">结果</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">选择要分享的内容</string>
+    <string name="share_user_translation">分享我的文本</string>
+    <string name="share_ocr_result">分享识别的文本</string>
+    <string name="share_solution">分享解决方案</string>
+    <string name="share_image">分享图像</string>
+    <string name="share">分享</string>
+
+    // installation
+    <string name="install">安装</string>
+    <string name="install_language">安装语言</string>
+
+    <string name="solved_by_style_translator">由StyleTranslator解决\n在Google Play上查看我们的应用程序</string>
+
+</resources>

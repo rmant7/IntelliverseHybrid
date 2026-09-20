@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>شاعرانه</item>
+        <item>مسلکي</item>
+        <item>قانوني</item>
+        <item>تخنیکي</item>
+        <item>علمي</item>
+        <item>ژورنالیستي</item>
+        <item>ابتکاري</item>
+        <item>قناعت بښونکی</item>
+        <item>قصصي</item>
+        <item>تشریحي</item>
+        <item>توضیحي</item>
+        <item>مسخره کوونکی</item>
+        <item>غیر رسمي</item>
+        <item>سوداګریز</item>
+        <item>ساینسي</item>
+        <item>رومانتيک</item>
+        <item>تاریخي</item>
+        <item>فلسفي</item>
+        <item>ځان مرسته</item>
+        <item>سفر</item>
+        <item>بازاریابي</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>رسمي</item>
+        <item>غیر رسمي</item>
+        <item>دوستانه</item>
+        <item>جدي</item>
+        <item>خواخوږي</item>
+        <item>قاطع</item>
+        <item>خوشبینه</item>
+        <item>مسخره کوونکی</item>
+        <item>بې پرې</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>لږ تر لږه</item>
+        <item>منځنۍ</item>
+        <item>بشپړ</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>اړیکه</item>
+        <item>د کار ځای</item>
+        <item>زده کړه</item>
+        <item>روغتیا</item>
+        <item>مالیه</item>
+        <item>سفر</item>
+        <item>ټیکنالوژي</item>
+        <item>ساتیري</item>
+        <item>د ځان ښه کول</item>
+        <item>عمومي</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>روسیه: ټولګه پالنه</item>
+        <item>ختیځ اروپا: عملي</item>
+        <item>لویدیځ اروپا: انفرادیت پالنه</item>
+        <item>ختیځ سویل آسیا: په همغږي تمرکز</item>
+        <item>چین: درجه بندي</item>
+        <item>قفقاز: عزت ته پابند</item>
+        <item>شمالي امریکا: سوداګریز</item>
+        <item>لاتین امریکا: جذباتي</item>
+        <item>منځنی ختیځ: د میلمه پالنې پر بنسټ</item>
+        <item>افریقا: ټولنیز</item>
+        <item>نوردیک هیوادونه: مساوات غوښتونکي</item>
+        <item>جنوبي آسیا: د کورنۍ په محور</item>
+        <item>جاپان: د ډلې همغږي</item>
+        <item>آسټرالیا: ارام</item>
+        <item>مدیترانه: څرګندونکي</item>
+        <item>مرکزي آسیا: کوچیاني دودونه</item>
+        <item>جرمني: جوړښتي</item>
+        <item>بالکان: مقاومت لرونکي</item>
+        <item>قطبي ځایی: د طبیعت سره تړلي</item>
+        <item>یهودي: ټولنه محوره</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>امهري</item>
+        <item>عربي</item>
+        <item>بنګالي</item>
+        <item>بلغاریایي</item>
+        <item>چینایي ساده شوې</item>
+        <item>کروشیايي</item>
+        <item>چکی</item>
+        <item>ډنمارکي</item>
+        <item>هالنډي</item>
+        <item>انګلیسي</item>
+        <item>ایستونیايي</item>
+        <item>فنلنډي</item>
+        <item>فرانسوي</item>
+        <item>جرمني</item>
+        <item>یوناني</item>
+        <item>ګجراتي</item>
+        <item>عبري</item>
+        <item>هندي</item>
+        <item>هنګري</item>
+        <item>اندونیزیايي</item>
+        <item>ایټالوي</item>
+        <item>جاپاني</item>
+        <item>کنډا</item>
+        <item>کوریايي</item>
+        <item>لاتویايي</item>
+        <item>لیتوانیايي</item>
+        <item>مالایي</item>
+        <item>مراتي</item>
+        <item>ناروېژي</item>
+        <item>پښتو</item>
+        <item>فارسي</item>
+        <item>پولنډي</item>
+        <item>پرتګالي</item>
+        <item>رومانیايي</item>
+        <item>روسي</item>
+        <item>سربیايي</item>
+        <item>سلواکي</item>
+        <item>سلوانیايي</item>
+        <item>هسپانوي</item>
+        <item>سواحلي</item>
+        <item>سویډني</item>
+        <item>تګالوګ</item>
+        <item>تامل</item>
+        <item>تیلګو</item>
+        <item>تای</item>
+        <item>ترکي</item>
+        <item>اوکرایني</item>
+        <item>اردو</item>
+        <item>ویتنامي</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>اړوند نه دی</item>
+        <item>۱</item>
+        <item>۲</item>
+        <item>۳</item>
+        <item>۴</item>
+        <item>۵</item>
+        <item>۶</item>
+        <item>۷</item>
+        <item>۸</item>
+        <item>۹</item>
+        <item>۱۰</item>
+        <item>۱۱</item>
+        <item>۱۲</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>هیڅ وضاحت نشته</item>
+        <item>لنډ وضاحت</item>
+        <item>تفصیلي وضاحت</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>ناست ژوند</item>
+        <item>لږ فعال</item>
+        <item>په منځنۍ کچه فعال</item>
+        <item>ډیر فعال</item>
+        <item>ډیر زیات فعال</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>نارینه</item>
+        <item>ښځینه</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>الوتکه</item>
+        <item>بايسکل</item>
+        <item>کښتۍ</item>
+        <item>بس</item>
+        <item>موټرسايکل</item>
+        <item>شخصي موټر</item>
+        <item>کرايي موټر</item>
+        <item>شريک سفر</item>
+        <item>مېټرو</item>
+        <item>ټکسي</item>
+        <item>اورګاډی</item>
+        <item>ټرېم</item>
+        <item>پلي تګ</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>خواړه</item>
+        <item>تاریخ</item>
+        <item>کلتور</item>
+        <item>طبیعت</item>
+        <item>استراحت</item>
+        <item>ماجرا</item>
+        <item>د شپې ژوند</item>
+        <item>پېرودل</item>
+        <item>کورنۍ</item>
+        <item>رومانتيک</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>عکس واخلئ</item>
+        <item>انځور پورته کړئ</item>
+        <item>فایل پورته کړئ</item>
+        <item>لینک وړاندې کړئ</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">بخښنه غواړو، خدمت په روسیه او بیلاروس کې شتون نلري، مهرباني وکړئ vpn وکاروئ</string>
+    <string name="error_service_not_available_title">خدمت شتون نلري</string>
+    <string name="error_common_title">تېروتنه</string>
+    <string name="error_common_message">د غوښتنلیک د چلولو پرمهال تېروتنه رامینځته شوه. د اپلیکیشن اپډیټ کولو هڅه وکړئ یا وروسته بیا هڅه وکړئ</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">هوښیاره! داسې ښکاري چې د دې فیچر لپاره د کیمرې لاسرسي ته اړتیا ده. خپل د وسیلې ترتیباتو ته لاړشئ، د اپلیکیشن په لیست کې IntelliVerse ومومئ، او د جادو خلاصولو لپاره د کیمرې اجازه ورکړئ!</string>
+    <string name="permanent_denied_read_media_permission_explanation">هوښیاره! د خپل ګالري څخه د عکسونو کارولو لپاره، IntelliVerse ته اړتیا ده چې ستاسو عکسونه ولولي. خپل د وسیلې ترتیباتو ته لاړشئ، د اپلیکیشن په لیست کې IntelliVerse ومومئ، او د جادو خلاصولو لپاره د عکسونو لاسرسی ورکړئ!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">هوښیاره! د فایلونو خپل آلې ته خوندي کولو لپاره، IntelliVerse ته اړتیا ده چې ستاسو د ذخیره کولو لپاره د لیکلو اجازه ورکړئ. خپل د وسیلې ترتیباتو ته لاړشئ، د اپلیکیشن په لیست کې IntelliVerse ومومئ، او د جادو خلاصولو لپاره د ذخیره کولو لاسرسی ورکړئ!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">هوښیاره! ستاسو په آله کې د فایلونو لاسرسي لپاره، IntelliVerse ته اړتیا ده چې ستاسو د ذخیره کولو لپاره د لوستلو اجازه ورکړئ. خپل د وسیلې ترتیباتو ته لاړشئ، د اپلیکیشن په لیست کې IntelliVerse ومومئ، او د جادو خلاصولو لپاره د ذخیره کولو لاسرسی ورکړئ!</string>
+    <string name="camera_permission_rationale">IntelliVerse ستاسو کیمرې ته لاسرسي ته اړتیا لري ترڅو تاسو سمدلاسه د خپلو ښوونځیو تمرینونو عکسونه واخلئ!</string>
+    <string name="read_media_permission_rationale">ستاسو عکسونو ته د لاسرسي اجازه ورکول تاسو ته اجازه درکوي چې د IntelliVerse اپلیکیشن کې د کارولو لپاره خپل ګالري څخه عکسونه غوره کړئ!</string>
+    <string name="write_storage_permission_rationale">ستاسو د ذخیره کولو لپاره د لیکلو اجازه IntelliVerse اپلیکیشن ته اجازه ورکوي چې فایلونه خوندي کړي، لکه هغه عکسونه چې تاسو یې اخیستي دي، سمدلاسه ستاسو آله ته!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse ستاسو د آلې ذخیره کولو ته لاسرسي ته اړتیا لري ترڅو فایلونه ولولي، لکه عکسونه یا اسناد، چې تاسو ممکن په اپلیکیشن کې کارول غواړئ.</string>
+
+    // Buttons Labels
+    <string name="Ok">ښه</string>
+
+    <string name="Yes">هو</string>
+    <string name="No">نه</string>
+    <string name="are_you_sure">آیا تاسو ډاډه یاست چې تاسو غواړئ وتلئ</string>
+    <string name="exit">وتل</string>
+
+    <string name="report_content">د محتوا راپور ورکړئ</string>
+    <string name="select_reason">دلیل وټاکئ</string>
+    <string name="offensive">سپکاوی کوونکی</string>
+    <string name="hate_speech">د نفرت وینا</string>
+    <string name="incorrect_info">غلط معلومات</string>
+    <string name="other">نور</string>
+    <string name="submit">سپارل</string>
+    <string name="cancel">منسوخ کول</string>
+
+    <string name="reset_settings">ترتیبات بیا تنظیم کړئ</string>
+    <string name="not_relevant">اړوند نه دی</string>
+
+</resources>

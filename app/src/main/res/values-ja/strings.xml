@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">IntelliVerseへようこそ</string>
+    <string name="cheaptrip_info">CheapTripは、フライト、バス、電車、フェリーを組み合わせて、都市間を最も安価に移動する方法を見つける独自の検索エンジンです。</string>
+    <string name="matterofchoice_info">Matter Of Choiceは、意思決定スキルを学ぶのに役立つインタラクティブなシナリオを提供します。</string>
+</resources>

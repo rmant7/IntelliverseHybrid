@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">A OneClickTrip az Ön okos utazástervezője, amely mesterséges intelligenciával működik. Egyszerűen írja le álmai utazását vagy töltsön fel inspirációt, és azonnal kap egy személyre szabott, naponta bontott útitervet közlekedési lehetőségekkel, szállodalinkekkel, költségbecslésekkel és helyi tippekkel — mindezt egyetlen kattintással.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Felismert szöveg</string>
+    <string name="solution_text_value">Megoldás</string>
+    <string name="user_task_value">Feladat</string>
+    <string name="progress_bar_hint_text_value">Megoldásgenerálás folyamata</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Szöveg</string>
+    <string name="no_solution_chosen">Még nincs kiválasztott megoldás</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Egy 3 napos pihentető és kulturális utazást szeretnék, amelyben történelmi helyszínek, helyi ételek, könnyű séták, valamint vezetett és szabadidős programok keveréke szerepel egy városban vagy annak közelében.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Megoldás nyelve</string>
+    <string name="max_budget_label">Maximális költségvetés</string>
+    <string name="travelers_number_label">Utasok száma</string>
+    <string name="trip_duration_label">Utazás időtartama</string>
+    <string name="transportation_type_label">Közlekedési eszköz</string>
+    <string name="trip_style_label">Utazási stílus</string>
+    <string name="origin_location_label">Kiindulási hely</string>
+    <string name="trip_type_label">Utazás típusa</string>
+    <string name="one_way_trip">Egyirányú utazás</string>
+    <string name="round_trip">Retúr utazás</string>
+    <string name="days">napok</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Adja meg a közlekedési eszközt</string>
+    <string name="enter_location">Adja meg a helyszínt</string>
+    <string name="add">Hozzáadás</string>
+    <string name="travel_path">Utazási útvonal</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        A mesterséges intelligencia nem tudta megoldani ezt a problémát. Kérjük, próbálja újra.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Hoppá! Valami hiba történt. Próbálja újra!</string>
+    <string name="fail_to_load_Uri">Nem sikerült betölteni a képet a listába. Próbálja meg manuálisan!</string>
+    <string name="corrupted_loaded_file">Sérült fájl lett betöltve!</string>
+    <string name="missing_required_settings">Hiányoznak szükséges beállítások. Kérjük, töltse ki őket.</string>
+    <string name="camera_fail_to_open">Hoppá! Nem sikerült megnyitni a kamerát. Próbálja újra!</string>
+    <string name="select_image_or_text_warning">Válasszon képet vagy írjon be egy feladatot.</string>
+    <string name="language_not_supported">
+        A kiválasztott nyelv nem érhető el médiageneráláshoz. Más funkciók továbbra is működnek. Szeretné letölteni a szükséges nyelvi adatokat?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Főoldal</string>
+    <string name="settings">Beállítások</string>
+    <string name="results">Eredmény</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Válassza ki, mit szeretne megosztani</string>
+    <string name="share_user_translation">Ossza meg a saját szövegét</string>
+    <string name="share_ocr_result">Ossza meg a felismert szöveget</string>
+    <string name="share_solution">Ossza meg a megoldást</string>
+    <string name="share_image">Ossza meg a képet</string>
+    <string name="share">Megosztás</string>
+
+    <!-- Installation -->
+    <string name="install">Telepítés</string>
+    <string name="install_language">Nyelv telepítése</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Megoldotta a OneClickTrip\nTekintse meg alkalmazásunkat a Google Playen</string>
+</resources>

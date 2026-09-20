@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator متن را بین سبک‌ها و لحن‌های نوشتاری مختلف تبدیل می‌کند.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">تصویر دستیار مدرسه هوش مصنوعی</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">تصویر بارگذاری به دستیار مدرسه هوش مصنوعی</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">تصویر بررسی راه حل دستیار مدرسه هوش مصنوعی</string>
+    <string name="ArrowDropDown_icon_content_description">باز کردن یک زیرمنو</string>
+    <string name="add_image">افزودن تکلیف</string>
+
+    // Text values
+    <string name="recognized_text_value">متن شناسایی شده</string>
+    <string name="solution_text_value">راه حل</string>
+    <string name="user_task_value">تکلیف</string>
+    <string name="is_ocr_result_included_value">استفاده از متن شناسایی شده انتخاب شده</string>
+    <string name="home_loading_waiting_text_value">درحال بارگذاری، لطفا صبر کنید...</string>
+    <string name="progress_bar_hint_text_value">پیشرفت تولید راه حل ها</string>
+
+    // Button Labels
+    <string name="next_button_label">بعدی</string>
+    <string name="solve_button_label">حل</string>
+    <string name="check_solution_button_label">بررسی راه حل</string>
+    <string name="cheat_sheet_button_label">برگه تقلب</string>
+    <string name="start_again">شروع دوباره</string>
+    <string name="try_again">تلاش دوباره</string>
+    <string name="pick_images">انتخاب تصاویر</string>
+    <string name="upload_from_url">بارگذاری</string>
+    <string name="upload_picture">بارگذاری تصویر</string>
+    <string name="take_a_picture">گرفتن یک تصویر</string>
+    <string name="recognize_text_button_label">نمایش متن شناسایی شده</string>
+
+    // Text Field Labels
+    <string name="sentence">متن</string>
+    <string name="What_to_solve_TextField_label">چه چیزی را می خواهید حل کنید؟</string>
+    <string name="rating_TextField_label">امتیاز</string>
+    <string name="no_solution_chosen">راه حل هنوز انتخاب نشده است</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">من عاشق مراقبت از دوست دخترم هستم. من همیشه مطمئن می شوم که او احساس امنیت و محافظت می کند. من دوست دارم قرارهایمان را برنامه ریزی کنم و او را با هدایای کوچک غافلگیر کنم. وقتی او ناراحت است، سعی می کنم راه حلی پیدا کنم و همه چیز را برای او درست کنم.</string>
+    <string name="first_ocr_result_is_not_ready">متن در حال شناسایی است، لطفا صبر کنید...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">زبان راه حل</string>
+    <string name="upload_a_file_label">بارگذاری یک فایل</string>
+    <string name="explanations_label">توضیحات</string>
+    <string name="source_gender_label">جنسیت مبدا</string>
+    <string name="target_gender_label">جنسیت مقصد</string>
+    <string name="source_age_label">سن مبدا</string>
+    <string name="target_age_label">سن مقصد</string>
+    <string name="category_label">دسته بندی</string>
+    <string name="tone_label">ترجیح لحن</string>
+    <string name="transformation_level_label">سطح تبدیل</string>
+    <string name="style_label">سبک ترجمه</string>
+    <string name="mentality_label">ذهنیت</string>
+    <string name="translation_scale_label">ضریب مقیاس ترجمه</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">به نظر می رسد شما برخی از تصاویر را از پوشه ذخیره سازی برنامه کالری حذف کرده اید. نگران نباشید، کالری سعی خواهد کرد این تصاویر را یکی یکی از حافظه پنهان برنامه پاک کند. لطفا در صورت نیاز، حذف هر تصویر را تایید کنید. هر تصویری که خالی به نظر می رسد خراب است. آیا می خواهید ادامه دهید؟</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">هوش مصنوعی نتوانست متن را از تصویر تشخیص دهد. لطفا دوباره امتحان کنید.</string>
+    <string name="error_gemini_solution_result_extraction">هوش مصنوعی نتوانست این مسئله را حل کند. لطفا دوباره امتحان کنید.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">اوه! مشکلی پیش آمد. لطفا دوباره امتحان کنید!</string>
+    <string name="fail_to_load_Uri">بارگذاری تصویر در لیست انجام نشد. لطفا سعی کنید آن را به صورت دستی بارگیری کنید!</string>
+    <string name="corrupted_loaded_file">شما یک فایل خراب بارگذاری کرده اید!</string>
+    <string name="missing_required_settings">برخی از تنظیمات مورد نیاز وجود ندارد. لطفا آنها را پر کنید.</string>
+    <string name="camera_fail_to_open">اوه! مشکلی در دوربین پیش آمد. لطفا دوباره امتحان کنید!</string>
+    <string name="upload_image_warning">لطفا یک تصویر از دستگاه بارگذاری کنید</string>
+    <string name="select_image_or_text_warning">لطفا یک تصویر انتخاب کنید یا یک تکلیف تایپ کنید.</string>
+    <string name="prompt_is_empty">متن شناسایی شده خالی است. لطفا دوباره امتحان کنید!</string>
+    <string name="language_not_supported">"زبان انتخاب شده برای تولید رسانه در دسترس نیست. سایر ویژگی ها به کار خود ادامه می دهند. آیا می خواهید داده های زبانی لازم را برای فعال کردن این ویژگی بارگیری کنید؟"</string>
+
+    // labels
+    <string name="home">خانه</string>
+    <string name="settings">تنظیمات</string>
+    <string name="results">نتیجه</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">انتخاب کنید چه چیزی را به اشتراک بگذارید</string>
+    <string name="share_user_translation">به اشتراک گذاری متن من</string>
+    <string name="share_ocr_result">به اشتراک گذاری متن شناسایی شده</string>
+    <string name="share_solution">به اشتراک گذاری راه حل</string>
+    <string name="share_image">به اشتراک گذاری تصویر</string>
+    <string name="share">به اشتراک گذاری</string>
+
+    // installation
+    <string name="install">نصب</string>
+    <string name="install_language">نصب زبان</string>
+
+    <string name="solved_by_style_translator">حل شده توسط StyleTranslator\nبرنامه ما را در گوگل پلی بررسی کنید</string>
+
+</resources>

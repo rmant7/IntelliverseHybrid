@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">انټيليورس ته ښه راغلاست</string>
+    <string name="cheaptrip_info">چیپ ټریپ یو ځانګړی لټون انجن دی چې د ښارونو ترمینځ ترټولو ارزانه لارې لټوي، الوتنې، بسونه، ریل ګاډي او فیری سره یوځای کوي.</string>
+    <string name="matterofchoice_info">مېټر اف چوائس د پریکړې کولو مهارتونو په زده کړه کې ستاسو سره د مرستې لپاره متقابل سناریوګانې وړاندې کوي.</string>
+</resources>

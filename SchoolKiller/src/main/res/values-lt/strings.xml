@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller padeda studentams spręsti matematikos problemas, taip pat ir bendras problemas.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Mokyklos Asistento Vaizdas</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Įkelti į AI Mokyklos Asistento Vaizdą</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Patikrinti Sprendimą AI Mokyklos Asistento Vaizdas</string>
+    <string name="ArrowDropDown_icon_content_description">Atidaro submeniu</string>
+    <string name="add_image">Pridėti užduotį</string>
+    <string name="Guidance">Norėdami gauti geriausius rezultatus, pateikite išsamų TEKSTĄ savo užduočiai. Jei pridedate vaizdus, įsitikinkite, kad bet kuris atpažintas tekstas būtų redaguojamas taip, kad atitiktų originalą.</string>
+
+    // Text values
+    <string name="recognized_text_value">Atpažintas tekstas</string>
+    <string name="solution_text_value">Sprendimas</string>
+    <string name="user_task_value">Užduotis</string>
+    <string name="is_ocr_result_included_value">Naudoti pasirinktą atpažintą tekstą</string>
+    <string name="home_loading_waiting_text_value">Kraunama, prašome palaukti...</string>
+    <string name="progress_bar_hint_text_value">Sprendimų generavimo eiga</string>
+
+    // Button Labels
+    <string name="next_button_label">Kitas</string>
+    <string name="solve_button_label">Išspręsti</string>
+    <string name="check_solution_button_label">Patikrinti sprendimą</string>
+    <string name="cheat_sheet_button_label">Špargalkė</string>
+    <string name="start_again">Pradėti iš naujo</string>
+    <string name="try_again">Pabandykite dar kartą</string>
+    <string name="pick_images">Pasirinkti vaizdus</string>
+    <string name="upload_from_url">Įkelti</string>
+    <string name="upload_picture">Įkelti paveikslėlį</string>
+    <string name="take_a_picture">Nufotografuoti</string>
+    <string name="recognize_text_button_label">Rodyti atpažintą tekstą</string>
+
+    // Text Field Labels
+    <string name="tasks">Užduotis</string>
+    <string name="What_to_solve_TextField_label">Ką norite išspręsti?</string>
+    <string name="rating_TextField_label">Įvertinimas</string>
+    <string name="no_solution_chosen">Sprendimas dar nepasirinktas</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Papasakok man apie Pitagoro teoremą.</string>
+    <string name="first_ocr_result_is_not_ready">Tekstas atpažįstamas, prašome palaukti…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Sprendimo kalba</string>
+    <string name="upload_a_file_label">Įkelti failą</string>
+    <string name="explanations_label">Paaiškinimai</string>
+    <string name="grade_label">"Pažymys"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Atrodo, kad ištrynėte kai kuriuos vaizdus iš SchoolKiller programos katalogo saugyklos. Nesijaudinkite, SchoolKiller bandys išvalyti šiuos vaizdus po vieną iš programos talpyklos. Jei reikia, patvirtinkite kiekvieno vaizdo ištrynimą. Bet kuris vaizdas, kuris atrodo tuščias, yra sugadintas. Ar norite tęsti?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nepavyko atpažinti teksto iš paveikslėlio. Prašome bandyti dar kartą.</string>
+    <string name="error_gemini_solution_result_extraction">AI nepavyko išspręsti šios problemos. Prašome bandyti dar kartą.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Oi! Kažkas nutiko. Prašome bandyti dar kartą!</string>
+    <string name="fail_to_load_Uri">Nepavyko įkelti paveikslėlio į sąrašą. Prašome bandyti įkelti jį rankiniu būdu!</string>
+    <string name="corrupted_loaded_file">Įkėlėte sugadintą failą!</string>
+    <string name="camera_fail_to_open">Oi! Kažkas negerai su kamera. Prašome bandyti dar kartą!</string>
+    <string name="upload_image_warning">Prašome įkelti vaizdą iš įrenginio</string>
+    <string name="select_image_or_text_warning">Prašome pasirinkti vaizdą arba įvesti užduotį.</string>
+    <string name="prompt_is_empty">Atpažintas tekstas tuščias. Prašome bandyti dar kartą!</string>
+    <string name="language_not_supported">"Pasirinkta kalba neprieinama medijos generavimui. Kitos funkcijos ir toliau veiks. Ar norėtumėte atsisiųsti reikiamus kalbos duomenis, kad įgalintumėte šią funkciją?"</string>
+
+    // labels
+    <string name="home">Pagrindinis</string>
+    <string name="settings">Nustatymai</string>
+    <string name="results">Rezultatas</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Pasirinkite, kuo dalintis</string>
+    <string name="share_user_task">Dalintis Mano Užduotimi</string>
+    <string name="share_ocr_result">Dalintis Atpažintu Tekstu</string>
+    <string name="share_solution">Dalintis Sprendimu</string>
+    <string name="share_image">Dalintis Vaizdu</string>
+    <string name="share">Dalintis</string>
+
+    // installation
+    <string name="install">Įdiegti</string>
+    <string name="install_language">Įdiegti Kalbą</string>
+
+    <string name="solved_by_schoolkiller">Išspręsta SchoolKiller\nPatikrinkite mūsų programėlę Google Play</string>
+
+</resources>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">Laipni lūdzam IntelliVerse</string>
+    <string name="cheaptrip_info">CheapTrip ir unikāla meklētājprogramma, kas atrod lētākos veidus, kā nokļūt starp pilsētām, apvienojot lidojumus, autobusus, vilcienus un prāmjus.</string>
+    <string name="matterofchoice_info">Matter Of Choice piedāvā interaktīvus scenārijus, kas palīdz apgūt lēmumu pieņemšanas prasmes.</string>
+</resources>

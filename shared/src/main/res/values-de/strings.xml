@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poetisch</item>
+        <item>Professionell</item>
+        <item>Juristisch</item>
+        <item>Technisch</item>
+        <item>Akademisch</item>
+        <item>Journalistisch</item>
+        <item>Kreativ</item>
+        <item>Überzeugend</item>
+        <item>Erzählerisch</item>
+        <item>Beschreibend</item>
+        <item>Expositorisch</item>
+        <item>Humorvoll</item>
+        <item>Informell</item>
+        <item>Geschäftlich</item>
+        <item>Wissenschaftlich</item>
+        <item>Romantisch</item>
+        <item>Historisch</item>
+        <item>Philosophisch</item>
+        <item>Selbsthilfe</item>
+        <item>Reise</item>
+        <item>Marketing</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formal</item>
+        <item>Locker</item>
+        <item>Freundlich</item>
+        <item>Ernst</item>
+        <item>Empathisch</item>
+        <item>Bestimmt</item>
+        <item>Optimistisch</item>
+        <item>Humorvoll</item>
+        <item>Neutral</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimal</item>
+        <item>Moderat</item>
+        <item>Komplett</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Beziehung</item>
+        <item>Arbeitsplatz</item>
+        <item>Bildung</item>
+        <item>Gesundheit</item>
+        <item>Finanzen</item>
+        <item>Reisen</item>
+        <item>Technologie</item>
+        <item>Unterhaltung</item>
+        <item>Selbstverbesserung</item>
+        <item>Allgemein</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Russland: Kollektivistisch</item>
+        <item>Osteuropa: Pragmatisch</item>
+        <item>Westeuropa: Individualistisch</item>
+        <item>Südostasien: Harmonieorientiert</item>
+        <item>China: Hierarchisch</item>
+        <item>Kaukasus: Ehrengebunden</item>
+        <item>Nordamerika: Unternehmerisch</item>
+        <item>Lateinamerika: Leidenschaftlich</item>
+        <item>Naher Osten: Gastfreundschaftsorientiert</item>
+        <item>Afrika: Gemeinschaftlich</item>
+        <item>Nordische Länder: Egalitär</item>
+        <item>Südasien: Familienzentriert</item>
+        <item>Japan: Gruppenharmonie</item>
+        <item>Australien: Entspannt</item>
+        <item>Mittelmeer: Ausdrucksstark</item>
+        <item>Zentralasien: Nomadische Traditionen</item>
+        <item>Deutschland: Strukturiert</item>
+        <item>Balkan: Widerstandsfähig</item>
+        <item>Arktische Ureinwohner: Naturverbunden</item>
+        <item>Jüdisch: Gemeinschaftsorientiert</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharisch</item>
+        <item>Arabisch</item>
+        <item>Bengalisch</item>
+        <item>Bulgarisch</item>
+        <item>Vereinfachtes Chinesisch</item>
+        <item>Kroatisch</item>
+        <item>Tschechisch</item>
+        <item>Dänisch</item>
+        <item>Niederländisch</item>
+        <item>Englisch</item>
+        <item>Estnisch</item>
+        <item>Finnisch</item>
+        <item>Französisch</item>
+        <item>Deutsch</item>
+        <item>Griechisch</item>
+        <item>Gujarati</item>
+        <item>Hebräisch</item>
+        <item>Hindi</item>
+        <item>Ungarisch</item>
+        <item>Indonesisch</item>
+        <item>Italienisch</item>
+        <item>Japanisch</item>
+        <item>Kannada</item>
+        <item>Koreanisch</item>
+        <item>Lettisch</item>
+        <item>Litauisch</item>
+        <item>Malaiisch</item>
+        <item>Marathi</item>
+        <item>Norwegisch</item>
+        <item>Paschtu</item>
+        <item>Persisch</item>
+        <item>Polnisch</item>
+        <item>Portugiesisch</item>
+        <item>Rumänisch</item>
+        <item>Russisch</item>
+        <item>Serbisch</item>
+        <item>Slowakisch</item>
+        <item>Slowenisch</item>
+        <item>Spanisch</item>
+        <item>Suaheli</item>
+        <item>Schwedisch</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thailändisch</item>
+        <item>Türkisch</item>
+        <item>Ukrainisch</item>
+        <item>Urdu</item>
+        <item>Vietnamesisch</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Nicht relevant</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Keine Erklärung</item>
+        <item>Kurze Erklärung</item>
+        <item>Detaillierte Erklärung</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sitzend</item>
+        <item>Leicht aktiv</item>
+        <item>Mäßig aktiv</item>
+        <item>Sehr aktiv</item>
+        <item>Extrem aktiv</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Männlich</item>
+        <item>Weiblich</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Flugzeug</item>
+        <item>Fahrrad</item>
+        <item>Boot</item>
+        <item>Bus</item>
+        <item>Motorrad</item>
+        <item>Eigenes Auto</item>
+        <item>Mietwagen</item>
+        <item>Mitfahrgelegenheit</item>
+        <item>U-Bahn</item>
+        <item>Taxi</item>
+        <item>Zug</item>
+        <item>Tram</item>
+        <item>Zu Fuß</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Essen</item>
+        <item>Geschichte</item>
+        <item>Kultur</item>
+        <item>Natur</item>
+        <item>Entspannung</item>
+        <item>Abenteuer</item>
+        <item>Nachtleben</item>
+        <item>Shopping</item>
+        <item>Familie</item>
+        <item>Romantik</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Ein Foto aufnehmen</item>
+        <item>Ein Bild hochladen</item>
+        <item>Eine Datei hochladen</item>
+        <item>Einen Link bereitstellen</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Entschuldigung, der Dienst ist in Russland und Belarus nicht verfügbar, bitte verwenden Sie VPN</string>
+    <string name="error_service_not_available_title">Dienst ist nicht verfügbar</string>
+    <string name="error_common_title">Fehler</string>
+    <string name="error_common_message">Beim Ausführen der Anwendung ist ein Fehler aufgetreten. Versuchen Sie, die App zu aktualisieren oder versuchen Sie es später erneut</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Hoppla! Es scheint, dass für diese Funktion der Kamerazugriff erforderlich ist. Gehen Sie zu Ihren Geräteeinstellungen, suchen Sie IntelliVerse in Ihrer App-Liste und gewähren Sie die Kameraberechtigung, um die Magie freizuschalten!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Hoppla! Um Bilder aus Ihrer Galerie zu verwenden, benötigt IntelliVerse die Berechtigung, Ihre Fotos zu lesen. Gehen Sie zu Ihren Geräteeinstellungen, suchen Sie IntelliVerse in Ihrer App-Liste und gewähren Sie den Fotozugriff, um die Magie freizuschalten!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Hoppla! Um Dateien auf Ihrem Gerät zu speichern, benötigt IntelliVerse die Berechtigung, in Ihren Speicher zu schreiben. Gehen Sie zu Ihren Geräteeinstellungen, suchen Sie IntelliVerse in Ihrer App-Liste und gewähren Sie den Speicherzugriff, um die Magie freizuschalten!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Hoppla! Um auf Dateien auf Ihrem Gerät zuzugreifen, benötigt IntelliVerse die Berechtigung, Ihren Speicher zu lesen. Gehen Sie zu Ihren Geräteeinstellungen, suchen Sie IntelliVerse in Ihrer App-Liste und gewähren Sie den Speicherzugriff, um die Magie freizuschalten!</string>
+    <string name="camera_permission_rationale">IntelliVerse benötigt Zugriff auf Ihre Kamera, damit Sie sofort Fotos von Ihren Schulaufgaben machen können!</string>
+    <string name="read_media_permission_rationale">Wenn Sie den Zugriff auf Ihre Fotos zulassen, können Sie Bilder aus Ihrer Galerie auswählen, die Sie in der IntelliVerse-App verwenden können!</string>
+    <string name="write_storage_permission_rationale">Die Berechtigung zum Schreiben in Ihren Speicher ermöglicht es der IntelliVerse-App, Dateien wie Fotos, die Sie aufgenommen haben, direkt auf Ihrem Gerät zu speichern!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse benötigt Zugriff auf den Speicher Ihres Geräts, um Dateien wie Fotos oder Dokumente zu lesen, die Sie möglicherweise in der App verwenden möchten.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Ja</string>
+    <string name="No">Nein</string>
+    <string name="are_you_sure">Sind Sie sicher, dass Sie beenden möchten?</string>
+    <string name="exit">Beenden</string>
+
+    <string name="report_content">Inhalt melden</string>
+    <string name="select_reason">Grund auswählen</string>
+    <string name="offensive">Beleidigend</string>
+    <string name="hate_speech">Hassrede</string>
+    <string name="incorrect_info">Falsche Information</string>
+    <string name="other">Sonstiges</string>
+    <string name="submit">Senden</string>
+    <string name="cancel">Abbrechen</string>
+
+    <string name="reset_settings">Einstellungen zurücksetzen</string>
+    <string name="not_relevant">Nicht relevant</string>
+
+</resources>

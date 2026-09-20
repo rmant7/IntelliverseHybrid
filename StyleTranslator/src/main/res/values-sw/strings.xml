@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator hubadilisha maandishi kati ya mitindo na sauti tofauti za uandishi.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Picha ya Msaidizi wa Shule ya AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Pakia Picha kwa Msaidizi wa Shule ya AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Angalia Suluhisho Picha ya Msaidizi wa Shule ya AI</string>
+    <string name="ArrowDropDown_icon_content_description">Hufungua menyu ndogo</string>
+    <string name="add_image">Ongeza kazi</string>
+
+    // Text values
+    <string name="recognized_text_value">Mwandiko uliotambuliwa</string>
+    <string name="solution_text_value">Suluhisho</string>
+    <string name="user_task_value">Kazi</string>
+    <string name="is_ocr_result_included_value">Tumia maandiko yaliyotambuliwa yaliyochaguliwa</string>
+    <string name="home_loading_waiting_text_value">Inapakia, tafadhali subiri...</string>
+    <string name="progress_bar_hint_text_value">Maendeleo ya uzalishaji wa suluhisho</string>
+
+    // Button Labels
+    <string name="next_button_label">Inayofuata</string>
+    <string name="solve_button_label">Tatua</string>
+    <string name="check_solution_button_label">Angalia suluhisho</string>
+    <string name="cheat_sheet_button_label">Karatasi ya udanganyifu</string>
+    <string name="start_again">Anza tena</string>
+    <string name="try_again">Jaribu tena</string>
+    <string name="pick_images">Chagua Picha</string>
+    <string name="upload_from_url">Pakia</string>
+    <string name="upload_picture">Pakia Picha</string>
+    <string name="take_a_picture">Piga Picha</string>
+    <string name="recognize_text_button_label">Onyesha maandiko yaliyotambuliwa</string>
+
+    // Text Field Labels
+    <string name="sentence">Maandishi</string>
+    <string name="What_to_solve_TextField_label">Unataka kutatua nini?</string>
+    <string name="rating_TextField_label">Ukadiriaji</string>
+    <string name="no_solution_chosen">Suluhisho halijachaguliwa bado</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Ninapenda kumtunza mpenzi wangu. Siku zote nahakikisha anahisi salama na kulindwa. Ninapenda kupanga miadi yetu na kumshangaza na zawadi ndogo ndogo. Anapokasirika, ninajaribu kutafuta suluhisho na kurekebisha mambo kwa ajili yake.</string>
+    <string name="first_ocr_result_is_not_ready">Maandishi yanatambuliwa, tafadhali subiri...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Lugha ya suluhisho</string>
+    <string name="upload_a_file_label">Pakia faili</string>
+    <string name="explanations_label">Maelezo</string>
+    <string name="source_gender_label">Jinsia ya Chanzo</string>
+    <string name="target_gender_label">Jinsia Lengo</string>
+    <string name="source_age_label">Umri wa Chanzo</string>
+    <string name="target_age_label">Umri Lengo</string>
+    <string name="category_label">Kategoria</string>
+    <string name="tone_label">Mapendeleo ya Sauti</string>
+    <string name="transformation_level_label">Kiwango cha Mabadiliko</string>
+    <string name="style_label">Mtindo wa Tafsiri</string>
+    <string name="mentality_label">Akili</string>
+    <string name="translation_scale_label">Kiwango cha Tafsiri</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Inaonekana ume futa picha zingine kutoka kwenye hifadhi ya saraka ya programu ya kalori. Usijali, kalori itajaribu kufuta picha hizi moja kwa moja kutoka kwa akiba ya programu. Tafadhali thibitisha kila kufutwa kwa picha, ikiwa inahitajika. Picha yoyote ambayo inaonekana tupu imeharibiwa. Je, unataka kuendelea?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI haikuweza kutambua maandishi kutoka kwenye picha. Tafadhali, jaribu tena.</string>
+    <string name="error_gemini_solution_result_extraction">AI haikuweza kutatua tatizo hili. Tafadhali, jaribu tena.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Lo! Kuna kitu kimeenda vibaya. Tafadhali jaribu tena!</string>
+    <string name="fail_to_load_Uri">Imeshindwa kupakia picha kwenye orodha. Tafadhali jaribu kuipakia wewe mwenyewe!</string>
+    <string name="corrupted_loaded_file">Ume pakia faili iliyoharibiwa!</string>
+    <string name="missing_required_settings">Baadhi ya mipangilio inayohitajika haipo. Tafadhali zijaze.</string>
+    <string name="camera_fail_to_open">Lo! Kuna kitu kimeenda vibaya na kamera. Tafadhali jaribu tena!</string>
+    <string name="upload_image_warning">Tafadhali pakia picha kutoka kwenye kifaa</string>
+    <string name="select_image_or_text_warning">Tafadhali chagua picha au andika kazi.</string>
+    <string name="prompt_is_empty">Maandishi yaliyotambuliwa hayapo. Tafadhali jaribu tena!</string>
+    <string name="language_not_supported">"Lugha iliyochaguliwa haipatikani kwa ajili ya utengenezaji wa vyombo vya habari. Vipengele vingine vitaendelea kufanya kazi. Je, ungependa kupakua data muhimu ya lugha ili kuwezesha kipengele hiki?"</string>
+
+    // labels
+    <string name="home">Nyumbani</string>
+    <string name="settings">Mipangilio</string>
+    <string name="results">Matokeo</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Chagua nini cha kushiriki</string>
+    <string name="share_user_translation">Shiriki Maandishi Yangu</string>
+    <string name="share_ocr_result">Shiriki Maandishi Yaliyotambuliwa</string>
+    <string name="share_solution">Shiriki Suluhisho</string>
+    <string name="share_image">Shiriki Picha</string>
+    <string name="share">Shiriki</string>
+
+    // installation
+    <string name="install">Sakinisha</string>
+    <string name="install_language">Sakinisha Lugha</string>
+
+    <string name="solved_by_style_translator">Imetatuliwa na StyleTranslator\nAngalia programu yetu kwenye Google Play</string>
+
+</resources>

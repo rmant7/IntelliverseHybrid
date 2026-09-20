@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip is your smart travel planner powered by AI. Just describe your dream trip or upload inspiration, and instantly receive a personalized, day-by-day itinerary with transport options, hotel links, budget estimates, and local tips — all in one click.</string>
+
+    // Text values
+    <string name="recognized_text_value">Recognized text</string>
+    <string name="solution_text_value">Solution</string>
+    <string name="user_task_value">Task</string>
+    <string name="progress_bar_hint_text_value">Solutions generation progress</string>
+
+    // Text Field Labels
+    <string name="sentence">Text</string>
+    <string name="no_solution_chosen">Solution is not selected yet</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">I want a 3-day relaxing and cultural trip with historical sites, local food, light walking, and a mix of guided and self-paced activities in one city or nearby.</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Solution language</string>
+    <string name="max_budget_label">Max budget</string>
+    <string name="travelers_number_label">Number of travelers</string>
+    <string name="trip_duration_label">Trip duration</string>
+    <string name="transportation_type_label">Transportation method</string>
+    <string name="trip_style_label">Trip style</string>
+    <string name="origin_location_label">Origin location</string>
+    <string name="trip_type_label">Trip type</string>
+    <string name="one_way_trip">One-way trip</string>
+    <string name="round_trip">Round trip</string>
+    <string name="days">days</string>
+    <string name="new_york">New York</string>
+
+    <string name="enter_transportation_type">Enter transportation type</string>
+    <string name="enter_location">Enter location</string>
+    <string name="add">Add</string>
+    <string name="travel_path">Travel Path</string>
+
+    // Errors
+    <string name="error_gemini_solution_result_extraction">AI wasn\'t able to solve this problem. Please, try again.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Whoops! Something went wrong. Please try again!</string>
+    <string name="fail_to_load_Uri">Failed to load the image to the list. Please try to load it manual!</string>
+    <string name="corrupted_loaded_file">You have loaded a corrupted file!</string>
+    <string name="missing_required_settings">Some required settings are missing. Please fill them in.</string>
+    <string name="camera_fail_to_open">Whoops! Something went wrong with the camera. Please try again!</string>
+    <string name="select_image_or_text_warning">Please select an image or type task.</string>
+    <string name="language_not_supported">"The selected language is not available for media generation. Other features will continue to work. Would you like to download the necessary language data to enable this feature?"</string>
+
+    // labels
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="results">Result</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Choose what to share</string>
+    <string name="share_user_translation">Share My Text</string>
+    <string name="share_ocr_result">Share Recognized Text</string>
+    <string name="share_solution">Share Solution</string>
+    <string name="share_image">Share Image</string>
+    <string name="share">Share</string>
+
+    // installation
+    <string name="install">Install</string>
+    <string name="install_language">Install Language</string>
+
+    <string name="solved_by_oneclicktrip">Solved by OneClickTrip\nCheck out our app on Google Play</string>
+
+
+</resources>

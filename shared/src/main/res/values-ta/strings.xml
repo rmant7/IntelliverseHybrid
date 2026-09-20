@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>கவிதைநயம்</item>
+        <item>தொழில்முறை</item>
+        <item>சட்டரீதியான</item>
+        <item>தொழில்நுட்ப</item>
+        <item>கல்விசார்</item>
+        <item>பத்திரிகை</item>
+        <item>கிரியேட்டிவ்</item>
+        <item>வற்புறுத்தும்</item>
+        <item>விவரிப்பு</item>
+        <item>விளக்கமான</item>
+        <item>விளக்க</item>
+        <item>நகைச்சுவையான</item>
+        <item>அதிகாரப்பூர்வமற்ற</item>
+        <item>வணிக</item>
+        <item>அறிவியல்</item>
+        <item>காதல்</item>
+        <item>வரலாற்று</item>
+        <item>தத்துவ</item>
+        <item>சுய உதவி</item>
+        <item>பயணம்</item>
+        <item>சந்தைப்படுத்தல்</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>முறைப்படி</item>
+        <item>சாதாரணமாக</item>
+        <item>நட்பு</item>
+        <item>தீவிரமான</item>
+        <item>பச்சாதாபம்</item>
+        <item>உறுதியான</item>
+        <item>நம்பிக்கையான</item>
+        <item>நகைச்சுவையான</item>
+        <item>நடுநிலை</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>குறைந்தபட்ச</item>
+        <item>மிதமான</item>
+        <item>முழுமையான</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>உறவு</item>
+        <item>வேலை இடம்</item>
+        <item>கல்வி</item>
+        <item>ஆரோக்கியம்</item>
+        <item>நிதி</item>
+        <item>பயணம்</item>
+        <item>தொழில்நுட்பம்</item>
+        <item>பொழுதுபோக்கு</item>
+        <item>சுய முன்னேற்றம்</item>
+        <item>பொது</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>ரஷ்யா: கூட்டு மனப்பான்மை</item>
+        <item>கிழக்கு ஐரோப்பா: நடைமுறை</item>
+        <item>மேற்கு ஐரோப்பா: தனிநபர்</item>
+        <item>தென்கிழக்கு ஆசியா: நல்லிணக்கத்தை மையமாகக் கொண்டது</item>
+        <item>சீனா: படிநிலை</item>
+        <item>காகசஸ்: கெளரவத்துக்குக் கட்டுப்பட்ட</item>
+        <item>வட அமெரிக்கா: தொழில்முனைவோர்</item>
+        <item>லத்தீன் அமெரிக்கா: உணர்ச்சிவசப்பட்ட</item>
+        <item>மத்திய கிழக்கு: விருந்தோம்பல் சார்ந்த</item>
+        <item>ஆப்பிரிக்கா: சமூக</item>
+        <item>நோர்டிக் நாடுகள்: சமத்துவம்</item>
+        <item>தெற்காசியா: குடும்பத்தை மையமாகக் கொண்டது</item>
+        <item>ஜப்பான்: குழு நல்லிணக்கம்</item>
+        <item>ஆஸ்திரேலியா: நிதானமான</item>
+        <item>மத்திய தரைக்கடல்: வெளிப்படையான</item>
+        <item>மத்திய ஆசியா: நாடோடி மரபுகள்</item>
+        <item>ஜெர்மனி: கட்டமைக்கப்பட்ட</item>
+        <item>பால்கன்ஸ்: மீண்டெழும்</item>
+        <item>ஆர்க்டிக் பழங்குடி: இயற்கை தொடர்பு</item>
+        <item>யூத: சமூகம் சார்ந்த</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>அம்ஹாரிக்</item>
+        <item>அரபு</item>
+        <item>பெங்காலி</item>
+        <item>பல்கேரியன்</item>
+        <item>சீன எளிமைப்படுத்தப்பட்டது</item>
+        <item>குரோஷியன்</item>
+        <item>செக்</item>
+        <item>டேனிஷ்</item>
+        <item>டச்சு</item>
+        <item>ஆங்கிலம்</item>
+        <item>எஸ்டோனியன்</item>
+        <item>பின்னிஷ்</item>
+        <item>பிரஞ்சு</item>
+        <item>ஜெர்மன்</item>
+        <item>கிரேக்கம்</item>
+        <item>குஜராத்தி</item>
+        <item>ஹீப்ரு</item>
+        <item>ஹிந்தி</item>
+        <item>ஹங்கேரிய</item>
+        <item>இந்தோனேசிய</item>
+        <item>இத்தாலியன்</item>
+        <item>ஜப்பானிய</item>
+        <item>கன்னடம்</item>
+        <item>கொரிய</item>
+        <item>லாட்வியன்</item>
+        <item>லிதுவேனியன்</item>
+        <item>மலாய்</item>
+        <item>மராத்தி</item>
+        <item>நார்வேஜியன்</item>
+        <item>பாஷ்டோ</item>
+        <item>பாரசீக</item>
+        <item>போலிஷ்</item>
+        <item>போர்த்துகீசியம்</item>
+        <item>ரோமானிய</item>
+        <item>ரஷியன்</item>
+        <item>செர்பியன்</item>
+        <item>ஸ்லோவாக்</item>
+        <item>ஸ்லோவேனியன்</item>
+        <item>ஸ்பானிஷ்</item>
+        <item>சுவாஹிலி</item>
+        <item>ஸ்வீடிஷ்</item>
+        <item>Tagalog</item>
+        <item>தமிழ்</item>
+        <item>தெலுங்கு</item>
+        <item>தாய்</item>
+        <item>துருக்கி</item>
+        <item>உக்ரைனியன்</item>
+        <item>உருது</item>
+        <item>வியட்நாமிய</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>தொடர்புடையதல்ல</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>விளக்கம் இல்லை</item>
+        <item>சுருக்கமான விளக்கம்</item>
+        <item>விரிவான விளக்கம்</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>அசையாமல் இருப்பது</item>
+        <item>லேசான சுறுசுறுப்பு</item>
+        <item>மிதமான சுறுசுறுப்பு</item>
+        <item>மிகவும் சுறுசுறுப்பு</item>
+        <item>அதிகப்படியான சுறுசுறுப்பு</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>ஆண்</item>
+        <item>பெண்</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>விமானம்</item>
+        <item>மிதிவண்டி</item>
+        <item>படகு</item>
+        <item>பஸ்</item>
+        <item>மோட்டார் சைக்கிள்</item>
+        <item>சொந்த கார்</item>
+        <item>வாடகை கார்</item>
+        <item>பயண பகிர்வு</item>
+        <item>உள்ளூர் ரயில்</item>
+        <item>டாக்ஸி</item>
+        <item>ரயில்</item>
+        <item>டிராம்</item>
+        <item>நடத்தல்</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>உணவு</item>
+        <item>வரலாறு</item>
+        <item>கலாசாரம்</item>
+        <item>இயற்கை</item>
+        <item>இரவுச்சங்கம்</item>
+        <item>சாகசம்</item>
+        <item>இரவு வாழ்க்கை</item>
+        <item>ஷாப்பிங்</item>
+        <item>குடும்பம்</item>
+        <item>காதல்</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>புகைப்படம் எடுக்கவும்</item>
+        <item>படத்தை பதிவேற்றவும்</item>
+        <item>கோப்பை பதிவேற்றவும்</item>
+        <item>இணைப்பை வழங்கவும்</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">மன்னிக்கவும், இந்த சேவை ரஷ்யா மற்றும் பெலாரஸில் கிடைக்கவில்லை, vpn ஐப் பயன்படுத்தவும்</string>
+    <string name="error_service_not_available_title">சேவை கிடைக்கவில்லை</string>
+    <string name="error_common_title">பிழை</string>
+    <string name="error_common_message">பயன்பாடு இயங்கும் போது பிழை ஏற்பட்டது. பயன்பாட்டைப் புதுப்பிக்க முயற்சிக்கவும் அல்லது பின்னர் மீண்டும் முயற்சிக்கவும்</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">ஓ! இந்த அம்சத்திற்கு கேமரா அணுகல் தேவைப்படுகிறது போல் தெரிகிறது. உங்கள் சாதன அமைவுகளுக்குச் சென்று, உங்கள் பயன்பாட்டு பட்டியலில் IntelliVerse ஐக் கண்டுபிடித்து, மேஜிக்கைத் திறக்க கேமரா அனுமதியை வழங்கவும்!</string>
+    <string name="permanent_denied_read_media_permission_explanation">ஓ! உங்கள் கேலரியில் இருந்து படங்களைப் பயன்படுத்த, IntelliVerse க்கு உங்கள் புகைப்படங்களைப் படிக்க அனுமதி தேவை. உங்கள் சாதன அமைப்புகளுக்குச் சென்று, உங்கள் பயன்பாட்டு பட்டியலில் IntelliVerse ஐக் கண்டுபிடித்து, மேஜிக்கைத் திறக்க புகைப்பட அணுகலை வழங்கவும்!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">ஓ! உங்கள் சாதனத்தில் கோப்புகளைச் சேமிக்க, IntelliVerse உங்கள் சேமிப்பகத்தில் எழுத அனுமதி தேவை. உங்கள் சாதன அமைப்புகளுக்குச் சென்று, உங்கள் பயன்பாட்டு பட்டியலில் IntelliVerse ஐக் கண்டுபிடித்து, மேஜிக்கைத் திறக்க சேமிப்பக அணுகலை வழங்கவும்!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">ஓ! உங்கள் சாதனத்தில் உள்ள கோப்புகளை அணுக, IntelliVerse க்கு உங்கள் சேமிப்பகத்தைப் படிக்க அனுமதி தேவை. உங்கள் சாதன அமைப்புகளுக்குச் சென்று, உங்கள் பயன்பாட்டு பட்டியலில் IntelliVerse ஐக் கண்டுபிடித்து, மேஜிக்கைத் திறக்க சேமிப்பக அணுகலை வழங்கவும்!</string>
+    <string name="camera_permission_rationale">உங்கள் பள்ளி பயிற்சிகளின் புகைப்படங்களை உடனடியாக எடுக்க IntelliVerse உங்கள் கேமராவை அணுக வேண்டும்!</string>
+    <string name="read_media_permission_rationale">உங்கள் புகைப்படங்களுக்கான அணுகலை அனுமதிப்பது IntelliVerse பயன்பாட்டில் பயன்படுத்த உங்கள் கேலரியில் இருந்து படங்களைத் தேர்ந்தெடுக்க உதவுகிறது!</string>
+    <string name="write_storage_permission_rationale">உங்கள் சேமிப்பகத்தில் எழுதுவதற்கான அனுமதி IntelliVerse பயன்பாடு நீங்கள் எடுத்த புகைப்படங்கள் போன்ற கோப்புகளை உங்கள் சாதனத்தில் சேமிக்க அனுமதிக்கிறது!</string>
+    <string name="read_storage_permission_rationale">பயன்பாட்டில் நீங்கள் பயன்படுத்த விரும்பும் புகைப்படங்கள் அல்லது ஆவணங்கள் போன்ற கோப்புகளைப் படிக்க, IntelliVerse உங்கள் சாதனத்தின் சேமிப்பகத்தை அணுக வேண்டும்.</string>
+
+    // Buttons Labels
+    <string name="Ok">சரி</string>
+
+    <string name="Yes">ஆம்</string>
+    <string name="No">இல்லை</string>
+    <string name="are_you_sure">நீங்கள் வெளியேற விரும்புகிறீர்கள் என்பதில் உறுதியாக இருக்கிறீர்களா?</string>
+    <string name="exit">வெளியேறு</string>
+
+    <string name="report_content">உள்ளடக்கத்தைப் புகாரளிக்கவும்</string>
+    <string name="select_reason">காரணத்தைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="offensive">அருவருப்பானது</string>
+    <string name="hate_speech">வெறுப்பு பேச்சு</string>
+    <string name="incorrect_info">தவறான தகவல்</string>
+    <string name="other">மற்றவை</string>
+    <string name="submit">சமர்ப்பிக்கவும்</string>
+    <string name="cancel">ரத்து செய்</string>
+
+    <string name="reset_settings">அமைப்புகளை மீட்டமை</string>
+    <string name="not_relevant">தொடர்புடையதல்ல</string>
+
+</resources>

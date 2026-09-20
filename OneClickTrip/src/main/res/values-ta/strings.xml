@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip உங்கள் செயற்கை நுண்ணறிவால் இயக்கப்படும் புத்திசாலி பயண திட்டமிடுபவர் ஆகும். உங்கள் கனவுப் பயணத்தை விளக்கவும் அல்லது உள்ளீடு செய்யவும், உடனடியாக போக்குவரத்து விருப்பங்கள், ஹோட்டல் இணைப்புகள், பட்ஜெட் மதிப்பீடுகள் மற்றும் உள்ளூர் ஆலோசனைகளுடன் தனிப்பயனாக்கப்பட்ட நாள் தினச் சுற்றுலா திட்டத்தைப் பெறுங்கள் — இவை அனைத்தும் ஒரு கிளிக்கில்.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">அறிந்த உரை</string>
+    <string name="solution_text_value">தீர்வு</string>
+    <string name="user_task_value">பணி</string>
+    <string name="progress_bar_hint_text_value">தீர்வு உருவாக்க முன்னேற்றம்</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">உரை</string>
+    <string name="no_solution_chosen">இன்னும் தீர்வு தேர்ந்தெடுக்கப்படவில்லை</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        வரலாற்றுச் சிதைவுகள், உள்ளூர் உணவுகள், சிறிய நடைபயணங்கள் மற்றும் வழிகாட்டியுடன் கூடிய மற்றும் சுயாதீன நடவடிக்கைகளின் கலவையுடன் ஒரு நகரத்தில் அல்லது அருகில் அமைந்த ஒரு மூன்று நாள் ஓய்வு மற்றும் பண்பாட்டு பயணத்தை விரும்புகிறேன்.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">தீர்வின் மொழி</string>
+    <string name="max_budget_label">அதிகபட்ச பட்ஜெட்</string>
+    <string name="travelers_number_label">பயணிகளின் எண்ணிக்கை</string>
+    <string name="trip_duration_label">பயணத்தின் கால அளவு</string>
+    <string name="transportation_type_label">பயண வகை</string>
+    <string name="trip_style_label">பயண பாணி</string>
+    <string name="origin_location_label">தொடக்க இடம்</string>
+    <string name="trip_type_label">பயண வகை</string>
+    <string name="one_way_trip">ஒரு வழிப்பயணம்</string>
+    <string name="round_trip">முழு சுற்றுப்பயணம்</string>
+    <string name="days">நாட்கள்</string>
+    <string name="new_york">நியூயார்க்</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">பயண வகையை உள்ளிடுங்கள்</string>
+    <string name="enter_location">இடத்தை உள்ளிடுங்கள்</string>
+    <string name="add">சேர்</string>
+    <string name="travel_path">பயண பாதை</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI இந்த பிரச்சினையைத் தீர்க்க முடியவில்லை. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">ஓ! ஏதோ தவறு நடந்துவிட்டது. மீண்டும் முயற்சிக்கவும்!</string>
+    <string name="fail_to_load_Uri">படத்தை பட்டியலில் ஏற்ற முடியவில்லை. கைமுறையாக முயற்சிக்கவும்!</string>
+    <string name="corrupted_loaded_file">நீங்கள் ஒரு சேதமான கோப்பை ஏற்றியுள்ளீர்கள்!</string>
+    <string name="missing_required_settings">சில அவசியமான அமைப்புகள் இல்லை. தயவுசெய்து அவற்றை நிரப்பவும்.</string>
+    <string name="camera_fail_to_open">ஓ! கேமராவைத் திறக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்!</string>
+    <string name="select_image_or_text_warning">படத்தைத் தேர்வுசெய்க அல்லது பணி ஒன்றை உள்ளிடுக.</string>
+    <string name="language_not_supported">
+        தேர்ந்தெடுத்த மொழி ஊடக உருவாக்கத்திற்கு கிடைக்கவில்லை. பிற அம்சங்கள் தொடரும். தேவையான மொழித் தரவுகளை பதிவிறக்க விரும்புகிறீர்களா?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">முகப்பு</string>
+    <string name="settings">அமைப்புகள்</string>
+    <string name="results">முடிவு</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">பகிர விரும்பும் உருப்படியை தேர்வு செய்யுங்கள்</string>
+    <string name="share_user_translation">எனது உரையை பகிரவும்</string>
+    <string name="share_ocr_result">அறிந்த உரையை பகிரவும்</string>
+    <string name="share_solution">தீர்வை பகிரவும்</string>
+    <string name="share_image">படத்தை பகிரவும்</string>
+    <string name="share">பகிரவும்</string>
+
+    <!-- Installation -->
+    <string name="install">நிறுவுக</string>
+    <string name="install_language">மொழியை நிறுவவும்</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">OneClickTrip மூலம் தீர்க்கப்பட்டது\nஎங்கள் பயன்பாட்டை Google Play இல் பார்வையிடுங்கள்</string>
+</resources>

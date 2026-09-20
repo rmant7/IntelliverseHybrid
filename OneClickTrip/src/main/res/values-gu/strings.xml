@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip એ તમારા સ્માર્ટ ટ્રાવેલ પ્લાનર છે જે AI દ્વારા સંચાલિત છે. તમારા સપનાનું પ્રવાસ વર્ણવો અથવા પ્રેરણા અપલોડ કરો અને તરત જ ટ્રાન્સપોર્ટ વિકલ્પો, હોટેલ લિંક્સ, બજેટ અંદાજો અને સ્થાનિક સૂચનો સાથે વ્યક્તિગત, દિનપ્રતિદિનની આયોજન પ્રાપ્ત કરો — બસ એક ક્લિકમાં.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">ઓળખાયેલ લખાણ</string>
+    <string name="solution_text_value">ઉકેલ</string>
+    <string name="user_task_value">કાર્ય</string>
+    <string name="progress_bar_hint_text_value">ઉકેલો બનાવવા માટેની પ્રગતિ</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">લખાણ</string>
+    <string name="no_solution_chosen">હજી સુધી કોઈ ઉકેલ પસંદ કરાયેલ નથી</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        હું ઇતિહાસિક સ્થળો, સ્થાનિક ખોરાક, હળવી ચાલ અને માર્ગદર્શનવાળી અને સ્વતંત્ર પ્રવૃત્તિઓ સાથે 3 દિવસની આરામદાયક અને સાંસ્કૃતિક યાત્રા કરવા માંગું છું એક શહેર અથવા નજીકમાં.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">ઉકેલ ભાષા</string>
+    <string name="max_budget_label">મહત્તમ બજેટ</string>
+    <string name="travelers_number_label">મુસાફરોની સંખ્યા</string>
+    <string name="trip_duration_label">મુલાકાત સમયગાળો</string>
+    <string name="transportation_type_label">પરિવહન પ્રકાર</string>
+    <string name="trip_style_label">મુલાકાત શૈલી</string>
+    <string name="origin_location_label">પ્રસ્થાન સ્થળ</string>
+    <string name="trip_type_label">મૂળભૂત પ્રવાસ પ્રકાર</string>
+    <string name="one_way_trip">એક તરફનું પ્રવાસ</string>
+    <string name="round_trip">ફેરફાર યાત્રા</string>
+    <string name="days">દિવસો</string>
+    <string name="new_york">ન્યૂયોર્ક</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">પરિવહન પ્રકાર દાખલ કરો</string>
+    <string name="enter_location">સ્થળ દાખલ કરો</string>
+    <string name="add">ઉમેરો</string>
+    <string name="travel_path">મુલાકાત માર્ગ</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        એઆઈ સમસ્યાનું ઉકેલ લાવી શક્યું નહીં. કૃપા કરીને ફરી પ્રયાસ કરો.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">અરે! કંઈક ખોટું થયું. ફરીથી પ્રયાસ કરો!</string>
+    <string name="fail_to_load_Uri">યાદી પર છબી લોડ કરવામાં નિષ્ફળ. કૃપા કરીને મેન્યુઅલી લોડ કરો!</string>
+    <string name="corrupted_loaded_file">તમે બગડેલ ફાઇલ લોડ કરી છે!</string>
+    <string name="missing_required_settings">કેટલાક જરૂરી સેટિંગ્સ ગાયબ છે. કૃપા કરીને તેને પૂરાં કરો.</string>
+    <string name="camera_fail_to_open">અરે! કેમેરા ખોલવામાં સમસ્યા. ફરીથી પ્રયત્ન કરો!</string>
+    <string name="select_image_or_text_warning">મહેરબાની કરીને છબી પસંદ કરો અથવા કાર્ય લખો.</string>
+    <string name="language_not_supported">
+        પસંદ કરેલ ભાષા મીડિયા જનરેશન માટે ઉપલબ્ધ નથી. અન્ય સુવિધાઓ ચાલુ રહેશે. શું તમે જરૂરી ભાષા ડેટા ડાઉનલોડ કરવા માંગો છો?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">ઘર</string>
+    <string name="settings">સેટિંગ્સ</string>
+    <string name="results">પરિણામ</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">શા માટે શેર કરવું તે પસંદ કરો</string>
+    <string name="share_user_translation">મારું લખાણ શેર કરો</string>
+    <string name="share_ocr_result">ઓળખાયેલ લખાણ શેર કરો</string>
+    <string name="share_solution">ઉકેલ શેર કરો</string>
+    <string name="share_image">છબી શેર કરો</string>
+    <string name="share">શેર કરો</string>
+
+    <!-- Installation -->
+    <string name="install">ઇન્સ્ટોલ કરો</string>
+    <string name="install_language">ભાષા ઇન્સ્ટોલ કરો</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">OneClickTrip દ્વારા ઉકેલાયું\nGoogle Play પર અમારું એપ જુઓ</string>
+</resources>

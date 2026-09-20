@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poeetiline</item>
+        <item>Professionaalne</item>
+        <item>Juriidiline</item>
+        <item>Tehniline</item>
+        <item>Akadeemiline</item>
+        <item>Loov</item>
+        <item>Ajakirjanduslik</item>
+        <item>Veenmisrikas</item>
+        <item>Jutustav</item>
+        <item>Kirjeldav</item>
+        <item>Selgitav</item>
+        <item>Huumorikas</item>
+        <item>Mitteametlik</item>
+        <item>Äri</item>
+        <item>Teaduslik</item>
+        <item>Romantiline</item>
+        <item>Ajalooline</item>
+        <item>Filosoofiline</item>
+        <item>Eneseabi</item>
+        <item>Reisi</item>
+        <item>Turundus</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formaalne</item>
+        <item>Vaba</item>
+        <item>Sõbralik</item>
+        <item>Tõsine</item>
+        <item>Empaatiline</item>
+        <item>Enesekindel</item>
+        <item>Optimistlik</item>
+        <item>Huumorikas</item>
+        <item>Neutraalne</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimaalne</item>
+        <item>Mõõdukas</item>
+        <item>Täielik</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Suhted</item>
+        <item>Töökoht</item>
+        <item>Haridus</item>
+        <item>Tervis</item>
+        <item>Rahandus</item>
+        <item>Reisimine</item>
+        <item>Tehnoloogia</item>
+        <item>Meelelahutus</item>
+        <item>Eneseareng</item>
+        <item>Üldine</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Venemaa: Kollektivistlik</item>
+        <item>Ida-Euroopa: Pragmaatiline</item>
+        <item>Lääne-Euroopa: Individualistlik</item>
+        <item>Kagu-Aasia: Harmooniale keskendunud</item>
+        <item>Hiina: Hierarhiline</item>
+        <item>Kaukaasia: Aule truu</item>
+        <item>Põhja-Ameerika: Ettevõtlik</item>
+        <item>Ladina-Ameerika: Kirglik</item>
+        <item>Lähis-Ida: Külalislahkusest juhitud</item>
+        <item>Aafrika: Kogukondlik</item>
+        <item>Põhjamaad: Võrdõiguslik</item>
+        <item>Lõuna-Aasia: Perekonna-keskne</item>
+        <item>Jaapan: Grupi harmoonia</item>
+        <item>Austraalia: Mõnus</item>
+        <item>Vahemeri: Väljendusrikas</item>
+        <item>Kesk-Aasia: Nomadic traditions</item>
+        <item>Saksamaa: Struktureeritud</item>
+        <item>Balkan: Vastupidav</item>
+        <item>Arktika põlisrahvad: Loodusega seotud</item>
+        <item>Juudi: Kogukonnale orienteeritud</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amhara keel</item>
+        <item>Araabia</item>
+        <item>Bengali</item>
+        <item>Bulgaaria</item>
+        <item>Lihtsustatud hiina</item>
+        <item>Horvaatia</item>
+        <item>Tšehhi</item>
+        <item>Taani</item>
+        <item>Hollandi</item>
+        <item>Inglise</item>
+        <item>Eesti</item>
+        <item>Soome</item>
+        <item>Prantsuse</item>
+        <item>Saksa</item>
+        <item>Kreeka</item>
+        <item>Gudžarati</item>
+        <item>Heebrea</item>
+        <item>Hindi</item>
+        <item>Ungari</item>
+        <item>Indoneesia</item>
+        <item>Itaalia</item>
+        <item>Jaapani</item>
+        <item>Kannada</item>
+        <item>Korea</item>
+        <item>Läti</item>
+        <item>Leedu</item>
+        <item>Malai</item>
+        <item>Marathi</item>
+        <item>Norra</item>
+        <item>Puštu</item>
+        <item>Pärsia</item>
+        <item>Poola</item>
+        <item>Portugali</item>
+        <item>Rumeenia</item>
+        <item>Vene</item>
+        <item>Serbia</item>
+        <item>Slovaki</item>
+        <item>Sloveenia</item>
+        <item>Hispaania</item>
+        <item>Suahiili</item>
+        <item>Rootsi</item>
+        <item>Tagalogi</item>
+        <item>Tamili</item>
+        <item>Telugu</item>
+        <item>Tai</item>
+        <item>Türgi</item>
+        <item>Ukraina</item>
+        <item>Urdu</item>
+        <item>Vietnami</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Pole oluline</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Selgitus puudub</item>
+        <item>Lühike selgitus</item>
+        <item>Põhjalik selgitus</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Istuv</item>
+        <item>Vähe aktiivne</item>
+        <item>Mõõdukalt aktiivne</item>
+        <item>Väga aktiivne</item>
+        <item>Äärmiselt aktiivne</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Mees</item>
+        <item>Naine</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Lennuk</item>
+        <item>Jalgratas</item>
+        <item>Paat</item>
+        <item>Buss</item>
+        <item>Motorratas</item>
+        <item>Rendiauto</item>
+        <item>Isiklik auto</item>
+        <item>Sõidujagamine</item>
+        <item>Metroo</item>
+        <item>Taksod</item>
+        <item>Rong</item>
+        <item>Tramm</item>
+        <item>Jalgsi liikumine</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Toit</item>
+        <item>Ajalugu</item>
+        <item>Kultuur</item>
+        <item>Loodus</item>
+        <item>Lõõgastus</item>
+        <item>Seiklus</item>
+        <item>Ööelu</item>
+        <item>Ostlemine</item>
+        <item>Pere</item>
+        <item>Romantika</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Tee pilt</item>
+        <item>Laadi pilt üles</item>
+        <item>Laadi fail üles</item>
+        <item>Sisesta link</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Vabandust, teenus pole Venemaal ja Valgevenes saadaval, palun kasutage VPN-i</string>
+    <string name="error_service_not_available_title">Teenus pole saadaval</string>
+    <string name="error_common_title">Viga</string>
+    <string name="error_common_message">Rakenduse käivitamise ajal tekkis viga. Proovige rakendust värskendada või proovige hiljem uuesti</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Oih! Tundub, et selle funktsiooni jaoks on vaja juurdepääsu kaamerale. Minge oma seadme seadetesse, leidke rakenduste loendist IntelliVerse ja andke kaamera luba, et maagia vallandada!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Oih! Galeriist piltide kasutamiseks vajab IntelliVerse luba teie fotode lugemiseks. Minge oma seadme seadetesse, leidke rakenduste loendist IntelliVerse ja andke fotodele juurdepääs, et maagia vallandada!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Oih! Failide seadmesse salvestamiseks vajab IntelliVerse luba teie salvestusruumi kirjutamiseks. Minge oma seadme seadetesse, leidke rakenduste loendist IntelliVerse ja andke salvestusruumile juurdepääs, et maagia vallandada!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Oih! Seadmes olevatele failidele juurdepääsemiseks vajab IntelliVerse luba teie salvestusruumi lugemiseks. Minge oma seadme seadetesse, leidke rakenduste loendist IntelliVerse ja andke salvestusruumile juurdepääs, et maagia vallandada!</string>
+    <string name="camera_permission_rationale">IntelliVerse vajab juurdepääsu teie kaamerale, et saaksite kohe pildistada oma kooliülesannetest!</string>
+    <string name="read_media_permission_rationale">Fotodele juurdepääsu lubamine võimaldab teil IntelliVerse\'i rakenduses kasutamiseks galeriist pilte valida!</string>
+    <string name="write_storage_permission_rationale">Luba teie salvestusruumi kirjutamiseks võimaldab IntelliVerse\'i rakendusel salvestada faile, näiteks teie tehtud fotosid, otse teie seadmesse!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse vajab juurdepääsu teie seadme salvestusruumile, et lugeda faile, näiteks fotosid või dokumente, mida soovite rakenduses kasutada.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Jah</string>
+    <string name="No">Ei</string>
+    <string name="are_you_sure">Oled sa kindel, et soovid väljuda</string>
+    <string name="exit">Välju</string>
+
+    <string name="report_content">Teata sisust</string>
+    <string name="select_reason">Vali põhjus</string>
+    <string name="offensive">Solvav</string>
+    <string name="hate_speech">Vaenukõne</string>
+    <string name="incorrect_info">Vale info</string>
+    <string name="other">Muu</string>
+    <string name="submit">Saada</string>
+    <string name="cancel">Tühista</string>
+
+    <string name="reset_settings">Lähtesta seaded</string>
+    <string name="not_relevant">Pole asjakohane</string>
+
+</resources>

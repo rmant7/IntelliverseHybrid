@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">انٹیلی ورس میں خوش آمدید</string>
+    <string name="cheaptrip_info">چیپ ٹرپ ایک منفرد سرچ انجن ہے جو شہروں کے درمیان سستے ترین طریقے تلاش کرتا ہے، جس میں ہوائی جہاز، بسیں، ٹرینیں اور فیریز شامل ہیں۔</string>
+    <string name="matterofchoice_info">میٹر آف چوائس آپ کو فیصلہ سازی کی مہارتیں سیکھنے میں مدد کرنے کے لیے انٹرایکٹو منظرنامے پیش کرتا ہے۔</string>
+</resources>

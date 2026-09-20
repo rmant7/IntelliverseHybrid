@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker به کاربران کمک می‌کند تا میزان مصرف کالری، چربی‌ها، پروتئین‌ها، کربوهیدرات‌ها، ویتامین‌ها و مواد معدنی موجود در غذا را کنترل کنند. این برنامه نه تنها این عناصر را شمارش می‌کند، بلکه تجزیه و تحلیل می‌کند که چه چیزی پس از هضم توسط بدن جذب می‌شود. کاربران می‌توانند تصاویری از محصولات آپلود کنند، برنامه مواد تشکیل دهنده را تشخیص می‌دهد و امکان ویرایش لیست را فراهم می‌کند.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">تصویر دستیار مدرسه هوش مصنوعی</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">تصویر آپلود به دستیار مدرسه هوش مصنوعی</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">تصویر بررسی راه حل دستیار مدرسه هوش مصنوعی</string>
+    <string name="ArrowDropDown_icon_content_description">یک زیرمنو را باز می کند</string>
+    <string name="add_image">اضافه کردن وظیفه</string>
+    <string name="guidance_detected_ingredients">مواد تشکیل دهنده شناسایی شده را بررسی کنید. اگر جزئیات نادرست یا از قلم افتاده است، می توانید قبل از ایجاد یک تحلیل تغذیه ای جدید، آنها را تغییر دهید</string>
+
+    // Text values
+    <string name="ingredients">مواد لازم</string>
+    <string name="solution_text_value">راه حل</string>
+    <string name="user_task_value">وظیفه</string>
+    <string name="is_ocr_result_included_value">از متن تشخیص داده شده انتخاب شده استفاده شود</string>
+    <string name="home_loading_waiting_text_value">در حال بارگیری، لطفا صبر کنید...</string>
+    <string name="progress_bar_hint_text_value">پیشرفت تولید راه حل ها</string>
+
+    // Button Labels
+    <string name="next_button_label">بعدی</string>
+    <string name="solve_button_label">حل کردن</string>
+    <string name="check_solution_button_label">بررسی راه حل</string>
+    <string name="cheat_sheet_button_label">برگه تقلب</string>
+    <string name="start_again">دوباره شروع کنید</string>
+    <string name="try_again">دوباره امتحان کنید</string>
+    <string name="pick_images">انتخاب تصاویر</string>
+    <string name="upload_from_url">آپلود</string>
+    <string name="upload_picture">آپلود عکس</string>
+    <string name="take_a_picture">گرفتن عکس</string>
+    <string name="recognize_text_button_label">نمایش متن تشخیص داده شده</string>
+
+    // Text Field Labels
+    <string name="foods">غذاها</string>
+    <string name="What_to_solve_TextField_label">چه چیزی را می خواهید حل کنید؟</string>
+    <string name="rating_TextField_label">امتیاز</string>
+    <string name="no_solution_chosen">راه حلی هنوز انتخاب نشده است</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">۳ موز و ۱ سیب، همه اندازه متوسط.</string>
+    <string name="first_ocr_result_is_not_ready">متن در حال شناسایی است، لطفا صبر کنید…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">زبان راه حل</string>
+    <string name="upload_a_file_label">آپلود یک فایل</string>
+    <string name="explanations_label">توضیحات</string>
+    <string name="physical_activity_label">فعالیت بدنی</string>
+    <string name="gender_label">جنسیت</string>
+    <string name="age_label">سن</string>
+    <string name="height_label">قد</string>
+    <string name="weight_label">وزن</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">به نظر می رسد برخی از تصاویر را از حافظه دایرکتوری برنامه کالری حذف کرده اید. نگران نباشید، کالری سعی می کند این تصاویر را یکی یکی از حافظه پنهان برنامه پاک کند. لطفا هر حذف تصویر را در صورت نیاز تایید کنید. هر تصویری که خالی به نظر می رسد خراب است. آیا می خواهید ادامه دهید؟</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">هوش مصنوعی قادر به تشخیص متن از تصویر نبود. لطفا دوباره امتحان کنید.</string>
+    <string name="error_gemini_solution_result_extraction">هوش مصنوعی قادر به حل این مشکل نبود. لطفا دوباره امتحان کنید.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">اوه! مشکلی پیش آمد. لطفا دوباره امتحان کنید!</string>
+    <string name="fail_to_load_Uri">بارگیری تصویر در لیست با مشکل مواجه شد. لطفا سعی کنید آن را به صورت دستی بارگیری کنید!</string>
+    <string name="corrupted_loaded_file">شما یک فایل خراب بارگذاری کرده اید!</string>
+    <string name="missing_required_settings">برخی از تنظیمات لازم وجود ندارد. لطفا آنها را پر کنید.</string>
+    <string name="camera_fail_to_open">اوه! مشکلی در دوربین پیش آمد. لطفا دوباره امتحان کنید!</string>
+    <string name="upload_image_warning">لطفا یک تصویر از دستگاه آپلود کنید</string>
+    <string name="select_image_or_text_warning">لطفا یک تصویر انتخاب کنید یا وظیفه را تایپ کنید.</string>
+    <string name="prompt_is_empty">متن تشخیص داده شده خالی است. لطفا دوباره امتحان کنید!</string>
+    <string name="language_not_supported">"زبان انتخاب شده برای تولید رسانه در دسترس نیست. سایر ویژگی ها به کار خود ادامه می دهند. آیا می خواهید داده های زبان مورد نیاز را برای فعال کردن این ویژگی دانلود کنید؟"</string>
+
+    // labels
+    <string name="home">خانه</string>
+    <string name="settings">تنظیمات</string>
+    <string name="results">نتیجه</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">انتخاب کنید چه چیزی را به اشتراک بگذارید</string>
+    <string name="share_user_ingredients">به اشتراک گذاری مواد لازم من</string>
+    <string name="share_recognized_ingredients">به اشتراک گذاری مواد لازم تشخیص داده شده</string>
+    <string name="share_solution">به اشتراک گذاری راه حل</string>
+    <string name="share_image">به اشتراک گذاری تصویر</string>
+    <string name="share">به اشتراک گذاری</string>
+
+    // installation
+    <string name="install">نصب</string>
+    <string name="install_language">نصب زبان</string>
+
+    <string name="solved_by_diet_tracker">حل شده توسط DietTracker\nبرنامه ما را در Google Play بررسی کنید</string>
+
+</resources>

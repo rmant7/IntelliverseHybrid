@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip은 AI로 구동되는 스마트 여행 플래너입니다. 원하는 꿈의 여행을 설명하거나 영감을 업로드하면 교통편, 호텔 링크, 예산 견적, 지역 팁이 포함된 개인 맞춤형 일일 여행 일정을 즉시 받아볼 수 있습니다 — 단 한 번의 클릭으로.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">인식된 텍스트</string>
+    <string name="solution_text_value">해결책</string>
+    <string name="user_task_value">작업</string>
+    <string name="progress_bar_hint_text_value">해결책 생성 진행 상황</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">텍스트</string>
+    <string name="no_solution_chosen">아직 선택된 해결책이 없습니다</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        역사적 명소, 지역 음식, 가벼운 걷기, 가이드 투어 및 자유 활동이 결합된 3일간의 편안하고 문화적인 여행을 원합니다. 한 도시 또는 인근 지역에서.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">해결책 언어</string>
+    <string name="max_budget_label">최대 예산</string>
+    <string name="travelers_number_label">여행자 수</string>
+    <string name="trip_duration_label">여행 기간</string>
+    <string name="transportation_type_label">교통수단</string>
+    <string name="trip_style_label">여행 스타일</string>
+    <string name="origin_location_label">출발지</string>
+    <string name="trip_type_label">여행 유형</string>
+    <string name="one_way_trip">편도 여행</string>
+    <string name="round_trip">왕복 여행</string>
+    <string name="days">일</string>
+    <string name="new_york">뉴욕</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">교통수단 입력</string>
+    <string name="enter_location">위치 입력</string>
+    <string name="add">추가</string>
+    <string name="travel_path">여행 경로</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI가 문제를 해결할 수 없습니다. 다시 시도해 주세요.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">이런! 문제가 발생했습니다. 다시 시도해 주세요!</string>
+    <string name="fail_to_load_Uri">이미지를 목록에 로드하지 못했습니다. 수동으로 시도해 주세요!</string>
+    <string name="corrupted_loaded_file">손상된 파일이 로드되었습니다!</string>
+    <string name="missing_required_settings">필수 설정이 누락되었습니다. 작성해 주세요.</string>
+    <string name="camera_fail_to_open">이런! 카메라를 열 수 없습니다. 다시 시도해 주세요!</string>
+    <string name="select_image_or_text_warning">이미지를 선택하거나 작업을 입력해 주세요.</string>
+    <string name="language_not_supported">
+        선택한 언어는 미디어 생성에 사용할 수 없습니다. 다른 기능은 계속 작동합니다. 필요한 언어 데이터를 다운로드하시겠습니까?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">홈</string>
+    <string name="settings">설정</string>
+    <string name="results">결과</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">공유할 항목 선택</string>
+    <string name="share_user_translation">내 텍스트 공유</string>
+    <string name="share_ocr_result">인식된 텍스트 공유</string>
+    <string name="share_solution">해결책 공유</string>
+    <string name="share_image">이미지 공유</string>
+    <string name="share">공유</string>
+
+    <!-- Installation -->
+    <string name="install">설치</string>
+    <string name="install_language">언어 설치</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">OneClickTrip로 해결됨\nGoogle Play에서 앱을 확인하세요</string>
+</resources>

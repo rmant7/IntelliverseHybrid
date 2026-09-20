@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>కవితాత్మక</item>
+        <item>వృత్తిపరమైన</item>
+        <item>న్యాయపరమైన</item>
+        <item>సాంకేతికం</item>
+        <item>విద్యా సంబంధిత</item>
+        <item>జర్నలిస్టిక్</item>
+        <item>సృజనాత్మక</item>
+        <item>నమ్మించే</item>
+        <item>కథనం</item>
+        <item>వివరణాత్మక</item>
+        <item>వివరణాత్మకం</item>
+        <item>హాస్యభరితమైన</item>
+        <item>అనధికారిక</item>
+        <item>వ్యాపారం</item>
+        <item>శాస్త్రీయ</item>
+        <item>శృంగారభరితమైన</item>
+        <item>చారిత్రక</item>
+        <item>తాత్విక</item>
+        <item>స్వీయ సహాయం</item>
+        <item>ప్రయాణం</item>
+        <item>మార్కెటింగ్</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>అధికారిక</item>
+        <item>సాధారణ</item>
+        <item>స్నేహపూర్వక</item>
+        <item>గంభీరమైన</item>
+        <item>సహానుభూతి</item>
+        <item>దృఢమైన</item>
+        <item>ఆశాజనకంగా</item>
+        <item>హాస్యభరితమైన</item>
+        <item>తటస్థ</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>కనీస</item>
+        <item>మితమైన</item>
+        <item>పూర్తి</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>సంబంధం</item>
+        <item>ఉద్యోగ ప్రదేశం</item>
+        <item>విద్య</item>
+        <item>ఆరోగ్యం</item>
+        <item>ఆర్థిక</item>
+        <item>ప్రయాణం</item>
+        <item>సాంకేతికం</item>
+        <item>వినోదం</item>
+        <item>స్వీయ అభివృద్ధి</item>
+        <item>సాధారణ</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>రష్యా: సమిష్టివాదం</item>
+        <item>తూర్పు యూరప్: ఆచరణాత్మక</item>
+        <item>పశ్చిమ ఐరోపా: వ్యక్తిగతవాదం</item>
+        <item>ఆగ్నేయాసియా: సామరస్యం-కేంద్రీకృత</item>
+        <item>చైనా: సోపానక్రమం</item>
+        <item>కాకసస్: గౌరవ-బద్ధుడు</item>
+        <item>ఉత్తర అమెరికా: వ్యవస్థాపకుడు</item>
+        <item>లాటిన్ అమెరికా: ఉద్వేగభరితమైన</item>
+        <item>మధ్యప్రాచ్యం: ఆతిథ్యం-నడిచేది</item>
+        <item>ఆఫ్రికా: మతపరమైన</item>
+        <item>నార్డిక్ దేశాలు: సమానవాది</item>
+        <item>దక్షిణ ఆసియా: కుటుంబ-కేంద్రీకృత</item>
+        <item>జపాన్: సమూహ సామరస్యం</item>
+        <item>ఆస్ట్రేలియా: విశ్రాంతి</item>
+        <item>మెడిటరేనియన్: వ్యక్తీకరణ</item>
+        <item>మధ్య ఆసియా: సంచార సంప్రదాయాలు</item>
+        <item>జర్మనీ: నిర్మాణాత్మక</item>
+        <item>బాల్కన్స్: స్థితిస్థాపకంగా</item>
+        <item>ఆర్కిటిక్ స్వదేశీయులు: ప్రకృతి-కనెక్ట్</item>
+        <item>యూదు: సమాజం-ఆధారిత</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>అమ్హారిక్</item>
+        <item>అరబిక్</item>
+        <item>బెంగాలీ</item>
+        <item>బల్గేరియన్</item>
+        <item>చైనీస్ సింప్లిఫైడ్</item>
+        <item>క్రొయేషియన్</item>
+        <item>చెక్</item>
+        <item>డానిష్</item>
+        <item>డచ్</item>
+        <item>ఆంగ్లం</item>
+        <item>ఎస్టోనియన్</item>
+        <item>ఫిన్నిష్</item>
+        <item>ఫ్రెంచ్</item>
+        <item>జర్మన్</item>
+        <item>గ్రీక్</item>
+        <item>గుజరాతీ</item>
+        <item>హీబ్రూ</item>
+        <item>హిందీ</item>
+        <item>హంగేరియన్</item>
+        <item>ఇండోనేషియన్</item>
+        <item>ఇటాలియన్</item>
+        <item>జపనీస్</item>
+        <item>కన్నడ</item>
+        <item>కొరియన్</item>
+        <item>లాట్వియన్</item>
+        <item>లిథువేనియన్</item>
+        <item>మలయ్</item>
+        <item>మరాఠీ</item>
+        <item>నార్వేజియన్</item>
+        <item>పాష్టో</item>
+        <item>పర్షియన్</item>
+        <item>పోలిష్</item>
+        <item>పోర్చుగీస్</item>
+        <item>రోమేనియన్</item>
+        <item>రష్యన్</item>
+        <item>సెర్బియన్</item>
+        <item>స్లోవాక్</item>
+        <item>స్లోవేనియన్</item>
+        <item>స్పానిష్</item>
+        <item>స్వాహిలి</item>
+        <item>స్వీడిష్</item>
+        <item>టాగలాగ్</item>
+        <item>తమిళం</item>
+        <item>తెలుగు</item>
+        <item>థాయ్</item>
+        <item>టర్కిష్</item>
+        <item>ఉక్రేనియన్</item>
+        <item>ఉర్దూ</item>
+        <item>వియత్నామీస్</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>సంబంధితం కాదు</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>వివరణ లేదు</item>
+        <item>చిన్న వివరణ</item>
+        <item>వివరణాత్మక వివరణ</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>కూర్చుని పనిచేసే</item>
+        <item>తేలికగా చురుకుగా</item>
+        <item>మితంగా చురుకుగా</item>
+        <item>చాలా చురుకుగా</item>
+        <item>చాలా చురుకుగా</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>మగ</item>
+        <item>ఆడ</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>విమానము</item>
+        <item>బైసికిల్</item>
+        <item>నౌక</item>
+        <item>బస్సు</item>
+        <item>మోటార్ సైకిల్</item>
+        <item>తనిఖీ కారు</item>
+        <item>అద్దె కారు</item>
+        <item>రైడ్ షేరింగ్</item>
+        <item>మెట్రో</item>
+        <item>టాక్సీ</item>
+        <item>రైలు</item>
+        <item>ట్రామ్</item>
+        <item>నడక</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>ఆహారం</item>
+        <item>చరిత్ర</item>
+        <item>సంస్కృతి</item>
+        <item>ప్రకృతి</item>
+        <item>విశ్రాంతి</item>
+        <item>సాహసయం</item>
+        <item>రాత్రి జీవితం</item>
+        <item>షాపింగ్</item>
+        <item>కుటుంబం</item>
+        <item>ప్రేమ</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>ఒక చిత్రం తీయి</item>
+        <item>ఒక చిత్రాన్ని అప్‌లోడ్ చెయ్యి</item>
+        <item>ఒక ఫైల్‌ను అప్‌లోడ్ చెయ్యి</item>
+        <item>ఒక లింక్‌ను అందించు</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">క్షమించండి, రష్యా మరియు బెలారస్‌లో ఈ సేవ అందుబాటులో లేదు, దయచేసి vpn ఉపయోగించండి</string>
+    <string name="error_service_not_available_title">సేవ అందుబాటులో లేదు</string>
+    <string name="error_common_title">దోషం</string>
+    <string name="error_common_message">అప్లికేషన్ రన్ అవుతున్నప్పుడు ఒక లోపం సంభవించింది. అనువర్తనాన్ని నవీకరించడానికి ప్రయత్నించండి లేదా తరువాత మళ్లీ ప్రయత్నించండి</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">ఓప్స్! ఈ ఫీచర్ కోసం కెమెరా యాక్సెస్ అవసరమని తెలుస్తోంది. మీ పరికర సెట్టింగ్‌లకు వెళ్లండి, మీ అనువర్తన జాబితాలో IntelliVerseను కనుగొనండి మరియు మ్యాజిక్‌ను అన్‌లాక్ చేయడానికి కెమెరా అనుమతిని మంజూరు చేయండి!</string>
+    <string name="permanent_denied_read_media_permission_explanation">ఓప్స్! మీ గ్యాలరీ నుండి చిత్రాలను ఉపయోగించడానికి, మీ ఫోటోలను చదవడానికి IntelliVerseకు అనుమతి అవసరం. మీ పరికర సెట్టింగ్‌లకు వెళ్లండి, మీ అనువర్తన జాబితాలో IntelliVerseను కనుగొనండి మరియు మ్యాజిక్‌ను అన్‌లాక్ చేయడానికి ఫోటో యాక్సెస్‌ను మంజూరు చేయండి!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">ఓప్స్! మీ పరికరానికి ఫైల్‌లను సేవ్ చేయడానికి, మీ నిల్వకు వ్రాయడానికి IntelliVerseకు అనుమతి అవసరం. మీ పరికర సెట్టింగ్‌లకు వెళ్లండి, మీ అనువర్తన జాబితాలో IntelliVerseను కనుగొనండి మరియు మ్యాజిక్‌ను అన్‌లాక్ చేయడానికి నిల్వ యాక్సెస్‌ను మంజూరు చేయండి!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">ఓప్స్! మీ పరికరంలోని ఫైల్‌లను యాక్సెస్ చేయడానికి, మీ నిల్వను చదవడానికి IntelliVerseకు అనుమతి అవసరం. మీ పరికర సెట్టింగ్‌లకు వెళ్లండి, మీ అనువర్తన జాబితాలో IntelliVerseను కనుగొనండి మరియు మ్యాజిక్‌ను అన్‌లాక్ చేయడానికి నిల్వ యాక్సెస్‌ను మంజూరు చేయండి!</string>
+    <string name="camera_permission_rationale">మీ పాఠశాల వ్యాయామాల ఫోటోలను తక్షణమే తీయడానికి IntelliVerseకు మీ కెమెరాకు ప్రాప్యత అవసరం!</string>
+    <string name="read_media_permission_rationale">మీ ఫోటోలకు ప్రాప్యతను అనుమతించడం వలన IntelliVerse అనువర్తనంలో ఉపయోగించడానికి మీ గ్యాలరీ నుండి చిత్రాలను ఎంచుకోవచ్చు!</string>
+    <string name="write_storage_permission_rationale">మీ నిల్వకు వ్రాయడానికి అనుమతి IntelliVerse అనువర్తనం మీరు తీసిన ఫోటోల వంటి ఫైల్‌లను మీ పరికరానికి నేరుగా సేవ్ చేయడానికి అనుమతిస్తుంది!</string>
+    <string name="read_storage_permission_rationale">అనువర్తనంలో మీరు ఉపయోగించాలనుకునే ఫోటోలు లేదా పత్రాలు వంటి ఫైల్‌లను చదవడానికి IntelliVerseకు మీ పరికరం నిల్వకు ప్రాప్యత అవసరం.</string>
+
+    // Buttons Labels
+    <string name="Ok">సరే</string>
+
+    <string name="Yes">అవును</string>
+    <string name="No">లేదు</string>
+    <string name="are_you_sure">మీరు నిష్క్రమించాలనుకుంటున్నారని మీరు ఖచ్చితంగా అనుకుంటున్నారా?</string>
+    <string name="exit">నిష్క్రమించు</string>
+
+    <string name="report_content">కంటెంట్‌ను నివేదించు</string>
+    <string name="select_reason">కారణాన్ని ఎంచుకోండి</string>
+    <string name="offensive">అభ్యంతరకరమైన</string>
+    <string name="hate_speech">ద్వేషపూరిత ప్రసంగం</string>
+    <string name="incorrect_info">తప్పు సమాచారం</string>
+    <string name="other">ఇతర</string>
+    <string name="submit">సమర్పించు</string>
+    <string name="cancel">రద్దు చేయి</string>
+
+    <string name="reset_settings">సెట్టింగ్‌లను రీసెట్ చేయండి</string>
+    <string name="not_relevant">సంబంధితం కాదు</string>
+
+</resources>

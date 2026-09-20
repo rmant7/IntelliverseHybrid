@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>诗意的</item>
+        <item>专业的</item>
+        <item>法律的</item>
+        <item>技术的</item>
+        <item>学术的</item>
+        <item>新闻的</item>
+        <item>创造性的</item>
+        <item>说服性的</item>
+        <item>叙述性的</item>
+        <item>描述性的</item>
+        <item>说明性的</item>
+        <item>幽默的</item>
+        <item>非正式的</item>
+        <item>商业的</item>
+        <item>科学的</item>
+        <item>浪漫的</item>
+        <item>历史的</item>
+        <item>哲学的</item>
+        <item>自助的</item>
+        <item>旅行的</item>
+        <item>营销的</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>正式</item>
+        <item>休闲</item>
+        <item>友好的</item>
+        <item>严肃的</item>
+        <item>同情的</item>
+        <item>自信的</item>
+        <item>乐观的</item>
+        <item>幽默的</item>
+        <item>中性的</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>最小</item>
+        <item>适度</item>
+        <item>完全</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>人际关系</item>
+        <item>工作场所</item>
+        <item>教育</item>
+        <item>健康</item>
+        <item>金融</item>
+        <item>旅行</item>
+        <item>技术</item>
+        <item>娱乐</item>
+        <item>自我提升</item>
+        <item>一般</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>俄罗斯：集体主义</item>
+        <item>东欧：实用主义</item>
+        <item>西欧：个人主义</item>
+        <item>东南亚：注重和谐</item>
+        <item>中国：等级制度</item>
+        <item>高加索：注重荣誉</item>
+        <item>北美：创业精神</item>
+        <item>拉丁美洲：充满激情</item>
+        <item>中东：热情好客</item>
+        <item>非洲：公共的</item>
+        <item>北欧国家：平等主义</item>
+        <item>南亚：以家庭为中心</item>
+        <item>日本：集体和谐</item>
+        <item>澳大利亚：悠闲自在</item>
+        <item>地中海：富有表现力</item>
+        <item>中亚：游牧传统</item>
+        <item>德国：结构化</item>
+        <item>巴尔干：有韧性</item>
+        <item>北极原住民：与自然相连</item>
+        <item>犹太：以社区为导向</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>阿姆哈拉语</item>
+        <item>阿拉伯语</item>
+        <item>孟加拉语</item>
+        <item>保加利亚语</item>
+        <item>简体中文</item>
+        <item>克罗地亚语</item>
+        <item>捷克语</item>
+        <item>丹麦语</item>
+        <item>荷兰语</item>
+        <item>英语</item>
+        <item>爱沙尼亚语</item>
+        <item>芬兰语</item>
+        <item>法语</item>
+        <item>德语</item>
+        <item>希腊语</item>
+        <item>古吉拉特语</item>
+        <item>希伯来语</item>
+        <item>印地语</item>
+        <item>匈牙利语</item>
+        <item>印度尼西亚语</item>
+        <item>意大利语</item>
+        <item>日语</item>
+        <item>卡纳达语</item>
+        <item>韩语</item>
+        <item>拉脱维亚语</item>
+        <item>立陶宛语</item>
+        <item>马来语</item>
+        <item>马拉地语</item>
+        <item>挪威语</item>
+        <item>普什图语</item>
+        <item>波斯语</item>
+        <item>波兰语</item>
+        <item>葡萄牙语</item>
+        <item>罗马尼亚语</item>
+        <item>俄语</item>
+        <item>塞尔维亚语</item>
+        <item>斯洛伐克语</item>
+        <item>斯洛文尼亚语</item>
+        <item>西班牙语</item>
+        <item>斯瓦希里语</item>
+        <item>瑞典语</item>
+        <item>塔加路族语</item>
+        <item>泰米尔语</item>
+        <item>泰卢固语</item>
+        <item>泰语</item>
+        <item>土耳其语</item>
+        <item>乌克兰语</item>
+        <item>乌尔都语</item>
+        <item>越南语</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>不相关</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>没有解释</item>
+        <item>简短解释</item>
+        <item>详细解释</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>久坐</item>
+        <item>轻度活跃</item>
+        <item>中度活跃</item>
+        <item>非常活跃</item>
+        <item>极其活跃</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>飞机</item>
+        <item>自行车</item>
+        <item>船</item>
+        <item>公交车</item>
+        <item>摩托车</item>
+        <item>自有汽车</item>
+        <item>租赁汽车</item>
+        <item>拼车</item>
+        <item>地铁</item>
+        <item>出租车</item>
+        <item>火车</item>
+        <item>有轨电车</item>
+        <item>步行</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>美食</item>
+        <item>历史</item>
+        <item>文化</item>
+        <item>自然</item>
+        <item>放松</item>
+        <item>冒险</item>
+        <item>夜生活</item>
+        <item>购物</item>
+        <item>家庭</item>
+        <item>浪漫</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>拍照</item>
+        <item>上传图片</item>
+        <item>上传文件</item>
+        <item>提供链接</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">抱歉，该服务在俄罗斯和白俄罗斯不可用，请使用 VPN</string>
+    <string name="error_service_not_available_title">服务不可用</string>
+    <string name="error_common_title">错误</string>
+    <string name="error_common_message">应用程序运行时发生错误。尝试更新应用程序或稍后重试</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">糟糕！此功能需要相机访问权限。前往您的设备设置，在您的应用程序列表中找到 IntelliVerse，并授予相机权限以解锁魔力！</string>
+    <string name="permanent_denied_read_media_permission_explanation">糟糕！要使用图库中的图像，IntelliVerse 需要读取您照片的权限。前往您的设备设置，在您的应用程序列表中找到 IntelliVerse，并授予照片访问权限以解锁魔力！</string>
+    <string name="permanent_denied_write_storage_permission_explanation">糟糕！要将文件保存到您的设备，IntelliVerse 需要写入您存储的权限。前往您的设备设置，在您的应用程序列表中找到 IntelliVerse，并授予存储访问权限以解锁魔力！</string>
+    <string name="permanent_denied_read_storage_permission_explanation">糟糕！要访问您设备上的文件，IntelliVerse 需要读取您存储的权限。前往您的设备设置，在您的应用程序列表中找到 IntelliVerse，并授予存储访问权限以解锁魔力！</string>
+    <string name="camera_permission_rationale">IntelliVerse 需要访问您的相机，以便您可以立即拍摄学校练习的照片！</string>
+    <string name="read_media_permission_rationale">允许访问您的照片可以让您从图库中选择图像以在 IntelliVerse 应用程序中使用！</string>
+    <string name="write_storage_permission_rationale">写入存储的权限允许 IntelliVerse 应用程序将文件（例如您拍摄的照片）直接保存到您的设备！</string>
+    <string name="read_storage_permission_rationale">IntelliVerse 需要访问您设备的存储才能读取文件（例如您可能想在应用程序中使用的照片或文档）。</string>
+
+    // Buttons Labels
+    <string name="Ok">确定</string>
+
+    <string name="Yes">是</string>
+    <string name="No">否</string>
+    <string name="are_you_sure">确定要退出吗</string>
+    <string name="exit">退出</string>
+
+    <string name="report_content">举报内容</string>
+    <string name="select_reason">选择原因</string>
+    <string name="offensive">冒犯性</string>
+    <string name="hate_speech">仇恨言论</string>
+    <string name="incorrect_info">不正确的信息</string>
+    <string name="other">其他</string>
+    <string name="submit">提交</string>
+    <string name="cancel">取消</string>
+
+    <string name="reset_settings">重置设置</string>
+    <string name="not_relevant">不相关</string>
+
+</resources>

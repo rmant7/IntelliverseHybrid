@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">স্টাইলট্রান্সলেটর বিভিন্ন লেখার শৈলী এবং সুরের মধ্যে টেক্সট পরিবর্তন করে।</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">এআই স্কুল সহকারী ছবি</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">এআই স্কুল চিত্র সহকারীতে আপলোড করুন</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">সমাধান এআই স্কুল চিত্র সহকারী পরীক্ষা করুন</string>
+    <string name="ArrowDropDown_icon_content_description">একটি সাবমেনু খোলে</string>
+    <string name="add_image">কাজ যোগ করুন</string>
+
+    // Text values
+    <string name="recognized_text_value">স্বীকৃত পাঠ্য</string>
+    <string name="solution_text_value">সমাধান</string>
+    <string name="user_task_value">কাজ</string>
+    <string name="is_ocr_result_included_value">নির্বাচিত স্বীকৃত পাঠ্য ব্যবহার করুন</string>
+    <string name="home_loading_waiting_text_value">লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</string>
+    <string name="progress_bar_hint_text_value">সমাধান তৈরি করার অগ্রগতি</string>
+
+    // Button Labels
+    <string name="next_button_label">পরবর্তী</string>
+    <string name="solve_button_label">সমাধান করুন</string>
+    <string name="check_solution_button_label">সমাধান পরীক্ষা করুন</string>
+    <string name="cheat_sheet_button_label">চিট শীট</string>
+    <string name="start_again">আবার শুরু করুন</string>
+    <string name="try_again">আবার চেষ্টা করুন</string>
+    <string name="pick_images">ছবি বাছাই করুন</string>
+    <string name="upload_from_url">আপলোড করুন</string>
+    <string name="upload_picture">ছবি আপলোড করুন</string>
+    <string name="take_a_picture">একটি ছবি তুলুন</string>
+    <string name="recognize_text_button_label">স্বীকৃত পাঠ্য দেখান</string>
+
+    // Text Field Labels
+    <string name="sentence">পাঠ্য</string>
+    <string name="What_to_solve_TextField_label">আপনি কী সমাধান করতে চান?</string>
+    <string name="rating_TextField_label">রেটিং</string>
+    <string name="no_solution_chosen">এখনো কোনো সমাধান নির্বাচন করা হয়নি</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">আমি আমার গার্লফ্রেন্ডের যত্ন নিতে ভালোবাসি। আমি সবসময় নিশ্চিত করি সে যেন নিরাপদ এবং সুরক্ষিত অনুভব করে। আমি আমাদের ডেটগুলোর পরিকল্পনা করতে এবং ছোট উপহার দিয়ে তাকে অবাক করতে পছন্দ করি। যখন সে মন খারাপ করে, আমি একটি সমাধান খুঁজে বের করার এবং তার জন্য জিনিস ঠিক করার চেষ্টা করি।</string>
+    <string name="first_ocr_result_is_not_ready">পাঠ্য চেনা হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">সমাধানের ভাষা</string>
+    <string name="upload_a_file_label">একটি ফাইল আপলোড করুন</string>
+    <string name="explanations_label">ব্যাখ্যা</string>
+    <string name="source_gender_label">উৎস লিঙ্গ</string>
+    <string name="target_gender_label">লক্ষ্য লিঙ্গ</string>
+    <string name="source_age_label">উৎস বয়স</string>
+    <string name="target_age_label">লক্ষ্য বয়স</string>
+    <string name="category_label">শ্রেণী</string>
+    <string name="tone_label">স্বর পছন্দ</string>
+    <string name="transformation_level_label">রূপান্তর স্তর</string>
+    <string name="style_label">অনুবাদ শৈলী</string>
+    <string name="mentality_label">মানসিকতা</string>
+    <string name="translation_scale_label">অনুবাদ স্কেল ফ্যাক্টর</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">মনে হচ্ছে আপনি ক্যালোরি অ্যাপের ডিরেক্টরি স্টোরেজ থেকে কিছু ছবি মুছে ফেলেছেন। চিন্তা করবেন না, ক্যালোরি অ্যাপ্লিকেশন ক্যাশে থেকে এই ছবিগুলো একে একে সরানোর চেষ্টা করবে। প্রয়োজনে প্রতিটি ছবি মুছে ফেলার বিষয়টি নিশ্চিত করুন। ফাঁকা দেখা গেলে যে কোনও চিত্র দূষিত। আপনি কি চালিয়ে যেতে চান?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">এআই চিত্র থেকে পাঠ্য সনাক্ত করতে সক্ষম হয়নি। আবার চেষ্টা করুন.</string>
+    <string name="error_gemini_solution_result_extraction">এআই এই সমস্যার সমাধান করতে সক্ষম হয়নি। আবার চেষ্টা করুন.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">উফ! কিছু ভুল হয়েছে. আবার চেষ্টা করুন!</string>
+    <string name="fail_to_load_Uri">ছবিটিকে তালিকায় লোড করা যায়নি। দয়া করে এটি নিজে লোড করার চেষ্টা করুন!</string>
+    <string name="corrupted_loaded_file">আপনি একটি দূষিত ফাইল লোড করেছেন!</string>
+    <string name="missing_required_settings">কিছু প্রয়োজনীয় সেটিংস অনুপস্থিত। অনুগ্রহ করে সেগুলি পূরণ করুন.</string>
+    <string name="camera_fail_to_open">উফ! ক্যামেরার সাথে কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন!</string>
+    <string name="upload_image_warning">অনুগ্রহ করে ডিভাইস থেকে একটি ছবি আপলোড করুন</string>
+    <string name="select_image_or_text_warning">অনুগ্রহ করে একটি ছবি নির্বাচন করুন অথবা টাস্ক টাইপ করুন।</string>
+    <string name="prompt_is_empty">স্বীকৃত পাঠ্য খালি। আবার চেষ্টা করুন!</string>
+    <string name="language_not_supported">"নির্বাচিত ভাষা মিডিয়া তৈরির জন্য উপলব্ধ নয়। অন্যান্য বৈশিষ্ট্যগুলি কাজ চালিয়ে যাবে। আপনি কি এই বৈশিষ্ট্যটি সক্ষম করার জন্য প্রয়োজনীয় ভাষা ডেটা ডাউনলোড করতে চান?"</string>
+
+    // labels
+    <string name="home">হোম</string>
+    <string name="settings">সেটিংস</string>
+    <string name="results">ফলাফল</string>
+    <string name="ocr">ওসিআর</string>
+
+    // sharing
+    <string name="choose_sharing">কী শেয়ার করতে চান তা নির্বাচন করুন</string>
+    <string name="share_user_translation">আমার পাঠ্য শেয়ার করুন</string>
+    <string name="share_ocr_result">স্বীকৃত পাঠ্য শেয়ার করুন</string>
+    <string name="share_solution">সমাধান শেয়ার করুন</string>
+    <string name="share_image">ছবি শেয়ার করুন</string>
+    <string name="share">শেয়ার</string>
+
+    // installation
+    <string name="install">ইনস্টল</string>
+    <string name="install_language">ভাষা ইনস্টল করুন</string>
+
+    <string name="solved_by_style_translator">StyleTranslator দ্বারা সমাধান করা হয়েছে\nগুগল প্লে-তে আমাদের অ্যাপটি দেখুন</string>
+
+</resources>

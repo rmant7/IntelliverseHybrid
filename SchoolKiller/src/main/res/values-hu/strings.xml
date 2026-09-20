@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">A SchoolKiller segít a diákoknak matematikai problémák, valamint általános problémák megoldásában.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Iskolai Asszisztens Kép</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Feltöltés AI Iskolai Asszisztens Képhez</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Megoldás Ellenőrzése AI Iskolai Asszisztens Kép</string>
+    <string name="ArrowDropDown_icon_content_description">Almenü megnyitása</string>
+    <string name="add_image">Feladat hozzáadása</string>
+    <string name="Guidance">Az optimális eredmények érdekében kérjük, adjon meg részletes SZÖVEGET a feladatához. Ha képeket csatol, győződjön meg arról, hogy a felismert szöveg a valóságnak megfelelően van szerkesztve.</string>
+
+    // Text values
+    <string name="recognized_text_value">Felismert szöveg</string>
+    <string name="solution_text_value">Megoldás</string>
+    <string name="user_task_value">Feladat</string>
+    <string name="is_ocr_result_included_value">A kiválasztott felismert szöveg használata</string>
+    <string name="home_loading_waiting_text_value">Betöltés, kérjük, várjon...</string>
+    <string name="progress_bar_hint_text_value">Megoldások generálásának folyamata</string>
+
+    // Button Labels
+    <string name="next_button_label">Következő</string>
+    <string name="solve_button_label">Megoldás</string>
+    <string name="check_solution_button_label">Megoldás ellenőrzése</string>
+    <string name="cheat_sheet_button_label">Puskázó lap</string>
+    <string name="start_again">Újrakezdés</string>
+    <string name="try_again">Próbáld újra</string>
+    <string name="pick_images">Képek kiválasztása</string>
+    <string name="upload_from_url">Feltöltés</string>
+    <string name="upload_picture">Kép feltöltése</string>
+    <string name="take_a_picture">Fénykép készítése</string>
+    <string name="recognize_text_button_label">Felismert szöveg megjelenítése</string>
+
+    // Text Field Labels
+    <string name="tasks">Feladat</string>
+    <string name="What_to_solve_TextField_label">Mit szeretnél megoldani?</string>
+    <string name="rating_TextField_label">Értékelés</string>
+    <string name="no_solution_chosen">Még nincs kiválasztva megoldás</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Mondj el valamit a Pitagorasz-tételről.</string>
+    <string name="first_ocr_result_is_not_ready">A szöveg felismerése folyamatban van, kérjük, várjon...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Megoldás nyelve</string>
+    <string name="upload_a_file_label">Fájl feltöltése</string>
+    <string name="explanations_label">Magyarázatok</string>
+    <string name="grade_label">"Érdemjegy"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Úgy tűnik, töröltél néhány képet a SchoolKiller alkalmazás könyvtárából. Ne aggódj, a SchoolKiller megpróbálja egyenként törölni ezeket a képeket az alkalmazás gyorsítótárából. Kérjük, erősítsd meg az egyes képek törlését, ha szükséges. Bármelyik üresen megjelenő kép sérült. Szeretnéd folytatni?</string>
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">Az AI nem tudta felismerni a szöveget a képről. Kérjük, próbálja újra.</string>
+    <string name="error_gemini_solution_result_extraction">Az AI nem tudta megoldani ezt a problémát. Kérjük, próbálja újra.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hoppá! Valami elromlott. Kérjük, próbálja újra!</string>
+    <string name="fail_to_load_Uri">Nem sikerült betölteni a képet a listába. Kérjük, próbálja meg manuálisan betölteni!</string>
+    <string name="corrupted_loaded_file">Sérült fájlt töltöttél fel!</string>
+    <string name="camera_fail_to_open">Hoppá! Valami elromlott a kamerával. Kérjük, próbálja újra!</string>
+    <string name="upload_image_warning">Kérjük, tölts fel egy képet az eszközről</string>
+    <string name="select_image_or_text_warning">Kérjük, válassz egy képet, vagy írd be a feladatot.</string>
+    <string name="prompt_is_empty">A felismert szöveg üres. Kérjük, próbálja újra!</string>
+    <string name="language_not_supported">"A kiválasztott nyelv nem érhető el a média generáláshoz. Más funkciók továbbra is működni fognak. Szeretnéd letölteni a szükséges nyelvi adatokat a funkció engedélyezéséhez?"</string>
+
+    // labels
+    <string name="home">Főoldal</string>
+    <string name="settings">Beállítások</string>
+    <string name="results">Eredmény</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Válaszd ki, mit szeretnél megosztani</string>
+    <string name="share_user_task">Feladatom megosztása</string>
+    <string name="share_ocr_result">Felismert szöveg megosztása</string>
+    <string name="share_solution">Megoldás megosztása</string>
+    <string name="share_image">Kép megosztása</string>
+    <string name="share">Megosztás</string>
+
+    // installation
+    <string name="install">Telepítés</string>
+    <string name="install_language">Nyelv telepítése</string>
+
+    <string name="solved_by_schoolkiller">Megoldva a SchoolKiller által\nNézd meg az alkalmazásunkat a Google Play-en</string>
+
+</resources>

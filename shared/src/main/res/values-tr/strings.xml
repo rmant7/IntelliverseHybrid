@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Şiirsel</item>
+        <item>Profesyonel</item>
+        <item>Yasal</item>
+        <item>Teknik</item>
+        <item>Akademik</item>
+        <item>Gazetecilik</item>
+        <item>Yaratıcı</item>
+        <item>İkna edici</item>
+        <item>Anlatı</item>
+        <item>Betimleyici</item>
+        <item>Açıklayıcı</item>
+        <item>Mizahi</item>
+        <item>Gayriresmi</item>
+        <item>İş</item>
+        <item>Bilimsel</item>
+        <item>Romantik</item>
+        <item>Tarihsel</item>
+        <item>Felsefi</item>
+        <item>Kişisel Gelişim</item>
+        <item>Seyahat</item>
+        <item>Pazarlama</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Resmi</item>
+        <item>Günlük</item>
+        <item>Samimi</item>
+        <item>Ciddi</item>
+        <item>Empatik</item>
+        <item>İddialı</item>
+        <item>İyimser</item>
+        <item>Mizahi</item>
+        <item>Nötr</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimal</item>
+        <item>Orta</item>
+        <item>Tam</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>İlişki</item>
+        <item>İşyeri</item>
+        <item>Eğitim</item>
+        <item>Sağlık</item>
+        <item>Finans</item>
+        <item>Seyahat</item>
+        <item>Teknoloji</item>
+        <item>Eğlence</item>
+        <item>Kişisel Gelişim</item>
+        <item>Genel</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusya: Kolektivist</item>
+        <item>Doğu Avrupa: Pragmatik</item>
+        <item>Batı Avrupa: Bireyci</item>
+        <item>Güneydoğu Asya: Uyum odaklı</item>
+        <item>Çin: Hiyerarşik</item>
+        <item>Kafkasya: Onuruna bağlı</item>
+        <item>Kuzey Amerika: Girişimci</item>
+        <item>Latin Amerika: Tutkulu</item>
+        <item>Orta Doğu: Misafirperverlik odaklı</item>
+        <item>Afrika: Toplumsal</item>
+        <item>İskandinav Ülkeleri: Eşitlikçi</item>
+        <item>Güney Asya: Aile merkezli</item>
+        <item>Japonya: Grup uyumu</item>
+        <item>Avustralya: Rahat</item>
+        <item>Akdeniz: Dışa vurumcu</item>
+        <item>Orta Asya: Göçebe gelenekleri</item>
+        <item>Almanya: Yapılandırılmış</item>
+        <item>Balkanlar: Dayanıklı</item>
+        <item>Kuzey Kutbu Yerlileri: Doğa ile bağlantılı</item>
+        <item>Yahudi: Topluluk odaklı</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharca</item>
+        <item>Arapça</item>
+        <item>Bengalce</item>
+        <item>Bulgarca</item>
+        <item>Basitleştirilmiş Çince</item>
+        <item>Hırvatça</item>
+        <item>Çekçe</item>
+        <item>Danca</item>
+        <item>Felemenkçe</item>
+        <item>İngilizce</item>
+        <item>Estonca</item>
+        <item>Fince</item>
+        <item>Fransızca</item>
+        <item>Almanca</item>
+        <item>Yunanca</item>
+        <item>Gujarati</item>
+        <item>İbranice</item>
+        <item>Hintçe</item>
+        <item>Macarca</item>
+        <item>Endonezce</item>
+        <item>İtalyanca</item>
+        <item>Japonca</item>
+        <item>Kannada</item>
+        <item>Korece</item>
+        <item>Letonca</item>
+        <item>Litvanca</item>
+        <item>Malayca</item>
+        <item>Marathi</item>
+        <item>Norveççe</item>
+        <item>Peştuca</item>
+        <item>Farsça</item>
+        <item>Lehçe</item>
+        <item>Portekizce</item>
+        <item>Rumence</item>
+        <item>Rusça</item>
+        <item>Sırpça</item>
+        <item>Slovakça</item>
+        <item>Slovence</item>
+        <item>İspanyolca</item>
+        <item>Svahili</item>
+        <item>İsveççe</item>
+        <item>Tagalog</item>
+        <item>Tamilce</item>
+        <item>Telugu</item>
+        <item>Tayca</item>
+        <item>Türkçe</item>
+        <item>Ukraynaca</item>
+        <item>Urduca</item>
+        <item>Vietnamca</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>İlgili Değil</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Açıklama yok</item>
+        <item>Kısa açıklama</item>
+        <item>Detaylı açıklama</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Hareketsiz</item>
+        <item>Hafif Aktif</item>
+        <item>Orta Derecede Aktif</item>
+        <item>Çok Aktif</item>
+        <item>Aşırı Aktif</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Erkek</item>
+        <item>Kadın</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Uçak</item>
+        <item>Bisiklet</item>
+        <item>Tekne</item>
+        <item>Otobüs</item>
+        <item>Motosiklet</item>
+        <item>Özel araba</item>
+        <item>Kiralık araba</item>
+        <item>Yolculuk paylaşımı</item>
+        <item>Metro</item>
+        <item>Taksi</item>
+        <item>Tren</item>
+        <item>Tramvay</item>
+        <item>Yürüyüş</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Yemek</item>
+        <item>Tarih</item>
+        <item>Kültür</item>
+        <item>Doğa</item>
+        <item>Rahatlama</item>
+        <item>Macera</item>
+        <item>Gece hayatı</item>
+        <item>Alışveriş</item>
+        <item>Aile</item>
+        <item>Romantizm</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Fotoğraf çek</item>
+        <item>Bir resim yükle</item>
+        <item>Bir dosya yükle</item>
+        <item>Bir bağlantı sağla</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Üzgünüz, bu hizmet Rusya ve Beyaz Rusya\'da mevcut değil, lütfen VPN kullanın</string>
+    <string name="error_service_not_available_title">Hizmet kullanılamıyor</string>
+    <string name="error_common_title">Hata</string>
+    <string name="error_common_message">Uygulama çalışırken bir hata oluştu. Uygulamayı güncellemeyi deneyin veya daha sonra tekrar deneyin</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Hay aksi! Bu özellik için kamera erişimi gerekiyor gibi görünüyor. Cihaz ayarlarınıza gidin, uygulama listenizde IntelliVerse\'ü bulun ve büyüyü açmak için kamera izni verin!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Hay aksi! Galerinizden resim kullanmak için IntelliVerse\'ün fotoğraflarınızı okuma iznine ihtiyacı var. Cihaz ayarlarınıza gidin, uygulama listenizde IntelliVerse\'ü bulun ve büyüyü açmak için fotoğraf erişimi verin!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Hay aksi! Cihazınıza dosya kaydetmek için IntelliVerse\'ün depolama alanınıza yazma iznine ihtiyacı var. Cihaz ayarlarınıza gidin, uygulama listenizde IntelliVerse\'ü bulun ve büyüyü açmak için depolama erişimi verin!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Hay aksi! Cihazınızdaki dosyalara erişmek için IntelliVerse\'ün depolama alanınızı okuma iznine ihtiyacı var. Cihaz ayarlarınıza gidin, uygulama listenizde IntelliVerse\'ü bulun ve büyüyü açmak için depolama erişimi verin!</string>
+    <string name="camera_permission_rationale">IntelliVerse\'ün kameranıza erişmesi gerekiyor, böylece okul egzersizlerinizin fotoğraflarını anında çekebilirsiniz!</string>
+    <string name="read_media_permission_rationale">Fotoğraflarınıza erişim izni vermek, IntelliVerse uygulamasında kullanmak üzere galerinizden resim seçmenizi sağlar!</string>
+    <string name="write_storage_permission_rationale">Depolama alanınıza yazma izni, IntelliVerse uygulamasının çektiğiniz fotoğraflar gibi dosyaları doğrudan cihazınıza kaydetmesini sağlar!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse\'ün uygulamada kullanmak isteyebileceğiniz fotoğraflar veya belgeler gibi dosaları okumak için cihazınızın depolama alanına erişmesi gerekiyor.</string>
+
+    // Buttons Labels
+    <string name="Ok">Tamam</string>
+
+    <string name="Yes">Evet</string>
+    <string name="No">Hayır</string>
+    <string name="are_you_sure">Çıkmak istediğinizden emin misiniz?</string>
+    <string name="exit">Çıkış</string>
+
+    <string name="report_content">İçeriği Bildir</string>
+    <string name="select_reason">Sebep Seçin</string>
+    <string name="offensive">Aşağılayıcı</string>
+    <string name="hate_speech">Nefret Söylemi</string>
+    <string name="incorrect_info">Yanlış Bilgi</string>
+    <string name="other">Diğer</string>
+    <string name="submit">Gönder</string>
+    <string name="cancel">İptal</string>
+
+    <string name="reset_settings">Ayarları Sıfırla</string>
+    <string name="not_relevant">İlgili Değil</string>
+
+</resources>

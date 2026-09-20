@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">Το DietTracker βοηθά τους χρήστες να παρακολουθούν την πρόσληψη θερμίδων, λιπών, πρωτεϊνών, υδατανθράκων, βιταμινών και μετάλλων στα τρόφιμα. Δεν μετρά μόνο αυτά τα στοιχεία, αλλά αναλύει επίσης τι απορροφάται από το σώμα μετά την πέψη. Οι χρήστες μπορούν να ανεβάσουν εικόνες προϊόντων, η εφαρμογή αναγνωρίζει τα συστατικά και παρέχει τη δυνατότητα επεξεργασίας της λίστας.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Εικόνα Βοηθού AI Σχολείου</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Εικόνα Μεταφόρτωσης στον Βοηθό AI Σχολείου</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Εικόνα Ελέγχου Λύσης Βοηθού AI Σχολείου</string>
+    <string name="ArrowDropDown_icon_content_description">Ανοίγει ένα υπομενού</string>
+    <string name="add_image">Προσθήκη εργασίας</string>
+    <string name="guidance_detected_ingredients">Ελέγξτε τα ανιχνευμένα συστατικά. Εάν υπάρχουν λανθασμένες ή ελλιπείς λεπτομέρειες, μπορείτε να τις τροποποιήσετε πριν δημιουργήσετε μια νέα διατροφική ανάλυση</string>
+
+    // Text values
+    <string name="ingredients">Συστατικά</string>
+    <string name="solution_text_value">Λύση</string>
+    <string name="user_task_value">Εργασία</string>
+    <string name="is_ocr_result_included_value">Χρήση επιλεγμένου αναγνωρισμένου κειμένου</string>
+    <string name="home_loading_waiting_text_value">Φόρτωση, παρακαλώ περιμένετε...</string>
+    <string name="progress_bar_hint_text_value">Πρόοδος δημιουργίας λύσεων</string>
+
+    // Button Labels
+    <string name="next_button_label">Επόμενο</string>
+    <string name="solve_button_label">Επίλυση</string>
+    <string name="check_solution_button_label">Έλεγχος λύσης</string>
+    <string name="cheat_sheet_button_label">Σημειωματάριο</string>
+    <string name="start_again">Ξεκινήστε ξανά</string>
+    <string name="try_again">Προσπαθήστε ξανά</string>
+    <string name="pick_images">Επιλογή εικόνων</string>
+    <string name="upload_from_url">Μεταφόρτωση</string>
+    <string name="upload_picture">Μεταφόρτωση Εικόνας</string>
+    <string name="take_a_picture">Λήψη Φωτογραφίας</string>
+    <string name="recognize_text_button_label">Εμφάνιση αναγνωρισμένου κειμένου</string>
+
+    // Text Field Labels
+    <string name="foods">Τρόφιμα</string>
+    <string name="What_to_solve_TextField_label">Τι θέλετε να επιλύσετε;</string>
+    <string name="rating_TextField_label">Αξιολόγηση</string>
+    <string name="no_solution_chosen">Δεν έχει επιλεγεί ακόμη λύση</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 μπανάνες και 1 μήλο, όλα μεσαίου μεγέθους.</string>
+    <string name="first_ocr_result_is_not_ready">Το κείμενο αναγνωρίζεται, παρακαλώ περιμένετε...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Γλώσσα λύσης</string>
+    <string name="upload_a_file_label">Μεταφόρτωση αρχείου</string>
+    <string name="explanations_label">Εξηγήσεις</string>
+    <string name="physical_activity_label">Φυσική Δραστηριότητα</string>
+    <string name="gender_label">Φύλο</string>
+    <string name="age_label">Ηλικία</string>
+    <string name="height_label">Ύψος</string>
+    <string name="weight_label">Βάρος</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Φαίνεται ότι έχετε διαγράψει κάποιες εικόνες από τον αποθηκευτικό χώρο καταλόγου της εφαρμογής θερμίδων. Μην ανησυχείτε, οι θερμίδες θα προσπαθήσουν να διαγράψουν αυτές τις εικόνες μία προς μία από την προσωρινή μνήμη της εφαρμογής. Παρακαλώ επιβεβαιώστε κάθε διαγραφή εικόνας, εάν χρειαστεί. Οποιαδήποτε εικόνα εμφανίζεται κενή είναι κατεστραμμένη. Θέλετε να συνεχίσετε;</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">Η AI δεν μπόρεσε να αναγνωρίσει κείμενο από την εικόνα. Παρακαλώ προσπαθήστε ξανά.</string>
+    <string name="error_gemini_solution_result_extraction">Η AI δεν μπόρεσε να λύσει αυτό το πρόβλημα. Παρακαλώ προσπαθήστε ξανά.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ωχ! Κάτι πήγε στραβά. Παρακαλώ προσπαθήστε ξανά!</string>
+    <string name="fail_to_load_Uri">Αποτυχία φόρτωσης της εικόνας στη λίστα. Παρακαλώ προσπαθήστε να τη φορτώσετε χειροκίνητα!</string>
+    <string name="corrupted_loaded_file">Έχετε φορτώσει ένα κατεστραμμένο αρχείο!</string>
+    <string name="missing_required_settings">Λείπουν ορισμένες απαραίτητες ρυθμίσεις. Παρακαλώ συμπληρώστε τις.</string>
+    <string name="camera_fail_to_open">Ωχ! Κάτι πήγε στραβά με την κάμερα. Παρακαλώ προσπαθήστε ξανά!</string>
+    <string name="upload_image_warning">Παρακαλώ μεταφορτώστε μια εικόνα από τη συσκευή</string>
+    <string name="select_image_or_text_warning">Παρακαλώ επιλέξτε μια εικόνα ή πληκτρολογήστε την εργασία.</string>
+    <string name="prompt_is_empty">Το αναγνωρισμένο κείμενο είναι κενό. Παρακαλώ προσπαθήστε ξανά!</string>
+    <string name="language_not_supported">"Η επιλεγμένη γλώσσα δεν είναι διαθέσιμη για δημιουργία πολυμέσων. Άλλες λειτουργίες θα συνεχίσουν να λειτουργούν. Θα θέλατε να κατεβάσετε τα απαραίτητα δεδομένα γλώσσας για να ενεργοποιήσετε αυτήν τη λειτουργία;"</string>
+
+    // labels
+    <string name="home">Αρχική</string>
+    <string name="settings">Ρυθμίσεις</string>
+    <string name="results">Αποτέλεσμα</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Επιλέξτε τι να μοιραστείτε</string>
+    <string name="share_user_ingredients">Μοιραστείτε τα Συστατικά Μου</string>
+    <string name="share_recognized_ingredients">Μοιραστείτε τα Αναγνωρισμένα Συστατικά</string>
+    <string name="share_solution">Μοιραστείτε τη Λύση</string>
+    <string name="share_image">Μοιραστείτε την Εικόνα</string>
+    <string name="share">Κοινή χρήση</string>
+
+    // installation
+    <string name="install">Εγκατάσταση</string>
+    <string name="install_language">Εγκατάσταση Γλώσσας</string>
+
+    <string name="solved_by_diet_tracker">Λύθηκε από το DietTracker\nΔείτε την εφαρμογή μας στο Google Play</string>
+
+</resources>

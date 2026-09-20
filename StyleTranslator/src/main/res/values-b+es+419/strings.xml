@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator convierte texto entre diferentes estilos y tonos de escritura.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Imagen del Asistente Escolar con IA</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Imagen para subir al Asistente Escolar con IA</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Imagen para comprobar la solución del Asistente Escolar con IA</string>
+    <string name="ArrowDropDown_icon_content_description">Abre un submenú</string>
+    <string name="add_image">Agregar tarea</string>
+
+    // Text values
+    <string name="recognized_text_value">Texto reconocido</string>
+    <string name="solution_text_value">Solución</string>
+    <string name="user_task_value">Tarea</string>
+    <string name="is_ocr_result_included_value">Usar el texto reconocido seleccionado</string>
+    <string name="home_loading_waiting_text_value">Cargando, por favor espere...</string>
+    <string name="progress_bar_hint_text_value">Progreso de la generación de soluciones</string>
+
+    // Button Labels
+    <string name="next_button_label">Siguiente</string>
+    <string name="solve_button_label">Resolver</string>
+    <string name="check_solution_button_label">Comprobar solución</string>
+    <string name="cheat_sheet_button_label">Hoja de trucos</string>
+    <string name="start_again">Empezar de nuevo</string>
+    <string name="try_again">Intentar de nuevo</string>
+    <string name="pick_images">Elegir imágenes</string>
+    <string name="upload_from_url">Subir</string>
+    <string name="upload_picture">Subir imagen</string>
+    <string name="take_a_picture">Tomar una foto</string>
+    <string name="recognize_text_button_label">Mostrar texto reconocido</string>
+
+    // Text Field Labels
+    <string name="sentence">Texto</string>
+    <string name="What_to_solve_TextField_label">¿Qué quieres resolver?</string>
+    <string name="rating_TextField_label">Calificación</string>
+    <string name="no_solution_chosen">Aún no se ha seleccionado una solución</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Me encanta cuidar de mi novia. Siempre me aseguro de que se sienta segura y protegida. Me gusta planificar nuestras citas y sorprenderla con pequeños regalos. Cuando está molesta, trato de encontrar una solución y arreglar las cosas.</string>
+    <string name="first_ocr_result_is_not_ready">Se está reconociendo el texto, por favor espere...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Idioma de la solución</string>
+    <string name="upload_a_file_label">Subir un archivo</string>
+    <string name="explanations_label">Explicaciones</string>
+    <string name="source_gender_label">Género de origen</string>
+    <string name="target_gender_label">Género de destino</string>
+    <string name="source_age_label">Edad de origen</string>
+    <string name="target_age_label">Edad de destino</string>
+    <string name="category_label">Categoría</string>
+    <string name="tone_label">Preferencia de tono</string>
+    <string name="transformation_level_label">Nivel de transformación</string>
+    <string name="style_label">Estilo de traducción</string>
+    <string name="mentality_label">Mentalidad</string>
+    <string name="translation_scale_label">Factor de escala de traducción</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Parece que has eliminado algunas imágenes del almacenamiento del directorio de la aplicación de calorías. No te preocupes, calorías intentará borrar estas imágenes una por una del caché de la aplicación. Por favor, confirma cada eliminación de imagen, si es necesario. Cualquier imagen que aparezca en blanco está corrupta. ¿Deseas continuar?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">La IA no pudo reconocer el texto de la imagen. Por favor, inténtalo de nuevo.</string>
+    <string name="error_gemini_solution_result_extraction">La IA no pudo resolver este problema. Por favor, inténtalo de nuevo.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">¡Ups! Algo salió mal. ¡Por favor, inténtalo de nuevo!</string>
+    <string name="fail_to_load_Uri">Error al cargar la imagen en la lista. ¡Por favor, intenta cargarla manualmente!</string>
+    <string name="corrupted_loaded_file">¡Has cargado un archivo corrupto!</string>
+    <string name="missing_required_settings">Faltan algunos ajustes necesarios. Por favor, complétalos.</string>
+    <string name="camera_fail_to_open">¡Ups! Algo salió mal con la cámara. ¡Por favor, inténtalo de nuevo!</string>
+    <string name="upload_image_warning">Por favor, sube una imagen desde el dispositivo</string>
+    <string name="select_image_or_text_warning">Por favor, selecciona una imagen o escribe la tarea.</string>
+    <string name="prompt_is_empty">El texto reconocido está vacío. ¡Por favor, inténtalo de nuevo!</string>
+    <string name="language_not_supported">"El idioma seleccionado no está disponible para la generación de medios. Otras funciones seguirán funcionando. ¿Desea descargar los datos de idioma necesarios para habilitar esta función?"</string>
+
+    // labels
+    <string name="home">Inicio</string>
+    <string name="settings">Ajustes</string>
+    <string name="results">Resultado</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Elige qué compartir</string>
+    <string name="share_user_translation">Compartir mi texto</string>
+    <string name="share_ocr_result">Compartir texto reconocido</string>
+    <string name="share_solution">Compartir solución</string>
+    <string name="share_image">Compartir imagen</string>
+    <string name="share">Compartir</string>
+
+    // installation
+    <string name="install">Instalar</string>
+    <string name="install_language">Instalar idioma</string>
+
+    <string name="solved_by_style_translator">Resuelto por StyleTranslator\nEcha un vistazo a nuestra aplicación en Google Play</string>
+
+</resources>

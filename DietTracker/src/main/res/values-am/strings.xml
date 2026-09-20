@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker መከታተያ ተጠቃሚዎች በምግብ ውስጥ የሚወስዱትን ካሎሪ፣ ስብ፣ ፕሮቲን፣ ካርቦሃይድሬትስ፣ ቫይታሚኖች እና ማዕድናት እንዲከታተሉ ያግዛል። እነዚህን ንጥረ ነገሮች ከመቁጠር ባለፈ ሰውነታችን ከምግብ መፈጨት በኋላ የሚወስደውንም ይመረምራል። ተጠቃሚዎች የምርቶችን ምስሎች መስቀል ይችላሉ፣ አፕሊኬሽኑ ንጥረ ነገሮቹን ለይቶ ያውቃል እና ዝርዝሩን የማርትዕ ችሎታ ይሰጣል።</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI የትምህርት ቤት ረዳት ምስል</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">ወደ AI ትምህርት ቤት ረዳት ምስል ስቀል</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">የመፍትሄ AI የትምህርት ቤት ረዳት ምስልን ፈትሽ</string>
+    <string name="ArrowDropDown_icon_content_description">ንዑስ ምናሌን ይከፍታል</string>
+    <string name="add_image">ተግባር ጨምር</string>
+    <string name="guidance_detected_ingredients">የተገኙትን ንጥረ ነገሮች ይገምግሙ። ማንኛውም ዝርዝር መረጃ ትክክል ካልሆነ ወይም ከጎደለ አዲስ የአመጋገብ ትንታኔ ከማመንጨትዎ በፊት ማሻሻል ይችላሉ</string>
+
+    // Text values
+    <string name="ingredients">ንጥረ ነገሮች</string>
+    <string name="solution_text_value">መፍትሄ</string>
+    <string name="user_task_value">ተግባር</string>
+    <string name="is_ocr_result_included_value">የተመረጠውን የታወቀ ጽሑፍ ተጠቀም</string>
+    <string name="home_loading_waiting_text_value">በመጫን ላይ፣ እባክዎ ይጠብቁ...</string>
+    <string name="progress_bar_hint_text_value">የመፍትሄዎች ትውልድ ሂደት</string>
+
+    // Button Labels
+    <string name="next_button_label">ቀጣይ</string>
+    <string name="solve_button_label">ፍታ</string>
+    <string name="check_solution_button_label">መፍትሄ ፈትሽ</string>
+    <string name="cheat_sheet_button_label">የማጭበርበሪያ ወረቀት</string>
+    <string name="start_again">እንደገና ጀምር</string>
+    <string name="try_again">እንደገና ሞክር</string>
+    <string name="pick_images">ምስሎችን ምረጥ</string>
+    <string name="upload_from_url">ስቀል</string>
+    <string name="upload_picture">ምስል ስቀል</string>
+    <string name="take_a_picture">ምስል አንሳ</string>
+    <string name="recognize_text_button_label">የታወቀውን ጽሑፍ አሳይ</string>
+
+    // Text Field Labels
+    <string name="foods">ምግቦች</string>
+    <string name="What_to_solve_TextField_label">ምን መፍታት ይፈልጋሉ?</string>
+    <string name="rating_TextField_label">ደረጃ</string>
+    <string name="no_solution_chosen">መፍትሄ ገና አልተመረጠም</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 ሙዝ እና 1 ፖም፣ ሁሉም መካከለኛ መጠን ያላቸው።</string>
+    <string name="first_ocr_result_is_not_ready">ጽሑፍ እየታወቀ ነው፣ እባክዎ ይጠብቁ...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">የመፍትሄ ቋንቋ</string>
+    <string name="upload_a_file_label">ፋይል ስቀል</string>
+    <string name="explanations_label">ማብራሪያዎች</string>
+    <string name="physical_activity_label">አካላዊ እንቅስቃሴ</string>
+    <string name="gender_label">ጾታ</string>
+    <string name="age_label">ዕድሜ</string>
+    <string name="height_label">ቁመት</string>
+    <string name="weight_label">ክብደት</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">አንዳንድ ምስሎችን ከካሎሪ መተግበሪያ ማውጫ ማከማቻ ላይ የሰረዟቸው ይመስላል። አይጨነቁ፣ ካሎሪ እነዚህን ምስሎች አንድ በአንድ ከመተግበሪያው መሸጎጫ ለማጽዳት ይሞክራል። አስፈላጊ ከሆነ እያንዳንዱን የምስል ስረዛ ያረጋግጡ። ባዶ የሚመስል ማንኛውም ምስል የተበላሸ ነው። መቀጠል ይፈልጋሉ?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ከምስሉ ላይ ጽሑፍን መለየት አልቻለም። እባክዎ እንደገና ይሞክሩ።</string>
+    <string name="error_gemini_solution_result_extraction">AI ይህንን ችግር መፍታት አልቻለም። እባክዎ እንደገና ይሞክሩ።</string>
+
+    // Toast messages
+    <string name="something_went_wrong">ኧረ! የሆነ ነገር ተሳስቷል። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="fail_to_load_Uri">ምስሉን ወደ ዝርዝሩ መጫን አልተሳካም። እባክዎ እራስዎ ለመጫን ይሞክሩ!</string>
+    <string name="corrupted_loaded_file">የተበላሸ ፋይል ጭነዋል!</string>
+    <string name="missing_required_settings">አንዳንድ አስፈላጊ ቅንብሮች ጠፍተዋል። እባክዎ ይሙሏቸው።</string>
+    <string name="camera_fail_to_open">ኧረ! ከካሜራ ጋር የሆነ ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="upload_image_warning">እባክዎ ከመሣሪያው ላይ ምስል ስቀል</string>
+    <string name="select_image_or_text_warning">እባክዎ ምስል ይምረጡ ወይም ተግባር ይተይቡ።</string>
+    <string name="prompt_is_empty">የታወቀው ጽሑፍ ባዶ ነው። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="language_not_supported">"የተመረጠው ቋንቋ ለሚዲያ ትውልድ አይገኝም። ሌሎች ባህሪያት መስራታቸውን ይቀጥላሉ። ይህንን ባህሪ ለማንቃት አስፈላጊውን የቋንቋ ውሂብ ማውረድ ይፈልጋሉ?"</string>
+
+    // labels
+    <string name="home">ቤት</string>
+    <string name="settings">ቅንብሮች</string>
+    <string name="results">ውጤት</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">ምን ማጋራት እንደሚፈልጉ ይምረጡ</string>
+    <string name="share_user_ingredients">የእኔን ንጥረ ነገሮች አጋራ</string>
+    <string name="share_recognized_ingredients">የታወቁትን ንጥረ ነገሮች አጋራ</string>
+    <string name="share_solution">መፍትሄ አጋራ</string>
+    <string name="share_image">ምስል አጋራ</string>
+    <string name="share">አጋራ</string>
+
+    // installation
+    <string name="install">ጫን</string>
+    <string name="install_language">ቋንቋ ጫን</string>
+
+    <string name="solved_by_diet_tracker">በ DietTracker የተፈታ\nበGoogle Play ላይ ያለውን መተግበሪያችንን ይመልከቱ</string>
+
+</resources>

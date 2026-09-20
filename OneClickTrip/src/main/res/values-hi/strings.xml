@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip आपका स्मार्ट यात्रा योजनाकार है जो एआई द्वारा संचालित है। बस अपने सपनों की यात्रा का वर्णन करें या प्रेरणा अपलोड करें, और तुरंत परिवहन विकल्पों, होटल लिंक, बजट अनुमानों और स्थानीय सुझावों के साथ एक व्यक्तिगत, दिन-प्रतिदिन का यात्रा कार्यक्रम प्राप्त करें — वह भी एक ही क्लिक में।</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">पहचाना गया पाठ</string>
+    <string name="solution_text_value">समाधान</string>
+    <string name="user_task_value">कार्य</string>
+    <string name="progress_bar_hint_text_value">समाधान बनाने की प्रगति</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">पाठ</string>
+    <string name="no_solution_chosen">अभी तक कोई समाधान नहीं चुना गया है</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        मैं एक तीन दिन की आरामदायक और सांस्कृतिक यात्रा चाहता हूँ जिसमें ऐतिहासिक स्थल, स्थानीय भोजन, हल्की सैर और निर्देशित एवं स्वतंत्र गतिविधियों का मिश्रण हो, एक शहर या आस-पास।
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">समाधान भाषा</string>
+    <string name="max_budget_label">अधिकतम बजट</string>
+    <string name="travelers_number_label">यात्रियों की संख्या</string>
+    <string name="trip_duration_label">यात्रा अवधि</string>
+    <string name="transportation_type_label">परिवहन का प्रकार</string>
+    <string name="trip_style_label">यात्रा शैली</string>
+    <string name="origin_location_label">प्रारंभिक स्थान</string>
+    <string name="trip_type_label">यात्रा का प्रकार</string>
+    <string name="one_way_trip">एक तरफ़ी यात्रा</string>
+    <string name="round_trip">राउंड ट्रिप</string>
+    <string name="days">दिन</string>
+    <string name="new_york">न्यूयॉर्क</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">परिवहन का प्रकार दर्ज करें</string>
+    <string name="enter_location">स्थान दर्ज करें</string>
+    <string name="add">जोड़ें</string>
+    <string name="travel_path">यात्रा मार्ग</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        एआई इस समस्या का समाधान नहीं कर सका। कृपया फिर से प्रयास करें।
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">उफ़! कुछ गलत हो गया। कृपया फिर से प्रयास करें!</string>
+    <string name="fail_to_load_Uri">छवि को सूची में लोड करने में विफल। कृपया मैन्युअल रूप से प्रयास करें!</string>
+    <string name="corrupted_loaded_file">आपने एक क्षतिग्रस्त फ़ाइल लोड की है!</string>
+    <string name="missing_required_settings">कुछ आवश्यक सेटिंग्स गायब हैं। कृपया उन्हें पूरा करें।</string>
+    <string name="camera_fail_to_open">उफ़! कैमरा खोलने में समस्या। कृपया फिर से प्रयास करें!</string>
+    <string name="select_image_or_text_warning">कृपया एक छवि चुनें या कार्य दर्ज करें।</string>
+    <string name="language_not_supported">
+        चयनित भाषा मीडिया निर्माण के लिए उपलब्ध नहीं है। अन्य सुविधाएँ काम करती रहेंगी। क्या आप आवश्यक भाषा डेटा डाउनलोड करना चाहते हैं?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">होम</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="results">परिणाम</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">चयन करें कि क्या साझा करना है</string>
+    <string name="share_user_translation">मेरा पाठ साझा करें</string>
+    <string name="share_ocr_result">पहचाना गया पाठ साझा करें</string>
+    <string name="share_solution">समाधान साझा करें</string>
+    <string name="share_image">छवि साझा करें</string>
+    <string name="share">साझा करें</string>
+
+    <!-- Installation -->
+    <string name="install">इंस्टॉल करें</string>
+    <string name="install_language">भाषा इंस्टॉल करें</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">OneClickTrip द्वारा हल किया गया\nहमारा ऐप Google Play पर देखें</string>
+</resources>

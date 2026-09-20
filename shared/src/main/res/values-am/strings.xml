@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>ግጥማዊ</item>
+        <item>ሙያዊ</item>
+        <item>ህጋዊ</item>
+        <item>ቴክኒካዊ</item>
+        <item>ትምህርታዊ</item>
+        <item>ጋዜጠኝነት</item>
+        <item>ፈጠራ</item>
+        <item>አሳማኝ</item>
+        <item>ተረኪ</item>
+        <item>አስረጂ</item>
+        <item>ገለጻዊ</item>
+        <item>አስቂኝ</item>
+        <item>መደበኛ ያልሆነ</item>
+        <item>ንግድ</item>
+        <item>ሳይንሳዊ</item>
+        <item>ፍቅር ነክ</item>
+        <item>ታሪካዊ</item>
+        <item>ፍልስፍናዊ</item>
+        <item>የራስ አገዝ</item>
+        <item>ጉዞ</item>
+        <item>ግብይት</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>መደበኛ</item>
+        <item>አጋጣሚ</item>
+        <item>ወዳጃዊ</item>
+        <item>ከባድ</item>
+        <item>አዛኝ</item>
+        <item>ቆራጥ</item>
+        <item>ብሩህ አመለካከት</item>
+        <item>አስቂኝ</item>
+        <item>ገለልተኛ</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>ትንሹ</item>
+        <item>መካከለኛ</item>
+        <item>የተሟላ</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>ግንኙነት</item>
+        <item>የስራ ቦታ</item>
+        <item>ትምህርት</item>
+        <item>ጤና</item>
+        <item>ፋይናንስ</item>
+        <item>ጉዞ</item>
+        <item>ቴክኖሎጂ</item>
+        <item>መዝናኛ</item>
+        <item>የራስ መሻሻል</item>
+        <item>አጠቃላይ</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>ሩሲያ: የጋራ</item>
+        <item>ምስራቅ አውሮፓ: ተግባራዊ</item>
+        <item>ምዕራብ አውሮፓ: ግለሰባዊ</item>
+        <item>ደቡብ ምስራቅ እስያ: ስምምነት ላይ ያተኮረ</item>
+        <item>ቻይና: ተዋረድ</item>
+        <item>ካውካሰስ: በክብር የታሰረ</item>
+        <item>ሰሜን አሜሪካ: ሥራ ፈጣሪነት</item>
+        <item>ላቲን አሜሪካ: ስሜታዊ</item>
+        <item>መካከለኛው ምስራቅ: በእንግዳ ተቀባይነት የሚመራ</item>
+        <item>አፍሪካ: ማህበረሰባዊ</item>
+        <item>የሰሜን ሀገሮች: እኩልነት</item>
+        <item>ደቡብ እስያ: በቤተሰብ ላይ ያተኮረ</item>
+        <item>ጃፓን: የቡድን ስምምነት</item>
+        <item>አውስትራሊያ: ዘና ያለ</item>
+        <item>ሜዲትራኒያን: ገላጭ</item>
+        <item>ማዕከላዊ እስያ: ዘላኖች ወጎች</item>
+        <item>ጀርመን: የተዋቀረ</item>
+        <item>ባልካን: ጠንካራ</item>
+        <item>አርክቲክ ተወላጆች: ከተፈጥሮ ጋር የተገናኘ</item>
+        <item>አይሁዳዊ: በማህበረሰብ ላይ ያተኮረ</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>አማርኛ</item>
+        <item>አረብኛ</item>
+        <item>ቤንጋሊኛ</item>
+        <item>ቡልጋሪያኛ</item>
+        <item>ቀለል ያለ ቻይንኛ</item>
+        <item>ክሮኤሽያንኛ</item>
+        <item>ቼክኛ</item>
+        <item>ዴንማርክኛ</item>
+        <item>ደች</item>
+        <item>እንግሊዝኛ</item>
+        <item>ኢስቶኒያኛ</item>
+        <item>ፊንላንድ</item>
+        <item>ፈረንሳይኛ</item>
+        <item>ጀርመንኛ</item>
+        <item>ግሪክ</item>
+        <item>ጉጃራቲ</item>
+        <item>ዕብራይስጥ</item>
+        <item>ሂንዲ</item>
+        <item>ሃንጋሪኛ</item>
+        <item>ኢንዶኔዥያኛ</item>
+        <item>ጣሊያንኛ</item>
+        <item>ጃፓንኛ</item>
+        <item>ካናዳኛ</item>
+        <item>ኮሪያኛ</item>
+        <item>ላቲቪያኛ</item>
+        <item>ሊቱዌኒያኛ</item>
+        <item>ማላይኛ</item>
+        <item>ማራቲኛ</item>
+        <item>ኖርዌጂያን</item>
+        <item>ፓሽቶ</item>
+        <item>ፋርስኛ</item>
+        <item>ፖሊሽ</item>
+        <item>ፖርቹጋልኛ</item>
+        <item>ሮማኒያኛ</item>
+        <item>ራሽያኛ</item>
+        <item>ሰርቢያኛ</item>
+        <item>ስሎቫክኛ</item>
+        <item>ስሎቬኒያኛ</item>
+        <item>ስፓኒሽ</item>
+        <item>ስዋሂሊኛ</item>
+        <item>ስዊድንኛ</item>
+        <item>ታጋሎግ</item>
+        <item>ታሚል</item>
+        <item>ተሉጉ</item>
+        <item>ታይ</item>
+        <item>ቱርክኛ</item>
+        <item>ዩክሬንኛ</item>
+        <item>ኡርዱ</item>
+        <item>ቬትናምኛ</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>አግባብነት የሌለው</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>ምንም ማብራሪያ የለም</item>
+        <item>አጭር ማብራሪያ</item>
+        <item>ዝርዝር ማብራሪያ</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>የማይንቀሳቀስ</item>
+        <item>ትንሽ ንቁ</item>
+        <item>በመጠኑ ንቁ</item>
+        <item>በጣም ንቁ</item>
+        <item>በጣም ንቁ</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>አየር አውትራ</item>
+        <item>ብስክሌት</item>
+        <item>ጀልባ</item>
+        <item>አውቶቡስ</item>
+        <item>ሞተርሳይክል</item>
+        <item>የግል መኪና</item>
+        <item>ኪራይ መኪና</item>
+        <item>ተጓዥ መካከል እኩል ማጋራት</item>
+        <item>የታችኛው ባቡር</item>
+        <item>ታክሲ</item>
+        <item>ባቡር</item>
+        <item>ትራም</item>
+        <item>በእግር መሄድ</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>ምግብ</item>
+        <item>ታሪክ</item>
+        <item>ባህል</item>
+        <item>ተፈጥሯዊ</item>
+        <item>እረፍት</item>
+        <item>ግንዛቤ</item>
+        <item>የሌሊት ሕይወት</item>
+        <item>ግዢ</item>
+        <item>ቤተሰብ</item>
+        <item>ፍቅር</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>ወንድ</item>
+        <item>ሴት</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>ምስል አንሳ</item>
+        <item>ምስል ስቀል</item>
+        <item>ፋይል ስቀል</item>
+        <item>አገናኝ ስጥ</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">ይቅርታ፣ አገልግሎቱ በሩሲያ እና ቤላሩስ አይገኝም፣ እባክዎ ቪፒኤን ይጠቀሙ</string>
+    <string name="error_service_not_available_title">አገልግሎት አይገኝም</string>
+    <string name="error_common_title">ስህተት</string>
+    <string name="error_common_message">መተግበሪያው በሚሰራበት ጊዜ ስህተት ተከስቷል። መተግበሪያውን ለማዘመን ይሞክሩ ወይም በኋላ እንደገና ይሞክሩ</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">ኧረ! ለዚህ ባህሪ የካሜራ መዳረሻ ያስፈልጋል። ወደ መሣሪያዎ ቅንብሮች ይሂዱ፣ IntelliVerse ን በመተግበሪያ ዝርዝርዎ ውስጥ ይፈልጉ እና አስማቱን ለመክፈት የካሜራ ፍቃድ ይስጡ!</string>
+    <string name="permanent_denied_read_media_permission_explanation">ኧረ! ከማዕከለ-ስዕላትዎ ምስሎችን ለመጠቀም IntelliVerse ፎቶዎችዎን ለማንበብ ፍቃድ ያስፈልገዋል። ወደ መሣሪያዎ ቅንብሮች ይሂዱ፣ IntelliVerse ን በመተግበሪያ ዝርዝርዎ ውስጥ ይፈልጉ እና አስማቱን ለመክፈት የፎቶ መዳረሻ ይስጡ!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">ኧረ! ፋይሎችን በመሣሪያዎ ላይ ለማስቀመጥ IntelliVerse ወደ ማከማቻዎ ለመፃፍ ፈቃድ ያስፈልገዋል። ወደ መሣሪያዎ ቅንብሮች ይሂዱ፣ IntelliVerse ን በመተግበሪያ ዝርዝርዎ ውስጥ ይፈልጉ እና አስማቱን ለመክፈት የማከማቻ መዳረሻ ይስጡ!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">ኧረ! በመሣሪያዎ ላይ ያሉ ፋይሎችን ለመድረስ IntelliVerse ማከማቻዎን ለማንበብ ፍቃድ ያስፈልገዋል። ወደ መሣሪያዎ ቅንብሮች ይሂዱ፣ IntelliVerse ን በመተግበሪያ ዝርዝርዎ ውስጥ ይፈልጉ እና አስማቱን ለመክፈት የማከማቻ መዳረሻ ይስጡ!</string>
+    <string name="camera_permission_rationale">IntelliVerse የትምህርት ቤት ልምምዶችዎን ፎቶዎችን ወዲያውኑ ማንሳት እንዲችሉ ወደ ካሜራዎ መዳረሻ ይፈልጋል!</string>
+    <string name="read_media_permission_rationale">ፎቶዎችዎን መዳረሻ መፍቀድ በ IntelliVerse መተግበሪያ ውስጥ ለመጠቀም ከማዕከለ-ስዕላትዎ ምስሎችን እንዲመርጡ ያስችልዎታል!</string>
+    <string name="write_storage_permission_rationale">ወደ ማከማቻዎ የመፃፍ ፍቃድ IntelliVerse መተግበሪያ ልክ እንደወሰዷቸው ያሉ ፋይሎችን በፎቶዎችዎ በመሣሪያዎ ላይ እንዲያስቀምጡ ያስችላቸዋል!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse በመተግበሪያው ውስጥ ለመጠቀም የሚፈልጓቸውን እንደ ፎቶዎች ወይም ሰነዶች ያሉ ፋይሎችን ለማንበብ ወደ መሣሪያዎ ማከማቻ መዳረሻ ይፈልጋል።</string>
+
+    // Buttons Labels
+    <string name="Ok">እሺ</string>
+
+    <string name="Yes">አዎ</string>
+    <string name="No">አይ</string>
+    <string name="are_you_sure">ለመውጣት እርግጠኛ ነዎት</string>
+    <string name="exit">ውጣ</string>
+
+    <string name="report_content">ይዘትን ሪፖርት አድርግ</string>
+    <string name="select_reason">ምክንያት ምረጥ</string>
+    <string name="offensive">አስነዋሪ</string>
+    <string name="hate_speech">የጥላቻ ንግግር</string>
+    <string name="incorrect_info">የተሳሳተ መረጃ</string>
+    <string name="other">ሌላ</string>
+    <string name="submit">አስገባ</string>
+    <string name="cancel">ሰርዝ</string>
+
+    <string name="reset_settings">ቅንብሮችን ዳግም አስጀምር</string>
+    <string name="not_relevant">አግባብነት የለውም</string>
+
+</resources>

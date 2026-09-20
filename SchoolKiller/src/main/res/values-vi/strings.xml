@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller giúp học sinh giải quyết các bài toán cụ thể, cũng như các vấn đề chung.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Hình ảnh Trợ lý Học đường AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Tải lên Hình ảnh cho Trợ lý Học đường AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Kiểm tra Giải pháp Hình ảnh cho Trợ lý Học đường AI</string>
+    <string name="ArrowDropDown_icon_content_description">Mở một menu con</string>
+    <string name="add_image">Thêm nhiệm vụ</string>
+    <string name="Guidance">Để có kết quả tối ưu, vui lòng cung cấp VĂN BẢN chi tiết cho nhiệm vụ của bạn. Nếu bạn đính kèm hình ảnh, hãy đảm bảo rằng bất kỳ văn bản nào được nhận dạng đều được chỉnh sửa để khớp với bản gốc một cách chính xác.</string>
+
+    // Text values
+    <string name="recognized_text_value">Văn bản đã nhận dạng</string>
+    <string name="solution_text_value">Giải pháp</string>
+    <string name="user_task_value">Nhiệm vụ</string>
+    <string name="is_ocr_result_included_value">Sử dụng văn bản đã nhận dạng được chọn</string>
+    <string name="home_loading_waiting_text_value">Đang tải, vui lòng đợi...</string>
+    <string name="progress_bar_hint_text_value">Tiến trình tạo giải pháp</string>
+
+    // Button Labels
+    <string name="next_button_label">Tiếp theo</string>
+    <string name="solve_button_label">Giải</string>
+    <string name="check_solution_button_label">Kiểm tra giải pháp</string>
+    <string name="cheat_sheet_button_label">Tài liệu tham khảo nhanh</string>
+    <string name="start_again">Bắt đầu lại</string>
+    <string name="try_again">Thử lại</string>
+    <string name="pick_images">Chọn ảnh</string>
+    <string name="upload_from_url">Tải lên</string>
+    <string name="upload_picture">Tải ảnh lên</string>
+    <string name="take_a_picture">Chụp ảnh</string>
+    <string name="recognize_text_button_label">Hiển thị văn bản đã nhận dạng</string>
+
+    // Text Field Labels
+    <string name="tasks">Nhiệm vụ</string>
+    <string name="What_to_solve_TextField_label">Bạn muốn giải gì?</string>
+    <string name="rating_TextField_label">Đánh giá</string>
+    <string name="no_solution_chosen">Chưa chọn giải pháp nào</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Hãy cho tôi biết về định lý Pytago.</string>
+    <string name="first_ocr_result_is_not_ready">Đang nhận dạng văn bản, vui lòng đợi…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Ngôn ngữ giải pháp</string>
+    <string name="upload_a_file_label">Tải lên một tập tin</string>
+    <string name="explanations_label">Giải thích</string>
+    <string name="grade_label">"Lớp"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Có vẻ như bạn đã xóa một số hình ảnh khỏi thư mục lưu trữ của ứng dụng SchoolKiller. Đừng lo lắng, SchoolKiller sẽ cố gắng xóa từng hình ảnh này khỏi bộ nhớ cache của ứng dụng. Vui lòng xác nhận từng lần xóa hình ảnh nếu cần. Bất kỳ hình ảnh nào hiển thị trống đều bị hỏng. Bạn có muốn tiếp tục không?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI không thể nhận dạng văn bản từ hình ảnh. Vui lòng thử lại.</string>
+    <string name="error_gemini_solution_result_extraction">AI không thể giải quyết vấn đề này. Vui lòng thử lại.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Rất tiếc! Đã xảy ra sự cố. Vui lòng thử lại!</string>
+    <string name="fail_to_load_Uri">Không thể tải hình ảnh vào danh sách. Vui lòng thử tải thủ công!</string>
+    <string name="corrupted_loaded_file">Bạn đã tải một tập tin bị hỏng!</string>
+    <string name="camera_fail_to_open">Rất tiếc! Đã xảy ra sự cố với máy ảnh. Vui lòng thử lại!</string>
+    <string name="upload_image_warning">Vui lòng tải lên một hình ảnh từ thiết bị</string>
+    <string name="select_image_or_text_warning">Vui lòng chọn một hình ảnh hoặc nhập nhiệm vụ.</string>
+    <string name="prompt_is_empty">Văn bản đã nhận dạng trống. Vui lòng thử lại!</string>
+    <string name="language_not_supported">"Ngôn ngữ đã chọn không khả dụng cho việc tạo phương tiện. Các tính năng khác sẽ tiếp tục hoạt động. Bạn có muốn tải xuống dữ liệu ngôn ngữ cần thiết để bật tính năng này không?"</string>
+
+    // labels
+    <string name="home">Trang chủ</string>
+    <string name="settings">Cài đặt</string>
+    <string name="results">Kết quả</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Chọn nội dung để chia sẻ</string>
+    <string name="share_user_task">Chia sẻ Nhiệm vụ của Tôi</string>
+    <string name="share_ocr_result">Chia sẻ Văn bản đã Nhận dạng</string>
+    <string name="share_solution">Chia sẻ Giải pháp</string>
+    <string name="share_image">Chia sẻ Hình ảnh</string>
+    <string name="share">Chia sẻ</string>
+
+    // installation
+    <string name="install">Cài đặt</string>
+    <string name="install_language">Cài đặt Ngôn ngữ</string>
+
+    <string name="solved_by_schoolkiller">Giải quyết bởi SchoolKiller\nHãy xem ứng dụng của chúng tôi trên Google Play</string>
+
+</resources>

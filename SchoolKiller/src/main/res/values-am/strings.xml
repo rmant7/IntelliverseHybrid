@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller ተማሪዎች በተለይ የሂሳብ ችግሮችን እንዲሁም አጠቃላይ ችግሮችን እንዲፈቱ ያግዛል።</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">የ AI ትምህርት ቤት ረዳት ምስል</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">ወደ AI ትምህርት ቤት ረዳት ምስል ስቀል</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">መፍትሄ AI ትምህርት ቤት ረዳት ምስልን ፈትሽ</string>
+    <string name="ArrowDropDown_icon_content_description">ንዑስ ምናሌ ይከፍታል</string>
+    <string name="add_image">ተግባር ጨምር</string>
+    <string name="Guidance">ለተሻለ ውጤት፣ እባክዎን ለስራዎ ዝርዝር ጽሑፍ ያቅርቡ። ምስሎችን ካያያዙ ማንኛውም የታወቀ ጽሑፍ ከመጀመሪያው ጋር በትክክል እንዲመሳሰል ያርትዑት።</string>
+
+    // Text values
+    <string name="recognized_text_value">የታወቀ ጽሑፍ</string>
+    <string name="solution_text_value">መፍትሔ</string>
+    <string name="user_task_value">ተግባር</string>
+    <string name="is_ocr_result_included_value">የተመረጠውን የታወቀ ጽሑፍ ተጠቀም</string>
+    <string name="home_loading_waiting_text_value">እየጫነ ነው፣ እባክዎ ይጠብቁ...</string>
+    <string name="progress_bar_hint_text_value">የመፍትሄ ትውልድ ሂደት</string>
+
+    // Button Labels
+    <string name="next_button_label">ቀጣይ</string>
+    <string name="solve_button_label">ፍታ</string>
+    <string name="check_solution_button_label">መፍትሄን ፈትሽ</string>
+    <string name="cheat_sheet_button_label">ማጭበርበሪያ ሉህ</string>
+    <string name="start_again">እንደገና ጀምር</string>
+    <string name="try_again">እንደገና ሞክር</string>
+    <string name="pick_images">ምስሎችን ምረጥ</string>
+    <string name="upload_from_url">ስቀል</string>
+    <string name="upload_picture">ምስል ስቀል</string>
+    <string name="take_a_picture">ፎቶ አንሳ</string>
+    <string name="recognize_text_button_label">የታወቀ ጽሑፍ አሳይ</string>
+
+    // Text Field Labels
+    <string name="tasks">ተግባር</string>
+    <string name="What_to_solve_TextField_label">ምን መፍታት ይፈልጋሉ?</string>
+    <string name="rating_TextField_label">ደረጃ አሰጣጥ</string>
+    <string name="no_solution_chosen">መፍትሔ እስካሁን አልተመረጠም</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">ስለ ፓይታጎሪያን ቲዎረም ንገረኝ።</string>
+    <string name="first_ocr_result_is_not_ready">ጽሑፍ እየታወቀ ነው፣ እባክዎ ይጠብቁ...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">የመፍትሔ ቋንቋ</string>
+    <string name="upload_a_file_label">ፋይል ስቀል</string>
+    <string name="explanations_label">ማብራሪያዎች</string>
+    <string name="grade_label">"ውጤት"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">ከ SchoolKiller መተግበሪያ ማከማቻ ማውጫ አንዳንድ ምስሎችን የሰረዙ ይመስላል። አይጨነቁ፣ SchoolKiller እነዚህን ምስሎች አንድ በአንድ ከመተግበሪያው መሸጎጫ ለማጽዳት ይሞክራል። አስፈላጊ ከሆነ እያንዳንዱን የምስል ስረዛ ያረጋግጡ። ባዶ የሚመስል ማንኛውም ምስል የተበላሸ ነው። መቀጠል ይፈልጋሉ?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ከምስሉ ላይ ጽሑፍ መለየት አልቻለም። እባክዎን እንደገና ይሞክሩ።</string>
+    <string name="error_gemini_solution_result_extraction">AI ይህንን ችግር መፍታት አልቻለም። እባክዎን እንደገና ይሞክሩ።</string>
+
+    // Toast messages
+    <string name="something_went_wrong">ኧረ! የሆነ ችግር ተከስቷል። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="fail_to_load_Uri">ምስሉን ወደ ዝርዝሩ መጫን አልተሳካም። እባክዎን በእጅ ለመጫን ይሞክሩ!</string>
+    <string name="corrupted_loaded_file">የተበላሸ ፋይል ጭነዋል!</string>
+    <string name="camera_fail_to_open">ኧረ! በካሜራው ላይ የሆነ ችግር ተከስቷል። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="upload_image_warning">እባክዎ ከ መሣሪያ ላይ ምስል ይስቀሉ።</string>
+    <string name="select_image_or_text_warning">እባክዎ ምስል ይምረጡ ወይም ተግባር ይተይቡ።</string>
+    <string name="prompt_is_empty">የታወቀ ጽሑፍ ባዶ ነው። እባክዎ እንደገና ይሞክሩ!</string>
+    <string name="language_not_supported">"የተመረጠው ቋንቋ ለሚዲያ ትውልድ አይገኝም። ሌሎች ባህሪዎች መስራታቸውን ይቀጥላሉ። ይህንን ባህሪ ለማንቃት አስፈላጊውን የቋንቋ ውሂብ ማውረድ ይፈልጋሉ?"</string>
+
+    // labels
+    <string name="home">ቤት</string>
+    <string name="settings">ቅንብሮች</string>
+    <string name="results">ውጤት</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">ምን ማጋራት እንደሚፈልጉ ይምረጡ</string>
+    <string name="share_user_task">ተግባሬን አጋራ</string>
+    <string name="share_ocr_result">የታወቀ ጽሑፍን አጋራ</string>
+    <string name="share_solution">መፍትሔን አጋራ</string>
+    <string name="share_image">ምስል አጋራ</string>
+    <string name="share">አጋራ</string>
+
+    // installation
+    <string name="install">ጫን</string>
+    <string name="install_language">ቋንቋ ጫን</string>
+
+    <string name="solved_by_schoolkiller">በ SchoolKiller የተፈታ\nበ Google Play ላይ ያለውን መተግበሪያችንን ይመልከቱ</string>
+
+</resources>

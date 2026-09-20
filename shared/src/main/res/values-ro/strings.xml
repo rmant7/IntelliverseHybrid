@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poetic</item>
+        <item>Profesional</item>
+        <item>Legal</item>
+        <item>Tehnic</item>
+        <item>Academic</item>
+        <item>Jurnalistic</item>
+        <item>Creativ</item>
+        <item>Convingător</item>
+        <item>Narativ</item>
+        <item>Descriptiv</item>
+        <item>Explicativ</item>
+        <item>Umoristic</item>
+        <item>Informal</item>
+        <item>De afaceri</item>
+        <item>Științific</item>
+        <item>Romantic</item>
+        <item>Istoric</item>
+        <item>Filozofic</item>
+        <item>Auto-ajutorare</item>
+        <item>De călătorie</item>
+        <item>De marketing</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formal</item>
+        <item>Casual</item>
+        <item>Prietenos</item>
+        <item>Serios</item>
+        <item>Empatic</item>
+        <item>Asertiv</item>
+        <item>Optimist</item>
+        <item>Umoristic</item>
+        <item>Neutru</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimă</item>
+        <item>Moderată</item>
+        <item>Completă</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Relație</item>
+        <item>Loc de muncă</item>
+        <item>Educație</item>
+        <item>Sănătate</item>
+        <item>Finanțe</item>
+        <item>Călătorie</item>
+        <item>Tehnologie</item>
+        <item>Divertisment</item>
+        <item>Auto-îmbunătățire</item>
+        <item>General</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusia: Colectivistă</item>
+        <item>Europa de Est: Pragmatică</item>
+        <item>Europa de Vest: Individualistă</item>
+        <item>Asia de Sud-Est: Orientată spre armonie</item>
+        <item>China: Ierarhică</item>
+        <item>Caucaz: Bazată pe onoare</item>
+        <item>America de Nord: Antreprenorială</item>
+        <item>America Latină: Pasionată</item>
+        <item>Orientul Mijlociu: Condusă de ospitalitate</item>
+        <item>Africa: Comunală</item>
+        <item>Țările Nordice: Egalitaristă</item>
+        <item>Asia de Sud: Centrată pe familie</item>
+        <item>Japonia: Armonie de grup</item>
+        <item>Australia: Relaxată</item>
+        <item>Marea Mediterană: Expresivă</item>
+        <item>Asia Centrală: Tradiții nomade</item>
+        <item>Germania: Structurată</item>
+        <item>Balcani: Rezistentă</item>
+        <item>Popoare indigene arctice: Conectate la natură</item>
+        <item>Evreiască: Orientată spre comunitate</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharică</item>
+        <item>Arabă</item>
+        <item>Bengali</item>
+        <item>Bulgară</item>
+        <item>Chineză simplificată</item>
+        <item>Croată</item>
+        <item>Cehă</item>
+        <item>Daneză</item>
+        <item>Olandeză</item>
+        <item>Engleză</item>
+        <item>Estoniană</item>
+        <item>Finlandeză</item>
+        <item>Franceză</item>
+        <item>Germană</item>
+        <item>Greacă</item>
+        <item>Gujarati</item>
+        <item>Ebraică</item>
+        <item>Hindi</item>
+        <item>Maghiară</item>
+        <item>Indoneziană</item>
+        <item>Italiană</item>
+        <item>Japoneză</item>
+        <item>Kannada</item>
+        <item>Coreeană</item>
+        <item>Letonă</item>
+        <item>Lituaniană</item>
+        <item>Malay</item>
+        <item>Marathi</item>
+        <item>Norvegiană</item>
+        <item>Pashto</item>
+        <item>Persană</item>
+        <item>Poloneză</item>
+        <item>Portugheză</item>
+        <item>Română</item>
+        <item>Rusă</item>
+        <item>Sârbă</item>
+        <item>Slovacă</item>
+        <item>Slovenă</item>
+        <item>Spaniolă</item>
+        <item>Swahili</item>
+        <item>Suedeză</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thailandeză</item>
+        <item>Turcă</item>
+        <item>Ucraineană</item>
+        <item>Urdu</item>
+        <item>Vietnameză</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Nu este relevant</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Fără explicație</item>
+        <item>Explicație scurtă</item>
+        <item>Explicație detaliată</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sedentar</item>
+        <item>Ușor activ</item>
+        <item>Moderat activ</item>
+        <item>Foarte activ</item>
+        <item>Extrem de activ</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Masculin</item>
+        <item>Feminin</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Avion</item>
+        <item>Bicicletă</item>
+        <item>Barcă</item>
+        <item>Autobuz</item>
+        <item>Motocicletă</item>
+        <item>Mașină personală</item>
+        <item>Mașină închiriată</item>
+        <item>Partajare de curse</item>
+        <item>Metrou</item>
+        <item>Taxi</item>
+        <item>Tren</item>
+        <item>Tramvai</item>
+        <item>Plimbare pe jos</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Mâncare</item>
+        <item>Istorie</item>
+        <item>Cultură</item>
+        <item>Natură</item>
+        <item>Relaxare</item>
+        <item>Aventură</item>
+        <item>Viață de noapte</item>
+        <item>Cumpărături</item>
+        <item>Familie</item>
+        <item>Romantic</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Fă o poză</item>
+        <item>Încarcă o imagine</item>
+        <item>Încarcă un fișier</item>
+        <item>Oferă un link</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Ne pare rău, serviciul nu este disponibil în Rusia și Belarus, vă rugăm să folosiți vpn</string>
+    <string name="error_service_not_available_title">Serviciul nu este disponibil</string>
+    <string name="error_common_title">Eroare</string>
+    <string name="error_common_message">A apărut o eroare în timpul rulării aplicației. Încercați să actualizați aplicația sau încercați din nou mai târziu</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Ups! Se pare că accesul la cameră este necesar pentru această funcție. Accesați setările dispozitivului, găsiți IntelliVerse în lista de aplicații și acordați permisiunea de acces la cameră pentru a debloca magia!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Ups! Pentru a utiliza imagini din galeria dvs., IntelliVerse are nevoie de permisiunea de a vă citi fotografiile. Accesați setările dispozitivului, găsiți IntelliVerse în lista de aplicații și acordați accesul la fotografii pentru a debloca magia!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Ups! Pentru a salva fișiere pe dispozitivul dvs., IntelliVerse are nevoie de permisiunea de a scrie în spațiul de stocare. Accesați setările dispozitivului, găsiți IntelliVerse în lista de aplicații și acordați accesul la stocare pentru a debloca magia!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Ups! Pentru a accesa fișierele de pe dispozitivul dvs., IntelliVerse are nevoie de permisiunea de a citi în spațiul de stocare. Accesați setările dispozitivului, găsiți IntelliVerse în lista de aplicații și acordați accesul la stocare pentru a debloca magia!</string>
+    <string name="camera_permission_rationale">IntelliVerse are nevoie de acces la camera dvs. pentru a putea face rapid fotografii cu exercițiile dvs. școlare!</string>
+    <string name="read_media_permission_rationale">Permiterea accesului la fotografiile dvs. vă permite să selectați imagini din galeria dvs. pentru a le utiliza în aplicația IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Permisiunea de a scrie în spațiul de stocare permite aplicației IntelliVerse să salveze fișiere, cum ar fi fotografiile pe care le-ați făcut, direct pe dispozitivul dvs.!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse are nevoie de acces la spațiul de stocare al dispozitivului dvs. pentru a citi fișiere, cum ar fi fotografii sau documente, pe care ați putea dori să le utilizați în aplicație.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Da</string>
+    <string name="No">Nu</string>
+    <string name="are_you_sure">Sigur doriți să ieșiți?</string>
+    <string name="exit">Ieșire</string>
+
+    <string name="report_content">Raportează conținut</string>
+    <string name="select_reason">Selectează motivul</string>
+    <string name="offensive">Ofensator</string>
+    <string name="hate_speech">Discurs instigator la ură</string>
+    <string name="incorrect_info">Informații incorecte</string>
+    <string name="other">Altele</string>
+    <string name="submit">Trimite</string>
+    <string name="cancel">Anulează</string>
+
+    <string name="reset_settings">Resetează setările</string>
+    <string name="not_relevant">Nu este relevant</string>
+
+</resources>

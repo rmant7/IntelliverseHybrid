@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip ialah perancang perjalanan pintar anda yang dikuasakan oleh AI. Hanya huraikan perjalanan impian anda atau muat naik inspirasi, dan anda akan menerima serta-merta jadual perjalanan diperibadikan hari demi hari dengan pilihan pengangkutan, pautan hotel, anggaran bajet dan petua tempatan — semuanya dengan satu klik.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Teks dikenali</string>
+    <string name="solution_text_value">Penyelesaian</string>
+    <string name="user_task_value">Tugas</string>
+    <string name="progress_bar_hint_text_value">Kemajuan penjanaan penyelesaian</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Teks</string>
+    <string name="no_solution_chosen">Belum ada penyelesaian yang dipilih</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Saya ingin perjalanan santai dan budaya selama 3 hari dengan tempat bersejarah, makanan tempatan, berjalan santai, dan gabungan aktiviti berpandu dan bebas di satu bandar atau kawasan berdekatan.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Bahasa penyelesaian</string>
+    <string name="max_budget_label">Bajet maksimum</string>
+    <string name="travelers_number_label">Bilangan pelancong</string>
+    <string name="trip_duration_label">Tempoh perjalanan</string>
+    <string name="transportation_type_label">Jenis pengangkutan</string>
+    <string name="trip_style_label">Gaya perjalanan</string>
+    <string name="origin_location_label">Lokasi asal</string>
+    <string name="trip_type_label">Jenis perjalanan</string>
+    <string name="one_way_trip">Perjalanan sehala</string>
+    <string name="round_trip">Perjalanan pergi balik</string>
+    <string name="days">hari</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Masukkan jenis pengangkutan</string>
+    <string name="enter_location">Masukkan lokasi</string>
+    <string name="add">Tambah</string>
+    <string name="travel_path">Laluan perjalanan</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI tidak dapat menyelesaikan masalah ini. Sila cuba lagi.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Oops! Ada sesuatu yang tidak kena. Sila cuba lagi!</string>
+    <string name="fail_to_load_Uri">Gagal memuatkan imej ke dalam senarai. Sila cuba secara manual!</string>
+    <string name="corrupted_loaded_file">Anda telah memuat naik fail yang rosak!</string>
+    <string name="missing_required_settings">Beberapa tetapan yang diperlukan hilang. Sila lengkapkannya.</string>
+    <string name="camera_fail_to_open">Oops! Gagal membuka kamera. Sila cuba lagi!</string>
+    <string name="select_image_or_text_warning">Sila pilih imej atau taipkan tugas.</string>
+    <string name="language_not_supported">
+        Bahasa yang dipilih tidak tersedia untuk penjanaan media. Ciri lain akan terus berfungsi. Mahu muat turun data bahasa yang diperlukan?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Laman utama</string>
+    <string name="settings">Tetapan</string>
+    <string name="results">Keputusan</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Pilih apa yang hendak dikongsi</string>
+    <string name="share_user_translation">Kongsi teks saya</string>
+    <string name="share_ocr_result">Kongsi teks dikenali</string>
+    <string name="share_solution">Kongsi penyelesaian</string>
+    <string name="share_image">Kongsi imej</string>
+    <string name="share">Kongsi</string>
+
+    <!-- Installation -->
+    <string name="install">Pasang</string>
+    <string name="install_language">Pasang bahasa</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Diselesaikan oleh OneClickTrip\nLihat aplikasi kami di Google Play</string>
+</resources>

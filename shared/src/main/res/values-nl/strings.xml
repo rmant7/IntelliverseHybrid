@@ -1,0 +1,234 @@
+<resources>
+    <string-array name="styles">
+        <item>Poëtisch</item>
+        <item>Professioneel</item>
+        <item>Juridisch</item>
+        <item>Technisch</item>
+        <item>Academisch</item>
+        <item>Journalistiek</item>
+        <item>Creatief</item>
+        <item>Overtuigend</item>
+        <item>Verhalend</item>
+        <item>Beschrijvend</item>
+        <item>Uiteenzettend</item>
+        <item>Humoristisch</item>
+        <item>Informeel</item>
+        <item>Zakelijk</item>
+        <item>Wetenschappelijk</item>
+        <item>Romantisch</item>
+        <item>Historisch</item>
+        <item>Filosofisch</item>
+        <item>Zelfhulp</item>
+        <item>Reizen</item>
+        <item>Marketing</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formeel</item>
+        <item>Casual</item>
+        <item>Vriendelijk</item>
+        <item>Serieus</item>
+        <item>Empathisch</item>
+        <item>Assertief</item>
+        <item>Optimistisch</item>
+        <item>Humoristisch</item>
+        <item>Neutraal</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimaal</item>
+        <item>Gemiddeld</item>
+        <item>Volledig</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Relatie</item>
+        <item>Werkplek</item>
+        <item>Onderwijs</item>
+        <item>Gezondheid</item>
+        <item>Financiën</item>
+        <item>Reizen</item>
+        <item>Technologie</item>
+        <item>Entertainment</item>
+        <item>Zelfverbetering</item>
+        <item>Algemeen</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusland: Collectivistisch</item>
+        <item>Oost-Europa: Pragmatisch</item>
+        <item>West-Europa: Individualistisch</item>
+        <item>Zuidoost-Azië: Gericht op harmonie</item>
+        <item>China: Hiërarchisch</item>
+        <item>Kaukasus: Eergevoelig</item>
+        <item>Noord-Amerika: Ondernemend</item>
+        <item>Latijns-Amerika: Passioneel</item>
+        <item>Midden-Oosten: Gastvrijheidsgedreven</item>
+        <item>Afrika: Gemeenschappelijk</item>
+        <item>Noordse landen: Egalitair</item>
+        <item>Zuid-Azië: Familiegericht</item>
+        <item>Japan: Groepsharmonie</item>
+        <item>Australië: Ontspannen</item>
+        <item>Mediterrane gebied: Expressief</item>
+        <item>Centraal-Azië: Nomadische tradities</item>
+        <item>Duitsland: Gestructureerd</item>
+        <item>Balkan: Veerkrachtig</item>
+        <item>Arctische inheemse volkeren: Verbonden met de natuur</item>
+        <item>Joods: Gemeenschapsgericht</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amhaars</item>
+        <item>Arabisch</item>
+        <item>Bengaals</item>
+        <item>Bulgaars</item>
+        <item>Chinees Vereenvoudigd</item>
+        <item>Kroatisch</item>
+        <item>Tsjechisch</item>
+        <item>Deens</item>
+        <item>Nederlands</item>
+        <item>Engels</item>
+        <item>Ests</item>
+        <item>Fins</item>
+        <item>Frans</item>
+        <item>Duits</item>
+        <item>Grieks</item>
+        <item>Gujarati</item>
+        <item>Hebreeuws</item>
+        <item>Hindi</item>
+        <item>Hongaars</item>
+        <item>Indonesisch</item>
+        <item>Italiaans</item>
+        <item>Japans</item>
+        <item>Kannada</item>
+        <item>Koreaans</item>
+        <item>Lets</item>
+        <item>Litouws</item>
+        <item>Maleis</item>
+        <item>Marathi</item>
+        <item>Noors</item>
+        <item>Pasjtoe</item>
+        <item>Perzisch</item>
+        <item>Pools</item>
+        <item>Portugees</item>
+        <item>Roemeens</item>
+        <item>Russisch</item>
+        <item>Servisch</item>
+        <item>Slowaaks</item>
+        <item>Sloveens</item>
+        <item>Spaans</item>
+        <item>Swahili</item>
+        <item>Zweeds</item>
+        <item>Tagalog</item>
+        <item>Tamils</item>
+        <item>Telugu</item>
+        <item>Thais</item>
+        <item>Turks</item>
+        <item>Oekraïens</item>
+        <item>Urdu</item>
+        <item>Vietnamees</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Niet relevant</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Geen uitleg</item>
+        <item>Korte uitleg</item>
+        <item>Uitgebreide uitleg</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sedentair</item>
+        <item>Licht actief</item>
+        <item>Gemiddeld actief</item>
+        <item>Zeer actief</item>
+        <item>Extreem actief</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Man</item>
+        <item>Vrouw</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Vliegtuig</item>
+        <item>Fiets</item>
+        <item>Boot</item>
+        <item>Bus</item>
+        <item>Motorfiets</item>
+        <item>Eigen auto</item>
+        <item>Huurauto</item>
+        <item>Rit delen</item>
+        <item>Metro</item>
+        <item>Taxi</item>
+        <item>Trein</item>
+        <item>Tram</item>
+        <item>Wandelen</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Eten</item>
+        <item>Geschiedenis</item>
+        <item>Cultuur</item>
+        <item>Natuur</item>
+        <item>Ontspanning</item>
+        <item>Avontuur</item>
+        <item>Nachtleven</item>
+        <item>Winkelen</item>
+        <item>Familie</item>
+        <item>Romantiek</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Maak een foto</item>
+        <item>Upload een afbeelding</item>
+        <item>Upload een bestand</item>
+        <item>Geef een link op</item>
+    </string-array>
+
+    <string name="error_service_not_available">Sorry, de dienst is niet beschikbaar in Rusland en Wit-Rusland, gebruik een vpn</string>
+    <string name="error_service_not_available_title">Dienst niet beschikbaar</string>
+    <string name="error_common_title">Fout</string>
+    <string name="error_common_message">Er is een fout opgetreden tijdens het uitvoeren van de applicatie. Probeer de app bij te werken of probeer het later opnieuw</string>
+
+    <string name="permanent_denied_camera_permission_explanation">Oeps! Het lijkt erop dat cameratoegang nodig is voor deze functie. Ga naar je apparaatinstellingen, zoek IntelliVerse in de applijst en geef cameratoegang om de magie te ontgrendelen!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Oeps! Om afbeeldingen uit je galerij te gebruiken, heeft IntelliVerse toegang tot je foto\'s nodig. Ga naar je apparaatinstellingen, zoek IntelliVerse en geef fototoegang om de magie te ontgrendelen!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Oeps! Om bestanden op je apparaat op te slaan, heeft IntelliVerse toestemming nodig om naar je opslag te schrijven. Ga naar je apparaatinstellingen en geef opslagtoegang!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Oeps! Om bestanden op je apparaat te openen, heeft IntelliVerse toestemming nodig om je opslag te lezen. Ga naar je apparaatinstellingen en geef opslagtoegang!</string>
+    <string name="camera_permission_rationale">IntelliVerse heeft toegang tot je camera nodig zodat je direct foto\'s kunt maken van je schooloefeningen!</string>
+    <string name="read_media_permission_rationale">Met toegang tot je foto\'s kun je afbeeldingen uit je galerij selecteren om binnen IntelliVerse te gebruiken!</string>
+    <string name="write_storage_permission_rationale">Met schrijfrechten kan IntelliVerse bestanden zoals foto\'s die je hebt genomen opslaan op je apparaat!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse heeft toegang tot je opslag nodig om bestanden zoals foto\'s of documenten te kunnen lezen.</string>
+
+    <string name="Ok">OK</string>
+    <string name="Yes">Ja</string>
+    <string name="No">Nee</string>
+    <string name="are_you_sure">Weet je zeker dat je wilt afsluiten</string>
+    <string name="exit">Afsluiten</string>
+    <string name="report_content">Inhoud rapporteren</string>
+    <string name="select_reason">Selecteer reden</string>
+    <string name="offensive">Beledigend</string>
+    <string name="hate_speech">Haatzaaien</string>
+    <string name="incorrect_info">Onjuiste informatie</string>
+    <string name="other">Anders</string>
+    <string name="submit">Verzenden</string>
+    <string name="cancel">Annuleren</string>
+
+    <string name="reset_settings">Instellingen resetten</string>
+    <string name="not_relevant">Niet relevant</string>
+</resources>

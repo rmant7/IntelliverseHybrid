@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip የአንተ ብልጥ የተመረጠ ጉዞ አቀናበር ነው ፣ በ AI የተነፈሰ። እንደ ህልምዎ ጉዞ ይግለጹ ወይም እንግብዎን ያስገቡ፣ በአንድ ጠቅ የተለየ ፣ ቀን ቀን የተደረገ እቅድ ማቅረብ ፣ የትራንስፖርት አማራጮች፣ የሆቴል አገናኞች፣ የበጀት ግምገማዎች እና የአካባቢ ምክር በቅርቡ ይቀበሉ።</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">ታወቀ ጽሑፍ</string>
+    <string name="solution_text_value">መፍትሔ</string>
+    <string name="user_task_value">ተግባር</string>
+    <string name="progress_bar_hint_text_value">መፍትሔ ስራ እድገት</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">ጽሑፍ</string>
+    <string name="no_solution_chosen">መፍትሔ አልተመረጠም</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        ከታሪካዊ መስህቦች፣ የአካባቢ ምግብ፣ ቀላል ተመላለስ፣ እና አስተማማኝ እና ራስ የተመረጠ እንቅስቃሴዎች ጋር በአንድ ከተማ ወይም በአቅራቢያ የሚካሄድ የ3 ቀን የማረፊያ እና ባህላዊ ጉዞ እፈልጋለሁ።
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">የመፍትሔ ቋንቋ</string>
+    <string name="max_budget_label">ከፍተኛ በጀት</string>
+    <string name="travelers_number_label">የተጓዙ ብዛት</string>
+    <string name="trip_duration_label">የጉዞ ቆይታ</string>
+    <string name="transportation_type_label">የመጓጓዣ ዘዴ</string>
+    <string name="trip_style_label">የጉዞ ዘዴ</string>
+    <string name="origin_location_label">የመነሻ ቦታ</string>
+    <string name="trip_type_label">የጉዞ አይነት</string>
+    <string name="one_way_trip">አንደኛ አቅጣጫ ጉዞ</string>
+    <string name="round_trip">ዙሪያ ጉዞ</string>
+    <string name="days">ቀናት</string>
+    <string name="new_york">ኒው ዮርክ</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">የመጓጓዣ ዘዴ ያስገቡ</string>
+    <string name="enter_location">ቦታ ያስገቡ</string>
+    <string name="add">አክል</string>
+    <string name="travel_path">የጉዞ መንገድ</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        አርቲፊሻል ቢራች ይህን ችግር ማፍታት አልቻለም። እባክዎን እንደገና ይሞክሩ።
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">ይቅርታ! አንዳንድ ነገር ተሳስቷል። እባክዎን እንደገና ይሞክሩ!</string>
+    <string name="fail_to_load_Uri">ምስሉን ወደ ዝርዝር ማስገባት አልተቻለም። እባክዎን በእጅ ይጫኑ!</string>
+    <string name="corrupted_loaded_file">የተበላሸ ፋይል ጫኑ!</string>
+    <string name="missing_required_settings">አስፈላጊ ቅንብሮች አልተሞሉም። እባክዎን ይሙሉ።</string>
+    <string name="camera_fail_to_open">ይቅርታ! ካሜራ መክፈት አልተቻለም። እባክዎን እንደገና ይሞክሩ!</string>
+    <string name="select_image_or_text_warning">እባክዎን ምስል ወይም ጽሑፍ ይምረጡ።</string>
+    <string name="language_not_supported">
+        የተመረጠው ቋንቋ ለሚዲያ ማመንጨት አይገኝም። ሌሎች ባህሪያት እንደገና ይሰሩ። ይህን ባህሪ ለማካተት የቋንቋ ዳታ ማውረድ ትፈልጋለህ?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">መነሻ</string>
+    <string name="settings">ቅንብሮች</string>
+    <string name="results">ውጤት</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">የማካፈል ነገር ይምረጡ</string>
+    <string name="share_user_translation">የኔን ጽሑፍ አካፍል</string>
+    <string name="share_ocr_result">የተታወቀ ጽሑፍ አካፍል</string>
+    <string name="share_solution">መፍትሔን አካፍል</string>
+    <string name="share_image">ምስልን አካፍል</string>
+    <string name="share">አካፍል</string>
+
+    <!-- Installation -->
+    <string name="install">አካትት</string>
+    <string name="install_language">ቋንቋ አካትት</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">በOneClickTrip ተፈትሎ ነው፣ በGoogle Play ላይ መተግበሪያችንን ይመልከቱ።</string>
+</resources>

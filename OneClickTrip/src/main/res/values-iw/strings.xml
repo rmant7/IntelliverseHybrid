@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip הוא מתכנן הטיולים החכם שלך, המופעל על ידי בינה מלאכותית. פשוט תאר את טיול החלומות שלך או העלה השראה, ותקבל מיד מסלול מותאם אישית ליום-יום עם אפשרויות תחבורה, קישורי מלונות, הערכות תקציב וטיפים מקומיים — הכל בלחיצה אחת.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">טקסט מזוהה</string>
+    <string name="solution_text_value">פתרון</string>
+    <string name="user_task_value">משימה</string>
+    <string name="progress_bar_hint_text_value">התקדמות יצירת פתרונות</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">טקסט</string>
+    <string name="no_solution_chosen">טרם נבחר פתרון</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        אני רוצה טיול רגוע ותרבותי של 3 ימים עם אתרים היסטוריים, אוכל מקומי, הליכות קלות ושילוב של פעילויות מונחות וחופשיות בעיר אחת או בסביבתה.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">שפת הפתרון</string>
+    <string name="max_budget_label">תקציב מקסימלי</string>
+    <string name="travelers_number_label">מספר מטיילים</string>
+    <string name="trip_duration_label">משך הטיול</string>
+    <string name="transportation_type_label">אמצעי תחבורה</string>
+    <string name="trip_style_label">סגנון טיול</string>
+    <string name="origin_location_label">מקום מוצא</string>
+    <string name="trip_type_label">סוג נסיעה</string>
+    <string name="one_way_trip">נסיעה בכיוון אחד</string>
+    <string name="round_trip">נסיעה הלוך ושוב</string>
+    <string name="days">ימים</string>
+    <string name="new_york">ניו יורק</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">הזן אמצעי תחבורה</string>
+    <string name="enter_location">הזן מיקום</string>
+    <string name="add">הוסף</string>
+    <string name="travel_path">נתיב נסיעה</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        הבינה המלאכותית לא הצליחה לפתור את הבעיה. נסה שוב.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">אופס! משהו השתבש. נסה שוב!</string>
+    <string name="fail_to_load_Uri">נכשל בטעינת התמונה לרשימה. נסה לטעון ידנית!</string>
+    <string name="corrupted_loaded_file">טעינת קובץ פגום!</string>
+    <string name="missing_required_settings">חסרות הגדרות דרושות. אנא השלם.</string>
+    <string name="camera_fail_to_open">אופס! בעיה בפתיחת המצלמה. נסה שוב!</string>
+    <string name="select_image_or_text_warning">בחר תמונה או כתוב משימה.</string>
+    <string name="language_not_supported">
+        השפה שנבחרה אינה זמינה ליצירת מדיה. פונקציות אחרות ימשיכו לפעול. האם תרצה להוריד את נתוני השפה?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">בית</string>
+    <string name="settings">הגדרות</string>
+    <string name="results">תוצאה</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">בחר מה לשתף</string>
+    <string name="share_user_translation">שתף את הטקסט שלי</string>
+    <string name="share_ocr_result">שתף טקסט מזוהה</string>
+    <string name="share_solution">שתף פתרון</string>
+    <string name="share_image">שתף תמונה</string>
+    <string name="share">שתף</string>
+
+    <!-- Installation -->
+    <string name="install">התקן</string>
+    <string name="install_language">התקן שפה</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">נפתר על ידי OneClickTrip\nבדוק את האפליקציה שלנו ב-Google Play</string>
+</resources>

@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">اسٹائل ٹرانسلیٹر متن کو مختلف لکھنے کے انداز اور ٹونز کے درمیان تبدیل کرتا ہے۔</string>
+
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">اے آئی سکول اسسٹنٹ کی تصویر</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">اے آئی سکول امیج اسسٹنٹ پر اپ لوڈ کریں</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">اے آئی سکول امیج اسسٹنٹ کے ذریعے حل چیک کریں</string>
+    <string name="ArrowDropDown_icon_content_description">ایک ذیلی مینیو کھولتا ہے</string>
+    <string name="add_image">ٹاسک شامل کریں</string>
+
+    // Text values
+    <string name="recognized_text_value">شناخت شدہ متن</string>
+    <string name="solution_text_value">حل</string>
+    <string name="user_task_value">ٹاسک</string>
+    <string name="is_ocr_result_included_value">منتخب شدہ شناخت شدہ متن استعمال کریں</string>
+    <string name="home_loading_waiting_text_value">لوڈ ہو رہا ہے، براہ کرم انتظار کریں...</string>
+    <string name="progress_bar_hint_text_value">حل تیار کرنے کی رفتار</string>
+
+    // Button Labels
+    <string name="next_button_label">اگلا</string>
+    <string name="solve_button_label">حل کریں</string>
+    <string name="check_solution_button_label">حل چیک کریں</string>
+    <string name="cheat_sheet_button_label">چیٹ شیٹ</string>
+    <string name="start_again">دوبارہ شروع کریں</string>
+    <string name="try_again">دوبارہ کوشش کریں</string>
+    <string name="pick_images">تصاویر منتخب کریں</string>
+    <string name="upload_from_url">اپ لوڈ کریں</string>
+    <string name="upload_picture">تصویر اپ لوڈ کریں</string>
+    <string name="take_a_picture">تصویر لیں</string>
+    <string name="recognize_text_button_label">شناخت شدہ متن دکھائیں</string>
+
+    // Text Field Labels
+    <string name="sentence">متن</string>
+    <string name="What_to_solve_TextField_label">آپ کیا حل کرنا چاہتے ہیں؟</string>
+    <string name="rating_TextField_label">ریٹنگ</string>
+    <string name="no_solution_chosen">ابھی تک کوئی حل منتخب نہیں کیا گیا</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">مجھے اپنی گرل فرینڈ کا خیال رکھنا پسند ہے۔ میں ہمیشہ اس بات کو یقینی بناتا ہوں کہ وہ محفوظ اور محفوظ محسوس کرے۔ مجھے ہماری تاریخوں کی منصوبہ بندی کرنا اور اسے چھوٹے تحائف سے حیران کرنا پسند ہے۔ جب وہ ناراض ہوتی ہے تو میں حل تلاش کرنے اور اس کے لیے چیزوں کو ٹھیک کرنے کی کوشش کرتا ہوں۔</string>
+    <string name="first_ocr_result_is_not_ready">متن کو پہچانا جا رہا ہے، براہ کرم انتظار کریں…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">حل کی زبان</string>
+    <string name="upload_a_file_label">ایک فائل اپ لوڈ کریں</string>
+    <string name="explanations_label">وضاحتیں</string>
+    <string name="source_gender_label">ماخذ جنس</string>
+    <string name="target_gender_label">ہدف جنس</string>
+    <string name="source_age_label">ماخذ عمر</string>
+    <string name="target_age_label">ہدف عمر</string>
+    <string name="category_label">قسم</string>
+    <string name="tone_label">لہجے کی ترجیح</string>
+    <string name="transformation_level_label">تبدیلی کی سطح</string>
+    <string name="style_label">ترجمے کا انداز</string>
+    <string name="mentality_label">ذہنیت</string>
+    <string name="translation_scale_label">ترجمے کا اسکیل فیکٹر</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">ایسا لگتا ہے کہ آپ نے کیلوریز ایپ کے ڈائریکٹری اسٹوریج سے کچھ تصاویر کو حذف کر دیا ہے۔ فکر نہ کریں، کیلوریز ایپلیکیشن کیشے سے ان تصاویر کو ایک ایک کرکے صاف کرنے کی کوشش کرے گی۔ اگر ضرورت ہو تو براہ کرم ہر تصویر کی حذف کی تصدیق کریں۔ کوئی بھی تصویر جو خالی نظر آتی ہے خراب ہے۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">اے آئی تصویر سے متن کو پہچاننے میں کامیاب نہیں ہوسکا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="error_gemini_solution_result_extraction">اے آئی اس مسئلے کو حل کرنے میں کامیاب نہیں ہوسکا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+
+    // Toast messages
+    <string name="something_went_wrong">اوہ! کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں!</string>
+    <string name="fail_to_load_Uri">تصویر کو فہرست میں لوڈ کرنے میں ناکام رہے۔ براہ کرم اسے دستی طور پر لوڈ کرنے کی کوشش کریں!</string>
+    <string name="corrupted_loaded_file">آپ نے ایک خراب فائل لوڈ کی ہے!</string>
+    <string name="missing_required_settings">کچھ ضروری سیٹنگیں غائب ہیں۔ براہ کرم انہیں بھریں۔</string>
+    <string name="camera_fail_to_open">اوہ! کیمرے کے ساتھ کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں!</string>
+    <string name="upload_image_warning">براہ کرم ڈیوائس سے ایک تصویر اپ لوڈ کریں</string>
+    <string name="select_image_or_text_warning">براہ کرم ایک تصویر منتخب کریں یا ٹاسک ٹائپ کریں۔</string>
+    <string name="prompt_is_empty">شناخت شدہ متن خالی ہے۔ براہ کرم دوبارہ کوشش کریں!</string>
+    <string name="language_not_supported">"منتخب کردہ زبان میڈیا کی تخلیق کے لیے دستیاب نہیں ہے۔ دیگر خصوصیات کام کرتی رہیں گی۔ کیا آپ اس فیچر کو فعال کرنے کے لیے ضروری زبانی ڈیٹا ڈاؤن لوڈ کرنا چاہیں گے؟"</string>
+
+    // labels
+    <string name="home">ہوم</string>
+    <string name="settings">ترتیبات</string>
+    <string name="results">نتیجہ</string>
+    <string name="ocr">او سی آر</string>
+
+    // sharing
+    <string name="choose_sharing">منتخب کریں کہ کیا شیئر کرنا ہے</string>
+    <string name="share_user_translation">میرا متن شیئر کریں</string>
+    <string name="share_ocr_result">شناخت شدہ متن شیئر کریں</string>
+    <string name="share_solution">حل شیئر کریں</string>
+    <string name="share_image">تصویر شیئر کریں</string>
+    <string name="share">شیئر کریں</string>
+
+    // installation
+    <string name="install">انسٹال کریں</string>
+    <string name="install_language">زبان انسٹال کریں</string>
+
+    <string name="solved_by_style_translator">StyleTranslator کے ذریعے حل کیا گیا\nGoogle Play پر ہماری ایپ چیک کریں</string>
+
+</resources>

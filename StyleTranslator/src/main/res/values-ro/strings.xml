@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator convertește textul între diferite stiluri și tonuri de scriere.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Imaginea Asistentului Școlar AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Încarcă imagine în Asistentul Școlar AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Verifică soluția în Asistentul Școlar AI</string>
+    <string name="ArrowDropDown_icon_content_description">Deschide un submeniu</string>
+    <string name="add_image">Adaugă sarcină</string>
+
+    // Text values
+    <string name="recognized_text_value">Text recunoscut</string>
+    <string name="solution_text_value">Soluție</string>
+    <string name="user_task_value">Sarcină</string>
+    <string name="is_ocr_result_included_value">Folosește textul recunoscut selectat</string>
+    <string name="home_loading_waiting_text_value">Se încarcă, vă rugăm să așteptați...</string>
+    <string name="progress_bar_hint_text_value">Progresul generării soluțiilor</string>
+
+    // Button Labels
+    <string name="next_button_label">Următorul</string>
+    <string name="solve_button_label">Rezolvă</string>
+    <string name="check_solution_button_label">Verifică soluția</string>
+    <string name="cheat_sheet_button_label">Fițuică</string>
+    <string name="start_again">Începe din nou</string>
+    <string name="try_again">Încearcă din nou</string>
+    <string name="pick_images">Alege imagini</string>
+    <string name="upload_from_url">Încarcă</string>
+    <string name="upload_picture">Încarcă imaginea</string>
+    <string name="take_a_picture">Fă o poză</string>
+    <string name="recognize_text_button_label">Arată textul recunoscut</string>
+
+    // Text Field Labels
+    <string name="sentence">Text</string>
+    <string name="What_to_solve_TextField_label">Ce vrei să rezolvi?</string>
+    <string name="rating_TextField_label">Evaluare</string>
+    <string name="no_solution_chosen">Soluția nu este încă selectată</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Îmi place să am grijă de prietena mea. Mă asigur întotdeauna că se simte în siguranță și protejată. Îmi place să planific întâlnirile noastre și să o surprind cu mici cadouri. Când este supărată, încerc să găsesc o soluție și să repar lucrurile pentru ea.</string>
+    <string name="first_ocr_result_is_not_ready">Textul este în curs de recunoaștere, vă rugăm să așteptați…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Limba soluției</string>
+    <string name="upload_a_file_label">Încarcă un fișier</string>
+    <string name="explanations_label">Explicații</string>
+    <string name="source_gender_label">Genul sursă</string>
+    <string name="target_gender_label">Genul țintă</string>
+    <string name="source_age_label">Vârsta sursă</string>
+    <string name="target_age_label">Vârsta țintă</string>
+    <string name="category_label">Categorie</string>
+    <string name="tone_label">Preferință de ton</string>
+    <string name="transformation_level_label">Nivel de transformare</string>
+    <string name="style_label">Stil de traducere</string>
+    <string name="mentality_label">Mentalitate</string>
+    <string name="translation_scale_label">Factor de scalare al traducerii</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Se pare că ați șters câteva imagini din directorul de stocare al aplicației Calories. Nu vă faceți griji, Calories va încerca să șteargă aceste imagini una câte una din cache-ul aplicației. Vă rugăm să confirmați fiecare ștergere de imagine, dacă este necesar. Orice imagine care apare goală este una coruptă. Doriți să continuați?</string>
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nu a putut recunoaște textul din imagine. Vă rugăm să încercați din nou.</string>
+    <string name="error_gemini_solution_result_extraction">AI nu a putut rezolva această problemă. Vă rugăm să încercați din nou.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hopa! Ceva nu a mers bine. Vă rugăm să încercați din nou!</string>
+    <string name="fail_to_load_Uri">Nu s-a putut încărca imaginea în listă. Vă rugăm să încercați să o încărcați manual!</string>
+    <string name="corrupted_loaded_file">Ați încărcat un fișier corupt!</string>
+    <string name="missing_required_settings">Unele setări obligatorii lipsesc. Vă rugăm să le completați.</string>
+    <string name="camera_fail_to_open">Hopa! Ceva nu a mers bine cu camera. Vă rugăm să încercați din nou!</string>
+    <string name="upload_image_warning">Vă rugăm să încărcați o imagine de pe dispozitiv</string>
+    <string name="select_image_or_text_warning">Vă rugăm să selectați o imagine sau să introduceți o sarcină.</string>
+    <string name="prompt_is_empty">Textul recunoscut este gol. Vă rugăm să încercați din nou!</string>
+    <string name="language_not_supported">"Limba selectată nu este disponibilă pentru generarea de conținut media. Alte funcții vor continua să funcționeze. Doriți să descărcați datele lingvistice necesare pentru a activa această funcție?"</string>
+
+    // labels
+    <string name="home">Acasă</string>
+    <string name="settings">Setări</string>
+    <string name="results">Rezultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Alege ce să partajezi</string>
+    <string name="share_user_translation">Partajează textul meu</string>
+    <string name="share_ocr_result">Partajează textul recunoscut</string>
+    <string name="share_solution">Partajează soluția</string>
+    <string name="share_image">Partajează imaginea</string>
+    <string name="share">Partajează</string>
+
+    // installation
+    <string name="install">Instalează</string>
+    <string name="install_language">Instalează limba</string>
+
+    <string name="solved_by_style_translator">Rezolvat de StyleTranslator\nVerifică aplicația noastră pe Google Play</string>
+
+</resources>

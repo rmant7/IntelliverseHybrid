@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip — це ваш розумний планувальник подорожей на базі штучного інтелекту. Просто опишіть свою подорож мрії або завантажте натхнення, і миттєво отримаєте персоналізований щоденний маршрут із варіантами транспорту, посиланнями на готелі, оцінками бюджету та порадами місцевих жителів — усе в один клік.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Розпізнаний текст</string>
+    <string name="solution_text_value">Рішення</string>
+    <string name="user_task_value">Завдання</string>
+    <string name="progress_bar_hint_text_value">Прогрес створення рішення</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Текст</string>
+    <string name="no_solution_chosen">Рішення ще не обрано</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Я хочу триденну розслаблюючу та культурну подорож з історичними місцями, місцевою їжею, легкими прогулянками та поєднанням організованих та самостійних заходів в одному місті або поруч із ним.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Мова рішення</string>
+    <string name="max_budget_label">Максимальний бюджет</string>
+    <string name="travelers_number_label">Кількість мандрівників</string>
+    <string name="trip_duration_label">Тривалість подорожі</string>
+    <string name="transportation_type_label">Тип транспорту</string>
+    <string name="trip_style_label">Стиль подорожі</string>
+    <string name="origin_location_label">Місце відправлення</string>
+    <string name="trip_type_label">Тип подорожі</string>
+    <string name="one_way_trip">Подорож в один бік</string>
+    <string name="round_trip">Подорож туди й назад</string>
+    <string name="days">днів</string>
+    <string name="new_york">Нью-Йорк</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Введіть тип транспорту</string>
+    <string name="enter_location">Введіть місце</string>
+    <string name="add">Додати</string>
+    <string name="travel_path">Маршрут подорожі</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Штучний інтелект не зміг вирішити цю проблему. Будь ласка, спробуйте ще раз.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Упс! Щось пішло не так. Спробуйте ще раз!</string>
+    <string name="fail_to_load_Uri">Не вдалося завантажити зображення до списку. Спробуйте вручну!</string>
+    <string name="corrupted_loaded_file">Ви завантажили пошкоджений файл!</string>
+    <string name="missing_required_settings">Деякі обов\'язкові налаштування відсутні. Будь ласка, заповніть їх.</string>
+    <string name="camera_fail_to_open">Упс! Не вдалося відкрити камеру. Спробуйте ще раз!</string>
+    <string name="select_image_or_text_warning">Будь ласка, виберіть зображення або введіть завдання.</string>
+    <string name="language_not_supported">
+        Обрана мова недоступна для створення медіа. Інші функції працюватимуть. Бажаєте завантажити необхідні мовні дані?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Головна</string>
+    <string name="settings">Налаштування</string>
+    <string name="results">Результат</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Оберіть, що поділитися</string>
+    <string name="share_user_translation">Поділитися моїм текстом</string>
+    <string name="share_ocr_result">Поділитися розпізнаним текстом</string>
+    <string name="share_solution">Поділитися рішенням</string>
+    <string name="share_image">Поділитися зображенням</string>
+    <string name="share">Поділитися</string>
+
+    <!-- Installation -->
+    <string name="install">Встановити</string>
+    <string name="install_language">Встановити мову</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Вирішено за допомогою OneClickTrip\nПерегляньте наш застосунок у Google Play</string>
+</resources>

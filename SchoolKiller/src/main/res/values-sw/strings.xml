@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller huwasaidia wanafunzi kutatua matatizo ya hisabati haswa, pamoja na matatizo ya jumla.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Picha ya Msaidizi wa Shule wa AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Pakia Kwenye Picha ya Msaidizi wa Shule wa AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Angalia Suluhisho Picha ya Msaidizi wa Shule wa AI</string>
+    <string name="ArrowDropDown_icon_content_description">Hufungua menyu ndogo</string>
+    <string name="add_image">Ongeza kazi</string>
+    <string name="Guidance">Kwa matokeo bora, tafadhali toa MAANDISHI ya kina kwa kazi yako. Ukiambatanisha picha, hakikisha kuwa maandishi yoyote yanayotambulika yamehaririwa ili yalingane na asili kwa usahihi.</string>
+
+    // Text values
+    <string name="recognized_text_value">Maandishi yaliyotambuliwa</string>
+    <string name="solution_text_value">Suluhisho</string>
+    <string name="user_task_value">Kazi</string>
+    <string name="is_ocr_result_included_value">Tumia maandishi yaliyochaguliwa yaliyotambuliwa</string>
+    <string name="home_loading_waiting_text_value">Inapakia, tafadhali, subiri...</string>
+    <string name="progress_bar_hint_text_value">Maendeleo ya kizazi cha suluhisho</string>
+
+    // Button Labels
+    <string name="next_button_label">Inayofuata</string>
+    <string name="solve_button_label">Tatua</string>
+    <string name="check_solution_button_label">Angalia suluhisho</string>
+    <string name="cheat_sheet_button_label">Karatasi ya udanganyifu</string>
+    <string name="start_again">Anza tena</string>
+    <string name="try_again">Jaribu tena</string>
+    <string name="pick_images">Chagua Picha</string>
+    <string name="upload_from_url">Pakia</string>
+    <string name="upload_picture">Pakia Picha</string>
+    <string name="take_a_picture">Piga Picha</string>
+    <string name="recognize_text_button_label">Onyesha maandishi yaliyotambuliwa</string>
+
+    // Text Field Labels
+    <string name="tasks">Kazi</string>
+    <string name="What_to_solve_TextField_label">Unataka kutatua nini?</string>
+    <string name="rating_TextField_label">Ukadiriaji</string>
+    <string name="no_solution_chosen">Suluhisho halijachaguliwa bado</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Niambie kuhusu nadharia ya Pythagorean.</string>
+    <string name="first_ocr_result_is_not_ready">Maandishi yanatambuliwa, tafadhali, subiri…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Lugha ya suluhisho</string>
+    <string name="upload_a_file_label">Pakia faili</string>
+    <string name="explanations_label">Maelezo</string>
+    <string name="grade_label">"Gredi"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Inaonekana umeondoa picha zingine kutoka kwa hifadhi ya saraka ya programu ya SchoolKiller. Usijali, SchoolKiller itajaribu kufuta picha hizi moja baada ya nyingine kutoka kwa akiba ya programu. Tafadhali thibitisha kila ufutaji wa picha, ikiwa inahitajika. Picha yoyote inayoonekana tupu imeharibiwa. Unataka kuendelea?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI haikuweza kutambua maandishi kutoka kwa picha. Tafadhali, jaribu tena.</string>
+    <string name="error_gemini_solution_result_extraction">AI haikuweza kutatua tatizo hili. Tafadhali, jaribu tena.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Lo! Kuna kitu kilienda vibaya. Tafadhali jaribu tena!</string>
+    <string name="fail_to_load_Uri">Imeshindwa kupakia picha kwenye orodha. Tafadhali jaribu kuipakia mwenyewe!</string>
+    <string name="corrupted_loaded_file">Umepakia faili iliyoharibiwa!</string>
+    <string name="camera_fail_to_open">Lo! Kuna kitu kilienda vibaya na kamera. Tafadhali jaribu tena!</string>
+    <string name="upload_image_warning">Tafadhali pakia picha kutoka kwenye kifaa</string>
+    <string name="select_image_or_text_warning">Tafadhali chagua picha au andika kazi.</string>
+    <string name="prompt_is_empty">Maandishi yaliyotambuliwa hayapo. Tafadhali jaribu tena!</string>
+    <string name="language_not_supported">"Lugha iliyochaguliwa haipatikani kwa uzalishaji wa media. Vipengele vingine vitaendelea kufanya kazi. Je, ungependa kupakua data muhimu ya lugha ili kuwezesha kipengele hiki?"</string>
+
+    // labels
+    <string name="home">Nyumbani</string>
+    <string name="settings">Mipangilio</string>
+    <string name="results">Matokeo</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Chagua nini cha kushiriki</string>
+    <string name="share_user_task">Shiriki Kazi Yangu</string>
+    <string name="share_ocr_result">Shiriki Maandishi Yaliyotambuliwa</string>
+    <string name="share_solution">Shiriki Suluhisho</string>
+    <string name="share_image">Shiriki Picha</string>
+    <string name="share">Shiriki</string>
+
+    // installation
+    <string name="install">Sakinisha</string>
+    <string name="install_language">Sakinisha Lugha</string>
+
+    <string name="solved_by_schoolkiller">Imetatuliwa na SchoolKiller\nAngalia programu yetu kwenye Google Play</string>
+
+</resources>

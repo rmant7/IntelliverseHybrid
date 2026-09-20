@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip là công cụ lập kế hoạch du lịch thông minh của bạn được hỗ trợ bởi AI. Chỉ cần mô tả chuyến đi mơ ước của bạn hoặc tải lên nguồn cảm hứng, và ngay lập tức nhận được một hành trình cá nhân hóa từng ngày với các tùy chọn vận chuyển, liên kết khách sạn, ước tính ngân sách và mẹo địa phương — tất cả chỉ với một lần nhấp.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Văn bản được nhận dạng</string>
+    <string name="solution_text_value">Giải pháp</string>
+    <string name="user_task_value">Nhiệm vụ</string>
+    <string name="progress_bar_hint_text_value">Tiến trình tạo giải pháp</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Văn bản</string>
+    <string name="no_solution_chosen">Chưa chọn giải pháp</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Tôi muốn có một chuyến đi 3 ngày thư giãn và mang tính văn hóa với các địa điểm lịch sử, ẩm thực địa phương, những chuyến đi bộ nhẹ nhàng và sự kết hợp giữa các hoạt động có hướng dẫn và tự do trong một thành phố hoặc gần đó.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Ngôn ngữ của giải pháp</string>
+    <string name="max_budget_label">Ngân sách tối đa</string>
+    <string name="travelers_number_label">Số lượng du khách</string>
+    <string name="trip_duration_label">Thời gian chuyến đi</string>
+    <string name="transportation_type_label">Phương tiện di chuyển</string>
+    <string name="trip_style_label">Phong cách chuyến đi</string>
+    <string name="origin_location_label">Điểm khởi hành</string>
+    <string name="trip_type_label">Loại chuyến đi</string>
+    <string name="one_way_trip">Chuyến đi một chiều</string>
+    <string name="round_trip">Chuyến đi khứ hồi</string>
+    <string name="days">ngày</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Nhập loại phương tiện</string>
+    <string name="enter_location">Nhập địa điểm</string>
+    <string name="add">Thêm</string>
+    <string name="travel_path">Lộ trình chuyến đi</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI không thể giải quyết vấn đề này. Vui lòng thử lại.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Rất tiếc! Đã xảy ra lỗi. Vui lòng thử lại!</string>
+    <string name="fail_to_load_Uri">Không thể tải hình ảnh lên danh sách. Vui lòng thử thủ công!</string>
+    <string name="corrupted_loaded_file">Bạn đã tải lên một tệp bị hỏng!</string>
+    <string name="missing_required_settings">Thiếu một số cài đặt bắt buộc. Vui lòng hoàn tất.</string>
+    <string name="camera_fail_to_open">Rất tiếc! Không thể mở máy ảnh. Vui lòng thử lại!</string>
+    <string name="select_image_or_text_warning">Vui lòng chọn hình ảnh hoặc nhập nhiệm vụ.</string>
+    <string name="language_not_supported">
+        Ngôn ngữ được chọn không khả dụng cho việc tạo nội dung đa phương tiện. Các chức năng khác sẽ tiếp tục hoạt động. Bạn có muốn tải xuống dữ liệu ngôn ngữ cần thiết không?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Trang chủ</string>
+    <string name="settings">Cài đặt</string>
+    <string name="results">Kết quả</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Chọn nội dung để chia sẻ</string>
+    <string name="share_user_translation">Chia sẻ văn bản của tôi</string>
+    <string name="share_ocr_result">Chia sẻ văn bản đã nhận dạng</string>
+    <string name="share_solution">Chia sẻ giải pháp</string>
+    <string name="share_image">Chia sẻ hình ảnh</string>
+    <string name="share">Chia sẻ</string>
+
+    <!-- Installation -->
+    <string name="install">Cài đặt</string>
+    <string name="install_language">Cài đặt ngôn ngữ</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Được giải quyết bởi OneClickTrip\nXem ứng dụng của chúng tôi trên Google Play</string>
+</resources>

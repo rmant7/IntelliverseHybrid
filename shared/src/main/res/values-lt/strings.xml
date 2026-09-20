@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poetiškas</item>
+        <item>Profesionalus</item>
+        <item>Teisinis</item>
+        <item>Techninis</item>
+        <item>Akademinis</item>
+        <item>Žurnalistinis</item>
+        <item>Kūrybingas</item>
+        <item>Įtikinamas</item>
+        <item>Naratyvinis</item>
+        <item>Aprašomasis</item>
+        <item>Aiškinamasis</item>
+        <item>Humoristinis</item>
+        <item>Neformalus</item>
+        <item>Verslo</item>
+        <item>Mokslinis</item>
+        <item>Romantiškas</item>
+        <item>Istorinis</item>
+        <item>Filosofinis</item>
+        <item>Pagalbos sau</item>
+        <item>Kelionių</item>
+        <item>Rinkodaros</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formalus</item>
+        <item>Atsitiktinis</item>
+        <item>Draugiškas</item>
+        <item>Rimtas</item>
+        <item>Empatiškas</item>
+        <item>Tvirtas</item>
+        <item>Optimistiškas</item>
+        <item>Humoristinis</item>
+        <item>Neutralus</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimalus</item>
+        <item>Vidutinis</item>
+        <item>Pilnas</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Santykiai</item>
+        <item>Darbo vieta</item>
+        <item>Švietimas</item>
+        <item>Sveikata</item>
+        <item>Finansai</item>
+        <item>Kelionės</item>
+        <item>Technologijos</item>
+        <item>Pramogos</item>
+        <item>Savęs tobulinimas</item>
+        <item>Bendras</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusija: Kolektyvistinė</item>
+        <item>Rytų Europa: Pragmatiška</item>
+        <item>Vakarų Europa: Individualistinė</item>
+        <item>Pietryčių Azija: Orientuota į harmoniją</item>
+        <item>Kinija: Hierarchinė</item>
+        <item>Kaukazas: Saistomas garbės</item>
+        <item>Šiaurės Amerika: Versli</item>
+        <item>Lotynų Amerika: Aistringa</item>
+        <item>Viduriniai Rytai: Orientuoti į svetingumą</item>
+        <item>Afrika: Bendruomeninė</item>
+        <item>Šiaurės šalys: Egalitarinė</item>
+        <item>Pietų Azija: Orientuota į šeimą</item>
+        <item>Japonija: Grupinė harmonija</item>
+        <item>Australija: Atsipalaidavusi</item>
+        <item>Viduržemio jūra: Ekspresyvi</item>
+        <item>Centrinė Azija: Klajoklių tradicijos</item>
+        <item>Vokietija: Struktūruota</item>
+        <item>Balkanai: Atsparūs</item>
+        <item>Arkties vietiniai gyventojai: Susiję su gamta</item>
+        <item>Žydai: Orientuoti į bendruomenę</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharų</item>
+        <item>Arabų</item>
+        <item>Bengalų</item>
+        <item>Bulgarų</item>
+        <item>Supaprastinta kinų</item>
+        <item>Kroatų</item>
+        <item>Čekų</item>
+        <item>Danų</item>
+        <item>Olandų</item>
+        <item>Anglų</item>
+        <item>Estų</item>
+        <item>Suomių</item>
+        <item>Prancūzų</item>
+        <item>Vokiečių</item>
+        <item>Graikų</item>
+        <item>Gudžaratų</item>
+        <item>Hebrajų</item>
+        <item>Hindi</item>
+        <item>Vengrų</item>
+        <item>Indoneziečių</item>
+        <item>Italų</item>
+        <item>Japonų</item>
+        <item>Kannada</item>
+        <item>Korėjiečių</item>
+        <item>Latvių</item>
+        <item>Lietuvių</item>
+        <item>Malajų</item>
+        <item>Marathi</item>
+        <item>Norvegų</item>
+        <item>Puštūnų</item>
+        <item>Persų</item>
+        <item>Lenkų</item>
+        <item>Portugalų</item>
+        <item>Rumunų</item>
+        <item>Rusų</item>
+        <item>Serbų</item>
+        <item>Slovakų</item>
+        <item>Slovėnų</item>
+        <item>Ispanų</item>
+        <item>Suahilių</item>
+        <item>Švedų</item>
+        <item>Tagalų</item>
+        <item>Tamilų</item>
+        <item>Telugų</item>
+        <item>Tajų</item>
+        <item>Turkų</item>
+        <item>Ukrainiečių</item>
+        <item>Urdu</item>
+        <item>Vietnamiečių</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Nesvarbu</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Jokio paaiškinimo</item>
+        <item>Trumpas paaiškinimas</item>
+        <item>Išsamus paaiškinimas</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sėdimas</item>
+        <item>Šiek tiek aktyvus</item>
+        <item>Vidutiniškai aktyvus</item>
+        <item>Labai aktyvus</item>
+        <item>Ypač aktyvus</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Vyras</item>
+        <item>Moteris</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Lėktuvas</item>
+        <item>Dviratis</item>
+        <item>Valtis</item>
+        <item>Autobusas</item>
+        <item>Motociklas</item>
+        <item>Nuosavas automobilis</item>
+        <item>Nuomotas automobilis</item>
+        <item>Važiavimo dalijimasis</item>
+        <item>Metro</item>
+        <item>Taksi</item>
+        <item>Traukinys</item>
+        <item>Tramvajus</item>
+        <item>Vaikščiojimas</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Maistas</item>
+        <item>Istorija</item>
+        <item>Kultūra</item>
+        <item>Gamtos</item>
+        <item>Poilsis</item>
+        <item>Nuotykiai</item>
+        <item>Naktinis gyvenimas</item>
+        <item>Apsipirkimas</item>
+        <item>Šeima</item>
+        <item>Romantika</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Nufotografuokite</item>
+        <item>Įkelkite vaizdą</item>
+        <item>Įkelkite failą</item>
+        <item>Pateikite nuorodą</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Atsiprašome, paslauga nepasiekiama Rusijoje ir Baltarusijoje, naudokite VPN</string>
+    <string name="error_service_not_available_title">Paslauga nepasiekiama</string>
+    <string name="error_common_title">Klaida</string>
+    <string name="error_common_message">Paleidžiant programą įvyko klaida. Pabandykite atnaujinti programą arba bandykite dar kartą vėliau</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Oho! Atrodo, kad šiai funkcijai reikalinga prieiga prie kameros. Eikite į įrenginio nustatymus, programų sąraše raskite „IntelliVerse“ ir suteikite prieigą prie kameros, kad atrakintumėte magiją!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Oho! Norėdami naudoti vaizdus iš savo galerijos, „IntelliVerse“ reikia leidimo skaityti jūsų nuotraukas. Eikite į įrenginio nustatymus, programų sąraše raskite „IntelliVerse“ ir suteikite prieigą prie nuotraukų, kad atrakintumėte magiją!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Oho! Norėdami išsaugoti failus įrenginyje, „IntelliVerse“ reikia leidimo rašyti į jūsų saugyklą. Eikite į įrenginio nustatymus, programų sąraše raskite „IntelliVerse“ ir suteikite prieigą prie saugyklos, kad atrakintumėte magiją!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Oho! Norėdami pasiekti failus įrenginyje, „IntelliVerse“ reikia leidimo skaityti jūsų saugyklą. Eikite į įrenginio nustatymus, programų sąraše raskite „IntelliVerse“ ir suteikite prieigą prie saugyklos, kad atrakintumėte magiją!</string>
+    <string name="camera_permission_rationale">„IntelliVerse“ reikia prieigos prie jūsų kameros, kad galėtumėte akimirksniu nufotografuoti savo mokyklos pratimus!</string>
+    <string name="read_media_permission_rationale">Leidus pasiekti jūsų nuotraukas, galite pasirinkti vaizdus iš savo galerijos, kuriuos norite naudoti „IntelliVerse“ programoje!</string>
+    <string name="write_storage_permission_rationale">Leidimas rašyti į jūsų saugyklą leidžia „IntelliVerse“ programai išsaugoti failus, pvz., jūsų nufotografuotas nuotraukas, tiesiai į jūsų įrenginį!</string>
+    <string name="read_storage_permission_rationale">„IntelliVerse“ reikia prieigos prie jūsų įrenginio saugyklos, kad galėtumėte skaityti failus, pvz., nuotraukas ar dokumentus, kuriuos galbūt norėsite naudoti programoje.</string>
+
+    // Buttons Labels
+    <string name="Ok">Gerai</string>
+
+    <string name="Yes">Taip</string>
+    <string name="No">Ne</string>
+    <string name="are_you_sure">Ar tikrai norite išeiti?</string>
+    <string name="exit">Išeiti</string>
+
+    <string name="report_content">Pranešti apie turinį</string>
+    <string name="select_reason">Pasirinkite priežastį</string>
+    <string name="offensive">Įžeidžiantis</string>
+    <string name="hate_speech">Neapykantos kalba</string>
+    <string name="incorrect_info">Neteisinga informacija</string>
+    <string name="other">Kita</string>
+    <string name="submit">Pateikti</string>
+    <string name="cancel">Atšaukti</string>
+
+    <string name="reset_settings">Atkurti nustatymus</string>
+    <string name="not_relevant">Nesvarbu</string>
+
+</resources>

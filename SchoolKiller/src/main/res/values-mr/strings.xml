@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">स्कूलकिलर विद्यार्थ्यांना विशेषतः गणितातील आणि सामान्य समस्या सोडवण्यासाठी मदत करते.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">एआय शालेय सहाय्यक प्रतिमा</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">एआय शालेय सहाय्यक प्रतिमेवर अपलोड करा</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">एआय शालेय सहाय्यक प्रतिमेचे समाधान तपासा</string>
+    <string name="ArrowDropDown_icon_content_description">एक उप-मेनू उघडतो</string>
+    <string name="add_image">कार्य जोडा</string>
+    <string name="Guidance">उत्तम परिणामांसाठी, कृपया आपल्या कार्यासाठी तपशीलवार मजकूर द्या. आपण प्रतिमा संलग्न केल्यास, कोणताही ओळखला जाणारा मजकूर मूळानुसार जुळण्यासाठी संपादित केला असल्याचे सुनिश्चित करा.</string>
+
+    // Text values
+    <string name="recognized_text_value">ओळखला गेलेला मजकूर</string>
+    <string name="solution_text_value">समाधान</string>
+    <string name="user_task_value">कार्य</string>
+    <string name="is_ocr_result_included_value">निवडलेला ओळखला गेलेला मजकूर वापरा</string>
+    <string name="home_loading_waiting_text_value">लोड होत आहे, कृपया प्रतीक्षा करा...</string>
+    <string name="progress_bar_hint_text_value">समाधान निर्मिती प्रगती</string>
+
+    // Button Labels
+    <string name="next_button_label">पुढे</string>
+    <string name="solve_button_label">सोडवा</string>
+    <string name="check_solution_button_label">समाधान तपासा</string>
+    <string name="cheat_sheet_button_label">चीट शीट</string>
+    <string name="start_again">पुन्हा सुरू करा</string>
+    <string name="try_again">पुन्हा प्रयत्न करा</string>
+    <string name="pick_images">प्रतिमा निवडा</string>
+    <string name="upload_from_url">अपलोड करा</string>
+    <string name="upload_picture">चित्र अपलोड करा</string>
+    <string name="take_a_picture">फोटो घ्या</string>
+    <string name="recognize_text_button_label">ओळखलेला मजकूर दर्शवा</string>
+
+    // Text Field Labels
+    <string name="tasks">कार्य</string>
+    <string name="What_to_solve_TextField_label">तुम्हाला काय सोडवायचे आहे?</string>
+    <string name="rating_TextField_label">रेटिंग</string>
+    <string name="no_solution_chosen">अद्याप समाधान निवडलेले नाही</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">मला पायथागोरसच्या प्रमेयाबद्दल सांगा.</string>
+    <string name="first_ocr_result_is_not_ready">मजकूर ओळखला जात आहे, कृपया प्रतीक्षा करा...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">समाधानाची भाषा</string>
+    <string name="upload_a_file_label">फाइल अपलोड करा</string>
+    <string name="explanations_label">स्पष्टीकरण</string>
+    <string name="grade_label">"श्रेणी"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">असे दिसते की आपण SchoolKiller ॲपच्या डिरेक्टरी स्टोरेजमधून काही प्रतिमा हटवल्या आहेत. काळजी करू नका, SchoolKiller ॲप्लिकेशन कॅशेमधून या प्रतिमा एक-एक करून साफ करण्याचा प्रयत्न करेल. आवश्यक असल्यास, प्रत्येक प्रतिमा हटवण्याची पुष्टी करा. कोणतीही प्रतिमा जी रिक्त दिसते ती दूषित आहे. तुम्हाला पुढे जायचे आहे का?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">एआयला प्रतिमेतील मजकूर ओळखता आला नाही. कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="error_gemini_solution_result_extraction">एआयला ही समस्या सोडवता आली नाही. कृपया पुन्हा प्रयत्न करा.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">अरेरे! काहीतरी गडबड झाली. कृपया पुन्हा प्रयत्न करा!</string>
+    <string name="fail_to_load_Uri">प्रतिमा सूचीमध्ये लोड करण्यात अयशस्वी. कृपया ती व्यक्तिचलितपणे लोड करण्याचा प्रयत्न करा!</string>
+    <string name="corrupted_loaded_file">तुम्ही दूषित फाइल लोड केली आहे!</string>
+    <string name="camera_fail_to_open">अरेरे! कॅमेऱ्यात काहीतरी गडबड झाली. कृपया पुन्हा प्रयत्न करा!</string>
+    <string name="upload_image_warning">कृपया डिव्हाइसवरून प्रतिमा अपलोड करा</string>
+    <string name="select_image_or_text_warning">कृपया प्रतिमा निवडा किंवा कार्य टाइप करा.</string>
+    <string name="prompt_is_empty">ओळखलेला मजकूर रिकामा आहे. कृपया पुन्हा प्रयत्न करा!</string>
+    <string name="language_not_supported">"निवडलेली भाषा मीडिया जनरेशनसाठी उपलब्ध नाही. इतर वैशिष्ट्ये कार्य करणे सुरू ठेवतील. हे वैशिष्ट्य सक्षम करण्यासाठी आपल्याला आवश्यक भाषेचा डेटा डाउनलोड करायचा आहे का?"</string>
+
+    // labels
+    <string name="home">मुख्यपृष्ठ</string>
+    <string name="settings">सेटिंग्ज</string>
+    <string name="results">निकाल</string>
+    <string name="ocr">ओसीआर</string>
+
+    // sharing
+    <string name="choose_sharing">काय सामायिक करायचे ते निवडा</string>
+    <string name="share_user_task">माझे कार्य सामायिक करा</string>
+    <string name="share_ocr_result">ओळखलेला मजकूर सामायिक करा</string>
+    <string name="share_solution">समाधान सामायिक करा</string>
+    <string name="share_image">प्रतिमा सामायिक करा</string>
+    <string name="share">सामायिक करा</string>
+
+    // installation
+    <string name="install">स्थापित करा</string>
+    <string name="install_language">भाषा स्थापित करा</string>
+
+    <string name="solved_by_schoolkiller">SchoolKiller द्वारे सोडवले\nGoogle Play Store वर आमचे ॲप पहा</string>
+
+</resources>

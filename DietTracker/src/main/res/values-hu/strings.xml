@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">A DietTracker segít a felhasználóknak nyomon követni a kalória-, zsír-, fehérje-, szénhidrát-, vitamin- és ásványianyag-bevitelüket az ételekben. Nem csak számolja ezeket az elemeket, hanem azt is elemzi, hogy mit szív fel a szervezet emésztés után. A felhasználók feltölthetnek képeket a termékekről, az alkalmazás felismeri az összetevőket, és lehetővé teszi a lista szerkesztését.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Iskolai Asszisztens kép</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Feltöltés az AI Iskolai Asszisztens képhez</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">AI Iskolai Asszisztens kép megoldásának ellenőrzése</string>
+    <string name="ArrowDropDown_icon_content_description">Megnyit egy almenüt</string>
+    <string name="add_image">Feladat hozzáadása</string>
+    <string name="guidance_detected_ingredients">Tekintse át a felismert összetevőket. Ha bármilyen adat helytelen vagy hiányzik, módosíthatja őket egy új táplálkozási elemzés generálása előtt</string>
+
+    // Text values
+    <string name="ingredients">Hozzávalók</string>
+    <string name="solution_text_value">Megoldás</string>
+    <string name="user_task_value">Feladat</string>
+    <string name="is_ocr_result_included_value">A kiválasztott felismert szöveg használata</string>
+    <string name="home_loading_waiting_text_value">Betöltés, kérem várjon...</string>
+    <string name="progress_bar_hint_text_value">Megoldásgenerálás folyamatban</string>
+
+    // Button Labels
+    <string name="next_button_label">Következő</string>
+    <string name="solve_button_label">Megoldás</string>
+    <string name="check_solution_button_label">Megoldás ellenőrzése</string>
+    <string name="cheat_sheet_button_label">Puskázólap</string>
+    <string name="start_again">Újrakezdés</string>
+    <string name="try_again">Újrapróbálkozás</string>
+    <string name="pick_images">Képek kiválasztása</string>
+    <string name="upload_from_url">Feltöltés</string>
+    <string name="upload_picture">Kép feltöltése</string>
+    <string name="take_a_picture">Fénykép készítése</string>
+    <string name="recognize_text_button_label">Felismert szöveg megjelenítése</string>
+
+    // Text Field Labels
+    <string name="foods">Ételek</string>
+    <string name="What_to_solve_TextField_label">Mit szeretne megoldani?</string>
+    <string name="rating_TextField_label">Értékelés</string>
+    <string name="no_solution_chosen">Még nincs megoldás kiválasztva</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 banán és 1 alma, mind közepes méretű.</string>
+    <string name="first_ocr_result_is_not_ready">A szöveg felismerése folyamatban van, kérem várjon…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Megoldás nyelve</string>
+    <string name="upload_a_file_label">Fájl feltöltése</string>
+    <string name="explanations_label">Magyarázatok</string>
+    <string name="physical_activity_label">Fizikai aktivitás</string>
+    <string name="gender_label">Nem</string>
+    <string name="age_label">Kor</string>
+    <string name="height_label">Magasság</string>
+    <string name="weight_label">Súly</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Úgy tűnik, törölt néhány képet a kalóriaszámoló alkalmazás tárhelyéről. Ne aggódjon, a kalóriaszámoló megpróbálja egyenként törölni ezeket a képeket az alkalmazás gyorsítótárából. Kérjük, erősítse meg az egyes képek törlését, ha szükséges. Bármelyik kép, amely üresnek tűnik, sérült. Szeretné folytatni?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">A mesterséges intelligencia nem tudta felismerni a szöveget a képről. Kérjük, próbálja újra.</string>
+    <string name="error_gemini_solution_result_extraction">A mesterséges intelligencia nem tudta megoldani ezt a problémát. Kérjük, próbálja újra.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hoppá! Valami elromlott. Kérjük, próbálja újra!</string>
+    <string name="fail_to_load_Uri">Nem sikerült betölteni a képet a listába. Kérjük, próbálja meg manuálisan betölteni!</string>
+    <string name="corrupted_loaded_file">Sérült fájlt töltött be!</string>
+    <string name="missing_required_settings">Néhány kötelező beállítás hiányzik. Kérjük, töltse ki őket.</string>
+    <string name="camera_fail_to_open">Hoppá! Valami elromlott a kamerával. Kérjük, próbálja újra!</string>
+    <string name="upload_image_warning">Kérjük, töltsön fel egy képet az eszközről</string>
+    <string name="select_image_or_text_warning">Kérjük, válasszon egy képet, vagy írja be a feladatot.</string>
+    <string name="prompt_is_empty">A felismert szöveg üres. Kérjük, próbálja újra!</string>
+    <string name="language_not_supported">"A kiválasztott nyelv nem érhető el médiageneráláshoz. Más funkciók továbbra is működni fognak. Szeretné letölteni a szükséges nyelvi adatokat a funkció engedélyezéséhez?"</string>
+
+    // labels
+    <string name="home">Főoldal</string>
+    <string name="settings">Beállítások</string>
+    <string name="results">Eredmény</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Válassza ki, mit szeretne megosztani</string>
+    <string name="share_user_ingredients">Az én hozzávalóim megosztása</string>
+    <string name="share_recognized_ingredients">A felismert hozzávalók megosztása</string>
+    <string name="share_solution">Megoldás megosztása</string>
+    <string name="share_image">Kép megosztása</string>
+    <string name="share">Megosztás</string>
+
+    // installation
+    <string name="install">Telepítés</string>
+    <string name="install_language">Nyelv telepítése</string>
+
+    <string name="solved_by_diet_tracker">Megoldotta: DietTracker\nNézd meg alkalmazásunkat a Google Play-en</string>
+
+</resources>

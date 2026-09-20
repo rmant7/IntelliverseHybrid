@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator converts text between different writing styles and tones.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI School Assistant Image</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Upload To AI School Assistant Image</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Check Solution AI School Assistant Image</string>
+    <string name="ArrowDropDown_icon_content_description">Opens a submenu</string>
+    <string name="add_image">Add task</string>
+
+    // Text values
+    <string name="recognized_text_value">Recognized text</string>
+    <string name="solution_text_value">Solution</string>
+    <string name="user_task_value">Task</string>
+    <string name="is_ocr_result_included_value">Use selected recognized text</string>
+    <string name="home_loading_waiting_text_value">Loading, please, wait...</string>
+    <string name="progress_bar_hint_text_value">Solutions generation progress</string>
+    
+    // Button Labels
+    <string name="next_button_label">Next</string>
+    <string name="solve_button_label">Solve</string>
+    <string name="check_solution_button_label">Check solution</string>
+    <string name="cheat_sheet_button_label">Cheat sheet</string>
+    <string name="start_again">Start again</string>
+    <string name="try_again">Try again</string>
+    <string name="pick_images">Pick Images</string>
+    <string name="upload_from_url">Upload</string>
+    <string name="upload_picture">Upload Picture</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="recognize_text_button_label">Show recognized text</string>
+
+    // Text Field Labels
+    <string name="sentence">Text</string>
+    <string name="What_to_solve_TextField_label">What do you want to solve?</string>
+    <string name="rating_TextField_label">Rating</string>
+    <string name="no_solution_chosen">Solution is not selected yet</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">I love taking care of my girlfriend. I always make sure she feels safe and protected. I like planning our dates and surprising her with small gifts. When she’s upset, I try to find a solution and fix things for her.</string>
+    <string name="first_ocr_result_is_not_ready">Text is being recognized, please, wait…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Solution language</string>
+    <string name="upload_a_file_label">Upload a file</string>
+    <string name="explanations_label">Explanations</string>
+    <string name="source_gender_label">Source Gender</string>
+    <string name="target_gender_label">Target Gender</string>
+    <string name="source_age_label">Source Age</string>
+    <string name="target_age_label">Target Age</string>
+    <string name="category_label">Category</string>
+    <string name="tone_label">Tone Preference</string>
+    <string name="transformation_level_label">Transformation Level</string>
+    <string name="style_label">Translation Style</string>
+    <string name="mentality_label">Mentality</string>
+    <string name="translation_scale_label">Translation Scale Factor</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">It seems you have deleted some images from the calories app\'s directory storage. Not to worry, calories will attempt to clear these images one by one from the application cache. Please confirm each image deletion, if needed. Any image that appears blank is a corrupted one. Do you want to proceed?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI wasn\'t able to recognize text from the image. Please, try again.</string>
+    <string name="error_gemini_solution_result_extraction">AI wasn\'t able to solve this problem. Please, try again.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Whoops! Something went wrong. Please try again!</string>
+    <string name="fail_to_load_Uri">Failed to load the image to the list. Please try to load it manual!</string>
+    <string name="corrupted_loaded_file">You have loaded a corrupted file!</string>
+    <string name="missing_required_settings">Some required settings are missing. Please fill them in.</string>
+    <string name="camera_fail_to_open">Whoops! Something went wrong with the camera. Please try again!</string>
+    <string name="upload_image_warning">Please upload an image from the device</string>
+    <string name="select_image_or_text_warning">Please select an image or type task.</string>
+    <string name="prompt_is_empty">Recognized text is empty. Please try again!</string>
+    <string name="language_not_supported">"The selected language is not available for media generation. Other features will continue to work. Would you like to download the necessary language data to enable this feature?"</string>
+
+    // labels
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="results">Result</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Choose what to share</string>
+    <string name="share_user_translation">Share My Text</string>
+    <string name="share_ocr_result">Share Recognized Text</string>
+    <string name="share_solution">Share Solution</string>
+    <string name="share_image">Share Image</string>
+    <string name="share">Share</string>
+
+    // installation
+    <string name="install">Install</string>
+    <string name="install_language">Install Language</string>
+
+    <string name="solved_by_style_translator">Solved by StyleTranslator\nCheck out our app on Google Play</string>
+
+</resources>

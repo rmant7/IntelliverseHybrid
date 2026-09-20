@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip on teie nutikas reisiplaani koostaja, mida toetab tehisintellekt. Kirjeldage lihtsalt oma unistuste reisi või laadige üles inspiratsioon ning saate koheselt isikupärastatud päevast-päeva marsruudi koos transpordivõimaluste, hotellilinkide, eelarvehinnangute ja kohalike nõuannetega — kõik ühe klikiga.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Tuvastatud tekst</string>
+    <string name="solution_text_value">Lahendus</string>
+    <string name="user_task_value">Ülesanne</string>
+    <string name="progress_bar_hint_text_value">Lahenduste genereerimise edenemine</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Tekst</string>
+    <string name="no_solution_chosen">Lahendust pole veel valitud</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Soovin 3-päevast lõõgastavat ja kultuurilist reisi ajalooliste paikade, kohaliku toidu, kergete jalutuskäikude ja juhendatud ning iseseisvate tegevuste kombinatsiooniga ühes linnas või selle lähedal.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Lahenduse keel</string>
+    <string name="max_budget_label">Maksimaalne eelarve</string>
+    <string name="travelers_number_label">Reisijate arv</string>
+    <string name="trip_duration_label">Reisi kestus</string>
+    <string name="transportation_type_label">Transpordiviis</string>
+    <string name="trip_style_label">Reisistiil</string>
+    <string name="origin_location_label">Alguskoht</string>
+    <string name="trip_type_label">Reisi tüüp</string>
+    <string name="one_way_trip">Ühesuunaline reis</string>
+    <string name="round_trip">Edasi-tagasi reis</string>
+    <string name="days">päeva</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Sisestage transpordiviis</string>
+    <string name="enter_location">Sisestage asukoht</string>
+    <string name="add">Lisa</string>
+    <string name="travel_path">Reisiteekond</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI ei suutnud probleemi lahendada. Palun proovige uuesti.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Oih! Midagi läks valesti. Palun proovige uuesti!</string>
+    <string name="fail_to_load_Uri">Pildi laadimine loendisse ebaõnnestus. Palun laadige käsitsi!</string>
+    <string name="corrupted_loaded_file">Laaditi kahjustatud fail!</string>
+    <string name="missing_required_settings">Mõned nõutavad seaded on puudu. Palun täitke need.</string>
+    <string name="camera_fail_to_open">Oih! Kaamera avamine ebaõnnestus. Palun proovige uuesti!</string>
+    <string name="select_image_or_text_warning">Palun valige pilt või sisestage ülesanne.</string>
+    <string name="language_not_supported">
+        Valitud keel pole meedia genereerimiseks saadaval. Muud funktsioonid jätkavad tööd. Kas soovite vajalikud keeleandmed alla laadida?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Avaleht</string>
+    <string name="settings">Seaded</string>
+    <string name="results">Tulemus</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Valige, mida jagada</string>
+    <string name="share_user_translation">Jaga minu teksti</string>
+    <string name="share_ocr_result">Jaga tuvastatud teksti</string>
+    <string name="share_solution">Jaga lahendust</string>
+    <string name="share_image">Jaga pilti</string>
+    <string name="share">Jaga</string>
+
+    <!-- Installation -->
+    <string name="install">Paigalda</string>
+    <string name="install_language">Paigalda keel</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Lahendatud OneClickTripiga\nVaata meie rakendust Google Play poes</string>
+</resources>

@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator muuntaa tekstiä eri kirjoitustyylien ja sävyjen välillä.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI-koulunkäyntiavustajan kuva</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Lataa AI-koulunkäyntiavustajaan -kuva</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Tarkista ratkaisu AI-koulunkäyntiavustajan kuva</string>
+    <string name="ArrowDropDown_icon_content_description">Avaa alivalikon</string>
+    <string name="add_image">Lisää tehtävä</string>
+
+    // Text values
+    <string name="recognized_text_value">Tunnistettu teksti</string>
+    <string name="solution_text_value">Ratkaisu</string>
+    <string name="user_task_value">Tehtävä</string>
+    <string name="is_ocr_result_included_value">Käytä valittua tunnistettua tekstiä</string>
+    <string name="home_loading_waiting_text_value">Ladataan, odota...</string>
+    <string name="progress_bar_hint_text_value">Ratkaisujen luontiprosessi</string>
+
+    // Button Labels
+    <string name="next_button_label">Seuraava</string>
+    <string name="solve_button_label">Ratkaise</string>
+    <string name="check_solution_button_label">Tarkista ratkaisu</string>
+    <string name="cheat_sheet_button_label">Lunttilappu</string>
+    <string name="start_again">Aloita alusta</string>
+    <string name="try_again">Yritä uudelleen</string>
+    <string name="pick_images">Valitse kuvat</string>
+    <string name="upload_from_url">Lataa</string>
+    <string name="upload_picture">Lataa kuva</string>
+    <string name="take_a_picture">Ota kuva</string>
+    <string name="recognize_text_button_label">Näytä tunnistettu teksti</string>
+
+    // Text Field Labels
+    <string name="sentence">Teksti</string>
+    <string name="What_to_solve_TextField_label">Mitä haluat ratkaista?</string>
+    <string name="rating_TextField_label">Arvosana</string>
+    <string name="no_solution_chosen">Ratkaisua ei ole vielä valittu</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Rakastan tyttöystävästäni huolehtimista. Varmistan aina, että hän tuntee olonsa turvalliseksi ja suojatuksi. Tykkään suunnitella treffejämme ja yllättää hänet pienillä lahjoilla. Kun hän on pahoillaan, yritän löytää ratkaisun ja korjata asiat hänen puolestaan.</string>
+    <string name="first_ocr_result_is_not_ready">Tekstiä tunnistetaan, odota…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Ratkaisun kieli</string>
+    <string name="upload_a_file_label">Lataa tiedosto</string>
+    <string name="explanations_label">Selitykset</string>
+    <string name="source_gender_label">Lähteen sukupuoli</string>
+    <string name="target_gender_label">Kohdan sukupuoli</string>
+    <string name="source_age_label">Lähteen ikä</string>
+    <string name="target_age_label">Kohdan ikä</string>
+    <string name="category_label">Kategoria</string>
+    <string name="tone_label">Sävy</string>
+    <string name="transformation_level_label">Muunnostaso</string>
+    <string name="style_label">Käännöstyyli</string>
+    <string name="mentality_label">Ajattelutapa</string>
+    <string name="translation_scale_label">Käännöksen mittakaavatekijä</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Näyttää siltä, että olet poistanut joitain kuvia kalorisovelluksen hakemistotallennustilasta. Ei hätää, kalorit yrittävät tyhjentää nämä kuvat yksi kerrallaan sovelluksen välimuistista. Vahvista tarvittaessa jokainen kuvan poisto. Kaikki tyhjänä näkyvät kuvat ovat vioittuneita. Haluatko jatkaa?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">Tekoäly ei pystynyt tunnistamaan tekstiä kuvasta. Yritä uudelleen.</string>
+    <string name="error_gemini_solution_result_extraction">Tekoäly ei pystynyt ratkaisemaan tätä ongelmaa. Yritä uudelleen.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hups! Jokin meni pieleen. Yritä uudelleen!</string>
+    <string name="fail_to_load_Uri">Kuvan lataaminen luetteloon epäonnistui. Yritä ladata se manuaalisesti!</string>
+    <string name="corrupted_loaded_file">Olet ladannut vioittuneen tiedoston!</string>
+    <string name="missing_required_settings">Joitakin vaadittavia asetuksia puuttuu. Täytä ne.</string>
+    <string name="camera_fail_to_open">Hups! Kamerassa tapahtui virhe. Yritä uudelleen!</string>
+    <string name="upload_image_warning">Lataa kuva laitteesta</string>
+    <string name="select_image_or_text_warning">Valitse kuva tai kirjoita tehtävä.</string>
+    <string name="prompt_is_empty">Tunnistettu teksti on tyhjä. Yritä uudelleen!</string>
+    <string name="language_not_supported">"Valittu kieli ei ole käytettävissä median luontiin. Muut ominaisuudet toimivat edelleen. Haluatko ladata tarvittavat kielitiedot ottaaksesi tämän ominaisuuden käyttöön?"</string>
+
+    // labels
+    <string name="home">Etusivu</string>
+    <string name="settings">Asetukset</string>
+    <string name="results">Tulos</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Valitse mitä jaat</string>
+    <string name="share_user_translation">Jaa tekstini</string>
+    <string name="share_ocr_result">Jaa tunnistettu teksti</string>
+    <string name="share_solution">Jaa ratkaisu</string>
+    <string name="share_image">Jaa kuva</string>
+    <string name="share">Jaa</string>
+
+    // installation
+    <string name="install">Asenna</string>
+    <string name="install_language">Asenna kieli</string>
+
+    <string name="solved_by_style_translator">Ratkaistu StyleTranslatorilla\nKatso sovelluksemme Google Playsta</string>
+
+</resources>

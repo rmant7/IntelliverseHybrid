@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller palīdz studentiem risināt matemātiskus uzdevumus, kā arī vispārīgus uzdevumus.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI skolas asistenta attēls</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Augšupielādēt AI skolas asistenta attēlu</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Pārbaudīt risinājumu AI skolas asistenta attēlu</string>
+    <string name="ArrowDropDown_icon_content_description">Atver apakšizvēlni</string>
+    <string name="add_image">Pievienot uzdevumu</string>
+    <string name="Guidance">Lai iegūtu optimālus rezultātus, lūdzu, norādiet detalizētu TEKSTU savam uzdevumam. Ja pievienojat attēlus, pārliecinieties, vai jebkurš atpazītais teksts ir rediģēts, lai tas precīzi atbilstu oriģinālam.</string>
+
+    // Text values
+    <string name="recognized_text_value">Atpazītais teksts</string>
+    <string name="solution_text_value">Risinājums</string>
+    <string name="user_task_value">Uzdevums</string>
+    <string name="is_ocr_result_included_value">Izmantot atlasīto atpazīto tekstu</string>
+    <string name="home_loading_waiting_text_value">Ielādē, lūdzu, uzgaidiet...</string>
+    <string name="progress_bar_hint_text_value">Risinājumu ģenerēšanas progress</string>
+
+    // Button Labels
+    <string name="next_button_label">Nākamais</string>
+    <string name="solve_button_label">Atrisini</string>
+    <string name="check_solution_button_label">Pārbaudīt risinājumu</string>
+    <string name="cheat_sheet_button_label">Špikeri</string>
+    <string name="start_again">Sākt vēlreiz</string>
+    <string name="try_again">Mēģināt vēlreiz</string>
+    <string name="pick_images">Izvēlēties attēlus</string>
+    <string name="upload_from_url">Augšupielādēt</string>
+    <string name="upload_picture">Augšupielādēt attēlu</string>
+    <string name="take_a_picture">Uzņemt attēlu</string>
+    <string name="recognize_text_button_label">Rādīt atpazīto tekstu</string>
+
+    // Text Field Labels
+    <string name="tasks">Uzdevums</string>
+    <string name="What_to_solve_TextField_label">Ko vēlaties atrisināt?</string>
+    <string name="rating_TextField_label">Vērtējums</string>
+    <string name="no_solution_chosen">Risinājums vēl nav atlasīts</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Pastāstiet man par Pitagora teorēmu.</string>
+    <string name="first_ocr_result_is_not_ready">Teksts tiek atpazīts, lūdzu, uzgaidiet…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Risinājuma valoda</string>
+    <string name="upload_a_file_label">Augšupielādēt failu</string>
+    <string name="explanations_label">Paskaidrojumi</string>
+    <string name="grade_label">"Atzīme"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Šķiet, ka esat izdzēsis dažus attēlus no SchoolKiller lietotnes direktoriju krātuves. Neuztraucieties, SchoolKiller mēģinās pa vienam notīrīt šos attēlus no lietojumprogrammas kešatmiņas. Lūdzu, apstipriniet katra attēla dzēšanu, ja nepieciešams. Jebkurš attēls, kas parādās tukšs, ir bojāts. Vai vēlaties turpināt?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nevarēja atpazīt tekstu no attēla. Lūdzu, mēģiniet vēlreiz.</string>
+    <string name="error_gemini_solution_result_extraction">AI nevarēja atrisināt šo problēmu. Lūdzu, mēģiniet vēlreiz.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz!</string>
+    <string name="fail_to_load_Uri">Neizdevās ielādēt attēlu sarakstā. Lūdzu, mēģiniet to ielādēt manuāli!</string>
+    <string name="corrupted_loaded_file">Jūs esat ielādējis bojātu failu!</string>
+    <string name="camera_fail_to_open">Ups! Kaut kas nogāja greizi ar kameru. Lūdzu, mēģiniet vēlreiz!</string>
+    <string name="upload_image_warning">Lūdzu, augšupielādējiet attēlu no ierīces</string>
+    <string name="select_image_or_text_warning">Lūdzu, atlasiet attēlu vai ierakstiet uzdevumu.</string>
+    <string name="prompt_is_empty">Atpazītais teksts ir tukšs. Lūdzu, mēģiniet vēlreiz!</string>
+    <string name="language_not_supported">"Atlasītā valoda nav pieejama multivides ģenerēšanai. Citas funkcijas turpinās darboties. Vai vēlaties lejupielādēt nepieciešamos valodas datus, lai iespējotu šo funkciju?"</string>
+
+    // labels
+    <string name="home">Sākums</string>
+    <string name="settings">Iestatījumi</string>
+    <string name="results">Rezultāts</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Izvēlieties, ko kopīgot</string>
+    <string name="share_user_task">Kopīgot manu uzdevumu</string>
+    <string name="share_ocr_result">Kopīgot atpazīto tekstu</string>
+    <string name="share_solution">Kopīgot risinājumu</string>
+    <string name="share_image">Kopīgot attēlu</string>
+    <string name="share">Kopīgot</string>
+
+    // installation
+    <string name="install">Instalēt</string>
+    <string name="install_language">Instalēt valodu</string>
+
+    <string name="solved_by_schoolkiller">Atrisināja SchoolKiller\nIepazīstieties ar mūsu lietotni Google Play veikalā</string>
+
+</resources>

@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller hjälper elever att lösa matematiska problem specifikt, såväl som allmänna problem.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Bild av AI-skolassistent</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Bild för uppladdning till AI-skolassistent</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Bild för kontroll av lösning i AI-skolassistent</string>
+    <string name="ArrowDropDown_icon_content_description">Öppnar en undermeny</string>
+    <string name="add_image">Lägg till uppgift</string>
+    <string name="Guidance">För optimala resultat, vänligen ange detaljerad TEXT för din uppgift. Om du bifogar bilder, se till att all igenkänd text redigeras för att stämma överens med originalet.</string>
+
+    // Text values
+    <string name="recognized_text_value">Igenkänd text</string>
+    <string name="solution_text_value">Lösning</string>
+    <string name="user_task_value">Uppgift</string>
+    <string name="is_ocr_result_included_value">Använd vald igenkänd text</string>
+    <string name="home_loading_waiting_text_value">Laddar, var god vänta...</string>
+    <string name="progress_bar_hint_text_value">Genereringsförlopp för lösningar</string>
+
+    // Button Labels
+    <string name="next_button_label">Nästa</string>
+    <string name="solve_button_label">Lös</string>
+    <string name="check_solution_button_label">Kontrollera lösning</string>
+    <string name="cheat_sheet_button_label">Fuskblad</string>
+    <string name="start_again">Börja om</string>
+    <string name="try_again">Försök igen</string>
+    <string name="pick_images">Välj bilder</string>
+    <string name="upload_from_url">Ladda upp</string>
+    <string name="upload_picture">Ladda upp bild</string>
+    <string name="take_a_picture">Ta en bild</string>
+    <string name="recognize_text_button_label">Visa igenkänd text</string>
+
+    // Text Field Labels
+    <string name="tasks">Uppgift</string>
+    <string name="What_to_solve_TextField_label">Vad vill du lösa?</string>
+    <string name="rating_TextField_label">Betyg</string>
+    <string name="no_solution_chosen">Lösning är inte vald ännu</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Berätta om Pythagoras sats.</string>
+    <string name="first_ocr_result_is_not_ready">Texten känns igen, var god vänta…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Lösningsspråk</string>
+    <string name="upload_a_file_label">Ladda upp en fil</string>
+    <string name="explanations_label">Förklaringar</string>
+    <string name="grade_label">"Betyg"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Det verkar som att du har tagit bort några bilder från SchoolKiller-appens lagringskatalog. Ingen fara, SchoolKiller kommer att försöka rensa dessa bilder en efter en från applikationens cache. Vänligen bekräfta varje bildborttagning, om det behövs. Varje bild som visas tom är korrupt. Vill du fortsätta?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI kunde inte känna igen text från bilden. Vänligen försök igen.</string>
+    <string name="error_gemini_solution_result_extraction">AI kunde inte lösa detta problem. Vänligen försök igen.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hoppsan! Något gick fel. Försök igen!</string>
+    <string name="fail_to_load_Uri">Kunde inte ladda bilden till listan. Försök att ladda den manuellt!</string>
+    <string name="corrupted_loaded_file">Du har laddat en korrupt fil!</string>
+    <string name="camera_fail_to_open">Hoppsan! Något gick fel med kameran. Försök igen!</string>
+    <string name="upload_image_warning">Vänligen ladda upp en bild från enheten</string>
+    <string name="select_image_or_text_warning">Vänligen välj en bild eller skriv in uppgift.</string>
+    <string name="prompt_is_empty">Igenkänd text är tom. Vänligen försök igen!</string>
+    <string name="language_not_supported">"Det valda språket är inte tillgängligt för mediagenerering. Andra funktioner kommer att fortsätta att fungera. Vill du ladda ner nödvändiga språkdata för att aktivera den här funktionen?"</string>
+
+    // labels
+    <string name="home">Hem</string>
+    <string name="settings">Inställningar</string>
+    <string name="results">Resultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Välj vad du vill dela</string>
+    <string name="share_user_task">Dela min uppgift</string>
+    <string name="share_ocr_result">Dela igenkänd text</string>
+    <string name="share_solution">Dela lösning</string>
+    <string name="share_image">Dela bild</string>
+    <string name="share">Dela</string>
+
+    // installation
+    <string name="install">Installera</string>
+    <string name="install_language">Installera språk</string>
+
+    <string name="solved_by_schoolkiller">Löst av SchoolKiller\nKolla in vår app på Google Play</string>
+
+</resources>

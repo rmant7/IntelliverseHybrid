@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poético</item>
+        <item>Profesional</item>
+        <item>Legal</item>
+        <item>Técnico</item>
+        <item>Académico</item>
+        <item>Periodístico</item>
+        <item>Creativo</item>
+        <item>Persuasivo</item>
+        <item>Narrativo</item>
+        <item>Descriptivo</item>
+        <item>Expositivo</item>
+        <item>Humorístico</item>
+        <item>Informal</item>
+        <item>De negocios</item>
+        <item>Científico</item>
+        <item>Romántico</item>
+        <item>Histórico</item>
+        <item>Filosófico</item>
+        <item>Autoayuda</item>
+        <item>Viajes</item>
+        <item>Marketing</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formal</item>
+        <item>Casual</item>
+        <item>Amigable</item>
+        <item>Serio</item>
+        <item>Empático</item>
+        <item>Asertivo</item>
+        <item>Optimista</item>
+        <item>Humorístico</item>
+        <item>Neutral</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Mínima</item>
+        <item>Moderada</item>
+        <item>Completa</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Relación</item>
+        <item>Lugar de trabajo</item>
+        <item>Educación</item>
+        <item>Salud</item>
+        <item>Finanzas</item>
+        <item>Viajes</item>
+        <item>Tecnología</item>
+        <item>Entretenimiento</item>
+        <item>Superación personal</item>
+        <item>General</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusia: Colectivista</item>
+        <item>Europa del Este: Pragmático</item>
+        <item>Europa Occidental: Individualista</item>
+        <item>Sudeste Asiático: Centrado en la armonía</item>
+        <item>China: Jerárquico</item>
+        <item>Cáucaso: Atado al honor</item>
+        <item>América del Norte: Emprendedor</item>
+        <item>América Latina: Apasionado</item>
+        <item>Oriente Medio: Impulsado por la hospitalidad</item>
+        <item>África: Comunal</item>
+        <item>Países nórdicos: Igualitario</item>
+        <item>Asia del Sur: Centrado en la familia</item>
+        <item>Japón: Armonía grupal</item>
+        <item>Australia: Relajado</item>
+        <item>Mediterráneo: Expresivo</item>
+        <item>Asia Central: Tradiciones nómadas</item>
+        <item>Alemania: Estructurado</item>
+        <item>Balcanes: Resiliente</item>
+        <item>Indígenas árticos: Conectados con la naturaleza</item>
+        <item>Judío: Orientado a la comunidad</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amhárico</item>
+        <item>Árabe</item>
+        <item>Bengalí</item>
+        <item>Búlgaro</item>
+        <item>Chino simplificado</item>
+        <item>Croata</item>
+        <item>Checo</item>
+        <item>Danés</item>
+        <item>Holandés</item>
+        <item>Inglés</item>
+        <item>Estonio</item>
+        <item>Finlandés</item>
+        <item>Francés</item>
+        <item>Alemán</item>
+        <item>Griego</item>
+        <item>Gujarati</item>
+        <item>Hebreo</item>
+        <item>Hindi</item>
+        <item>Húngaro</item>
+        <item>Indonesio</item>
+        <item>Italiano</item>
+        <item>Japonés</item>
+        <item>Canarés</item>
+        <item>Coreano</item>
+        <item>Letón</item>
+        <item>Lituano</item>
+        <item>Malayo</item>
+        <item>Marathi</item>
+        <item>Noruego</item>
+        <item>Pashto</item>
+        <item>Persa</item>
+        <item>Polaco</item>
+        <item>Portugués</item>
+        <item>Rumano</item>
+        <item>Ruso</item>
+        <item>Serbio</item>
+        <item>Eslovaco</item>
+        <item>Esloveno</item>
+        <item>Español</item>
+        <item>Swahili</item>
+        <item>Sueco</item>
+        <item>Tagalo</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Tailandés</item>
+        <item>Turco</item>
+        <item>Ucraniano</item>
+        <item>Urdu</item>
+        <item>Vietnamita</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>No relevante</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Sin explicación</item>
+        <item>Explicación breve</item>
+        <item>Explicación detallada</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sedentario</item>
+        <item>Ligeramente activo</item>
+        <item>Moderadamente activo</item>
+        <item>Muy activo</item>
+        <item>Extremadamente activo</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Avión</item>
+        <item>Bicicleta</item>
+        <item>Barco</item>
+        <item>Autobús</item>
+        <item>Motocicleta</item>
+        <item>Coche propio</item>
+        <item>Coche de alquiler</item>
+        <item>Compartir viaje</item>
+        <item>Metro</item>
+        <item>Taxi</item>
+        <item>Tren</item>
+        <item>Tranvía</item>
+        <item>Caminar</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Comida</item>
+        <item>Historia</item>
+        <item>Cultura</item>
+        <item>Naturaleza</item>
+        <item>Relajación</item>
+        <item>Aventura</item>
+        <item>Vida nocturna</item>
+        <item>Compras</item>
+        <item>Familia</item>
+        <item>Romántico</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Tomar una foto</item>
+        <item>Subir una imagen</item>
+        <item>Subir un archivo</item>
+        <item>Proporcionar un enlace</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Lo sentimos, el servicio no está disponible en Rusia y Bielorrusia, por favor, utilice vpn</string>
+    <string name="error_service_not_available_title">Servicio no disponible</string>
+    <string name="error_common_title">Error</string>
+    <string name="error_common_message">Se produjo un error durante la ejecución de la aplicación. Intenta actualizar la aplicación o inténtalo de nuevo más tarde.</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">¡Vaya! Parece que se necesita acceso a la cámara para esta función. Dirígete a la configuración de tu dispositivo, busca IntelliVerse en la lista de aplicaciones y concede permiso de cámara para desbloquear la magia.</string>
+    <string name="permanent_denied_read_media_permission_explanation">¡Vaya! Para usar imágenes de tu galería, IntelliVerse necesita permiso para leer tus fotos. Dirígete a la configuración de tu dispositivo, busca IntelliVerse en la lista de aplicaciones y concede acceso a las fotos para desbloquear la magia.</string>
+    <string name="permanent_denied_write_storage_permission_explanation">¡Vaya! Para guardar archivos en tu dispositivo, IntelliVerse necesita permiso para escribir en tu almacenamiento. Dirígete a la configuración de tu dispositivo, busca IntelliVerse en la lista de aplicaciones y concede acceso al almacenamiento para desbloquear la magia.</string>
+    <string name="permanent_denied_read_storage_permission_explanation">¡Vaya! Para acceder a los archivos de tu dispositivo, IntelliVerse necesita permiso para leer tu almacenamiento. Dirígete a la configuración de tu dispositivo, busca IntelliVerse en la lista de aplicaciones y concede acceso al almacenamiento para desbloquear la magia.</string>
+    <string name="camera_permission_rationale">¡IntelliVerse necesita acceso a tu cámara para que puedas tomar fotos instantáneas de tus ejercicios escolares!</string>
+    <string name="read_media_permission_rationale">Permitir el acceso a tus fotos te permite seleccionar imágenes de tu galería para usar dentro de la aplicación IntelliVerse.</string>
+    <string name="write_storage_permission_rationale">¡El permiso para escribir en tu almacenamiento permite que la aplicación IntelliVerse guarde archivos, como fotos que hayas tomado, directamente en tu dispositivo!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse necesita acceso al almacenamiento de tu dispositivo para leer archivos, como fotos o documentos, que quieras usar en la aplicación.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Sí</string>
+    <string name="No">No</string>
+    <string name="are_you_sure">¿Estás seguro de que quieres salir?</string>
+    <string name="exit">Salir</string>
+
+    <string name="report_content">Denunciar contenido</string>
+    <string name="select_reason">Seleccionar motivo</string>
+    <string name="offensive">Ofensivo</string>
+    <string name="hate_speech">Discurso de odio</string>
+    <string name="incorrect_info">Información incorrecta</string>
+    <string name="other">Otro</string>
+    <string name="submit">Enviar</string>
+    <string name="cancel">Cancelar</string>
+
+    <string name="reset_settings">Restablecer ajustes</string>
+    <string name="not_relevant">No relevante</string>
+
+</resources>

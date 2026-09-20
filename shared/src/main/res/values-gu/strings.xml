@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>કાવ્યાત્મક</item>
+        <item>વ્યાવસાયિક</item>
+        <item>કાનૂની</item>
+        <item>તકનીકી</item>
+        <item>શૈક્ષણિક</item>
+        <item>પત્રકારત્વ</item>
+        <item>સર્જનાત્મક</item>
+        <item>સૂચક</item>
+        <item>વર્ણનાત્મક</item>
+        <item>વર્ણનાત્મક</item>
+        <item>સ્પષ્ટીકરણકારી</item>
+        <item>રમૂજી</item>
+        <item>અનૌપચારિક</item>
+        <item>વ્યાપાર</item>
+        <item>વૈજ્ઞાનિક</item>
+        <item>ભાવનાપ્રધાન</item>
+        <item>ઐતિહાસિક</item>
+        <item>દાર્શનિક</item>
+        <item>સ્વ-સહાય</item>
+        <item>પ્રવાસ</item>
+        <item>માર્કેટિંગ</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>ઔપચારિક</item>
+        <item>કેઝ્યુઅલ</item>
+        <item>મૈત્રીપૂર્ણ</item>
+        <item>ગંભીર</item>
+        <item>સહાનુભૂતિપૂર્ણ</item>
+        <item>દૃઢ</item>
+        <item>આશાવાદી</item>
+        <item>રમૂજી</item>
+        <item>તટસ્થ</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>ન્યૂનતમ</item>
+        <item>મધ્યમ</item>
+        <item>સંપૂર્ણ</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>સંબંધ</item>
+        <item>કાર્યસ્થળ</item>
+        <item>શિક્ષણ</item>
+        <item>આરોગ્ય</item>
+        <item>ફાઇનાન્સ</item>
+        <item>પ્રવાસ</item>
+        <item>ટેકનોલોજી</item>
+        <item>મનોરંજન</item>
+        <item>સ્વ સુધારણા</item>
+        <item>સામાન્ય</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>રશિયા: સામૂહિક</item>
+        <item>પૂર્વીય યુરોપ: વ્યવહારિક</item>
+        <item>પશ્ચિમ યુરોપ: વ્યક્તિગત</item>
+        <item>દક્ષિણપૂર્વ એશિયા: સંવાદિતા-કેન્દ્રિત</item>
+        <item>ચીન: વંશવેલો</item>
+        <item>કાકેશસ: સન્માન-બંધાયેલ</item>
+        <item>ઉત્તર અમેરિકા: સાહસિક</item>
+        <item>લેટિન અમેરિકા: જુસ્સાદાર</item>
+        <item>મધ્ય પૂર્વ: આતિથ્ય-સંચાલિત</item>
+        <item>આફ્રિકા: સાંપ્રદાયિક</item>
+        <item>નોર્ડિક દેશો: સમાનતાવાદી</item>
+        <item>દક્ષિણ એશિયા: કુટુંબ-કેન્દ્રિત</item>
+        <item>જાપાન: જૂથ સંવાદિતા</item>
+        <item>ઓસ્ટ્રેલિયા: આરામદાયક</item>
+        <item>ભૂમધ્ય: અભિવ્યક્ત</item>
+        <item>મધ્ય એશિયા: વિચરતી પરંપરાઓ</item>
+        <item>જર્મની: સંરચિત</item>
+        <item>બાલ્કન્સ: સ્થિતિસ્થાપક</item>
+        <item>આર્કટિક સ્વદેશી: પ્રકૃતિ-જોડાયેલ</item>
+        <item>યહૂદી: સમુદાય-લક્ષી</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>અમહારિક</item>
+        <item>અરબી</item>
+        <item>બંગાળી</item>
+        <item>બલ્ગેરિયન</item>
+        <item>ચાઇનીઝ સિમ્પલીફાઇડ</item>
+        <item>ક્રોએશિયન</item>
+        <item>ચેક</item>
+        <item>ડેનિશ</item>
+        <item>ડચ</item>
+        <item>અંગ્રેજી</item>
+        <item>એસ્ટોનિયન</item>
+        <item>ફિનિશ</item>
+        <item>ફ્રેન્ચ</item>
+        <item>જર્મન</item>
+        <item>ગ્રીક</item>
+        <item>ગુજરાતી</item>
+        <item>હિબ્રુ</item>
+        <item>હિન્દી</item>
+        <item>હંગેરિયન</item>
+        <item>ઇન્ડોનેશિયન</item>
+        <item>ઇટાલિયન</item>
+        <item>જાપાનીઝ</item>
+        <item>કન્નડ</item>
+        <item>કોરિયન</item>
+        <item>લાતવિયન</item>
+        <item>લિથુનિયન</item>
+        <item>મલય</item>
+        <item>મરાઠી</item>
+        <item>નોર્વેજીયન</item>
+        <item>પશ્તો</item>
+        <item>પર્શિયન</item>
+        <item>પોલિશ</item>
+        <item>પોર્ટુગીઝ</item>
+        <item>રોમાનિયન</item>
+        <item>રશિયન</item>
+        <item>સર્બિયન</item>
+        <item>સ્લોવાક</item>
+        <item>સ્લોવેનિયન</item>
+        <item>સ્પેનિશ</item>
+        <item>સ્વાહિલી</item>
+        <item>સ્વીડિશ</item>
+        <item>ટાગાલોગ</item>
+        <item>તમિલ</item>
+        <item>તેલુગુ</item>
+        <item>થાઈ</item>
+        <item>ટર્કીશ</item>
+        <item>યુક્રેનિયન</item>
+        <item>ઉર્દૂ</item>
+        <item>વિયેતનામીસ</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>અસંગત</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>કોઈ સમજૂતી નથી</item>
+        <item>ટૂંકી સમજૂતી</item>
+        <item>વિગતવાર સમજૂતી</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>નિષ્ક્રિય</item>
+        <item>હળવાશથી સક્રિય</item>
+        <item>મધ્યમ સક્રિય</item>
+        <item>ખૂબ જ સક્રિય</item>
+        <item>અત્યંત સક્રિય</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>પુરુષ</item>
+        <item>સ્ત્રી</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>વિમાન</item>
+        <item>સાયકલ</item>
+        <item>હોડી</item>
+        <item>બસ</item>
+        <item>મોટરસાયકલ</item>
+        <item>ખાનગી કાર</item>
+        <item>ભાડાનું કાર</item>
+        <item>રાઇડ શેરિંગ</item>
+        <item>મેટ્રો</item>
+        <item>ટેક્સી</item>
+        <item>ટ્રેન</item>
+        <item>ટ્રામ</item>
+        <item>પદયાત્રા</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>ખોરાક</item>
+        <item>ઈતિહાસ</item>
+        <item>સંસ્કૃતિ</item>
+        <item>પ્રકૃતિ</item>
+        <item>વિશ્રામ</item>
+        <item>સાહસિકતા</item>
+        <item>રાત્રિજીવન</item>
+        <item>શોપિંગ</item>
+        <item>કુટુંબ</item>
+        <item>રોમાંસ</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>ફોટો પાડો</item>
+        <item>છબી અપલોડ કરો</item>
+        <item>ફાઇલ અપલોડ કરો</item>
+        <item>લિંક પ્રદાન કરો</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">માફ કરશો, રશિયા અને બેલારુસમાં સેવા ઉપલબ્ધ નથી, કૃપા કરીને વીપીએનનો ઉપયોગ કરો</string>
+    <string name="error_service_not_available_title">સેવા ઉપલબ્ધ નથી</string>
+    <string name="error_common_title">ભૂલ</string>
+    <string name="error_common_message">એપ્લિકેશન ચાલતી વખતે એક ભૂલ આવી. એપ્લિકેશનને અપડેટ કરવાનો અથવા પછીથી ફરી પ્રયાસ કરો</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">ઓહ! લાગે છે કે આ સુવિધા માટે કૅમેરાની ઍક્સેસ જરૂરી છે. તમારા ઉપકરણ સેટિંગ્સ પર જાઓ, તમારી એપ્લિકેશનની સૂચિમાં IntelliVerse શોધો અને જાદુને અનલૉક કરવા માટે કૅમેરા પરવાનગી આપો!</string>
+    <string name="permanent_denied_read_media_permission_explanation">ઓહ! તમારી ગેલેરીમાંથી છબીઓનો ઉપયોગ કરવા માટે, IntelliVerseને તમારા ફોટા વાંચવાની પરવાનગીની જરૂર છે. તમારા ઉપકરણ સેટિંગ્સ પર જાઓ, તમારી એપ્લિકેશનની સૂચિમાં IntelliVerse શોધો અને જાદુને અનલૉક કરવા માટે ફોટો ઍક્સેસ આપો!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">ઓહ! તમારા ઉપકરણ પર ફાઇલો સાચવવા માટે, IntelliVerseને તમારા સ્ટોરેજ પર લખવાની પરવાનગીની જરૂર છે. તમારા ઉપકરણ સેટિંગ્સ પર જાઓ, તમારી એપ્લિકેશનની સૂચિમાં IntelliVerse શોધો અને જાદુને અનલૉક કરવા માટે સ્ટોરેજ ઍક્સેસ આપો!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">ઓહ! તમારા ઉપકરણ પરની ફાઇલોને ઍક્સેસ કરવા માટે, IntelliVerseને તમારા સ્ટોરેજને વાંચવાની પરવાનગીની જરૂર છે. તમારા ઉપકરણ સેટિંગ્સ પર જાઓ, તમારી એપ્લિકેશનની સૂચિમાં IntelliVerse શોધો અને જાદુને અનલૉક કરવા માટે સ્ટોરેજ ઍક્સેસ આપો!</string>
+    <string name="camera_permission_rationale">IntelliVerseને તમારા કૅમેરાની ઍક્સેસની જરૂર છે જેથી તમે તમારી શાળાની કસરતોના ફોટા તરત જ લઈ શકો!</string>
+    <string name="read_media_permission_rationale">તમારા ફોટાની ઍક્સેસને મંજૂરી આપવાથી તમે IntelliVerse એપ્લિકેશનમાં ઉપયોગ કરવા માટે તમારી ગેલેરીમાંથી છબીઓ પસંદ કરી શકો છો!</string>
+    <string name="write_storage_permission_rationale">તમારા સ્ટોરેજ પર લખવાની પરવાનગી IntelliVerse એપ્લિકેશનને ફાઇલો સાચવવા દે છે, જેમ કે તમે લીધેલા ફોટા, સીધા તમારા ઉપકરણ પર!</string>
+    <string name="read_storage_permission_rationale">એપ્લિકેશનમાં તમે ઉપયોગ કરવા માગતા હો તેવા ફોટા અથવા દસ્તાવેજો જેવી ફાઇલોને વાંચવા માટે IntelliVerseને તમારા ઉપકરણના સ્ટોરેજની ઍક્સેસની જરૂર છે.</string>
+
+    // Buttons Labels
+    <string name="Ok">ઓકે</string>
+
+    <string name="Yes">હા</string>
+    <string name="No">ના</string>
+    <string name="are_you_sure">શું તમને ખાતરી છે કે તમે બહાર નીકળવા માંગો છો</string>
+    <string name="exit">બહાર નીકળો</string>
+
+    <string name="report_content">સામગ્રીની જાણ કરો</string>
+    <string name="select_reason">કારણ પસંદ કરો</string>
+    <string name="offensive">આક્રમક</string>
+    <string name="hate_speech">ધિક્કારપૂર્ણ ભાષણ</string>
+    <string name="incorrect_info">ખોટી માહિતી</string>
+    <string name="other">અન્ય</string>
+    <string name="submit">સબમિટ કરો</string>
+    <string name="cancel">રદ કરો</string>
+
+    <string name="reset_settings">સેટિંગ્સ રીસેટ કરો</string>
+    <string name="not_relevant">અસંગત</string>
+
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="styletranslator_info">StyleTranslator ממיר טקסט בין סגנונות כתיבה וטונים שונים.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI School Assistant Image</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">העלה ל AI School Assistant Image</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">בדוק את תמונת העוזר של בית הספר לפתרון</string>
+    <string name="ArrowDropDown_icon_content_description"> תפריט אפשרויות נוספות</string>
+    <string name="add_image">הוסף עבודה</string>
+
+
+    // Button Labels
+    <string name="solution_text_value">פתרון</string>
+    <string name="is_ocr_result_included_value">השתמש בטקסט מזוהה שנבחר</string>
+    <string name="home_loading_waiting_text_value">טוען, בבקשה, המתן...</string>
+    <string name="progress_bar_hint_text_value">התקדמות יצירת פתרונות</string>
+    <string name="next_button_label">הבא</string>
+    <string name="solve_button_label">לפתור</string>
+    <string name="check_solution_button_label">בדוק פתרון</string>
+    <string name="cheat_sheet_button_label">גיליון לרמות</string>
+    <string name="start_again">התחל מחדש</string>
+    <string name="try_again">נסה שוב</string>
+    <string name="pick_images">בחר תמונות</string>
+
+    // Text Field Labels
+    <string name="recognize_text_button_label">הצג טקסט מזוהה</string>
+    <string name="sentence">טקסט</string>
+    <string name="What_to_solve_TextField_label">מה לפתור?</string>
+<!--    <string name="What_to_solve_TextField_label">מה לפתור?</string>-->
+    <string name="rating_TextField_label">דירוג</string>
+
+    // Text Field PlaceHolders
+    <string name="no_solution_chosen">לא נבחר פתרון</string>
+    <string name="additional_info_TextField_placeholder_text_style_translator">אני אוהב לדאוג לחברה שלי. אני תמיד מוודא שהיא מרגישה בטוחה ומוגנת. אני אוהב לתכנן את הדייטים שלנו ולהפתיע אותה במתנות קטנות. כשיש לה מצב רוח רע, אני מנסה למצוא פתרון ולתקן את המצב עבורה.</string>
+
+
+    // Drop Down Menu Labels
+    <string name="first_ocr_result_is_not_ready">הטקסט בתהליך זיהוי, אנא המתן...</string>
+    <string name="solution_language_label">שפת הפתרון</string>
+    <string name="upload_a_file_label">העלאת קובץ</string>
+    <string name="explanations_label">הסברים</string>
+    <string name="source_gender_label">מגדר הדובר</string>
+    <string name="target_gender_label">מגדר קהל היעד</string>
+    <string name="source_age_label">גיל הדובר</string>
+    <string name="target_age_label">גיל קהל היעד</string>
+    <string name="category_label">קטגוריה</string>
+    <string name="tone_label">העדפת טון</string>
+    <string name="transformation_level_label">דרגת שינוי</string>
+    <string name="style_label">סגנון תרגום</string>
+    <string name="mentality_label">מנטליות</string>
+    <string name="translation_scale_label">קנה מידה לאורך התרגום</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">נראה כי מחקת תמונות מאחסון הספריות של האפליקצייה. אל דאגה, האפליקציה תסיר את התמונות הפגומות מהמטמון שלה. אנא אשר את מחיקת כל תמונה לפי הצורך. תמונה ריקה נחשבת לפגומה. האם ברצונך להמשיך?</string>
+
+    // Toast
+    <string name="error_gemini_solution_result_extraction">AI לא הצליח לפתור את הבעיה הזו. בבקשה, נסה שוב.</string>
+    <string name="something_went_wrong">אופס! משהו השתבש. בבקשה נסה שוב!</string>
+    <string name="fail_to_load_Uri">טעינת התמונה לרשימה נכשלה. אנא נסה לטעון אותה ידנית!</string>
+    <string name="corrupted_loaded_file">העלית קובץ פגום!</string>
+    <string name="missing_required_settings">חלק מההגדרות הנדרשות חסרות. נא השלימו אותם.</string>
+    <string name="camera_fail_to_open">אופס! משהו השתבש במצלמה. בבקשה נסה שוב!</string>
+    <string name="upload_image_warning">אנא העלה תמונה מהמכשיר.</string>
+    <string name="select_image_or_text_warning">אנא בחר תמונה או הקלד משימה.</string>
+    <string name="upload_from_url">העלה קישור</string>
+    <string name="upload_picture">העלה תמונה</string>
+    <string name="take_a_picture">צלם תמונה</string>
+    <string name="recognized_text_value">טקסט מזוהה</string>
+    <string name="error_gemini_ocr_result_extraction">AI לא הצליח לזהות טקסט מהתמונה. בבקשה, נסה שוב.</string>
+    <string name="prompt_is_empty">הטקסט המזוהה ריק. אנא נסה שוב!</string>
+    <string name="language_not_supported">"השפה שנבחרה אינה זמינה ליצירת מדיה. תכונות אחרות ימשיכו לעבוד. האם ברצונך להוריד את נתוני השפה הדרושים כדי להפעיל תכונה זו?"</string>
+
+    // labels
+    <string name="home">בית</string>
+    <string name="settings">הגדרות</string>
+    <string name="results">פתרון</string>
+    <string name="ocr">טקסט</string>
+
+    // sharing
+    <string name="choose_sharing">בחר מה לשתף</string>
+    <string name="share_user_translation">שתף את הטקסט שלי</string>
+    <string name="share_ocr_result">שתף טקסט מזוהה</string>
+    <string name="share_solution">שתף פתרון</string>
+    <string name="share_image">שתף תמונה</string>
+    <string name="share">שתף</string>
+
+    // installation
+    <string name="install">התקן</string>
+    <string name="install_language">התקן שפה</string>
+
+    <string name="user_task_value">משימה</string>
+    <string name="solved_by_style_translator">נפתר על ידי StyleTranslator\nבדוק את האפליקציה שלנו ב-Google Play</string>
+
+</resources>

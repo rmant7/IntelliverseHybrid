@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator konvertē tekstu starp dažādiem rakstīšanas stiliem un toņiem.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI mokyklos asistento atvaizdas</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Įkelti į AI mokyklos asistento atvaizdą</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Patikrinti sprendimą AI mokyklos asistento atvaizdas</string>
+    <string name="ArrowDropDown_icon_content_description">Atidaro submeniu</string>
+    <string name="add_image">Pridėti užduotį</string>
+
+    // Text values
+    <string name="recognized_text_value">Atpažintas tekstas</string>
+    <string name="solution_text_value">Sprendimas</string>
+    <string name="user_task_value">Užduotis</string>
+    <string name="is_ocr_result_included_value">Naudoti pasirinktą atpažintą tekstą</string>
+    <string name="home_loading_waiting_text_value">Įkeliama, prašome palaukti...</string>
+    <string name="progress_bar_hint_text_value">Sprendimų generavimo progresas</string>
+
+    // Button Labels
+    <string name="next_button_label">Toliau</string>
+    <string name="solve_button_label">Išspręsti</string>
+    <string name="check_solution_button_label">Patikrinti sprendimą</string>
+    <string name="cheat_sheet_button_label">Pagalbos lapas</string>
+    <string name="start_again">Pradėti iš naujo</string>
+    <string name="try_again">Bandyti dar kartą</string>
+    <string name="pick_images">Pasirinkti paveikslėlius</string>
+    <string name="upload_from_url">Įkelti</string>
+    <string name="upload_picture">Įkelti paveikslėlį</string>
+    <string name="take_a_picture">Fotografuoti</string>
+    <string name="recognize_text_button_label">Rodyti atpažintą tekstą</string>
+
+    // Text Field Labels
+    <string name="sentence">Tekstas</string>
+    <string name="What_to_solve_TextField_label">Ką norite išspręsti?</string>
+    <string name="rating_TextField_label">Įvertinimas</string>
+    <string name="no_solution_chosen">Sprendimas dar nepasirinktas</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Man patinka rūpintis savo mergina. Visada įsitikinu, kad ji jaustųsi saugi ir apsaugota. Mėgstu planuoti mūsų pasimatymus ir nustebinti ją mažomis dovanėlėmis. Kai ji nusimena, stengiuosi rasti sprendimą ir viską sutvarkyti.</string>
+    <string name="first_ocr_result_is_not_ready">Tekstas atpažįstamas, prašome palaukti...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Sprendimo kalba</string>
+    <string name="upload_a_file_label">Įkelti failą</string>
+    <string name="explanations_label">Paaiškinimai</string>
+    <string name="source_gender_label">Šaltinio lytis</string>
+    <string name="target_gender_label">Tikslinė lytis</string>
+    <string name="source_age_label">Šaltinio amžius</string>
+    <string name="target_age_label">Tikslinis amžius</string>
+    <string name="category_label">Kategorija</string>
+    <string name="tone_label">Tono pasirinkimas</string>
+    <string name="transformation_level_label">Transformacijos lygis</string>
+    <string name="style_label">Vertimo stilius</string>
+    <string name="mentality_label">Mentalitetas</string>
+    <string name="translation_scale_label">Vertimo mastelio faktorius</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Atrodo, kad ištrynėte kai kuriuos paveikslėlius iš kalorijų programos katalogo saugyklos. Nesijaudinkite, kalorijos bandys pašalinti šiuos vaizdus po vieną iš programos talpyklos. Jei reikia, patvirtinkite kiekvieną vaizdo ištrynimą. Bet kuris paveikslėlis, kuris atrodo tuščias, yra sugadintas. Ar norite tęsti?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nepavyko atpažinti teksto iš paveikslėlio. Bandykite dar kartą.</string>
+    <string name="error_gemini_solution_result_extraction">AI nepavyko išspręsti šios problemos. Bandykite dar kartą.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Oi! Kažkas nutiko. Bandykite dar kartą!</string>
+    <string name="fail_to_load_Uri">Nepavyko įkelti paveikslėlio į sąrašą. Bandykite įkelti jį rankiniu būdu!</string>
+    <string name="corrupted_loaded_file">Įkėlėte sugadintą failą!</string>
+    <string name="missing_required_settings">Trūksta kai kurių būtinų nustatymų. Prašome juos užpildyti.</string>
+    <string name="camera_fail_to_open">Oi! Kažkas nutiko su kamera. Bandykite dar kartą!</string>
+    <string name="upload_image_warning">Prašome įkelti paveikslėlį iš įrenginio</string>
+    <string name="select_image_or_text_warning">Pasirinkite paveikslėlį arba įveskite užduotį.</string>
+    <string name="prompt_is_empty">Atpažintas tekstas yra tuščias. Bandykite dar kartą!</string>
+    <string name="language_not_supported">"Pasirinkta kalba negalima naudoti medijos generavimui. Kitos funkcijos ir toliau veiks. Ar norėtumėte atsisiųsti reikiamus kalbos duomenis, kad įgalintumėte šią funkciją?"</string>
+
+    // labels
+    <string name="home">Pagrindinis</string>
+    <string name="settings">Nustatymai</string>
+    <string name="results">Rezultatas</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Pasirinkite, ką norite bendrinti</string>
+    <string name="share_user_translation">Dalintis mano tekstu</string>
+    <string name="share_ocr_result">Dalintis atpažintu tekstu</string>
+    <string name="share_solution">Dalintis sprendimu</string>
+    <string name="share_image">Dalintis paveikslėliu</string>
+    <string name="share">Dalintis</string>
+
+    // installation
+    <string name="install">Įdiegti</string>
+    <string name="install_language">Įdiegti kalbą</string>
+
+    <string name="solved_by_style_translator">Išspręsta StyleTranslator\nPeržiūrėkite mūsų programą „Google Play“</string>
+
+</resources>

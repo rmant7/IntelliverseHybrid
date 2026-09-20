@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">IntelliVerse માં આપનું સ્વાગત છે</string>
+    <string name="cheaptrip_info">CheapTrip એક અનોખું સર્ચ એન્જિન છે જે ફ્લાઇટ્સ, બસો, ટ્રેનો અને ફેરીઓનું સંયોજન કરીને શહેરો વચ્ચેના સૌથી સસ્તા રસ્તાઓ શોધે છે.</string>
+    <string name="matterofchoice_info">Matter Of Choice તમને નિર્ણય લેવાની કુશળતા શીખવામાં મદદ કરવા માટે ઇન્ટરેક્ટિવ પરિસ્થિતિઓ રજૂ કરે છે.</string>
+</resources>

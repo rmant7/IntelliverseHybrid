@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker వినియోగదారులు ఆహారంలో కేలరీలు, కొవ్వులు, ప్రోటీన్లు, కార్బోహైడ్రేట్లు, విటమిన్లు మరియు ఖనిజాల వినియోగాన్ని పర్యవేక్షించడానికి సహాయపడుతుంది. ఇది ఈ మూలకాలను లెక్కించడమే కాకుండా, జీర్ణక్రియ తర్వాత శరీరం గ్రహించే వాటిని కూడా విశ్లేషిస్తుంది. వినియోగదారులు ఉత్పత్తుల చిత్రాలను అప్‌లోడ్ చేయవచ్చు, అప్లికేషన్ పదార్థాలను గుర్తిస్తుంది మరియు జాబితాను సవరించడానికి సామర్థ్యాన్ని అందిస్తుంది.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI పాఠశాల సహాయకుడు చిత్రం</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI పాఠశాల సహాయకుడి చిత్రానికి అప్‌లోడ్ చేయండి</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">సమాధానాన్ని తనిఖీ చేయండి AI పాఠశాల సహాయకుడు చిత్రం</string>
+    <string name="ArrowDropDown_icon_content_description">ఒక ఉపమెను తెరుస్తుంది</string>
+    <string name="add_image">పనిని జోడించు</string>
+    <string name="guidance_detected_ingredients">గుర్తించబడిన పదార్థాలను సమీక్షించండి. ఏవైనా వివరాలు తప్పుగా ఉంటే లేదా తప్పిపోయి ఉంటే, మీరు కొత్త పోషక విశ్లేషణను రూపొందించే ముందు వాటిని సవరించవచ్చు</string>
+
+    // Text values
+    <string name="ingredients">పదార్థాలు</string>
+    <string name="solution_text_value">సమాధానం</string>
+    <string name="user_task_value">పని</string>
+    <string name="is_ocr_result_included_value">ఎంచుకున్న గుర్తించబడిన వచనాన్ని ఉపయోగించండి</string>
+    <string name="home_loading_waiting_text_value">లోడ్ అవుతోంది, దయచేసి వేచి ఉండండి...</string>
+    <string name="progress_bar_hint_text_value">సమాధానాల ఉత్పత్తి పురోగతి</string>
+
+    // Button Labels
+    <string name="next_button_label">తరువాత</string>
+    <string name="solve_button_label">పరిష్కరించు</string>
+    <string name="check_solution_button_label">సమాధానాన్ని తనిఖీ చేయండి</string>
+    <string name="cheat_sheet_button_label">చీట్ షీట్</string>
+    <string name="start_again">మళ్ళీ ప్రారంభించండి</string>
+    <string name="try_again">మళ్ళీ ప్రయత్నించండి</string>
+    <string name="pick_images">చిత్రాలను ఎంచుకోండి</string>
+    <string name="upload_from_url">అప్‌లోడ్ చేయండి</string>
+    <string name="upload_picture">చిత్రాన్ని అప్‌లోడ్ చేయండి</string>
+    <string name="take_a_picture">చిత్రం తీయండి</string>
+    <string name="recognize_text_button_label">గుర్తించబడిన వచనాన్ని చూపించు</string>
+
+    // Text Field Labels
+    <string name="foods">ఆహారాలు</string>
+    <string name="What_to_solve_TextField_label">మీరు ఏమి పరిష్కరించాలనుకుంటున్నారు?</string>
+    <string name="rating_TextField_label">రేటింగ్</string>
+    <string name="no_solution_chosen">సమాధానం ఇంకా ఎంచుకోలేదు</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 అరటిపండ్లు మరియు 1 ఆపిల్, అన్నీ మీడియం సైజు.</string>
+    <string name="first_ocr_result_is_not_ready">వచనం గుర్తించబడుతోంది, దయచేసి వేచి ఉండండి...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">సమాధాన భాష</string>
+    <string name="upload_a_file_label">ఫైల్‌ను అప్‌లోడ్ చేయండి</string>
+    <string name="explanations_label">వివరణలు</string>
+    <string name="physical_activity_label">శారీరక శ్రమ</string>
+    <string name="gender_label">లింగం</string>
+    <string name="age_label">వయస్సు</string>
+    <string name="height_label">ఎత్తు</string>
+    <string name="weight_label">బరువు</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">మీరు క్యాలరీల అనువర్తనం యొక్క డైరెక్టరీ నిల్వ నుండి కొన్ని చిత్రాలను తొలగించినట్లు తెలుస్తోంది. చింతించకండి, క్యాలరీలు అప్లికేషన్ కాష్ నుండి ఒక్కొక్కటిగా ఈ చిత్రాలను క్లియర్ చేయడానికి ప్రయత్నిస్తాయి. అవసరమైతే, ప్రతి చిత్రం తొలగింపును నిర్ధారించండి. ఖాళీగా కనిపించే ఏదైనా చిత్రం పాడైపోయినది. మీరు కొనసాగించాలనుకుంటున్నారా?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">చిత్రం నుండి వచనాన్ని గుర్తించడానికి AI కి సాధ్యం కాలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+    <string name="error_gemini_solution_result_extraction">ఈ సమస్యను పరిష్కరించడానికి AI కి సాధ్యం కాలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">అయ్యో! ఏదో తప్పు జరిగింది. దయచేసి మళ్ళీ ప్రయత్నించండి!</string>
+    <string name="fail_to_load_Uri">చిత్రాన్ని జాబితాలో లోడ్ చేయడంలో విఫలమైంది. దయచేసి దాన్ని మానవీయంగా లోడ్ చేయడానికి ప్రయత్నించండి!</string>
+    <string name="corrupted_loaded_file">మీరు పాడైన ఫైల్‌ను లోడ్ చేసారు!</string>
+    <string name="missing_required_settings">కొన్ని అవసరమైన సెట్టింగ్‌లు తప్పిపోయాయి. వాటిని పూరించండి.</string>
+    <string name="camera_fail_to_open">అయ్యో! కెమెరాతో ఏదో తప్పు జరిగింది. దయచేసి మళ్ళీ ప్రయత్నించండి!</string>
+    <string name="upload_image_warning">దయచేసి పరికరం నుండి చిత్రాన్ని అప్‌లోడ్ చేయండి</string>
+    <string name="select_image_or_text_warning">దయచేసి చిత్రాన్ని ఎంచుకోండి లేదా పనిని టైప్ చేయండి.</string>
+    <string name="prompt_is_empty">గుర్తించబడిన వచనం ఖాళీగా ఉంది. దయచేసి మళ్ళీ ప్రయత్నించండి!</string>
+    <string name="language_not_supported">"ఎంచుకున్న భాష మీడియా ఉత్పత్తికి అందుబాటులో లేదు. ఇతర ఫీచర్లు పని చేస్తూనే ఉంటాయి. ఈ ఫీచర్‌ను ప్రారంభించడానికి అవసరమైన భాషా డేటాను డౌన్‌లోడ్ చేయాలనుకుంటున్నారా?"</string>
+
+    // labels
+    <string name="home">హోమ్</string>
+    <string name="settings">సెట్టింగ్‌లు</string>
+    <string name="results">ఫలితం</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">ఏమి పంచుకోవాలో ఎంచుకోండి</string>
+    <string name="share_user_ingredients">నా పదార్థాలను పంచుకోండి</string>
+    <string name="share_recognized_ingredients">గుర్తించబడిన పదార్థాలను పంచుకోండి</string>
+    <string name="share_solution">సమాధానాన్ని పంచుకోండి</string>
+    <string name="share_image">చిత్రాన్ని పంచుకోండి</string>
+    <string name="share">పంచుకోండి</string>
+
+    // installation
+    <string name="install">ఇన్‌స్టాల్ చేయండి</string>
+    <string name="install_language">భాషను ఇన్‌స్టాల్ చేయండి</string>
+
+    <string name="solved_by_diet_tracker">DietTracker ద్వారా పరిష్కరించబడింది\nGoogle Play లో మా అనువర్తనాన్ని చూడండి</string>
+
+</resources>

@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DiyetTakipçisi, kullanıcıların yiyeceklerdeki kalori, yağ, protein, karbonhidrat, vitamin ve mineral alımını izlemelerine yardımcı olur. Sadece bu elementleri saymakla kalmaz, aynı zamanda sindirimden sonra vücut tarafından emilenleri de analiz eder. Kullanıcılar ürünlerin resimlerini yükleyebilir, uygulama malzemeleri tanır ve listeyi düzenleme olanağı sağlar.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Okul Asistanı Resmi</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI Okul Asistanına Resim Yükle</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">AI Okul Asistanı Çözümünü Kontrol Et</string>
+    <string name="ArrowDropDown_icon_content_description">Bir alt menüyü açar</string>
+    <string name="add_image">Görev ekle</string>
+    <string name="guidance_detected_ingredients">Tespit edilen malzemeleri inceleyin. Herhangi bir ayrıntı yanlış veya eksikse, yeni bir besin analizi oluşturmadan önce bunları değiştirebilirsiniz.</string>
+
+    // Text values
+    <string name="ingredients">İçindekiler</string>
+    <string name="solution_text_value">Çözüm</string>
+    <string name="user_task_value">Görev</string>
+    <string name="is_ocr_result_included_value">Seçilen tanınan metni kullan</string>
+    <string name="home_loading_waiting_text_value">Yükleniyor, lütfen bekleyin...</string>
+    <string name="progress_bar_hint_text_value">Çözüm oluşturma ilerlemesi</string>
+
+    // Button Labels
+    <string name="next_button_label">İleri</string>
+    <string name="solve_button_label">Çöz</string>
+    <string name="check_solution_button_label">Çözümü kontrol et</string>
+    <string name="cheat_sheet_button_label">Kopya kağıdı</string>
+    <string name="start_again">Yeniden başla</string>
+    <string name="try_again">Tekrar dene</string>
+    <string name="pick_images">Resim Seç</string>
+    <string name="upload_from_url">Yükle</string>
+    <string name="upload_picture">Resim Yükle</string>
+    <string name="take_a_picture">Resim Çek</string>
+    <string name="recognize_text_button_label">Tanınan metni göster</string>
+
+    // Text Field Labels
+    <string name="foods">Yiyecekler</string>
+    <string name="What_to_solve_TextField_label">Ne çözmek istiyorsun?</string>
+    <string name="rating_TextField_label">Değerlendirme</string>
+    <string name="no_solution_chosen">Henüz bir çözüm seçilmedi</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 muz ve 1 elma, hepsi orta boy.</string>
+    <string name="first_ocr_result_is_not_ready">Metin tanınıyor, lütfen bekleyin…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Çözüm dili</string>
+    <string name="upload_a_file_label">Dosya yükle</string>
+    <string name="explanations_label">Açıklamalar</string>
+    <string name="physical_activity_label">Fiziksel Aktivite</string>
+    <string name="gender_label">Cinsiyet</string>
+    <string name="age_label">Yaş</string>
+    <string name="height_label">Boy</string>
+    <string name="weight_label">Kilo</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Kalori uygulamasının dizin depolamasından bazı resimleri silmişsiniz gibi görünüyor. Endişelenmeyin, kalori bu resimleri uygulama önbelleğinden teker teker temizlemeye çalışacaktır. Gerekirse, her resim silme işlemini onaylayın. Boş görünen herhangi bir resim bozuk bir resimdir. Devam etmek istiyor musunuz?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI, görüntüden metin tanımayı başaramadı. Lütfen tekrar deneyin.</string>
+    <string name="error_gemini_solution_result_extraction">AI bu sorunu çözemedi. Lütfen tekrar deneyin.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hay aksi! Bir şeyler ters gitti. Lütfen tekrar deneyin!</string>
+    <string name="fail_to_load_Uri">Resim listeye yüklenemedi. Lütfen manuel olarak yüklemeyi deneyin!</string>
+    <string name="corrupted_loaded_file">Bozuk bir dosya yüklediniz!</string>
+    <string name="missing_required_settings">Bazı gerekli ayarlar eksik. Lütfen doldurun.</string>
+    <string name="camera_fail_to_open">Hay aksi! Kamerayla ilgili bir sorun oluştu. Lütfen tekrar deneyin!</string>
+    <string name="upload_image_warning">Lütfen cihazdan bir resim yükleyin</string>
+    <string name="select_image_or_text_warning">Lütfen bir resim seçin veya görev yazın.</string>
+    <string name="prompt_is_empty">Tanınan metin boş. Lütfen tekrar deneyin!</string>
+    <string name="language_not_supported">"Seçilen dil, medya oluşturma için kullanılamıyor. Diğer özellikler çalışmaya devam edecektir. Bu özelliği etkinleştirmek için gerekli dil verilerini indirmek ister misiniz?"</string>
+
+    // labels
+    <string name="home">Ana Sayfa</string>
+    <string name="settings">Ayarlar</string>
+    <string name="results">Sonuç</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Ne paylaşacağınızı seçin</string>
+    <string name="share_user_ingredients">Malzemelerimi Paylaş</string>
+    <string name="share_recognized_ingredients">Tanınan Malzemeleri Paylaş</string>
+    <string name="share_solution">Çözümü Paylaş</string>
+    <string name="share_image">Resmi Paylaş</string>
+    <string name="share">Paylaş</string>
+
+    // installation
+    <string name="install">Yükle</string>
+    <string name="install_language">Dili Yükle</string>
+
+    <string name="solved_by_diet_tracker">DietTracker tarafından çözüldü\nGoogle Play\'deki uygulamamıza göz atın</string>
+
+</resources>

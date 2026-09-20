@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>شاعرانہ</item>
+        <item>پیشہ ورانہ</item>
+        <item>قانونی</item>
+        <item>تکنیکی</item>
+        <item>تعلیمی</item>
+        <item>صحافتی</item>
+        <item>تخلیقی</item>
+        <item>قائل کرنے والا</item>
+        <item>داستانی</item>
+        <item>وضاحتی</item>
+        <item>تشریحی</item>
+        <item>مزاحیہ</item>
+        <item>غیر رسمی</item>
+        <item>کاروباری</item>
+        <item>سائنسی</item>
+        <item>رومانوی</item>
+        <item>تاریخی</item>
+        <item>فلسفیانہ</item>
+        <item>خود مدد</item>
+        <item>سفر</item>
+        <item>مارکیٹنگ</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>رسمی</item>
+        <item>غیر رسمی</item>
+        <item>دوستانہ</item>
+        <item>سنجیدہ</item>
+        <item>ہمدردانہ</item>
+        <item>پر اعتماد</item>
+        <item>پر امید</item>
+        <item>مزاحیہ</item>
+        <item>غیر جانبدار</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>کم سے کم</item>
+        <item>معتدل</item>
+        <item>مکمل</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>رشتہ</item>
+        <item>کام کی جگہ</item>
+        <item>تعلیم</item>
+        <item>صحت</item>
+        <item>فنانس</item>
+        <item>سفر</item>
+        <item>ٹیکنالوجی</item>
+        <item>تفریح</item>
+        <item>خود کو بہتر بنانا</item>
+        <item>جنرل</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>روس: اجتماعیت پسند</item>
+        <item>مشرقی یورپ: عملیت پسند</item>
+        <item>مغربی یورپ: انفرادیت پسند</item>
+        <item>جنوب مشرقی ایشیا: ہم آہنگی پر مبنی</item>
+        <item>چین: درجہ بندی</item>
+        <item>قفقاز: عزت پابند</item>
+        <item>شمالی امریکہ: کاروباری</item>
+        <item>لاطینی امریکہ: جذباتی</item>
+        <item>مشرق وسطی: مہمان نوازی سے چلنے والا</item>
+        <item>افریقہ: اجتماعی</item>
+        <item>نورڈک ممالک: مساوات پسند</item>
+        <item>جنوبی ایشیا: خاندان پر مبنی</item>
+        <item>جاپان: گروپ ہم آہنگی</item>
+        <item>آسٹریلیا: لاپرواہ</item>
+        <item>بحیرہ روم: اظہاریہ</item>
+        <item>وسطی ایشیا: خانہ بدوش روایات</item>
+        <item>جرمنی: منظم</item>
+        <item>بلقان: لچکدار</item>
+        <item>آرکٹک دیسی: فطرت سے جڑا ہوا</item>
+        <item>یہودی: کمیونٹی پر مبنی</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>امہاری</item>
+        <item>عربی</item>
+        <item>بنگالی</item>
+        <item>بلغاریائی</item>
+        <item>چینی آسان</item>
+        <item>کروشین</item>
+        <item>چیک</item>
+        <item>ڈینش</item>
+        <item>ڈچ</item>
+        <item>انگریزی</item>
+        <item>ایسٹونین</item>
+        <item>فننش</item>
+        <item>فرانسیسی</item>
+        <item>جرمن</item>
+        <item>یونانی</item>
+        <item>گجراتی</item>
+        <item>عبرانی</item>
+        <item>ہندی</item>
+        <item>ہنگری</item>
+        <item>انڈونیشیائی</item>
+        <item>اطالوی</item>
+        <item>جاپانی</item>
+        <item>کنڑ</item>
+        <item>کورین</item>
+        <item>لیٹوین</item>
+        <item>لتھوانیائی</item>
+        <item>مالائی</item>
+        <item>مراٹھی</item>
+        <item>نارویجن</item>
+        <item>پشتو</item>
+        <item>فارسی</item>
+        <item>پولش</item>
+        <item>پرتگالی</item>
+        <item>رومانیہ</item>
+        <item>روسی</item>
+        <item>سربیائی</item>
+        <item>سلوواک</item>
+        <item>سلووینیائی</item>
+        <item>ہسپانوی</item>
+        <item>سواحلی</item>
+        <item>سویڈش</item>
+        <item>ٹیگالوگ</item>
+        <item>تامل</item>
+        <item>تیلگو</item>
+        <item>تھائی</item>
+        <item>ترکی</item>
+        <item>یوکرینیائی</item>
+        <item>اردو</item>
+        <item>ویتنامی</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>غیر متعلقہ</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>کوئی وضاحت نہیں</item>
+        <item>مختصر وضاحت</item>
+        <item>تفصیلی وضاحت</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>بیٹھے رہنے والا</item>
+        <item>ہلکا سا متحرک</item>
+        <item>اعتدال پسندانہ طور پر متحرک</item>
+        <item>بہت متحرک</item>
+        <item>انتہائی متحرک</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>مرد</item>
+        <item>خاتون</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>ہوائی جہاز</item>
+        <item>سائیکل</item>
+        <item>کشتی</item>
+        <item>بس</item>
+        <item>موٹر سائیکل</item>
+        <item>ذاتی کار</item>
+        <item>کرائے کی کار</item>
+        <item>رائڈ شیئرنگ</item>
+        <item>میٹرو</item>
+        <item>ٹیکسی</item>
+        <item>ٹرین</item>
+        <item>ٹرام</item>
+        <item>چلنا</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>کھانا</item>
+        <item>تاریخ</item>
+        <item>ثقافت</item>
+        <item>قدرت</item>
+        <item>آرام</item>
+        <item>مہم جوئی</item>
+        <item>رات کی زندگی</item>
+        <item>خریداری</item>
+        <item>خاندان</item>
+        <item>رومانوی</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>تصویر لیں</item>
+        <item>تصویر اپ لوڈ کریں</item>
+        <item>فائل اپ لوڈ کریں</item>
+        <item>ایک لنک فراہم کریں</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">معاف کیجیے، روس اور بیلاروس میں سروس دستیاب نہیں ہے، براہ کرم وی پی این استعمال کریں</string>
+    <string name="error_service_not_available_title">سروس دستیاب نہیں ہے</string>
+    <string name="error_common_title">غلطی</string>
+    <string name="error_common_message">ایپلی کیشن چلاتے وقت ایک غلطی واقع ہوئی۔ ایپ کو اپ ڈیٹ کرنے کی کوشش کریں یا بعد میں دوبارہ کوشش کریں</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">اوہ! لگتا ہے کہ اس فیچر کے لیے کیمرہ تک رسائی درکار ہے۔ اپنے ڈیوائس کی سیٹنگز پر جائیں، اپنی ایپ لسٹ میں IntelliVerse تلاش کریں، اور جادو کو کھولنے کے لیے کیمرہ کی اجازت دیں!</string>
+    <string name="permanent_denied_read_media_permission_explanation">اوہ! آپ کی گیلری سے تصاویر استعمال کرنے کے لیے، IntelliVerse کو آپ کی تصاویر کو پڑھنے کی اجازت درکار ہے۔ اپنے ڈیوائس کی سیٹنگز پر جائیں، اپنی ایپ لسٹ میں IntelliVerse تلاش کریں، اور جادو کو کھولنے کے لیے فوٹو تک رسائی کی اجازت دیں!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">اوہ! فائلوں کو اپنے ڈیوائس پر محفوظ کرنے کے لیے، IntelliVerse کو آپ کے اسٹوریج میں لکھنے کی اجازت درکار ہے۔ اپنے ڈیوائس کی سیٹنگز پر جائیں، اپنی ایپ لسٹ میں IntelliVerse تلاش کریں، اور جادو کو کھولنے کے لیے اسٹوریج تک رسائی کی اجازت دیں!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">اوہ! آپ کے ڈیوائس پر فائلوں تک رسائی کے لیے، IntelliVerse کو آپ کے اسٹوریج کو پڑھنے کی اجازت درکار ہے۔ اپنے ڈیوائس کی سیٹنگز پر جائیں، اپنی ایپ لسٹ میں IntelliVerse تلاش کریں، اور جادو کو کھولنے کے لیے اسٹوریج تک رسائی کی اجازت دیں!</string>
+    <string name="camera_permission_rationale">IntelliVerse کو آپ کے کیمرہ تک رسائی درکار ہے تاکہ آپ فوری طور پر اپنی اسکول کی مشقوں کی تصاویر لے سکیں!</string>
+    <string name="read_media_permission_rationale">آپ کی تصاویر تک رسائی کی اجازت دینے سے آپ IntelliVerse ایپ میں استعمال کرنے کے لیے اپنی گیلری سے تصاویر منتخب کر سکتے ہیں!</string>
+    <string name="write_storage_permission_rationale">آپ کے اسٹوریج میں لکھنے کی اجازت دینے سے IntelliVerse ایپ فائلوں کو محفوظ کر سکتی ہے، جیسے کہ آپ کی لی گئی تصاویر، براہ راست آپ کے ڈیوائس پر!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse کو آپ کے ڈیوائس کے اسٹوریج تک فائلوں کو پڑھنے کے لیے رسائی درکار ہے، جیسے کہ تصاویر یا دستاویزات، جو آپ ایپ میں استعمال کرنا چاہتے ہیں۔</string>
+
+    // Buttons Labels
+    <string name="Ok">ٹھیک ہے</string>
+
+    <string name="Yes">جی ہاں</string>
+    <string name="No">نہیں</string>
+    <string name="are_you_sure">کیا آپ واقعی باہر نکلنا چاہتے ہیں؟</string>
+    <string name="exit">باہر نکلیں</string>
+
+    <string name="report_content">مواد کی اطلاع دیں</string>
+    <string name="select_reason">وجہ منتخب کریں</string>
+    <string name="offensive">توہین آمیز</string>
+    <string name="hate_speech">نفرت انگیز تقریر</string>
+    <string name="incorrect_info">غلط معلومات</string>
+    <string name="other">دیگر</string>
+    <string name="submit">جمع کرائیں</string>
+    <string name="cancel">منسوخ کریں</string>
+
+    <string name="reset_settings">ترتیبات دوبارہ ترتیب دیں</string>
+    <string name="not_relevant">غیر متعلقہ</string>
+
+</resources>

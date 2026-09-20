@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">欢迎来到IntelliVerse</string>
+    <string name="cheaptrip_info">CheapTrip 是一个独特的搜索引擎，可以找到城市之间最便宜的交通方式，结合了航班、巴士、火车和渡轮。</string>
+    <string name="matterofchoice_info">Matter Of Choice 提供互动情景，帮助您学习决策技巧。</string>
+</resources>

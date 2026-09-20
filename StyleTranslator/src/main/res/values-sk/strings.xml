@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator konvertuje text medzi rôznymi štýlmi písania a tónmi.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Obrázok asistenta AI školy</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Obrázok na odoslanie asistentovi AI školy</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Obrázok na kontrolu riešenia asistenta AI školy</string>
+    <string name="ArrowDropDown_icon_content_description">Otvorí podponuku</string>
+    <string name="add_image">Pridať úlohu</string>
+
+    // Text values
+    <string name="recognized_text_value">Rozpoznaný text</string>
+    <string name="solution_text_value">Riešenie</string>
+    <string name="user_task_value">Úloha</string>
+    <string name="is_ocr_result_included_value">Použiť vybraný rozpoznaný text</string>
+    <string name="home_loading_waiting_text_value">Načítava sa, prosím, čakajte...</string>
+    <string name="progress_bar_hint_text_value">Priebeh generovania riešení</string>
+
+    // Button Labels
+    <string name="next_button_label">Ďalej</string>
+    <string name="solve_button_label">Vyriešiť</string>
+    <string name="check_solution_button_label">Skontrolovať riešenie</string>
+    <string name="cheat_sheet_button_label">Ťahák</string>
+    <string name="start_again">Začať znova</string>
+    <string name="try_again">Skúsiť znova</string>
+    <string name="pick_images">Vybrať obrázky</string>
+    <string name="upload_from_url">Nahrať</string>
+    <string name="upload_picture">Nahrať obrázok</string>
+    <string name="take_a_picture">Odfotiť</string>
+    <string name="recognize_text_button_label">Zobraziť rozpoznaný text</string>
+
+    // Text Field Labels
+    <string name="sentence">Text</string>
+    <string name="What_to_solve_TextField_label">Čo chcete vyriešiť?</string>
+    <string name="rating_TextField_label">Hodnotenie</string>
+    <string name="no_solution_chosen">Riešenie ešte nebolo vybraté</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Rád sa starám o svoju priateľku. Vždy sa uistím, že sa cíti bezpečne a chránene. Rád plánujem naše rande a prekvapujem ju malými darčekmi. Keď je rozrušená, snažím sa nájsť riešenie a napraviť veci.</string>
+    <string name="first_ocr_result_is_not_ready">Text sa rozpoznáva, prosím, čakajte…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Jazyk riešenia</string>
+    <string name="upload_a_file_label">Nahrať súbor</string>
+    <string name="explanations_label">Vysvetlenia</string>
+    <string name="source_gender_label">Rod zdroja</string>
+    <string name="target_gender_label">Rod cieľa</string>
+    <string name="source_age_label">Vek zdroja</string>
+    <string name="target_age_label">Vek cieľa</string>
+    <string name="category_label">Kategória</string>
+    <string name="tone_label">Preferovaný tón</string>
+    <string name="transformation_level_label">Úroveň transformácie</string>
+    <string name="style_label">Štýl prekladu</string>
+    <string name="mentality_label">Mentalita</string>
+    <string name="translation_scale_label">Faktor škálovania prekladu</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Zdá sa, že ste vymazali niektoré obrázky z úložiska adresára aplikácie Kalórie. Nebojte sa, aplikácia Kalórie sa pokúsi vymazať tieto obrázky jeden po druhom z vyrovnávacej pamäte aplikácie. Potvrďte odstránenie každého obrázka, ak je to potrebné. Akýkoľvek obrázok, ktorý sa zobrazí ako prázdny, je poškodený. Chcete pokračovať?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nedokázala rozpoznať text z obrázka. Skúste to znova.</string>
+    <string name="error_gemini_solution_result_extraction">AI nedokázala vyriešiť tento problém. Skúste to znova.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Jejda! Niečo sa pokazilo. Skúste to znova!</string>
+    <string name="fail_to_load_Uri">Nepodarilo sa načítať obrázok do zoznamu. Skúste ho načítať manuálne!</string>
+    <string name="corrupted_loaded_file">Načítali ste poškodený súbor!</string>
+    <string name="missing_required_settings">Chýbajú niektoré povinné nastavenia. Vyplňte ich, prosím.</string>
+    <string name="camera_fail_to_open">Jejda! Niečo sa pokazilo s kamerou. Skúste to znova!</string>
+    <string name="upload_image_warning">Nahrajte obrázok zo zariadenia</string>
+    <string name="select_image_or_text_warning">Vyberte obrázok alebo zadajte úlohu.</string>
+    <string name="prompt_is_empty">Rozpoznaný text je prázdny. Skúste to znova!</string>
+    <string name="language_not_supported">"Vybraný jazyk nie je k dispozícii pre generovanie médií. Ostatné funkcie budú naďalej fungovať. Chcete si stiahnuť potrebné jazykové údaje na povolenie tejto funkcie?"</string>
+
+    // labels
+    <string name="home">Domov</string>
+    <string name="settings">Nastavenia</string>
+    <string name="results">Výsledok</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Vyberte, čo chcete zdieľať</string>
+    <string name="share_user_translation">Zdieľať môj text</string>
+    <string name="share_ocr_result">Zdieľať rozpoznaný text</string>
+    <string name="share_solution">Zdieľať riešenie</string>
+    <string name="share_image">Zdieľať obrázok</string>
+    <string name="share">Zdieľať</string>
+
+    // installation
+    <string name="install">Inštalovať</string>
+    <string name="install_language">Inštalovať jazyk</string>
+
+    <string name="solved_by_style_translator">Vyriešené pomocou StyleTranslator\nPozrite si našu aplikáciu v Google Play</string>
+
+</resources>

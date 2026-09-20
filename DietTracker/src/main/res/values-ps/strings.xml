@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker .کاروونکو سره مرسته کوي چې په خواړو کې د کالوریو، غوړو، پروټینونو، کاربوهایډریټونو، ویټامینونو او منرالونو اندازه وڅاري. دا نه یوازې دا عناصر شماري، بلکې دا هم تحلیل کوي چې د هاضمې وروسته بدن څه جذبوي. کاروونکي کولی شي د محصولاتو عکسونه پورته کړي، اپلیکیشن اجزا پیژني او د لیست د ایډیټ کولو وړتیا برابروي.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">د AI ښوونځي معاون انځور</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">د AI ښوونځي معاون انځور ته پورته کول</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">د حل لارې د AI ښوونځي معاون انځور</string>
+    <string name="ArrowDropDown_icon_content_description">فرعي مینو پرانیزي</string>
+    <string name="add_image">دنده اضافه کړئ</string>
+    <string name="guidance_detected_ingredients">تشخیص شوي اجزاوې وڅارئ. که کوم توضیحات ناسم یا ورک وي، تاسو کولی شئ د نوي تغذیوي تحلیل رامینځته کولو دمخه هغه ترمیم کړئ</string>
+
+    // Text values
+    <string name="ingredients">اجزاء</string>
+    <string name="solution_text_value">حل لاره</string>
+    <string name="user_task_value">دنده</string>
+    <string name="is_ocr_result_included_value">ټاکل شوی پیژندل شوی متن وکاروئ</string>
+    <string name="home_loading_waiting_text_value">بار کول، مهرباني وکړئ انتظار وکړئ...</string>
+    <string name="progress_bar_hint_text_value">د حل لارو تولید پرمختګ</string>
+
+    // Button Labels
+    <string name="next_button_label">بل</string>
+    <string name="solve_button_label">حل کړئ</string>
+    <string name="check_solution_button_label">د حل لاره وګورئ</string>
+    <string name="cheat_sheet_button_label">د غولولو پاڼه</string>
+    <string name="start_again">بیا پیل کړئ</string>
+    <string name="try_again">بیا هڅه وکړئ</string>
+    <string name="pick_images">انځورونه غوره کړئ</string>
+    <string name="upload_from_url">پورته کول</string>
+    <string name="upload_picture">انځور پورته کړئ</string>
+    <string name="take_a_picture">یو انځور واخلئ</string>
+    <string name="recognize_text_button_label">پیژندل شوی متن وښایاست</string>
+
+    // Text Field Labels
+    <string name="foods">خواړه</string>
+    <string name="What_to_solve_TextField_label">تاسو څه غواړئ حل کړئ؟</string>
+    <string name="rating_TextField_label">درجه بندي</string>
+    <string name="no_solution_chosen">حل لاره لا تر اوسه نده غوره شوې</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">۳ کیلې او ۱ مڼه، ټول منځنۍ اندازې.</string>
+    <string name="first_ocr_result_is_not_ready">متن پیژندل کیږي، مهرباني وکړئ انتظار وکړئ...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">د حل لارې ژبه</string>
+    <string name="upload_a_file_label">یو فایل پورته کړئ</string>
+    <string name="explanations_label">تشریحات</string>
+    <string name="physical_activity_label">فزیکي فعالیت</string>
+    <string name="gender_label">جنسیت</string>
+    <string name="age_label">عمر</string>
+    <string name="height_label">قد</string>
+    <string name="weight_label">وزن</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">داسې ښکاري چې تاسو د کالوریو اپلیکیشن له ډایریکټرۍ ذخیره کولو څخه ځینې عکسونه حذف کړي دي. اندیښنه مه کوئ، کالوریز به هڅه وکړي دا انځورونه یو په یو د اپلیکیشن له کیش څخه پاک کړي. مهرباني وکړئ د هر انځور حذف تایید کړئ، که اړتیا وي. هر هغه انځور چې خالي ښکاري خراب شوی دی. ایا تاسو غواړئ پرمخ لاړشئ؟</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI د انځور څخه متن په پیژندلو کې پاتې راغی. مهرباني وکړئ بیا هڅه وکړئ.</string>
+    <string name="error_gemini_solution_result_extraction">AI د دې ستونزې په حل کولو کې پاتې راغی. مهرباني وکړئ بیا هڅه وکړئ.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">افسوس! یو څه غلط شول. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="fail_to_load_Uri">فهرست ته د انځور په پورته کولو کې پاتې راغلی. مهرباني وکړئ په لاسي ډول د پورته کولو هڅه وکړئ!</string>
+    <string name="corrupted_loaded_file">تاسو یو خراب شوی فایل پورته کړی!</string>
+    <string name="missing_required_settings">ځینې اړین ترتیبات ورک دي. مهرباني وکړئ دوی ډک کړئ.</string>
+    <string name="camera_fail_to_open">افسوس! د کیمرې سره یو څه غلط شول. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="upload_image_warning">مهرباني وکړئ له آلې څخه یو انځور پورته کړئ</string>
+    <string name="select_image_or_text_warning">مهرباني وکړئ یو انځور غوره کړئ یا دنده ولیکئ.</string>
+    <string name="prompt_is_empty">پیژندل شوی متن خالي دی. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="language_not_supported">"ټاکل شوې ژبه د رسنیو تولید لپاره شتون نلري. نورې ځانګړتیاوې به کار ته دوام ورکړي. ایا تاسو غواړئ د دې ځانګړتیا د فعالولو لپاره اړین ژبني معلومات ډاونلوډ کړئ؟"</string>
+
+    // labels
+    <string name="home">کور</string>
+    <string name="settings">ترتیبات</string>
+    <string name="results">پایله</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">غوره کړئ څه شریک کړئ</string>
+    <string name="share_user_ingredients">زما اجزاء شریک کړئ</string>
+    <string name="share_recognized_ingredients">پیژندل شوي اجزاء شریک کړئ</string>
+    <string name="share_solution">حل لاره شریک کړئ</string>
+    <string name="share_image">انځور شریک کړئ</string>
+    <string name="share">شریکول</string>
+
+    // installation
+    <string name="install">نصبول</string>
+    <string name="install_language">ژبه نصب کړئ</string>
+
+    <string name="solved_by_diet_tracker">د DietTracker لخوا حل شوی\nزموږ اپلیکیشن په ګوګل پلی کې وګورئ</string>
+
+</resources>

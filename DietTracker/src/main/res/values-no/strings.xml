@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker hjelper brukere med å overvåke inntaket av kalorier, fett, proteiner, karbohydrater, vitaminer og mineraler i mat. Den teller ikke bare disse elementene, men analyserer også hva som absorberes av kroppen etter fordøyelsen. Brukere kan laste opp bilder av produkter, applikasjonen gjenkjenner ingrediensene og gir mulighet til å redigere listen.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Skoleassistentbilde</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Last opp til AI Skoleassistentbilde</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Sjekk løsning AI Skoleassistentbilde</string>
+    <string name="ArrowDropDown_icon_content_description">Åpner en undermeny</string>
+    <string name="add_image">Legg til oppgave</string>
+    <string name="guidance_detected_ingredients">Se over de oppdagede ingrediensene. Hvis noen detaljer er feil eller mangler, kan du endre dem før du genererer en ny næringsanalyse.</string>
+
+    // Text values
+    <string name="ingredients">Ingredienser</string>
+    <string name="solution_text_value">Løsning</string>
+    <string name="user_task_value">Oppgave</string>
+    <string name="is_ocr_result_included_value">Bruk valgt gjenkjent tekst</string>
+    <string name="home_loading_waiting_text_value">Laster, vennligst vent...</string>
+    <string name="progress_bar_hint_text_value">Fremdrift for generering av løsninger</string>
+
+    // Button Labels
+    <string name="next_button_label">Neste</string>
+    <string name="solve_button_label">Løs</string>
+    <string name="check_solution_button_label">Sjekk løsning</string>
+    <string name="cheat_sheet_button_label">Jukseark</string>
+    <string name="start_again">Start på nytt</string>
+    <string name="try_again">Prøv igjen</string>
+    <string name="pick_images">Velg bilder</string>
+    <string name="upload_from_url">Last opp</string>
+    <string name="upload_picture">Last opp bilde</string>
+    <string name="take_a_picture">Ta et bilde</string>
+    <string name="recognize_text_button_label">Vis gjenkjent tekst</string>
+
+    // Text Field Labels
+    <string name="foods">Matvarer</string>
+    <string name="What_to_solve_TextField_label">Hva vil du løse?</string>
+    <string name="rating_TextField_label">Vurdering</string>
+    <string name="no_solution_chosen">Løsning er ikke valgt ennå</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 bananer og 1 eple, alle av middels st\ørrelse.</string>
+    <string name="first_ocr_result_is_not_ready">Teksten gjenkjennes, vennligst vent…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Språk for løsning</string>
+    <string name="upload_a_file_label">Last opp en fil</string>
+    <string name="explanations_label">Forklaringer</string>
+    <string name="physical_activity_label">Fysisk aktivitet</string>
+    <string name="gender_label">Kjønn</string>
+    <string name="age_label">Alder</string>
+    <string name="height_label">Høyde</string>
+    <string name="weight_label">Vekt</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Det ser ut til at du har slettet noen bilder fra kalori-appens kataloglagring. Ingen fare, kalorier vil forsøke å fjerne disse bildene ett etter ett fra applikasjonens hurtigbuffer. Vennligst bekreft hver bildesletting, om nødvendig. Ethvert bilde som vises blankt er et korrupt bilde. Vil du fortsette?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI klarte ikke å gjenkjenne tekst fra bildet. Vennligst prøv igjen.</string>
+    <string name="error_gemini_solution_result_extraction">AI klarte ikke å løse dette problemet. Vennligst prøv igjen.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Beklager! Noe gikk galt. Vennligst prøv igjen!</string>
+    <string name="fail_to_load_Uri">Klarte ikke å laste bildet til listen. Vennligst prøv å laste det manuelt!</string>
+    <string name="corrupted_loaded_file">Du har lastet en korrupt fil!</string>
+    <string name="missing_required_settings">Noen påkrevde innstillinger mangler. Vennligst fyll dem ut.</string>
+    <string name="camera_fail_to_open">Beklager! Noe gikk galt med kameraet. Vennligst prøv igjen!</string>
+    <string name="upload_image_warning">Vennligst last opp et bilde fra enheten</string>
+    <string name="select_image_or_text_warning">Vennligst velg et bilde eller skriv inn oppgave.</string>
+    <string name="prompt_is_empty">Gjenkjent tekst er tom. Vennligst prøv igjen!</string>
+    <string name="language_not_supported">"Det valgte språket er ikke tilgjengelig for mediegenerering. Andre funksjoner vil fortsette å fungere. Vil du laste ned de nødvendige språkdataene for å aktivere denne funksjonen?"</string>
+
+    // labels
+    <string name="home">Hjem</string>
+    <string name="settings">Innstillinger</string>
+    <string name="results">Resultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Velg hva du vil dele</string>
+    <string name="share_user_ingredients">Del mine ingredienser</string>
+    <string name="share_recognized_ingredients">Del gjenkjente ingredienser</string>
+    <string name="share_solution">Del løsning</string>
+    <string name="share_image">Del bilde</string>
+    <string name="share">Del</string>
+
+    // installation
+    <string name="install">Installer</string>
+    <string name="install_language">Installer språk</string>
+
+    <string name="solved_by_diet_tracker">Løst av DietTracker\nSjekk ut appen vår på Google Play</string>
+
+</resources>

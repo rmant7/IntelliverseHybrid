@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poetisk</item>
+        <item>Professionell</item>
+        <item>Juridisk</item>
+        <item>Teknisk</item>
+        <item>Akademisk</item>
+        <item>Journalistisk</item>
+        <item>Kreativ</item>
+        <item>Övertygande</item>
+        <item>Berättande</item>
+        <item>Beskrivande</item>
+        <item>Förklarande</item>
+        <item>Humoristisk</item>
+        <item>Informell</item>
+        <item>Företagsmässig</item>
+        <item>Vetenskaplig</item>
+        <item>Romantisk</item>
+        <item>Historisk</item>
+        <item>Filosofisk</item>
+        <item>Självhjälp</item>
+        <item>Resa</item>
+        <item>Marknadsföring</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formell</item>
+        <item>Oformell</item>
+        <item>Vänlig</item>
+        <item>Seriös</item>
+        <item>Empatisk</item>
+        <item>Bestämd</item>
+        <item>Optimistisk</item>
+        <item>Humoristisk</item>
+        <item>Neutral</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimal</item>
+        <item>Måttlig</item>
+        <item>Komplett</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Relation</item>
+        <item>Arbetsplats</item>
+        <item>Utbildning</item>
+        <item>Hälsa</item>
+        <item>Ekonomi</item>
+        <item>Resa</item>
+        <item>Teknik</item>
+        <item>Underhållning</item>
+        <item>Självförbättring</item>
+        <item>Allmänt</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Ryssland: Kollektivistisk</item>
+        <item>Östeuropa: Pragmatisk</item>
+        <item>Västeuropa: Individualistisk</item>
+        <item>Sydostasien: Harmonifokuserad</item>
+        <item>Kina: Hierarkisk</item>
+        <item>Kaukasus: Hederbunden</item>
+        <item>Nordamerika: Entreprenöriell</item>
+        <item>Latinamerika: Passionerad</item>
+        <item>Mellanöstern: Gästfrihetsdriven</item>
+        <item>Afrika: Gemensam</item>
+        <item>Norden: Egalitär</item>
+        <item>Sydasien: Familjecentrerad</item>
+        <item>Japan: Gruppharmoni</item>
+        <item>Australien: Avslappnad</item>
+        <item>Medelhavet: Uttrycksfull</item>
+        <item>Centralasien: Nomadiska traditioner</item>
+        <item>Tyskland: Strukturerad</item>
+        <item>Balkan: Resilient</item>
+        <item>Arktiska ursprungsbefolkningen: Naturansluten</item>
+        <item>Judisk: Gemenskapsorienterad</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amhariska</item>
+        <item>Arabiska</item>
+        <item>Bengali</item>
+        <item>Bulgariska</item>
+        <item>Förenklad kinesiska</item>
+        <item>Kroatiska</item>
+        <item>Tjeckiska</item>
+        <item>Danska</item>
+        <item>Holländska</item>
+        <item>Engelska</item>
+        <item>Estniska</item>
+        <item>Finska</item>
+        <item>Franska</item>
+        <item>Tyska</item>
+        <item>Grekiska</item>
+        <item>Gujarati</item>
+        <item>Hebreiska</item>
+        <item>Hindi</item>
+        <item>Ungerska</item>
+        <item>Indonesiska</item>
+        <item>Italienska</item>
+        <item>Japanska</item>
+        <item>Kannada</item>
+        <item>Koreanska</item>
+        <item>Lettiska</item>
+        <item>Litauiska</item>
+        <item>Malajiska</item>
+        <item>Marathi</item>
+        <item>Norska</item>
+        <item>Pashto</item>
+        <item>Persiska</item>
+        <item>Polska</item>
+        <item>Portugisiska</item>
+        <item>Rumänska</item>
+        <item>Ryska</item>
+        <item>Serbiska</item>
+        <item>Slovakiska</item>
+        <item>Slovenska</item>
+        <item>Spanska</item>
+        <item>Swahili</item>
+        <item>Svenska</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Turkiska</item>
+        <item>Ukrainska</item>
+        <item>Urdu</item>
+        <item>Vietnamesiska</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Inte Relevant</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Ingen förklaring</item>
+        <item>Kort förklaring</item>
+        <item>Detaljerad förklaring</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Stillasittande</item>
+        <item>Lätt Aktiv</item>
+        <item>Måttligt Aktiv</item>
+        <item>Mycket Aktiv</item>
+        <item>Extremt Aktiv</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Man</item>
+        <item>Kvinna</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Flygplan</item>
+        <item>Cykel</item>
+        <item>Båt</item>
+        <item>Buss</item>
+        <item>Motorcykel</item>
+        <item>Egen bil</item>
+        <item>Hyrbil</item>
+        <item>Samåkning</item>
+        <item>Tunnelbana</item>
+        <item>Taxi</item>
+        <item>Tåg</item>
+        <item>Spårvagn</item>
+        <item>Gång</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Mat</item>
+        <item>Historia</item>
+        <item>Kultur</item>
+        <item>Natur</item>
+        <item>Avkoppling</item>
+        <item>Äventyr</item>
+        <item>Nattliv</item>
+        <item>Shopping</item>
+        <item>Familj</item>
+        <item>Romantik</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Ta en bild</item>
+        <item>Ladda upp en bild</item>
+        <item>Ladda upp en fil</item>
+        <item>Ange en länk</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Tyvärr är tjänsten inte tillgänglig i Ryssland och Vitryssland, vänligen använd vpn</string>
+    <string name="error_service_not_available_title">Tjänsten är inte tillgänglig</string>
+    <string name="error_common_title">Fel</string>
+    <string name="error_common_message">Ett fel uppstod när programmet kördes. Försök att uppdatera appen eller försök igen senare</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Hoppsan! Det verkar som att kameraåtkomst behövs för den här funktionen. Gå till enhetens inställningar, hitta IntelliVerse i din applista och bevilja kameratillstånd för att låsa upp magin!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Hoppsan! För att använda bilder från ditt galleri behöver IntelliVerse tillstånd att läsa dina foton. Gå till enhetens inställningar, hitta IntelliVerse i din applista och bevilja fotoåtkomst för att låsa upp magin!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Hoppsan! För att spara filer på din enhet behöver IntelliVerse tillstånd att skriva till din lagring. Gå till enhetens inställningar, hitta IntelliVerse i din applista och bevilja lagringsåtkomst för att låsa upp magin!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Hoppsan! För att komma åt filer på din enhet behöver IntelliVerse tillstånd att läsa din lagring. Gå till enhetens inställningar, hitta IntelliVerse i din applista och bevilja lagringsåtkomst för att låsa upp magin!</string>
+    <string name="camera_permission_rationale">IntelliVerse behöver tillgång till din kamera så att du direkt kan ta bilder av dina skoluppgifter!</string>
+    <string name="read_media_permission_rationale">Genom att tillåta åtkomst till dina foton kan du välja bilder från ditt galleri för att använda i IntelliVerse-appen!</string>
+    <string name="write_storage_permission_rationale">Tillstånd att skriva till din lagring gör att IntelliVerse-appen kan spara filer, som foton du har tagit, direkt på din enhet!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse behöver tillgång till din enhets lagring för att läsa filer, som foton eller dokument, som du kanske vill använda i appen.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Ja</string>
+    <string name="No">Nej</string>
+    <string name="are_you_sure">Är du säker på att du vill avsluta</string>
+    <string name="exit">Avsluta</string>
+
+    <string name="report_content">Rapportera Innehåll</string>
+    <string name="select_reason">Välj Anledning</string>
+    <string name="offensive">Stötande</string>
+    <string name="hate_speech">Hatpropaganda</string>
+    <string name="incorrect_info">Felaktig Information</string>
+    <string name="other">Annat</string>
+    <string name="submit">Skicka</string>
+    <string name="cancel">Avbryt</string>
+
+    <string name="reset_settings">Återställ Inställningar</string>
+    <string name="not_relevant">Inte Relevant</string>
+
+</resources>

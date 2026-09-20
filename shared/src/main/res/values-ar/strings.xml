@@ -1,0 +1,191 @@
+<resources>
+
+    <string-array name="styles">
+        <item>شعري</item>
+        <item>احترافي</item>
+        <item>قانوني</item>
+        <item>تقني</item>
+        <item>أكاديمي</item>
+        <item>صحفي</item>
+        <item>إبداعي</item>
+        <item>إقناعي</item>
+        <item>سردي</item>
+        <item>وصفي</item>
+        <item>تفسيري</item>
+        <item>فكاهي</item>
+        <item>غير رسمي</item>
+        <item>تجاري</item>
+        <item>علمي</item>
+        <item>رومانسي</item>
+        <item>تاريخي</item>
+        <item>فلسفي</item>
+        <item>تنمية ذاتية</item>
+        <item>سفر</item>
+        <item>تسويقي</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>رسمي</item>
+        <item>غير رسمي</item>
+        <item>ودود</item>
+        <item>جاد</item>
+        <item>متعاطف</item>
+        <item>حازم</item>
+        <item>متفائل</item>
+        <item>فكاهي</item>
+        <item>محايد</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>حد أدنى</item>
+        <item>معتدل</item>
+        <item>كامل</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>علاقات</item>
+        <item>مكان العمل</item>
+        <item>التعليم</item>
+        <item>الصحة</item>
+        <item>التمويل</item>
+        <item>السفر</item>
+        <item>التكنولوجيا</item>
+        <item>الترفيه</item>
+        <item>تطوير الذات</item>
+        <item>عام</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>روسيا: جماعية</item>
+        <item>أوروبا الشرقية: براغماتية</item>
+        <item>أوروبا الغربية: فردية</item>
+        <item>جنوب شرق آسيا: تركز على التناغم</item>
+        <item>الصين: هرمية</item>
+        <item>القوقاز: تعتمد على الشرف</item>
+        <item>أمريكا الشمالية: ريادية</item>
+        <item>أمريكا اللاتينية: عاطفية</item>
+        <item>الشرق الأوسط: مضيافة</item>
+        <item>أفريقيا: مجتمعية</item>
+        <item>الدول الاسكندنافية: مساواتية</item>
+        <item>جنوب آسيا: تتمحور حول العائلة</item>
+        <item>اليابان: تناغم جماعي</item>
+        <item>أستراليا: مريحة</item>
+        <item>البحر الأبيض المتوسط: معبرة</item>
+        <item>آسيا الوسطى: تقاليد البدو</item>
+        <item>ألمانيا: منظمة</item>
+        <item>البلقان: مرنة</item>
+        <item>السكان الأصليون في القطب الشمالي: متصلة بالطبيعة</item>
+        <item>اليهودية: تتمحور حول المجتمع</item>
+    </string-array>
+
+    // Drop Down Menu Entries
+    <string-array name="grades">
+        <item>غير مهم</item>
+        <item>أول</item>
+        <item>ثاني</item>
+        <item>ثالث</item>
+        <item>رابع</item>
+        <item>خامس</item>
+        <item>سادس</item>
+        <item>سابع</item>
+        <item>ثامن</item>
+        <item>تاسع</item>
+        <item>عاشر</item>
+        <item>حادي عشر</item>
+        <item>ثاني عشر</item>
+    </string-array>
+
+    // Drop Down Menu Entries
+    <string-array name="explanations">
+        <item>دون تفسير</item>-->
+        <item>شرح قصير</item>
+        <item>شرح مفصل</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>كسول</item>
+        <item>نشط قليلا</item>
+        <item>نشط إلى حد ما</item>
+        <item>نشط جدا</item>
+        <item>نشط دائما</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>ذكر</item>
+        <item>المؤنث</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>طائرة</item>
+        <item>دراجة</item>
+        <item>قارب</item>
+        <item>حافلة</item>
+        <item>دراجة نارية</item>
+        <item>سيارة مملوكة</item>
+        <item>سيارة مستأجرة</item>
+        <item>مشاركة الركوب</item>
+        <item>مترو الأنفاق</item>
+        <item>سيارة أجرة</item>
+        <item>قطار</item>
+        <item>ترام</item>
+        <item>المشي</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>طعام</item>
+        <item>تاريخ</item>
+        <item>ثقافة</item>
+        <item>طبيعة</item>
+        <item>استرخاء</item>
+        <item>مغامرة</item>
+        <item>حياة ليلية</item>
+        <item>تسوق</item>
+        <item>عائلة</item>
+        <item>رومانسي</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>قم بالتقاط صورة</item>
+        <item>قم بتحميل صورة</item>
+        <item>قم بتحميل ملف</item>
+        <item>قم بتحميل رابط</item>
+    </string-array>
+
+    //Errors
+    <string name="error_service_not_available">عذرًا، الخدمة غير متوفرة في روسيا وبيلاروسيا، يرجى استخدام vpn</string>
+    <string name="error_service_not_available_title">الخدمة غير متوفرة</string>
+    <string name="error_common_title">هنالك خطأ ما</string>
+    <string name="error_common_message">هنالك خطأ ما, حاول في وقت اخر</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">أووبس! يبدو أن الوصول إلى الكاميرا مطلوب لهذه الميزة. انتقل إلى إعدادات جهازك، وابحث عن التطبيق في قائمة التطبيقات الخاصة بك، وامنح الكاميرا إذنًا لبدء السحر!</string>
+    <string name="permanent_denied_read_media_permission_explanation">أووبس! يبدو أن الوصول إلى الصور مطلوب لهذه الميزة. انتقل إلى إعدادات جهازك، وابحث عن التطبيق في قائمة التطبيقات الخاصة بك، وامنح ملف الصور إذنًا لبدء السحر</string>
+    <string name="permanent_denied_write_storage_permission_explanation">أووبس! يبدو أن الوصول إلى الصور مطلوب لهذه الميزة. انتقل إلى إعدادات جهازك، وابحث عن التطبيق في قائمة التطبيقات الخاصة بك، وامنح ملف الصور إذنًا لبدء السحر!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">أووبس! لحفظ الملفات على جهازك، يحتاج التطبيق للوصول الى مساحة التخزين. انتقل الى الاعدادات وابحث عن التطبيق في قائمة التطبيقات وامنح حق الوصول الى مساحة التخزين لبدء السحر.</string>
+    <string name="camera_permission_rationale"> تحتاج إلى الوصول إلى الكاميرا الخاصة بك حتى تتمكن من التقاط صور الملفات المدرسية</string>
+    <string name="read_media_permission_rationale"> الوصول إلى صورك يتيح تحديد الصور من معرض الصور الخاص بك لاستخدامها داخل تطبيق IntelliVerse!</string>
+    <string name="write_storage_permission_rationale"> يسمح إذن الكتابة بحفظ الملفات مثل الصور الملتقطة داخل التطبيق مباشرة الى جهازك</string>
+    <string name="read_storage_permission_rationale">البرنامج يحتاج للوصول الى الملفات والصور في الجهاز التي قد ترغب باستخدامها في التطبيق </string>
+
+    // Buttons Labels
+    <string name="Ok">حسنا</string>
+
+    <string name="Yes">نعم</string>
+    <string name="No">لا</string>
+    <string name="are_you_sure">هل أنت متأكد أنك تريد الإقلاع عن</string>
+    <string name="exit">مخرج</string>
+
+    <string name="report_content">تقرير المحتوى</string>
+    <string name="select_reason">تحديد السبب</string>
+    <string name="offensive">جارح</string>
+    <string name="hate_speech">خطاب الكراهية</string>
+    <string name="incorrect_info">معلومات غير صحيحة</string>
+    <string name="other">آخر</string>
+    <string name="submit">يُقدِّم</string>
+    <string name="cancel">يلغي</string>
+
+    <string name="reset_settings">إعادة ضبط الإعدادات</string>
+    <string name="not_relevant">عَرَضِيّ</string>
+
+</resources>

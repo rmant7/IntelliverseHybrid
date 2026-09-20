@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller 帮助学生专门解决数学问题，以及一般性问题。</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI学校助手图像</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">上传到AI学校助手图像</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">检查解决方案AI学校助手图像</string>
+    <string name="ArrowDropDown_icon_content_description">打开一个子菜单</string>
+    <string name="add_image">添加任务</string>
+    <string name="Guidance">为了获得最佳效果，请为您的任务提供详细的文本。如果您附加图像，请确保编辑任何识别的文本以准确匹配原始文本。</string>
+
+    // Text values
+    <string name="recognized_text_value">识别的文本</string>
+    <string name="solution_text_value">解决方案</string>
+    <string name="user_task_value">任务</string>
+    <string name="is_ocr_result_included_value">使用选定的识别文本</string>
+    <string name="home_loading_waiting_text_value">加载中，请稍候...</string>
+    <string name="progress_bar_hint_text_value">解决方案生成进度</string>
+
+    // Button Labels
+    <string name="next_button_label">下一步</string>
+    <string name="solve_button_label">解决</string>
+    <string name="check_solution_button_label">检查解决方案</string>
+    <string name="cheat_sheet_button_label">小抄</string>
+    <string name="start_again">重新开始</string>
+    <string name="try_again">重试</string>
+    <string name="pick_images">选择图片</string>
+    <string name="upload_from_url">上传</string>
+    <string name="upload_picture">上传图片</string>
+    <string name="take_a_picture">拍摄照片</string>
+    <string name="recognize_text_button_label">显示识别的文本</string>
+
+    // Text Field Labels
+    <string name="tasks">任务</string>
+    <string name="What_to_solve_TextField_label">你想解决什么？</string>
+    <string name="rating_TextField_label">评分</string>
+    <string name="no_solution_chosen">尚未选择解决方案</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">告诉我关于勾股定理的事情。</string>
+    <string name="first_ocr_result_is_not_ready">文本正在识别中，请稍候...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">解决方案语言</string>
+    <string name="upload_a_file_label">上传文件</string>
+    <string name="explanations_label">解释</string>
+    <string name="grade_label">"年级"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">看来您已从SchoolKiller应用程序的目录存储中删除了一些图像。 不用担心，SchoolKiller将尝试逐个从应用程序缓存中清除这些图像。 如果需要，请确认每次图像删除。 任何显示为空白的图像都是损坏的。 你想继续吗？</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI无法从图像中识别文本。 请重试。</string>
+    <string name="error_gemini_solution_result_extraction">AI无法解决此问题。 请重试。</string>
+
+    // Toast messages
+    <string name="something_went_wrong">糟糕！ 出错了。 请重试！</string>
+    <string name="fail_to_load_Uri">无法将图像加载到列表中。 请尝试手动加载！</string>
+    <string name="corrupted_loaded_file">您已加载损坏的文件！</string>
+    <string name="camera_fail_to_open">糟糕！ 相机出了点问题。 请重试！</string>
+    <string name="upload_image_warning">请从设备上传图像</string>
+    <string name="select_image_or_text_warning">请选择图像或键入任务。</string>
+    <string name="prompt_is_empty">识别的文本为空。 请重试！</string>
+    <string name="language_not_supported">"所选语言不适用于媒体生成。其他功能将继续工作。您是否要下载必要的语言数据以启用此功能？"</string>
+
+    // labels
+    <string name="home">主页</string>
+    <string name="settings">设置</string>
+    <string name="results">结果</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">选择要分享的内容</string>
+    <string name="share_user_task">分享我的任务</string>
+    <string name="share_ocr_result">分享识别的文本</string>
+    <string name="share_solution">分享解决方案</string>
+    <string name="share_image">分享图像</string>
+    <string name="share">分享</string>
+
+    // installation
+    <string name="install">安装</string>
+    <string name="install_language">安装语言</string>
+
+    <string name="solved_by_schoolkiller">由SchoolKiller解决\n在Google Play上查看我们的应用程序</string>
+
+</resources>

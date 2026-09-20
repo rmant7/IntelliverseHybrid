@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker pomaga użytkownikom monitorować spożycie kalorii, tłuszczów, białek, węglowodanów, witamin i minerałów w jedzeniu. Nie tylko zlicza te elementy, ale także analizuje, co jest wchłaniane przez organizm po trawieniu. Użytkownicy mogą przesyłać zdjęcia produktów, aplikacja rozpoznaje składniki i umożliwia edycję listy.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Obraz asystenta AI School</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Obraz przesyłania do asystenta AI School</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Obraz sprawdzania rozwiązania w asystencie AI School</string>
+    <string name="ArrowDropDown_icon_content_description">Otwiera podmenu</string>
+    <string name="add_image">Dodaj zadanie</string>
+    <string name="guidance_detected_ingredients">Sprawdź wykryte składniki. Jeśli jakiekolwiek szczegóły są nieprawidłowe lub brakuje ich, możesz je zmodyfikować przed wygenerowaniem nowej analizy żywieniowej.</string>
+
+    // Text values
+    <string name="ingredients">Składniki</string>
+    <string name="solution_text_value">Rozwiązanie</string>
+    <string name="user_task_value">Zadanie</string>
+    <string name="is_ocr_result_included_value">Użyj wybranego rozpoznanego tekstu</string>
+    <string name="home_loading_waiting_text_value">Ładowanie, proszę czekać...</string>
+    <string name="progress_bar_hint_text_value">Postęp generowania rozwiązań</string>
+
+    // Button Labels
+    <string name="next_button_label">Dalej</string>
+    <string name="solve_button_label">Rozwiąż</string>
+    <string name="check_solution_button_label">Sprawdź rozwiązanie</string>
+    <string name="cheat_sheet_button_label">Ściąga</string>
+    <string name="start_again">Zacznij od nowa</string>
+    <string name="try_again">Spróbuj ponownie</string>
+    <string name="pick_images">Wybierz obrazy</string>
+    <string name="upload_from_url">Prześlij</string>
+    <string name="upload_picture">Prześlij zdjęcie</string>
+    <string name="take_a_picture">Zrób zdjęcie</string>
+    <string name="recognize_text_button_label">Pokaż rozpoznany tekst</string>
+
+    // Text Field Labels
+    <string name="foods">Produkty spożywcze</string>
+    <string name="What_to_solve_TextField_label">Co chcesz rozwiązać?</string>
+    <string name="rating_TextField_label">Ocena</string>
+    <string name="no_solution_chosen">Rozwiązanie nie zostało jeszcze wybrane</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 banany i 1 jabłko, wszystko średniej wielkości.</string>
+    <string name="first_ocr_result_is_not_ready">Tekst jest rozpoznawany, proszę czekać…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Język rozwiązania</string>
+    <string name="upload_a_file_label">Prześlij plik</string>
+    <string name="explanations_label">Wyjaśnienia</string>
+    <string name="physical_activity_label">Aktywność fizyczna</string>
+    <string name="gender_label">Płeć</string>
+    <string name="age_label">Wiek</string>
+    <string name="height_label">Wzrost</string>
+    <string name="weight_label">Waga</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Wygląda na to, że usunąłeś niektóre obrazy z katalogu przechowywania aplikacji do liczenia kalorii. Nie martw się, aplikacja spróbuje usunąć te obrazy jeden po drugim z pamięci podręcznej aplikacji. Potwierdź usunięcie każdego obrazu, jeśli to konieczne. Każdy obraz, który wydaje się pusty, jest uszkodzony. Czy chcesz kontynuować?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nie był w stanie rozpoznać tekstu z obrazu. Spróbuj ponownie.</string>
+    <string name="error_gemini_solution_result_extraction">AI nie był w stanie rozwiązać tego problemu. Spróbuj ponownie.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Coś poszło nie tak. Spróbuj ponownie!</string>
+    <string name="fail_to_load_Uri">Nie udało się załadować obrazu do listy. Spróbuj załadować go ręcznie!</string>
+    <string name="corrupted_loaded_file">Załadowałeś uszkodzony plik!</string>
+    <string name="missing_required_settings">Brakuje niektórych wymaganych ustawień. Uzupełnij je.</string>
+    <string name="camera_fail_to_open">Ups! Coś poszło nie tak z kamerą. Spróbuj ponownie!</string>
+    <string name="upload_image_warning">Prześlij obraz z urządzenia</string>
+    <string name="select_image_or_text_warning">Wybierz obraz lub wpisz zadanie.</string>
+    <string name="prompt_is_empty">Rozpoznany tekst jest pusty. Spróbuj ponownie!</string>
+    <string name="language_not_supported">"Wybrany język nie jest dostępny dla generowania multimediów. Inne funkcje będą działać nadal. Czy chcesz pobrać niezbędne dane językowe, aby włączyć tę funkcję?"</string>
+
+    // labels
+    <string name="home">Strona główna</string>
+    <string name="settings">Ustawienia</string>
+    <string name="results">Wynik</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Wybierz co chcesz udostępnić</string>
+    <string name="share_user_ingredients">Udostępnij moje składniki</string>
+    <string name="share_recognized_ingredients">Udostępnij rozpoznane składniki</string>
+    <string name="share_solution">Udostępnij rozwiązanie</string>
+    <string name="share_image">Udostępnij obraz</string>
+    <string name="share">Udostępnij</string>
+
+    // installation
+    <string name="install">Zainstaluj</string>
+    <string name="install_language">Zainstaluj język</string>
+
+    <string name="solved_by_diet_tracker">Rozwiązane przez DietTracker\nSprawdź naszą aplikację w Google Play</string>
+
+</resources>

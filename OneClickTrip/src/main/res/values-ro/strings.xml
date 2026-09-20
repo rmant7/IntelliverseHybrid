@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip este planificatorul tău inteligent de călătorii alimentat de inteligență artificială. Pur și simplu descrie călătoria visurilor tale sau încarcă o inspirație și vei primi instantaneu un itinerar personalizat zi de zi cu opțiuni de transport, linkuri către hoteluri, estimări bugetare și sfaturi locale — totul dintr-un singur clic.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Text recunoscut</string>
+    <string name="solution_text_value">Soluție</string>
+    <string name="user_task_value">Sarcină</string>
+    <string name="progress_bar_hint_text_value">Progresul generării soluțiilor</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Text</string>
+    <string name="no_solution_chosen">Nicio soluție selectată încă</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Vreau o excursie relaxantă și culturală de 3 zile cu situri istorice, mâncare locală, plimbări ușoare și o combinație de activități ghidate și independente într-un oraș sau în apropiere.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Limba soluției</string>
+    <string name="max_budget_label">Buget maxim</string>
+    <string name="travelers_number_label">Număr de călători</string>
+    <string name="trip_duration_label">Durata călătoriei</string>
+    <string name="transportation_type_label">Tip de transport</string>
+    <string name="trip_style_label">Stilul călătoriei</string>
+    <string name="origin_location_label">Locația de origine</string>
+    <string name="trip_type_label">Tip de călătorie</string>
+    <string name="one_way_trip">Călătorie dus</string>
+    <string name="round_trip">Călătorie dus-întors</string>
+    <string name="days">zile</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Introduceți tipul de transport</string>
+    <string name="enter_location">Introduceți locația</string>
+    <string name="add">Adaugă</string>
+    <string name="travel_path">Traseu de călătorie</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Inteligența artificială nu a reușit să rezolve această problemă. Vă rugăm să încercați din nou.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Ups! Ceva nu a mers bine. Încercați din nou!</string>
+    <string name="fail_to_load_Uri">Nu s-a reușit încărcarea imaginii în listă. Încercați manual!</string>
+    <string name="corrupted_loaded_file">Ați încărcat un fișier corupt!</string>
+    <string name="missing_required_settings">Lipsesc câteva setări necesare. Vă rugăm să le completați.</string>
+    <string name="camera_fail_to_open">Ups! Nu s-a putut deschide camera. Încercați din nou!</string>
+    <string name="select_image_or_text_warning">Selectați o imagine sau introduceți o sarcină.</string>
+    <string name="language_not_supported">
+        Limba selectată nu este disponibilă pentru generarea de media. Alte funcții vor continua să funcționeze. Doriți să descărcați datele lingvistice necesare?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Acasă</string>
+    <string name="settings">Setări</string>
+    <string name="results">Rezultat</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Alegeți ce doriți să partajați</string>
+    <string name="share_user_translation">Partajați textul meu</string>
+    <string name="share_ocr_result">Partajați textul recunoscut</string>
+    <string name="share_solution">Partajați soluția</string>
+    <string name="share_image">Partajați imaginea</string>
+    <string name="share">Partajați</string>
+
+    <!-- Installation -->
+    <string name="install">Instalați</string>
+    <string name="install_language">Instalați limba</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Rezolvat cu OneClickTrip\nConsultați aplicația noastră pe Google Play</string>
+</resources>

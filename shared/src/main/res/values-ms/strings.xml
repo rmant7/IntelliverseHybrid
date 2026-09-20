@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Puitis</item>
+        <item>Profesional</item>
+        <item>Perundangan</item>
+        <item>Teknikal</item>
+        <item>Akademik</item>
+        <item>Kewartawanan</item>
+        <item>Kreatif</item>
+        <item>Meyakinkan</item>
+        <item>Naratif</item>
+        <item>Deskriptif</item>
+        <item>Ekspositori</item>
+        <item>Jenaka</item>
+        <item>Tidak formal</item>
+        <item>Perniagaan</item>
+        <item>Saintifik</item>
+        <item>Romantik</item>
+        <item>Sejarah</item>
+        <item>Falsafah</item>
+        <item>Bantuan Kendiri</item>
+        <item>Pelancongan</item>
+        <item>Pemasaran</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formal</item>
+        <item>Kasual</item>
+        <item>Mesra</item>
+        <item>Serius</item>
+        <item>Empati</item>
+        <item>Asertif</item>
+        <item>Optimistik</item>
+        <item>Jenaka</item>
+        <item>Neutral</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimum</item>
+        <item>Sederhana</item>
+        <item>Lengkap</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Perhubungan</item>
+        <item>Tempat Kerja</item>
+        <item>Pendidikan</item>
+        <item>Kesihatan</item>
+        <item>Kewangan</item>
+        <item>Pelancongan</item>
+        <item>Teknologi</item>
+        <item>Hiburan</item>
+        <item>Penambahbaikan Diri</item>
+        <item>Umum</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusia: Kolektivis</item>
+        <item>Eropah Timur: Pragmatik</item>
+        <item>Eropah Barat: Individualistik</item>
+        <item>Asia Tenggara: Berfokuskan Harmoni</item>
+        <item>China: Hierarki</item>
+        <item>Caucasus: Terikat dengan Kehormatan</item>
+        <item>Amerika Utara: Keusahawanan</item>
+        <item>Amerika Latin: Bersemangat</item>
+        <item>Timur Tengah: Didorong oleh Layanan</item>
+        <item>Afrika: Komunal</item>
+        <item>Negara-negara Nordic: Egalitarian</item>
+        <item>Asia Selatan: Berpusatkan Keluarga</item>
+        <item>Jepun: Keharmonian Kumpulan</item>
+        <item>Australia: Santai</item>
+        <item>Mediterranean: Ekspresif</item>
+        <item>Asia Tengah: Tradisi Nomad</item>
+        <item>Jerman: Berstruktur</item>
+        <item>Balkan: Berdaya Tahan</item>
+        <item>Peribumi Artik: Berhubung dengan Alam</item>
+        <item>Yahudi: Berorientasikan Komuniti</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharic</item>
+        <item>Arab</item>
+        <item>Benggali</item>
+        <item>Bulgaria</item>
+        <item>Cina Ringkas</item>
+        <item>Croatia</item>
+        <item>Czech</item>
+        <item>Denmark</item>
+        <item>Belanda</item>
+        <item>Inggeris</item>
+        <item>Estonia</item>
+        <item>Finland</item>
+        <item>Perancis</item>
+        <item>Jerman</item>
+        <item>Yunani</item>
+        <item>Gujarati</item>
+        <item>Ibrani</item>
+        <item>Hindi</item>
+        <item>Hungary</item>
+        <item>Indonesia</item>
+        <item>Itali</item>
+        <item>Jepun</item>
+        <item>Kannada</item>
+        <item>Korea</item>
+        <item>Latvia</item>
+        <item>Lithuania</item>
+        <item>Melayu</item>
+        <item>Marathi</item>
+        <item>Norway</item>
+        <item>Pashto</item>
+        <item>Parsi</item>
+        <item>Poland</item>
+        <item>Portugis</item>
+        <item>Romania</item>
+        <item>Rusia</item>
+        <item>Serbia</item>
+        <item>Slovak</item>
+        <item>Slovenia</item>
+        <item>Sepanyol</item>
+        <item>Swahili</item>
+        <item>Sweden</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Turki</item>
+        <item>Ukraine</item>
+        <item>Urdu</item>
+        <item>Vietnam</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Tidak Berkaitan</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Tiada penjelasan</item>
+        <item>Penjelasan ringkas</item>
+        <item>Penjelasan terperinci</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sedentari</item>
+        <item>Ringan Aktif</item>
+        <item>Sederhana Aktif</item>
+        <item>Sangat Aktif</item>
+        <item>Sangat Aktif</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Lelaki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Kapal terbang</item>
+        <item>Basikal</item>
+        <item>Bot</item>
+        <item>Bas</item>
+        <item>Motosikal</item>
+        <item>Kereta sendiri</item>
+        <item>Kereta sewa</item>
+        <item>Kongsi perjalanan</item>
+        <item>Subway</item>
+        <item>Teksi</item>
+        <item>Kereta api</item>
+        <item>Trem</item>
+        <item>Berjalan kaki</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Makanan</item>
+        <item>Sejarah</item>
+        <item>Budaya</item>
+        <item>Alam semula jadi</item>
+        <item>Relaksasi</item>
+        <item>Pengembaraan</item>
+        <item>Kehidupan malam</item>
+        <item>Membeli-belah</item>
+        <item>Keluarga</item>
+        <item>Romantik</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Ambil gambar</item>
+        <item>Muat naik imej</item>
+        <item>Muat naik fail</item>
+        <item>Sediakan pautan</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Maaf, perkhidmatan tidak tersedia di Rusia dan Belarus, sila gunakan vpn</string>
+    <string name="error_service_not_available_title">Perkhidmatan tidak tersedia</string>
+    <string name="error_common_title">Ralat</string>
+    <string name="error_common_message">Ralat berlaku semasa aplikasi berjalan. Cuba kemas kini apl atau cuba lagi kemudian</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Aduh! Nampaknya akses kamera diperlukan untuk ciri ini. Pergi ke tetapan peranti anda, cari IntelliVerse dalam senarai apl anda dan berikan kebenaran kamera untuk membuka kunci keajaiban!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Aduh! Untuk menggunakan imej daripada galeri anda, IntelliVerse memerlukan kebenaran untuk membaca foto anda. Pergi ke tetapan peranti anda, cari IntelliVerse dalam senarai apl anda dan berikan akses foto untuk membuka kunci keajaiban!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Aduh! Untuk menyimpan fail ke peranti anda, IntelliVerse memerlukan kebenaran untuk menulis ke storan anda. Pergi ke tetapan peranti anda, cari IntelliVerse dalam senarai apl anda dan berikan akses storan untuk membuka kunci keajaiban!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Aduh! Untuk mengakses fail pada peranti anda, IntelliVerse memerlukan kebenaran untuk membaca storan anda. Pergi ke tetapan peranti anda, cari IntelliVerse dalam senarai apl anda dan berikan akses storan untuk membuka kunci keajaiban!</string>
+    <string name="camera_permission_rationale">IntelliVerse memerlukan akses ke kamera anda supaya anda boleh mengambil foto latihan sekolah anda serta-merta!</string>
+    <string name="read_media_permission_rationale">Membenarkan akses kepada foto anda membolehkan anda memilih imej daripada galeri anda untuk digunakan dalam apl IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Kebenaran untuk menulis ke storan anda membolehkan apl IntelliVerse menyimpan fail, seperti foto yang telah anda ambil, terus ke peranti anda!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse memerlukan akses ke storan peranti anda untuk membaca fail, seperti foto atau dokumen, yang mungkin ingin anda gunakan dalam apl.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Ya</string>
+    <string name="No">Tidak</string>
+    <string name="are_you_sure">Anda pasti mahu keluar?</string>
+    <string name="exit">Keluar</string>
+
+    <string name="report_content">Lapor Kandungan</string>
+    <string name="select_reason">Pilih Sebab</string>
+    <string name="offensive">Menyinggung</string>
+    <string name="hate_speech">Ucapan Benci</string>
+    <string name="incorrect_info">Maklumat Tidak Tepat</string>
+    <string name="other">Lain-lain</string>
+    <string name="submit">Hantar</string>
+    <string name="cancel">Batal</string>
+
+    <string name="reset_settings">Tetapkan Semula Tetapan</string>
+    <string name="not_relevant">Tidak Berkaitan</string>
+
+</resources>

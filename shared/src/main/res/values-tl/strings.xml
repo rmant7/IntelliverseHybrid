@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Makata</item>
+        <item>Propesyonal</item>
+        <item>Legal</item>
+        <item>Teknikal</item>
+        <item>Akademiko</item>
+        <item>Pamamahayag</item>
+        <item>Malikhain</item>
+        <item>Mapanghikayat</item>
+        <item>Nagsasalaysay</item>
+        <item>Mapaglarawan</item>
+        <item>Nagpapaliwanag</item>
+        <item>Nakakatawa</item>
+        <item>Impormal</item>
+        <item>Pangnegosyo</item>
+        <item>Siyentipiko</item>
+        <item>Romantiko</item>
+        <item>Pangkasaysayan</item>
+        <item>Pilosopikal</item>
+        <item>Pagtulong sa Sarili</item>
+        <item>Paglalakbay</item>
+        <item>Pagmemerkado</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Pormal</item>
+        <item>Kaswal</item>
+        <item>Palakaibigan</item>
+        <item>Seryoso</item>
+        <item>Nakikiramay</item>
+        <item>Mapaggiit</item>
+        <item>Optimistiko</item>
+        <item>Nakakatawa</item>
+        <item>Neutral</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimal</item>
+        <item>Katamtaman</item>
+        <item>Kumpleto</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Relasyon</item>
+        <item>Lugar ng Trabaho</item>
+        <item>Edukasyon</item>
+        <item>Kalusugan</item>
+        <item>Pananalapi</item>
+        <item>Paglalakbay</item>
+        <item>Teknolohiya</item>
+        <item>Libangan</item>
+        <item>Pagpapabuti sa Sarili</item>
+        <item>Pangkalahatan</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Russia: Kolektibista</item>
+        <item>Silangang Europa: Pragmatiko</item>
+        <item>Kanlurang Europa: Indibidwalista</item>
+        <item>Timog-Silangang Asya: Nakatuon sa Pagkakasundo</item>
+        <item>Tsina: Hierarchical</item>
+        <item>Caucasus: Tapat sa Karangalan</item>
+        <item>Hilagang Amerika: Entrepreneurial</item>
+        <item>Latin America: Madamdamin</item>
+        <item>Gitnang Silangan: Pinapatakbo ng Pagkamapagpatuloy</item>
+        <item>Africa: Komunal</item>
+        <item>Mga Bansang Nordic: Egalitarian</item>
+        <item>Timog Asya: Nakasentro sa Pamilya</item>
+        <item>Japan: Pagkakasundo ng Grupo</item>
+        <item>Australia: Relaks</item>
+        <item>Mediterranean: Nagpapahayag</item>
+        <item>Gitnang Asya: Mga Tradisyon ng Pagpapagala-gala</item>
+        <item>Germany: Nakabalangkas</item>
+        <item>Balkans: Matatag</item>
+        <item>Katutubong Arctic: Konektado sa Kalikasan</item>
+        <item>Jewish: Nakatuon sa Komunidad</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharic</item>
+        <item>Arabic</item>
+        <item>Bengali</item>
+        <item>Bulgarian</item>
+        <item>Chinese Simplified</item>
+        <item>Croatian</item>
+        <item>Czech</item>
+        <item>Danish</item>
+        <item>Dutch</item>
+        <item>English</item>
+        <item>Estonian</item>
+        <item>Finnish</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Gujarati</item>
+        <item>Hebrew</item>
+        <item>Hindi</item>
+        <item>Hungarian</item>
+        <item>Indonesian</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Kannada</item>
+        <item>Korean</item>
+        <item>Latvian</item>
+        <item>Lithuanian</item>
+        <item>Malay</item>
+        <item>Marathi</item>
+        <item>Norwegian</item>
+        <item>Pashto</item>
+        <item>Persian</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Romanian</item>
+        <item>Russian</item>
+        <item>Serbian</item>
+        <item>Slovak</item>
+        <item>Slovenian</item>
+        <item>Spanish</item>
+        <item>Swahili</item>
+        <item>Swedish</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Turkish</item>
+        <item>Ukrainian</item>
+        <item>Urdu</item>
+        <item>Vietnamese</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Hindi Relevant</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Walang paliwanag</item>
+        <item>Maikling paliwanag</item>
+        <item>Detalyadong paliwanag</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Hindi aktibo</item>
+        <item>Bahagyang Aktibo</item>
+        <item>Katamtamang Aktibo</item>
+        <item>Sobrang Aktibo</item>
+        <item>Labis na Aktibo</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Lalaki</item>
+        <item>Babae</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Eroplano</item>
+        <item>Bisikleta</item>
+        <item>Bangka</item>
+        <item>Bus</item>
+        <item>Motorsiklo</item>
+        <item>Sariling Kotse</item>
+        <item>Inupahang Kotse</item>
+        <item>Pagbabahagi ng Biyahe</item>
+        <item>Subway</item>
+        <item>Taxi</item>
+        <item>Tren</item>
+        <item>Tram</item>
+        <item>Paglalakad</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Pagkain</item>
+        <item>Kasaysayan</item>
+        <item>Kultura</item>
+        <item>Kalikasan</item>
+        <item>Pagpapahinga</item>
+        <item>Pakikipagsapalaran</item>
+        <item>Buhay Gabi</item>
+        <item>Shopping</item>
+        <item>Pamilya</item>
+        <item>Romantiko</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Kumuha ng litrato</item>
+        <item>Mag-upload ng larawan</item>
+        <item>Mag-upload ng file</item>
+        <item>Magbigay ng link</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Paumanhin, hindi available ang serbisyo sa Russia at Belarus, mangyaring gumamit ng vpn</string>
+    <string name="error_service_not_available_title">Hindi available ang serbisyo</string>
+    <string name="error_common_title">Error</string>
+    <string name="error_common_message">Nagkaroon ng error habang tumatakbo ang application. Subukang i-update ang app o subukan muli mamaya</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Aba! Mukhang kailangan ang access sa camera para sa feature na ito. Pumunta sa mga setting ng iyong device, hanapin ang IntelliVerse sa listahan ng iyong app, at bigyan ng pahintulot sa camera para i-unlock ang magic!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Aba! Para magamit ang mga larawan mula sa iyong gallery, kailangan ng IntelliVerse ng pahintulot na basahin ang iyong mga larawan. Pumunta sa mga setting ng iyong device, hanapin ang IntelliVerse sa listahan ng iyong app, at bigyan ng access sa larawan para i-unlock ang magic!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Aba! Para mag-save ng mga file sa iyong device, kailangan ng IntelliVerse ng pahintulot na magsulat sa iyong storage. Pumunta sa mga setting ng iyong device, hanapin ang IntelliVerse sa listahan ng iyong app, at bigyan ng access sa storage para i-unlock ang magic!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Aba! Para ma-access ang mga file sa iyong device, kailangan ng IntelliVerse ng pahintulot na basahin ang iyong storage. Pumunta sa mga setting ng iyong device, hanapin ang IntelliVerse sa listahan ng iyong app, at bigyan ng access sa storage para i-unlock ang magic!</string>
+    <string name="camera_permission_rationale">Kailangan ng IntelliVerse ng access sa iyong camera para agad kang makapag-snap ng mga litrato ng iyong mga school exercise!</string>
+    <string name="read_media_permission_rationale">Ang pagpapahintulot ng access sa iyong mga larawan ay nagbibigay-daan sa iyong pumili ng mga larawan mula sa iyong gallery para gamitin sa loob ng IntelliVerse app!</string>
+    <string name="write_storage_permission_rationale">Ang pahintulot na magsulat sa iyong storage ay nagbibigay-daan sa IntelliVerse app na mag-save ng mga file, tulad ng mga litratong kinunan mo, diretso sa iyong device!</string>
+    <string name="read_storage_permission_rationale">Kailangan ng IntelliVerse ng access sa storage ng iyong device para basahin ang mga file, tulad ng mga litrato o dokumento, na maaaring gusto mong gamitin sa app.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Oo</string>
+    <string name="No">Hindi</string>
+    <string name="are_you_sure">Sigurado ka bang gusto mong lumabas</string>
+    <string name="exit">Lumabas</string>
+
+    <string name="report_content">Iulat ang Nilalaman</string>
+    <string name="select_reason">Pumili ng Dahilan</string>
+    <string name="offensive">Nakasusuklam</string>
+    <string name="hate_speech">Pahayag ng Pagkapoot</string>
+    <string name="incorrect_info">Maling Impormasyon</string>
+    <string name="other">Iba pa</string>
+    <string name="submit">Ipasa</string>
+    <string name="cancel">Kanselahin</string>
+
+    <string name="reset_settings">I-reset ang Mga Setting</string>
+    <string name="not_relevant">Hindi Relevant</string>
+
+</resources>

@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>ಕಾವ್ಯಾತ್ಮಕ</item>
+        <item>ವೃತ್ತಿಪರ</item>
+        <item>ಕಾನೂನುಬದ್ಧ</item>
+        <item>ತಾಂತ್ರಿಕ</item>
+        <item>ಶೈಕ್ಷಣಿಕ</item>
+        <item>ಪತ್ರಿಕೋದ್ಯಮ</item>
+        <item>ಸೃಜನಶೀಲ</item>
+        <item>ಮನವೊಲಿಸುವ</item>
+        <item>ನಿರೂಪಣೆ</item>
+        <item>ವಿವರಣಾತ್ಮಕ</item>
+        <item>ವಿವರಣಾತ್ಮಕ</item>
+        <item>ಹಾಸ್ಯಮಯ</item>
+        <item>ಅನೌಪಚಾರಿಕ</item>
+        <item>ವ್ಯಾಪಾರ</item>
+        <item>ವೈಜ್ಞಾನಿಕ</item>
+        <item>ರೋಮ್ಯಾಂಟಿಕ್</item>
+        <item>ಐತಿಹಾಸಿಕ</item>
+        <item>ತಾತ್ವಿಕ</item>
+        <item>ಸ್ವ ಸಹಾಯ</item>
+        <item>ಪ್ರಯಾಣ</item>
+        <item>ಮಾರ್ಕೆಟಿಂಗ್</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>ಔಪಚಾರಿಕ</item>
+        <item>ಸಾಮಾನ್ಯ</item>
+        <item>ಸ್ನೇಹಪರ</item>
+        <item>ಗಂಭೀರ</item>
+        <item>ಸಹಾನುಭೂತಿ</item>
+        <item>ದೃಢ</item>
+        <item>ಆಶಾವಾದಿ</item>
+        <item>ಹಾಸ್ಯಮಯ</item>
+        <item>ತಟಸ್ಥ</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>ಕನಿಷ್ಠ</item>
+        <item>ಮಧ್ಯಮ</item>
+        <item>ಸಂಪೂರ್ಣ</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>ಸಂಬಂಧ</item>
+        <item>ಕೆಲಸದ ಸ್ಥಳ</item>
+        <item>ಶಿಕ್ಷಣ</item>
+        <item>ಆರೋಗ್ಯ</item>
+        <item>ಹಣಕಾಸು</item>
+        <item>ಪ್ರಯಾಣ</item>
+        <item>ತಂತ್ರಜ್ಞಾನ</item>
+        <item>ಮನರಂಜನೆ</item>
+        <item>ಸ್ವಯಂ ಸುಧಾರಣೆ</item>
+        <item>ಸಾಮಾನ್ಯ</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>ರಷ್ಯಾ: ಸಾಮೂಹಿಕವಾದಿ</item>
+        <item>ಪೂರ್ವ ಯುರೋಪ್: ವಾಸ್ತವಿಕ</item>
+        <item>ಪಶ್ಚಿಮ ಯುರೋಪ್: ವ್ಯಕ್ತಿವಾದಿ</item>
+        <item>ಆಗ್ನೇಯ ಏಷ್ಯಾ: ಸಾಮರಸ್ಯ-ಕೇಂದ್ರಿತ</item>
+        <item>ಚೀನಾ: ಶ್ರೇಣಿ ವ್ಯವಸ್ಥೆ</item>
+        <item>ಕಾಕಸಸ್: ಗೌರವ-ಬದ್ಧ</item>
+        <item>ಉತ್ತರ ಅಮೆರಿಕಾ: ಉದ್ಯಮಶೀಲ</item>
+        <item>ಲ್ಯಾಟಿನ್ ಅಮೆರಿಕಾ: ಭಾವೋದ್ರಿಕ್ತ</item>
+        <item>ಮಧ್ಯಪ್ರಾಚ್ಯ: ಆತಿಥ್ಯ-ಚಾಲಿತ</item>
+        <item>ಆಫ್ರಿಕಾ: ಕೋಮು</item>
+        <item>ನಾರ್ಡಿಕ್ ದೇಶಗಳು: ಸಮಾನತಾವಾದಿ</item>
+        <item>ದಕ್ಷಿಣ ಏಷ್ಯಾ: ಕುಟುಂಬ-ಕೇಂದ್ರಿತ</item>
+        <item>ಜಪಾನ್: ಗುಂಪು ಸಾಮರಸ್ಯ</item>
+        <item>ಆಸ್ಟ್ರೇಲಿಯಾ: ಸಡಿಲ</item>
+        <item>ಮೆಡಿಟರೇನಿಯನ್: ಅಭಿವ್ಯಕ್ತಿಶೀಲ</item>
+        <item>ಮಧ್ಯ ಏಷ್ಯಾ: ಅಲೆಮಾರಿ ಸಂಪ್ರದಾಯಗಳು</item>
+        <item>ಜರ್ಮನಿ: ರಚನಾತ್ಮಕ</item>
+        <item>ಬಾಲ್ಕನ್ಸ್: ಸ್ಥಿತಿಸ್ಥಾಪಕ</item>
+        <item>ಆರ್ಕ್ಟಿಕ್ ಇಂಡಿಜಿನಸ್: ಪ್ರಕೃತಿ-ಸಂಪರ್ಕ</item>
+        <item>ಯಹೂದಿ: ಸಮುದಾಯ-ಆಧಾರಿತ</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>ಅಮ್ಹಾರೀಕ್</item>
+        <item>ಅರೇಬಿಕ್</item>
+        <item>ಬಂಗಾಳಿ</item>
+        <item>ಬಲ್ಗೇರಿಯನ್</item>
+        <item>ಚೀನೀ ಸರಳೀಕೃತ</item>
+        <item>ಕ್ರೊಯೇಷಿಯನ್</item>
+        <item>ಜೆಕ್</item>
+        <item>ಡ್ಯಾನಿಶ್</item>
+        <item>ಡಚ್</item>
+        <item>ಇಂಗ್ಲಿಷ್</item>
+        <item>ಎಸ್ಟೋನಿಯನ್</item>
+        <item>ಫಿನ್ನಿಶ್</item>
+        <item>ಫ್ರೆಂಚ್</item>
+        <item>ಜರ್ಮನ್</item>
+        <item>ಗ್ರೀಕ್</item>
+        <item>ಗುಜರಾತಿ</item>
+        <item>ಹೀಬ್ರೂ</item>
+        <item>ಹಿಂದಿ</item>
+        <item>ಹಂಗೇರಿಯನ್</item>
+        <item>ಇಂಡೋನೇಷಿಯನ್</item>
+        <item>ಇಟಾಲಿಯನ್</item>
+        <item>ಜಪಾನೀಸ್</item>
+        <item>ಕನ್ನಡ</item>
+        <item>ಕೊರಿಯನ್</item>
+        <item>ಲಾಟ್ವಿಯನ್</item>
+        <item>ಲಿಥುವೇನಿಯನ್</item>
+        <item>ಮಲಯಾಳಂ</item>
+        <item>ಮರಾಠಿ</item>
+        <item>ನಾರ್ವೇಜಿಯನ್</item>
+        <item>ಪಾಷ್ಟೋ</item>
+        <item>ಪರ್ಷಿಯನ್</item>
+        <item>ಪೋಲಿಶ್</item>
+        <item>ಪೋರ್ಚುಗೀಸ್</item>
+        <item>ರೊಮೇನಿಯನ್</item>
+        <item>ರಷ್ಯನ್</item>
+        <item>ಸೆರ್ಬಿಯನ್</item>
+        <item>ಸ್ಲೊವಾಕ್</item>
+        <item>ಸ್ಲೊವೇನಿಯನ್</item>
+        <item>ಸ್ಪ್ಯಾನಿಷ್</item>
+        <item>ಸ್ವಾಹಿಲಿ</item>
+        <item>ಸ್ವೀಡಿಷ್</item>
+        <item>ಟ್ಯಾಗಲೋಗ್</item>
+        <item>ತಮಿಳು</item>
+        <item>ತೆಲುಗು</item>
+        <item>ಥಾಯ್</item>
+        <item>ಟರ್ಕಿಶ್</item>
+        <item>ಉಕ್ರೇನಿಯನ್</item>
+        <item>ಉರ್ದು</item>
+        <item>ವಿಯೆಟ್ನಾಮೀಸ್</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>ಅಪ್ರಸ್ತುತ</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>ವಿವರಣೆ ಇಲ್ಲ</item>
+        <item>ಸಣ್ಣ ವಿವರಣೆ</item>
+        <item>ವಿವರವಾದ ವಿವರಣೆ</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>ಕುಳಿತಿರುವ</item>
+        <item>ಸ್ವಲ್ಪ ಸಕ್ರಿಯ</item>
+        <item>ಸಾಧಾರಣವಾಗಿ ಸಕ್ರಿಯ</item>
+        <item>ತುಂಬಾ ಸಕ್ರಿಯ</item>
+        <item>ವಿಪರೀತ ಸಕ್ರಿಯ</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>ಪುರುಷ</item>
+        <item>ಮಹಿಳೆ</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>ವಿಮಾನ</item>
+        <item>ಸೈಕಲ್</item>
+        <item>ಹಡಗು</item>
+        <item>ಬಸ್</item>
+        <item>ಮೋಟಾರ್ ಸೈಕಲ್</item>
+        <item>ಸ್ವಂತ ಕಾರು</item>
+        <item>ಬಾಡಿಗೆ ಕಾರು</item>
+        <item>ರೈಡ್ ಶೇರಿಂಗ್</item>
+        <item>ಮೆಟ್ರೋ</item>
+        <item>ಟ್ಯಾಕ್ಸಿ</item>
+        <item>ರೈಲು</item>
+        <item>ಟ್ರಾಂ</item>
+        <item>ನಡೆಯುವುದು</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>ಆಹಾರ</item>
+        <item>ಇತಿಹಾಸ</item>
+        <item>ಸಂಸ್ಕೃತಿ</item>
+        <item>ನಿಸರ್ಗ</item>
+        <item>ವಿಶ್ರಾಂತಿ</item>
+        <item>ಸಾಹಸ</item>
+        <item>ರಾತ್ರಿ ಜೀವನ</item>
+        <item>ಖರೀದಿ</item>
+        <item>ಕುಟುಂಬ</item>
+        <item>ರೊಮ್ಯಾನ್ಸ್</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>ಚಿತ್ರ ತೆಗೆಯಿರಿ</item>
+        <item>ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ</item>
+        <item>ಫೈಲ್ ಅಪ್ಲೋಡ್ ಮಾಡಿ</item>
+        <item>ಲಿಂಕ್ ನೀಡಿ</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">ಕ್ಷಮಿಸಿ, ರಷ್ಯಾ ಮತ್ತು ಬೆಲಾರಸ್‌ನಲ್ಲಿ ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ, ದಯವಿಟ್ಟು vpn ಬಳಸಿ</string>
+    <string name="error_service_not_available_title">ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ</string>
+    <string name="error_common_title">ದೋಷ</string>
+    <string name="error_common_message">ಅಪ್ಲಿಕೇಶನ್ ಚಾಲನೆಯಲ್ಲಿರುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ. ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ನವೀಕರಿಸಲು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">ಓಹ್! ಈ ವೈಶಿಷ್ಟ್ಯಕ್ಕೆ ಕ್ಯಾಮರಾ ಪ್ರವೇಶದ ಅಗತ್ಯವಿದೆ ಎಂದು ತೋರುತ್ತದೆ. ನಿಮ್ಮ ಸಾಧನದ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ, ನಿಮ್ಮ ಅಪ್ಲಿಕೇಶನ್ ಪಟ್ಟಿಯಲ್ಲಿ IntelliVerse ಅನ್ನು ಹುಡುಕಿ ಮತ್ತು ಮ್ಯಾಜಿಕ್ ಅನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲು ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯನ್ನು ನೀಡಿ!</string>
+    <string name="permanent_denied_read_media_permission_explanation">ಓಹ್! ನಿಮ್ಮ ಗ್ಯಾಲರಿಯಿಂದ ಚಿತ್ರಗಳನ್ನು ಬಳಸಲು, IntelliVerse ನಿಮ್ಮ ಫೋಟೋಗಳನ್ನು ಓದಲು ಅನುಮತಿ ಬೇಕಾಗುತ್ತದೆ. ನಿಮ್ಮ ಸಾಧನದ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ, ನಿಮ್ಮ ಅಪ್ಲಿಕೇಶನ್ ಪಟ್ಟಿಯಲ್ಲಿ IntelliVerse ಅನ್ನು ಹುಡುಕಿ ಮತ್ತು ಮ್ಯಾಜಿಕ್ ಅನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲು ಫೋಟೋ ಪ್ರವೇಶವನ್ನು ನೀಡಿ!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">ಓಹ್! ನಿಮ್ಮ ಸಾಧನಕ್ಕೆ ಫೈಲ್‌ಗಳನ್ನು ಉಳಿಸಲು, IntelliVerse ನಿಮ್ಮ ಸಂಗ್ರಹಣೆಗೆ ಬರೆಯಲು ಅನುಮತಿ ಬೇಕಾಗುತ್ತದೆ. ನಿಮ್ಮ ಸಾಧನದ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ, ನಿಮ್ಮ ಅಪ್ಲಿಕೇಶನ್ ಪಟ್ಟಿಯಲ್ಲಿ IntelliVerse ಅನ್ನು ಹುಡುಕಿ ಮತ್ತು ಮ್ಯಾಜಿಕ್ ಅನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲು ಶೇಖರಣಾ ಪ್ರವೇಶವನ್ನು ನೀಡಿ!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">ಓಹ್! ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿರುವ ಫೈಲ್‌ಗಳನ್ನು ಪ್ರವೇಶಿಸಲು, IntelliVerse ನಿಮ್ಮ ಶೇಖರಣೆಯನ್ನು ಓದಲು ಅನುಮತಿ ಬೇಕಾಗುತ್ತದೆ. ನಿಮ್ಮ ಸಾಧನದ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ, ನಿಮ್ಮ ಅಪ್ಲಿಕೇಶನ್ ಪಟ್ಟಿಯಲ್ಲಿ IntelliVerse ಅನ್ನು ಹುಡುಕಿ ಮತ್ತು ಮ್ಯಾಜಿಕ್ ಅನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲು ಶೇಖರಣಾ ಪ್ರವೇಶವನ್ನು ನೀಡಿ!</string>
+    <string name="camera_permission_rationale">IntelliVerse ಗೆ ನಿಮ್ಮ ಕ್ಯಾಮೆರಾಗೆ ಪ್ರವೇಶದ ಅಗತ್ಯವಿದೆ ಆದ್ದರಿಂದ ನಿಮ್ಮ ಶಾಲಾ ವ್ಯಾಯಾಮಗಳ ಫೋಟೋಗಳನ್ನು ತ್ವರಿತವಾಗಿ ಸ್ನ್ಯಾಪ್ ಮಾಡಬಹುದು!</string>
+    <string name="read_media_permission_rationale">ನಿಮ್ಮ ಫೋಟೋಗಳಿಗೆ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸುವುದರಿಂದ IntelliVerse ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಬಳಸಲು ನಿಮ್ಮ ಗ್ಯಾಲರಿಯಿಂದ ಚಿತ್ರಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ!</string>
+    <string name="write_storage_permission_rationale">ನಿಮ್ಮ ಶೇಖರಣೆಗೆ ಬರೆಯುವ ಅನುಮತಿಯು IntelliVerse ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ನೀವು ತೆಗೆದ ಫೋಟೋಗಳಂತಹ ಫೈಲ್‌ಗಳನ್ನು ನಿಮ್ಮ ಸಾಧನಕ್ಕೆ ಉಳಿಸಲು ಅನುಮತಿಸುತ್ತದೆ!</string>
+    <string name="read_storage_permission_rationale">ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ನೀವು ಬಳಸಲು ಬಯಸುವ ಫೋಟೋಗಳು ಅಥವಾ ಡಾಕ್ಯುಮೆಂಟ್‌ಗಳಂತಹ ಫೈಲ್‌ಗಳನ್ನು ಓದಲು IntelliVerse ಗೆ ನಿಮ್ಮ ಸಾಧನದ ಸಂಗ್ರಹಣೆಗೆ ಪ್ರವೇಶದ ಅಗತ್ಯವಿದೆ.</string>
+
+    // Buttons Labels
+    <string name="Ok">ಸರಿ</string>
+
+    <string name="Yes">ಹೌದು</string>
+    <string name="No">ಇಲ್ಲ</string>
+    <string name="are_you_sure">ನೀವು ಖಚಿತವಾಗಿ ನಿರ್ಗಮಿಸಲು ಬಯಸುತ್ತೀರಾ?</string>
+    <string name="exit">ನಿರ್ಗಮಿಸು</string>
+
+    <string name="report_content">ವಿಷಯವನ್ನು ವರದಿ ಮಾಡಿ</string>
+    <string name="select_reason">ಕಾರಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="offensive">ಆಕ್ರಮಣಕಾರಿ</string>
+    <string name="hate_speech">ದ್ವೇಷ ಭಾಷಣ</string>
+    <string name="incorrect_info">ತಪ್ಪಾದ ಮಾಹಿತಿ</string>
+    <string name="other">ಇತರ</string>
+    <string name="submit">ಸಲ್ಲಿಸು</string>
+    <string name="cancel">ರದ್ದುಮಾಡು</string>
+
+    <string name="reset_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
+    <string name="not_relevant">ಅಪ್ರಸ್ತುತ</string>
+
+</resources>

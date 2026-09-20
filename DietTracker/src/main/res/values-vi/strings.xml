@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker giúp người dùng theo dõi lượng calo, chất béo, protein, carbohydrate, vitamin và khoáng chất nạp vào cơ thể từ thực phẩm. Nó không chỉ đếm các yếu tố này mà còn phân tích những gì được cơ thể hấp thụ sau khi tiêu hóa. Người dùng có thể tải lên hình ảnh sản phẩm, ứng dụng nhận diện các thành phần và cung cấp khả năng chỉnh sửa danh sách.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Hình ảnh Trợ lý Trường học AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Hình ảnh Tải lên Trợ lý Trường học AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Hình ảnh Kiểm tra Giải pháp Trợ lý Trường học AI</string>
+    <string name="ArrowDropDown_icon_content_description">Mở một menu con</string>
+    <string name="add_image">Thêm nhiệm vụ</string>
+    <string name="guidance_detected_ingredients">Xem lại các thành phần được phát hiện. Nếu bất kỳ chi tiết nào không chính xác hoặc bị thiếu, bạn có thể sửa đổi chúng trước khi tạo một phân tích dinh dưỡng mới</string>
+
+    // Text values
+    <string name="ingredients">Thành phần</string>
+    <string name="solution_text_value">Giải pháp</string>
+    <string name="user_task_value">Nhiệm vụ</string>
+    <string name="is_ocr_result_included_value">Sử dụng văn bản được nhận dạng đã chọn</string>
+    <string name="home_loading_waiting_text_value">Đang tải, vui lòng đợi...</string>
+    <string name="progress_bar_hint_text_value">Tiến trình tạo giải pháp</string>
+
+    // Button Labels
+    <string name="next_button_label">Tiếp theo</string>
+    <string name="solve_button_label">Giải</string>
+    <string name="check_solution_button_label">Kiểm tra giải pháp</string>
+    <string name="cheat_sheet_button_label">Hướng dẫn</string>
+    <string name="start_again">Bắt đầu lại</string>
+    <string name="try_again">Thử lại</string>
+    <string name="pick_images">Chọn ảnh</string>
+    <string name="upload_from_url">Tải lên</string>
+    <string name="upload_picture">Tải ảnh lên</string>
+    <string name="take_a_picture">Chụp ảnh</string>
+    <string name="recognize_text_button_label">Hiển thị văn bản được nhận dạng</string>
+
+    // Text Field Labels
+    <string name="foods">Thực phẩm</string>
+    <string name="What_to_solve_TextField_label">Bạn muốn giải quyết vấn đề gì?</string>
+    <string name="rating_TextField_label">Đánh giá</string>
+    <string name="no_solution_chosen">Chưa chọn giải pháp</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 quả chuối và 1 quả táo, tất cả đều cỡ vừa.</string>
+    <string name="first_ocr_result_is_not_ready">Văn bản đang được nhận dạng, vui lòng đợi…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Ngôn ngữ giải pháp</string>
+    <string name="upload_a_file_label">Tải một tập tin lên</string>
+    <string name="explanations_label">Giải thích</string>
+    <string name="physical_activity_label">Hoạt động thể chất</string>
+    <string name="gender_label">Giới tính</string>
+    <string name="age_label">Tuổi</string>
+    <string name="height_label">Chiều cao</string>
+    <string name="weight_label">Cân nặng</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Có vẻ như bạn đã xóa một số hình ảnh khỏi bộ nhớ thư mục của ứng dụng calories. Đừng lo lắng, calories sẽ cố gắng xóa từng hình ảnh một khỏi bộ nhớ cache của ứng dụng. Vui lòng xác nhận việc xóa từng hình ảnh, nếu cần. Bất kỳ hình ảnh nào xuất hiện trống là một hình ảnh bị hỏng. Bạn có muốn tiếp tục không?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI không thể nhận dạng văn bản từ hình ảnh. Vui lòng thử lại.</string>
+    <string name="error_gemini_solution_result_extraction">AI không thể giải quyết vấn đề này. Vui lòng thử lại.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Rất tiếc! Đã xảy ra sự cố. Vui lòng thử lại!</string>
+    <string name="fail_to_load_Uri">Không thể tải hình ảnh vào danh sách. Vui lòng thử tải thủ công!</string>
+    <string name="corrupted_loaded_file">Bạn đã tải một tập tin bị hỏng!</string>
+    <string name="missing_required_settings">Thiếu một số cài đặt bắt buộc. Vui lòng điền chúng vào.</string>
+    <string name="camera_fail_to_open">Rất tiếc! Đã xảy ra sự cố với máy ảnh. Vui lòng thử lại!</string>
+    <string name="upload_image_warning">Vui lòng tải lên một hình ảnh từ thiết bị</string>
+    <string name="select_image_or_text_warning">Vui lòng chọn một hình ảnh hoặc nhập nhiệm vụ.</string>
+    <string name="prompt_is_empty">Văn bản được nhận dạng trống. Vui lòng thử lại!</string>
+    <string name="language_not_supported">"Ngôn ngữ đã chọn không khả dụng để tạo phương tiện. Các tính năng khác sẽ tiếp tục hoạt động. Bạn có muốn tải xuống dữ liệu ngôn ngữ cần thiết để bật tính năng này không?"</string>
+
+    // labels
+    <string name="home">Trang chủ</string>
+    <string name="settings">Cài đặt</string>
+    <string name="results">Kết quả</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Chọn nội dung để chia sẻ</string>
+    <string name="share_user_ingredients">Chia sẻ Thành phần của tôi</string>
+    <string name="share_recognized_ingredients">Chia sẻ Thành phần được nhận dạng</string>
+    <string name="share_solution">Chia sẻ Giải pháp</string>
+    <string name="share_image">Chia sẻ Hình ảnh</string>
+    <string name="share">Chia sẻ</string>
+
+    // installation
+    <string name="install">Cài đặt</string>
+    <string name="install_language">Cài đặt Ngôn ngữ</string>
+
+    <string name="solved_by_diet_tracker">Được giải quyết bởi DietTracker\nHãy xem ứng dụng của chúng tôi trên Google Play</string>
+
+</resources>

@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">Το OneClickTrip είναι ο έξυπνος ταξιδιωτικός σας προγραμματιστής που λειτουργεί με τεχνητή νοημοσύνη. Απλώς περιγράψτε το ταξίδι των ονείρων σας ή ανεβάστε έμπνευση και λάβετε άμεσα ένα εξατομικευμένο πρόγραμμα μέρα με τη μέρα με επιλογές μεταφοράς, συνδέσμους ξενοδοχείων, εκτιμήσεις προϋπολογισμού και τοπικές συμβουλές — όλα με ένα μόνο κλικ.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Αναγνωρισμένο κείμενο</string>
+    <string name="solution_text_value">Λύση</string>
+    <string name="user_task_value">Εργασία</string>
+    <string name="progress_bar_hint_text_value">Πρόοδος δημιουργίας λύσεων</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Κείμενο</string>
+    <string name="no_solution_chosen">Δεν έχει επιλεγεί ακόμα λύση</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Θέλω ένα ταξίδι τριών ημερών με χαλάρωση και πολιτισμό, με ιστορικά αξιοθέατα, τοπική κουζίνα, ελαφριά περπατήματα και συνδυασμό ξεναγούμενων και ελεύθερων δραστηριοτήτων σε μια πόλη ή κοντά.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Γλώσσα λύσης</string>
+    <string name="max_budget_label">Μέγιστος προϋπολογισμός</string>
+    <string name="travelers_number_label">Αριθμός ταξιδιωτών</string>
+    <string name="trip_duration_label">Διάρκεια ταξιδιού</string>
+    <string name="transportation_type_label">Μέσο μεταφοράς</string>
+    <string name="trip_style_label">Στυλ ταξιδιού</string>
+    <string name="origin_location_label">Σημείο εκκίνησης</string>
+    <string name="trip_type_label">Τύπος ταξιδιού</string>
+    <string name="one_way_trip">Μονής διαδρομής</string>
+    <string name="round_trip">Με επιστροφή</string>
+    <string name="days">ημέρες</string>
+    <string name="new_york">Νέα Υόρκη</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Εισαγάγετε μέσο μεταφοράς</string>
+    <string name="enter_location">Εισαγάγετε τοποθεσία</string>
+    <string name="add">Προσθήκη</string>
+    <string name="travel_path">Διαδρομή ταξιδιού</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Η τεχνητή νοημοσύνη δεν μπόρεσε να λύσει το πρόβλημα. Προσπαθήστε ξανά.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Ουπς! Κάτι πήγε στραβά. Προσπαθήστε ξανά!</string>
+    <string name="fail_to_load_Uri">Αποτυχία φόρτωσης εικόνας στη λίστα. Προσπαθήστε χειροκίνητα!</string>
+    <string name="corrupted_loaded_file">Φορτώσατε κατεστραμμένο αρχείο!</string>
+    <string name="missing_required_settings">Λείπουν απαιτούμενες ρυθμίσεις. Παρακαλώ συμπληρώστε τις.</string>
+    <string name="camera_fail_to_open">Ουπς! Πρόβλημα με την κάμερα. Δοκιμάστε ξανά!</string>
+    <string name="select_image_or_text_warning">Επιλέξτε εικόνα ή εισάγετε εργασία.</string>
+    <string name="language_not_supported">
+        Η επιλεγμένη γλώσσα δεν είναι διαθέσιμη για δημιουργία πολυμέσων. Οι άλλες λειτουργίες συνεχίζουν να λειτουργούν. Θέλετε να κατεβάσετε τα απαραίτητα δεδομένα γλώσσας;
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Αρχική</string>
+    <string name="settings">Ρυθμίσεις</string>
+    <string name="results">Αποτέλεσμα</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Επιλέξτε τι θέλετε να μοιραστείτε</string>
+    <string name="share_user_translation">Μοιραστείτε το κείμενό μου</string>
+    <string name="share_ocr_result">Μοιραστείτε το αναγνωρισμένο κείμενο</string>
+    <string name="share_solution">Μοιραστείτε τη λύση</string>
+    <string name="share_image">Μοιραστείτε την εικόνα</string>
+    <string name="share">Μοιραστείτε</string>
+
+    <!-- Installation -->
+    <string name="install">Εγκατάσταση</string>
+    <string name="install_language">Εγκατάσταση γλώσσας</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Λύθηκε από το OneClickTrip\nΔείτε την εφαρμογή μας στο Google Play</string>
+</resources>

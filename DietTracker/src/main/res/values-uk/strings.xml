@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker допомагає користувачам відстежувати споживання калорій, жирів, білків, вуглеводів, вітамінів і мінералів у їжі. Він не тільки рахує ці елементи, але й аналізує, що засвоюється організмом після перетравлення. Користувачі можуть завантажувати зображення продуктів, програма розпізнає інгредієнти та надає можливість редагувати список.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Зображення AI School Assistant</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Зображення для завантаження в AI School Assistant</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Зображення для перевірки рішення в AI School Assistant</string>
+    <string name="ArrowDropDown_icon_content_description">Відкриває підменю</string>
+    <string name="add_image">Додати завдання</string>
+    <string name="guidance_detected_ingredients">Перегляньте виявлені інгредієнти. Якщо будь-які деталі невірні або відсутні, ви можете змінити їх перед створенням нового аналізу харчової цінності</string>
+
+    // Text values
+    <string name="ingredients">Інгредієнти</string>
+    <string name="solution_text_value">Рішення</string>
+    <string name="user_task_value">Завдання</string>
+    <string name="is_ocr_result_included_value">Використовувати обраний розпізнаний текст</string>
+    <string name="home_loading_waiting_text_value">Завантаження, будь ласка, зачекайте...</string>
+    <string name="progress_bar_hint_text_value">Прогрес створення рішень</string>
+
+    // Button Labels
+    <string name="next_button_label">Далі</string>
+    <string name="solve_button_label">Вирішити</string>
+    <string name="check_solution_button_label">Перевірити рішення</string>
+    <string name="cheat_sheet_button_label">Шпаргалка</string>
+    <string name="start_again">Почати знову</string>
+    <string name="try_again">Спробувати ще раз</string>
+    <string name="pick_images">Обрати зображення</string>
+    <string name="upload_from_url">Завантажити</string>
+    <string name="upload_picture">Завантажити зображення</string>
+    <string name="take_a_picture">Зробити знімок</string>
+    <string name="recognize_text_button_label">Показати розпізнаний текст</string>
+
+    // Text Field Labels
+    <string name="foods">Продукти</string>
+    <string name="What_to_solve_TextField_label">Що ви хочете вирішити?</string>
+    <string name="rating_TextField_label">Рейтинг</string>
+    <string name="no_solution_chosen">Рішення ще не обрано</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 банани та 1 яблуко, всі середнього розміру.</string>
+    <string name="first_ocr_result_is_not_ready">Текст розпізнається, будь ласка, зачекайте…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Мова рішення</string>
+    <string name="upload_a_file_label">Завантажити файл</string>
+    <string name="explanations_label">Пояснення</string>
+    <string name="physical_activity_label">Фізична активність</string>
+    <string name="gender_label">Стать</string>
+    <string name="age_label">Вік</string>
+    <string name="height_label">Зріст</string>
+    <string name="weight_label">Вага</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Схоже, ви видалили деякі зображення зі сховища каталогу програми калорій. Не хвилюйтеся, калорії спробують очистити ці зображення одне за одним із кешу програми. Будь ласка, підтвердьте кожне видалення зображення, якщо потрібно. Будь-яке зображення, яке виглядає порожнім, є пошкодженим. Хочете продовжити?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI не зміг розпізнати текст із зображення. Будь ласка, спробуйте ще раз.</string>
+    <string name="error_gemini_solution_result_extraction">AI не зміг вирішити цю проблему. Будь ласка, спробуйте ще раз.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ой! Щось пішло не так. Будь ласка, спробуйте ще раз!</string>
+    <string name="fail_to_load_Uri">Не вдалося завантажити зображення до списку. Будь ласка, спробуйте завантажити його вручну!</string>
+    <string name="corrupted_loaded_file">Ви завантажили пошкоджений файл!</string>
+    <string name="missing_required_settings">Відсутні деякі необхідні налаштування. Будь ласка, заповніть їх.</string>
+    <string name="camera_fail_to_open">Ой! Щось пішло не так з камерою. Будь ласка, спробуйте ще раз!</string>
+    <string name="upload_image_warning">Будь ласка, завантажте зображення з пристрою</string>
+    <string name="select_image_or_text_warning">Будь ласка, виберіть зображення або введіть завдання.</string>
+    <string name="prompt_is_empty">Розпізнаний текст порожній. Будь ласка, спробуйте ще раз!</string>
+    <string name="language_not_supported">"Обрана мова недоступна для створення медіа. Інші функції продовжуватимуть працювати. Чи бажаєте ви завантажити необхідні мовні дані, щоб увімкнути цю функцію?"</string>
+
+    // labels
+    <string name="home">Головна</string>
+    <string name="settings">Налаштування</string>
+    <string name="results">Результат</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Виберіть, чим поділитися</string>
+    <string name="share_user_ingredients">Поділитися моїми інгредієнтами</string>
+    <string name="share_recognized_ingredients">Поділитися розпізнаними інгредієнтами</string>
+    <string name="share_solution">Поділитися рішенням</string>
+    <string name="share_image">Поділитися зображенням</string>
+    <string name="share">Поділитися</string>
+
+    // installation
+    <string name="install">Встановити</string>
+    <string name="install_language">Встановити мову</string>
+
+    <string name="solved_by_diet_tracker">Вирішено DietTracker\nПерегляньте наш додаток у Google Play</string>
+
+</resources>

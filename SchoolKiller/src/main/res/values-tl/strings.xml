@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">Tinutulungan ng SchoolKiller ang mga mag-aaral na lutasin ang mga problemang matematikal, pati na rin ang mga pangkalahatang problema.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Larawan ng AI School Assistant</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Mag-upload sa Larawan ng AI School Assistant</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Suriin ang Solusyon Larawan ng AI School Assistant</string>
+    <string name="ArrowDropDown_icon_content_description">Nagbubukas ng submenu</string>
+    <string name="add_image">Magdagdag ng gawain</string>
+    <string name="Guidance">Para sa pinakamahusay na resulta, mangyaring magbigay ng detalyadong TEKSTO para sa iyong gawain. Kung maglakip ka ng mga larawan, siguraduhing ang anumang kinikilalang teksto ay na-edit upang tumugma nang tumpak sa orihinal.</string>
+
+    // Text values
+    <string name="recognized_text_value">Kinikilalang teksto</string>
+    <string name="solution_text_value">Solusyon</string>
+    <string name="user_task_value">Gawain</string>
+    <string name="is_ocr_result_included_value">Gamitin ang napiling kinikilalang teksto</string>
+    <string name="home_loading_waiting_text_value">Naglo-load, mangyaring maghintay...</string>
+    <string name="progress_bar_hint_text_value">Pag-unlad sa pagbuo ng solusyon</string>
+
+    // Button Labels
+    <string name="next_button_label">Susunod</string>
+    <string name="solve_button_label">Lutasin</string>
+    <string name="check_solution_button_label">Suriin ang solusyon</string>
+    <string name="cheat_sheet_button_label">Cheat sheet</string>
+    <string name="start_again">Muling magsimula</string>
+    <string name="try_again">Subukan muli</string>
+    <string name="pick_images">Pumili ng mga Larawan</string>
+    <string name="upload_from_url">I-upload</string>
+    <string name="upload_picture">Mag-upload ng Larawan</string>
+    <string name="take_a_picture">Kumuha ng Larawan</string>
+    <string name="recognize_text_button_label">Ipakita ang kinikilalang teksto</string>
+
+    // Text Field Labels
+    <string name="tasks">Gawain</string>
+    <string name="What_to_solve_TextField_label">Ano ang gusto mong lutasin?</string>
+    <string name="rating_TextField_label">Rating</string>
+    <string name="no_solution_chosen">Hindi pa napipili ang solusyon</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Sabihin mo sa akin ang tungkol sa Pythagorean theorem.</string>
+    <string name="first_ocr_result_is_not_ready">Kinikilala ang teksto, mangyaring maghintay...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Wika ng solusyon</string>
+    <string name="upload_a_file_label">Mag-upload ng file</string>
+    <string name="explanations_label">Mga Paliwanag</string>
+    <string name="grade_label">"Baitang"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Mukhang binura mo ang ilang larawan mula sa direktoryo ng storage ng SchoolKiller app. Huwag mag-alala, susubukan ng SchoolKiller na i-clear ang mga larawang ito isa-isa mula sa cache ng application. Mangyaring kumpirmahin ang bawat pagtanggal ng larawan, kung kinakailangan. Ang anumang larawang lumalabas na blangko ay nasira. Gusto mo bang magpatuloy?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">Hindi nakilala ng AI ang teksto mula sa larawan. Mangyaring, subukan muli.</string>
+    <string name="error_gemini_solution_result_extraction">Hindi nalutas ng AI ang problemang ito. Mangyaring, subukan muli.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Oops! May nangyaring mali. Mangyaring subukan muli!</string>
+    <string name="fail_to_load_Uri">Nabigo ang pag-load ng larawan sa listahan. Mangyaring subukan itong i-load nang manu-mano!</string>
+    <string name="corrupted_loaded_file">Nakapag-load ka ng sirang file!</string>
+    <string name="camera_fail_to_open">Oops! May nangyaring mali sa camera. Mangyaring subukan muli!</string>
+    <string name="upload_image_warning">Mangyaring mag-upload ng larawan mula sa device</string>
+    <string name="select_image_or_text_warning">Mangyaring pumili ng larawan o i-type ang gawain.</string>
+    <string name="prompt_is_empty">Walang laman ang kinikilalang teksto. Mangyaring subukan muli!</string>
+    <string name="language_not_supported">"Ang napiling wika ay hindi available para sa pagbuo ng media. Patuloy na gagana ang iba pang mga feature. Gusto mo bang i-download ang kinakailangang data ng wika upang paganahin ang feature na ito?"</string>
+
+    // labels
+    <string name="home">Home</string>
+    <string name="settings">Mga Setting</string>
+    <string name="results">Resulta</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Piliin kung ano ang ibabahagi</string>
+    <string name="share_user_task">Ibahagi ang Aking Gawain</string>
+    <string name="share_ocr_result">Ibahagi ang Kinikilalang Teksto</string>
+    <string name="share_solution">Ibahagi ang Solusyon</string>
+    <string name="share_image">Ibahagi ang Larawan</string>
+    <string name="share">Ibahagi</string>
+
+    // installation
+    <string name="install">I-install</string>
+    <string name="install_language">I-install ang Wika</string>
+
+    <string name="solved_by_schoolkiller">Nilutas ng SchoolKiller\nTingnan ang aming app sa Google Play</string>
+
+</resources>

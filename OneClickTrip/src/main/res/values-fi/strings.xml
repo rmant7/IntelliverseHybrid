@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip on älykäs matkasuunnittelijasi, jota tukee tekoäly. Kuvaile vain unelmiesi matka tai lataa inspiraatiota, ja saat välittömästi henkilökohtaisen päiväkohtaisen matkasuunnitelman kuljetusvaihtoehtoineen, hotellilinkkeineen, budjettiarvioineen ja paikallisvinkkeineen — kaikki yhdellä klikkauksella.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Tunnistettu teksti</string>
+    <string name="solution_text_value">Ratkaisu</string>
+    <string name="user_task_value">Tehtävä</string>
+    <string name="progress_bar_hint_text_value">Ratkaisujen luomisen edistyminen</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Teksti</string>
+    <string name="no_solution_chosen">Ratkaisua ei ole vielä valittu</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Haluan 3 päivän rentouttavan ja kulttuurillisen matkan, johon kuuluu historiallisia kohteita, paikallista ruokaa, kevyitä kävelyitä ja yhdistelmä ohjattuja ja omatoimisia aktiviteetteja yhdessä kaupungissa tai sen lähellä.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Ratkaisun kieli</string>
+    <string name="max_budget_label">Suurin budjetti</string>
+    <string name="travelers_number_label">Matkustajien määrä</string>
+    <string name="trip_duration_label">Matkan kesto</string>
+    <string name="transportation_type_label">Kulkuväline</string>
+    <string name="trip_style_label">Matkatyyli</string>
+    <string name="origin_location_label">Lähtöpaikka</string>
+    <string name="trip_type_label">Matkan tyyppi</string>
+    <string name="one_way_trip">Yhdensuuntainen matka</string>
+    <string name="round_trip">Meno-paluu-matka</string>
+    <string name="days">päivää</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Syötä kulkuväline</string>
+    <string name="enter_location">Syötä sijainti</string>
+    <string name="add">Lisää</string>
+    <string name="travel_path">Matkareitti</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Tekoäly ei onnistunut ratkaisemaan ongelmaa. Yritä uudelleen.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Hups! Jotain meni pieleen. Yritä uudelleen!</string>
+    <string name="fail_to_load_Uri">Kuvan lataaminen listalle epäonnistui. Kokeile manuaalisesti!</string>
+    <string name="corrupted_loaded_file">Latasit vioittuneen tiedoston!</string>
+    <string name="missing_required_settings">Joidenkin pakollisten asetusten täyttö puuttuu. Täytä ne.</string>
+    <string name="camera_fail_to_open">Hups! Kameran avaaminen epäonnistui. Yritä uudelleen!</string>
+    <string name="select_image_or_text_warning">Valitse kuva tai kirjoita tehtävä.</string>
+    <string name="language_not_supported">
+        Valittu kieli ei ole käytettävissä median luontiin. Muut ominaisuudet toimivat edelleen. Haluatko ladata tarvittavat kielitiedot?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Etusivu</string>
+    <string name="settings">Asetukset</string>
+    <string name="results">Tulos</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Valitse mitä jaetaan</string>
+    <string name="share_user_translation">Jaa oma tekstini</string>
+    <string name="share_ocr_result">Jaa tunnistettu teksti</string>
+    <string name="share_solution">Jaa ratkaisu</string>
+    <string name="share_image">Jaa kuva</string>
+    <string name="share">Jaa</string>
+
+    <!-- Installation -->
+    <string name="install">Asenna</string>
+    <string name="install_language">Asenna kieli</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Ratkaistu OneClickTripilla\nKatso sovelluksemme Google Play -kaupasta</string>
+</resources>

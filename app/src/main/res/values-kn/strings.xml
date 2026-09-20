@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">ಇಂಟೆಲ್ಲಿವರ್ಸ್‌ಗೆ ಸ್ವಾಗತ</string>
+    <string name="cheaptrip_info">ಚೀಪ್‌ಟ್ರಿಪ್ ಒಂದು ವಿಶಿಷ್ಟವಾದ ಸರ್ಚ್ ಎಂಜಿನ್ ಆಗಿದ್ದು, ಇದು ವಿಮಾನಗಳು, ಬಸ್‌ಗಳು, ರೈಲುಗಳು ಮತ್ತು ದೋಣಿಗಳನ್ನು ಸಂಯೋಜಿಸಿ ನಗರಗಳ ನಡುವೆ ಅಗ್ಗದ ಮಾರ್ಗಗಳನ್ನು ಕಂಡುಕೊಳ್ಳುತ್ತದೆ.</string>
+    <string name="matterofchoice_info">ಮ್ಯಾಟರ್ ಆಫ್ ಚಾಯ್ಸ್ ನಿಮಗೆ ನಿರ್ಧಾರ ತೆಗೆದುಕೊಳ್ಳುವ ಕೌಶಲ್ಯಗಳನ್ನು ಕಲಿಯಲು ಸಹಾಯ ಮಾಡಲು ಸಂವಾದಾತ್ಮಕ ಸನ್ನಿವೇಶಗಳನ್ನು ಪ್ರಸ್ತುತಪಡಿಸುತ್ತದೆ.</string>
+</resources>

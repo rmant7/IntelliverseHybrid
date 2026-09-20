@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller hjælper studerende med at løse matematiske problemer specifikt, samt generelle problemer.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Skoleassistent Billede</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Upload Til AI Skoleassistent Billede</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Tjek Løsning AI Skoleassistent Billede</string>
+    <string name="ArrowDropDown_icon_content_description">Åbner en undermenu</string>
+    <string name="add_image">Tilføj opgave</string>
+    <string name="Guidance">For optimale resultater bedes du angive detaljeret TEKST til din opgave. Hvis du vedhæfter billeder, skal du sørge for, at al genkendt tekst redigeres, så den stemmer nøjagtigt overens med originalen.</string>
+
+    // Text values
+    <string name="recognized_text_value">Genkendt tekst</string>
+    <string name="solution_text_value">Løsning</string>
+    <string name="user_task_value">Opgave</string>
+    <string name="is_ocr_result_included_value">Brug valgt genkendt tekst</string>
+    <string name="home_loading_waiting_text_value">Indlæser, vent venligst...</string>
+    <string name="progress_bar_hint_text_value">Fremskridt for løsningsgenerering</string>
+
+    // Button Labels
+    <string name="next_button_label">Næste</string>
+    <string name="solve_button_label">Løs</string>
+    <string name="check_solution_button_label">Tjek løsning</string>
+    <string name="cheat_sheet_button_label">Snydeark</string>
+    <string name="start_again">Start forfra</string>
+    <string name="try_again">Prøv igen</string>
+    <string name="pick_images">Vælg billeder</string>
+    <string name="upload_from_url">Upload</string>
+    <string name="upload_picture">Upload billede</string>
+    <string name="take_a_picture">Tag et billede</string>
+    <string name="recognize_text_button_label">Vis genkendt tekst</string>
+
+    // Text Field Labels
+    <string name="tasks">Opgave</string>
+    <string name="What_to_solve_TextField_label">Hvad vil du løse?</string>
+    <string name="rating_TextField_label">Bedømmelse</string>
+    <string name="no_solution_chosen">Løsning er ikke valgt endnu</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Fortæl mig om Pythagoras\' læresætning.</string>
+    <string name="first_ocr_result_is_not_ready">Tekst genkendes, vent venligst…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Løsningssprog</string>
+    <string name="upload_a_file_label">Upload en fil</string>
+    <string name="explanations_label">Forklaringer</string>
+    <string name="grade_label">"Karakter"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Det ser ud til, at du har slettet nogle billeder fra SchoolKiller appens lagringsmappe. Bare rolig, SchoolKiller vil forsøge at rydde disse billeder fra applikationens cache en efter en. Bekræft venligst hver billedsletning, hvis det er nødvendigt. Ethvert billede, der vises tomt, er et beskadiget billede. Vil du fortsætte?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI var ikke i stand til at genkende tekst fra billedet. Prøv venligst igen.</string>
+    <string name="error_gemini_solution_result_extraction">AI var ikke i stand til at løse dette problem. Prøv venligst igen.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hovsa! Noget gik galt. Prøv venligst igen!</string>
+    <string name="fail_to_load_Uri">Kunne ikke indlæse billedet til listen. Prøv venligst at indlæse det manuelt!</string>
+    <string name="corrupted_loaded_file">Du har indlæst en beskadiget fil!</string>
+    <string name="camera_fail_to_open">Hovsa! Noget gik galt med kameraet. Prøv venligst igen!</string>
+    <string name="upload_image_warning">Upload venligst et billede fra enheden</string>
+    <string name="select_image_or_text_warning">Vælg venligst et billede eller indtast opgave.</string>
+    <string name="prompt_is_empty">Genkendt tekst er tom. Prøv venligst igen!</string>
+    <string name="language_not_supported">"Det valgte sprog er ikke tilgængeligt for mediegenerering. Andre funktioner vil fortsætte med at fungere. Vil du downloade de nødvendige sprogdata for at aktivere denne funktion?"</string>
+
+    // labels
+    <string name="home">Hjem</string>
+    <string name="settings">Indstillinger</string>
+    <string name="results">Resultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Vælg hvad du vil dele</string>
+    <string name="share_user_task">Del Min Opgave</string>
+    <string name="share_ocr_result">Del Genkendt Tekst</string>
+    <string name="share_solution">Del Løsning</string>
+    <string name="share_image">Del Billede</string>
+    <string name="share">Del</string>
+
+    // installation
+    <string name="install">Installer</string>
+    <string name="install_language">Installer Sprog</string>
+
+    <string name="solved_by_schoolkiller">Løst af SchoolKiller\nTjek vores app på Google Play</string>
+
+</resources>

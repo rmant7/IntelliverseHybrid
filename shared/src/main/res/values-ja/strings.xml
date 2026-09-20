@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>詩的</item>
+        <item>プロフェッショナル</item>
+        <item>法律</item>
+        <item>技術的</item>
+        <item>学術的</item>
+        <item>ジャーナリスティック</item>
+        <item>創造的</item>
+        <item>説得力のある</item>
+        <item>物語的</item>
+        <item>記述的</item>
+        <item>解説的</item>
+        <item>ユーモラス</item>
+        <item>インフォーマル</item>
+        <item>ビジネス</item>
+        <item>科学的</item>
+        <item>ロマンチック</item>
+        <item>歴史的</item>
+        <item>哲学的</item>
+        <item>自己啓発</item>
+        <item>旅行</item>
+        <item>マーケティング</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>フォーマル</item>
+        <item>カジュアル</item>
+        <item>フレンドリー</item>
+        <item>シリアス</item>
+        <item>共感的</item>
+        <item>断定的</item>
+        <item>楽観的</item>
+        <item>ユーモラス</item>
+        <item>ニュートラル</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>最小限</item>
+        <item>中程度</item>
+        <item>完全</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>人間関係</item>
+        <item>職場</item>
+        <item>教育</item>
+        <item>健康</item>
+        <item>金融</item>
+        <item>旅行</item>
+        <item>テクノロジー</item>
+        <item>エンターテイメント</item>
+        <item>自己改善</item>
+        <item>一般</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>ロシア：集団主義的</item>
+        <item>東ヨーロッパ：実用的</item>
+        <item>西ヨーロッパ：個人主義的</item>
+        <item>東南アジア：調和重視</item>
+        <item>中国：階層的</item>
+        <item>コーカサス：名誉を重んじる</item>
+        <item>北米：起業家精神</item>
+        <item>ラテンアメリカ：情熱的</item>
+        <item>中東：おもてなし重視</item>
+        <item>アフリカ：共同体的</item>
+        <item>北欧：平等主義</item>
+        <item>南アジア：家族中心</item>
+        <item>日本：グループの調和</item>
+        <item>オーストラリア：のんびり</item>
+        <item>地中海：表現豊か</item>
+        <item>中央アジア：遊牧民の伝統</item>
+        <item>ドイツ：構造化</item>
+        <item>バルカン半島：回復力がある</item>
+        <item>北極圏先住民：自然とつながっている</item>
+        <item>ユダヤ：コミュニティ志向</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>アムハラ語</item>
+        <item>アラビア語</item>
+        <item>ベンガル語</item>
+        <item>ブルガリア語</item>
+        <item>中国語（簡体字）</item>
+        <item>クロアチア語</item>
+        <item>チェコ語</item>
+        <item>デンマーク語</item>
+        <item>オランダ語</item>
+        <item>英語</item>
+        <item>エストニア語</item>
+        <item>フィンランド語</item>
+        <item>フランス語</item>
+        <item>ドイツ語</item>
+        <item>ギリシャ語</item>
+        <item>グジャラート語</item>
+        <item>ヘブライ語</item>
+        <item>ヒンディー語</item>
+        <item>ハンガリー語</item>
+        <item>インドネシア語</item>
+        <item>イタリア語</item>
+        <item>日本語</item>
+        <item>カンナダ語</item>
+        <item>韓国語</item>
+        <item>ラトビア語</item>
+        <item>リトアニア語</item>
+        <item>マレー語</item>
+        <item>マラーティー語</item>
+        <item>ノルウェー語</item>
+        <item>パシュトー語</item>
+        <item>ペルシア語</item>
+        <item>ポーランド語</item>
+        <item>ポルトガル語</item>
+        <item>ルーマニア語</item>
+        <item>ロシア語</item>
+        <item>セルビア語</item>
+        <item>スロバキア語</item>
+        <item>スロベニア語</item>
+        <item>スペイン語</item>
+        <item>スワヒリ語</item>
+        <item>スウェーデン語</item>
+        <item>タガログ語</item>
+        <item>タミル語</item>
+        <item>テルグ語</item>
+        <item>タイ語</item>
+        <item>トルコ語</item>
+        <item>ウクライナ語</item>
+        <item>ウルドゥー語</item>
+        <item>ベトナム語</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>該当なし</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>説明なし</item>
+        <item>簡単な説明</item>
+        <item>詳細な説明</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>座りっぱなし</item>
+        <item>軽い運動</item>
+        <item>適度な運動</item>
+        <item>活発な運動</item>
+        <item>非常に活発な運動</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>男性</item>
+        <item>女性</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>飛行機</item>
+        <item>自転車</item>
+        <item>ボート</item>
+        <item>バス</item>
+        <item>オートバイ</item>
+        <item>自家用車</item>
+        <item>レンタカー</item>
+        <item>ライドシェア</item>
+        <item>地下鉄</item>
+        <item>タクシー</item>
+        <item>電車</item>
+        <item>路面電車</item>
+        <item>徒歩</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>食べ物</item>
+        <item>歴史</item>
+        <item>文化</item>
+        <item>自然</item>
+        <item>リラクゼーション</item>
+        <item>冒険</item>
+        <item>ナイトライフ</item>
+        <item>ショッピング</item>
+        <item>家族</item>
+        <item>ロマンチック</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>写真を撮る</item>
+        <item>画像をアップロード</item>
+        <item>ファイルをアップロード</item>
+        <item>リンクを提供する</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">申し訳ありません。このサービスはロシアとベラルーシでは利用できません。VPNをご利用ください。</string>
+    <string name="error_service_not_available_title">サービスは利用できません</string>
+    <string name="error_common_title">エラー</string>
+    <string name="error_common_message">アプリケーションの実行中にエラーが発生しました。アプリを更新するか、後でもう一度お試しください</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">おっと！この機能にはカメラアクセスが必要です。デバイスの設定に移動し、アプリ一覧からIntelliVerseを見つけて、カメラの権限を付与して魔法を解き放ちましょう！</string>
+    <string name="permanent_denied_read_media_permission_explanation">おっと！ギャラリーの画像を使用するには、IntelliVerseが写真の読み取り権限を必要とします。デバイスの設定に移動し、アプリ一覧からIntelliVerseを見つけて、写真へのアクセスを許可して魔法を解き放ちましょう！</string>
+    <string name="permanent_denied_write_storage_permission_explanation">おっと！ファイルをデバイスに保存するには、IntelliVerseがストレージへの書き込み権限を必要とします。デバイスの設定に移動し、アプリ一覧からIntelliVerseを見つけて、ストレージへのアクセスを許可して魔法を解き放ちましょう！</string>
+    <string name="permanent_denied_read_storage_permission_explanation">おっと！デバイス上のファイルにアクセスするには、IntelliVerseがストレージの読み取り権限を必要とします。デバイスの設定に移動し、アプリ一覧からIntelliVerseを見つけて、ストレージへのアクセスを許可して魔法を解き放ちましょう！</string>
+    <string name="camera_permission_rationale">IntelliVerseはあなたのカメラへのアクセスを必要とします。そうすれば、学校の課題の写真をすぐに撮ることができます！</string>
+    <string name="read_media_permission_rationale">写真へのアクセスを許可すると、ギャラリーから画像を選択して、IntelliVerseアプリ内で使用できます！</string>
+    <string name="write_storage_permission_rationale">ストレージへの書き込み権限により、IntelliVerseアプリは写真などのファイルをデバイスに直接保存できます！</string>
+    <string name="read_storage_permission_rationale">IntelliVerseは、アプリで使用したい写真やドキュメントなどのファイルを読み取るために、デバイスのストレージへのアクセスを必要とします。</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">はい</string>
+    <string name="No">いいえ</string>
+    <string name="are_you_sure">終了してもよろしいですか？</string>
+    <string name="exit">終了</string>
+
+    <string name="report_content">コンテンツを報告</string>
+    <string name="select_reason">理由を選択</string>
+    <string name="offensive">攻撃的</string>
+    <string name="hate_speech">ヘイトスピーチ</string>
+    <string name="incorrect_info">誤った情報</string>
+    <string name="other">その他</string>
+    <string name="submit">送信</string>
+    <string name="cancel">キャンセル</string>
+
+    <string name="reset_settings">設定をリセット</string>
+    <string name="not_relevant">該当なし</string>
+
+</resources>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">Dobrodošli u IntelliVerse</string>
+    <string name="cheaptrip_info">CheapTrip je jedinstvena tražilica koja pronalazi najjeftinije načine putovanja između gradova, kombinirajući letove, autobuse, vlakove i trajekte.</string>
+    <string name="matterofchoice_info">Matter Of Choice predstavlja interaktivne scenarije koji vam pomažu da naučite vještine donošenja odluka.</string>
+</resources>

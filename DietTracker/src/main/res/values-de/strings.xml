@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker hilft Benutzern, ihre Aufnahme von Kalorien, Fetten, Proteinen, Kohlenhydraten, Vitaminen und Mineralien in Lebensmitteln zu überwachen. Es zählt nicht nur diese Elemente, sondern analysiert auch, was nach der Verdauung vom Körper aufgenommen wird. Benutzer können Bilder von Produkten hochladen, die Anwendung erkennt die Zutaten und bietet die Möglichkeit, die Liste zu bearbeiten.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">KI-Schulassistent-Bild</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Zum KI-Schulassistenten-Bild hochladen</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">KI-Schulassistent-Bild zur Lösungsüberprüfung</string>
+    <string name="ArrowDropDown_icon_content_description">Öffnet ein Untermenü</string>
+    <string name="add_image">Aufgabe hinzufügen</string>
+    <string name="guidance_detected_ingredients">Überprüfen Sie die erkannten Zutaten. Wenn Details falsch oder fehlend sind, können Sie diese vor der Generierung einer neuen Nährwertanalyse ändern</string>
+
+    // Text values
+    <string name="ingredients">Zutaten</string>
+    <string name="solution_text_value">Lösung</string>
+    <string name="user_task_value">Aufgabe</string>
+    <string name="is_ocr_result_included_value">Ausgewählten erkannten Text verwenden</string>
+    <string name="home_loading_waiting_text_value">Laden, bitte warten...</string>
+    <string name="progress_bar_hint_text_value">Fortschritt der Lösungserstellung</string>
+
+    // Button Labels
+    <string name="next_button_label">Weiter</string>
+    <string name="solve_button_label">Lösen</string>
+    <string name="check_solution_button_label">Lösung prüfen</string>
+    <string name="cheat_sheet_button_label">Spickzettel</string>
+    <string name="start_again">Von vorne beginnen</string>
+    <string name="try_again">Erneut versuchen</string>
+    <string name="pick_images">Bilder auswählen</string>
+    <string name="upload_from_url">Hochladen</string>
+    <string name="upload_picture">Bild hochladen</string>
+    <string name="take_a_picture">Foto aufnehmen</string>
+    <string name="recognize_text_button_label">Erkannten Text anzeigen</string>
+
+    // Text Field Labels
+    <string name="foods">Nahrungsmittel</string>
+    <string name="What_to_solve_TextField_label">Was möchtest du lösen?</string>
+    <string name="rating_TextField_label">Bewertung</string>
+    <string name="no_solution_chosen">Es wurde noch keine Lösung ausgewählt</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 Bananen und 1 Apfel, alle mittelgroß.</string>
+    <string name="first_ocr_result_is_not_ready">Text wird erkannt, bitte warten…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Sprache der Lösung</string>
+    <string name="upload_a_file_label">Datei hochladen</string>
+    <string name="explanations_label">Erklärungen</string>
+    <string name="physical_activity_label">Körperliche Aktivität</string>
+    <string name="gender_label">Geschlecht</string>
+    <string name="age_label">Alter</string>
+    <string name="height_label">Größe</string>
+    <string name="weight_label">Gewicht</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Es scheint, dass Sie einige Bilder aus dem Verzeichnisspeicher der Kalorien-App gelöscht haben. Keine Sorge, Kalorien wird versuchen, diese Bilder einzeln aus dem Anwendungs-Cache zu löschen. Bitte bestätigen Sie ggf. jede Bildlöschung. Jedes Bild, das leer erscheint, ist beschädigt. Möchten Sie fortfahren?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">KI konnte keinen Text aus dem Bild erkennen. Bitte versuche es erneut.</string>
+    <string name="error_gemini_solution_result_extraction">KI konnte dieses Problem nicht lösen. Bitte versuche es erneut.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hoppla! Etwas ist schief gelaufen. Bitte versuche es erneut!</string>
+    <string name="fail_to_load_Uri">Das Bild konnte nicht in die Liste geladen werden. Bitte versuche, es manuell zu laden!</string>
+    <string name="corrupted_loaded_file">Sie haben eine beschädigte Datei geladen!</string>
+    <string name="missing_required_settings">Einige erforderliche Einstellungen fehlen. Bitte füllen Sie diese aus.</string>
+    <string name="camera_fail_to_open">Hoppla! Etwas ist mit der Kamera schief gelaufen. Bitte versuche es erneut!</string>
+    <string name="upload_image_warning">Bitte laden Sie ein Bild vom Gerät hoch</string>
+    <string name="select_image_or_text_warning">Bitte wählen Sie ein Bild aus oder geben Sie eine Aufgabe ein.</string>
+    <string name="prompt_is_empty">Erkannter Text ist leer. Bitte versuche es erneut!</string>
+    <string name="language_not_supported">"Die ausgewählte Sprache ist für die Mediengenerierung nicht verfügbar. Andere Funktionen funktionieren weiterhin. Möchten Sie die notwendigen Sprachdaten herunterladen, um diese Funktion zu aktivieren?"</string>
+
+    // labels
+    <string name="home">Startseite</string>
+    <string name="settings">Einstellungen</string>
+    <string name="results">Ergebnis</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Wählen Sie aus, was Sie teilen möchten</string>
+    <string name="share_user_ingredients">Meine Zutaten teilen</string>
+    <string name="share_recognized_ingredients">Erkannte Zutaten teilen</string>
+    <string name="share_solution">Lösung teilen</string>
+    <string name="share_image">Bild teilen</string>
+    <string name="share">Teilen</string>
+
+    // installation
+    <string name="install">Installieren</string>
+    <string name="install_language">Sprache installieren</string>
+
+    <string name="solved_by_diet_tracker">Gelöst von DietTracker\nSchau dir unsere App auf Google Play an</string>
+
+</resources>

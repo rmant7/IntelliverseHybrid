@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poetski</item>
+        <item>Profesionalni</item>
+        <item>Pravni</item>
+        <item>Tehnički</item>
+        <item>Akademski</item>
+        <item>Novinarski</item>
+        <item>Kreativni</item>
+        <item>Uvjerljivi</item>
+        <item>Narativni</item>
+        <item>Deskriptivni</item>
+        <item>Ekspozitorni</item>
+        <item>Humoristični</item>
+        <item>Neformalni</item>
+        <item>Poslovni</item>
+        <item>Znanstveni</item>
+        <item>Romantični</item>
+        <item>Povijesni</item>
+        <item>Filozofski</item>
+        <item>Samopomoć</item>
+        <item>Putopisni</item>
+        <item>Marketinški</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formalni</item>
+        <item>Opušteni</item>
+        <item>Prijateljski</item>
+        <item>Ozbiljni</item>
+        <item>Empatični</item>
+        <item>Asertivni</item>
+        <item>Optimistični</item>
+        <item>Humoristični</item>
+        <item>Neutralni</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimalna</item>
+        <item>Umjerena</item>
+        <item>Potpuna</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Veza</item>
+        <item>Radno mjesto</item>
+        <item>Obrazovanje</item>
+        <item>Zdravlje</item>
+        <item>Financije</item>
+        <item>Putovanje</item>
+        <item>Tehnologija</item>
+        <item>Zabava</item>
+        <item>Samousavršavanje</item>
+        <item>Općenito</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Rusija: Kolektivistička</item>
+        <item>Istočna Europa: Pragmatična</item>
+        <item>Zapadna Europa: Individualistička</item>
+        <item>Jugoistočna Azija: Usredotočena na sklad</item>
+        <item>Kina: Hijerarhijska</item>
+        <item>Kavkaz: Vezana čašću</item>
+        <item>Sjeverna Amerika: Poduzetnička</item>
+        <item>Latinska Amerika: Strastvena</item>
+        <item>Bliski Istok: Vođena gostoljubivošću</item>
+        <item>Afrika: Zajednička</item>
+        <item>Nordijske zemlje: Egalitarna</item>
+        <item>Južna Azija: Usredotočena na obitelj</item>
+        <item>Japan: Grupni sklad</item>
+        <item>Australija: Opuštena</item>
+        <item>Mediteran: Izražajna</item>
+        <item>Središnja Azija: Nomadski običaji</item>
+        <item>Njemačka: Strukturirana</item>
+        <item>Balkan: Otporan</item>
+        <item>Arktički starosjedioci: Povezani s prirodom</item>
+        <item>Židovska: Usredotočena na zajednicu</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharski</item>
+        <item>Arapski</item>
+        <item>Bengalski</item>
+        <item>Bugarski</item>
+        <item>Pojednostavljeni kineski</item>
+        <item>Hrvatski</item>
+        <item>Češki</item>
+        <item>Danski</item>
+        <item>Nizozemski</item>
+        <item>Engleski</item>
+        <item>Estonski</item>
+        <item>Finski</item>
+        <item>Francuski</item>
+        <item>Njemački</item>
+        <item>Grčki</item>
+        <item>Gudžaratski</item>
+        <item>Hebrejski</item>
+        <item>Hindi</item>
+        <item>Mađarski</item>
+        <item>Indonezijski</item>
+        <item>Talijanski</item>
+        <item>Japanski</item>
+        <item>Kannada</item>
+        <item>Korejski</item>
+        <item>Latvijski</item>
+        <item>Litavski</item>
+        <item>Malajski</item>
+        <item>Marathi</item>
+        <item>Norveški</item>
+        <item>Paštu</item>
+        <item>Perzijski</item>
+        <item>Poljski</item>
+        <item>Portugalski</item>
+        <item>Rumunjski</item>
+        <item>Ruski</item>
+        <item>Srpski</item>
+        <item>Slovački</item>
+        <item>Slovenski</item>
+        <item>Španjolski</item>
+        <item>Svahili</item>
+        <item>Švedski</item>
+        <item>Tagalog</item>
+        <item>Tamilski</item>
+        <item>Telugu</item>
+        <item>Tajlandski</item>
+        <item>Turski</item>
+        <item>Ukrajinski</item>
+        <item>Urdu</item>
+        <item>Vijetnamski</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Nije relevantno</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Bez objašnjenja</item>
+        <item>Kratko objašnjenje</item>
+        <item>Detaljno objašnjenje</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sjedeći</item>
+        <item>Lagano aktivni</item>
+        <item>Umjereno aktivni</item>
+        <item>Vrlo aktivni</item>
+        <item>Izrazito aktivni</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Muško</item>
+        <item>Žensko</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Avion</item>
+        <item>Bicikl</item>
+        <item>Brod</item>
+        <item>Autobus</item>
+        <item>Motocikl</item>
+        <item>Vlastiti automobil</item>
+        <item>Iznajmljeni automobil</item>
+        <item>Dijeljenje vožnje</item>
+        <item>Metro</item>
+        <item>Taksi</item>
+        <item>Vlak</item>
+        <item>Tramvaj</item>
+        <item>Pješačenje</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Hrana</item>
+        <item>Povijest</item>
+        <item>Kultura</item>
+        <item>Priroda</item>
+        <item>Opuštanje</item>
+        <item>Avantura</item>
+        <item>Noćni život</item>
+        <item>Shopping</item>
+        <item>Obitelj</item>
+        <item>Romantika</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Snimi fotografiju</item>
+        <item>Učitaj sliku</item>
+        <item>Učitaj datoteku</item>
+        <item>Navedi poveznicu</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Žao nam je, usluga nije dostupna u Rusiji i Bjelorusiji, molimo koristite vpn</string>
+    <string name="error_service_not_available_title">Usluga nije dostupna</string>
+    <string name="error_common_title">Greška</string>
+    <string name="error_common_message">Došlo je do pogreške tijekom izvođenja aplikacije. Pokušajte ažurirati aplikaciju ili pokušajte ponovno kasnije</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Ups! Čini se da je za ovu značajku potreban pristup kameri. Idite na postavke uređaja, pronađite IntelliVerse na popisu aplikacija i dodijelite dopuštenje za kameru da biste otključali magiju!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Ups! Da biste koristili slike iz svoje galerije, IntelliVerse treba dopuštenje za čitanje vaših fotografija. Idite na postavke uređaja, pronađite IntelliVerse na popisu aplikacija i dodijelite pristup fotografijama da biste otključali magiju!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Ups! Da biste spremali datoteke na svoj uređaj, IntelliVerse treba dopuštenje za pisanje u vašu pohranu. Idite na postavke uređaja, pronađite IntelliVerse na popisu aplikacija i dodijelite pristup pohrani da biste otključali magiju!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Ups! Da biste pristupili datotekama na svom uređaju, IntelliVerse treba dopuštenje za čitanje vaše pohrane. Idite na postavke uređaja, pronađite IntelliVerse na popisu aplikacija i dodijelite pristup pohrani da biste otključali magiju!</string>
+    <string name="camera_permission_rationale">IntelliVerse treba pristup vašoj kameri kako biste mogli odmah snimiti fotografije svojih školskih vježbi!</string>
+    <string name="read_media_permission_rationale">Dopuštanje pristupa vašim fotografijama omogućuje vam odabir slika iz galerije za upotrebu u aplikaciji IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Dopuštenje za pisanje u vašu pohranu omogućuje aplikaciji IntelliVerse spremanje datoteka, poput fotografija koje ste snimili, izravno na vaš uređaj!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse treba pristup pohrani vašeg uređaja za čitanje datoteka, poput fotografija ili dokumenata, koje biste možda htjeli koristiti u aplikaciji.</string>
+
+    // Buttons Labels
+    <string name="Ok">U redu</string>
+
+    <string name="Yes">Da</string>
+    <string name="No">Ne</string>
+    <string name="are_you_sure">Jeste li sigurni da želite izaći?</string>
+    <string name="exit">Izlaz</string>
+
+    <string name="report_content">Prijavi sadržaj</string>
+    <string name="select_reason">Odaberite razlog</string>
+    <string name="offensive">Uvredljivo</string>
+    <string name="hate_speech">Govor mržnje</string>
+    <string name="incorrect_info">Netočne informacije</string>
+    <string name="other">Ostalo</string>
+    <string name="submit">Pošalji</string>
+    <string name="cancel">Odustani</string>
+
+    <string name="reset_settings">Vrati postavke na zadano</string>
+    <string name="not_relevant">Nije relevantno</string>
+
+</resources>

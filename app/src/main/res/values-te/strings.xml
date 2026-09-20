@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">IntelliVerseకు స్వాగతం</string>
+    <string name="cheaptrip_info">చీప్ ట్రిప్ అనేది విమానాలు, బస్సులు, రైళ్లు మరియు పడవలను కలపడం ద్వారా నగరాల మధ్య చౌకైన మార్గాలను కనుగొనే ఒక ప్రత్యేకమైన సెర్చ్ ఇంజిన్.</string>
+    <string name="matterofchoice_info">మేటర్ ఆఫ్ ఛాయిస్ మీరు నిర్ణయం తీసుకునే నైపుణ్యాలను నేర్చుకోవడంలో సహాయపడటానికి ఇంటరాక్టివ్ దృశ్యాలను అందిస్తుంది.</string>
+</resources>

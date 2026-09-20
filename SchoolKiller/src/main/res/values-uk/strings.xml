@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller допомагає студентам вирішувати математичні задачі, а також загальні проблеми.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Зображення AI-помічника для школи</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Зображення для завантаження до AI-помічника для школи</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Зображення для перевірки рішення AI-помічником для школи</string>
+    <string name="ArrowDropDown_icon_content_description">Відкриває підменю</string>
+    <string name="add_image">Додати завдання</string>
+    <string name="Guidance">Для оптимальних результатів, будь ласка, надайте детальний ТЕКСТ для вашого завдання. Якщо ви додаєте зображення, переконайтеся, що будь-який розпізнаний текст відредаговано відповідно до оригіналу.</string>
+
+    // Text values
+    <string name="recognized_text_value">Розпізнаний текст</string>
+    <string name="solution_text_value">Рішення</string>
+    <string name="user_task_value">Завдання</string>
+    <string name="is_ocr_result_included_value">Використовувати обраний розпізнаний текст</string>
+    <string name="home_loading_waiting_text_value">Завантаження, будь ласка, зачекайте...</string>
+    <string name="progress_bar_hint_text_value">Прогрес генерації рішень</string>
+
+    // Button Labels
+    <string name="next_button_label">Далі</string>
+    <string name="solve_button_label">Вирішити</string>
+    <string name="check_solution_button_label">Перевірити рішення</string>
+    <string name="cheat_sheet_button_label">Шпаргалка</string>
+    <string name="start_again">Почати знову</string>
+    <string name="try_again">Спробуйте ще раз</string>
+    <string name="pick_images">Вибрати зображення</string>
+    <string name="upload_from_url">Завантажити</string>
+    <string name="upload_picture">Завантажити зображення</string>
+    <string name="take_a_picture">Зробити знімок</string>
+    <string name="recognize_text_button_label">Показати розпізнаний текст</string>
+
+    // Text Field Labels
+    <string name="tasks">Завдання</string>
+    <string name="What_to_solve_TextField_label">Що ви хочете вирішити?</string>
+    <string name="rating_TextField_label">Оцінка</string>
+    <string name="no_solution_chosen">Рішення ще не обрано</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Розкажи мені про теорему Піфагора.</string>
+    <string name="first_ocr_result_is_not_ready">Текст розпізнається, будь ласка, зачекайте…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Мова рішення</string>
+    <string name="upload_a_file_label">Завантажити файл</string>
+    <string name="explanations_label">Пояснення</string>
+    <string name="grade_label">"Оцінка"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Схоже, ви видалили деякі зображення зі сховища каталогу програми SchoolKiller. Не хвилюйтеся, SchoolKiller спробує очистити ці зображення одне за одним з кешу програми. Будь ласка, підтверджуйте видалення кожного зображення, якщо потрібно. Будь-яке зображення, яке виглядає порожнім, є пошкодженим. Хочете продовжити?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI не зміг розпізнати текст із зображення. Будь ласка, спробуйте ще раз.</string>
+    <string name="error_gemini_solution_result_extraction">AI не зміг вирішити цю проблему. Будь ласка, спробуйте ще раз.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ой! Щось пішло не так. Будь ласка, спробуйте ще раз!</string>
+    <string name="fail_to_load_Uri">Не вдалося завантажити зображення до списку. Будь ласка, спробуйте завантажити його вручну!</string>
+    <string name="corrupted_loaded_file">Ви завантажили пошкоджений файл!</string>
+    <string name="camera_fail_to_open">Ой! Щось пішло не так з камерою. Будь ласка, спробуйте ще раз!</string>
+    <string name="upload_image_warning">Будь ласка, завантажте зображення з пристрою</string>
+    <string name="select_image_or_text_warning">Будь ласка, виберіть зображення або введіть завдання.</string>
+    <string name="prompt_is_empty">Розпізнаний текст порожній. Будь ласка, спробуйте ще раз!</string>
+    <string name="language_not_supported">"Обрана мова недоступна для генерації медіа. Інші функції продовжать працювати. Чи бажаєте ви завантажити необхідні мовні дані, щоб увімкнути цю функцію?"</string>
+
+    // labels
+    <string name="home">Головна</string>
+    <string name="settings">Налаштування</string>
+    <string name="results">Результат</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Виберіть, чим поділитися</string>
+    <string name="share_user_task">Поділитися моїм завданням</string>
+    <string name="share_ocr_result">Поділитися розпізнаним текстом</string>
+    <string name="share_solution">Поділитися рішенням</string>
+    <string name="share_image">Поділитися зображенням</string>
+    <string name="share">Поділитися</string>
+
+    // installation
+    <string name="install">Встановити</string>
+    <string name="install_language">Встановити мову</string>
+
+    <string name="solved_by_schoolkiller">Вирішено SchoolKiller\nПерегляньте наш додаток у Google Play</string>
+
+</resources>

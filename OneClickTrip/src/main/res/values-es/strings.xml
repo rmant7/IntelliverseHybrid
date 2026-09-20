@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip es tu planificador de viajes inteligente impulsado por IA. Solo describe tu viaje soñado o sube inspiración y recibe al instante un itinerario personalizado día a día con opciones de transporte, enlaces de hoteles, estimaciones de presupuesto y consejos locales — todo con un solo clic.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Texto reconocido</string>
+    <string name="solution_text_value">Solución</string>
+    <string name="user_task_value">Tarea</string>
+    <string name="progress_bar_hint_text_value">Progreso de generación de soluciones</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Texto</string>
+    <string name="no_solution_chosen">Aún no se ha seleccionado solución</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Quiero un viaje relajante y cultural de 3 días con sitios históricos, comida local, caminatas ligeras y una combinación de actividades guiadas y libres en una ciudad o sus alrededores.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Idioma de la solución</string>
+    <string name="max_budget_label">Presupuesto máximo</string>
+    <string name="travelers_number_label">Número de viajeros</string>
+    <string name="trip_duration_label">Duración del viaje</string>
+    <string name="transportation_type_label">Tipo de transporte</string>
+    <string name="trip_style_label">Estilo de viaje</string>
+    <string name="origin_location_label">Lugar de origen</string>
+    <string name="trip_type_label">Tipo de viaje</string>
+    <string name="one_way_trip">Viaje de ida</string>
+    <string name="round_trip">Viaje de ida y vuelta</string>
+    <string name="days">días</string>
+    <string name="new_york">Nueva York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Ingrese tipo de transporte</string>
+    <string name="enter_location">Ingrese ubicación</string>
+    <string name="add">Agregar</string>
+    <string name="travel_path">Ruta de viaje</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        La IA no pudo resolver este problema. Inténtalo de nuevo.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">¡Ups! Algo salió mal. ¡Inténtalo de nuevo!</string>
+    <string name="fail_to_load_Uri">No se pudo cargar la imagen a la lista. ¡Inténtalo manualmente!</string>
+    <string name="corrupted_loaded_file">¡Has cargado un archivo dañado!</string>
+    <string name="missing_required_settings">Faltan algunas configuraciones necesarias. Complételas.</string>
+    <string name="camera_fail_to_open">¡Ups! No se pudo abrir la cámara. ¡Inténtalo de nuevo!</string>
+    <string name="select_image_or_text_warning">Seleccione una imagen o ingrese una tarea.</string>
+    <string name="language_not_supported">
+        El idioma seleccionado no está disponible para generación de medios. Otras funciones seguirán funcionando. ¿Desea descargar los datos de idioma necesarios?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Inicio</string>
+    <string name="settings">Configuración</string>
+    <string name="results">Resultado</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Elija qué compartir</string>
+    <string name="share_user_translation">Compartir mi texto</string>
+    <string name="share_ocr_result">Compartir texto reconocido</string>
+    <string name="share_solution">Compartir solución</string>
+    <string name="share_image">Compartir imagen</string>
+    <string name="share">Compartir</string>
+
+    <!-- Installation -->
+    <string name="install">Instalar</string>
+    <string name="install_language">Instalar idioma</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Resuelto con OneClickTrip\nConsulta nuestra app en Google Play</string>
+</resources>

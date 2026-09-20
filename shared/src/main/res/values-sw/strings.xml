@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Kishairi</item>
+        <item>Kitaalamu</item>
+        <item>Kisheria</item>
+        <item>Kiufundi</item>
+        <item>Kitaaluma</item>
+        <item>Kihabari</item>
+        <item>Ubunifu</item>
+        <item>Ushawishi</item>
+        <item>Simulizi</item>
+        <item>Maelezo</item>
+        <item>Ufafanuzi</item>
+        <item>Ucheshi</item>
+        <item>Isiyo rasmi</item>
+        <item>Kibiashara</item>
+        <item>Kisayansi</item>
+        <item>Kimapenzi</item>
+        <item>Kihistoria</item>
+        <item>Kifalsafa</item>
+        <item>Msaada Binafsi</item>
+        <item>Safari</item>
+        <item>Uuzaji</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Rasmi</item>
+        <item>Ya kawaida</item>
+        <item>Ya kirafiki</item>
+        <item>Nzito</item>
+        <item>Inaelewa</item>
+        <item>Inasisitiza</item>
+        <item>Inatumaini</item>
+        <item>Ucheshi</item>
+        <item>Isiyoegemea upande wowote</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Kiwango cha Chini</item>
+        <item>Wastani</item>
+        <item>Kamilifu</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Uhusiano</item>
+        <item>Mahali pa Kazi</item>
+        <item>Elimu</item>
+        <item>Afya</item>
+        <item>Fedha</item>
+        <item>Safari</item>
+        <item>Teknolojia</item>
+        <item>Burudani</item>
+        <item>Uboreshaji Binafsi</item>
+        <item>Jumla</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Urusi: Ya pamoja</item>
+        <item>Ulaya Mashariki: Ya kimatendo</item>
+        <item>Ulaya Magharibi: Ya mtu binafsi</item>
+        <item>Asia ya Kusini-Mashariki: Inalenga Upatanisho</item>
+        <item>Uchina: Kimadaraka</item>
+        <item>Caucasus: Inayoheshimiwa</item>
+        <item>Amerika Kaskazini: Kiuendeshaji</item>
+        <item>Amerika ya Kusini: Ya shauku</item>
+        <item>Mashariki ya Kati: Inaendeshwa na Ukarimu</item>
+        <item>Afrika: Ya kijamii</item>
+        <item>Nchi za Nordic: Sawa</item>
+        <item>Asia ya Kusini: Inazingatia Familia</item>
+        <item>Japani: Upatanisho wa Kikundi</item>
+        <item>Australia: Tulivu</item>
+        <item>Mediterania: Inayoonyesha</item>
+        <item>Asia ya Kati: Mila za Uhamaji</item>
+        <item>Ujerumani: Imeundwa</item>
+        <item>Balkans: Imara</item>
+        <item>Asili ya Aktiki: Imeunganishwa na Asili</item>
+        <item>Kiyahudi: Inaelekezwa kwa Jamii</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Kiamhari</item>
+        <item>Kiarabu</item>
+        <item>Kibengali</item>
+        <item>Kibulgaria</item>
+        <item>Kichina Kilichorahisishwa</item>
+        <item>Kikroeshia</item>
+        <item>Kicheki</item>
+        <item>Kidenmark</item>
+        <item>Kiholanzi</item>
+        <item>Kiingereza</item>
+        <item>Kiestonia</item>
+        <item>Kifini</item>
+        <item>Kifaransa</item>
+        <item>Kijerumani</item>
+        <item>Kigiriki</item>
+        <item>Kigujarati</item>
+        <item>Kiebrania</item>
+        <item>Kihindi</item>
+        <item>Kihungari</item>
+        <item>Kiindonesia</item>
+        <item>Kiitaliano</item>
+        <item>Kijapani</item>
+        <item>Kikannada</item>
+        <item>Kikorea</item>
+        <item>Kilatvia</item>
+        <item>Kilithuania</item>
+        <item>Kimalesia</item>
+        <item>Kimarathi</item>
+        <item>Kinorwe</item>
+        <item>Kipashto</item>
+        <item>Kiajemi</item>
+        <item>Kipolishi</item>
+        <item>Kireno</item>
+        <item>Kiromania</item>
+        <item>Kirusi</item>
+        <item>Kiserbia</item>
+        <item>Kislovakia</item>
+        <item>Kislovenia</item>
+        <item>Kihispania</item>
+        <item>Kiswahili</item>
+        <item>Kiswidi</item>
+        <item>Kitagalogi</item>
+        <item>Kitamil</item>
+        <item>Kitelugu</item>
+        <item>Kithai</item>
+        <item>Kituruki</item>
+        <item>Kiukrania</item>
+        <item>Kiurdu</item>
+        <item>Kivietinamu</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Haina Uhusiano</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Hakuna maelezo</item>
+        <item>Maelezo mafupi</item>
+        <item>Maelezo ya kina</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Haitumiki sana</item>
+        <item>Inatumika Kiasi</item>
+        <item>Inatumika kwa Kiasi cha Kati</item>
+        <item>Inatumika Sana</item>
+        <item>Inatumika Kupita Kiasi</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Mwanaume</item>
+        <item>Mwanamke</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Ndege</item>
+        <item>Baiskeli</item>
+        <item>Boti</item>
+        <item>Basi</item>
+        <item>Pikipiki</item>
+        <item>Gari binafsi</item>
+        <item>Gari la kukodisha</item>
+        <item>Kugawana safari</item>
+        <item>Treni ya chini ya ardhi</item>
+        <item>Teksi</item>
+        <item>Treni</item>
+        <item>Tramu</item>
+        <item>Kutembea</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Chakula</item>
+        <item>Historia</item>
+        <item>Utamaduni</item>
+        <item>Asili</item>
+        <item>Mapumziko</item>
+        <item>Msisimko</item>
+        <item>Maisha ya usiku</item>
+        <item>Manunuzi</item>
+        <item>Familia</item>
+        <item>Kimapenzi</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Piga picha</item>
+        <item>Pakia picha</item>
+        <item>Pakia faili</item>
+        <item>Toa kiungo</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Samahani, huduma haipatikani nchini Urusi na Belarusi, tafadhali tumia vpn</string>
+    <string name="error_service_not_available_title">Huduma haipatikani</string>
+    <string name="error_common_title">Hitilafu</string>
+    <string name="error_common_message">Hitilafu imetokea wakati programu ilikuwa inaendeshwa. Jaribu kusasisha programu au ujaribu tena baadaye</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Lo! Inaonekana ufikiaji wa kamera unahitajika kwa kipengele hiki. Elekea kwenye mipangilio ya kifaa chako, tafuta IntelliVerse kwenye orodha yako ya programu, na upe ruhusa ya kamera ili kufungua uchawi!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Lo! Ili kutumia picha kutoka kwa ghala yako, IntelliVerse inahitaji ruhusa ya kusoma picha zako. Elekea kwenye mipangilio ya kifaa chako, tafuta IntelliVerse kwenye orodha yako ya programu, na upe ruhusa ya picha ili kufungua uchawi!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Lo! Ili kuhifadhi faili kwenye kifaa chako, IntelliVerse inahitaji ruhusa ya kuandika kwenye hifadhi yako. Elekea kwenye mipangilio ya kifaa chako, tafuta IntelliVerse kwenye orodha yako ya programu, na upe ruhusa ya hifadhi ili kufungua uchawi!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Lo! Ili kufikia faili kwenye kifaa chako, IntelliVerse inahitaji ruhusa ya kusoma hifadhi yako. Elekea kwenye mipangilio ya kifaa chako, tafuta IntelliVerse kwenye orodha yako ya programu, na upe ruhusa ya hifadhi ili kufungua uchawi!</string>
+    <string name="camera_permission_rationale">IntelliVerse inahitaji ufikiaji wa kamera yako ili uweze kupiga picha za mazoezi yako ya shule mara moja!</string>
+    <string name="read_media_permission_rationale">Kuruhusu ufikiaji wa picha zako hukuruhusu kuchagua picha kutoka kwenye ghala yako ili utumie ndani ya programu ya IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Ruhusa ya kuandika kwenye hifadhi yako inaruhusu programu ya IntelliVerse kuhifadhi faili, kama vile picha ulizopiga, moja kwa moja kwenye kifaa chako!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse inahitaji ufikiaji wa hifadhi ya kifaa chako ili kusoma faili, kama vile picha au hati, ambazo unaweza kutaka kutumia katika programu.</string>
+
+    // Buttons Labels
+    <string name="Ok">Sawa</string>
+
+    <string name="Yes">Ndio</string>
+    <string name="No">Hapana</string>
+    <string name="are_you_sure">Una uhakika unataka kutoka?</string>
+    <string name="exit">Ondoka</string>
+
+    <string name="report_content">Ripoti Maudhui</string>
+    <string name="select_reason">Chagua Sababu</string>
+    <string name="offensive">Inakera</string>
+    <string name="hate_speech">Matamshi ya Chuki</string>
+    <string name="incorrect_info">Taarifa Sahihi</string>
+    <string name="other">Nyingine</string>
+    <string name="submit">Wasilisha</string>
+    <string name="cancel">Ghairi</string>
+
+    <string name="reset_settings">Weka Upya Mipangilio</string>
+    <string name="not_relevant">Haina Uhusiano</string>
+
+</resources>

@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">स्टाइलट्रांसलेटर विभिन्न लेखन शैलियों और लहजों के बीच टेक्स्ट को परिवर्तित करता है।</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">एआई स्कूल सहायक छवि</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">एआई स्कूल सहायक छवि पर अपलोड करें</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">एआई स्कूल सहायक छवि का समाधान जांचें</string>
+    <string name="ArrowDropDown_icon_content_description">एक उपमेनू खोलता है</string>
+    <string name="add_image">कार्य जोड़ें</string>
+
+    // Text values
+    <string name="recognized_text_value">पहचाना गया पाठ</string>
+    <string name="solution_text_value">समाधान</string>
+    <string name="user_task_value">कार्य</string>
+    <string name="is_ocr_result_included_value">चयनित पहचाने गए पाठ का उपयोग करें</string>
+    <string name="home_loading_waiting_text_value">लोड हो रहा है, कृपया प्रतीक्षा करें...</string>
+    <string name="progress_bar_hint_text_value">समाधान निर्माण प्रगति</string>
+
+    // Button Labels
+    <string name="next_button_label">अगला</string>
+    <string name="solve_button_label">हल करें</string>
+    <string name="check_solution_button_label">समाधान जांचें</string>
+    <string name="cheat_sheet_button_label">धोखा शीट</string>
+    <string name="start_again">फिर से शुरू करें</string>
+    <string name="try_again">पुनः प्रयास करें</string>
+    <string name="pick_images">चित्र चुनें</string>
+    <string name="upload_from_url">अपलोड करें</string>
+    <string name="upload_picture">चित्र अपलोड करें</string>
+    <string name="take_a_picture">एक तस्वीर लो</string>
+    <string name="recognize_text_button_label">पहचाना गया पाठ दिखाएं</string>
+
+    // Text Field Labels
+    <string name="sentence">पाठ</string>
+    <string name="What_to_solve_TextField_label">आप क्या हल करना चाहते हैं?</string>
+    <string name="rating_TextField_label">रेटिंग</string>
+    <string name="no_solution_chosen">समाधान अभी तक नहीं चुना गया है</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">मुझे अपनी गर्लफ्रेंड की देखभाल करना बहुत पसंद है। मैं हमेशा यह सुनिश्चित करता हूं कि वह सुरक्षित और संरक्षित महसूस करे। मुझे हमारी तारीखों की योजना बनाना और उसे छोटे उपहारों से आश्चर्यचकित करना पसंद है। जब वह परेशान होती है, तो मैं समाधान खोजने और उसके लिए चीजों को ठीक करने की कोशिश करता हूं।</string>
+    <string name="first_ocr_result_is_not_ready">पाठ पहचाना जा रहा है, कृपया प्रतीक्षा करें...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">समाधान भाषा</string>
+    <string name="upload_a_file_label">एक फ़ाइल अपलोड करें</string>
+    <string name="explanations_label">स्पष्टीकरण</string>
+    <string name="source_gender_label">स्रोत लिंग</string>
+    <string name="target_gender_label">लक्ष्य लिंग</string>
+    <string name="source_age_label">स्रोत आयु</string>
+    <string name="target_age_label">लक्ष्य आयु</string>
+    <string name="category_label">श्रेणी</string>
+    <string name="tone_label">टोन पसंद</string>
+    <string name="transformation_level_label">रूपांतरण स्तर</string>
+    <string name="style_label">अनुवाद शैली</string>
+    <string name="mentality_label">मानसिकता</string>
+    <string name="translation_scale_label">अनुवाद स्केल फैक्टर</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">ऐसा लगता है कि आपने कैलोरी ऐप की निर्देशिका स्टोरेज से कुछ छवियां हटा दी हैं। चिंता करने की कोई बात नहीं है, कैलोरी एप्लिकेशन कैश से इन छवियों को एक-एक करके साफ़ करने का प्रयास करेगा। कृपया प्रत्येक छवि हटाने की पुष्टि करें, यदि आवश्यक हो। कोई भी छवि जो खाली दिखाई देती है, वह दूषित है। क्या आप आगे बढ़ना चाहते हैं?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">एआई छवि से पाठ को पहचानने में सक्षम नहीं था। कृपया, फिर से प्रयास करें।</string>
+    <string name="error_gemini_solution_result_extraction">एआई इस समस्या को हल करने में सक्षम नहीं था। कृपया, फिर से प्रयास करें।</string>
+
+    // Toast messages
+    <string name="something_went_wrong">उफ़! कुछ गलत हो गया। कृपया पुन: प्रयास करें!</string>
+    <string name="fail_to_load_Uri">छवि को सूची में लोड करने में विफल। कृपया इसे मैन्युअल रूप से लोड करने का प्रयास करें!</string>
+    <string name="corrupted_loaded_file">आपने एक दूषित फ़ाइल लोड की है!</string>
+    <string name="missing_required_settings">कुछ आवश्यक सेटिंग्स गायब हैं। कृपया उन्हें भरें।</string>
+    <string name="camera_fail_to_open">उफ़! कैमरे में कुछ गड़बड़ हो गई। कृपया पुन: प्रयास करें!</string>
+    <string name="upload_image_warning">कृपया डिवाइस से एक छवि अपलोड करें</string>
+    <string name="select_image_or_text_warning">कृपया एक छवि चुनें या कार्य टाइप करें।</string>
+    <string name="prompt_is_empty">पहचाना गया पाठ खाली है। कृपया पुन: प्रयास करें!</string>
+    <string name="language_not_supported">"चयनित भाषा मीडिया पीढ़ी के लिए उपलब्ध नहीं है। अन्य सुविधाएँ काम करना जारी रखेंगी। क्या आप इस सुविधा को सक्षम करने के लिए आवश्यक भाषा डेटा डाउनलोड करना चाहेंगे?"</string>
+
+    // labels
+    <string name="home">होम</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="results">परिणाम</string>
+    <string name="ocr">ओसीआर</string>
+
+    // sharing
+    <string name="choose_sharing">चुनें कि क्या साझा करना है</string>
+    <string name="share_user_translation">मेरा पाठ साझा करें</string>
+    <string name="share_ocr_result">पहचाना गया पाठ साझा करें</string>
+    <string name="share_solution">समाधान साझा करें</string>
+    <string name="share_image">छवि साझा करें</string>
+    <string name="share">साझा करें</string>
+
+    // installation
+    <string name="install">इंस्टॉल करें</string>
+    <string name="install_language">भाषा इंस्टॉल करें</string>
+
+    <string name="solved_by_style_translator">StyleTranslator द्वारा हल किया गया\nGoogle Play पर हमारा ऐप देखें</string>
+
+</resources>

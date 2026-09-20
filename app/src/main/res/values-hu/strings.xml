@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">Üdvözöljük az IntelliVerse-ben</string>
+    <string name="cheaptrip_info">A CheapTrip egy egyedülálló keresőmotor, amely megtalálja a legolcsóbb utakat a városok között, kombinálva a repülőjáratokat, buszokat, vonatokat és kompokat.</string>
+    <string name="matterofchoice_info">A Matter Of Choice interaktív forgatókönyveket mutat be, amelyek segítenek a döntéshozatali készségek elsajátításában.</string>
+</resources>

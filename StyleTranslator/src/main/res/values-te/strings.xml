@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">స్టైల్ ట్రాన్స్‌లేటర్ వివిధ రచన శైలులు మరియు టోన్‌ల మధ్య వచనాన్ని మారుస్తుంది.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI పాఠశాల సహాయకుడు చిత్రం</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI పాఠశాల చిత్ర సహాయకుడికి అప్‌లోడ్ చేయండి</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">సమాధానాన్ని తనిఖీ చేయండి AI పాఠశాల చిత్ర సహాయకుడు</string>
+    <string name="ArrowDropDown_icon_content_description">ఒక ఉపమెనూ తెరుస్తుంది</string>
+    <string name="add_image">పనిని జోడించు</string>
+
+    // Text values
+    <string name="recognized_text_value">గుర్తించబడిన వచనం</string>
+    <string name="solution_text_value">సమాధానం</string>
+    <string name="user_task_value">పని</string>
+    <string name="is_ocr_result_included_value">ఎంచుకున్న గుర్తించబడిన వచనాన్ని ఉపయోగించండి</string>
+    <string name="home_loading_waiting_text_value">లోడ్ అవుతోంది, దయచేసి వేచి ఉండండి...</string>
+    <string name="progress_bar_hint_text_value">సమాధానాల ఉత్పత్తి పురోగతి</string>
+
+    // Button Labels
+    <string name="next_button_label">తర్వాత</string>
+    <string name="solve_button_label">పరిష్కరించు</string>
+    <string name="check_solution_button_label">సమాధానాన్ని తనిఖీ చేయండి</string>
+    <string name="cheat_sheet_button_label">చీట్ షీట్</string>
+    <string name="start_again">మళ్ళీ ప్రారంభించు</string>
+    <string name="try_again">మళ్ళీ ప్రయత్నించండి</string>
+    <string name="pick_images">చిత్రాలను ఎంచుకోండి</string>
+    <string name="upload_from_url">అప్‌లోడ్ చేయండి</string>
+    <string name="upload_picture">చిత్రాన్ని అప్‌లోడ్ చేయండి</string>
+    <string name="take_a_picture">చిత్రాన్ని తీయండి</string>
+    <string name="recognize_text_button_label">గుర్తించబడిన వచనాన్ని చూపించు</string>
+
+    // Text Field Labels
+    <string name="sentence">వచనం</string>
+    <string name="What_to_solve_TextField_label">మీరు ఏమి పరిష్కరించాలనుకుంటున్నారు?</string>
+    <string name="rating_TextField_label">రేటింగ్</string>
+    <string name="no_solution_chosen">సమాధానం ఇంకా ఎంచుకోలేదు</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">నేను నా గర్ల్‌ఫ్రెండ్‌ను జాగ్రత్తగా చూసుకోవడానికి ఇష్టపడతాను. ఆమె సురక్షితంగా మరియు రక్షించబడిందని నేను ఎల్లప్పుడూ నిర్ధారిస్తాను. మా డేట్‌లను ప్లాన్ చేయడం మరియు చిన్న బహుమతులతో ఆమెను ఆశ్చర్యపరచడం నాకు ఇష్టం. ఆమె కలత చెందినప్పుడు, నేను పరిష్కారం కనుగొని ఆమె కోసం విషయాలు సరి చేయడానికి ప్రయత్నిస్తాను.</string>
+    <string name="first_ocr_result_is_not_ready">వచనం గుర్తించబడుతోంది, దయచేసి వేచి ఉండండి...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">సమాధాన భాష</string>
+    <string name="upload_a_file_label">ఫైల్‌ను అప్‌లోడ్ చేయండి</string>
+    <string name="explanations_label">వివరణలు</string>
+    <string name="source_gender_label">మూల లింగం</string>
+    <string name="target_gender_label">లక్ష్య లింగం</string>
+    <string name="source_age_label">మూల వయస్సు</string>
+    <string name="target_age_label">లక్ష్య వయస్సు</string>
+    <string name="category_label">వర్గం</string>
+    <string name="tone_label">స్వర ప్రాధాన్యత</string>
+    <string name="transformation_level_label">మార్పు స్థాయి</string>
+    <string name="style_label">అనువాద శైలి</string>
+    <string name="mentality_label">మానసిక స్థితి</string>
+    <string name="translation_scale_label">అనువాద స్థాయి కారకం</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">క్యాలరీల యాప్ డైరెక్టరీ నిల్వ నుండి మీరు కొన్ని చిత్రాలను తొలగించినట్లు కనిపిస్తోంది. చింతించకండి, క్యాలరీలు అప్లికేషన్ కాష్ నుండి ఒక్కొక్కటిగా ఈ చిత్రాలను క్లియర్ చేయడానికి ప్రయత్నిస్తాయి. అవసరమైతే, ప్రతి చిత్రం తొలగింపును నిర్ధారించండి. ఖాళీగా కనిపించే ఏదైనా చిత్రం పాడైపోయినది. మీరు కొనసాగించాలనుకుంటున్నారా?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI చిత్రంలోని వచనాన్ని గుర్తించలేకపోయింది. దయచేసి, మళ్ళీ ప్రయత్నించండి.</string>
+    <string name="error_gemini_solution_result_extraction">AI ఈ సమస్యను పరిష్కరించలేకపోయింది. దయచేసి, మళ్ళీ ప్రయత్నించండి.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">క్షమించండి! ఏదో తప్పు జరిగింది. దయచేసి మళ్ళీ ప్రయత్నించండి!</string>
+    <string name="fail_to_load_Uri">జాబితాకు చిత్రాన్ని లోడ్ చేయడంలో విఫలమైంది. దయచేసి మాన్యువల్‌గా లోడ్ చేయడానికి ప్రయత్నించండి!</string>
+    <string name="corrupted_loaded_file">మీరు పాడైపోయిన ఫైల్‌ను లోడ్ చేశారు!</string>
+    <string name="missing_required_settings">కొన్ని అవసరమైన సెట్టింగ్‌లు తప్పిపోయాయి. దయచేసి వాటిని పూరించండి.</string>
+    <string name="camera_fail_to_open">క్షమించండి! కెమెరాతో ఏదో తప్పు జరిగింది. దయచేసి మళ్ళీ ప్రయత్నించండి!</string>
+    <string name="upload_image_warning">దయచేసి పరికరం నుండి చిత్రాన్ని అప్‌లోడ్ చేయండి</string>
+    <string name="select_image_or_text_warning">దయచేసి చిత్రాన్ని ఎంచుకోండి లేదా పనిని టైప్ చేయండి.</string>
+    <string name="prompt_is_empty">గుర్తించబడిన వచనం ఖాళీగా ఉంది. దయచేసి మళ్ళీ ప్రయత్నించండి!</string>
+    <string name="language_not_supported">"ఎంచుకున్న భాష మీడియా ఉత్పత్తికి అందుబాటులో లేదు. ఇతర ఫీచర్‌లు పని చేస్తూనే ఉంటాయి. ఈ ఫీచర్‌ను ప్రారంభించడానికి అవసరమైన భాషా డేటాను డౌన్‌లోడ్ చేయాలనుకుంటున్నారా?"</string>
+
+    // labels
+    <string name="home">హోమ్</string>
+    <string name="settings">సెట్టింగ్‌లు</string>
+    <string name="results">ఫలితం</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">ఏమి పంచుకోవాలో ఎంచుకోండి</string>
+    <string name="share_user_translation">నా వచనాన్ని పంచుకోండి</string>
+    <string name="share_ocr_result">గుర్తించబడిన వచనాన్ని పంచుకోండి</string>
+    <string name="share_solution">సమాధానాన్ని పంచుకోండి</string>
+    <string name="share_image">చిత్రాన్ని పంచుకోండి</string>
+    <string name="share">పంచుకోండి</string>
+
+    // installation
+    <string name="install">ఇన్‌స్టాల్ చేయండి</string>
+    <string name="install_language">భాషను ఇన్‌స్టాల్ చేయండి</string>
+
+    <string name="solved_by_style_translator">StyleTranslator ద్వారా పరిష్కరించబడింది\nGoogle Playలో మా యాప్‌ను చూడండి</string>
+
+</resources>

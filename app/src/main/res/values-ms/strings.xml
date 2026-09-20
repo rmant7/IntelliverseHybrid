@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">Selamat datang ke IntelliVerse</string>
+    <string name="cheaptrip_info">CheapTrip ialah enjin carian unik yang mencari cara termurah antara bandar, menggabungkan penerbangan, bas, kereta api dan feri.</string>
+    <string name="matterofchoice_info">Matter Of Choice membentangkan senario interaktif untuk membantu anda mempelajari kemahiran membuat keputusan.</string>
+</resources>

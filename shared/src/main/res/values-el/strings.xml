@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Ποιητικό</item>
+        <item>Επαγγελματικό</item>
+        <item>Νομικό</item>
+        <item>Τεχνικό</item>
+        <item>Ακαδημαϊκό</item>
+        <item>Δημοσιογραφικό</item>
+        <item>Δημιουργικό</item>
+        <item>Πειστικό</item>
+        <item>Αφηγηματικό</item>
+        <item>Περιγραφικό</item>
+        <item>Επεξηγηματικό</item>
+        <item>Χιουμοριστικό</item>
+        <item>Ανεπίσημο</item>
+        <item>Επιχειρηματικό</item>
+        <item>Επιστημονικό</item>
+        <item>Ρομαντικό</item>
+        <item>Ιστορικό</item>
+        <item>Φιλοσοφικό</item>
+        <item>Αυτοβοήθειας</item>
+        <item>Ταξιδιωτικό</item>
+        <item>Μάρκετινγκ</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Επίσημο</item>
+        <item>Απλό</item>
+        <item>Φιλικό</item>
+        <item>Σοβαρό</item>
+        <item>Ενσυναίσθητο</item>
+        <item>Διεκδικητικό</item>
+        <item>Αισιόδοξο</item>
+        <item>Χιουμοριστικό</item>
+        <item>Ουδέτερο</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Ελάχιστη</item>
+        <item>Μέτρια</item>
+        <item>Ολοκληρωμένη</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Σχέση</item>
+        <item>Χώρος εργασίας</item>
+        <item>Εκπαίδευση</item>
+        <item>Υγεία</item>
+        <item>Οικονομικά</item>
+        <item>Ταξίδια</item>
+        <item>Τεχνολογία</item>
+        <item>Ψυχαγωγία</item>
+        <item>Αυτοβελτίωση</item>
+        <item>Γενικά</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Ρωσία: Συλλογική</item>
+        <item>Ανατολική Ευρώπη: Πραγματιστική</item>
+        <item>Δυτική Ευρώπη: Ατομικιστική</item>
+        <item>Νοτιοανατολική Ασία: Εστιασμένη στην αρμονία</item>
+        <item>Κίνα: Ιεραρχική</item>
+        <item>Καύκασος: Δεσμευμένη από την τιμή</item>
+        <item>Βόρεια Αμερική: Επιχειρηματική</item>
+        <item>Λατινική Αμερική: Παθιασμένη</item>
+        <item>Μέση Ανατολή: Επικεντρωμένη στη φιλοξενία</item>
+        <item>Αφρική: Κοινοτική</item>
+        <item>Σκανδιναβικές Χώρες: Ισονομική</item>
+        <item>Νότια Ασία: Οικογενειακοκεντρική</item>
+        <item>Ιαπωνία: Ομαδική αρμονία</item>
+        <item>Αυστραλία: Χαλαρή</item>
+        <item>Μεσόγειος: Εκφραστική</item>
+        <item>Κεντρική Ασία: Νομαδικές παραδόσεις</item>
+        <item>Γερμανία: Δομημένη</item>
+        <item>Βαλκάνια: Ανθεκτικά</item>
+        <item>Αρκτικοί Αυτόχθονες: Συνδεδεμένοι με τη φύση</item>
+        <item>Εβραϊκή: Προσανατολισμένη στην κοινότητα</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Αμχαρικά</item>
+        <item>Αραβικά</item>
+        <item>Μπενγκάλι</item>
+        <item>Βουλγαρικά</item>
+        <item>Απλοποιημένα Κινεζικά</item>
+        <item>Κροατικά</item>
+        <item>Τσέχικα</item>
+        <item>Δανικά</item>
+        <item>Ολλανδικά</item>
+        <item>Αγγλικά</item>
+        <item>Εσθονικά</item>
+        <item>Φινλανδικά</item>
+        <item>Γαλλικά</item>
+        <item>Γερμανικά</item>
+        <item>Ελληνικά</item>
+        <item>Γκουτζαράτι</item>
+        <item>Εβραϊκά</item>
+        <item>Χίντι</item>
+        <item>Ουγγρικά</item>
+        <item>Ινδονησιακά</item>
+        <item>Ιταλικά</item>
+        <item>Ιαπωνικά</item>
+        <item>Κανάντα</item>
+        <item>Κορεατικά</item>
+        <item>Λετονικά</item>
+        <item>Λιθουανικά</item>
+        <item>Μαλαϊκά</item>
+        <item>Μαράθι</item>
+        <item>Νορβηγικά</item>
+        <item>Πάστο</item>
+        <item>Περσικά</item>
+        <item>Πολωνικά</item>
+        <item>Πορτογαλικά</item>
+        <item>Ρουμανικά</item>
+        <item>Ρωσικά</item>
+        <item>Σερβικά</item>
+        <item>Σλοβακικά</item>
+        <item>Σλοβενικά</item>
+        <item>Ισπανικά</item>
+        <item>Σουαχίλι</item>
+        <item>Σουηδικά</item>
+        <item>Ταγκαλόγκ</item>
+        <item>Ταμίλ</item>
+        <item>Τελούγκου</item>
+        <item>Ταϊλανδικά</item>
+        <item>Τουρκικά</item>
+        <item>Ουκρανικά</item>
+        <item>Ουρντού</item>
+        <item>Βιετναμικά</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Δεν είναι σχετικό</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Καμία εξήγηση</item>
+        <item>Σύντομη εξήγηση</item>
+        <item>Αναλυτική εξήγηση</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Καθιστική</item>
+        <item>Ελαφρώς ενεργή</item>
+        <item>Μέτρια ενεργή</item>
+        <item>Πολύ ενεργή</item>
+        <item>Εξαιρετικά ενεργή</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Άνδρας</item>
+        <item>Γυναίκα</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Αεροπλάνο</item>
+        <item>Ποδήλατο</item>
+        <item>Σκάφος</item>
+        <item>Λεωφορείο</item>
+        <item>Μοτοσικλέτα</item>
+        <item>Ιδιόκτητο αυτοκίνητο</item>
+        <item>Ενοικιαζόμενο αυτοκίνητο</item>
+        <item>Κοινή χρήση διαδρομής</item>
+        <item>Μετρό</item>
+        <item>Ταξί</item>
+        <item>Τρένο</item>
+        <item>Τραμ</item>
+        <item>Περπάτημα</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Φαγητό</item>
+        <item>Ιστορία</item>
+        <item>Πολιτισμός</item>
+        <item>Φύση</item>
+        <item>Χαλάρωση</item>
+        <item>Περιπέτεια</item>
+        <item>Νυχτερινή ζωή</item>
+        <item>Αγορές</item>
+        <item>Οικογένεια</item>
+        <item>Ρομαντικό</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Λήψη φωτογραφίας</item>
+        <item>Μεταφόρτωση εικόνας</item>
+        <item>Μεταφόρτωση αρχείου</item>
+        <item>Παροχή συνδέσμου</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Λυπούμαστε, η υπηρεσία δεν είναι διαθέσιμη στη Ρωσία και τη Λευκορωσία, χρησιμοποιήστε vpn</string>
+    <string name="error_service_not_available_title">Η υπηρεσία δεν είναι διαθέσιμη</string>
+    <string name="error_common_title">Σφάλμα</string>
+    <string name="error_common_message">Παρουσιάστηκε σφάλμα κατά την εκτέλεση της εφαρμογής. Δοκιμάστε να ενημερώσετε την εφαρμογή ή δοκιμάστε ξανά αργότερα</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Ώπα! Φαίνεται ότι απαιτείται πρόσβαση στην κάμερα για αυτήν τη λειτουργία. Μεταβείτε στις ρυθμίσεις της συσκευής σας, βρείτε το IntelliVerse στη λίστα εφαρμογών σας και παραχωρήστε άδεια κάμερας για να ξεκλειδώσετε τη μαγεία!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Ώπα! Για να χρησιμοποιήσετε εικόνες από τη συλλογή σας, το IntelliVerse χρειάζεται άδεια ανάγνωσης των φωτογραφιών σας. Μεταβείτε στις ρυθμίσεις της συσκευής σας, βρείτε το IntelliVerse στη λίστα εφαρμογών σας και παραχωρήστε πρόσβαση στις φωτογραφίες για να ξεκλειδώσετε τη μαγεία!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Ώπα! Για να αποθηκεύσετε αρχεία στη συσκευή σας, το IntelliVerse χρειάζεται άδεια εγγραφής στον αποθηκευτικό σας χώρο. Μεταβείτε στις ρυθμίσεις της συσκευής σας, βρείτε το IntelliVerse στη λίστα εφαρμογών σας και παραχωρήστε πρόσβαση στον αποθηκευτικό χώρο για να ξεκλειδώσετε τη μαγεία!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Ώπα! Για να αποκτήσετε πρόσβαση σε αρχεία στη συσκευή σας, το IntelliVerse χρειάζεται άδεια ανάγνωσης του αποθηκευτικού σας χώρου. Μεταβείτε στις ρυθμίσεις της συσκευής σας, βρείτε το IntelliVerse στη λίστα εφαρμογών σας και παραχωρήστε πρόσβαση στον αποθηκευτικό χώρο για να ξεκλειδώσετε τη μαγεία!</string>
+    <string name="camera_permission_rationale">Το IntelliVerse χρειάζεται πρόσβαση στην κάμερά σας, ώστε να μπορείτε να τραβάτε άμεσα φωτογραφίες των σχολικών σας ασκήσεων!</string>
+    <string name="read_media_permission_rationale">Η παροχή πρόσβασης στις φωτογραφίες σας σάς επιτρέπει να επιλέγετε εικόνες από τη συλλογή σας για χρήση εντός της εφαρμογής IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Η άδεια εγγραφής στον αποθηκευτικό σας χώρο επιτρέπει στην εφαρμογή IntelliVerse να αποθηκεύει αρχεία, όπως φωτογραφίες που έχετε τραβήξει, απευθείας στη συσκευή σας!</string>
+    <string name="read_storage_permission_rationale">Το IntelliVerse χρειάζεται πρόσβαση στον αποθηκευτικό χώρο της συσκευής σας για να διαβάσει αρχεία, όπως φωτογραφίες ή έγγραφα, που ίσως θέλετε να χρησιμοποιήσετε στην εφαρμογή.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Ναι</string>
+    <string name="No">Όχι</string>
+    <string name="are_you_sure">Είστε σίγουρος ότι θέλετε να βγείτε;</string>
+    <string name="exit">Έξοδος</string>
+
+    <string name="report_content">Αναφορά Περιεχομένου</string>
+    <string name="select_reason">Επιλέξτε Αιτία</string>
+    <string name="offensive">Προσβλητικό</string>
+    <string name="hate_speech">Ρητορική μίσους</string>
+    <string name="incorrect_info">Λανθασμένες πληροφορίες</string>
+    <string name="other">Άλλο</string>
+    <string name="submit">Υποβολή</string>
+    <string name="cancel">Άκυρο</string>
+
+    <string name="reset_settings">Επαναφορά Ρυθμίσεων</string>
+    <string name="not_relevant">Μη σχετικό</string>
+
+</resources>

@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poetic</item>
+        <item>Professional</item>
+        <item>Legal</item>
+        <item>Technical</item>
+        <item>Academic</item>
+        <item>Journalistic</item>
+        <item>Creative</item>
+        <item>Persuasive</item>
+        <item>Narrative</item>
+        <item>Descriptive</item>
+        <item>Expository</item>
+        <item>Humorous</item>
+        <item>Informal</item>
+        <item>Business</item>
+        <item>Scientific</item>
+        <item>Romantic</item>
+        <item>Historical</item>
+        <item>Philosophical</item>
+        <item>Self Help</item>
+        <item>Travel</item>
+        <item>Marketing</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formal</item>
+        <item>Casual</item>
+        <item>Friendly</item>
+        <item>Serious</item>
+        <item>Empathetic</item>
+        <item>Assertive</item>
+        <item>Optimistic</item>
+        <item>Humorous</item>
+        <item>Neutral</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimal</item>
+        <item>Moderate</item>
+        <item>Complete</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Relationship</item>
+        <item>Workplace</item>
+        <item>Education</item>
+        <item>Health</item>
+        <item>Finance</item>
+        <item>Travel</item>
+        <item>Technology</item>
+        <item>Entertainment</item>
+        <item>Self Improvement</item>
+        <item>General</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Russia: Collectivist</item>
+        <item>Eastern Europe: Pragmatic</item>
+        <item>Western Europe: Individualistic</item>
+        <item>Southeast Asia: Harmony-focused</item>
+        <item>China: Hierarchical</item>
+        <item>Caucasus: Honor-bound</item>
+        <item>North America: Entrepreneurial</item>
+        <item>Latin America: Passionate</item>
+        <item>Middle East: Hospitality-driven</item>
+        <item>Africa: Communal</item>
+        <item>Nordic Countries: Egalitarian</item>
+        <item>South Asia: Family-centric</item>
+        <item>Japan: Group harmony</item>
+        <item>Australia: Laid-back</item>
+        <item>Mediterranean: Expressive</item>
+        <item>Central Asia: Nomadic traditions</item>
+        <item>Germany: Structured</item>
+        <item>Balkans: Resilient</item>
+        <item>Arctic Indigenous: Nature-connected</item>
+        <item>Jewish: Community-oriented</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharic</item>
+        <item>Arabic</item>
+        <item>Bengali</item>
+        <item>Bulgarian</item>
+        <item>Chinese Simplified</item>
+        <item>Croatian</item>
+        <item>Czech</item>
+        <item>Danish</item>
+        <item>Dutch</item>
+        <item>English</item>
+        <item>Estonian</item>
+        <item>Finnish</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Gujarati</item>
+        <item>Hebrew</item>
+        <item>Hindi</item>
+        <item>Hungarian</item>
+        <item>Indonesian</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Kannada</item>
+        <item>Korean</item>
+        <item>Latvian</item>
+        <item>Lithuanian</item>
+        <item>Malay</item>
+        <item>Marathi</item>
+        <item>Norwegian</item>
+        <item>Pashto</item>
+        <item>Persian</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Romanian</item>
+        <item>Russian</item>
+        <item>Serbian</item>
+        <item>Slovak</item>
+        <item>Slovenian</item>
+        <item>Spanish</item>
+        <item>Swahili</item>
+        <item>Swedish</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Turkish</item>
+        <item>Ukrainian</item>
+        <item>Urdu</item>
+        <item>Vietnamese</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Not Relevant</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>No explanation</item>
+        <item>Short explanation</item>
+        <item>Detailed explanation</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Sedentary</item>
+        <item>Lightly Active</item>
+        <item>Moderately Active</item>
+        <item>Very Active</item>
+        <item>Extremely Active</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Airplane</item>
+        <item>Bicycle</item>
+        <item>Boat</item>
+        <item>Bus</item>
+        <item>Motorcycle</item>
+        <item>Owned Car</item>
+        <item>Rented Car</item>
+        <item>Ride Sharing</item>
+        <item>Subway</item>
+        <item>Taxi</item>
+        <item>Train</item>
+        <item>Tram</item>
+        <item>Walking</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Food</item>
+        <item>History</item>
+        <item>Culture</item>
+        <item>Nature</item>
+        <item>Relaxation</item>
+        <item>Adventure</item>
+        <item>Nightlife</item>
+        <item>Shopping</item>
+        <item>Family</item>
+        <item>Romantic</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Take a picture</item>
+        <item>Upload an image</item>
+        <item>Upload a file</item>
+        <item>Provide a link</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Sorry, service is not available in Russia and Belarus, please use vpn</string>
+    <string name="error_service_not_available_title">Service is not available</string>
+    <string name="error_common_title">Error</string>
+    <string name="error_common_message">An error occurred while the application was running. Try updating the app or try again later</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Whoops! Looks like camera access is needed for this feature. Head to your device settings, find IntelliVerse in your app list, and grant camera permission to unlock the magic!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Whoops! To use images from your gallery, IntelliVerse needs permission to read your photos. Head to your device settings, find IntelliVerse in your app list, and grant photo access to unlock the magic!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Whoops! To save files to your device, IntelliVerse needs permission to write to your storage. Head to your device settings, find IntelliVerse in your app list, and grant storage access to unlock the magic!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Whoops! To access files on your device, IntelliVerse needs permission to read your storage. Head to your device settings, find IntelliVerse in your app list, and grant storage access to unlock the magic!</string>
+    <string name="camera_permission_rationale">IntelliVerse needs access to your camera so you can instantly snap photos of your school exercises!</string>
+    <string name="read_media_permission_rationale">Allowing access to your photos lets you select images from your gallery to use within the IntelliVerse app!</string>
+    <string name="write_storage_permission_rationale">Permission to write to your storage lets the IntelliVerse app save files, like photos you\'ve taken, right to your device!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse needs access to your device\'s storage to read files, like photos or documents, that you might want to use in the app.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="are_you_sure">Are you sure you want to exit</string>
+    <string name="exit">Exit</string>
+
+    <string name="report_content">Report Content</string>
+    <string name="select_reason">Select Reason</string>
+    <string name="offensive">Offensive</string>
+    <string name="hate_speech">Hate Speech</string>
+    <string name="incorrect_info">Incorrect Info</string>
+    <string name="other">Other</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="reset_settings">Reset Settings</string>
+    <string name="not_relevant">Not Relevant</string>
+
+</resources>

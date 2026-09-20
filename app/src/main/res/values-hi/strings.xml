@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name" translatable="false">IntelliVerse</string>
+    <string name="welcome_to_intelliverse">इंटेलिवर्ष में आपका स्वागत है</string>
+    <string name="cheaptrip_info">चीपट्रिप एक अनोखा खोज इंजन है जो उड़ानों, बसों, ट्रेनों और घाटों को मिलाकर शहरों के बीच सबसे सस्ते रास्ते खोजता है।</string>
+    <string name="matterofchoice_info">मैटर ऑफ़ चॉइस आपको निर्णय लेने के कौशल सीखने में मदद करने के लिए इंटरैक्टिव परिदृश्य प्रस्तुत करता है।</string>
+</resources>

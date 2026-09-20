@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator teisendab teksti erinevate kirjutamisstiilide ja toonide vahel.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI kooli assistendi pilt</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Laadi üles AI kooli assistendi pilt</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Kontrolli lahendust AI kooli assistendi pilt</string>
+    <string name="ArrowDropDown_icon_content_description">Avab alammenüü</string>
+    <string name="add_image">Lisa ülesanne</string>
+
+    // Text values
+    <string name="recognized_text_value">Tuvastatud tekst</string>
+    <string name="solution_text_value">Lahendus</string>
+    <string name="user_task_value">Ülesanne</string>
+    <string name="is_ocr_result_included_value">Kasuta valitud tuvastatud teksti</string>
+    <string name="home_loading_waiting_text_value">Laadimine, palun oota...</string>
+    <string name="progress_bar_hint_text_value">Lahenduste genereerimise edenemine</string>
+
+    // Button Labels
+    <string name="next_button_label">Järgmine</string>
+    <string name="solve_button_label">Lahenda</string>
+    <string name="check_solution_button_label">Kontrolli lahendust</string>
+    <string name="cheat_sheet_button_label">Spikker</string>
+    <string name="start_again">Alusta uuesti</string>
+    <string name="try_again">Proovi uuesti</string>
+    <string name="pick_images">Vali pildid</string>
+    <string name="upload_from_url">Laadi üles</string>
+    <string name="upload_picture">Laadi pilt üles</string>
+    <string name="take_a_picture">Tee pilt</string>
+    <string name="recognize_text_button_label">Näita tuvastatud teksti</string>
+
+    // Text Field Labels
+    <string name="sentence">Tekst</string>
+    <string name="What_to_solve_TextField_label">Mida sa soovid lahendada?</string>
+    <string name="rating_TextField_label">Hinnang</string>
+    <string name="no_solution_chosen">Lahendus pole veel valitud</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Mulle meeldib oma tüdruksõbra eest hoolitseda. Ma alati tagan, et ta tunneks end turvaliselt ja kaitstuna. Mulle meeldib planeerida meie kohtinguid ja üllatada teda väikeste kingitustega. Kui ta on ärritunud, siis ma püüan leida lahenduse ja asjad korda ajada.</string>
+    <string name="first_ocr_result_is_not_ready">Teksti tuvastatakse, palun oota...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Lahenduse keel</string>
+    <string name="upload_a_file_label">Laadi fail üles</string>
+    <string name="explanations_label">Selgitused</string>
+    <string name="source_gender_label">Algallika sugu</string>
+    <string name="target_gender_label">Sihtgrupi sugu</string>
+    <string name="source_age_label">Algallika vanus</string>
+    <string name="target_age_label">Sihtgrupi vanus</string>
+    <string name="category_label">Kategooria</string>
+    <string name="tone_label">Tooni eelistus</string>
+    <string name="transformation_level_label">Transformatsiooni tase</string>
+    <string name="style_label">Tõlke stiil</string>
+    <string name="mentality_label">Mentaliteet</string>
+    <string name="translation_scale_label">Tõlke skaala faktor</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Tundub, et olete kustutanud mõned pildid kalorite rakenduse kataloogist. Ärge muretsege, kalorid proovivad need pildid ükshaaval rakenduse vahemälust kustutada. Vajadusel kinnitage iga pildi kustutamine. Iga tühi pilt on rikutud. Kas soovite jätkata?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ei suutnud pildilt teksti tuvastada. Palun proovi uuesti.</string>
+    <string name="error_gemini_solution_result_extraction">AI ei suutnud seda probleemi lahendada. Palun proovi uuesti.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Oih! Midagi läks valesti. Palun proovi uuesti!</string>
+    <string name="fail_to_load_Uri">Pildi laadimine loendisse ebaõnnestus. Palun proovige seda käsitsi laadida!</string>
+    <string name="corrupted_loaded_file">Olete laadinud rikutud faili!</string>
+    <string name="missing_required_settings">Mõned vajalikud seaded on puudu. Palun täitke need.</string>
+    <string name="camera_fail_to_open">Oih! Kaameraga läks midagi valesti. Palun proovi uuesti!</string>
+    <string name="upload_image_warning">Palun laadige seadmest üles pilt</string>
+    <string name="select_image_or_text_warning">Palun valige pilt või sisestage ülesanne.</string>
+    <string name="prompt_is_empty">Tuvastatud tekst on tühi. Palun proovi uuesti!</string>
+    <string name="language_not_supported">"Valitud keel ei ole meedia genereerimiseks saadaval. Teised funktsioonid toimivad edasi. Kas soovite alla laadida vajalikud keeleandmed, et see funktsioon lubada?"</string>
+
+    // labels
+    <string name="home">Avaleht</string>
+    <string name="settings">Seaded</string>
+    <string name="results">Tulemus</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Vali, mida jagada</string>
+    <string name="share_user_translation">Jaga minu teksti</string>
+    <string name="share_ocr_result">Jaga tuvastatud teksti</string>
+    <string name="share_solution">Jaga lahendust</string>
+    <string name="share_image">Jaga pilti</string>
+    <string name="share">Jaga</string>
+
+    // installation
+    <string name="install">Installi</string>
+    <string name="install_language">Installi keel</string>
+
+    <string name="solved_by_style_translator">Lahendatud StyleTranslatori poolt\nVaadake meie rakendust Google Plays</string>
+
+</resources>

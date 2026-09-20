@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip er din smarte reiseplanlegger drevet av AI. Bare beskriv drømmereisen din eller last opp inspirasjon, og motta umiddelbart en personlig dag-for-dag reiserute med transportalternativer, hotellkoblinger, budsjettestimater og lokale tips — alt med ett klikk.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Gjenkjent tekst</string>
+    <string name="solution_text_value">Løsning</string>
+    <string name="user_task_value">Oppgave</string>
+    <string name="progress_bar_hint_text_value">Fremdrift for løsninggenerering</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Tekst</string>
+    <string name="no_solution_chosen">Ingen løsning valgt ennå</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Jeg ønsker en 3-dagers avslappende og kulturell reise med historiske steder, lokal mat, rolige spaserturer, og en blanding av guidede og selvstyrte aktiviteter i én by eller i nærheten.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Løsningsspråk</string>
+    <string name="max_budget_label">Maksimalt budsjett</string>
+    <string name="travelers_number_label">Antall reisende</string>
+    <string name="trip_duration_label">Reisens varighet</string>
+    <string name="transportation_type_label">Transporttype</string>
+    <string name="trip_style_label">Reisestil</string>
+    <string name="origin_location_label">Avreisested</string>
+    <string name="trip_type_label">Reisetype</string>
+    <string name="one_way_trip">Enveisreise</string>
+    <string name="round_trip">Tur-retur reise</string>
+    <string name="days">dager</string>
+    <string name="new_york">New York</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Skriv inn transporttype</string>
+    <string name="enter_location">Skriv inn sted</string>
+    <string name="add">Legg til</string>
+    <string name="travel_path">Reiserute</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI klarte ikke å løse dette problemet. Prøv igjen.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Oops! Noe gikk galt. Vennligst prøv igjen!</string>
+    <string name="fail_to_load_Uri">Kunne ikke laste inn bildet til listen. Vennligst prøv manuelt!</string>
+    <string name="corrupted_loaded_file">Du har lastet opp en korrupt fil!</string>
+    <string name="missing_required_settings">Noen nødvendige innstillinger mangler. Vennligst fyll dem ut.</string>
+    <string name="camera_fail_to_open">Oops! Kunne ikke åpne kameraet. Prøv igjen!</string>
+    <string name="select_image_or_text_warning">Velg et bilde eller skriv inn en oppgave.</string>
+    <string name="language_not_supported">
+        Det valgte språket er ikke tilgjengelig for mediegenerering. Andre funksjoner vil fortsette å fungere. Vil du laste ned de nødvendige språkdataene?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Hjem</string>
+    <string name="settings">Innstillinger</string>
+    <string name="results">Resultat</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Velg hva du vil dele</string>
+    <string name="share_user_translation">Del min tekst</string>
+    <string name="share_ocr_result">Del gjenkjent tekst</string>
+    <string name="share_solution">Del løsning</string>
+    <string name="share_image">Del bilde</string>
+    <string name="share">Del</string>
+
+    <!-- Installation -->
+    <string name="install">Installer</string>
+    <string name="install_language">Installer språk</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Løst av OneClickTrip\nSe appen vår på Google Play</string>
+</resources>

@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">اسکول کِلر طلباء کو خاص طور پر ریاضی کے مسائل، نیز عام مسائل کو حل کرنے میں مدد کرتا ہے۔</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">اے آئی سکول اسسٹنٹ کی تصویر</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">اے آئی سکول اسسٹنٹ امیج پر اپ لوڈ کریں</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">حل چیک کریں اے آئی سکول اسسٹنٹ امیج</string>
+    <string name="ArrowDropDown_icon_content_description">ایک ذیلی مینیو کھولتا ہے</string>
+    <string name="add_image">ٹاسک شامل کریں</string>
+    <string name="Guidance">بہترین نتائج کے لیے، براہ کرم اپنے ٹاسک کے لیے تفصیلی ٹیکسٹ فراہم کریں۔ اگر آپ تصاویر منسلک کرتے ہیں، تو یقینی بنائیں کہ پہچانی جانے والی کوئی بھی ٹیکسٹ اصل سے بالکل مماثل ہونے کے لیے ایڈٹ کی گئی ہے۔</string>
+
+    // Text values
+    <string name="recognized_text_value">پہچانا گیا ٹیکسٹ</string>
+    <string name="solution_text_value">حل</string>
+    <string name="user_task_value">ٹاسک</string>
+    <string name="is_ocr_result_included_value">منتخب شدہ پہچانے گئے ٹیکسٹ کا استعمال کریں</string>
+    <string name="home_loading_waiting_text_value">لوڈ ہو رہا ہے، براہ کرم انتظار کریں...</string>
+    <string name="progress_bar_hint_text_value">حل کی تخلیق کا عمل</string>
+
+    // Button Labels
+    <string name="next_button_label">اگلا</string>
+    <string name="solve_button_label">حل کریں</string>
+    <string name="check_solution_button_label">حل چیک کریں</string>
+    <string name="cheat_sheet_button_label">چیٹ شیٹ</string>
+    <string name="start_again">دوبارہ شروع کریں</string>
+    <string name="try_again">دوبارہ کوشش کریں</string>
+    <string name="pick_images">تصاویر منتخب کریں</string>
+    <string name="upload_from_url">اپ لوڈ کریں</string>
+    <string name="upload_picture">تصویر اپ لوڈ کریں</string>
+    <string name="take_a_picture">تصویر لیں</string>
+    <string name="recognize_text_button_label">پہچانا گیا ٹیکسٹ دکھائیں</string>
+
+    // Text Field Labels
+    <string name="tasks">ٹاسک</string>
+    <string name="What_to_solve_TextField_label">آپ کیا حل کرنا چاہتے ہیں؟</string>
+    <string name="rating_TextField_label">ریٹنگ</string>
+    <string name="no_solution_chosen">ابھی تک کوئی حل منتخب نہیں کیا گیا ہے</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">مجھے Pythagorean تھیورم کے بارے میں بتائیں۔</string>
+    <string name="first_ocr_result_is_not_ready">ٹیکسٹ کی شناخت کی جا رہی ہے، براہ کرم انتظار کریں…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">حل کی زبان</string>
+    <string name="upload_a_file_label">فائل اپ لوڈ کریں</string>
+    <string name="explanations_label">وضاحتیں</string>
+    <string name="grade_label">"گریڈ"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">ایسا لگتا ہے کہ آپ نے SchoolKiller ایپ کے ڈائریکٹری اسٹوریج سے کچھ تصاویر ڈیلیٹ کر دی ہیں۔ پریشان ہونے کی کوئی بات نہیں، SchoolKiller ایپلیکیشن کیشے سے ان تصاویر کو ایک ایک کر کے صاف کرنے کی کوشش کرے گا۔ براہ کرم ہر تصویر کے حذف کرنے کی تصدیق کریں، اگر ضرورت ہو۔ کوئی بھی تصویر جو خالی نظر آتی ہے خراب شدہ تصویر ہے۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">اے آئی تصویر سے ٹیکسٹ کی شناخت کرنے میں ناکام رہا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="error_gemini_solution_result_extraction">اے آئی اس مسئلے کو حل کرنے میں ناکام رہا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+
+    // Toast messages
+    <string name="something_went_wrong">اوہ! کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں!</string>
+    <string name="fail_to_load_Uri">تصویر کو لسٹ میں لوڈ کرنے میں ناکام رہے۔ براہ کرم اسے دستی طور پر لوڈ کرنے کی کوشش کریں!</string>
+    <string name="corrupted_loaded_file">آپ نے ایک خراب شدہ فائل لوڈ کی ہے!</string>
+    <string name="camera_fail_to_open">اوہ! کیمرہ میں کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں!</string>
+    <string name="upload_image_warning">براہ کرم ڈیوائس سے ایک تصویر اپ لوڈ کریں</string>
+    <string name="select_image_or_text_warning">براہ کرم ایک تصویر منتخب کریں یا ٹاسک ٹائپ کریں۔</string>
+    <string name="prompt_is_empty">پہچانا گیا ٹیکسٹ خالی ہے۔ براہ کرم دوبارہ کوشش کریں!</string>
+    <string name="language_not_supported">"منتخب کردہ زبان میڈیا جنریشن کے لیے دستیاب نہیں ہے۔ دیگر خصوصیات کام کرتی رہیں گی۔ کیا آپ اس فیچر کو فعال کرنے کے لیے ضروری لسانی ڈیٹا ڈاؤن لوڈ کرنا چاہیں گے؟"</string>
+
+    // labels
+    <string name="home">ہوم</string>
+    <string name="settings">ترتیبات</string>
+    <string name="results">نتیجہ</string>
+    <string name="ocr">او سی آر</string>
+
+    // sharing
+    <string name="choose_sharing">منتخب کریں کہ کیا شیئر کرنا ہے</string>
+    <string name="share_user_task">میرا ٹاسک شیئر کریں</string>
+    <string name="share_ocr_result">پہچانا گیا ٹیکسٹ شیئر کریں</string>
+    <string name="share_solution">حل شیئر کریں</string>
+    <string name="share_image">تصویر شیئر کریں</string>
+    <string name="share">شیئر کریں</string>
+
+    // installation
+    <string name="install">انسٹال کریں</string>
+    <string name="install_language">زبان انسٹال کریں</string>
+
+    <string name="solved_by_schoolkiller">SchoolKiller کے ذریعے حل کیا گیا\nگوگل پلے پر ہماری ایپ چیک کریں</string>
+
+</resources>

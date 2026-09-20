@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Költői</item>
+        <item>Professzionális</item>
+        <item>Jogi</item>
+        <item>Technikai</item>
+        <item>Akadémiai</item>
+        <item>Újságírói</item>
+        <item>Kreatív</item>
+        <item>Meggyőző</item>
+        <item>Elbeszélő</item>
+        <item>Leíró</item>
+        <item>Magyarázó</item>
+        <item>Humoros</item>
+        <item>Informális</item>
+        <item>Üzleti</item>
+        <item>Tudományos</item>
+        <item>Romantikus</item>
+        <item>Történelmi</item>
+        <item>Filozófiai</item>
+        <item>Önsegítő</item>
+        <item>Utazási</item>
+        <item>Marketing</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formális</item>
+        <item>Közvetlen</item>
+        <item>Barátságos</item>
+        <item>Komoly</item>
+        <item>Empatikus</item>
+        <item>Határozott</item>
+        <item>Optimista</item>
+        <item>Humoros</item>
+        <item>Semleges</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimális</item>
+        <item>Mérsékelt</item>
+        <item>Teljes</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Kapcsolat</item>
+        <item>Munkahely</item>
+        <item>Oktatás</item>
+        <item>Egészség</item>
+        <item>Pénzügy</item>
+        <item>Utazás</item>
+        <item>Technológia</item>
+        <item>Szórakozás</item>
+        <item>Önfejlesztés</item>
+        <item>Általános</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Oroszország: Kollektivista</item>
+        <item>Kelet-Európa: Pragmatikus</item>
+        <item>Nyugat-Európa: Individualista</item>
+        <item>Délkelet-Ázsia: Harmóniára összpontosító</item>
+        <item>Kína: Hierarchikus</item>
+        <item>Kaukázus: Becsülethez kötött</item>
+        <item>Észak-Amerika: Vállalkozó szellemű</item>
+        <item>Latin-Amerika: Szenvedélyes</item>
+        <item>Közép-Kelet: Vendégszeretet-vezérelt</item>
+        <item>Afrika: Közösségi</item>
+        <item>Északi országok: Egalitárius</item>
+        <item>Dél-Ázsia: Családcentrikus</item>
+        <item>Japán: Csoportharmónia</item>
+        <item>Ausztrália: Laza</item>
+        <item>Mediterrán: Kifejező</item>
+        <item>Közép-Ázsia: Nomád hagyományok</item>
+        <item>Németország: Strukturált</item>
+        <item>Balkán: Rugalmas</item>
+        <item>Sarkvidéki őslakosok: Természettel összekapcsolt</item>
+        <item>Zsidó: Közösség-orientált</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amhara</item>
+        <item>Arab</item>
+        <item>Bengáli</item>
+        <item>Bolgár</item>
+        <item>Egyszerűsített kínai</item>
+        <item>Horvát</item>
+        <item>Cseh</item>
+        <item>Dán</item>
+        <item>Holland</item>
+        <item>Angol</item>
+        <item>Észt</item>
+        <item>Finn</item>
+        <item>Francia</item>
+        <item>Német</item>
+        <item>Görög</item>
+        <item>Gudzsaráti</item>
+        <item>Héber</item>
+        <item>Hindi</item>
+        <item>Magyar</item>
+        <item>Indonéz</item>
+        <item>Olasz</item>
+        <item>Japán</item>
+        <item>Kannada</item>
+        <item>Koreai</item>
+        <item>Lett</item>
+        <item>Litván</item>
+        <item>Maláj</item>
+        <item>Marathi</item>
+        <item>Norvég</item>
+        <item>Pastu</item>
+        <item>Perzsa</item>
+        <item>Lengyel</item>
+        <item>Portugál</item>
+        <item>Román</item>
+        <item>Orosz</item>
+        <item>Szerb</item>
+        <item>Szlovák</item>
+        <item>Szlovén</item>
+        <item>Spanyol</item>
+        <item>Szuahéli</item>
+        <item>Svéd</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Török</item>
+        <item>Ukrán</item>
+        <item>Urdu</item>
+        <item>Vietnámi</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Nem releváns</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Nincs magyarázat</item>
+        <item>Rövid magyarázat</item>
+        <item>Részletes magyarázat</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Ülő</item>
+        <item>Enyhén aktív</item>
+        <item>Mérsékelten aktív</item>
+        <item>Nagyon aktív</item>
+        <item>Rendkívül aktív</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Férfi</item>
+        <item>Nő</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Repülőgép</item>
+        <item>Kerékpár</item>
+        <item>Hajó</item>
+        <item>Busz</item>
+        <item>Motorkerékpár</item>
+        <item>Saját autó</item>
+        <item>Bérelt autó</item>
+        <item>Telekocsi</item>
+        <item>Metró</item>
+        <item>Taxi</item>
+        <item>Vonat</item>
+        <item>Villamos</item>
+        <item>Gyaloglás</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Étel</item>
+        <item>Történelem</item>
+        <item>Kultúra</item>
+        <item>Természet</item>
+        <item>Pihenés</item>
+        <item>Kaland</item>
+        <item>Éjszakai élet</item>
+        <item>Vásárlás</item>
+        <item>Család</item>
+        <item>Romantika</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Készítsen egy képet</item>
+        <item>Töltsön fel egy képet</item>
+        <item>Töltsön fel egy fájlt</item>
+        <item>Adjon meg egy linket</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Sajnáljuk, a szolgáltatás nem elérhető Oroszországban és Fehéroroszországban, kérjük, használjon VPN-t</string>
+    <string name="error_service_not_available_title">A szolgáltatás nem elérhető</string>
+    <string name="error_common_title">Hiba</string>
+    <string name="error_common_message">Hiba történt az alkalmazás futása közben. Próbálja meg frissíteni az alkalmazást, vagy próbálkozzon később</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Hoppá! Úgy tűnik, ehhez a funkcióhoz kamerához való hozzáférés szükséges. Lépjen a készülék beállításaihoz, keresse meg az IntelliVerse-t az alkalmazáslistában, és adja meg a kamera engedélyt a varázslat feloldásához!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Hoppá! A galériából származó képek használatához az IntelliVerse-nek engedélyre van szüksége a fényképek olvasásához. Lépjen a készülék beállításaihoz, keresse meg az IntelliVerse-t az alkalmazáslistában, és adja meg a fényképekhez való hozzáférést a varázslat feloldásához!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Hoppá! Ahhoz, hogy fájlokat menthessen a készülékére, az IntelliVerse-nek engedélyre van szüksége a tárhelyre való íráshoz. Lépjen a készülék beállításaihoz, keresse meg az IntelliVerse-t az alkalmazáslistában, és adja meg a tárhelyhez való hozzáférést a varázslat feloldásához!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Hoppá! A készülékén lévő fájlok eléréséhez az IntelliVerse-nek engedélyre van szüksége a tárhely olvasásához. Lépjen a készülék beállításaihoz, keresse meg az IntelliVerse-t az alkalmazáslistában, és adja meg a tárhelyhez való hozzáférést a varázslat feloldásához!</string>
+    <string name="camera_permission_rationale">Az IntelliVerse-nek hozzá kell férnie a kamerájához, hogy azonnal lefotózhassa az iskolai feladatait!</string>
+    <string name="read_media_permission_rationale">A fényképeihez való hozzáférés lehetővé teszi, hogy képeket válasszon ki a galériájából az IntelliVerse alkalmazáson belül!</string>
+    <string name="write_storage_permission_rationale">A tárhelyre való írás engedélye lehetővé teszi, hogy az IntelliVerse alkalmazás fájlokat, például az Ön által készített fényképeket, közvetlenül a készülékére mentse!</string>
+    <string name="read_storage_permission_rationale">Az IntelliVerse-nek hozzá kell férnie a készüléke tárhelyéhez a fájlok, például fényképek vagy dokumentumok olvasásához, amelyeket esetleg használni szeretne az alkalmazásban.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Igen</string>
+    <string name="No">Nem</string>
+    <string name="are_you_sure">Biztosan ki szeretne lépni?</string>
+    <string name="exit">Kilépés</string>
+
+    <string name="report_content">Tartalom bejelentése</string>
+    <string name="select_reason">Válasszon okot</string>
+    <string name="offensive">Sértő</string>
+    <string name="hate_speech">Gyűlöletbeszéd</string>
+    <string name="incorrect_info">Helytelen információ</string>
+    <string name="other">Egyéb</string>
+    <string name="submit">Küldés</string>
+    <string name="cancel">Mégse</string>
+
+    <string name="reset_settings">Beállítások visszaállítása</string>
+    <string name="not_relevant">Nem releváns</string>
+
+</resources>

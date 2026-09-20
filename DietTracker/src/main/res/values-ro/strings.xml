@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker ajută utilizatorii să-și monitorizeze aportul de calorii, grăsimi, proteine, carbohidrați, vitamine și minerale din alimente. Nu doar numără aceste elemente, dar analizează și ce este absorbit de corp după digestie. Utilizatorii pot încărca imagini ale produselor, aplicația recunoaște ingredientele și oferă posibilitatea de a edita lista.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Imagine cu Asistentul Școlar AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Imagine pentru încărcare în Asistentul Școlar AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Imagine pentru verificare soluție Asistentul Școlar AI</string>
+    <string name="ArrowDropDown_icon_content_description">Deschide un submeniu</string>
+    <string name="add_image">Adaugă sarcină</string>
+    <string name="guidance_detected_ingredients">Verificați ingredientele detectate. Dacă există detalii incorecte sau lipsesc, le puteți modifica înainte de a genera o nouă analiză nutrițională</string>
+
+    // Text values
+    <string name="ingredients">Ingrediente</string>
+    <string name="solution_text_value">Soluție</string>
+    <string name="user_task_value">Sarcină</string>
+    <string name="is_ocr_result_included_value">Utilizați textul recunoscut selectat</string>
+    <string name="home_loading_waiting_text_value">Se încarcă, vă rugăm să așteptați...</string>
+    <string name="progress_bar_hint_text_value">Progresul generării soluțiilor</string>
+
+    // Button Labels
+    <string name="next_button_label">Următorul</string>
+    <string name="solve_button_label">Rezolvă</string>
+    <string name="check_solution_button_label">Verifică soluția</string>
+    <string name="cheat_sheet_button_label">Fițuică</string>
+    <string name="start_again">Începe din nou</string>
+    <string name="try_again">Încearcă din nou</string>
+    <string name="pick_images">Alege imagini</string>
+    <string name="upload_from_url">Încarcă</string>
+    <string name="upload_picture">Încarcă imagine</string>
+    <string name="take_a_picture">Fă o poză</string>
+    <string name="recognize_text_button_label">Arată textul recunoscut</string>
+
+    // Text Field Labels
+    <string name="foods">Alimente</string>
+    <string name="What_to_solve_TextField_label">Ce vrei să rezolvi?</string>
+    <string name="rating_TextField_label">Evaluare</string>
+    <string name="no_solution_chosen">Soluția nu a fost încă selectată</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 banane și 1 măr, toate de dimensiune medie.</string>
+    <string name="first_ocr_result_is_not_ready">Textul este recunoscut, vă rugăm să așteptați...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Limba soluției</string>
+    <string name="upload_a_file_label">Încarcă un fișier</string>
+    <string name="explanations_label">Explicații</string>
+    <string name="physical_activity_label">Activitate Fizică</string>
+    <string name="gender_label">Gen</string>
+    <string name="age_label">Vârstă</string>
+    <string name="height_label">Înălțime</string>
+    <string name="weight_label">Greutate</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Se pare că ați șters unele imagini din spațiul de stocare al aplicației de calorii. Nu vă faceți griji, calorii va încerca să șteargă aceste imagini una câte una din memoria cache a aplicației. Vă rugăm să confirmați fiecare ștergere a imaginii, dacă este necesar. Orice imagine care apare goală este una coruptă. Doriți să continuați?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nu a putut recunoaște textul din imagine. Vă rugăm să încercați din nou.</string>
+    <string name="error_gemini_solution_result_extraction">AI nu a putut rezolva această problemă. Vă rugăm să încercați din nou.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Ceva nu a mers bine. Vă rugăm să încercați din nou!</string>
+    <string name="fail_to_load_Uri">Nu s-a putut încărca imaginea în listă. Vă rugăm să încercați să o încărcați manual!</string>
+    <string name="corrupted_loaded_file">Ați încărcat un fișier corupt!</string>
+    <string name="missing_required_settings">Lipsesc unele setări obligatorii. Vă rugăm să le completați.</string>
+    <string name="camera_fail_to_open">Ups! Ceva nu a mers bine cu camera. Vă rugăm să încercați din nou!</string>
+    <string name="upload_image_warning">Vă rugăm să încărcați o imagine de pe dispozitiv</string>
+    <string name="select_image_or_text_warning">Vă rugăm să selectați o imagine sau să tastați sarcina.</string>
+    <string name="prompt_is_empty">Textul recunoscut este gol. Vă rugăm să încercați din nou!</string>
+    <string name="language_not_supported">"Limba selectată nu este disponibilă pentru generarea media. Alte funcții vor continua să funcționeze. Doriți să descărcați datele lingvistice necesare pentru a activa această funcție?"</string>
+
+    // labels
+    <string name="home">Acasă</string>
+    <string name="settings">Setări</string>
+    <string name="results">Rezultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Alegeți ce doriți să partajați</string>
+    <string name="share_user_ingredients">Partajează-mi ingredientele</string>
+    <string name="share_recognized_ingredients">Partajează ingredientele recunoscute</string>
+    <string name="share_solution">Partajează soluția</string>
+    <string name="share_image">Partajează imaginea</string>
+    <string name="share">Partajează</string>
+
+    // installation
+    <string name="install">Instalează</string>
+    <string name="install_language">Instalează limba</string>
+
+    <string name="solved_by_diet_tracker">Rezolvat de DietTracker\nVerifică aplicația noastră pe Google Play</string>
+
+</resources>

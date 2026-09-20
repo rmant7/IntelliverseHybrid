@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>কাব্যিক</item>
+        <item>পেশাদার</item>
+        <item>আইনগত</item>
+        <item>কারিগরী</item>
+        <item>একাডেমিক</item>
+        <item>সাংবাদিক</item>
+        <item>সৃজনশীল</item>
+        <item>প্ররোচনামূলক</item>
+        <item>বর্ণনাত্মক</item>
+        <item>বর্ণনাকারী</item>
+        <item>ব্যাখ্যামূলক</item>
+        <item>হাস্যরসাত্মক</item>
+        <item>অনানুষ্ঠানিক</item>
+        <item>ব্যবসায়িক</item>
+        <item>বৈজ্ঞানিক</item>
+        <item>রোমান্টিক</item>
+        <item>ঐতিহাসিক</item>
+        <item>দার্শনিক</item>
+        <item>আত্ম-সহায়ক</item>
+        <item>ভ্রমণ</item>
+        <item>বিপণন</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>আনুষ্ঠানিক</item>
+        <item>নৈমিত্তিক</item>
+        <item>বন্ধুত্বপূর্ণ</item>
+        <item>গুরুতর</item>
+        <item>সহানুভূতিশীল</item>
+        <item>দৃঢ়</item>
+        <item>আশাবাদী</item>
+        <item>হাস্যরসাত্মক</item>
+        <item>নিরপেক্ষ</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>ন্যূনতম</item>
+        <item>মাঝারি</item>
+        <item>সম্পূর্ণ</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>সম্পর্ক</item>
+        <item>কর্মক্ষেত্র</item>
+        <item>শিক্ষা</item>
+        <item>স্বাস্থ্য</item>
+        <item>অর্থ</item>
+        <item>ভ্রমণ</item>
+        <item>প্রযুক্তি</item>
+        <item>বিনোদন</item>
+        <item>আত্ম-উন্নতি</item>
+        <item>সাধারণ</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>রাশিয়া: সমষ্টিবাদী</item>
+        <item>পূর্ব ইউরোপ: বাস্তববাদী</item>
+        <item>পশ্চিম ইউরোপ: ব্যক্তি কেন্দ্রিক</item>
+        <item>দক্ষিণ-পূর্ব এশিয়া: ঐক্য-কেন্দ্রিক</item>
+        <item>চীন: শ্রেণীবদ্ধ</item>
+        <item>ককেশাস: সম্মান-বদ্ধ</item>
+        <item>উত্তর আমেরিকা: উদ্যোক্তা</item>
+        <item>ল্যাটিন আমেরিকা: আবেগপূর্ণ</item>
+        <item>মধ্য প্রাচ্য: আতিথেয়তা-চালিত</item>
+        <item>আফ্রিকা: সাম্প্রদায়িক</item>
+        <item>নর্ডিক দেশসমূহ: সমতাবাদী</item>
+        <item>দক্ষিণ এশিয়া: পরিবার কেন্দ্রিক</item>
+        <item>জাপান: দলগত ঐক্য</item>
+        <item>অস্ট্রেলিয়া: স্বচ্ছন্দ</item>
+        <item>ভূমধ্যসাগরীয়: ভাবপূর্ণ</item>
+        <item>মধ্য এশিয়া: যাযাবর ঐতিহ্য</item>
+        <item>জার্মানি: কাঠামোবদ্ধ</item>
+        <item>বলকান: স্থিতিস্থাপক</item>
+        <item>আর্কটিক আদিবাসী: প্রকৃতি-সংযুক্ত</item>
+        <item>ইহুদি: সম্প্রদায়-ভিত্তিক</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>আমহারিক</item>
+        <item>আরবি</item>
+        <item>বাংলা</item>
+        <item>বুলগেরীয়</item>
+        <item>সরলীকৃত চীনা</item>
+        <item>ক্রোয়েশীয়</item>
+        <item>চেক</item>
+        <item>ড্যানিশ</item>
+        <item>ডাচ</item>
+        <item>ইংরেজি</item>
+        <item>এস্তোনীয়</item>
+        <item>ফিনিশ</item>
+        <item>ফরাসি</item>
+        <item>জার্মান</item>
+        <item>গ্রিক</item>
+        <item>গুজরাটি</item>
+        <item>হিব্রু</item>
+        <item>হিন্দি</item>
+        <item>হাঙ্গেরীয়</item>
+        <item>ইন্দোনেশীয়</item>
+        <item>ইতালীয়</item>
+        <item>জাপানি</item>
+        <item>কান্নাডা</item>
+        <item>কোরিয়ান</item>
+        <item>লাত্ভীয়</item>
+        <item>লিথুয়ানীয়</item>
+        <item>মালয়</item>
+        <item> মারাঠি</item>
+        <item>নরওয়েজীয়</item>
+        <item>পাশতু</item>
+        <item>ফার্সি</item>
+        <item>পোলিশ</item>
+        <item>পর্তুগিজ</item>
+        <item>রোমানীয়</item>
+        <item>রাশিয়ান</item>
+        <item>সার্বীয়</item>
+        <item>স্লোভাক</item>
+        <item>স্লোভেনীয়</item>
+        <item>স্প্যানিশ</item>
+        <item>সোয়াহিলি</item>
+        <item>সুইডিশ</item>
+        <item>তাগালগ</item>
+        <item>তামিল</item>
+        <item>তেলেগু</item>
+        <item>থাই</item>
+        <item>তুর্কি</item>
+        <item>ইউক্রেনীয়</item>
+        <item>উর্দু</item>
+        <item>ভিয়েতনামী</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>প্রাসঙ্গিক নয়</item>
+        <item>১</item>
+        <item>২</item>
+        <item>৩</item>
+        <item>৪</item>
+        <item>৫</item>
+        <item>৬</item>
+        <item>৭</item>
+        <item>৮</item>
+        <item>৯</item>
+        <item>১০</item>
+        <item>১১</item>
+        <item>১২</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>কোনো ব্যাখ্যা নেই</item>
+        <item>সংক্ষিপ্ত ব্যাখ্যা</item>
+        <item>বিস্তারিত ব্যাখ্যা</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>আসীন</item>
+        <item>হালকা সক্রিয়</item>
+        <item>মাঝারি সক্রিয়</item>
+        <item>খুব সক্রিয়</item>
+        <item>অত্যন্ত সক্রিয়</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>পুরুষ</item>
+        <item>মহিলা</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>বিমান</item>
+        <item>সাইকেল</item>
+        <item>নৌকা</item>
+        <item>বাস</item>
+        <item>মোটরসাইকেল</item>
+        <item>নিজস্ব গাড়ি</item>
+        <item>ভাড়া গাড়ি</item>
+        <item>যাত্রা ভাগাভাগি</item>
+        <item>সাবওয়ে</item>
+        <item>ট্যাক্সি</item>
+        <item>ট্রেন</item>
+        <item>ট্রাম</item>
+        <item>হাঁটা</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>খাবার</item>
+        <item>ইতিহাস</item>
+        <item>সংস্কৃতি</item>
+        <item>প্রকৃতি</item>
+        <item>বিশ্রাম</item>
+        <item>সাহসিকতা</item>
+        <item>রাত্রিকালীন জীবন</item>
+        <item>কেনাকাটা</item>
+        <item>পরিবার</item>
+        <item>রোমান্টিক</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>একটি ছবি তুলুন</item>
+        <item>একটি ছবি আপলোড করুন</item>
+        <item>একটি ফাইল আপলোড করুন</item>
+        <item>একটি লিঙ্ক দিন</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">দুঃখিত, রাশিয়া এবং বেলারুশে এই পরিষেবাটি উপলব্ধ নেই, অনুগ্রহ করে ভিপিএন ব্যবহার করুন</string>
+    <string name="error_service_not_available_title">পরিষেবা উপলব্ধ নেই</string>
+    <string name="error_common_title">ত্রুটি</string>
+    <string name="error_common_message">অ্যাপ্লিকেশন চালানোর সময় একটি ত্রুটি ঘটেছে৷ অ্যাপটি আপডেট করার চেষ্টা করুন অথবা পরে আবার চেষ্টা করুন</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">উফ! মনে হচ্ছে এই বৈশিষ্ট্যের জন্য ক্যামেরা অ্যাক্সেসের প্রয়োজন। আপনার ডিভাইসের সেটিংসে যান, আপনার অ্যাপ তালিকায় IntelliVerse খুঁজুন এবং জাদু আনলক করতে ক্যামেরার অনুমতি দিন!</string>
+    <string name="permanent_denied_read_media_permission_explanation">উফ! আপনার গ্যালারি থেকে ছবি ব্যবহার করতে, IntelliVerse-এর আপনার ফটোগুলি পড়ার অনুমতি প্রয়োজন৷ আপনার ডিভাইসের সেটিংসে যান, আপনার অ্যাপ তালিকায় IntelliVerse খুঁজুন এবং জাদু আনলক করতে ফটো অ্যাক্সেস দিন!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">উফ! আপনার ডিভাইসে ফাইল সংরক্ষণ করতে, IntelliVerse-এর আপনার স্টোরেজে লেখার অনুমতি প্রয়োজন। আপনার ডিভাইসের সেটিংসে যান, আপনার অ্যাপ তালিকায় IntelliVerse খুঁজুন এবং জাদু আনলক করতে স্টোরেজ অ্যাক্সেস দিন!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">উফ! আপনার ডিভাইসের ফাইল অ্যাক্সেস করতে, IntelliVerse-এর আপনার স্টোরেজ পড়ার অনুমতি প্রয়োজন। আপনার ডিভাইসের সেটিংসে যান, আপনার অ্যাপ তালিকায় IntelliVerse খুঁজুন এবং জাদু আনলক করতে স্টোরেজ অ্যাক্সেস দিন!</string>
+    <string name="camera_permission_rationale">IntelliVerse-এর আপনার ক্যামেরার অ্যাক্সেস প্রয়োজন যাতে আপনি আপনার স্কুলের অনুশীলনের ছবি তুলতে পারেন!</string>
+    <string name="read_media_permission_rationale">আপনার ফটোগুলিতে অ্যাক্সেসের অনুমতি দিলে আপনি IntelliVerse অ্যাপের মধ্যে ব্যবহার করার জন্য আপনার গ্যালারি থেকে ছবি নির্বাচন করতে পারবেন!</string>
+    <string name="write_storage_permission_rationale">আপনার স্টোরেজে লেখার অনুমতি IntelliVerse অ্যাপটিকে আপনার ডিভাইসে সরাসরি ফাইলগুলি, যেমন আপনার তোলা ফটোগুলি সংরক্ষণ করতে দেয়!</string>
+    <string name="read_storage_permission_rationale">অ্যাপটিতে ব্যবহার করতে চান এমন ছবি বা নথির মতো ফাইলগুলি পড়তে IntelliVerse-এর আপনার ডিভাইসের স্টোরেজে অ্যাক্সেসের প্রয়োজন।</string>
+
+    // Buttons Labels
+    <string name="Ok">ঠিক আছে</string>
+
+    <string name="Yes">হ্যাঁ</string>
+    <string name="No">না</string>
+    <string name="are_you_sure">আপনি কি নিশ্চিত যে আপনি প্রস্থান করতে চান?</string>
+    <string name="exit">প্রস্থান করুন</string>
+
+    <string name="report_content">বিষয়বস্তু রিপোর্ট করুন</string>
+    <string name="select_reason">কারণ নির্বাচন করুন</string>
+    <string name="offensive">আপত্তিকর</string>
+    <string name="hate_speech">ঘৃণাত্মক বক্তব্য</string>
+    <string name="incorrect_info">ভুল তথ্য</string>
+    <string name="other">অন্যান্য</string>
+    <string name="submit">জমা দিন</string>
+    <string name="cancel">বাতিল করুন</string>
+
+    <string name="reset_settings">সেটিংস রিসেট করুন</string>
+    <string name="not_relevant">প্রাসঙ্গিক নয়</string>
+
+</resources>

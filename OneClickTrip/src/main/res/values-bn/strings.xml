@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip হল আপনার AI চালিত স্মার্ট ভ্রমণ পরিকল্পনাকারী। শুধু আপনার স্বপ্নের ভ্রমণ বর্ণনা করুন বা অনুপ্রেরণা আপলোড করুন, এবং তাৎক্ষণিকভাবে পান একটি ব্যক্তিগতকৃত, দিনভিত্তিক পরিকল্পনা যেখানে পরিবহন বিকল্প, হোটেল লিঙ্ক, বাজেট অনুমান এবং স্থানীয় পরামর্শ থাকবে — সব এক ক্লিকে।</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">স্বীকৃত পাঠ্য</string>
+    <string name="solution_text_value">সমাধান</string>
+    <string name="user_task_value">কাজ</string>
+    <string name="progress_bar_hint_text_value">সমাধান তৈরির অগ্রগতি</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">পাঠ্য</string>
+    <string name="no_solution_chosen">এখনও কোনো সমাধান নির্বাচন করা হয়নি</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        আমি চাই একটি ৩ দিনের শান্তিপূর্ণ এবং সাংস্কৃতিক ভ্রমণ, যেখানে ঐতিহাসিক স্থান, স্থানীয় খাবার, হালকা হাঁটা এবং গাইডেড ও স্বনির্দেশিত কার্যকলাপের সংমিশ্রণ থাকবে, একটি শহরে বা আশেপাশে।
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">সমাধানের ভাষা</string>
+    <string name="max_budget_label">সর্বোচ্চ বাজেট</string>
+    <string name="travelers_number_label">ভ্রমণকারীর সংখ্যা</string>
+    <string name="trip_duration_label">ভ্রমণের সময়কাল</string>
+    <string name="transportation_type_label">পরিবহনের ধরন</string>
+    <string name="trip_style_label">ভ্রমণের ধরন</string>
+    <string name="origin_location_label">উৎস স্থান</string>
+    <string name="trip_type_label">ভ্রমণের ধরন</string>
+    <string name="one_way_trip">ওয়ান ওয়ে ট্রিপ</string>
+    <string name="round_trip">রাউন্ড ট্রিপ</string>
+    <string name="days">দিন</string>
+    <string name="new_york">নিউ ইয়র্ক</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">পরিবহনের ধরন লিখুন</string>
+    <string name="enter_location">অবস্থান লিখুন</string>
+    <string name="add">যোগ করুন</string>
+    <string name="travel_path">ভ্রমণের পথ</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI এই সমস্যার সমাধান করতে পারেনি। অনুগ্রহ করে আবার চেষ্টা করুন।
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">উফ! কিছু ভুল হয়েছে। আবার চেষ্টা করুন!</string>
+    <string name="fail_to_load_Uri">ছবিটি তালিকায় লোড করতে ব্যর্থ হয়েছে। দয়া করে ম্যানুয়ালি লোড করুন!</string>
+    <string name="corrupted_loaded_file">আপনি একটি দূষিত ফাইল লোড করেছেন!</string>
+    <string name="missing_required_settings">কিছু প্রয়োজনীয় সেটিং অনুপস্থিত। দয়া করে সেগুলি পূরণ করুন।</string>
+    <string name="camera_fail_to_open">উফ! ক্যামেরার সাথে কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন!</string>
+    <string name="select_image_or_text_warning">অনুগ্রহ করে একটি ছবি নির্বাচন করুন অথবা একটি কাজ লিখুন।</string>
+    <string name="language_not_supported">
+        নির্বাচিত ভাষাটি মিডিয়া তৈরির জন্য উপলভ্য নয়। অন্যান্য বৈশিষ্ট্য কাজ করতে থাকবে। আপনি কি এই বৈশিষ্ট্য সক্ষম করতে প্রয়োজনীয় ভাষার ডেটা ডাউনলোড করতে চান?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">বাড়ি</string>
+    <string name="settings">সেটিংস</string>
+    <string name="results">ফলাফল</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">যা শেয়ার করতে চান তা নির্বাচন করুন</string>
+    <string name="share_user_translation">আমার পাঠ্য শেয়ার করুন</string>
+    <string name="share_ocr_result">স্বীকৃত পাঠ্য শেয়ার করুন</string>
+    <string name="share_solution">সমাধান শেয়ার করুন</string>
+    <string name="share_image">ছবি শেয়ার করুন</string>
+    <string name="share">শেয়ার করুন</string>
+
+    <!-- Installation -->
+    <string name="install">ইনস্টল করুন</string>
+    <string name="install_language">ভাষা ইনস্টল করুন</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">OneClickTrip দ্বারা সমাধান করা হয়েছে\nআমাদের অ্যাপ Google Play-এ দেখুন</string>
+</resources>

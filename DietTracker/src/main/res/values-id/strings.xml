@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker membantu pengguna memantau asupan kalori, lemak, protein, karbohidrat, vitamin, dan mineral dalam makanan. Tidak hanya menghitung elemen-elemen ini, tetapi juga menganalisis apa yang diserap oleh tubuh setelah pencernaan. Pengguna dapat mengunggah gambar produk, aplikasi mengenali bahan-bahannya dan menyediakan kemampuan untuk mengedit daftar.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Gambar Asisten Sekolah AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Unggah ke Gambar Asisten Sekolah AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Periksa Solusi Gambar Asisten Sekolah AI</string>
+    <string name="ArrowDropDown_icon_content_description">Membuka submenu</string>
+    <string name="add_image">Tambahkan tugas</string>
+    <string name="guidance_detected_ingredients">Tinjau bahan-bahan yang terdeteksi. Jika ada detail yang salah atau hilang, Anda dapat memodifikasinya sebelum membuat analisis nutrisi baru</string>
+
+    // Text values
+    <string name="ingredients">Bahan-bahan</string>
+    <string name="solution_text_value">Solusi</string>
+    <string name="user_task_value">Tugas</string>
+    <string name="is_ocr_result_included_value">Gunakan teks yang dikenali yang dipilih</string>
+    <string name="home_loading_waiting_text_value">Memuat, mohon tunggu...</string>
+    <string name="progress_bar_hint_text_value">Proses pembuatan solusi</string>
+
+    // Button Labels
+    <string name="next_button_label">Selanjutnya</string>
+    <string name="solve_button_label">Selesaikan</string>
+    <string name="check_solution_button_label">Periksa solusi</string>
+    <string name="cheat_sheet_button_label">Lembar contekan</string>
+    <string name="start_again">Mulai lagi</string>
+    <string name="try_again">Coba lagi</string>
+    <string name="pick_images">Pilih Gambar</string>
+    <string name="upload_from_url">Unggah</string>
+    <string name="upload_picture">Unggah Gambar</string>
+    <string name="take_a_picture">Ambil Gambar</string>
+    <string name="recognize_text_button_label">Tampilkan teks yang dikenali</string>
+
+    // Text Field Labels
+    <string name="foods">Makanan</string>
+    <string name="What_to_solve_TextField_label">Apa yang ingin Anda selesaikan?</string>
+    <string name="rating_TextField_label">Peringkat</string>
+    <string name="no_solution_chosen">Solusi belum dipilih</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 pisang dan 1 apel, semuanya ukuran sedang.</string>
+    <string name="first_ocr_result_is_not_ready">Teks sedang dikenali, mohon tunggu…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Bahasa solusi</string>
+    <string name="upload_a_file_label">Unggah sebuah berkas</string>
+    <string name="explanations_label">Penjelasan</string>
+    <string name="physical_activity_label">Aktivitas Fisik</string>
+    <string name="gender_label">Jenis Kelamin</string>
+    <string name="age_label">Usia</string>
+    <string name="height_label">Tinggi Badan</string>
+    <string name="weight_label">Berat Badan</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Sepertinya Anda telah menghapus beberapa gambar dari penyimpanan direktori aplikasi kalori. Jangan khawatir, kalori akan mencoba menghapus gambar-gambar ini satu per satu dari cache aplikasi. Mohon konfirmasi setiap penghapusan gambar, jika diperlukan. Gambar apa pun yang tampak kosong adalah gambar yang rusak. Apakah Anda ingin melanjutkan?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI tidak dapat mengenali teks dari gambar. Mohon coba lagi.</string>
+    <string name="error_gemini_solution_result_extraction">AI tidak dapat menyelesaikan masalah ini. Mohon coba lagi.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ups! Terjadi kesalahan. Mohon coba lagi!</string>
+    <string name="fail_to_load_Uri">Gagal memuat gambar ke daftar. Mohon coba muat secara manual!</string>
+    <string name="corrupted_loaded_file">Anda telah memuat berkas yang rusak!</string>
+    <string name="missing_required_settings">Beberapa pengaturan yang diperlukan hilang. Mohon isi.</string>
+    <string name="camera_fail_to_open">Ups! Terjadi kesalahan dengan kamera. Mohon coba lagi!</string>
+    <string name="upload_image_warning">Mohon unggah gambar dari perangkat</string>
+    <string name="select_image_or_text_warning">Mohon pilih gambar atau ketik tugas.</string>
+    <string name="prompt_is_empty">Teks yang dikenali kosong. Mohon coba lagi!</string>
+    <string name="language_not_supported">"Bahasa yang dipilih tidak tersedia untuk pembuatan media. Fitur lainnya akan terus berfungsi. Apakah Anda ingin mengunduh data bahasa yang diperlukan untuk mengaktifkan fitur ini?"</string>
+
+    // labels
+    <string name="home">Beranda</string>
+    <string name="settings">Pengaturan</string>
+    <string name="results">Hasil</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Pilih apa yang ingin dibagikan</string>
+    <string name="share_user_ingredients">Bagikan Bahan-bahan Saya</string>
+    <string name="share_recognized_ingredients">Bagikan Bahan-bahan yang Dikenali</string>
+    <string name="share_solution">Bagikan Solusi</string>
+    <string name="share_image">Bagikan Gambar</string>
+    <string name="share">Bagikan</string>
+
+    // installation
+    <string name="install">Instal</string>
+    <string name="install_language">Instal Bahasa</string>
+
+    <string name="solved_by_diet_tracker">Diselesaikan oleh DietTracker\nLihat aplikasi kami di Google Play</string>
+
+</resources>

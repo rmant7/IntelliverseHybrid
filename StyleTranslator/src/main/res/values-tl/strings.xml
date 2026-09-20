@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">Ginagawang iba ng StyleTranslator ang teksto sa pagitan ng iba\'t ibang estilo at tono ng pagsulat.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Larawan ng Katulong ng AI sa Paaralan</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Mag-upload sa Larawan ng Katulong ng AI sa Paaralan</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Suriin ang Larawan ng Katulong ng AI sa Paaralan ng Solusyon</string>
+    <string name="ArrowDropDown_icon_content_description">Nagbubukas ng submenu</string>
+    <string name="add_image">Magdagdag ng gawain</string>
+
+    // Text values
+    <string name="recognized_text_value">Kinilalang teksto</string>
+    <string name="solution_text_value">Solusyon</string>
+    <string name="user_task_value">Gawain</string>
+    <string name="is_ocr_result_included_value">Gamitin ang napiling kinilalang teksto</string>
+    <string name="home_loading_waiting_text_value">Naglo-load, mangyaring maghintay...</string>
+    <string name="progress_bar_hint_text_value">Pag-unlad sa pagbuo ng mga solusyon</string>
+
+    // Button Labels
+    <string name="next_button_label">Susunod</string>
+    <string name="solve_button_label">Lutasin</string>
+    <string name="check_solution_button_label">Suriin ang solusyon</string>
+    <string name="cheat_sheet_button_label">Cheat sheet</string>
+    <string name="start_again">Magsimula muli</string>
+    <string name="try_again">Subukan muli</string>
+    <string name="pick_images">Pumili ng mga Larawan</string>
+    <string name="upload_from_url">I-upload</string>
+    <string name="upload_picture">Mag-upload ng Larawan</string>
+    <string name="take_a_picture">Kumuha ng Larawan</string>
+    <string name="recognize_text_button_label">Ipakita ang kinilalang teksto</string>
+
+    // Text Field Labels
+    <string name="sentence">Teksto</string>
+    <string name="What_to_solve_TextField_label">Ano ang gusto mong lutasin?</string>
+    <string name="rating_TextField_label">Rating</string>
+    <string name="no_solution_chosen">Hindi pa napipili ang solusyon</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Gusto kong alagaan ang aking kasintahan. Palagi kong sinisigurado na ligtas at protektado siya. Gusto kong planuhin ang aming mga date at sorpresahin siya ng maliliit na regalo. Kapag siya ay nababagabag, sinusubukan kong maghanap ng solusyon at ayusin ang mga bagay para sa kanya.</string>
+    <string name="first_ocr_result_is_not_ready">Kinikilala pa ang teksto, mangyaring maghintay...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Wika ng solusyon</string>
+    <string name="upload_a_file_label">Mag-upload ng file</string>
+    <string name="explanations_label">Mga paliwanag</string>
+    <string name="source_gender_label">Kasarian ng Pinagmulan</string>
+    <string name="target_gender_label">Kasarian ng Target</string>
+    <string name="source_age_label">Edad ng Pinagmulan</string>
+    <string name="target_age_label">Edad ng Target</string>
+    <string name="category_label">Kategorya</string>
+    <string name="tone_label">Preperensya sa Tono</string>
+    <string name="transformation_level_label">Antas ng Pagbabago</string>
+    <string name="style_label">Estilo ng Pagsasalin</string>
+    <string name="mentality_label">Mentalidad</string>
+    <string name="translation_scale_label">Kadahilanan ng Eskala ng Pagsasalin</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Tila binura mo ang ilang mga larawan mula sa storage directory ng calories app. Huwag mag-alala, susubukan ng calories na i-clear ang mga larawang ito isa-isa mula sa application cache. Mangyaring kumpirmahin ang bawat pagtanggal ng larawan, kung kinakailangan. Ang anumang larawang lumalabas na blangko ay isang sira. Gusto mo bang magpatuloy?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">Hindi nakilala ng AI ang teksto mula sa larawan. Mangyaring subukan muli.</string>
+    <string name="error_gemini_solution_result_extraction">Hindi nalutas ng AI ang problemang ito. Mangyaring subukan muli.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Oops! May nangyaring mali. Mangyaring subukan muli!</string>
+    <string name="fail_to_load_Uri">Nabigo na i-load ang larawan sa listahan. Mangyaring subukan na i-load ito nang manual!</string>
+    <string name="corrupted_loaded_file">Nag-load ka ng sirang file!</string>
+    <string name="missing_required_settings">May nawawalang kinakailangang mga setting. Mangyaring punan ang mga ito.</string>
+    <string name="camera_fail_to_open">Oops! May nangyaring mali sa camera. Mangyaring subukan muli!</string>
+    <string name="upload_image_warning">Mangyaring mag-upload ng larawan mula sa device</string>
+    <string name="select_image_or_text_warning">Mangyaring pumili ng larawan o i-type ang gawain.</string>
+    <string name="prompt_is_empty">Walang laman ang kinikilalang teksto. Mangyaring subukan muli!</string>
+    <string name="language_not_supported">"Ang napiling wika ay hindi available para sa pagbuo ng media. Ang ibang mga feature ay patuloy na gagana. Gusto mo bang i-download ang kinakailangang data ng wika upang paganahin ang feature na ito?"</string>
+
+    // labels
+    <string name="home">Home</string>
+    <string name="settings">Mga Setting</string>
+    <string name="results">Resulta</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Pumili kung ano ang ibabahagi</string>
+    <string name="share_user_translation">Ibahagi ang Aking Teksto</string>
+    <string name="share_ocr_result">Ibahagi ang Kinilalang Teksto</string>
+    <string name="share_solution">Ibahagi ang Solusyon</string>
+    <string name="share_image">Ibahagi ang Larawan</string>
+    <string name="share">Ibahagi</string>
+
+    // installation
+    <string name="install">I-install</string>
+    <string name="install_language">I-install ang Wika</string>
+
+    <string name="solved_by_style_translator">Nalutas ng StyleTranslator\nTingnan ang aming app sa Google Play</string>
+
+</resources>

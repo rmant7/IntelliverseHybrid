@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>เชิงกวี</item>
+        <item>เป็นมืออาชีพ</item>
+        <item>ทางกฎหมาย</item>
+        <item>ทางเทคนิค</item>
+        <item>เชิงวิชาการ</item>
+        <item>เชิงวารสารศาสตร์</item>
+        <item>สร้างสรรค์</item>
+        <item>โน้มน้าวใจ</item>
+        <item>เชิงบรรยาย</item>
+        <item>เชิงพรรณนา</item>
+        <item>เชิงอธิบาย</item>
+        <item>ขบขัน</item>
+        <item>ไม่เป็นทางการ</item>
+        <item>เชิงธุรกิจ</item>
+        <item>เชิงวิทยาศาสตร์</item>
+        <item>โรแมนติก</item>
+        <item>ทางประวัติศาสตร์</item>
+        <item>เชิงปรัชญา</item>
+        <item>ช่วยเหลือตนเอง</item>
+        <item>ท่องเที่ยว</item>
+        <item>การตลาด</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>เป็นทางการ</item>
+        <item>ไม่เป็นทางการ</item>
+        <item>เป็นกันเอง</item>
+        <item>จริงจัง</item>
+        <item>เห็นอกเห็นใจ</item>
+        <item>หนักแน่น</item>
+        <item>มองโลกในแง่ดี</item>
+        <item>ขบขัน</item>
+        <item>เป็นกลาง</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>น้อยที่สุด</item>
+        <item>ปานกลาง</item>
+        <item>สมบูรณ์</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>ความสัมพันธ์</item>
+        <item>ที่ทำงาน</item>
+        <item>การศึกษา</item>
+        <item>สุขภาพ</item>
+        <item>การเงิน</item>
+        <item>ท่องเที่ยว</item>
+        <item>เทคโนโลยี</item>
+        <item>บันเทิง</item>
+        <item>พัฒนาตนเอง</item>
+        <item>ทั่วไป</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>รัสเซีย: เน้นส่วนรวม</item>
+        <item>ยุโรปตะวันออก: เน้นการปฏิบัติจริง</item>
+        <item>ยุโรปตะวันตก: เน้นปัจเจกบุคคล</item>
+        <item>เอเชียตะวันออกเฉียงใต้: เน้นความสามัคคี</item>
+        <item>จีน: ตามลำดับชั้น</item>
+        <item>คอเคซัส: ผูกพันด้วยเกียรติ</item>
+        <item>อเมริกาเหนือ: ผู้ประกอบการ</item>
+        <item>ละตินอเมริกา: หลงใหล</item>
+        <item>ตะวันออกกลาง: ขับเคลื่อนด้วยการต้อนรับ</item>
+        <item>แอฟริกา: ส่วนรวม</item>
+        <item>ประเทศแถบนอร์ดิก: เสมอภาค</item>
+        <item>เอเชียใต้: เน้นครอบครัว</item>
+        <item>ญี่ปุ่น: ความสามัคคีในกลุ่ม</item>
+        <item>ออสเตรเลีย: สบายๆ</item>
+        <item>เมดิเตอร์เรเนียน: แสดงออก</item>
+        <item>เอเชียกลาง: ประเพณีเร่ร่อน</item>
+        <item>เยอรมนี: มีโครงสร้าง</item>
+        <item>บอลข่าน: ยืดหยุ่น</item>
+        <item>ชนพื้นเมืองอาร์กติก: เชื่อมต่อกับธรรมชาติ</item>
+        <item>ยิว: มุ่งเน้นชุมชน</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>อัมฮาริก</item>
+        <item>อาหรับ</item>
+        <item>เบงกาลี</item>
+        <item>บัลแกเรีย</item>
+        <item>จีนตัวย่อ</item>
+        <item>โครเอเชีย</item>
+        <item>เช็ก</item>
+        <item>เดนมาร์ก</item>
+        <item>ดัตช์</item>
+        <item>อังกฤษ</item>
+        <item>เอสโตเนีย</item>
+        <item>ฟินแลนด์</item>
+        <item>ฝรั่งเศส</item>
+        <item>เยอรมัน</item>
+        <item>กรีก</item>
+        <item>คุชราต</item>
+        <item>ฮิบรู</item>
+        <item>ฮินดี</item>
+        <item>ฮังการี</item>
+        <item>ชาวอินโดนีเซีย</item>
+        <item>อิตาลี</item>
+        <item>ญี่ปุ่น</item>
+        <item>กันนาดา</item>
+        <item>เกาหลี</item>
+        <item>ลัตเวีย</item>
+        <item>ลิทัวเนีย</item>
+        <item>มาเลย์</item>
+        <item>มราฐี</item>
+        <item>นอร์เวย์</item>
+        <item>ปาทาน</item>
+        <item>เปอร์เซีย</item>
+        <item>โปแลนด์</item>
+        <item>โปรตุเกส</item>
+        <item>โรมาเนีย</item>
+        <item>รัสเซีย</item>
+        <item>เซอร์เบีย</item>
+        <item>สโลวัก</item>
+        <item>สโลวีเนีย</item>
+        <item>สเปน</item>
+        <item>สวาฮิลี</item>
+        <item>สวีเดน</item>
+        <item>ตากาล็อก</item>
+        <item>ทมิฬ</item>
+        <item>เตลูกู</item>
+        <item>ไทย</item>
+        <item>ตุรกี</item>
+        <item>ยูเครน</item>
+        <item>อูรดู</item>
+        <item>เวียดนาม</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>ไม่เกี่ยวข้อง</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>ไม่มีคำอธิบาย</item>
+        <item>คำอธิบายสั้นๆ</item>
+        <item>คำอธิบายโดยละเอียด</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>อยู่ประจำ</item>
+        <item>เคลื่อนไหวเล็กน้อย</item>
+        <item>เคลื่อนไหวปานกลาง</item>
+        <item>เคลื่อนไหวมาก</item>
+        <item>เคลื่อนไหวอย่างมาก</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>ชาย</item>
+        <item>หญิง</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>เครื่องบิน</item>
+        <item>จักรยาน</item>
+        <item>เรือ</item>
+        <item>รถบัส</item>
+        <item>รถจักรยานยนต์</item>
+        <item>รถส่วนตัว</item>
+        <item>รถเช่า</item>
+        <item>แชร์การเดินทาง</item>
+        <item>รถไฟใต้ดิน</item>
+        <item>แท็กซี่</item>
+        <item>รถไฟ</item>
+        <item>รถราง</item>
+        <item>การเดินเท้า</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>อาหาร</item>
+        <item>ประวัติศาสตร์</item>
+        <item>วัฒนธรรม</item>
+        <item>ธรรมชาติ</item>
+        <item>การพักผ่อน</item>
+        <item>การผจญภัย</item>
+        <item>ชีวิตกลางคืน</item>
+        <item>ช้อปปิ้ง</item>
+        <item>ครอบครัว</item>
+        <item>โรแมนติก</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>ถ่ายรูป</item>
+        <item>อัปโหลดรูปภาพ</item>
+        <item>อัปโหลดไฟล์</item>
+        <item>ให้ลิงค์</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">ขออภัย บริการนี้ไม่พร้อมใช้งานในรัสเซียและเบลารุส โปรดใช้ VPN</string>
+    <string name="error_service_not_available_title">บริการไม่พร้อมใช้งาน</string>
+    <string name="error_common_title">ข้อผิดพลาด</string>
+    <string name="error_common_message">เกิดข้อผิดพลาดขณะเรียกใช้แอปพลิเคชัน ลองอัปเดตแอปหรือลองอีกครั้งในภายหลัง</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">อุ๊ปส์! ดูเหมือนว่าจำเป็นต้องเข้าถึงกล้องสำหรับคุณสมบัตินี้ ไปที่การตั้งค่าอุปกรณ์ของคุณ ค้นหา IntelliVerse ในรายการแอปของคุณ และให้สิทธิ์กล้องเพื่อปลดล็อกเวทมนตร์!</string>
+    <string name="permanent_denied_read_media_permission_explanation">อุ๊ปส์! หากต้องการใช้รูปภาพจากแกลเลอรีของคุณ IntelliVerse ต้องได้รับอนุญาตให้อ่านรูปภาพของคุณ ไปที่การตั้งค่าอุปกรณ์ของคุณ ค้นหา IntelliVerse ในรายการแอปของคุณ และให้สิทธิ์เข้าถึงรูปภาพเพื่อปลดล็อกเวทมนตร์!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">อุ๊ปส์! หากต้องการบันทึกไฟล์ลงในอุปกรณ์ของคุณ IntelliVerse ต้องได้รับอนุญาตให้เขียนลงในที่เก็บข้อมูลของคุณ ไปที่การตั้งค่าอุปกรณ์ของคุณ ค้นหา IntelliVerse ในรายการแอปของคุณ และให้สิทธิ์เข้าถึงที่เก็บข้อมูลเพื่อปลดล็อกเวทมนตร์!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">อุ๊ปส์! หากต้องการเข้าถึงไฟล์ในอุปกรณ์ของคุณ IntelliVerse ต้องได้รับอนุญาตให้อ่านที่เก็บข้อมูลของคุณ ไปที่การตั้งค่าอุปกรณ์ของคุณ ค้นหา IntelliVerse ในรายการแอปของคุณ และให้สิทธิ์เข้าถึงที่เก็บข้อมูลเพื่อปลดล็อกเวทมนตร์!</string>
+    <string name="camera_permission_rationale">IntelliVerse ต้องการเข้าถึงกล้องของคุณเพื่อให้คุณสามารถถ่ายภาพแบบฝึกหัดในโรงเรียนได้ทันที!</string>
+    <string name="read_media_permission_rationale">การอนุญาตให้เข้าถึงรูปภาพของคุณช่วยให้คุณเลือกรูปภาพจากแกลเลอรีของคุณเพื่อใช้ภายในแอป IntelliVerse ได้!</string>
+    <string name="write_storage_permission_rationale">สิทธิ์ในการเขียนลงในที่เก็บข้อมูลของคุณช่วยให้แอป IntelliVerse บันทึกไฟล์ เช่น รูปภาพที่คุณถ่าย ไว้ในอุปกรณ์ของคุณได้!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse ต้องการเข้าถึงที่เก็บข้อมูลของอุปกรณ์ของคุณเพื่ออ่านไฟล์ เช่น รูปภาพหรือเอกสาร ที่คุณอาจต้องการใช้ในแอป</string>
+
+    // Buttons Labels
+    <string name="Ok">ตกลง</string>
+
+    <string name="Yes">ใช่</string>
+    <string name="No">ไม่</string>
+    <string name="are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการออก</string>
+    <string name="exit">ออก</string>
+
+    <string name="report_content">รายงานเนื้อหา</string>
+    <string name="select_reason">เลือเหตุผล</string>
+    <string name="offensive">ไม่เหมาะสม</string>
+    <string name="hate_speech">คำพูดแสดงความเกลียดชัง</string>
+    <string name="incorrect_info">ข้อมูลไม่ถูกต้อง</string>
+    <string name="other">อื่นๆ</string>
+    <string name="submit">ส่ง</string>
+    <string name="cancel">ยกเลิก</string>
+
+    <string name="reset_settings">รีเซ็ตการตั้งค่า</string>
+    <string name="not_relevant">ไม่เกี่ยวข้อง</string>
+
+</resources>

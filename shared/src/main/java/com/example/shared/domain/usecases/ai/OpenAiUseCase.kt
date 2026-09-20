@@ -1,0 +1,103 @@
+package com.example.shared.domain.usecases.ai
+
+import android.os.Build
+import com.google.ai.client.generativeai.common.ServerException
+import dev.ai4j.openai4j.OpenAiHttpException
+import dev.langchain4j.data.message.AiMessage
+import dev.langchain4j.data.message.Content
+import dev.langchain4j.data.message.ImageContent
+import dev.langchain4j.data.message.SystemMessage
+import dev.langchain4j.data.message.TextContent
+import dev.langchain4j.data.message.UserMessage
+import dev.langchain4j.model.openai.OpenAiChatModel
+import dev.langchain4j.model.openai.OpenAiChatModelName
+import dev.langchain4j.model.output.Response
+import timber.log.Timber
+import java.time.Duration
+import javax.inject.Inject
+
+class OpenAiUseCase @Inject constructor() {
+
+    private val duration: Duration? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        Duration.ofSeconds(90L)
+    } else {
+        null
+    }
+
+    private val model: OpenAiChatModel = OpenAiChatModel.builder()
+        .apiKey("demo")
+        .modelName(OpenAiChatModelName.GPT_4_O_MINI).apply {
+            if (duration != null) {
+                timeout(duration) // Only set timeout if Duration is available
+            }
+        }.build()
+
+    private fun generateOpenAiSolution(
+        userMessage: UserMessage,
+        systemInstruction: String
+    ): Result<String> {
+
+        try {
+            val response: Response<AiMessage> = if (systemInstruction.isBlank()) {
+                model.generate(
+                    userMessage,
+                )
+            } else {
+                model.generate(
+                    SystemMessage.from(systemInstruction),
+                    userMessage
+                )
+            }
+            val contentText = response.content().text()
+            return Result.success(cleanOpenAiResult(contentText))
+        } catch (e: ServerException) {
+            Timber.d(e)
+            return Result.failure(e)
+        } catch (e: OpenAiHttpException) {
+            Timber.d(e)
+            return Result.failure(e)
+        } catch (e: IllegalArgumentException) {
+            Timber.d(e)
+            return Result.failure(e)
+        } catch (e: RuntimeException) {
+            Timber.d(e)
+            return Result.failure(e)
+        }
+    }
+
+    private fun cleanOpenAiResult(response: String): String {
+        return response.replace(
+            Regex("""\\\[(.*?)\\]""", RegexOption.DOT_MATCHES_ALL)
+        ) { matchResult -> "$$${matchResult.groupValues[1]}$$" }
+    }
+
+    /** Generate GPT solution using text and optionally one or more images,
+     * passed as base64-encoded JPEG data (no external hosting required). */
+    fun generateOpenAiSolution(
+        imagesBase64: List<String>,
+        prompt: String,
+        systemInstruction: String = ""
+    ): Result<String> {
+
+        val userMessage = if (imagesBase64.isNotEmpty()) {
+            val contents = mutableListOf<Content>()
+
+            // Add image contents
+            imagesBase64.mapTo(contents) { base64Data ->
+                ImageContent.from(base64Data, "image/jpeg", ImageContent.DetailLevel.HIGH)
+            }
+
+            // Add the text prompt after the images (or before, depending on your use case)
+            contents.add(TextContent.from(prompt))
+            UserMessage.from(contents)
+        } else {
+            UserMessage.from(
+                TextContent.from(prompt)
+            )
+        }
+
+        return generateOpenAiSolution(userMessage, systemInstruction)
+    }
+
+
+}

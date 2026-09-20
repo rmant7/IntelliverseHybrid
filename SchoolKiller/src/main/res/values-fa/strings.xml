@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller به دانش‌آموزان کمک می‌کند تا مسائل ریاضی را به طور خاص و همچنین مسائل عمومی را حل کنند.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">تصویر دستیار هوشمند مدرسه</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">تصویر بارگذاری به دستیار هوشمند مدرسه</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">تصویر بررسی راه حل دستیار هوشمند مدرسه</string>
+    <string name="ArrowDropDown_icon_content_description">باز کردن یک زیر منو</string>
+    <string name="add_image">اضافه کردن تکلیف</string>
+    <string name="Guidance">برای نتایج مطلوب، لطفاً متن دقیقی برای تکلیف خود ارائه دهید. اگر تصاویری را ضمیمه می کنید، اطمینان حاصل کنید که هر متن شناسایی شده ویرایش شده است تا دقیقاً با متن اصلی مطابقت داشته باشد.</string>
+
+    // Text values
+    <string name="recognized_text_value">متن تشخیص داده شده</string>
+    <string name="solution_text_value">راه حل</string>
+    <string name="user_task_value">تکلیف</string>
+    <string name="is_ocr_result_included_value">استفاده از متن تشخیص داده شده انتخاب شده</string>
+    <string name="home_loading_waiting_text_value">درحال بارگذاری، لطفا منتظر بمانید...</string>
+    <string name="progress_bar_hint_text_value">پیشرفت تولید راه حل</string>
+
+    // Button Labels
+    <string name="next_button_label">بعدی</string>
+    <string name="solve_button_label">حل کن</string>
+    <string name="check_solution_button_label">بررسی راه حل</string>
+    <string name="cheat_sheet_button_label">برگه تقلب</string>
+    <string name="start_again">شروع دوباره</string>
+    <string name="try_again">دوباره امتحان کنید</string>
+    <string name="pick_images">انتخاب تصاویر</string>
+    <string name="upload_from_url">بارگذاری</string>
+    <string name="upload_picture">بارگذاری تصویر</string>
+    <string name="take_a_picture">گرفتن عکس</string>
+    <string name="recognize_text_button_label">نمایش متن تشخیص داده شده</string>
+
+    // Text Field Labels
+    <string name="tasks">تکلیف</string>
+    <string name="What_to_solve_TextField_label">چه چیزی را می خواهید حل کنید؟</string>
+    <string name="rating_TextField_label">امتیاز</string>
+    <string name="no_solution_chosen">هنوز راه حلی انتخاب نشده است</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">درباره قضیه فیثاغورس به من بگو.</string>
+    <string name="first_ocr_result_is_not_ready">متن در حال تشخیص است، لطفا منتظر بمانید...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">زبان راه حل</string>
+    <string name="upload_a_file_label">بارگذاری یک فایل</string>
+    <string name="explanations_label">توضیحات</string>
+    <string name="grade_label">"نمره"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">به نظر می رسد که شما برخی از تصاویر را از حافظه دایرکتوری برنامه SchoolKiller حذف کرده اید. نگران نباشید، SchoolKiller سعی خواهد کرد این تصاویر را یک به یک از حافظه پنهان برنامه پاک کند. لطفاً در صورت نیاز، حذف هر تصویر را تأیید کنید. هر تصویری که خالی به نظر می رسد خراب است. آیا می خواهید ادامه دهید؟</string>
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">هوش مصنوعی نتوانست متن را از تصویر تشخیص دهد. لطفا دوباره امتحان کنید.</string>
+    <string name="error_gemini_solution_result_extraction">هوش مصنوعی نتوانست این مسئله را حل کند. لطفا دوباره امتحان کنید.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">اوه! مشکلی پیش آمد. لطفا دوباره امتحان کنید!</string>
+    <string name="fail_to_load_Uri">بارگیری تصویر به لیست با مشکل مواجه شد. لطفا سعی کنید آن را به صورت دستی بارگیری کنید!</string>
+    <string name="corrupted_loaded_file">شما یک فایل خراب بارگذاری کرده اید!</string>
+    <string name="camera_fail_to_open">اوه! مشکلی در باز کردن دوربین پیش آمد. لطفا دوباره امتحان کنید!</string>
+    <string name="upload_image_warning">لطفا یک تصویر از دستگاه بارگذاری کنید</string>
+    <string name="select_image_or_text_warning">لطفا یک تصویر انتخاب کنید یا تکلیفی را تایپ کنید.</string>
+    <string name="prompt_is_empty">متن تشخیص داده شده خالی است. لطفا دوباره امتحان کنید!</string>
+    <string name="language_not_supported">"زبان انتخاب شده برای تولید رسانه در دسترس نیست. سایر ویژگی ها به کار خود ادامه می دهند. آیا می خواهید داده های زبان لازم را برای فعال کردن این ویژگی بارگیری کنید؟"</string>
+
+    // labels
+    <string name="home">خانه</string>
+    <string name="settings">تنظیمات</string>
+    <string name="results">نتیجه</string>
+    <string name="ocr">تشخیص متن</string>
+
+    // sharing
+    <string name="choose_sharing">انتخاب کنید چه چیزی را به اشتراک بگذارید</string>
+    <string name="share_user_task">به اشتراک گذاری تکلیف من</string>
+    <string name="share_ocr_result">به اشتراک گذاری متن تشخیص داده شده</string>
+    <string name="share_solution">به اشتراک گذاری راه حل</string>
+    <string name="share_image">به اشتراک گذاری تصویر</string>
+    <string name="share">به اشتراک گذاری</string>
+
+    // installation
+    <string name="install">نصب</string>
+    <string name="install_language">نصب زبان</string>
+
+    <string name="solved_by_schoolkiller">حل شده توسط SchoolKiller\nبرنامه ما را در Google Play بررسی کنید</string>
+
+</resources>

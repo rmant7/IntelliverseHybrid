@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller îi ajută pe studenți să rezolve probleme matematice specifice, precum și probleme generale.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Imagine Asistent Școlar AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Încarcă Imagine în Asistentul Școlar AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Verifică Soluția Imagine Asistent Școlar AI</string>
+    <string name="ArrowDropDown_icon_content_description">Deschide un submeniu</string>
+    <string name="add_image">Adaugă sarcină</string>
+    <string name="Guidance">Pentru rezultate optime, vă rugăm să furnizați TEXT detaliat pentru sarcina dvs. Dacă atașați imagini, asigurați-vă că orice text recunoscut este editat pentru a se potrivi cu originalul cu exactitate.</string>
+
+    // Text values
+    <string name="recognized_text_value">Text recunoscut</string>
+    <string name="solution_text_value">Soluție</string>
+    <string name="user_task_value">Sarcină</string>
+    <string name="is_ocr_result_included_value">Utilizează textul recunoscut selectat</string>
+    <string name="home_loading_waiting_text_value">Se încarcă, vă rugăm așteptați...</string>
+    <string name="progress_bar_hint_text_value">Progresul generării soluțiilor</string>
+
+    // Button Labels
+    <string name="next_button_label">Următorul</string>
+    <string name="solve_button_label">Rezolvă</string>
+    <string name="check_solution_button_label">Verifică soluția</string>
+    <string name="cheat_sheet_button_label">Fițuică</string>
+    <string name="start_again">Începe din nou</string>
+    <string name="try_again">Încearcă din nou</string>
+    <string name="pick_images">Alege Imagini</string>
+    <string name="upload_from_url">Încarcă</string>
+    <string name="upload_picture">Încarcă Imagine</string>
+    <string name="take_a_picture">Fă o Poză</string>
+    <string name="recognize_text_button_label">Arată textul recunoscut</string>
+
+    // Text Field Labels
+    <string name="tasks">Sarcină</string>
+    <string name="What_to_solve_TextField_label">Ce vrei să rezolvi?</string>
+    <string name="rating_TextField_label">Evaluare</string>
+    <string name="no_solution_chosen">Soluția nu este încă selectată</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Spune-mi despre teorema lui Pitagora.</string>
+    <string name="first_ocr_result_is_not_ready">Textul este în curs de recunoaștere, vă rugăm așteptați…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Limba soluției</string>
+    <string name="upload_a_file_label">Încarcă un fișier</string>
+    <string name="explanations_label">Explicații</string>
+    <string name="grade_label">"Nota"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Se pare că ați șters unele imagini din directorul de stocare al aplicației SchoolKiller. Nu vă faceți griji, SchoolKiller va încerca să șteargă aceste imagini una câte una din memoria cache a aplicației. Vă rugăm să confirmați ștergerea fiecărei imagini, dacă este necesar. Orice imagine care apare goală este coruptă. Doriți să continuați?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI nu a putut recunoaște textul din imagine. Vă rugăm să încercați din nou.</string>
+    <string name="error_gemini_solution_result_extraction">AI nu a putut rezolva această problemă. Vă rugăm să încercați din nou.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hopa! Ceva nu a mers bine. Vă rugăm să încercați din nou!</string>
+    <string name="fail_to_load_Uri">Nu s-a putut încărca imaginea în listă. Vă rugăm să încercați să o încărcați manual!</string>
+    <string name="corrupted_loaded_file">Ați încărcat un fișier corupt!</string>
+    <string name="camera_fail_to_open">Hopa! Ceva nu a mers bine cu camera. Vă rugăm să încercați din nou!</string>
+    <string name="upload_image_warning">Vă rugăm să încărcați o imagine de pe dispozitiv</string>
+    <string name="select_image_or_text_warning">Vă rugăm să selectați o imagine sau să introduceți o sarcină.</string>
+    <string name="prompt_is_empty">Textul recunoscut este gol. Vă rugăm să încercați din nou!</string>
+    <string name="language_not_supported">"Limba selectată nu este disponibilă pentru generarea media. Celelalte funcții vor continua să funcționeze. Doriți să descărcați datele lingvistice necesare pentru a activa această funcție?"</string>
+
+    // labels
+    <string name="home">Acasă</string>
+    <string name="settings">Setări</string>
+    <string name="results">Rezultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Alege ce să partajezi</string>
+    <string name="share_user_task">Partajează Sarcina Mea</string>
+    <string name="share_ocr_result">Partajează Textul Recunoscut</string>
+    <string name="share_solution">Partajează Soluția</string>
+    <string name="share_image">Partajează Imaginea</string>
+    <string name="share">Partajează</string>
+
+    // installation
+    <string name="install">Instalează</string>
+    <string name="install_language">Instalează Limba</string>
+
+    <string name="solved_by_schoolkiller">Rezolvat de SchoolKiller\nVerifică aplicația noastră pe Google Play</string>
+
+</resources>

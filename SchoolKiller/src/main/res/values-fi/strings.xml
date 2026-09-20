@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller auttaa opiskelijoita ratkaisemaan erityisesti matemaattisia ongelmia, sekä yleisiä ongelmia.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI-koulunkäyntiavustajan kuva</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Lataa AI-koulunkäyntiavustajaan</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Tarkista ratkaisu AI-koulunkäyntiavustajalla</string>
+    <string name="ArrowDropDown_icon_content_description">Avaa alivalikon</string>
+    <string name="add_image">Lisää tehtävä</string>
+    <string name="Guidance">Parhaan tuloksen saavuttamiseksi, anna tehtävällesi tarkka TEKSTI. Jos liität kuvia, varmista, että kaikki tunnistettu teksti on muokattu vastaamaan alkuperäistä tarkasti.</string>
+
+    // Text values
+    <string name="recognized_text_value">Tunnistettu teksti</string>
+    <string name="solution_text_value">Ratkaisu</string>
+    <string name="user_task_value">Tehtävä</string>
+    <string name="is_ocr_result_included_value">Käytä valittua tunnistettua tekstiä</string>
+    <string name="home_loading_waiting_text_value">Ladataan, odota...</string>
+    <string name="progress_bar_hint_text_value">Ratkaisujen luonnin edistyminen</string>
+
+    // Button Labels
+    <string name="next_button_label">Seuraava</string>
+    <string name="solve_button_label">Ratkaise</string>
+    <string name="check_solution_button_label">Tarkista ratkaisu</string>
+    <string name="cheat_sheet_button_label">Lunttilappu</string>
+    <string name="start_again">Aloita alusta</string>
+    <string name="try_again">Yritä uudelleen</string>
+    <string name="pick_images">Valitse kuvia</string>
+    <string name="upload_from_url">Lataa</string>
+    <string name="upload_picture">Lataa kuva</string>
+    <string name="take_a_picture">Ota kuva</string>
+    <string name="recognize_text_button_label">Näytä tunnistettu teksti</string>
+
+    // Text Field Labels
+    <string name="tasks">Tehtävä</string>
+    <string name="What_to_solve_TextField_label">Mitä haluat ratkaista?</string>
+    <string name="rating_TextField_label">Arvosana</string>
+    <string name="no_solution_chosen">Ratkaisua ei ole vielä valittu</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Kerro minulle Pythagoraan lauseesta.</string>
+    <string name="first_ocr_result_is_not_ready">Tekstiä tunnistetaan, odota…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Ratkaisun kieli</string>
+    <string name="upload_a_file_label">Lataa tiedosto</string>
+    <string name="explanations_label">Selitykset</string>
+    <string name="grade_label">"Arvosana"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Näyttää siltä, että olet poistanut joitain kuvia SchoolKiller-sovelluksen tallennuskansiosta. Ei hätää, SchoolKiller yrittää poistaa nämä kuvat yksitellen sovelluksen välimuistista. Vahvista jokainen kuvan poisto tarvittaessa. Kaikki tyhjänä näkyvät kuvat ovat vioittuneita. Haluatko jatkaa?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">Tekoäly ei pystynyt tunnistamaan tekstiä kuvasta. Yritä uudelleen.</string>
+    <string name="error_gemini_solution_result_extraction">Tekoäly ei pystynyt ratkaisemaan tätä ongelmaa. Yritä uudelleen.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Hups! Jokin meni pieleen. Yritä uudelleen!</string>
+    <string name="fail_to_load_Uri">Kuvan lataaminen luetteloon epäonnistui. Yritä ladata se manuaalisesti!</string>
+    <string name="corrupted_loaded_file">Olet ladannut vioittuneen tiedoston!</string>
+    <string name="camera_fail_to_open">Hups! Kameran kanssa tapahtui virhe. Yritä uudelleen!</string>
+    <string name="upload_image_warning">Lataa kuva laitteesta</string>
+    <string name="select_image_or_text_warning">Valitse kuva tai kirjoita tehtävä.</string>
+    <string name="prompt_is_empty">Tunnistettu teksti on tyhjä. Yritä uudelleen!</string>
+    <string name="language_not_supported">"Valittua kieltä ei ole saatavilla mediasisällön luomiseen. Muut ominaisuudet toimivat edelleen. Haluatko ladata tarvittavat kielitiedot, jotta tämä ominaisuus voidaan ottaa käyttöön?"</string>
+
+    // labels
+    <string name="home">Koti</string>
+    <string name="settings">Asetukset</string>
+    <string name="results">Tulos</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Valitse mitä jaetaan</string>
+    <string name="share_user_task">Jaa tehtäväni</string>
+    <string name="share_ocr_result">Jaa tunnistettu teksti</string>
+    <string name="share_solution">Jaa ratkaisu</string>
+    <string name="share_image">Jaa kuva</string>
+    <string name="share">Jaa</string>
+
+    // installation
+    <string name="install">Asenna</string>
+    <string name="install_language">Asenna kieli</string>
+
+    <string name="solved_by_schoolkiller">Ratkaistu SchoolKillerin avulla\nTsekkaa sovelluksemme Google Playsta</string>
+
+</resources>

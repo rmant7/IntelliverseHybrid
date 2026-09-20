@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Runollinen</item>
+        <item>Ammatillinen</item>
+        <item>Juridinen</item>
+        <item>Tekninen</item>
+        <item>Akateeminen</item>
+        <item>Journalistinen</item>
+        <item>Luova</item>
+        <item>Vakuuttava</item>
+        <item>Kerronnallinen</item>
+        <item>Kuvaileva</item>
+        <item>Selittävä</item>
+        <item>Huumoristinen</item>
+        <item>Epämuodollinen</item>
+        <item>Liiketoiminta</item>
+        <item>Tieteellinen</item>
+        <item>Romanttinen</item>
+        <item>Historiallinen</item>
+        <item>Filosofinen</item>
+        <item>Itsensä kehittäminen</item>
+        <item>Matkailu</item>
+        <item>Markkinointi</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Virallinen</item>
+        <item>Rento</item>
+        <item>Ystävällinen</item>
+        <item>Vakava</item>
+        <item>Empaattinen</item>
+        <item>Vahva</item>
+        <item>Optimistinen</item>
+        <item>Huumoristinen</item>
+        <item>Neutraali</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimaalinen</item>
+        <item>Kohtalainen</item>
+        <item>Täydellinen</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Suhde</item>
+        <item>Työpaikka</item>
+        <item>Koulutus</item>
+        <item>Terveys</item>
+        <item>Rahoitus</item>
+        <item>Matkailu</item>
+        <item>Teknologia</item>
+        <item>Viihde</item>
+        <item>Itsensä kehittäminen</item>
+        <item>Yleinen</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Venäjä: Kollektivistinen</item>
+        <item>Itä-Eurooppa: Pragmaattinen</item>
+        <item>Länsi-Eurooppa: Individualistinen</item>
+        <item>Kaakkois-Aasia: Harmoniaan keskittyvä</item>
+        <item>Kiina: Hierarkkinen</item>
+        <item>Kaukasus: Kunniaan sidottu</item>
+        <item>Pohjois-Amerikka: Yrittäjähenkinen</item>
+        <item>Latinalainen Amerikka: Intohimoinen</item>
+        <item>Lähi-itä: Vieraaperäisyyteen perustuva</item>
+        <item>Afrikka: Yhteisöllinen</item>
+        <item>Pohjoismaat: Egalitaristinen</item>
+        <item>Etelä-Aasia: Perhekeskeinen</item>
+        <item>Japani: Ryhmäharmonia</item>
+        <item>Australia: Rento</item>
+        <item>Välimeri: Ilmeikäs</item>
+        <item>Keski-Aasia: Nomadiperinteet</item>
+        <item>Saksa: Jäsennelty</item>
+        <item>Balkan: Sitkeä</item>
+        <item>Arktiset alkuperäiskansat: Luontoyhteys</item>
+        <item>Juutalainen: Yhteisökeskeinen</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amhara</item>
+        <item>Arabia</item>
+        <item>Bengali</item>
+        <item>Bulgaria</item>
+        <item>Yksinkertaistettu kiina</item>
+        <item>Kroatia</item>
+        <item>Tšekki</item>
+        <item>Tanska</item>
+        <item>Hollanti</item>
+        <item>Englanti</item>
+        <item>Viro</item>
+        <item>Suomi</item>
+        <item>Ranska</item>
+        <item>Saksa</item>
+        <item>Kreikka</item>
+        <item>Gudžarati</item>
+        <item>Heprea</item>
+        <item>Hindi</item>
+        <item>Unkari</item>
+        <item>Indonesia</item>
+        <item>Italia</item>
+        <item>Japani</item>
+        <item>Kannada</item>
+        <item>Korea</item>
+        <item>Latvia</item>
+        <item>Liettua</item>
+        <item>Malaiji</item>
+        <item>Marathi</item>
+        <item>Norja</item>
+        <item>Paštu</item>
+        <item>Persia</item>
+        <item>Puola</item>
+        <item>Portugali</item>
+        <item>Romania</item>
+        <item>Venäjä</item>
+        <item>Serbia</item>
+        <item>Slovakki</item>
+        <item>Slovenia</item>
+        <item>Espanja</item>
+        <item>Swahili</item>
+        <item>Ruotsi</item>
+        <item>Tagalog</item>
+        <item>Tamili</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Turkki</item>
+        <item>Ukraina</item>
+        <item>Urdu</item>
+        <item>Vietnami</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Ei relevantti</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Ei selitystä</item>
+        <item>Lyhyt selitys</item>
+        <item>Yksityiskohtainen selitys</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Istumatyö</item>
+        <item>Hieman aktiivinen</item>
+        <item>Kohtalaisen aktiivinen</item>
+        <item>Erittäin aktiivinen</item>
+        <item>Äärimmäisen aktiivinen</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Mies</item>
+        <item>Nainen</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Lentokone</item>
+        <item>Polkupyörä</item>
+        <item>Vene</item>
+        <item>Bussi</item>
+        <item>Moottoripyörä</item>
+        <item>Oma auto</item>
+        <item>Vuokra-auto</item>
+        <item>Kyyti jakaminen</item>
+        <item>Metro</item>
+        <item>Taksi</item>
+        <item>Juna</item>
+        <item>Raitiovaunu</item>
+        <item>Kävely</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Ruoka</item>
+        <item>Historia</item>
+        <item>Kulttuuri</item>
+        <item>Luonto</item>
+        <item>Rentoutuminen</item>
+        <item>Seikkailu</item>
+        <item>Yöelämä</item>
+        <item>Ostokset</item>
+        <item>Perhe</item>
+        <item>Romantiikka</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Ota kuva</item>
+        <item>Lataa kuva</item>
+        <item>Lataa tiedosto</item>
+        <item>Anna linkki</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Palvelu ei ole saatavilla Venäjällä ja Valko-Venäjällä, käytä VPN-yhteyttä</string>
+    <string name="error_service_not_available_title">Palvelu ei ole saatavilla</string>
+    <string name="error_common_title">Virhe</string>
+    <string name="error_common_message">Sovelluksen suorituksen aikana tapahtui virhe. Yritä päivittää sovellus tai yritä myöhemmin uudelleen</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Oho! Näyttää siltä, ​​että tähän ominaisuuteen tarvitaan kameran käyttöoikeus. Siirry laitteen asetuksiin, etsi IntelliVerse sovellusluettelosta ja myönnä kameran käyttöoikeus avataksesi taikuuden!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Oho! Jos haluat käyttää kuvia galleriastasi, IntelliVerse tarvitsee luvan lukea valokuviasi. Siirry laitteen asetuksiin, etsi IntelliVerse sovellusluettelosta ja myönnä valokuvien käyttöoikeus avataksesi taikuuden!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Oho! Jos haluat tallentaa tiedostoja laitteeseesi, IntelliVerse tarvitsee luvan kirjoittaa tallennustilaan. Siirry laitteen asetuksiin, etsi IntelliVerse sovellusluettelosta ja myönnä tallennustilan käyttöoikeus avataksesi taikuuden!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Oho! Jos haluat käyttää laitteesi tiedostoja, IntelliVerse tarvitsee luvan lukea tallennustilaasi. Siirry laitteen asetuksiin, etsi IntelliVerse sovellusluettelosta ja myönnä tallennustilan käyttöoikeus avataksesi taikuuden!</string>
+    <string name="camera_permission_rationale">IntelliVerse tarvitsee pääsyn kameraasi, jotta voit ottaa välittömästi valokuvia koulutehtävistäsi!</string>
+    <string name="read_media_permission_rationale">Valokuviesi käyttöoikeuden salliminen antaa sinun valita kuvia galleriastasi käytettäväksi IntelliVerse-sovelluksessa!</string>
+    <string name="write_storage_permission_rationale">Lupa kirjoittaa tallennustilaan antaa IntelliVerse-sovelluksen tallentaa tiedostoja, kuten ottamiasi valokuvia, suoraan laitteeseesi!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse tarvitsee pääsyn laitteesi tallennustilaan lukeakseen tiedostoja, kuten valokuvia tai asiakirjoja, joita saatat haluta käyttää sovelluksessa.</string>
+
+    // Buttons Labels
+    <string name="Ok">OK</string>
+
+    <string name="Yes">Kyllä</string>
+    <string name="No">Ei</string>
+    <string name="are_you_sure">Oletko varma että haluat poistua</string>
+    <string name="exit">Poistu</string>
+
+    <string name="report_content">Ilmoita sisällöstä</string>
+    <string name="select_reason">Valitse syy</string>
+    <string name="offensive">Loukkaava</string>
+    <string name="hate_speech">Vihapuhe</string>
+    <string name="incorrect_info">Virheellistä tietoa</string>
+    <string name="other">Muu</string>
+    <string name="submit">Lähetä</string>
+    <string name="cancel">Peruuta</string>
+
+    <string name="reset_settings">Palauta asetukset</string>
+    <string name="not_relevant">Ei relevantti</string>
+
+</resources>

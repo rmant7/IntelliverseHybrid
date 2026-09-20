@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator konverterer tekst mellom forskjellige skrivestiler og toner.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI Skoleassistent Bilde</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Last opp til AI Skoleassistent Bilde</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Sjekk Løsning AI Skoleassistent Bilde</string>
+    <string name="ArrowDropDown_icon_content_description">Åpner en undermeny</string>
+    <string name="add_image">Legg til oppgave</string>
+
+    // Text values
+    <string name="recognized_text_value">Gjenkjent tekst</string>
+    <string name="solution_text_value">Løsning</string>
+    <string name="user_task_value">Oppgave</string>
+    <string name="is_ocr_result_included_value">Bruk valgt gjenkjent tekst</string>
+    <string name="home_loading_waiting_text_value">Laster, vennligst vent...</string>
+    <string name="progress_bar_hint_text_value">Fremdrift for løsningsgenerering</string>
+
+    // Button Labels
+    <string name="next_button_label">Neste</string>
+    <string name="solve_button_label">Løs</string>
+    <string name="check_solution_button_label">Sjekk løsning</string>
+    <string name="cheat_sheet_button_label">Jukselapp</string>
+    <string name="start_again">Start på nytt</string>
+    <string name="try_again">Prøv igjen</string>
+    <string name="pick_images">Velg bilder</string>
+    <string name="upload_from_url">Last opp</string>
+    <string name="upload_picture">Last opp bilde</string>
+    <string name="take_a_picture">Ta et bilde</string>
+    <string name="recognize_text_button_label">Vis gjenkjent tekst</string>
+
+    // Text Field Labels
+    <string name="sentence">Tekst</string>
+    <string name="What_to_solve_TextField_label">Hva vil du løse?</string>
+    <string name="rating_TextField_label">Vurdering</string>
+    <string name="no_solution_chosen">Løsning er ikke valgt ennå</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Jeg elsker å ta vare på kjæresten min. Jeg sørger alltid for at hun føler seg trygg og beskyttet. Jeg liker å planlegge datene våre og overraske henne med små gaver. Når hun er opprørt, prøver jeg å finne en løsning og fikse ting for henne.</string>
+    <string name="first_ocr_result_is_not_ready">Teksten gjenkjennes, vennligst vent…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Løsningsspråk</string>
+    <string name="upload_a_file_label">Last opp en fil</string>
+    <string name="explanations_label">Forklaringer</string>
+    <string name="source_gender_label">Kilde Kjønn</string>
+    <string name="target_gender_label">Mål Kjønn</string>
+    <string name="source_age_label">Kilde Alder</string>
+    <string name="target_age_label">Mål Alder</string>
+    <string name="category_label">Kategori</string>
+    <string name="tone_label">Tone Preferanse</string>
+    <string name="transformation_level_label">Transformasjonsnivå</string>
+    <string name="style_label">Oversettelsesstil</string>
+    <string name="mentality_label">Mentalitet</string>
+    <string name="translation_scale_label">Oversettelsesskalafaktor</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">Det ser ut som du har slettet noen bilder fra kaloriappens kataloglagring. Ikke bekymre deg, kalorier vil forsøke å fjerne disse bildene én etter én fra applikasjonens cache. Vennligst bekreft hver bildesletting, om nødvendig. Ethvert bilde som vises tomt er et korrupt bilde. Vil du fortsette?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI kunne ikke gjenkjenne tekst fra bildet. Vennligst prøv igjen.</string>
+    <string name="error_gemini_solution_result_extraction">AI kunne ikke løse dette problemet. Vennligst prøv igjen.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Beklager! Noe gikk galt. Prøv igjen!</string>
+    <string name="fail_to_load_Uri">Kunne ikke laste bildet til listen. Vennligst prøv å laste det manuelt!</string>
+    <string name="corrupted_loaded_file">Du har lastet en korrupt fil!</string>
+    <string name="missing_required_settings">Noen nødvendige innstillinger mangler. Vennligst fyll dem ut.</string>
+    <string name="camera_fail_to_open">Beklager! Noe gikk galt med kameraet. Prøv igjen!</string>
+    <string name="upload_image_warning">Vennligst last opp et bilde fra enheten</string>
+    <string name="select_image_or_text_warning">Vennligst velg et bilde eller skriv inn oppgaven.</string>
+    <string name="prompt_is_empty">Gjenkjent tekst er tom. Vennligst prøv igjen!</string>
+    <string name="language_not_supported">"Det valgte språket er ikke tilgjengelig for mediegenerering. Andre funksjoner vil fortsette å fungere. Vil du laste ned de nødvendige språkdataene for å aktivere denne funksjonen?"</string>
+
+    // labels
+    <string name="home">Hjem</string>
+    <string name="settings">Innstillinger</string>
+    <string name="results">Resultat</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Velg hva du vil dele</string>
+    <string name="share_user_translation">Del Min Tekst</string>
+    <string name="share_ocr_result">Del Gjenkjent Tekst</string>
+    <string name="share_solution">Del Løsning</string>
+    <string name="share_image">Del Bilde</string>
+    <string name="share">Del</string>
+
+    // installation
+    <string name="install">Installer</string>
+    <string name="install_language">Installer Språk</string>
+
+    <string name="solved_by_style_translator">Løst av StyleTranslator\nSjekk ut appen vår på Google Play</string>
+
+</resources>

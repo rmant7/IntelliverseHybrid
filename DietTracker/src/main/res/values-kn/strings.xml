@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker ಬಳಕೆದಾರರಿಗೆ ಆಹಾರದಲ್ಲಿನ ಕ್ಯಾಲೊರಿಗಳು, ಕೊಬ್ಬುಗಳು, ಪ್ರೋಟೀನ್‌ಗಳು, ಕಾರ್ಬೋಹೈಡ್ರೇಟ್‌ಗಳು, ಜೀವಸತ್ವಗಳು ಮತ್ತು ಖನಿಜಗಳ ಸೇವನೆಯನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಇದು ಈ ಅಂಶಗಳನ್ನು ಎಣಿಸುವುದಲ್ಲದೆ, ಜೀರ್ಣಕ್ರಿಯೆಯ ನಂತರ ದೇಹವು ಏನು ಹೀರಿಕೊಳ್ಳುತ್ತದೆ ಎಂಬುದನ್ನು ವಿಶ್ಲೇಷಿಸುತ್ತದೆ. ಬಳಕೆದಾರರು ಉತ್ಪನ್ನಗಳ ಚಿತ್ರಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಬಹುದು, ಅಪ್ಲಿಕೇಶನ್ ಪದಾರ್ಥಗಳನ್ನು ಗುರುತಿಸುತ್ತದೆ ಮತ್ತು ಪಟ್ಟಿಯನ್ನು ಸಂಪಾದಿಸುವ ಸಾಮರ್ಥ್ಯವನ್ನು ಒದಗಿಸುತ್ತದೆ.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AI ಶಾಲಾ ಸಹಾಯಕ ಚಿತ್ರ</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AI ಶಾಲಾ ಸಹಾಯಕ ಚಿತ್ರಕ್ಕೆ ಅಪ್ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">ಪರಿಹಾರ AI ಶಾಲಾ ಸಹಾಯಕ ಚಿತ್ರವನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+    <string name="ArrowDropDown_icon_content_description">ಉಪಮೆನುವನ್ನು ತೆರೆಯುತ್ತದೆ</string>
+    <string name="add_image">ಕಾರ್ಯವನ್ನು ಸೇರಿಸಿ</string>
+    <string name="guidance_detected_ingredients">ಗುರುತಿಸಲಾದ ಪದಾರ್ಥಗಳನ್ನು ಪರಿಶೀಲಿಸಿ. ಯಾವುದೇ ವಿವರಗಳು ತಪ್ಪಾಗಿದ್ದರೆ ಅಥವಾ ಕಾಣೆಯಾಗಿದ್ದರೆ, ನೀವು ಹೊಸ ಪೌಷ್ಟಿಕಾಂಶದ ವಿಶ್ಲೇಷಣೆಯನ್ನು ಉತ್ಪಾದಿಸುವ ಮೊದಲು ಅವುಗಳನ್ನು ಮಾರ್ಪಡಿಸಬಹುದು</string>
+
+    // Text values
+    <string name="ingredients">ಪದಾರ್ಥಗಳು</string>
+    <string name="solution_text_value">ಪರಿಹಾರ</string>
+    <string name="user_task_value">ಕಾರ್ಯ</string>
+    <string name="is_ocr_result_included_value">ಆಯ್ಕೆಮಾಡಿದ ಗುರುತಿಸಲ್ಪಟ್ಟ ಪಠ್ಯವನ್ನು ಬಳಸಿ</string>
+    <string name="home_loading_waiting_text_value">ಲೋಡ್ ಆಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ...</string>
+    <string name="progress_bar_hint_text_value">ಪರಿಹಾರಗಳ ಉತ್ಪಾದನಾ ಪ್ರಗತಿ</string>
+
+    // Button Labels
+    <string name="next_button_label">ಮುಂದೆ</string>
+    <string name="solve_button_label">ಪರಿಹರಿಸಿ</string>
+    <string name="check_solution_button_label">ಪರಿಹಾರವನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+    <string name="cheat_sheet_button_label">ಚೀಟ್ ಶೀಟ್</string>
+    <string name="start_again">ಮತ್ತೆ ಪ್ರಾರಂಭಿಸಿ</string>
+    <string name="try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="pick_images">ಚಿತ್ರಗಳನ್ನು ಆರಿಸಿ</string>
+    <string name="upload_from_url">ಅಪ್ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="upload_picture">ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="take_a_picture">ಚಿತ್ರ ತೆಗೆಯಿರಿ</string>
+    <string name="recognize_text_button_label">ಗುರುತಿಸಲ್ಪಟ್ಟ ಪಠ್ಯವನ್ನು ತೋರಿಸು</string>
+
+    // Text Field Labels
+    <string name="foods">ಆಹಾರಗಳು</string>
+    <string name="What_to_solve_TextField_label">ನೀವು ಏನು ಪರಿಹರಿಸಲು ಬಯಸುತ್ತೀರಿ?</string>
+    <string name="rating_TextField_label">ರೇಟಿಂಗ್</string>
+    <string name="no_solution_chosen">ಪರಿಹಾರವನ್ನು ಇನ್ನೂ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">3 ಬಾಳೆಹಣ್ಣು ಮತ್ತು 1 ಸೇಬು, ಎಲ್ಲವೂ ಮಧ್ಯಮ ಗಾತ್ರದಲ್ಲಿವೆ.</string>
+    <string name="first_ocr_result_is_not_ready">ಪಠ್ಯವನ್ನು ಗುರುತಿಸಲಾಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">ಪರಿಹಾರ ಭಾಷೆ</string>
+    <string name="upload_a_file_label">ಫೈಲ್ ಅನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="explanations_label">ವಿವರಣೆಗಳು</string>
+    <string name="physical_activity_label">ದೈಹಿಕ ಚಟುವಟಿಕೆ</string>
+    <string name="gender_label">ಲಿಂಗ</string>
+    <string name="age_label">ವಯಸ್ಸು</string>
+    <string name="height_label">ಎತ್ತರ</string>
+    <string name="weight_label">ತೂಕ</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">ಕ್ಯಾಲೋರಿ ಅಪ್ಲಿಕೇಶನ್‌ನ ಡೈರೆಕ್ಟರಿ ಸಂಗ್ರಹಣೆಯಿಂದ ನೀವು ಕೆಲವು ಚಿತ್ರಗಳನ್ನು ಅಳಿಸಿರುವಂತೆ ತೋರುತ್ತಿದೆ. ಚಿಂತಿಸಬೇಡಿ, ಕ್ಯಾಲೊರಿಗಳು ಅಪ್ಲಿಕೇಶನ್ ಸಂಗ್ರಹದಿಂದ ಈ ಚಿತ್ರಗಳನ್ನು ಒಂದೊಂದಾಗಿ ತೆರವುಗೊಳಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತವೆ. ಅಗತ್ಯವಿದ್ದರೆ, ಪ್ರತಿ ಚಿತ್ರ ಅಳಿಸುವಿಕೆಯನ್ನು ದೃಢೀಕರಿಸಿ. ಖಾಲಿ ಎಂದು ತೋರುವ ಯಾವುದೇ ಚಿತ್ರವು ಭ್ರಷ್ಟಗೊಂಡಿದೆ. ನೀವು ಮುಂದುವರಿಯಲು ಬಯಸುತ್ತೀರಾ?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ಚಿತ್ರದಿಂದ ಪಠ್ಯವನ್ನು ಗುರುತಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <string name="error_gemini_solution_result_extraction">AI ಈ ಸಮಸ್ಯೆಯನ್ನು ಪರಿಹರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">ಓಹ್! ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ!</string>
+    <string name="fail_to_load_Uri">ಚಿತ್ರವನ್ನು ಪಟ್ಟಿಗೆ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಅದನ್ನು ಕೈಯಾರೆ ಲೋಡ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ!</string>
+    <string name="corrupted_loaded_file">ನೀವು ಭ್ರಷ್ಟಗೊಂಡ ಫೈಲ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಿದ್ದೀರಿ!</string>
+    <string name="missing_required_settings">ಕೆಲವು ಅಗತ್ಯವಿರುವ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಕಾಣೆಯಾಗಿವೆ. ದಯವಿಟ್ಟು ಅವುಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ.</string>
+    <string name="camera_fail_to_open">ಓಹ್! ಕ್ಯಾಮೆರಾದಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ!</string>
+    <string name="upload_image_warning">ದಯವಿಟ್ಟು ಸಾಧನದಿಂದ ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="select_image_or_text_warning">ದಯವಿಟ್ಟು ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಕಾರ್ಯವನ್ನು ಟೈಪ್ ಮಾಡಿ.</string>
+    <string name="prompt_is_empty">ಗುರುತಿಸಲ್ಪಟ್ಟ ಪಠ್ಯವು ಖಾಲಿಯಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ!</string>
+    <string name="language_not_supported">"ಆಯ್ಕೆ ಮಾಡಿದ ಭಾಷೆ ಮಾಧ್ಯಮ ಉತ್ಪಾದನೆಗೆ ಲಭ್ಯವಿಲ್ಲ. ಇತರ ವೈಶಿಷ್ಟ್ಯಗಳು ಕಾರ್ಯನಿರ್ವಹಿಸುವುದನ್ನು ಮುಂದುವರಿಸುತ್ತವೆ. ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಅಗತ್ಯವಿರುವ ಭಾಷಾ ಡೇಟಾವನ್ನು ನೀವು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?"</string>
+
+    // labels
+    <string name="home">ಮುಖಪುಟ</string>
+    <string name="settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="results">ಫಲಿತಾಂಶ</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">ಏನು ಹಂಚಿಕೊಳ್ಳಬೇಕೆಂದು ಆರಿಸಿ</string>
+    <string name="share_user_ingredients">ನನ್ನ ಪದಾರ್ಥಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share_recognized_ingredients">ಗುರುತಿಸಲ್ಪಟ್ಟ ಪದಾರ್ಥಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share_solution">ಪರಿಹಾರವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share_image">ಚಿತ್ರವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share">ಹಂಚಿಕೊಳ್ಳಿ</string>
+
+    // installation
+    <string name="install">ಸ್ಥಾಪಿಸಿ</string>
+    <string name="install_language">ಭಾಷೆಯನ್ನು ಸ್ಥಾಪಿಸಿ</string>
+
+    <string name="solved_by_diet_tracker">DietTracker ನಿಂದ ಪರಿಹರಿಸಲಾಗಿದೆ\nGoogle Play ನಲ್ಲಿ ನಮ್ಮ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+
+</resources>

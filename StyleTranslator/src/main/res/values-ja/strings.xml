@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslatorは、さまざまな文体やトーンの間でテキストを変換します。</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">AIスクールアシスタント画像</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">AIスクールアシスタント画像へアップロード</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">AIスクールアシスタント画像の解答を確認</string>
+    <string name="ArrowDropDown_icon_content_description">サブメニューを開きます</string>
+    <string name="add_image">タスクを追加</string>
+
+    // Text values
+    <string name="recognized_text_value">認識されたテキスト</string>
+    <string name="solution_text_value">解答</string>
+    <string name="user_task_value">タスク</string>
+    <string name="is_ocr_result_included_value">選択された認識テキストを使用</string>
+    <string name="home_loading_waiting_text_value">ロード中、お待ちください...</string>
+    <string name="progress_bar_hint_text_value">解答生成の進捗</string>
+
+    // Button Labels
+    <string name="next_button_label">次へ</string>
+    <string name="solve_button_label">解答</string>
+    <string name="check_solution_button_label">解答を確認</string>
+    <string name="cheat_sheet_button_label">カンニングペーパー</string>
+    <string name="start_again">再開</string>
+    <string name="try_again">再試行</string>
+    <string name="pick_images">画像を選択</string>
+    <string name="upload_from_url">アップロード</string>
+    <string name="upload_picture">画像をアップロード</string>
+    <string name="take_a_picture">写真を撮る</string>
+    <string name="recognize_text_button_label">認識されたテキストを表示</string>
+
+    // Text Field Labels
+    <string name="sentence">テキスト</string>
+    <string name="What_to_solve_TextField_label">何を解きたいですか？</string>
+    <string name="rating_TextField_label">評価</string>
+    <string name="no_solution_chosen">解答はまだ選択されていません</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">私はガールフレンドの世話をするのが大好きです。彼女がいつも安全で保護されていると感じられるように心がけています。デートを計画したり、小さなプレゼントで彼女を驚かせたりするのが好きです。彼女が落ち込んでいるときは、解決策を見つけて問題を解決しようとします。</string>
+    <string name="first_ocr_result_is_not_ready">テキストを認識中です、お待ちください...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">解答の言語</string>
+    <string name="upload_a_file_label">ファイルをアップロード</string>
+    <string name="explanations_label">解説</string>
+    <string name="source_gender_label">ソース性別</string>
+    <string name="target_gender_label">ターゲット性別</string>
+    <string name="source_age_label">ソース年齢</string>
+    <string name="target_age_label">ターゲット年齢</string>
+    <string name="category_label">カテゴリー</string>
+    <string name="tone_label">口調の好み</string>
+    <string name="transformation_level_label">変換レベル</string>
+    <string name="style_label">翻訳スタイル</string>
+    <string name="mentality_label">メンタリティ</string>
+    <string name="translation_scale_label">翻訳スケールファクター</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">カロリーアプリのディレクトリストレージから一部の画像が削除されたようです。ご心配なく、カロリーはこれらの画像をアプリケーションキャッシュから1つずつクリアしようとします。必要に応じて、各画像の削除を確認してください。空白で表示される画像は破損しています。続行しますか？</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AIが画像からテキストを認識できませんでした。もう一度お試しください。</string>
+    <string name="error_gemini_solution_result_extraction">AIはこの問題を解決できませんでした。もう一度お試しください。</string>
+
+    // Toast messages
+    <string name="something_went_wrong">おっと！問題が発生しました。もう一度お試しください！</string>
+    <string name="fail_to_load_Uri">画像をリストにロードできませんでした。手動でロードしてみてください！</string>
+    <string name="corrupted_loaded_file">破損したファイルをロードしました！</string>
+    <string name="missing_required_settings">必要な設定がいくつか不足しています。入力してください。</string>
+    <string name="camera_fail_to_open">おっと！カメラで問題が発生しました。もう一度お試しください！</string>
+    <string name="upload_image_warning">デバイスから画像をアップロードしてください</string>
+    <string name="select_image_or_text_warning">画像を選択するか、タスクを入力してください。</string>
+    <string name="prompt_is_empty">認識されたテキストが空です。もう一度お試しください！</string>
+    <string name="language_not_supported">"選択した言語は、メディア生成では使用できません。他の機能は引き続き動作します。この機能を有効にするために必要な言語データをダウンロードしますか？"</string>
+
+    // labels
+    <string name="home">ホーム</string>
+    <string name="settings">設定</string>
+    <string name="results">結果</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">共有するものを選択</string>
+    <string name="share_user_translation">自分のテキストを共有</string>
+    <string name="share_ocr_result">認識されたテキストを共有</string>
+    <string name="share_solution">解答を共有</string>
+    <string name="share_image">画像を共有</string>
+    <string name="share">共有</string>
+
+    // installation
+    <string name="install">インストール</string>
+    <string name="install_language">言語をインストール</string>
+
+    <string name="solved_by_style_translator">StyleTranslatorで解答\nGoogle Playでアプリをチェック</string>
+
+</resources>

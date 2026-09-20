@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip ನಿಮ್ಮ AI দ্বারা ಚಾಲಿತ ಸ್ಮಾರ್ಟ್ ಪ್ರವಾಸ ಯೋಜನೆಗಾರವಾಗಿದೆ. ನಿಮ್ಮ ಕನಸಿನ ಪ್ರವಾಸವನ್ನು ವಿವರಿಸಿ ಅಥವಾ ಪ್ರೇರಣೆಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ, ಮತ್ತು ಸಾರಿಗೆ ಆಯ್ಕೆಗಳು, ಹೋಟೆಲ್ ಲಿಂಕ್ಸ್, ಬಜೆಟ್ ಅಂದಾಜುಗಳು ಮತ್ತು ಸ್ಥಳೀಯ ಟಿಪ್ಪಣಿಗಳೊಂದಿಗೆ ದಿನದಂದು ವೈಯಕ್ತಿಕೃತ ಪ್ರವಾಸ ಯೋಜನೆಯನ್ನು ಕ್ಷಣಮಾತ್ರದಲ್ಲಿ ಪಡೆಯಿರಿ — ಇವೆಲ್ಲವೂ ಒಂದು ಕ್ಲಿಕ್ಕಿನಲ್ಲಿ.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">ಗುರುತಿಸಲಾದ ಪಠ್ಯ</string>
+    <string name="solution_text_value">ಪರಿಹಾರ</string>
+    <string name="user_task_value">ಕಾರ್ಯ</string>
+    <string name="progress_bar_hint_text_value">ಪರಿಹಾರ ರಚನೆಯ ಪ್ರಗತಿ</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">ಪಠ್ಯ</string>
+    <string name="no_solution_chosen">ಇನ್ನೂ ಪರಿಹಾರವನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿಲ್ಲ</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        ನಾನು ಐತಿಹಾಸಿಕ ಸೈಟ್‌ಗಳು, ಸ್ಥಳೀಯ ಆಹಾರ, ಸೌಮ್ಯ ನಡೆಯುವುದು ಮತ್ತು ಮಾರ್ಗದರ್ಶಿತ ಹಾಗೂ ಸ್ವತಂತ್ರ ಚಟುವಟಿಕೆಗಳ ಮಿಶ್ರಣದೊಂದಿಗೆ 3 ದಿನಗಳ ವಿಶ್ರಾಂತಿಯುತ ಹಾಗೂ ಸಾಂಸ್ಕೃತಿಕ ಪ್ರವಾಸವನ್ನು ಒಂದು ನಗರದಲ್ಲಿ ಅಥವಾ ಹತ್ತಿರದಲ್ಲಿ ಬಯಸುತ್ತೇನೆ.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">ಪರಿಹಾರ ಭಾಷೆ</string>
+    <string name="max_budget_label">ಗರಿಷ್ಠ ಬಜೆಟ್</string>
+    <string name="travelers_number_label">ಪ್ರಯಾಣಿಕರ ಸಂಖ್ಯೆ</string>
+    <string name="trip_duration_label">ಪ್ರಯಾಣ ಅವಧಿ</string>
+    <string name="transportation_type_label"> ಸಾರಿಗೆ ಮಾಧ್ಯಮ</string>
+    <string name="trip_style_label">ಪ್ರಯಾಣ ಶೈಲಿ</string>
+    <string name="origin_location_label">ಆರಂಭಿಕ ಸ್ಥಳ</string>
+    <string name="trip_type_label">ಪ್ರಯಾಣದ ವಿಧ</string>
+    <string name="one_way_trip">ಒಂದು ದಾರಿ ಪ್ರಯಾಣ</string>
+    <string name="round_trip">ಮರುಪಠಣ ಪ್ರಯಾಣ</string>
+    <string name="days">ದಿನಗಳು</string>
+    <string name="new_york">ನ್ಯೂಯಾರ್ಕ್</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">ಸಾರಿಗೆ ಮಾಧ್ಯಮ ನಮೂದಿಸಿ</string>
+    <string name="enter_location">ಸ್ಥಳವನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="add">ಸೇರಿಸಿ</string>
+    <string name="travel_path">ಪ್ರಯಾಣ ಮಾರ್ಗ</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI ಈ ಸಮಸ್ಯೆಯನ್ನು ಪರಿಹರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮರುಪ್ರಯತ್ನಿಸಿ.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">ಅಯ್ಯೋ! ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಮರುಪ್ರಯತ್ನಿಸಿ!</string>
+    <string name="fail_to_load_Uri">ಪಟ್ಟಿಗೆ ಚಿತ್ರವನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಕೈಯಾರೆ ಪ್ರಯತ್ನಿಸಿ!</string>
+    <string name="corrupted_loaded_file">ನೀವು ಹಾಳಾದ ಫೈಲ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಿದ್ದೀರಿ!</string>
+    <string name="missing_required_settings">ಕೆಲವು ಅಗತ್ಯ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಕಾಣೆಯಾಗಿದೆ. ದಯವಿಟ್ಟು ಅವುಗಳನ್ನು ಪೂರೈಸಿ.</string>
+    <string name="camera_fail_to_open">ಅಯ್ಯೋ! ಕ್ಯಾಮರಾ ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮರುಪ್ರಯತ್ನಿಸಿ!</string>
+    <string name="select_image_or_text_warning">ದಯವಿಟ್ಟು ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಕಾರ್ಯವನ್ನು ನಮೂದಿಸಿ.</string>
+    <string name="language_not_supported">
+        ಆಯ್ಕೆ ಮಾಡಿದ ಭಾಷೆ ಮಾಧ್ಯಮ ಸೃಷ್ಟಿಗೆ ಲಭ್ಯವಿಲ್ಲ. ಇತರ ವೈಶಿಷ್ಟ್ಯಗಳು ಮುಂದುವರಿಯುತ್ತವೆ. ಅಗತ್ಯ ಭಾಷಾ ಡೇಟಾವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">ಮುಖಪುಟ</string>
+    <string name="settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="results">ಫಲಿತಾಂಶ</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">ಹಂಚಿಕೊಳ್ಳಬೇಕಾದದ್ದನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="share_user_translation">ನನ್ನ ಪಠ್ಯವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share_ocr_result">ಗುರುತಿಸಲಾದ ಪಠ್ಯವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share_solution">ಪರಿಹಾರ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share_image">ಚಿತ್ರವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="share">ಹಂಚಿಕೊಳ್ಳಿ</string>
+
+    <!-- Installation -->
+    <string name="install">ಇನ್ಸ್ಟಾಲ್ ಮಾಡಿ</string>
+    <string name="install_language">ಭಾಷೆ ಇನ್ಸ್ಟಾಲ್ ಮಾಡಿ</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">OneClickTrip ಮೂಲಕ ಪರಿಹರಿಸಲಾಗಿದೆ\nGoogle Play ನಲ್ಲಿ ನಮ್ಮ ಅಪ್ಲಿಕೇಶನ್ ನೋಡಿ</string>
+</resources>

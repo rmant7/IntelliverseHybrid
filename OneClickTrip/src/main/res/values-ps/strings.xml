@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip ستاسو د هوښیار سفر پلان جوړونکی دی چې د AI لخوا چلیږي. یوازې د خپل خوب سفر تشریح کړئ یا الهام اپلوډ کړئ، او سمدستي د ترانسپورت انتخابونو، د هوټل لینکونو، د بودیجې اټکلونو او محلي مشورو سره یو شخصي، ورځني مهالویش ترلاسه کړئ — ټول د یو کلیک سره.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">پیژندل شوی متن</string>
+    <string name="solution_text_value">حل</string>
+    <string name="user_task_value">دنده</string>
+    <string name="progress_bar_hint_text_value">د حلونو تولید پرمختګ</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">متن</string>
+    <string name="no_solution_chosen">لاهم حل انتخاب شوی نه دی</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        زه غواړم د درې ورځو لپاره د استراحت او کلتوري سفر ولرم چې تاریخي ځایونه، سیمه ایز خواړه، اسانه مزلونه او د لارښود او خپلواکو فعالیتونو یو ترکیب پکې وي، په یوه ښار یا نږدې سیمه کې.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">د حل ژبه</string>
+    <string name="max_budget_label">اعظمي بودیجه</string>
+    <string name="travelers_number_label">د سفر کونکو شمیر</string>
+    <string name="trip_duration_label">د سفر موده</string>
+    <string name="transportation_type_label">د ترانسپورت ډول</string>
+    <string name="trip_style_label">د سفر طرز</string>
+    <string name="origin_location_label">د تګ ځای</string>
+    <string name="trip_type_label">د سفر ډول</string>
+    <string name="one_way_trip">یوه لاره سفر</string>
+    <string name="round_trip">راوړ او وړ سفر</string>
+    <string name="days">ورځې</string>
+    <string name="new_york">نیویارک</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">د ترانسپورت ډول ولیکئ</string>
+    <string name="enter_location">ځای ولیکئ</string>
+    <string name="add">اضافه کړئ</string>
+    <string name="travel_path">د سفر مسیر</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        AI ونه توانېد چې دا ستونزه حل کړي. مهرباني وکړئ بیا هڅه وکړئ.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">اوه! یوه تېروتنه رامنځته شوه. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="fail_to_load_Uri">انځور د لست لپاره پورته نشو. مهرباني وکړئ دستی هڅه وکړئ!</string>
+    <string name="corrupted_loaded_file">تاسو یو خراب فایل پورته کړی دی!</string>
+    <string name="missing_required_settings">ځینې اړین ترتیبات نشتون لري. مهرباني وکړئ بشپړ یې کړئ.</string>
+    <string name="camera_fail_to_open">اوه! کیمره پرانیستل نشوه. مهرباني وکړئ بیا هڅه وکړئ!</string>
+    <string name="select_image_or_text_warning">مهرباني وکړئ یو انځور یا دنده ولیکئ.</string>
+    <string name="language_not_supported">
+        ټاکل شوې ژبه د میډیا جوړولو لپاره نشته. نور فعالیتونه به دوام ولري. ایا غواړئ اړین ژبني معلومات ښکته کړئ؟
+    </string>
+
+    <!-- Labels -->
+    <string name="home">کور</string>
+    <string name="settings">ترتیبات</string>
+    <string name="results">نتیجه</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">هغه څه انتخاب کړئ چې غواړئ شریکه کړئ</string>
+    <string name="share_user_translation">زما متن شریکه کړئ</string>
+    <string name="share_ocr_result">پیژندل شوی متن شریکه کړئ</string>
+    <string name="share_solution">حل شریکه کړئ</string>
+    <string name="share_image">انځور شریکه کړئ</string>
+    <string name="share">شریکول</string>
+
+    <!-- Installation -->
+    <string name="install">نصب کړئ</string>
+    <string name="install_language">ژبه نصب کړئ</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">د OneClickTrip لخوا حل شو\nزموږ ایپ په Google Play وګورئ</string>
+</resources>

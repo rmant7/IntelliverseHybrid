@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name_diet_tracker" translatable="false">DietTracker</string>
+    <string name="diet_tracker_info">DietTracker ช่วยให้ผู้ใช้ตรวจสอบปริมาณแคลอรี่ ไขมัน โปรตีน คาร์โบไฮเดรต วิตามิน และแร่ธาตุในอาหาร ไม่เพียงแต่จะนับองค์ประกอบเหล่านี้เท่านั้น แต่ยังวิเคราะห์สิ่งที่ร่างกายดูดซึมหลังการย่อยอาหาร ผู้ใช้สามารถอัปโหลดรูปภาพผลิตภัณฑ์ แอปพลิเคชันจะจดจำส่วนผสมและให้ความสามารถในการแก้ไขรายการ</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">รูปภาพผู้ช่วย AI School</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">รูปภาพอัปโหลดไปยังผู้ช่วย AI School</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">รูปภาพตรวจสอบวิธีแก้ปัญหาผู้ช่วย AI School</string>
+    <string name="ArrowDropDown_icon_content_description">เปิดเมนูย่อย</string>
+    <string name="add_image">เพิ่มงาน</string>
+    <string name="guidance_detected_ingredients">ตรวจสอบส่วนผสมที่ตรวจพบ หากมีรายละเอียดใดไม่ถูกต้องหรือขาดหายไป คุณสามารถแก้ไขได้ก่อนสร้างการวิเคราะห์ทางโภชนาการใหม่</string>
+
+    // Text values
+    <string name="ingredients">ส่วนผสม</string>
+    <string name="solution_text_value">วิธีแก้ปัญหา</string>
+    <string name="user_task_value">งาน</string>
+    <string name="is_ocr_result_included_value">ใช้ข้อความที่รู้จักที่เลือก</string>
+    <string name="home_loading_waiting_text_value">กำลังโหลด โปรดรอสักครู่...</string>
+    <string name="progress_bar_hint_text_value">ความคืบหน้าในการสร้างวิธีแก้ปัญหา</string>
+
+    // Button Labels
+    <string name="next_button_label">ถัดไป</string>
+    <string name="solve_button_label">แก้ปัญหา</string>
+    <string name="check_solution_button_label">ตรวจสอบวิธีแก้ปัญหา</string>
+    <string name="cheat_sheet_button_label">แผ่นโกง</string>
+    <string name="start_again">เริ่มใหม่อีกครั้ง</string>
+    <string name="try_again">ลองอีกครั้ง</string>
+    <string name="pick_images">เลือกรูปภาพ</string>
+    <string name="upload_from_url">อัปโหลด</string>
+    <string name="upload_picture">อัปโหลดรูปภาพ</string>
+    <string name="take_a_picture">ถ่ายรูปภาพ</string>
+    <string name="recognize_text_button_label">แสดงข้อความที่รู้จัก</string>
+
+    // Text Field Labels
+    <string name="foods">อาหาร</string>
+    <string name="What_to_solve_TextField_label">คุณต้องการแก้ปัญหาอะไร?</string>
+    <string name="rating_TextField_label">การให้คะแนน</string>
+    <string name="no_solution_chosen">ยังไม่ได้เลือกวิธีแก้ปัญหา</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_calories">กล้วย 3 ลูกและแอปเปิล 1 ลูก ขนาดกลางทั้งหมด</string>
+    <string name="first_ocr_result_is_not_ready">กำลังจดจำข้อความ โปรดรอ…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">ภาษาของวิธีแก้ปัญหา</string>
+    <string name="upload_a_file_label">อัปโหลดไฟล์</string>
+    <string name="explanations_label">คำอธิบาย</string>
+    <string name="physical_activity_label">กิจกรรมทางกายภาพ</string>
+    <string name="gender_label">เพศ</string>
+    <string name="age_label">อายุ</string>
+    <string name="height_label">ส่วนสูง</string>
+    <string name="weight_label">น้ำหนัก</string>
+
+
+    // Dialog text messages
+    <string name="invalid_images_message">ดูเหมือนว่าคุณได้ลบรูปภาพบางรูปจากที่จัดเก็บไดเรกทอรีของแอปแคลอรี่ ไม่ต้องกังวล แคลอรี่จะพยายามล้างรูปภาพเหล่านี้ทีละรูปจากแคชของแอปพลิเคชัน โปรดยืนยันการลบรูปภาพแต่ละรูป หากจำเป็น รูปภาพใด ๆ ที่ปรากฏเป็นค่าว่างคือรูปภาพที่เสียหาย คุณต้องการดำเนินการต่อหรือไม่?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">AI ไม่สามารถจดจำข้อความจากรูปภาพได้ โปรดลองอีกครั้ง</string>
+    <string name="error_gemini_solution_result_extraction">AI ไม่สามารถแก้ปัญหานี้ได้ โปรดลองอีกครั้ง</string>
+
+    // Toast messages
+    <string name="something_went_wrong">อุ๊ปส์! มีบางอย่างผิดพลาด โปรดลองอีกครั้ง!</string>
+    <string name="fail_to_load_Uri">ไม่สามารถโหลดรูปภาพไปยังรายการได้ โปรดลองโหลดด้วยตนเอง!</string>
+    <string name="corrupted_loaded_file">คุณได้โหลดไฟล์ที่เสียหาย!</string>
+    <string name="missing_required_settings">ขาดการตั้งค่าที่จำเป็นบางอย่าง โปรดกรอกข้อมูลให้ครบถ้วน</string>
+    <string name="camera_fail_to_open">อุ๊ปส์! มีบางอย่างผิดพลาดเกี่ยวกับกล้อง โปรดลองอีกครั้ง!</string>
+    <string name="upload_image_warning">โปรดอัปโหลดรูปภาพจากอุปกรณ์</string>
+    <string name="select_image_or_text_warning">โปรดเลือกรุปภาพ หรืองานประเภทข้อความ</string>
+    <string name="prompt_is_empty">ข้อความที่รู้จักว่างเปล่า โปรดลองอีกครั้ง!</string>
+    <string name="language_not_supported">"ภาษาที่เลือกไม่พร้อมใช้งานสำหรับการสร้างสื่อ คุณสมบัติอื่น ๆ จะยังคงทำงานต่อไป คุณต้องการดาวน์โหลดข้อมูลภาษาที่จำเป็นเพื่อเปิดใช้งานคุณสมบัตินี้หรือไม่"</string>
+
+    // labels
+    <string name="home">หน้าแรก</string>
+    <string name="settings">การตั้งค่า</string>
+    <string name="results">ผลลัพธ์</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">เลือกสิ่งที่จะแบ่งปัน</string>
+    <string name="share_user_ingredients">แบ่งปันส่วนผสมของฉัน</string>
+    <string name="share_recognized_ingredients">แบ่งปันส่วนผสมที่รู้จัก</string>
+    <string name="share_solution">แบ่งปันวิธีแก้ปัญหา</string>
+    <string name="share_image">แบ่งปันรูปภาพ</string>
+    <string name="share">แบ่งปัน</string>
+
+    // installation
+    <string name="install">ติดตั้ง</string>
+    <string name="install_language">ติดตั้งภาษา</string>
+
+    <string name="solved_by_diet_tracker">แก้ไขโดย DietTracker\nตรวจสอบแอปของเราบน Google Play</string>
+
+</resources>

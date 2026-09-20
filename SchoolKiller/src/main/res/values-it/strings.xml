@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">SchoolKiller aiuta gli studenti a risolvere problemi matematici specifici, così come problemi generali.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Immagine dell\'Assistente Scolastico AI</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Immagine di caricamento sull\'Assistente Scolastico AI</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Immagine di verifica della soluzione dell\'Assistente Scolastico AI</string>
+    <string name="ArrowDropDown_icon_content_description">Apre un sottomenu</string>
+    <string name="add_image">Aggiungi compito</string>
+    <string name="Guidance">Per risultati ottimali, fornisci TESTO dettagliato per il tuo compito. Se alleghi immagini, assicurati che qualsiasi testo riconosciuto venga modificato per corrispondere accuratamente all\'originale.</string>
+
+    // Text values
+    <string name="recognized_text_value">Testo riconosciuto</string>
+    <string name="solution_text_value">Soluzione</string>
+    <string name="user_task_value">Compito</string>
+    <string name="is_ocr_result_included_value">Usa il testo riconosciuto selezionato</string>
+    <string name="home_loading_waiting_text_value">Caricamento, attendere prego...</string>
+    <string name="progress_bar_hint_text_value">Avanzamento della generazione delle soluzioni</string>
+
+    // Button Labels
+    <string name="next_button_label">Avanti</string>
+    <string name="solve_button_label">Risolvi</string>
+    <string name="check_solution_button_label">Verifica soluzione</string>
+    <string name="cheat_sheet_button_label">Foglio illustrativo</string>
+    <string name="start_again">Ricomincia</string>
+    <string name="try_again">Riprova</string>
+    <string name="pick_images">Scegli Immagini</string>
+    <string name="upload_from_url">Carica</string>
+    <string name="upload_picture">Carica Immagine</string>
+    <string name="take_a_picture">Scatta una Foto</string>
+    <string name="recognize_text_button_label">Mostra testo riconosciuto</string>
+
+    // Text Field Labels
+    <string name="tasks">Compito</string>
+    <string name="What_to_solve_TextField_label">Cosa vuoi risolvere?</string>
+    <string name="rating_TextField_label">Valutazione</string>
+    <string name="no_solution_chosen">Soluzione non ancora selezionata</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">Parlami del teorema di Pitagora.</string>
+    <string name="first_ocr_result_is_not_ready">Il testo è in fase di riconoscimento, attendere prego…</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Lingua della soluzione</string>
+    <string name="upload_a_file_label">Carica un file</string>
+    <string name="explanations_label">Spiegazioni</string>
+    <string name="grade_label">"Voto"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Sembra che tu abbia eliminato alcune immagini dalla directory di archiviazione dell\'app SchoolKiller. Non preoccuparti, SchoolKiller tenterà di cancellare queste immagini una per una dalla cache dell\'applicazione. Si prega di confermare ogni cancellazione di immagine, se necessario. Qualsiasi immagine che appare vuota è corrotta. Vuoi procedere?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">L\'AI non è stata in grado di riconoscere il testo dall\'immagine. Riprova.</string>
+    <string name="error_gemini_solution_result_extraction">L\'AI non è stata in grado di risolvere questo problema. Riprova.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ops! Qualcosa è andato storto. Riprova!</string>
+    <string name="fail_to_load_Uri">Impossibile caricare l\'immagine nell\'elenco. Prova a caricarla manualmente!</string>
+    <string name="corrupted_loaded_file">Hai caricato un file corrotto!</string>
+    <string name="camera_fail_to_open">Ops! Qualcosa è andato storto con la fotocamera. Riprova!</string>
+    <string name="upload_image_warning">Carica un\'immagine dal dispositivo</string>
+    <string name="select_image_or_text_warning">Seleziona un\'immagine o digita il compito.</string>
+    <string name="prompt_is_empty">Il testo riconosciuto è vuoto. Riprova!</string>
+    <string name="language_not_supported">"La lingua selezionata non è disponibile per la generazione di contenuti multimediali. Altre funzionalità continueranno a funzionare. Desideri scaricare i dati linguistici necessari per abilitare questa funzionalità?"</string>
+
+    // labels
+    <string name="home">Home</string>
+    <string name="settings">Impostazioni</string>
+    <string name="results">Risultato</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Scegli cosa condividere</string>
+    <string name="share_user_task">Condividi il mio compito</string>
+    <string name="share_ocr_result">Condividi il testo riconosciuto</string>
+    <string name="share_solution">Condividi la soluzione</string>
+    <string name="share_image">Condividi immagine</string>
+    <string name="share">Condividi</string>
+
+    // installation
+    <string name="install">Installa</string>
+    <string name="install_language">Installa la lingua</string>
+
+    <string name="solved_by_schoolkiller">Risolto da SchoolKiller\nDai un\'occhiata alla nostra app su Google Play</string>
+
+</resources>

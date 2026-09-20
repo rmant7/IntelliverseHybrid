@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">OneClickTrip ir jūsu viedais ceļojumu plānotājs, kuru darbina mākslīgais intelekts. Vienkārši aprakstiet savu sapņu ceļojumu vai augšupielādējiet iedvesmu, un nekavējoties saņemiet personalizētu ikdienas maršrutu ar transporta iespējām, viesnīcu saitēm, budžeta aprēķiniem un vietējiem padomiem — viss tikai ar vienu klikšķi.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">Atpazīts teksts</string>
+    <string name="solution_text_value">Risinājums</string>
+    <string name="user_task_value">Uzdevums</string>
+    <string name="progress_bar_hint_text_value">Risinājumu ģenerēšanas progress</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">Teksts</string>
+    <string name="no_solution_chosen">Risinājums vēl nav izvēlēts</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        Es vēlos 3 dienu relaksējošu un kulturālu ceļojumu ar vēsturiskiem objektiem, vietējo ēdienu, vieglām pastaigām un gan gida pavadībā, gan patstāvīgām aktivitātēm vienā pilsētā vai tās tuvumā.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">Risinājuma valoda</string>
+    <string name="max_budget_label">Maksimālais budžets</string>
+    <string name="travelers_number_label">Ceļotāju skaits</string>
+    <string name="trip_duration_label">Ceļojuma ilgums</string>
+    <string name="transportation_type_label">Transportēšanas veids</string>
+    <string name="trip_style_label">Ceļojuma stils</string>
+    <string name="origin_location_label">Izbraukšanas vieta</string>
+    <string name="trip_type_label">Ceļojuma veids</string>
+    <string name="one_way_trip">Vienvirziena brauciens</string>
+    <string name="round_trip">Turp un atpakaļ brauciens</string>
+    <string name="days">dienas</string>
+    <string name="new_york">Ņujorka</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">Ievadiet transportēšanas veidu</string>
+    <string name="enter_location">Ievadiet vietu</string>
+    <string name="add">Pievienot</string>
+    <string name="travel_path">Ceļojuma maršruts</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        Mākslīgais intelekts nevarēja atrisināt šo problēmu. Lūdzu, mēģiniet vēlreiz.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">Oops! Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz!</string>
+    <string name="fail_to_load_Uri">Neizdevās ielādēt attēlu sarakstā. Lūdzu, mēģiniet manuāli!</string>
+    <string name="corrupted_loaded_file">Jūs ielādējāt bojātu failu!</string>
+    <string name="missing_required_settings">Daži nepieciešamie iestatījumi trūkst. Lūdzu, aizpildiet tos.</string>
+    <string name="camera_fail_to_open">Oops! Problēma ar kameras atvēršanu. Mēģiniet vēlreiz!</string>
+    <string name="select_image_or_text_warning">Lūdzu, izvēlieties attēlu vai ievadiet uzdevumu.</string>
+    <string name="language_not_supported">
+        Izvēlētā valoda nav pieejama multivides ģenerēšanai. Citas funkcijas turpinās darboties. Vai vēlaties lejupielādēt nepieciešamos valodas datus?
+    </string>
+
+    <!-- Labels -->
+    <string name="home">Sākums</string>
+    <string name="settings">Iestatījumi</string>
+    <string name="results">Rezultāts</string>
+    <string name="ocr">OCR</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">Izvēlieties, ko koplietot</string>
+    <string name="share_user_translation">Dalīties ar manu tekstu</string>
+    <string name="share_ocr_result">Dalīties ar atpazītu tekstu</string>
+    <string name="share_solution">Dalīties ar risinājumu</string>
+    <string name="share_image">Dalīties ar attēlu</string>
+    <string name="share">Dalīties</string>
+
+    <!-- Installation -->
+    <string name="install">Instalēt</string>
+    <string name="install_language">Instalēt valodu</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">Atrisināts ar OneClickTrip\nApskatiet mūsu lietotni Google Play</string>
+</resources>

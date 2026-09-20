@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name_styletranslator" translatable="false">StyleTranslator</string>
+    <string name="styletranslator_info">StyleTranslator перетворює текст між різними стилями та тонами письма.</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">Зображення помічника ШІ в школі</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">Зображення завантаження до помічника ШІ в школі</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">Зображення перевірки рішення помічником ШІ в школі</string>
+    <string name="ArrowDropDown_icon_content_description">Відкриває підменю</string>
+    <string name="add_image">Додати завдання</string>
+
+    // Text values
+    <string name="recognized_text_value">Розпізнаний текст</string>
+    <string name="solution_text_value">Рішення</string>
+    <string name="user_task_value">Завдання</string>
+    <string name="is_ocr_result_included_value">Використовувати вибраний розпізнаний текст</string>
+    <string name="home_loading_waiting_text_value">Завантаження, будь ласка, зачекайте...</string>
+    <string name="progress_bar_hint_text_value">Прогрес генерації рішень</string>
+
+    // Button Labels
+    <string name="next_button_label">Далі</string>
+    <string name="solve_button_label">Вирішити</string>
+    <string name="check_solution_button_label">Перевірити рішення</string>
+    <string name="cheat_sheet_button_label">Шпаргалка</string>
+    <string name="start_again">Почати знову</string>
+    <string name="try_again">Спробувати знову</string>
+    <string name="pick_images">Вибрати зображення</string>
+    <string name="upload_from_url">Завантажити</string>
+    <string name="upload_picture">Завантажити зображення</string>
+    <string name="take_a_picture">Зробити знімок</string>
+    <string name="recognize_text_button_label">Показати розпізнаний текст</string>
+
+    // Text Field Labels
+    <string name="sentence">Текст</string>
+    <string name="What_to_solve_TextField_label">Що ви хочете вирішити?</string>
+    <string name="rating_TextField_label">Рейтинг</string>
+    <string name="no_solution_chosen">Рішення ще не вибрано</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text_style_translator">Я люблю піклуватися про свою дівчину. Я завжди дбаю про те, щоб вона почувалася в безпеці та захищеною. Мені подобається планувати наші побачення і дивувати її невеликими подарунками. Коли вона засмучена, я намагаюся знайти рішення і все виправити.</string>
+    <string name="first_ocr_result_is_not_ready">Текст розпізнається, будь ласка, зачекайте...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">Мова рішення</string>
+    <string name="upload_a_file_label">Завантажити файл</string>
+    <string name="explanations_label">Пояснення</string>
+    <string name="source_gender_label">Стать джерела</string>
+    <string name="target_gender_label">Стать цілі</string>
+    <string name="source_age_label">Вік джерела</string>
+    <string name="target_age_label">Вік цілі</string>
+    <string name="category_label">Категорія</string>
+    <string name="tone_label">Перевага тону</string>
+    <string name="transformation_level_label">Рівень трансформації</string>
+    <string name="style_label">Стиль перекладу</string>
+    <string name="mentality_label">Ментальність</string>
+    <string name="translation_scale_label">Фактор масштабу перекладу</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">Схоже, ви видалили деякі зображення зі сховища каталогу програми для калорій. Не хвилюйтеся, калорії спробують очистити ці зображення одне за одним з кешу програми. Будь ласка, підтвердьте видалення кожного зображення, якщо потрібно. Будь-яке зображення, яке виглядає порожнім, є пошкодженим. Хочете продовжити?</string>
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">ШІ не зміг розпізнати текст із зображення. Будь ласка, спробуйте ще раз.</string>
+    <string name="error_gemini_solution_result_extraction">ШІ не зміг вирішити цю проблему. Будь ласка, спробуйте ще раз.</string>
+
+    // Toast messages
+    <string name="something_went_wrong">Ой! Щось пішло не так. Будь ласка, спробуйте ще раз!</string>
+    <string name="fail_to_load_Uri">Не вдалося завантажити зображення до списку. Будь ласка, спробуйте завантажити його вручну!</string>
+    <string name="corrupted_loaded_file">Ви завантажили пошкоджений файл!</string>
+    <string name="missing_required_settings">Відсутні деякі необхідні налаштування. Будь ласка, заповніть їх.</string>
+    <string name="camera_fail_to_open">Ой! Щось пішло не так з камерою. Будь ласка, спробуйте ще раз!</string>
+    <string name="upload_image_warning">Будь ласка, завантажте зображення з пристрою</string>
+    <string name="select_image_or_text_warning">Будь ласка, виберіть зображення або введіть завдання.</string>
+    <string name="prompt_is_empty">Розпізнаний текст порожній. Будь ласка, спробуйте ще раз!</string>
+    <string name="language_not_supported">"Вибрана мова недоступна для створення медіа. Інші функції продовжать працювати. Чи бажаєте ви завантажити необхідні мовні дані, щоб увімкнути цю функцію?"</string>
+
+    // labels
+    <string name="home">Головна</string>
+    <string name="settings">Налаштування</string>
+    <string name="results">Результат</string>
+    <string name="ocr">OCR</string>
+
+    // sharing
+    <string name="choose_sharing">Виберіть, чим поділитися</string>
+    <string name="share_user_translation">Поділитися моїм текстом</string>
+    <string name="share_ocr_result">Поділитися розпізнаним текстом</string>
+    <string name="share_solution">Поділитися рішенням</string>
+    <string name="share_image">Поділитися зображенням</string>
+    <string name="share">Поділитися</string>
+
+    // installation
+    <string name="install">Встановити</string>
+    <string name="install_language">Встановити мову</string>
+
+    <string name="solved_by_style_translator">Вирішено за допомогою StyleTranslator\nПерегляньте наш додаток у Google Play</string>
+
+</resources>

@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name_schoolkiller" translatable="false">SchoolKiller</string>
+    <string name="schoolkiller_info">স্কুলকিলার শিক্ষার্থীদের বিশেষভাবে গাণিতিক সমস্যা, সেইসাথে সাধারণ সমস্যা সমাধানে সাহায্য করে।</string>
+
+    // Content Descriptions
+    <string name="ai_school_assistant_image_content_description">এআই স্কুল সহকারী চিত্র</string>
+    <string name="upload_to_ai_school_image_assistant_content_description">এআই স্কুল সহকারী চিত্রে আপলোড করুন</string>
+    <string name="check_solution_ai_school_image_assistant_content_description">এআই স্কুল সহকারী চিত্রে সমাধান দেখুন</string>
+    <string name="ArrowDropDown_icon_content_description">একটি উপমেনু খোলে</string>
+    <string name="add_image">কাজ যোগ করুন</string>
+    <string name="Guidance">সেরা ফলাফলের জন্য, আপনার কাজের জন্য বিস্তারিত টেক্সট প্রদান করুন। আপনি যদি ছবি যুক্ত করেন, তবে নিশ্চিত করুন যে কোনও স্বীকৃত টেক্সট মূলের সাথে সঠিকভাবে মেলে।</string>
+
+    // Text values
+    <string name="recognized_text_value">স্বীকৃত টেক্সট</string>
+    <string name="solution_text_value">সমাধান</string>
+    <string name="user_task_value">কাজ</string>
+    <string name="is_ocr_result_included_value">নির্বাচিত স্বীকৃত টেক্সট ব্যবহার করুন</string>
+    <string name="home_loading_waiting_text_value">লোডিং হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</string>
+    <string name="progress_bar_hint_text_value">সমাধান তৈরির অগ্রগতি</string>
+
+    // Button Labels
+    <string name="next_button_label">পরবর্তী</string>
+    <string name="solve_button_label">সমাধান করুন</string>
+    <string name="check_solution_button_label">সমাধান দেখুন</string>
+    <string name="cheat_sheet_button_label">চিট শীট</string>
+    <string name="start_again">আবার শুরু করুন</string>
+    <string name="try_again">আবার চেষ্টা করুন</string>
+    <string name="pick_images">ছবি বাছাই করুন</string>
+    <string name="upload_from_url">আপলোড করুন</string>
+    <string name="upload_picture">ছবি আপলোড করুন</string>
+    <string name="take_a_picture">একটি ছবি তুলুন</string>
+    <string name="recognize_text_button_label">স্বীকৃত টেক্সট দেখান</string>
+
+    // Text Field Labels
+    <string name="tasks">কাজ</string>
+    <string name="What_to_solve_TextField_label">আপনি কী সমাধান করতে চান?</string>
+    <string name="rating_TextField_label">রেটিং</string>
+    <string name="no_solution_chosen">এখনো কোনো সমাধান নির্বাচন করা হয়নি</string>
+
+    // Text Field PlaceHolders
+    <string name="additional_info_TextField_placeholder_text">আমাকে পিথাগোরাসের উপপাদ্য সম্পর্কে বলুন।</string>
+    <string name="first_ocr_result_is_not_ready">টেক্সট স্বীকৃত হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</string>
+
+    // Drop Down Menu Labels
+    <string name="solution_language_label">সমাধানের ভাষা</string>
+    <string name="upload_a_file_label">একটি ফাইল আপলোড করুন</string>
+    <string name="explanations_label">ব্যাখ্যা</string>
+    <string name="grade_label">"গ্রেড"</string>
+
+    // Dialog text messages
+    <string name="invalid_images_message">মনে হচ্ছে আপনি SchoolKiller অ্যাপের ডিরেক্টরি স্টোরেজ থেকে কিছু ছবি মুছে ফেলেছেন। চিন্তা করবেন না, SchoolKiller অ্যাপ্লিকেশন ক্যাশে থেকে এই ছবিগুলো এক এক করে সরানোর চেষ্টা করবে। প্রয়োজনে প্রতিটি ছবি মুছে ফেলার বিষয়টি নিশ্চিত করুন। যে কোনো ছবি যদি ফাঁকা দেখায়, তবে সেটি নষ্ট হয়ে গেছে। আপনি কি এগিয়ে যেতে চান?</string>
+
+
+    // Errors
+    <string name="error_gemini_ocr_result_extraction">এআই চিত্র থেকে টেক্সট চিনতে পারেনি। আবার চেষ্টা করুন।</string>
+    <string name="error_gemini_solution_result_extraction">এআই এই সমস্যার সমাধান করতে পারেনি। আবার চেষ্টা করুন।</string>
+
+    // Toast messages
+    <string name="something_went_wrong">উফ! কিছু ভুল হয়েছে। আবার চেষ্টা করুন!</string>
+    <string name="fail_to_load_Uri">ছবিটি তালিকায় লোড করা যায়নি। অনুগ্রহ করে ম্যানুয়ালি লোড করার চেষ্টা করুন!</string>
+    <string name="corrupted_loaded_file">আপনি একটি নষ্ট ফাইল লোড করেছেন!</string>
+    <string name="camera_fail_to_open">উফ! ক্যামেরার সাথে কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন!</string>
+    <string name="upload_image_warning">অনুগ্রহ করে ডিভাইস থেকে একটি ছবি আপলোড করুন</string>
+    <string name="select_image_or_text_warning">অনুগ্রহ করে একটি ছবি নির্বাচন করুন অথবা কাজ টাইপ করুন।</string>
+    <string name="prompt_is_empty">স্বীকৃত টেক্সট খালি। আবার চেষ্টা করুন!</string>
+    <string name="language_not_supported">"নির্বাচিত ভাষা মিডিয়া তৈরির জন্য উপলব্ধ নয়। অন্যান্য বৈশিষ্ট্য কাজ করতে থাকবে। আপনি কি এই বৈশিষ্ট্যটি সক্রিয় করতে প্রয়োজনীয় ভাষা ডেটা ডাউনলোড করতে চান?"</string>
+
+    // labels
+    <string name="home">হোম</string>
+    <string name="settings">সেটিংস</string>
+    <string name="results">ফলাফল</string>
+    <string name="ocr">ওসিআর</string>
+
+    // sharing
+    <string name="choose_sharing">কী শেয়ার করতে চান তা নির্বাচন করুন</string>
+    <string name="share_user_task">আমার কাজ শেয়ার করুন</string>
+    <string name="share_ocr_result">স্বীকৃত টেক্সট শেয়ার করুন</string>
+    <string name="share_solution">সমাধান শেয়ার করুন</string>
+    <string name="share_image">ছবি শেয়ার করুন</string>
+    <string name="share">শেয়ার</string>
+
+    // installation
+    <string name="install">ইনস্টল</string>
+    <string name="install_language">ভাষা ইনস্টল করুন</string>
+
+    <string name="solved_by_schoolkiller">SchoolKiller দ্বারা সমাধান করা হয়েছে\nGoogle Play তে আমাদের অ্যাপটি দেখুন</string>
+
+</resources>

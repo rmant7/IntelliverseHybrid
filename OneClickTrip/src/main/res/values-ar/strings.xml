@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name_oneclicktrip" translatable="false">OneClickTrip</string>
+    <string name="oneclicktrip_info">يعد OneClickTrip مخطط السفر الذكي الخاص بك المدعوم بالذكاء الاصطناعي. فقط صف رحلتك الحلمية أو قم بتحميل مصدر إلهام، وستحصل على الفور على خط سير مخصص يومًا بيوم مع خيارات النقل وروابط الفنادق وتقديرات الميزانية والنصائح المحلية — كل ذلك بنقرة واحدة.</string>
+
+    <!-- Text values -->
+    <string name="recognized_text_value">النص المعترف به</string>
+    <string name="solution_text_value">الحل</string>
+    <string name="user_task_value">المهمة</string>
+    <string name="progress_bar_hint_text_value">تقدم إنشاء الحلول</string>
+
+    <!-- Text Field Labels -->
+    <string name="sentence">نص</string>
+    <string name="no_solution_chosen">لم يتم اختيار حل بعد</string>
+
+    <!-- Text Field Placeholders -->
+    <string name="additional_info_TextField_placeholder_text_oneclicktrip">
+        أريد رحلة استرخاء ثقافية لمدة 3 أيام مع مواقع تاريخية وطعام محلي ومشي خفيف ومزيج من الأنشطة الموجهة والحرة في مدينة واحدة أو بالقرب منها.
+    </string>
+
+    <!-- Drop Down Menu Labels -->
+    <string name="solution_language_label">لغة الحل</string>
+    <string name="max_budget_label">الميزانية القصوى</string>
+    <string name="travelers_number_label">عدد المسافرين</string>
+    <string name="trip_duration_label">مدة الرحلة</string>
+    <string name="transportation_type_label">وسيلة النقل</string>
+    <string name="trip_style_label">نمط الرحلة</string>
+    <string name="origin_location_label">موقع الانطلاق</string>
+    <string name="trip_type_label">نوع الرحلة</string>
+    <string name="one_way_trip">رحلة باتجاه واحد</string>
+    <string name="round_trip">رحلة ذهاب وعودة</string>
+    <string name="days">أيام</string>
+    <string name="new_york">نيويورك</string>
+
+    <!-- Travel Input -->
+    <string name="enter_transportation_type">أدخل وسيلة النقل</string>
+    <string name="enter_location">أدخل الموقع</string>
+    <string name="add">إضافة</string>
+    <string name="travel_path">مسار السفر</string>
+
+    <!-- Errors -->
+    <string name="error_gemini_solution_result_extraction">
+        لم يتمكن الذكاء الاصطناعي من حل هذه المشكلة. الرجاء المحاولة مرة أخرى.
+    </string>
+
+    <!-- Toast messages -->
+    <string name="something_went_wrong">عذرًا! حدث خطأ ما. الرجاء المحاولة مرة أخرى!</string>
+    <string name="fail_to_load_Uri">فشل تحميل الصورة إلى القائمة. الرجاء المحاولة يدويًا!</string>
+    <string name="corrupted_loaded_file">لقد قمت بتحميل ملف تالف!</string>
+    <string name="missing_required_settings">بعض الإعدادات المطلوبة مفقودة. الرجاء تعبئتها.</string>
+    <string name="camera_fail_to_open">عذرًا! حدث خطأ مع الكاميرا. الرجاء المحاولة مرة أخرى!</string>
+    <string name="select_image_or_text_warning">يرجى اختيار صورة أو كتابة مهمة.</string>
+    <string name="language_not_supported">
+        اللغة المحددة غير متوفرة لتوليد الوسائط. ستستمر الميزات الأخرى في العمل. هل ترغب في تحميل بيانات اللغة المطلوبة لتمكين هذه الميزة؟
+    </string>
+
+    <!-- Labels -->
+    <string name="home">الرئيسية</string>
+    <string name="settings">الإعدادات</string>
+    <string name="results">النتيجة</string>
+    <string name="ocr">التعرف الضوئي على الحروف</string>
+
+    <!-- Sharing -->
+    <string name="choose_sharing">اختر ما تريد مشاركته</string>
+    <string name="share_user_translation">مشاركة نصي</string>
+    <string name="share_ocr_result">مشاركة النص المعترف به</string>
+    <string name="share_solution">مشاركة الحل</string>
+    <string name="share_image">مشاركة الصورة</string>
+    <string name="share">مشاركة</string>
+
+    <!-- Installation -->
+    <string name="install">تثبيت</string>
+    <string name="install_language">تثبيت اللغة</string>
+
+    <!-- Solved By Text -->
+    <string name="solved_by_oneclicktrip">تم الحل بواسطة OneClickTrip\nتفقد تطبيقنا على Google Play</string>
+</resources>

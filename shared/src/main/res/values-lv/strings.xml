@@ -1,0 +1,241 @@
+<resources>
+
+    <string-array name="styles">
+        <item>Poētisks</item>
+        <item>Profesionāls</item>
+        <item>Juridisks</item>
+        <item>Tehnisks</item>
+        <item>Akadēmisks</item>
+        <item>Žurnālistisks</item>
+        <item>Radošs</item>
+        <item>Pārliecinošs</item>
+        <item>Stāstošs</item>
+        <item>Aprakstošs</item>
+        <item>Paskaidrojošs</item>
+        <item>Humoristisks</item>
+        <item>Neformāls</item>
+        <item>Biznesa</item>
+        <item>Zinātnisks</item>
+        <item>Romantisks</item>
+        <item>Vēsturisks</item>
+        <item>Filozofisks</item>
+        <item>Pašpalīdzība</item>
+        <item>Ceļojumu</item>
+        <item>Mārketinga</item>
+    </string-array>
+
+    <string-array name="tones">
+        <item>Formāls</item>
+        <item>Ikdienišķs</item>
+        <item>Draudzīgs</item>
+        <item>Nopietns</item>
+        <item>Empātisks</item>
+        <item>Pārliecinošs</item>
+        <item>Optimistisks</item>
+        <item>Humoristisks</item>
+        <item>Neitrāls</item>
+    </string-array>
+
+    <string-array name="transformation_levels">
+        <item>Minimāls</item>
+        <item>Mērens</item>
+        <item>Pilnīgs</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Attiecības</item>
+        <item>Darbavieta</item>
+        <item>Izglītība</item>
+        <item>Veselība</item>
+        <item>Finanses</item>
+        <item>Ceļojumi</item>
+        <item>Tehnoloģijas</item>
+        <item>Izklaide</item>
+        <item>Pašpilnveidošanās</item>
+        <item>Vispārīgs</item>
+    </string-array>
+
+    <string-array name="mentalities">
+        <item>Krievija: Kolektīvistisks</item>
+        <item>Austrumeiropa: Pragmatisks</item>
+        <item>Rietumeiropa: Individuālistisks</item>
+        <item>Dienvidaustrumāzija: Uz harmoniju orientēts</item>
+        <item>Ķīna: Hierarhisks</item>
+        <item>Kaukāzs: Gods saistošs</item>
+        <item>Ziemeļamerika: Uzņēmējspējīgs</item>
+        <item>Latīņamerika: Kaislīgs</item>
+        <item>Tuvie Austrumi: Viesmīlības vadīts</item>
+        <item>Āfrika: Kopienas</item>
+        <item>Ziemeļvalstis: Vienlīdzīgs</item>
+        <item>Dienvidāzija: Uz ģimeni orientēts</item>
+        <item>Japāna: Grupas harmonija</item>
+        <item>Austrālija: Atbrīvots</item>
+        <item>Vidusjūra: Izteiksmīgs</item>
+        <item>Centrālāzija: Klejotāju tradīcijas</item>
+        <item>Vācija: Strukturēts</item>
+        <item>Balkāni: Izturīgi</item>
+        <item>Arktiskie vietējie: Saistīti ar dabu</item>
+        <item>Ebreju: Uz kopienu orientēts</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Amharu</item>
+        <item>Arābu</item>
+        <item>Bengāļu</item>
+        <item>Bulgāru</item>
+        <item>Vienkāršotā ķīniešu</item>
+        <item>Horvātu</item>
+        <item>Čehu</item>
+        <item>Dāņu</item>
+        <item>Holandiešu</item>
+        <item>Angļu</item>
+        <item>Igauņu</item>
+        <item>Somu</item>
+        <item>Franču</item>
+        <item>Vācu</item>
+        <item>Grieķu</item>
+        <item>Gudžaratu</item>
+        <item>Ebreju</item>
+        <item>Hindi</item>
+        <item>Ungāru</item>
+        <item>Indonēziešu</item>
+        <item>Itāļu</item>
+        <item>Japāņu</item>
+        <item>Kannada</item>
+        <item>Korejiešu</item>
+        <item>Latviešu</item>
+        <item>Lietuviešu</item>
+        <item>Malajiešu</item>
+        <item>Marathi</item>
+        <item>Norvēģu</item>
+        <item>Puštu</item>
+        <item>Persiešu</item>
+        <item>Poļu</item>
+        <item>Portugāļu</item>
+        <item>Rumāņu</item>
+        <item>Krievu</item>
+        <item>Serbu</item>
+        <item>Slovāku</item>
+        <item>Slovēņu</item>
+        <item>Spāņu</item>
+        <item>Svahili</item>
+        <item>Zviedru</item>
+        <item>Tagalu</item>
+        <item>Tamilu</item>
+        <item>Telugu</item>
+        <item>Taju</item>
+        <item>Turku</item>
+        <item>Ukraiņu</item>
+        <item>Urdu</item>
+        <item>Vjetnamiešu</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Nav svarīgi</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>Bez paskaidrojuma</item>
+        <item>Īss paskaidrojums</item>
+        <item>Detalizēts paskaidrojums</item>
+    </string-array>
+
+    <string-array name="physical_activity">
+        <item>Mazkustīgs</item>
+        <item>Viegli aktīvs</item>
+        <item>Mēreni aktīvs</item>
+        <item>Ļoti aktīvs</item>
+        <item>Īpaši aktīvs</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Vīrietis</item>
+        <item>Sieviete</item>
+    </string-array>
+
+    <string-array name="transportation_types">
+        <item>Lidmašīna</item>
+        <item>Velosipēds</item>
+        <item>Laiva</item>
+        <item>Autobuss</item>
+        <item>Motocikls</item>
+        <item>Personīgā automašīna</item>
+        <item>Nomāta automašīna</item>
+        <item>Kopbraukšana</item>
+        <item>Metro</item>
+        <item>Taksometrs</item>
+        <item>Vilciens</item>
+        <item>Tramvajs</item>
+        <item>Iešana kājām</item>
+    </string-array>
+
+    <string-array name="trip_styles">
+        <item>Ēdiens</item>
+        <item>Vēsture</item>
+        <item>Kultūra</item>
+        <item>Daba</item>
+        <item>Atpūta</item>
+        <item>Piedzīvojums</item>
+        <item>Nakts dzīve</item>
+        <item>Iepirkšanās</item>
+        <item>Ģimene</item>
+        <item>Romantika</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Uzņemt attēlu</item>
+        <item>Augšupielādēt attēlu</item>
+        <item>Augšupielādēt failu</item>
+        <item>Norādīt saiti</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">Atvainojiet, pakalpojums nav pieejams Krievijā un Baltkrievijā, lūdzu, izmantojiet vpn</string>
+    <string name="error_service_not_available_title">Pakalpojums nav pieejams</string>
+    <string name="error_common_title">Kļūda</string>
+    <string name="error_common_message">Lietojumprogrammas darbības laikā radās kļūda. Mēģiniet atjaunināt lietotni vai mēģiniet vēlreiz vēlāk</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Ups! Izskatās, ka šai funkcijai ir nepieciešama piekļuve kamerai. Dodieties uz ierīces iestatījumiem, atrodiet IntelliVerse savā lietotņu sarakstā un piešķiriet atļauju kamerai, lai atbloķētu burvību!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Ups! Lai izmantotu attēlus no savas galerijas, IntelliVerse ir nepieciešama atļauja lasīt jūsu fotoattēlus. Dodieties uz ierīces iestatījumiem, atrodiet IntelliVerse savā lietotņu sarakstā un piešķiriet piekļuvi fotoattēliem, lai atbloķētu burvību!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Ups! Lai saglabātu failus savā ierīcē, IntelliVerse ir nepieciešama atļauja rakstīt jūsu krātuvē. Dodieties uz ierīces iestatījumiem, atrodiet IntelliVerse savā lietotņu sarakstā un piešķiriet piekļuvi krātuvei, lai atbloķētu burvību!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Ups! Lai piekļūtu failiem savā ierīcē, IntelliVerse ir nepieciešama atļauja lasīt jūsu krātuvi. Dodieties uz ierīces iestatījumiem, atrodiet IntelliVerse savā lietotņu sarakstā un piešķiriet piekļuvi krātuvei, lai atbloķētu burvību!</string>
+    <string name="camera_permission_rationale">IntelliVerse ir nepieciešama piekļuve jūsu kamerai, lai jūs varētu uzreiz nofotografēt savus skolas uzdevumus!</string>
+    <string name="read_media_permission_rationale">Piekļuves atļaušana jūsu fotoattēliem ļauj jums izvēlēties attēlus no savas galerijas, lai tos izmantotu IntelliVerse lietotnē!</string>
+    <string name="write_storage_permission_rationale">Atļauja rakstīt jūsu krātuvē ļauj IntelliVerse lietotnei saglabāt failus, piemēram, uzņemtus fotoattēlus, tieši jūsu ierīcē!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse ir nepieciešama piekļuve jūsu ierīces krātuvei, lai lasītu failus, piemēram, fotoattēlus vai dokumentus, kurus, iespējams, vēlaties izmantot lietotnē.</string>
+
+    // Buttons Labels
+    <string name="Ok">Labi</string>
+
+    <string name="Yes">Jā</string>
+    <string name="No">Nē</string>
+    <string name="are_you_sure">Vai tiešām vēlaties iziet?</string>
+    <string name="exit">Iziet</string>
+
+    <string name="report_content">Ziņot par saturu</string>
+    <string name="select_reason">Izvēlieties iemeslu</string>
+    <string name="offensive">Aizskarošs</string>
+    <string name="hate_speech">Naida runa</string>
+    <string name="incorrect_info">Nepareiza informācija</string>
+    <string name="other">Cits</string>
+    <string name="submit">Iesniegt</string>
+    <string name="cancel">Atcelt</string>
+
+    <string name="reset_settings">Atiestatīt iestatījumus</string>
+    <string name="not_relevant">Nav svarīgi</string>
+
+</resources>
