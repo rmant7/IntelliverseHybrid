@@ -52,3 +52,18 @@ gemini_api_key=ВАШ_КЛЮЧ_GEMINI
 Android SDK, а инфраструктурная политика сети блокирует доступ к `dl.google.com`
 (оттуда качаются Android Gradle Plugin и сам SDK). Сборку нужно запускать локально
 или через CI (например, GitHub Actions) с доступом к серверам Google.
+
+## Сборка через GitHub Actions
+
+Workflow `.github/workflows/build-apk.yml` собирает debug- и (несигнованный)
+release-APK при пуше в `main`/`claude/**`, в pull request и вручную (Actions →
+Build APK → Run workflow).
+
+1. Repo → Settings → Secrets and variables → Actions → New repository secret:
+   имя `GEMINI_API_KEY`, значение — ваш ключ Gemini API. Без него сборка всё равно
+   пройдёт, но приложение не сможет обращаться к Gemini.
+2. После завершения workflow — во вкладке Actions у соответствующего run внизу
+   будут артефакты `intelliverse-debug-apk` и `intelliverse-release-apk-unsigned`.
+3. Debug APK подписан отладочным ключом AGP и сразу ставится на устройство/эмулятор.
+   Release APK не подписан — для публикации в Play Store нужно добавить
+   `signingConfig` в `app/build.gradle.kts` и секреты с keystore.
