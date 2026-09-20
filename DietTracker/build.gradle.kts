@@ -28,7 +28,7 @@ secrets {
 
 android {
     namespace = "com.diettracker"
-    compileSdk = 35
+    compileSdk = 37 // kept in sync with app/build.gradle.kts -- see its own comment
 
     defaultConfig {
         minSdk = 23

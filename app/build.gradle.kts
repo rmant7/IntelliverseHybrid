@@ -51,7 +51,11 @@ secrets {
 
 android {
     namespace = "com.intelliverse"
-    compileSdk = 35
+    // 37 = Android 17 (released 2026-06-16), the current maximum -- Google
+    // Play already requires targeting at least API 36 for new apps/updates
+    // as of 2026-08-31, so 35 fell below that floor, not just "not the
+    // newest".
+    compileSdk = 37
 
     signingConfigs {
         // AGP's built-in "debug" signingConfig otherwise falls back to
@@ -75,7 +79,7 @@ android {
     defaultConfig {
         applicationId = "com.intelliverse"
         minSdk = 23
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 23
         versionName = "1.22"
 
