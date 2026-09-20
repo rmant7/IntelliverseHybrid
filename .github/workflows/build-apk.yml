@@ -43,6 +43,12 @@ jobs:
           echo "gemini_api_key=${{ secrets.GEMINI_API_KEY }}" >> local.properties
           echo "grok_api_key=${{ secrets.GROK_API_KEY }}" >> local.properties
           echo "gigachat_api_key=${{ secrets.GIGACHAT_API_KEY }}" >> local.properties
+          # Read by the secrets-gradle-plugin in app/build.gradle.kts, which inserts
+          # it verbatim as BuildConfig source (unlike the three keys above, which
+          # shared/build.gradle.kts reads itself and quotes) -- so this one MUST
+          # already be quoted here, or IntelliverseApplication's reference to
+          # BuildConfig.app_metrica_api_key fails to compile.
+          echo "app_metrica_api_key=\"${{ secrets.APP_METRICA_API_KEY }}\"" >> local.properties
 
       - name: Build debug APK
         run: ./gradlew assembleDebug --no-daemon

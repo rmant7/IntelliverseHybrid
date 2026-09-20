@@ -78,6 +78,11 @@ sdk.dir=/path/to/Android/sdk
 gemini_api_key=ВАШ_КЛЮЧ_GEMINI
 grok_api_key=ВАШ_КЛЮЧ_GROK
 gigachat_api_key=ВАШ_КЛЮЧ_GIGACHAT
+# Ключ AppMetrica (Yandex) для app/IntelliverseApplication.kt — без него app не
+# компилируется вообще. В отличие от трёх ключей выше (их читает сам
+# shared/build.gradle.kts и сам берёт в кавычки), этот читает secrets-gradle-plugin
+# напрямую и вставляет значение как есть в код, поэтому кавычки нужны в значении:
+app_metrica_api_key="ВАШ_КЛЮЧ_APPMETRICA"
 ```
 
 Затем:
@@ -102,8 +107,9 @@ release-APK при пуше в `main`/`claude/**`, в pull request и вручн
 Build APK → Run workflow).
 
 1. Repo → Settings → Secrets and variables → Actions → New repository secret:
-   `GEMINI_API_KEY`, `GROK_API_KEY`, `GIGACHAT_API_KEY`. Без них сборка всё равно
-   пройдёт, но соответствующая модель не сможет отвечать.
+   `GEMINI_API_KEY`, `GROK_API_KEY`, `GIGACHAT_API_KEY` — без них сборка пройдёт,
+   но соответствующая модель не сможет отвечать. `APP_METRICA_API_KEY` — обязателен,
+   без него `app` не скомпилируется (см. `local.properties` выше).
 2. После завершения workflow — во вкладке Actions у соответствующего run внизу
    будут артефакты `intelliverse-debug-apk` и `intelliverse-release-apk-unsigned`.
 3. Debug APK подписан отладочным ключом AGP и сразу ставится на устройство/эмулятор.
