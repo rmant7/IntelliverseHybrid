@@ -2,7 +2,6 @@ package com.matterofchoice.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.content.edit
@@ -13,6 +12,7 @@ import com.matterofchoice.api.GeminiRepository
 import com.matterofchoice.model.Case
 import com.matterofchoice.screens.PrefKeys
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException
@@ -35,10 +35,10 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun initiateGame() {
         if (_state.value.currentTurn == 1 && _state.value.casesList.isEmpty()) {
-            Log.d("AIViewModel", "Starting fresh game for Turn 1")
+            Timber.d("AIViewModel: starting fresh game for Turn 1")
             initiateGameForTurn(1)
         } else {
-            Log.d("AIViewModel", "initiateGame skipped (turn: ${_state.value.currentTurn}, cases: ${_state.value.casesList.size})")
+            Timber.d("AIViewModel: initiateGame skipped (turn: ${_state.value.currentTurn}, cases: ${_state.value.casesList.size})")
             if (_state.value.isLoading && _state.value.casesList.isNotEmpty()) {
                 _state.value = _state.value.copy(isLoading = false)
             }
@@ -49,7 +49,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
         val updatedChoices = _state.value.userChoices.toMutableMap()
         updatedChoices[caseId] = choice
         _state.value = _state.value.copy(userChoices = updatedChoices)
-        Log.d("AIViewModel", "User chose for case $caseId -> $choice")
+        Timber.d("AIViewModel: user chose for case $caseId -> $choice")
     }
 
     /**
@@ -77,10 +77,10 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     isLoading = false
                 )
 
-                Log.d("AIViewModel", "Analysis completed successfully")
+                Timber.d("AIViewModel: analysis completed successfully")
 
             } catch (e: Exception) {
-                Log.e("AIViewModel", "Analysis failed", e)
+                Timber.e(e, "AIViewModel: analysis failed")
                 _state.value = _state.value.copy(
                     error = "Analysis failed: ${e.message}",
                     isLoading = false
@@ -98,13 +98,13 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
         i++
 
         if (outputPath.isEmpty()) {
-            Log.e("AIViewModel", "Failed to get external storage directory.")
+            Timber.e("AIViewModel: failed to get external storage directory.")
             return
         }
 
         val outputDirectory = caseFile.parentFile
         if (outputDirectory != null && !outputDirectory.exists() && !outputDirectory.mkdirs()) {
-            Log.e("AIViewModel", "Failed to create directory: ${outputDirectory.absolutePath}")
+            Timber.e("AIViewModel: failed to create directory: ${outputDirectory.absolutePath}")
             return
         }
 
@@ -112,9 +112,9 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
             FileWriter(caseFile).use { writer ->
                 writer.write(caseData.toString() + " user choice: $userChoice")
             }
-            Log.d("AIViewModel", "Saved user choice to ${caseFile.absolutePath}")
+            Timber.d("AIViewModel: saved user choice to ${caseFile.absolutePath}")
         } catch (e: IOException) {
-            Log.e("AIViewModel", "Failed to save user choice", e)
+            Timber.e(e, "AIViewModel: failed to save user choice")
         }
     }
 
@@ -143,9 +143,9 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     error = null
                 )
 
-                Log.d("AIViewModel", "Game reset complete.")
+                Timber.d("AIViewModel: game reset complete.")
             } catch (e: Exception) {
-                Log.e("AIViewModel", "Failed to reset game", e)
+                Timber.e(e, "AIViewModel: failed to reset game")
                 _state.value = _state.value.copy(error = "Reset failed: ${e.message}")
             }
         }
@@ -158,7 +158,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val currentTurn = _state.value.currentTurn
             if (currentTurn >= 3) {
-                Log.d("AIViewModel", "Max turns reached; no further turns will be generated.")
+                Timber.d("AIViewModel: max turns reached; no further turns will be generated.")
                 _state.value = _state.value.copy(isLoading = false)
                 return@launch
             }
@@ -196,7 +196,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                 val previousAnswers = _state.value.userChoices
                 val previousCases = allCasesList
 
-                Log.d("AIViewModel", "Generating cases for turn $turn...")
+                Timber.d("AIViewModel: generating cases for turn $turn...")
 
                 val responseCases = geminiRepository.generateCases(
                     language = language,
@@ -218,10 +218,10 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     error = null
                 )
 
-                Log.d("AIViewModel", "Turn $turn cases loaded successfully (${responseCases.size} cases)")
+                Timber.d("AIViewModel: turn $turn cases loaded successfully (${responseCases.size} cases)")
 
             } catch (e: Exception) {
-                Log.e("AIViewModel", "Failed to initiate turn $turn", e)
+                Timber.e(e, "AIViewModel: failed to initiate turn $turn")
                 _state.value = _state.value.copy(
                     isLoading = false,
                     error = "Failed to start turn $turn: ${e.localizedMessage ?: "Unknown error"}"
@@ -232,6 +232,6 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
 
     fun clearAnalysisData() {
         _state.value = _state.value.copy(analysisData = null, analysisResult = null)
-        Log.d("AIViewModel", "Cleared analysis data.")
+        Timber.d("AIViewModel: cleared analysis data.")
     }
 }
