@@ -232,7 +232,7 @@ class GeminiRepository {
         previousCases: List<Case>
     ): String {
         val sb = StringBuilder(Prompts.baseCasePrompt)
-        sb.append("\nRespond in $language for a $age-year-old $sex. Subject: $subject, Difficulty: $difficulty, Type: $subType.")
+        sb.append("\nRespond in $language for a $age-year-old $sex. Subject: $subject, Question type: $questionType, Difficulty: $difficulty, Type: $subType.")
 
         if (previousCases.isNotEmpty()) {
             sb.append("\n\nPrevious context:\n")
