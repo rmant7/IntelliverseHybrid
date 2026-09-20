@@ -1,6 +1,7 @@
 [versions]
 accompanistPermissions = "0.36.0"
 accompanist = "0.36.0"
+accompanistPager = "0.12.0"
 agp = "8.6.0"
 analytics = "7.2.0"
 ktor = "2.2.3"
@@ -63,7 +64,7 @@ material3Android = "1.3.1"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
-accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
+accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 accompanist-placeholder-material = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
 analytics = { module = "io.appmetrica.analytics:analytics", version.ref = "analytics" }
