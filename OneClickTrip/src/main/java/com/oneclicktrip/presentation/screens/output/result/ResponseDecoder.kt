@@ -17,13 +17,14 @@ data class Activity(
     val name: String,
     val description: String,
     val time: String,
-    val links: List<String>,
-    val tips: List<String>,
     // Confirmed on a real device (GigaChat): the model occasionally omits
-    // this field entirely for one activity in a long itinerary rather than
-    // emitting an empty string -- defaulting it avoids a hard decode
-    // failure (MissingFieldException) that otherwise discarded the whole
-    // response over one missing cost on one activity.
+    // one of these fields entirely for one activity in a long itinerary
+    // (first activityCost, then tips on a later run) rather than emitting
+    // an empty value -- defaulting all three the same way avoids a hard
+    // decode failure (MissingFieldException) that otherwise discarded the
+    // whole response over one field missing on one activity.
+    val links: List<String> = emptyList(),
+    val tips: List<String> = emptyList(),
     val activityCost: String = "",
     val midwayStops: List<MidwayStop>? = null
 )
@@ -60,6 +61,61 @@ data class TripSolutionResponse(
 
 private val json = Json { ignoreUnknownKeys = true }
 
+/**
+ * Confirmed on a real device (Groq): a model occasionally quotes a proper
+ * noun inline inside a string value without escaping it, e.g.
+ * `"...знаменитым "Голова Джека". Прогулка..."` -- the unescaped inner
+ * quote ends the JSON string early and leaves the rest unparsable
+ * ("Expected quotation mark, but had 'Г' instead").
+ *
+ * Repaired with a small state-machine scan rather than a regex: walk the
+ * text tracking whether the cursor is inside a string, and for every `"`
+ * encountered while inside one, look at the next non-whitespace character.
+ * A real closing quote is always followed by a structural character
+ * (`,`, `}`, `]`, `:`, or end of input); anything else means this quote is
+ * embedded prose, not a terminator, so it gets escaped in place instead.
+ * Must run after the ';'->',' repair below, not before: that repair fixes
+ * a genuine string terminator that would otherwise look identical to a
+ * stray embedded quote to this scan (both are followed by a non-structural
+ * character -- ';' here, the next key's own text there).
+ */
+private fun repairUnescapedInnerQuotes(input: String): String {
+    val sb = StringBuilder(input.length + 16)
+    var inString = false
+    var i = 0
+    while (i < input.length) {
+        val c = input[i]
+        if (inString) {
+            when (c) {
+                '\\' -> {
+                    sb.append(c)
+                    if (i + 1 < input.length) {
+                        sb.append(input[i + 1])
+                        i++
+                    }
+                }
+                '"' -> {
+                    var j = i + 1
+                    while (j < input.length && input[j].isWhitespace()) j++
+                    val next = input.getOrNull(j)
+                    if (next == null || next in charArrayOf(',', '}', ']', ':')) {
+                        inString = false
+                        sb.append(c)
+                    } else {
+                        sb.append("\\\"")
+                    }
+                }
+                else -> sb.append(c)
+            }
+        } else {
+            sb.append(c)
+            if (c == '"') inString = true
+        }
+        i++
+    }
+    return sb.toString()
+}
+
 fun decodeTripSolutionResponse(jsonResponse: String): Pair<String, String> {
     val cleanedJson = jsonResponse.trim()
         .removeSurrounding("```json", "```")
@@ -73,6 +129,7 @@ fun decodeTripSolutionResponse(jsonResponse: String): Pair<String, String> {
         // always ':', element/member separator always ','), so there's no
         // legitimate case this could be mis-firing on.
         .replace(Regex("\";(\\s*)\""), "\",$1\"")
+        .let(::repairUnescapedInnerQuotes)
 
     val solution: TripSolutionResponse = json.decodeFromString(cleanedJson)
 
