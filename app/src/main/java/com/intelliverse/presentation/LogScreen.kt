@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -102,25 +103,31 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
             )
         }
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp)
-        ) {
-            Text(
-                text = buildHeader(context),
-                fontFamily = FontFamily.Monospace,
-                fontSize = 12.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
-            Text(
-                text = viewModel.logText.ifBlank { "No errors logged yet." },
-                fontFamily = FontFamily.Monospace,
-                fontSize = 11.sp,
-            )
+        // Text() is not selectable by default in Compose -- without this,
+        // there was no way to long-press and copy just part of the log (the
+        // most recent entry at the bottom, say) short of the "Copy" button's
+        // all-or-nothing dump of the entire file plus header.
+        SelectionContainer {
+            Column(
+                modifier = Modifier
+                    .padding(padding)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = buildHeader(context),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
+                Text(
+                    text = viewModel.logText.ifBlank { "No errors logged yet." },
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 11.sp,
+                )
+            }
         }
     }
 
