@@ -2,6 +2,8 @@ package com.example.shared.log
 
 import android.util.Log
 import timber.log.Timber
+import java.io.PrintWriter
+import java.io.StringWriter
 
 /**
  * Forwards INFO+ Timber log lines into [AppLog] so they survive after the
@@ -57,12 +59,32 @@ class AppLogTree(private val appLog: AppLog) : Timber.Tree() {
 
     /** Undoes prepareLog()'s own append (a long-standing, stable Timber behavior) to recover the plain message. */
     private fun stripDefaultStackTrace(message: String, t: Throwable): String {
-        val trace = Log.getStackTraceString(t)
+        val trace = timberStackTraceString(t)
         return when {
             message == trace -> ""
             message.endsWith("\n$trace") -> message.removeSuffix("\n$trace")
             else -> message // Unrecognized shape -- leave it alone rather than risk corrupting it.
         }
+    }
+
+    // Deliberately NOT android.util.Log.getStackTraceString(t): confirmed on
+    // a real device that this call produced a fully untouched, uncondensed
+    // multi-thousand-character UnknownHostException entry -- traced to
+    // android.util.Log's own implementation specifically returning "" for
+    // any throwable with an UnknownHostException anywhere in its cause chain
+    // (a deliberate Android quirk, to reduce log spew for "network
+    // unavailable"). Timber's own Utils.getStackTraceString has no such
+    // special case -- it's a plain t.printStackTrace() into a StringWriter,
+    // reproduced exactly here -- so comparing against Log's version silently
+    // failed to match for that one exception type, leaving `message`
+    // untouched and appending the condensed summary on top of the full
+    // original trace instead of replacing it.
+    private fun timberStackTraceString(t: Throwable): String {
+        val sw = StringWriter(256)
+        val pw = PrintWriter(sw, false)
+        t.printStackTrace(pw)
+        pw.flush()
+        return sw.toString()
     }
 
     private fun condensedThrowable(t: Throwable): String = buildString {

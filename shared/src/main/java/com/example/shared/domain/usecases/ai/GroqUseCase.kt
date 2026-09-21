@@ -246,7 +246,11 @@ class GroqUseCase @Inject constructor(
                         )
                         continue
                     }
-                    Timber.e(e, "Groq model $modelName failed")
+                    // No throwable passed here: BaseResultViewModel.groq()'s
+                    // own onFailure branch already logs this exact exception
+                    // with its trace -- this is only the one thing that log
+                    // line can't say on its own, which model was being tried.
+                    Timber.w("Groq model $modelName failed: ${e.message}")
                     // 401/403 alongside 429: a real device log caught a
                     // plain "Forbidden" (no error type/code, unlike the
                     // structured model_not_found/model_decommissioned

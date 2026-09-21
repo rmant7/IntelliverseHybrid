@@ -225,7 +225,11 @@ class GeminiApiService @Inject constructor(
 
             } catch (e: RedirectResponseException) {
                 //3xx - responses
-                Timber.e(e, e.message)
+                // Not logged here -- every caller of generateContent() routes
+                // through BaseResultViewModel.onSolutionResult(), whose own
+                // onFailure branch already logs this exact throwable. A
+                // second Timber.e(e, ...) here only duplicated the same
+                // exception+trace as its own separate Log screen entry.
                 return Result.failure(e)
             } catch (e: ClientRequestException) {
                 //4xx - response
@@ -235,11 +239,9 @@ class GeminiApiService @Inject constructor(
                     // of the quota window with nothing else to fall back to.
                     apiKeyRotator.markExhausted(keyEntry.id)
                 }
-                Timber.e(e, e.message)
                 return Result.failure(e)
             } catch (e: ServerResponseException) {
                 //5xx - response
-                Timber.e(e, e.message)
                 return Result.failure(e)
             } catch (e: UnknownHostException) {
                 // A DNS lookup failure says nothing about Gemini or this key
@@ -252,7 +254,6 @@ class GeminiApiService @Inject constructor(
                     delay(NETWORK_RETRY_DELAY_MS)
                     continue
                 }
-                Timber.e(e, e.message)
                 return Result.failure(e)
             } catch (e: Exception) {
                 // HttpRequestTimeoutException and SocketTimeoutException are
@@ -267,7 +268,6 @@ class GeminiApiService @Inject constructor(
                     delay(NETWORK_RETRY_DELAY_MS)
                     continue
                 }
-                Timber.e(e, e.message)
                 return Result.failure(e)
             }
         }

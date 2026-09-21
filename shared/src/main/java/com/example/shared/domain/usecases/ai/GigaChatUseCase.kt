@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import timber.log.Timber
 import java.net.HttpURLConnection
 import java.net.URI
 import javax.inject.Inject
@@ -97,7 +96,10 @@ class GigaChatUseCase @Inject constructor(
 
             Result.success(content)
         } catch (e: Exception) {
-            Timber.e(e)
+            // Not logged here -- BaseResultViewModel.gigaChat()'s own
+            // onFailure branch already logs this exact throwable; this had
+            // no extra context to add, only a second copy of the same
+            // exception+trace as its own separate Log screen entry.
             Result.failure(e)
         }
     }
