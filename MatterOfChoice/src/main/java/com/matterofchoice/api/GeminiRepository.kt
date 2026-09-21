@@ -18,9 +18,24 @@ object Prompts {
     // feeds it straight into the prompt, rather than prepending a separate
     // "theme directive" -- that separate-directive approach is what this
     // replaces.
-    const val personaInstruction =
-        "You are an Expert Behavioral Analyst for the IntelliVerse project. " +
-        "Your role is to analyze human decision-making by creating complex, realistic scenarios."
+    //
+    // One caveat: Python's persona_instruction is the single hardcoded
+    // "Behavioral Analyst" line below for every questionType, study and
+    // hiring included -- ported faithfully at first, but real-device
+    // feedback correctly flagged that framing as wrong for a study/hiring
+    // set (the very first thing the model reads calls itself a behavioral
+    // analyst, which plausibly biases it back toward behavioral content
+    // even though generationContext() below does say "study-based
+    // questions"). Made this questionType-aware instead, which the Python
+    // version never was.
+    fun personaInstruction(questionType: String): String = when (questionType) {
+        "study" -> "You are an Expert Educational Assessment Designer for the IntelliVerse project. " +
+            "Your role is to create realistic, challenging learning and study scenarios."
+        "hiring" -> "You are an Expert Recruitment Analyst for the IntelliVerse project. " +
+            "Your role is to create realistic hiring and job-interview scenarios."
+        else -> "You are an Expert Behavioral Analyst for the IntelliVerse project. " +
+            "Your role is to analyze human decision-making by creating complex, realistic scenarios."
+    }
 
     fun generationContext(questionType: String, subject: String, difficulty: String, age: Int): String = when (questionType) {
         "study" -> "Create 6 study-based questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
@@ -242,7 +257,32 @@ class GeminiRepository {
             throw IOException("Gemini returned invalid JSON.", e)
         } catch (e: Exception) {
             logGeminiError(mode, e)
-            throw e
+            // The raw exception (e.g. ServerException's message is the entire error JSON body,
+            // sometimes followed by an unrelated kotlinx.serialization.MissingFieldException from
+            // the SDK's own response parsing) is exactly what got logged above -- not what a
+            // player should see on screen. Rethrow with a short, readable message; the original
+            // is preserved as `cause` so nothing is lost for anyone reading the log/stack trace.
+            throw IOException(friendlyErrorMessage(e), e)
+        }
+    }
+
+    /**
+     * Reduces a raw SDK/network exception to one short, human-readable sentence
+     * for on-screen display. Full technical detail already went to the log via
+     * logGeminiError() before this is called -- this is display-only.
+     */
+    private fun friendlyErrorMessage(e: Exception): String {
+        val raw = e.message ?: e.toString()
+        val status = Regex("\"status\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.get(1)
+        val apiMessage = Regex("\"message\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.get(1)
+
+        return when {
+            status == "FAILED_PRECONDITION" && apiMessage?.contains("location", ignoreCase = true) == true ->
+                "Gemini isn't available from your current network/location (Google: \"$apiMessage\"). Try a different network or VPN region."
+            apiMessage != null -> apiMessage
+            e is java.net.SocketTimeoutException -> "The request timed out. Check your connection and try again."
+            raw.contains("Unable to resolve host", ignoreCase = true) -> "No internet connection."
+            else -> "Couldn't reach Gemini. Try again in a moment."
         }
     }
 
@@ -282,7 +322,7 @@ class GeminiRepository {
         previousAnswers: Map<String, String>,
         previousCases: List<Case>
     ): String {
-        val sb = StringBuilder(Prompts.personaInstruction)
+        val sb = StringBuilder(Prompts.personaInstruction(questionType))
         sb.append("\n\n")
         sb.append(Prompts.generationContext(questionType, subject, difficulty, age))
         sb.append(" Subtype: $subType. Audience gender: $sex.")
