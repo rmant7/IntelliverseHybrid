@@ -339,7 +339,7 @@ abstract class BaseResultViewModel(
         coroutineScope {
             launch {
                 setGenerativeLangUrls()
-                geminiWithinApp(GeminiApiService.GeminiModel.GEMINI_2_5_FLASH, AIService.GEMINI_THINKING)
+                geminiWithinApp(GeminiApiService.GeminiModel.GEMINI_3_6_FLASH, AIService.GEMINI_THINKING)
             }
             if (imageUsed && imagesBase64.isEmpty()) {
                 onSolutionResult(Result.failure(UnableToAssistException), AIService.GROQ)

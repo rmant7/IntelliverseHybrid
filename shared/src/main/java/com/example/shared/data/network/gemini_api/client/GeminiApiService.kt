@@ -58,7 +58,12 @@ class GeminiApiService @Inject constructor(
 
     // Gemini Models
     object GeminiModel {
-        const val GEMINI_2_5_FLASH = "gemini-2.5-flash"
+        // Confirmed on a real device: gemini-2.5-flash returned HTTP 404
+        // "This model ... is no longer available to new users. Please
+        // update your code to use models/gemini-3.6-flash" -- on one of the
+        // newly added API keys specifically (an older/grandfathered key
+        // still got as far as a 429 quota error on the same model name).
+        const val GEMINI_3_6_FLASH = "gemini-3.6-flash"
         //const val GEMINI_2_5_FLASH_LITE = "gemini-2.5-flash-lite"
     }
 
