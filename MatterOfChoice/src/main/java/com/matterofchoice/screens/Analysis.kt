@@ -60,13 +60,18 @@ fun AnalysisScreen(
 ) {
     val state by viewModel.state
     val context = LocalContext.current
+    val hasAnsweredAnything = state.userChoices.isNotEmpty()
 
-    // Trigger analysis when screen is first shown
-    LaunchedEffect( Unit) {
-
-            Log.d("AnalysisScreen", "Analysis data is null, performing analysis.")
+    // Trigger analysis when the screen is shown -- but only once the user
+    // has actually answered at least one case, and only if we don't already
+    // have a result/error/in-flight call to show. Navigating straight here
+    // with nothing answered used to still call the API with an empty answer
+    // map and get back a fully-scored, meaningless result.
+    LaunchedEffect(hasAnsweredAnything) {
+        if (hasAnsweredAnything && state.analysisData == null && !state.isLoading && state.error == null) {
+            Log.d("AnalysisScreen", "Performing analysis.")
             viewModel.performAnalysis()
-
+        }
     }
 
     Scaffold(
@@ -87,6 +92,32 @@ fun AnalysisScreen(
                 .padding(innerPadding)
         ) {
             when {
+                !hasAnsweredAnything -> {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "Nothing to analyze yet",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 8.dp)
+                        )
+                        Text(
+                            text = "Answer at least one case in the game first.",
+                            fontSize = 16.sp,
+                            modifier = Modifier.padding(bottom = 16.dp)
+                        )
+                        GameButton(
+                            onClick = { navController.popBackStack() },
+                            text = "Back to Game"
+                        )
+                    }
+                }
+
                 state.isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Loader()
