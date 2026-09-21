@@ -140,7 +140,60 @@
         <item>Vietnamese</item>
     </string-array>
 
-
+    <!-- Index-aligned 1:1 with the `languages` array above -- do not reorder
+         one without the other. See the commit that introduced this comment
+         for why: a previous version of this array was an unrelated,
+         differently-ordered, differently-sized locale list, so picking
+         "Russian" silently applied "ha-NE" (Hausa) instead. -->
     <string-array name="language_codes" translatable="false">
-        <item>af-ZA</item> <item>ak-GH</item> <item>am-ET</item> <item>ar-AE</item> <item>as-IN</item> <item>ast-ES</item> <item>az-AZ</item> <item>bm-ML</item> <item>be-BY</item> <item>bem-ZM</item> <item>bn-BD</item> <item>bo-CN</item> <item>bs-BA</item> <item>bg-BG</item> <item>ca-ES</item> <item>cs-CZ</item> <item>cy-GB</item> <item>da-DK</item> <item>de-DE</item> <item>dz-BT</item> <item>el-GR</item> <item>en-US</item> <item>et-EE</item> <item>eu-ES</item> <item>ee-GH</item> <item>ee-TG</item> <item>fo-FO</item> <item>fi-FI</item> <item>fr-FR</item> <item>fur-IT</item> <item>gd-GB</item> <item>ga-IE</item> <item>gl-ES</item> <item>gu-IN</item> <item>ha-NE</item> <item>iw-IL</item> <item>hi-IN</item> <item>hr-HR</item> <item>hu-HU</item> <item>hy-AM</item> <item>ig-NG</item> <item>in-ID</item> <item>is-IS</item> <item>it-IT</item> <item>ja-JP</item> <item>kab-DZ</item> <item>kam-KE</item> <item>kn-IN</item> <item>ka-GE</item> <item>kk-KZ</item> <item>kea-CV</item> <item>km-KH</item> <item>ki-KE</item> <item>rw-RW</item> <item>ky-KG</item> <item>ko-KR</item> <item>lo-LA</item> <item>li-NL</item> <item>ln-CG</item> <item>lt-LT</item> <item>lb-LU</item> <item>lg-UG</item> <item>luo-KE</item> <item>lv-LV</item> <item>ml-IN</item> <item>mr-IN</item> <item>mk-MK</item> <item>mg-MG</item> <item>mt-MT</item> <item>mn-MN</item> <item>ms-MY</item> <item>my-MM</item> <item>nl-NL</item> <item>nn-NO</item> <item>nb-NO</item> <item>ne-NP</item> <item>nus-SS</item> <item>om-ET</item> <item>om-KE</item> <item>or-IN</item> <item>pa-IN</item> <item>pl-PL</item> <item>pt-PT</item> <item>fa-AF</item> <item>fa-IR</item> <item>ps-AF</item> <item>qu-BO</item> <item>qu-EC</item> <item>qu-PE</item> <item>ro-RO</item> <item>rn-BI</item> <item>ru-RU</item> <item>sg-CF</item> <item>si-LK</item> <item>sk-SK</item> <item>sl-SI</item> <item>sn-ZW</item> <item>so-SO</item> <item>es-ES</item> <item>sq-AL</item> <item>sr-RS</item> <item>sv-SE</item> <item>sw-KE</item> <item>ta-IN</item> <item>te-IN</item> <item>th-TH</item> <item>tr-TR</item> <item>uk-UA</item> <item>ur-PK</item> <item>ug-CN</item> <item>uz-UZ</item> <item>vi-VN</item> <item>xh-ZA</item> <item>yo-NG</item> <item>yue-HK</item> <item>zh-CN</item> <item>zh-TW</item> <item>zu-ZA</item> </string-array>
+        <item>am-ET</item>
+        <item>ar-AE</item>
+        <item>bn-BD</item>
+        <item>bg-BG</item>
+        <item>zh-CN</item>
+        <item>hr-HR</item>
+        <item>cs-CZ</item>
+        <item>da-DK</item>
+        <item>nl-NL</item>
+        <item>en-US</item>
+        <item>et-EE</item>
+        <item>fi-FI</item>
+        <item>fr-FR</item>
+        <item>de-DE</item>
+        <item>el-GR</item>
+        <item>gu-IN</item>
+        <item>iw-IL</item>
+        <item>hi-IN</item>
+        <item>hu-HU</item>
+        <item>in-ID</item>
+        <item>it-IT</item>
+        <item>ja-JP</item>
+        <item>kn-IN</item>
+        <item>ko-KR</item>
+        <item>lv-LV</item>
+        <item>lt-LT</item>
+        <item>ms-MY</item>
+        <item>mr-IN</item>
+        <item>nb-NO</item>
+        <item>ps-AF</item>
+        <item>fa-IR</item>
+        <item>pl-PL</item>
+        <item>pt-PT</item>
+        <item>ro-RO</item>
+        <item>ru-RU</item>
+        <item>sr-RS</item>
+        <item>sk-SK</item>
+        <item>sl-SI</item>
+        <item>es-ES</item>
+        <item>sw-KE</item>
+        <item>sv-SE</item>
+        <item>fil-PH</item>
+        <item>ta-IN</item>
+        <item>te-IN</item>
+        <item>th-TH</item>
+        <item>tr-TR</item>
+        <item>uk-UA</item>
+        <item>ur-PK</item>
+        <item>vi-VN</item>
+    </string-array>
 </resources>
