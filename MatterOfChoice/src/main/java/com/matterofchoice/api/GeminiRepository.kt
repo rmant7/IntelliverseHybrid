@@ -11,12 +11,30 @@ import timber.log.Timber
 import java.io.IOException
 import java.util.UUID
 object Prompts {
-    const val baseCasePrompt = """
-        You are designing scenarios for an educational simulation game.
-        Generate EXACTLY 6 life situations. 
-        Each situation must have 8 possible response options.
+    // Mirrors the persona/context/format split of the original Python
+    // implementation's gen_cases() (unified_server/apps/MatterOfChoice/utils.py),
+    // which is the version the user confirmed actually worked correctly on
+    // real devices. Python builds one context sentence per questionType and
+    // feeds it straight into the prompt, rather than prepending a separate
+    // "theme directive" -- that separate-directive approach is what this
+    // replaces.
+    const val personaInstruction =
+        "You are an Expert Behavioral Analyst for the IntelliVerse project. " +
+        "Your role is to analyze human decision-making by creating complex, realistic scenarios."
+
+    fun generationContext(questionType: String, subject: String, difficulty: String, age: Int): String = when (questionType) {
+        "study" -> "Create 6 study-based questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
+        "hiring" -> "Create 6 job interview scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
+        else -> "Create 6 realistic behavioral scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
+    }
+
+    // The scoring dimensions below aren't part of the Python schema (Python's
+    // game only needs the 'optimal' index), but Game.kt sums them to compare
+    // the player's pick against the optimal one, so they stay.
+    const val caseFormatInstruction = """
+        For each case, provide exactly 8 different response options.
         For each option, rate: health, wealth, relationships, happiness, knowledge, karma, time_management, environmental_impact, personal_growth, and social_responsibility.
-        Indicate which option number is the best ('optimal').
+        Indicate which option number is best ('optimal').
 
         Return ONLY valid JSON, starting with [ and ending with ].
         JSON structure:
@@ -37,18 +55,18 @@ object Prompts {
         ]
     """
 
-    fun themeDirective(questionType: String): String = when (questionType) {
-        "study" -> "This is a STUDY / LEARNING scenario set: every situation must be about studying, learning, or academic/skill development -- not a workplace or general everyday-life decision.\n\n"
-        "hiring" -> "This is a HIRING / RECRUITMENT scenario set: every situation must be about a hiring process, job interview, or workplace recruitment decision.\n\n"
-        "behavioral" -> "This is a BEHAVIORAL / EVERYDAY-LIFE scenario set: every situation should be a general life or interpersonal decision, not tied to studying or hiring specifically.\n\n"
-        else -> ""
-    }
+    fun languageDirective(language: String) =
+        "Strictly generate ALL case text and option text in $language (the Solution Language). " +
+        "Do NOT use any other language. Ignore the current UI language."
 
     fun analysisPrompt(role: String, aspect: String, language: String, data: String) = """
         Analyze player decisions as a '$role' expert.
         Each record in data contains the case, all options, and the user's chosen answer.
         Focus on the player's overall $aspect.
         Write in $language.
+
+        DO NOT ANALYZE ANY CASE WHERE THE USER DID NOT ANSWER THE QUESTION -- leave it out of
+        the JSON and focus only on answered ones.
 
         Return ONLY valid JSON:
         {
@@ -155,14 +173,18 @@ class GeminiRepository {
         val prompt = when (mode) {
             "generate" -> buildGeneratePrompt(language, subject, difficulty, questionType, subType, age, sex, previousAnswers, previousCases)
             "analyze" -> {
+                // Wording matches Python's judgement_aspect in app.py exactly.
                 val aspect = when (questionType) {
-                    "behavioral" -> "behavioral tendencies"
-                    "study" -> "learning pattern"
-                    "hiring" -> "job suitability"
-                    else -> "performance"
+                    "study" -> "knowledge and learning style"
+                    "hiring" -> "suitability for the job"
+                    else -> "behavioral tendencies"
                 }
 
-                val dataJson = gson.toJson(previousCases.map {
+                // Python filters to cases the user actually answered before
+                // building analysis_data_str -- an unanswered case has no
+                // user_choice and would otherwise skew/confuse the analysis.
+                val answeredCases = previousCases.filter { previousAnswers[it.case_id] != null }
+                val dataJson = gson.toJson(answeredCases.map {
                     mapOf(
                         "case" to it.case,
                         "options" to it.options,
@@ -238,13 +260,14 @@ class GeminiRepository {
         previousAnswers: Map<String, String>,
         previousCases: List<Case>
     ): String {
-        // The theme directive leads the prompt -- an LLM weighs earlier
-        // instructions more heavily than a trailing clause buried after
-        // several other descriptive fields, which is where questionType used
-        // to sit.
-        val sb = StringBuilder(Prompts.themeDirective(questionType))
-        sb.append(Prompts.baseCasePrompt)
-        sb.append("\nRespond in $language for a $age-year-old $sex. Subject: $subject, Subtype: $subType, Difficulty: $difficulty.")
+        val sb = StringBuilder(Prompts.personaInstruction)
+        sb.append("\n\n")
+        sb.append(Prompts.generationContext(questionType, subject, difficulty, age))
+        sb.append(" Subtype: $subType. Audience gender: $sex.")
+        sb.append("\n\n")
+        sb.append(Prompts.caseFormatInstruction)
+        sb.append("\n\n")
+        sb.append(Prompts.languageDirective(language))
 
         if (previousCases.isNotEmpty()) {
             sb.append("\n\nPrevious context:\n")
