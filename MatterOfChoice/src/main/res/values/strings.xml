@@ -140,7 +140,7 @@
         <item>Vietnamese</item>
     </string-array>
 
-    <!-- Index-aligned 1:1 with the `languages` array above -- do not reorder
+    <!-- Index-aligned 1:1 with the `languages` array above; do not reorder
          one without the other. See the commit that introduced this comment
          for why: a previous version of this array was an unrelated,
          differently-ordered, differently-sized locale list, so picking
