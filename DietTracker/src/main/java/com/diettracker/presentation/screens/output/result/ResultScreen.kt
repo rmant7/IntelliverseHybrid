@@ -16,10 +16,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.diettracker.BuildConfig
 import com.diettracker.R.string
 import com.example.shared.domain.usecases.TextUtils
-import com.example.shared.presentation.common.ApplicationScaffold
 import com.example.shared.presentation.screens.output.SharedViewModel
 import com.example.shared.presentation.screens.output.result.ResultScreenContent
-import com.example.shared.presentation.screens.output.result.SolutionAudioPlayer
 import com.example.shared.presentation.screens.output.result.handleSolutionRegeneration
 import com.example.shared.presentation.screens.output.result.maybeShowAd
 
@@ -97,54 +95,47 @@ fun ResultScreen(
 
     BackHandler {}
 
-    ApplicationScaffold(
-        isShowed = true,
-        content = {
-
-            ResultScreenContent(
-                viewModel = viewModel,
-                solutionResults = solutionResults.value,
-                selectedSolutionService = selectedSolutionService.value,
-                solutionProgress = solutionProgress.value,
-                solutionTextDirection = solutionTextDirection.value,
-                webView = webView,
-                isWebViewReload = isWebViewReload,
-                ocrResult = ocrResult,
-                aiSolution = aiSolution,
-                hasFlickered = hasFlickered.value,
-                updateHasFlickered = { viewModel.sharedViewModel.updateHasFlickered(it) },
-                showShareDialog = showShareDialog, // or use a regular reference
-                showReportDialog = showReportDialog,
-                shareSolution = shareSolution,
-                shareImage = shareImage,
-                shareOcrResult = shareOcrResult,
-                shareUserTask = shareUserTask,
-                onNavigateToOcrScreen = onNavigateToOcrScreen,
-                context = context,
-                taskTextLabel = stringResource(string.user_task_value),
-                recognizedTextLabel = stringResource(string.ingredients),
-                solutionTextLabel = stringResource(string.solution_text_value),
-                solvedByStyleTranslator = stringResource(string.solved_by_diet_tracker),
-                invalidSolutionText = stringResource(string.error_gemini_solution_result_extraction),
-                solutionsGenerationProgress = stringResource(string.progress_bar_hint_text_value),
-                errors = errors.value,
-                shouldShowErrorDialog = shouldShowErrorDialog.value,
-                isDebugMode = BuildConfig.DEBUG,
-                chooseSharing = stringResource(string.choose_sharing),
-                share = stringResource(string.share),
-                shareOcrResultLabel = stringResource(string.share_recognized_ingredients),
-                shareSolutionLabel = stringResource(string.share_solution),
-                shareUserText = stringResource(string.share_user_ingredients),
-                shareImageLabel = stringResource(string.share_image)
-            )
-
-            SolutionAudioPlayer(
-                viewModel = viewModel,
-                selectedSolutionService = selectedSolutionService,
-                textToSpeechAudioFiles = textToSpeechAudioFiles,
-                "diettracker"
-            )
-
-        }
+    // ResultScreenContent itself provides the whole-screen Column and calls
+    // SolutionAudioPlayer internally -- not wrapped in ApplicationScaffold
+    // here, since this screen is already composed inside the
+    // navigation-level one, and a second nested Scaffold duplicated its
+    // system-bar inset reservation.
+    ResultScreenContent(
+        viewModel = viewModel,
+        solutionResults = solutionResults.value,
+        selectedSolutionService = selectedSolutionService.value,
+        solutionProgress = solutionProgress.value,
+        solutionTextDirection = solutionTextDirection.value,
+        webView = webView,
+        isWebViewReload = isWebViewReload,
+        ocrResult = ocrResult,
+        aiSolution = aiSolution,
+        hasFlickered = hasFlickered.value,
+        updateHasFlickered = { viewModel.sharedViewModel.updateHasFlickered(it) },
+        showShareDialog = showShareDialog, // or use a regular reference
+        showReportDialog = showReportDialog,
+        shareSolution = shareSolution,
+        shareImage = shareImage,
+        shareOcrResult = shareOcrResult,
+        shareUserTask = shareUserTask,
+        onNavigateToOcrScreen = onNavigateToOcrScreen,
+        context = context,
+        taskTextLabel = stringResource(string.user_task_value),
+        recognizedTextLabel = stringResource(string.ingredients),
+        solutionTextLabel = stringResource(string.solution_text_value),
+        solvedByStyleTranslator = stringResource(string.solved_by_diet_tracker),
+        invalidSolutionText = stringResource(string.error_gemini_solution_result_extraction),
+        solutionsGenerationProgress = stringResource(string.progress_bar_hint_text_value),
+        errors = errors.value,
+        shouldShowErrorDialog = shouldShowErrorDialog.value,
+        isDebugMode = BuildConfig.DEBUG,
+        chooseSharing = stringResource(string.choose_sharing),
+        share = stringResource(string.share),
+        shareOcrResultLabel = stringResource(string.share_recognized_ingredients),
+        shareSolutionLabel = stringResource(string.share_solution),
+        shareUserText = stringResource(string.share_user_ingredients),
+        shareImageLabel = stringResource(string.share_image),
+        textToSpeechAudioFiles = textToSpeechAudioFiles.value,
+        appName = "diettracker"
     )
 }

@@ -27,7 +27,6 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -200,7 +199,9 @@ fun ResultScreenContent(
     share: String,
     shareOcrResultLabel: String,
     shareSolutionLabel: String,
-    shareUserText: String
+    shareUserText: String,
+    textToSpeechAudioFiles: List<String>,
+    appName: String
 ) {
     // Tab/index order for the results that actually came back -- by AIService's
     // own declared order (GEMINI, GEMINI_THINKING, GPT, GROQ, GIGACHAT), not
@@ -229,107 +230,127 @@ fun ResultScreenContent(
         )
     }
 
-    // Progress
-    if (solutionProgress != 1f) {
-        // Indicator how many AI responses were received.
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                modifier = Modifier.padding(0.dp, 10.dp),
-                text = solutionsGenerationProgress,
-                fontSize = 20.sp
-            )
-            LinearProgressIndicator(
-                progress = { solutionProgress },
-            )
-        }
-    }
-
-    // Solution Display
-    Box(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(0.65f),
-        contentAlignment = Alignment.Center
+    // The one Column every screen that shows this needs -- moved in here,
+    // instead of each of the 4 sub-apps' own ResultScreen wrapping this
+    // composable in a second, nested ApplicationScaffold/Scaffold of its
+    // own. That duplicated the navigation-level Scaffold's own system-bar
+    // inset reservation a second time (confirmed via a real device
+    // screenshot showing a large, otherwise-unaccounted-for black gap above
+    // this content) purely to get this same fillMaxSize+spacedBy(16.dp)
+    // column, which belongs here once rather than copy-pasted per app.
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        val content = solutionResults[selectedSolutionService]
-        val isEnabled = !content.isNullOrBlank()
-
-        if (isEnabled) {
-            val index = orderedResults.indexOf(selectedSolutionService)
-            HtmlTextView(
-                modifier = Modifier.fillMaxSize().clip(RectangleShape),
-                htmlContent = content ?: invalidSolutionText,
-                isEditable = false,
-                textDirection = solutionTextDirection,
-                isReload = isWebViewReload.value,
-                title = "$solutionTextLabel ${index + 1}:${if (isDebugMode) " ($selectedSolutionService)" else ""}",
-                onWebViewCreated = { webView.value = it }
-            )
-            isWebViewReload.value = false
-        } else {
-            if (solutionProgress == 1f) {
-                Text(invalidSolutionText)
-            } else {
-                CircularProgressIndicator(Modifier.align(Alignment.Center))
-            }
-        }
-    }
-
-    // AI Service Buttons
-    LazyRow(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        items(orderedResults) { aiService ->
+        // Progress
+        if (solutionProgress != 1f) {
+            // Indicator how many AI responses were received.
             Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                RadioIndexButton(
-                    isSelected = aiService == selectedSolutionService,
-                    isEnabled = true,
-                    onRadioButtonClick = {
-                        if (aiService != selectedSolutionService) {
-                            viewModel.updateSelectedSolutionService(aiService)
-                            isWebViewReload.value = true
-                        }
-                    }
+                Text(
+                    modifier = Modifier.padding(0.dp, 10.dp),
+                    text = solutionsGenerationProgress,
+                    fontSize = 20.sp
+                )
+                LinearProgressIndicator(
+                    progress = { solutionProgress },
                 )
             }
         }
-    }
 
-    // Action Buttons Row
-    ActionButtonsRow(
-        viewModel = viewModel,
-        ocrResult = ocrResult,
-        aiSolution = aiSolution,
-        webView = webView,
-        onNavigateToOcrScreen = onNavigateToOcrScreen,
-        context = context,
-        hasFlickered = hasFlickered,
-        updateHasFlickered = updateHasFlickered,
-        showShareDialog = showShareDialog,
-        showReportDialog = showReportDialog,
-        shareUserTask = shareUserTask,
-        shareOcrResult = shareOcrResult,
-        shareSolution = shareSolution,
-        shareImage = shareImage,
-        taskTextLabel = taskTextLabel,
-        recognizedTextLabel = recognizedTextLabel,
-        solutionTextLabel = solutionTextLabel,
-        solvedByStyleTranslator = solvedByStyleTranslator,
-        solutionTextDirection = solutionTextDirection,
-        shareImageLabel = shareImageLabel,
-        chooseSharing = chooseSharing,
-        share = share,
-        shareOcrResultLabel = shareOcrResultLabel,
-        shareSolutionLabel = shareSolutionLabel,
-        shareUserTranslation = shareUserText
-    )
+        // Solution Display
+        Box(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.75f),
+            contentAlignment = Alignment.Center
+        ) {
+            val content = solutionResults[selectedSolutionService]
+            val isEnabled = !content.isNullOrBlank()
+
+            if (isEnabled) {
+                val index = orderedResults.indexOf(selectedSolutionService)
+                HtmlTextView(
+                    modifier = Modifier.fillMaxSize().clip(RectangleShape),
+                    htmlContent = content ?: invalidSolutionText,
+                    isEditable = false,
+                    textDirection = solutionTextDirection,
+                    isReload = isWebViewReload.value,
+                    title = "$solutionTextLabel ${index + 1}:${if (isDebugMode) " ($selectedSolutionService)" else ""}",
+                    onWebViewCreated = { webView.value = it }
+                )
+                isWebViewReload.value = false
+            } else {
+                if (solutionProgress == 1f) {
+                    Text(invalidSolutionText)
+                } else {
+                    CircularProgressIndicator(Modifier.align(Alignment.Center))
+                }
+            }
+        }
+
+        // AI Service Buttons
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            items(orderedResults) { aiService ->
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    RadioIndexButton(
+                        isSelected = aiService == selectedSolutionService,
+                        isEnabled = true,
+                        onRadioButtonClick = {
+                            if (aiService != selectedSolutionService) {
+                                viewModel.updateSelectedSolutionService(aiService)
+                                isWebViewReload.value = true
+                            }
+                        }
+                    )
+                }
+            }
+        }
+
+        // Action Buttons Row
+        ActionButtonsRow(
+            viewModel = viewModel,
+            ocrResult = ocrResult,
+            aiSolution = aiSolution,
+            webView = webView,
+            onNavigateToOcrScreen = onNavigateToOcrScreen,
+            context = context,
+            hasFlickered = hasFlickered,
+            updateHasFlickered = updateHasFlickered,
+            showShareDialog = showShareDialog,
+            showReportDialog = showReportDialog,
+            shareUserTask = shareUserTask,
+            shareOcrResult = shareOcrResult,
+            shareSolution = shareSolution,
+            shareImage = shareImage,
+            taskTextLabel = taskTextLabel,
+            recognizedTextLabel = recognizedTextLabel,
+            solutionTextLabel = solutionTextLabel,
+            solvedByStyleTranslator = solvedByStyleTranslator,
+            solutionTextDirection = solutionTextDirection,
+            shareImageLabel = shareImageLabel,
+            chooseSharing = chooseSharing,
+            share = share,
+            shareOcrResultLabel = shareOcrResultLabel,
+            shareSolutionLabel = shareSolutionLabel,
+            shareUserTranslation = shareUserText
+        )
+
+        SolutionAudioPlayer(
+            viewModel = viewModel,
+            selectedSolutionService = selectedSolutionService,
+            textToSpeechAudioFiles = textToSpeechAudioFiles,
+            appName = appName
+        )
+    }
 }
 
 @Composable
@@ -555,13 +576,13 @@ fun ShareDialog(
 @Composable
 fun SolutionAudioPlayer(
     viewModel: BaseResultViewModel,
-    selectedSolutionService: State<AIService?>,
-    textToSpeechAudioFiles: State<MutableList<String>>,
+    selectedSolutionService: AIService?,
+    textToSpeechAudioFiles: List<String>,
     appName: String
 ) {
-    val id = "${appName}_solution_${selectedSolutionService.value?.ordinal}.wav"
+    val id = "${appName}_solution_${selectedSolutionService?.ordinal}.wav"
     val filePath = "$audioPath$id"
-    val isEnabled = textToSpeechAudioFiles.value.contains(id)
+    val isEnabled = textToSpeechAudioFiles.contains(id)
     val audioPlayer = viewModel.audioPlayer
 
     MediaPlayer(

@@ -116,6 +116,17 @@ private fun repairUnescapedInnerQuotes(input: String): String {
     return sb.toString()
 }
 
+/**
+ * Confirmed on a real device: the model occasionally omits one or more
+ * keys from its own `titles` map (a real label for the field is supposed
+ * to be there in whatever language it generated the response in), which
+ * showed up as literal "null:" text in front of the value it labels --
+ * Kotlin renders a null Map lookup as that string in an interpolated
+ * template. Falling back to the field's own raw key name at least keeps
+ * this readable, rather than a bare "null".
+ */
+private fun Map<String, String>.labelOrKey(key: String): String = this[key] ?: key
+
 fun decodeTripSolutionResponse(jsonResponse: String): Pair<String, String> {
     val cleanedJson = jsonResponse.trim()
         .removeSurrounding("```json", "```")
@@ -133,34 +144,35 @@ fun decodeTripSolutionResponse(jsonResponse: String): Pair<String, String> {
 
     val solution: TripSolutionResponse = json.decodeFromString(cleanedJson)
 
+    val titles = solution.titles
     return buildString {
-        appendLine("📋 ${solution.titles["summary"]}:")
-        appendLine("  - ${solution.titles["totalCost"]}: ${solution.summary.totalCost}")
-        appendLine("  - ${solution.titles["visitedDestinations"]}: ${solution.summary.visitedDestinations}")
-        appendLine("  - ${solution.titles["transitTime"]}: ${solution.summary.transitTime}")
-        appendLine("  - ${solution.titles["transportTypes"]}: ${solution.summary.transportTypes}")
-        appendLine("  - ${solution.titles["lodgingTypes"]}: ${solution.summary.lodgingTypes}")
-        appendLine("  - ${solution.titles["categories"]}: ${solution.summary.categories}")
+        appendLine("📋 ${titles.labelOrKey("summary")}:")
+        appendLine("  - ${titles.labelOrKey("totalCost")}: ${solution.summary.totalCost}")
+        appendLine("  - ${titles.labelOrKey("visitedDestinations")}: ${solution.summary.visitedDestinations}")
+        appendLine("  - ${titles.labelOrKey("transitTime")}: ${solution.summary.transitTime}")
+        appendLine("  - ${titles.labelOrKey("transportTypes")}: ${solution.summary.transportTypes}")
+        appendLine("  - ${titles.labelOrKey("lodgingTypes")}: ${solution.summary.lodgingTypes}")
+        appendLine("  - ${titles.labelOrKey("categories")}: ${solution.summary.categories}")
         appendLine()
         solution.days.forEachIndexed { index, day ->
-            appendLine("📅 ${solution.titles["day"]} ${index + 1}:")
+            appendLine("📅 ${titles.labelOrKey("day")} ${index + 1}:")
 
-            appendLine("  🔸 ${solution.titles["activities"]}:")
+            appendLine("  🔸 ${titles.labelOrKey("activities")}:")
             day.activities.forEach { activity ->
                 appendLine("    • ${activity.name}")
-                appendLine("      - ${solution.titles["description"]}: ${activity.description}")
-                appendLine("      - ${solution.titles["time"]}: ${activity.time}")
-                appendLine("      - ${solution.titles["activityCost"]}: ${activity.activityCost}")
+                appendLine("      - ${titles.labelOrKey("description")}: ${activity.description}")
+                appendLine("      - ${titles.labelOrKey("time")}: ${activity.time}")
+                appendLine("      - ${titles.labelOrKey("activityCost")}: ${activity.activityCost}")
 
                 if (activity.links.isNotEmpty()) {
-                    appendLine("      - ${solution.titles["links"]}:")
+                    appendLine("      - ${titles.labelOrKey("links")}:")
                     activity.links.forEach { link ->
                         appendLine("          🔗 $link")
                     }
                 }
 
                 if (activity.tips.isNotEmpty()) {
-                    appendLine("      - ${solution.titles["tips"]}:")
+                    appendLine("      - ${titles.labelOrKey("tips")}:")
                     activity.tips.forEach { tip ->
                         appendLine("          💡 $tip")
                     }
@@ -168,21 +180,21 @@ fun decodeTripSolutionResponse(jsonResponse: String): Pair<String, String> {
 
                 // 🔥 NEW: handle midway stops if exist
                 if (!activity.midwayStops.isNullOrEmpty()) {
-                    appendLine("      - ${solution.titles["midwayStops"]}:")
+                    appendLine("      - ${titles.labelOrKey("midwayStops")}:")
                     activity.midwayStops.forEach { stop ->
                         appendLine("          🛑 ${stop.name}")
-                        appendLine("             - ${solution.titles["description"]}: ${stop.description}")
-                        appendLine("             - ${solution.titles["time"]}: ${stop.time}")
+                        appendLine("             - ${titles.labelOrKey("description")}: ${stop.description}")
+                        appendLine("             - ${titles.labelOrKey("time")}: ${stop.time}")
 
                         if (stop.links.isNotEmpty()) {
-                            appendLine("             - ${solution.titles["links"]}:")
+                            appendLine("             - ${titles.labelOrKey("links")}:")
                             stop.links.forEach { link ->
                                 appendLine("                 🔗 $link")
                             }
                         }
 
                         if (stop.tips.isNotEmpty()) {
-                            appendLine("             - ${solution.titles["tips"]}:")
+                            appendLine("             - ${titles.labelOrKey("tips")}:")
                             stop.tips.forEach { tip ->
                                 appendLine("                 💡 $tip")
                             }
@@ -192,7 +204,7 @@ fun decodeTripSolutionResponse(jsonResponse: String): Pair<String, String> {
             }
 
             if (day.accommodations.isNotEmpty()) {
-                appendLine("  🏨 ${solution.titles["accommodations"]}:")
+                appendLine("  🏨 ${titles.labelOrKey("accommodations")}:")
                 day.accommodations.forEach { acc ->
                     appendLine("    🏨 ${acc.name} → ${acc.link}")
                 }
