@@ -14,7 +14,7 @@ object Prompts {
     const val baseCasePrompt = """
         You are designing scenarios for an educational simulation game.
         Generate EXACTLY 6 life situations. 
-        Each situation must have 8 behavioral options.
+        Each situation must have 8 possible response options.
         For each option, rate: health, wealth, relationships, happiness, knowledge, karma, time_management, environmental_impact, personal_growth, and social_responsibility.
         Indicate which option number is the best ('optimal').
 
@@ -36,6 +36,13 @@ object Prompts {
           }
         ]
     """
+
+    fun themeDirective(questionType: String): String = when (questionType) {
+        "study" -> "This is a STUDY / LEARNING scenario set: every situation must be about studying, learning, or academic/skill development -- not a workplace or general everyday-life decision.\n\n"
+        "hiring" -> "This is a HIRING / RECRUITMENT scenario set: every situation must be about a hiring process, job interview, or workplace recruitment decision.\n\n"
+        "behavioral" -> "This is a BEHAVIORAL / EVERYDAY-LIFE scenario set: every situation should be a general life or interpersonal decision, not tied to studying or hiring specifically.\n\n"
+        else -> ""
+    }
 
     fun analysisPrompt(role: String, aspect: String, language: String, data: String) = """
         Analyze player decisions as a '$role' expert.
@@ -168,7 +175,7 @@ class GeminiRepository {
             else -> throw IllegalArgumentException("Invalid mode: $mode. Use 'generate' or 'analyze'.")
         }
 
-        Timber.d("GeminiRepository: executing $mode prompt...")
+        Timber.d("GeminiRepository: executing $mode prompt (questionType=$questionType)...")
 
         var responseText: String? = null
         try {
@@ -231,8 +238,13 @@ class GeminiRepository {
         previousAnswers: Map<String, String>,
         previousCases: List<Case>
     ): String {
-        val sb = StringBuilder(Prompts.baseCasePrompt)
-        sb.append("\nRespond in $language for a $age-year-old $sex. Subject: $subject, Question type: $questionType, Difficulty: $difficulty, Type: $subType.")
+        // The theme directive leads the prompt -- an LLM weighs earlier
+        // instructions more heavily than a trailing clause buried after
+        // several other descriptive fields, which is where questionType used
+        // to sit.
+        val sb = StringBuilder(Prompts.themeDirective(questionType))
+        sb.append(Prompts.baseCasePrompt)
+        sb.append("\nRespond in $language for a $age-year-old $sex. Subject: $subject, Subtype: $subType, Difficulty: $difficulty.")
 
         if (previousCases.isNotEmpty()) {
             sb.append("\n\nPrevious context:\n")
