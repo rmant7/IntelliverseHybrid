@@ -291,12 +291,15 @@ fun AnalysisResultsUI(
             )
         }
 
-        // Action Buttons
-        Row(
+        // Action Buttons -- stacked vertically, not side by side: "Back to
+        // Simulation" is long enough on a narrow screen that a Row here
+        // pushed "Play Again" mostly off the right edge instead of wrapping
+        // or shrinking either button.
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 24.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             GameButton(
                 onClick = onBack,
