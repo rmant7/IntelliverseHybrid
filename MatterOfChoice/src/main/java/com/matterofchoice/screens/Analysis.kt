@@ -237,7 +237,7 @@ fun AnalysisResultsUI(
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Text(
-                text = analysisData.overall_judgement,
+                text = analysisData.overall_judgement ?: "No summary available.",
                 modifier = Modifier.padding(16.dp),
                 fontSize = 16.sp,
                 lineHeight = 20.sp
@@ -283,7 +283,11 @@ private fun calculateSimpleScore(analysisData: AnalysisResultResponse): Triple<I
     val totalCount = analysisData.cases.size
 
     analysisData.cases.forEach { caseAnalysis ->
-        if (caseAnalysis.player_choice == caseAnalysis.optimal_choice) {
+        // Both nullable now -- only count it "correct" when there's an actual
+        // recorded choice on both sides, not just because null == null.
+        val playerChoice = caseAnalysis.player_choice
+        val optimalChoice = caseAnalysis.optimal_choice
+        if (playerChoice != null && optimalChoice != null && playerChoice == optimalChoice) {
             correctCount++
         }
     }
@@ -312,7 +316,7 @@ fun CaseAnalysisItem(
 
             // Case Description
             Text(
-                text = caseAnalysis.case_description,
+                text = caseAnalysis.case_description ?: "No description available.",
                 fontSize = 16.sp,
                 modifier = Modifier.padding(bottom = 12.dp)
             )
@@ -332,7 +336,7 @@ fun CaseAnalysisItem(
                         color = Color.Gray
                     )
                     Text(
-                        text = caseAnalysis.player_choice,
+                        text = caseAnalysis.player_choice ?: "Not answered.",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium
                     )
@@ -346,7 +350,7 @@ fun CaseAnalysisItem(
                         color = Color.Gray
                     )
                     Text(
-                        text = caseAnalysis.optimal_choice,
+                        text = caseAnalysis.optimal_choice ?: "Unknown.",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
                     )
@@ -362,7 +366,7 @@ fun CaseAnalysisItem(
                 modifier = Modifier.padding(bottom = 4.dp)
             )
             Text(
-                text = caseAnalysis.analysis,
+                text = caseAnalysis.analysis ?: "No analysis available.",
                 fontSize = 15.sp,
                 lineHeight = 20.sp
             )
