@@ -100,15 +100,20 @@ data class JobStatusResponse(
 )
 
 data class AnalysisResultResponse(
-    val overall_judgement: String,
+    val overall_judgement: String?,
     val cases: List<CaseAnalysis>
 )
 
+// Gson populates these by reflection and does not enforce Kotlin's
+// non-nullability -- a field missing from Gemini's JSON response lands here
+// as null regardless of the declared type. Nullable so the type honestly
+// reflects what can actually happen, instead of silently lying until
+// something downstream dereferences it.
 data class CaseAnalysis(
-    val case_description: String,
-    val player_choice: String,
-    val optimal_choice: String,
-    val analysis: String
+    val case_description: String?,
+    val player_choice: String?,
+    val optimal_choice: String?,
+    val analysis: String?
 )
 
 
