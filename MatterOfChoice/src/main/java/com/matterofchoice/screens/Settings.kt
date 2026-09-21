@@ -118,6 +118,11 @@ fun UserInput(
     val userGender = remember { mutableStateOf(actualGendersForStorage[0]) }
     val isExposedGender = remember { mutableStateOf(false) }
 
+    // Hoisted out of the dropdown block below so onClick (a non-Composable
+    // lambda) can also use them to look up the canonical English name for
+    // whatever language code ends up selected -- see the button's comment.
+    val languageDisplayNames = stringArrayResource(id = R.array.languages)
+    val languageCodesArr = stringArrayResource(id = R.array.language_codes)
 
     val initialLangCode = remember {
         val persisted = LanguagePreferenceHelper.getSelectedLanguage(context.applicationContext)
@@ -238,11 +243,8 @@ fun UserInput(
                     expanded = languageDropdownExpanded,
                     onDismissRequest = { languageDropdownExpanded = false }
                 ) {
-                    val unsortedDisplayNames = stringArrayResource(id = R.array.languages)
-                    val unsortedCodes = stringArrayResource(id = R.array.language_codes)
-
-                    val languagePairs = unsortedDisplayNames.mapIndexedNotNull { index, name ->
-                        unsortedCodes.getOrNull(index)?.let { code -> name to code }
+                    val languagePairs = languageDisplayNames.mapIndexedNotNull { index, name ->
+                        languageCodesArr.getOrNull(index)?.let { code -> name to code }
                     }.sortedBy { it.first }
 
                     languagePairs.forEach { (displayName, languageCode) ->
@@ -283,9 +285,22 @@ fun UserInput(
                     editor.putString(PrefKeys.USER_QUESTION_TYPE, selectedQuestionTypeKey).apply()
                     editor.putString(PrefKeys.USER_SUBTYPE, subtype.value).apply()
                     editor.putString(PrefKeys.USER_DIFFICULTY, difficult.value).apply()
+                    // AIViewModel reads "userLanguage" from this same
+                    // SharedPreferences file to build Gemini's "Write in
+                    // $language" instruction -- selecting a language above only
+                    // ever called LocaleHelper.setLocale (a separate store, for
+                    // the app's own UI locale), so this key was never written
+                    // and every game generated in English regardless of what
+                    // was picked. Look up the canonical English name by code
+                    // (not Locale.getDisplayName(), which renders in whatever
+                    // locale is currently active and would confuse the prompt).
+                    val selectedLanguageName = languageDisplayNames.getOrNull(
+                        languageCodesArr.indexOf(currentSelectedLanguageCode.value)
+                    ) ?: "English"
+                    editor.putString("userLanguage", selectedLanguageName)
                     editor.apply()
 
-                    viewmodel.initiateGame() // Call initiateGame() here
+                    viewmodel.startNewGame()
 
                     navController.navigate(Screens.GameScreen.screen) {
                         popUpTo(0) { inclusive = true } // Added inclusive as it's common
