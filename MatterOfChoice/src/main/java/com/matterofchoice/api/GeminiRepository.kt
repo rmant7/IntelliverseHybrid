@@ -171,7 +171,18 @@ class GeminiRepository {
         role: String = "Psychologist"
     ): Any {
         val prompt = when (mode) {
-            "generate" -> buildGeneratePrompt(language, subject, difficulty, questionType, subType, age, sex, previousAnswers, previousCases)
+            "generate" -> {
+                // Timber.i, not .d -- AppLogTree only forwards INFO+ into the
+                // persistent on-device log (see its doc comment), so this is
+                // the only way to actually see, after the fact on a real
+                // device, what was sent for a given generation.
+                Timber.i(
+                    "GeminiRepository: generate request -- language=$language, subject=$subject, " +
+                    "difficulty=$difficulty, questionType=$questionType, subType=$subType, age=$age, " +
+                    "sex=$sex, previousCases=${previousCases.size}"
+                )
+                buildGeneratePrompt(language, subject, difficulty, questionType, subType, age, sex, previousAnswers, previousCases)
+            }
             "analyze" -> {
                 // Wording matches Python's judgement_aspect in app.py exactly.
                 val aspect = when (questionType) {
@@ -184,6 +195,10 @@ class GeminiRepository {
                 // building analysis_data_str -- an unanswered case has no
                 // user_choice and would otherwise skew/confuse the analysis.
                 val answeredCases = previousCases.filter { previousAnswers[it.case_id] != null }
+                Timber.i(
+                    "GeminiRepository: analyze request -- role=$role, questionType=$questionType, " +
+                    "aspect=$aspect, language=$language, answeredCases=${answeredCases.size}/${previousCases.size}"
+                )
                 val dataJson = gson.toJson(answeredCases.map {
                     mapOf(
                         "case" to it.case,
@@ -197,23 +212,30 @@ class GeminiRepository {
             else -> throw IllegalArgumentException("Invalid mode: $mode. Use 'generate' or 'analyze'.")
         }
 
-        Timber.d("GeminiRepository: executing $mode prompt (questionType=$questionType)...")
+        Timber.i("GeminiRepository: $mode prompt sent to Gemini:\n${truncateForLog(prompt)}")
 
         var responseText: String? = null
         try {
             val response = model.generateContent(prompt)
             responseText = response.text ?: throw IOException("Empty response from Gemini")
-            Timber.d("GeminiRepository: raw response (${responseText.length} chars)")
+            Timber.i("GeminiRepository: $mode raw response (${responseText.length} chars):\n${truncateForLog(responseText)}")
 
             val cleanJson = extractJson(responseText)
 
             return if (mode == "generate") {
                 val listType = object : TypeToken<List<Case>>() {}.type
-                gson.fromJson<List<Case>>(cleanJson, listType).map {
+                val cases = gson.fromJson<List<Case>>(cleanJson, listType).map {
                     it.copy(case_id = UUID.randomUUID().toString())
                 }
+                Timber.i("GeminiRepository: parsed ${cases.size} cases from response")
+                cases
             } else {
-                gson.fromJson(cleanJson, AnalysisResultResponse::class.java)
+                val result = gson.fromJson(cleanJson, AnalysisResultResponse::class.java)
+                Timber.i(
+                    "GeminiRepository: parsed analysis -- ${result.cases.size} case entries, " +
+                    "overall_judgement length=${result.overall_judgement?.length ?: 0}"
+                )
+                result
             }
         } catch (e: JsonSyntaxException) {
             Timber.e(e, "GeminiRepository: JSON parsing failed during $mode. Response: $responseText")
@@ -281,6 +303,14 @@ class GeminiRepository {
 
         return sb.toString()
     }
+
+    /**
+     * The on-device log is a plain text file read in-app -- an untruncated
+     * multi-thousand-character prompt or response on every single generation
+     * call would drown everything else in it within a few turns.
+     */
+    private fun truncateForLog(text: String, maxChars: Int = 4000): String =
+        if (text.length <= maxChars) text else text.take(maxChars) + "... [truncated, ${text.length} chars total]"
 
     private fun extractJson(raw: String?): String {
         if (raw == null) throw IOException("Empty Gemini response")

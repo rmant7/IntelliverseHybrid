@@ -46,7 +46,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun initiateGame() {
         if (_state.value.casesList.isEmpty()) {
-            Timber.d("AIViewModel: starting fresh game")
+            Timber.i("AIViewModel: starting fresh game")
             // A fresh game must read 0/0 at its first case -- see commit message
             // for why MainActivity.onCreate()/resetGame() alone weren't enough.
             sharedPreferences.edit {
@@ -71,7 +71,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
      * why that guarded method isn't the right call here.
      */
     fun startNewGame() {
-        Timber.d("AIViewModel: starting a new game from Settings (forced).")
+        Timber.i("AIViewModel: starting a new game from Settings (forced).")
         sharedPreferences.edit {
             putInt("userScore", 0)
             putInt("totalScore", 0)
@@ -122,7 +122,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     isLoading = false
                 )
 
-                Timber.d("AIViewModel: analysis completed successfully")
+                Timber.i("AIViewModel: analysis completed successfully")
 
             } catch (e: Exception) {
                 Timber.e(e, "AIViewModel: analysis failed")
@@ -188,7 +188,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     error = null
                 )
 
-                Timber.d("AIViewModel: game reset complete.")
+                Timber.i("AIViewModel: game reset complete.")
             } catch (e: Exception) {
                 Timber.e(e, "AIViewModel: failed to reset game")
                 _state.value = _state.value.copy(error = "Reset failed: ${e.message}")
@@ -210,7 +210,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     casesList = cases,
                     error = null
                 )
-                Timber.d("AIViewModel: initial batch loaded (${cases.size} cases)")
+                Timber.i("AIViewModel: initial batch loaded (${cases.size} cases)")
             } catch (e: Exception) {
                 Timber.e(e, "AIViewModel: failed to load initial cases")
                 _state.value = _state.value.copy(
@@ -245,7 +245,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     casesList = _state.value.casesList + moreCases,
                     isFetchingMore = false
                 )
-                Timber.d("AIViewModel: replenished buffer with ${moreCases.size} cases (${_state.value.casesList.size} total loaded)")
+                Timber.i("AIViewModel: replenished buffer with ${moreCases.size} cases (${_state.value.casesList.size} total loaded)")
             } catch (e: Exception) {
                 // Don't surface this as a screen-level error -- the player still has
                 // whatever was already loaded. They'll just hit the "waiting for more

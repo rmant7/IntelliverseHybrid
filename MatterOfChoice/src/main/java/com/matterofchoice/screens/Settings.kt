@@ -42,6 +42,7 @@ import com.matterofchoice.common.GameTextField
 import com.matterofchoice.utils.LanguagePreferenceHelper
 import com.matterofchoice.utils.LocaleHelper
 import com.matterofchoice.viewmodel.AIViewModel
+import timber.log.Timber
 import java.util.Locale
 
 object PrefKeys {
@@ -299,6 +300,13 @@ fun UserInput(
                     ) ?: "English"
                     editor.putString("userLanguage", selectedLanguageName)
                     editor.apply()
+
+                    Timber.i(
+                        "Settings: Generate Cases clicked -- subject=$userSubject, age=$userAge, " +
+                        "gender=${userGender.value}, questionType=$selectedQuestionTypeKey, " +
+                        "subtype=${subtype.value}, difficulty=${difficult.value}, " +
+                        "language=$selectedLanguageName (code=${currentSelectedLanguageCode.value})"
+                    )
 
                     viewmodel.startNewGame()
 
