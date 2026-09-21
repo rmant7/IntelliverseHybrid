@@ -40,8 +40,8 @@ object Prompts {
     // questions"). Made this questionType-aware instead, which the Python
     // version never was.
     fun personaInstruction(questionType: String): String = when (questionType) {
-        "study" -> "You are an Expert Educational Assessment Designer for the IntelliVerse project. " +
-            "Your role is to create realistic, challenging learning and study scenarios."
+        "study" -> "You are an expert teacher and examiner for the IntelliVerse project. " +
+            "Your role is to directly teach and test a learner's actual knowledge of the subject they choose."
         "hiring" -> "You are an Expert Recruitment Analyst for the IntelliVerse project. " +
             "Your role is to create realistic hiring and job-interview scenarios."
         else -> "You are an Expert Behavioral Analyst for the IntelliVerse project. " +
@@ -49,14 +49,32 @@ object Prompts {
     }
 
     fun generationContext(questionType: String, subject: String, difficulty: String, age: Int): String = when (questionType) {
-        "study" -> "Create 6 study-based questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
+        // Real-device feedback: with the shared JSON schema's old "situation
+        // description" / "description of action" wording (see
+        // caseFormatInstruction below), study mode kept generating scenarios
+        // ABOUT studying (e.g. "what's the best way to learn $subject") --
+        // advice on how to learn, not actual $subject content. Spelling out
+        // exactly what "case" and "option" mean here overrides that generic
+        // scenario framing for this one questionType.
+        "study" -> "Directly teach and test the learner's own knowledge of $subject itself, at $difficulty " +
+            "difficulty level, appropriate for a $age-year-old. Each \"case\" must be an actual $subject " +
+            "question, fact, vocabulary item, grammar point, or problem to solve -- NOT a scenario about " +
+            "study habits, learning strategies, or the best way to learn. Each \"option\" is a candidate " +
+            "answer to that exact question, with exactly one of them correct."
         "hiring" -> "Create 6 job interview scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
         else -> "Create 6 realistic behavioral scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
     }
 
     // The scoring dimensions below aren't part of the Python schema (Python's
     // game only needs the 'optimal' index), but Game.kt sums them to compare
-    // the player's pick against the optimal one, so they stay.
+    // the player's pick against the optimal one, so they stay. "case"/"option"
+    // themselves are deliberately neutral placeholders (matching Python's own
+    // generation_instruction, which uses bare "..." here) rather than
+    // "situation description"/"description of action" -- that more specific
+    // wording (a Kotlin-only addition, not from Python) is what pushed every
+    // questionType toward a decision-scenario framing regardless of context;
+    // generationContext() above now says explicitly what a case/option means
+    // per questionType instead.
     const val caseFormatInstruction = """
         For each case, provide exactly 8 different response options.
         For each option, rate: health, wealth, relationships, happiness, knowledge, karma, time_management, environmental_impact, personal_growth, and social_responsibility.
@@ -66,11 +84,11 @@ object Prompts {
         JSON structure:
         [
           {
-            "case": "situation description",
+            "case": "...",
             "options": [
               {
                 "number": 1,
-                "option": "description of action",
+                "option": "...",
                 "health": 0-10,
                 "wealth": 0-10,
                 ...
