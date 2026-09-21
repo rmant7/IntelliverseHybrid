@@ -218,8 +218,9 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                 Text(
                     // No fixed total is shown -- the case buffer is generated
                     // continuously, so the player is never told how many
-                    // questions are left in the session.
-                    text = "${stringResource(R.string.rounds)} ${if (currentCaseIndex >= cases.size) cases.size else currentCaseIndex + 1}",
+                    // questions are left in the session. R.string.rounds ("Rounds")
+                    // described the old fixed-turn structure and no longer fits.
+                    text = "Case ${if (currentCaseIndex >= cases.size) cases.size else currentCaseIndex + 1}",
                     fontFamily = titleFont,
                     textAlign = TextAlign.Justify,
                     fontSize = 22.sp,
