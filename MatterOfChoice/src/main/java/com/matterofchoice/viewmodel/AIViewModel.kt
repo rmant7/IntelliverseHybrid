@@ -19,6 +19,11 @@ import java.io.IOException
 
 class AIViewModel(application: Application) : AndroidViewModel(application) {
 
+    companion object {
+        // Minimum number of loaded-but-unanswered cases to keep buffered at all times.
+        private const val CASE_BUFFER_MIN = 3
+    }
+
     private val sharedPreferences =
         application.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
@@ -31,26 +36,26 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
     val state: State<GameState> = _state
 
     /**
-     * Initializes the first turn if not already started. This is a guard
-     * against double-generating, meant for Game.kt's own auto-resume check
-     * (landing on the Game screen with no cases loaded yet) -- it only
-     * takes the fresh-start branch when the ViewModel is still at its
-     * pristine defaults. Settings' "Generate Cases" button must NOT call
-     * this; use startNewGame() there instead, which always starts a new
-     * game unconditionally regardless of what state a previous one left.
+     * Initializes the game if not already started. This is a guard against
+     * double-generating, meant for Game.kt's own auto-resume check (landing
+     * on the Game screen with no cases loaded yet) -- it only takes the
+     * fresh-start branch when the ViewModel is still at its pristine
+     * defaults. Settings' "Generate Cases" button must NOT call this; use
+     * startNewGame() there instead, which always starts a new game
+     * unconditionally regardless of what state a previous one left.
      */
     fun initiateGame() {
-        if (_state.value.currentTurn == 1 && _state.value.casesList.isEmpty()) {
-            Timber.d("AIViewModel: starting fresh game for Turn 1")
+        if (_state.value.casesList.isEmpty()) {
+            Timber.d("AIViewModel: starting fresh game")
             // A fresh game must read 0/0 at its first case -- see commit message
             // for why MainActivity.onCreate()/resetGame() alone weren't enough.
             sharedPreferences.edit {
                 putInt("userScore", 0)
                 putInt("totalScore", 0)
             }
-            initiateGameForTurn(1)
+            loadInitialCases()
         } else {
-            Timber.d("AIViewModel: initiateGame skipped (turn: ${_state.value.currentTurn}, cases: ${_state.value.casesList.size})")
+            Timber.d("AIViewModel: initiateGame skipped (cases: ${_state.value.casesList.size})")
             if (_state.value.isLoading && _state.value.casesList.isNotEmpty()) {
                 _state.value = _state.value.copy(isLoading = false)
             }
@@ -61,7 +66,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
      * Unconditionally starts a brand-new game: the user just picked new
      * settings and clicked "Generate Cases", and that has to actually
      * generate something regardless of whatever the ViewModel's in-memory
-     * state currently holds (a finished game, one abandoned mid-turn, or a
+     * state currently holds (a finished game, one abandoned mid-buffer, or a
      * stuck isLoading from earlier). See initiateGame()'s doc comment for
      * why that guarded method isn't the right call here.
      */
@@ -74,14 +79,14 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
         allCasesList = emptyList()
         _state.value = GameState(
             isLoading = false,
+            isFetchingMore = false,
             casesList = emptyList(),
             userChoices = emptyMap(),
-            currentTurn = 1,
             analysisResult = null,
             analysisData = null,
             error = null
         )
-        initiateGameForTurn(1)
+        loadInitialCases()
     }
 
     fun onUserChoice(caseId: String, choice: String) {
@@ -89,6 +94,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
         updatedChoices[caseId] = choice
         _state.value = _state.value.copy(userChoices = updatedChoices)
         Timber.d("AIViewModel: user chose for case $caseId -> $choice")
+        maybeReplenishCases()
     }
 
     /**
@@ -174,9 +180,9 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
 
                 _state.value = GameState(
                     isLoading = false,
+                    isFetchingMore = false,
                     casesList = emptyList(),
                     userChoices = emptyMap(),
-                    currentTurn = 1,
                     analysisResult = null,
                     analysisData = null,
                     error = null
@@ -191,82 +197,87 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**
-     * Moves to the next turn and fetches new cases.
+     * Loads the first batch of cases for a new game (blocking, full-screen loader).
      */
-    fun nextTurn() {
+    private fun loadInitialCases() {
         viewModelScope.launch {
-            val currentTurn = _state.value.currentTurn
-            if (currentTurn >= 3) {
-                Timber.d("AIViewModel: max turns reached; no further turns will be generated.")
-                _state.value = _state.value.copy(isLoading = false)
-                return@launch
+            _state.value = _state.value.copy(isLoading = true, error = null)
+            try {
+                val cases = generateCaseBatch()
+                allCasesList = allCasesList + cases
+                _state.value = _state.value.copy(
+                    isLoading = false,
+                    casesList = cases,
+                    error = null
+                )
+                Timber.d("AIViewModel: initial batch loaded (${cases.size} cases)")
+            } catch (e: Exception) {
+                Timber.e(e, "AIViewModel: failed to load initial cases")
+                _state.value = _state.value.copy(
+                    isLoading = false,
+                    error = "Failed to start game: ${e.localizedMessage ?: "Unknown error"}"
+                )
             }
-
-            val nextTurn = currentTurn + 1
-            _state.value = _state.value.copy(
-                isLoading = true,
-                currentTurn = nextTurn,
-                casesList = emptyList(),
-                error = null
-            )
-
-            initiateGameForTurn(nextTurn)
         }
     }
 
     /**
-     * Generates new cases for a given turn using GeminiRepository.
+     * Keeps a rolling buffer of unanswered cases so the player never sees a
+     * fixed total or hits a hard stop: as soon as the number of loaded-but-
+     * not-yet-answered cases drops to CASE_BUFFER_MIN, silently fetch another
+     * batch in the background and append it. Mirrors the original Python
+     * backend's prefetch_only/commit_answers buffering
+     * (unified_server/apps/MatterOfChoice/app.py), just without a separate
+     * commit step since there's no server-side session to reconcile here.
      */
-    private fun initiateGameForTurn(turn: Int) {
+    private fun maybeReplenishCases() {
+        val unanswered = _state.value.casesList.count { !_state.value.userChoices.containsKey(it.case_id) }
+        if (unanswered > CASE_BUFFER_MIN || _state.value.isFetchingMore || _state.value.isLoading) {
+            return
+        }
+
         viewModelScope.launch {
-            if (!_state.value.isLoading) {
-                _state.value = _state.value.copy(isLoading = true, error = null)
-            }
-
+            _state.value = _state.value.copy(isFetchingMore = true)
             try {
-                val userSubject = sharedPreferences.getString(PrefKeys.USER_SUBJECT, "life skills")!!
-                val language = sharedPreferences.getString("userLanguage", "English")!!
-                val age = sharedPreferences.getString(PrefKeys.USER_AGE, "25")!!.toIntOrNull() ?: 25
-                val difficulty = sharedPreferences.getString(PrefKeys.USER_DIFFICULTY, "normal")!!.lowercase()
-                val questionType = sharedPreferences.getString(PrefKeys.USER_QUESTION_TYPE, "behavioral") ?: "behavioral"
-                val subType = sharedPreferences.getString(PrefKeys.USER_SUBTYPE, "scenario_analysis") ?: "scenario_analysis"
-                val sex = sharedPreferences.getString(PrefKeys.USER_GENDER, "any")!!
-
-                val previousAnswers = _state.value.userChoices
-                val previousCases = allCasesList
-
-                Timber.d("AIViewModel: generating cases for turn $turn (questionType=$questionType, subType=$subType)...")
-
-                val responseCases = geminiRepository.generateCases(
-                    language = language,
-                    subject = userSubject,
-                    difficulty = difficulty,
-                    questionType = questionType,
-                    subType = subType,
-                    age = age,
-                    sex = sex,
-                    previousAnswers = previousAnswers,
-                    previousCases = previousCases
-                )
-
-                allCasesList = allCasesList + responseCases
-
+                val moreCases = generateCaseBatch()
+                allCasesList = allCasesList + moreCases
                 _state.value = _state.value.copy(
-                    isLoading = false,
-                    casesList = responseCases,
-                    error = null
+                    casesList = _state.value.casesList + moreCases,
+                    isFetchingMore = false
                 )
-
-                Timber.d("AIViewModel: turn $turn cases loaded successfully (${responseCases.size} cases)")
-
+                Timber.d("AIViewModel: replenished buffer with ${moreCases.size} cases (${_state.value.casesList.size} total loaded)")
             } catch (e: Exception) {
-                Timber.e(e, "AIViewModel: failed to initiate turn $turn")
-                _state.value = _state.value.copy(
-                    isLoading = false,
-                    error = "Failed to start turn $turn: ${e.localizedMessage ?: "Unknown error"}"
-                )
+                // Don't surface this as a screen-level error -- the player still has
+                // whatever was already loaded. They'll just hit the "waiting for more
+                // cases" state if they run out before the next answer retriggers this.
+                Timber.e(e, "AIViewModel: buffer replenish failed; will retry on next answer")
+                _state.value = _state.value.copy(isFetchingMore = false)
             }
         }
+    }
+
+    private suspend fun generateCaseBatch(): List<Case> {
+        val userSubject = sharedPreferences.getString(PrefKeys.USER_SUBJECT, "life skills")!!
+        val language = sharedPreferences.getString("userLanguage", "English")!!
+        val age = sharedPreferences.getString(PrefKeys.USER_AGE, "25")!!.toIntOrNull() ?: 25
+        val difficulty = sharedPreferences.getString(PrefKeys.USER_DIFFICULTY, "normal")!!.lowercase()
+        val questionType = sharedPreferences.getString(PrefKeys.USER_QUESTION_TYPE, "behavioral") ?: "behavioral"
+        val subType = sharedPreferences.getString(PrefKeys.USER_SUBTYPE, "scenario_analysis") ?: "scenario_analysis"
+        val sex = sharedPreferences.getString(PrefKeys.USER_GENDER, "any")!!
+
+        Timber.d("AIViewModel: generating case batch (questionType=$questionType, subType=$subType)...")
+
+        return geminiRepository.generateCases(
+            language = language,
+            subject = userSubject,
+            difficulty = difficulty,
+            questionType = questionType,
+            subType = subType,
+            age = age,
+            sex = sex,
+            previousAnswers = _state.value.userChoices,
+            previousCases = allCasesList
+        )
     }
 
     fun clearAnalysisData() {

@@ -128,38 +128,34 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
 
     val coroutineScope = rememberCoroutineScope()
 
-    LaunchedEffect(state.casesList, state.userChoices, state.currentTurn) {
+    LaunchedEffect(state.casesList, state.userChoices) {
         if (state.casesList.isNotEmpty()) {
-            // Find how many cases in the *current turn's list* have already been answered
-            val answeredCasesInCurrentTurn = state.casesList.count { currentCase ->
-                // Ensure case_id is not null before checking in userChoices
+            // How many of the currently-loaded cases have already been answered
+            val answeredCases = state.casesList.count { currentCase ->
                 state.userChoices.containsKey(currentCase.case_id)
             }
 
-            if (answeredCasesInCurrentTurn < state.casesList.size) {
-                // If not all cases in the current turn are answered, set index to the next unanswered one
-                currentCaseIndex = answeredCasesInCurrentTurn
-            } else if (answeredCasesInCurrentTurn == state.casesList.size && state.casesList.isNotEmpty()) {
-                // All cases in the current turn are answered.
-                // The UI for "Next Turn" or "Finish" should handle this.
-                // We can set currentCaseIndex to the last one for display purposes or to cases.size
-                // to indicate completion of the turn.
-                currentCaseIndex = state.casesList.size // Or cases.size -1 if you want to show the last answered case
+            currentCaseIndex = if (answeredCases < state.casesList.size) {
+                // Not all loaded cases are answered yet -- show the next unanswered one
+                answeredCases
             } else {
-                currentCaseIndex = 0 // Default to 0 if no cases or no answers yet for this turn
+                // All loaded cases are answered; the buffer replenish (triggered by the
+                // last answer) is fetching more in the background. cases.size here means
+                // "waiting for more" -- see the currentCaseIndex >= cases.size branch below.
+                state.casesList.size
             }
             currentSelection = emptyMap() // Reset local UI selection for the new/current case
-            Log.d("SetUpCase", "currentCaseIndex initialized/updated to: $currentCaseIndex based on ${answeredCasesInCurrentTurn} answered cases in turn ${state.currentTurn}")
+            Log.d("SetUpCase", "currentCaseIndex updated to: $currentCaseIndex based on $answeredCases answered of ${state.casesList.size} loaded")
         } else {
-            currentCaseIndex = 0 // No cases loaded yet for this turn
+            currentCaseIndex = 0 // No cases loaded yet
             currentSelection = emptyMap()
         }
     }
 
     // Trigger case generation when cases list is empty but we're not loading and no error
     LaunchedEffect(state.casesList.isEmpty(), state.isLoading, state.error) {
-        if (state.casesList.isEmpty() && !state.isLoading && state.error == null && state.currentTurn <= 3) {
-            Log.d("SetUpCase", "Cases list is empty for turn ${state.currentTurn}. Triggering case generation.")
+        if (state.casesList.isEmpty() && !state.isLoading && state.error == null) {
+            Log.d("SetUpCase", "Cases list is empty. Triggering case generation.")
             viewModel.initiateGame()
         }
     }
@@ -220,7 +216,10 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "${stringResource(R.string.rounds)} ${state.currentTurn} - Case ${if (currentCaseIndex >= cases.size) cases.size else currentCaseIndex + 1} of ${cases.size}",
+                    // No fixed total is shown -- the case buffer is generated
+                    // continuously, so the player is never told how many
+                    // questions are left in the session.
+                    text = "${stringResource(R.string.rounds)} ${if (currentCaseIndex >= cases.size) cases.size else currentCaseIndex + 1}",
                     fontFamily = titleFont,
                     textAlign = TextAlign.Justify,
                     fontSize = 22.sp,
@@ -309,6 +308,33 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                             )
                         }
                     }
+                } else if (currentCaseIndex >= cases.size) {
+                    // All currently-loaded cases are answered. The buffer replenish
+                    // (triggered by the last answer, see AIViewModel.maybeReplenishCases)
+                    // is fetching more in the background -- this is normally brief.
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        if (state.isFetchingMore) {
+                            Loader()
+                            Text(
+                                text = "Loading next case...",
+                                fontFamily = titleFont,
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(top = 8.dp)
+                            )
+                        } else {
+                            Text(
+                                text = "Couldn't load more cases.",
+                                fontFamily = titleFont,
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(bottom = 12.dp)
+                            )
+                        }
+                    }
                 }
 
                 // Button section - different buttons based on context
@@ -322,115 +348,52 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                     val hasSelectionForCurrentCase = currentSelection.containsKey(caseId)
 
                     if (hasSelectionForCurrentCase) {
-                        // User has selected an option - show appropriate action button
-                        if (currentCaseIndex < cases.size - 1) {
-                            // More cases in this turn - show "Next Case"
-                            GameButton(
-                                onClick = {
-                                    // Save the selection to ViewModel state
+                        // User picked an option for this case -- confirm it and move on,
+                        // or jump to analysis with everything answered so far. There's no
+                        // fixed end: the buffer keeps refilling in the background.
+                        GameButton(
+                            onClick = {
+                                currentSelection[caseId]?.let { selectedChoice ->
+                                    viewModel.onUserChoice(caseId, selectedChoice)
+                                    if (currentCase != null) {
+                                        calculateScore(currentCase, selectedChoice, context)
+                                    }
+                                }
+                                currentSelection = emptyMap() // Reset selection for next case
+                                coroutineScope.launch { scrollState.animateScrollTo(0) }
+                            },
+                            text = "Next Case",
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        GameButton(
+                            onClick = {
+                                if (!state.userChoices.containsKey(caseId) && currentSelection.containsKey(caseId)) {
                                     currentSelection[caseId]?.let { selectedChoice ->
                                         viewModel.onUserChoice(caseId, selectedChoice)
                                         if (currentCase != null) {
                                             calculateScore(currentCase, selectedChoice, context)
                                         }
                                     }
-
-                                   // currentCaseIndex++
-                                    currentSelection = emptyMap() // Reset selection for next case
-                                    coroutineScope.launch { scrollState.animateScrollTo(0) }
-                                },
-                                text = "Next Case",
-                            )
-                            GameButton(
-                                onClick = {
-                                    // Make sure the current selection is recorded if not already handled by "Next Case" logic
-                                    if (!state.userChoices.containsKey(caseId) && currentSelection.containsKey(caseId)) {
-                                        currentSelection[caseId]?.let { selectedChoice ->
-                                            viewModel.onUserChoice(caseId, selectedChoice)
-                                            if (currentCase != null) {
-                                                calculateScore(currentCase, selectedChoice, context)
-                                            }
-                                        }
-                                    }
-                                    navController.navigate(Screens.AnalysisScreen.screen) // Just navigate
-                                },
-                                text = "Analyze",
-
-                                )
-                        } else {
-                            // Last case in turn - show "Next Turn" or completion message
-                            if (state.currentTurn < 3) {
-                                GameButton(
-                                    onClick = {
-                                        // Save the selection to ViewModel state
-                                        currentSelection[caseId]?.let { selectedChoice ->
-                                            viewModel.onUserChoice(caseId, selectedChoice)
-                                            calculateScore(currentCase!!, selectedChoice, context)
-                                        }
-                                        viewModel.nextTurn()
-                                        currentSelection = emptyMap() // Reset selection for next turn
-                                    },
-                                    text = "Next Turn",
-                                )
-                            } else {
-                                // Game completed - show completion message
-                                Text(
-                                    text = "Congratulations, you finished the game!",
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = colorScheme.primary,
-                                    modifier = Modifier.padding(bottom = 16.dp)
-                                )
-
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceEvenly
-                                ) {
-                                    GameButton(
-                                        onClick = {
-                                            viewModel.resetGame()
-                                            navController.navigate(Screens.SettingsScreen.screen)
-                                        },
-                                        text = "Play Again",
-                                    )
-                                    GameButton(
-                                        onClick = {
-                                            // Save current selection before analyzing
-                                            currentSelection[caseId]?.let { selectedChoice ->
-                                                viewModel.onUserChoice(caseId, selectedChoice)
-                                                calculateScore(currentCase!!, selectedChoice, context)
-                                            }
-                                     //       viewModel.performAnalysis()
-                                            navController.navigate(Screens.AnalysisScreen.screen)
-                                        },
-                                        text = "Analyze",
-
-                                        )
                                 }
-                                return@Column // Skip the Analyze button below
-                            }
-                        }
-
-                        // Show Analyze button for last case of each turn (except final turn)
-                        if (currentCaseIndex == cases.size - 1 && state.currentTurn < 3) {
-                            Spacer(modifier = Modifier.height(8.dp))
-                            GameButton(
-                                onClick = {
-                                    // Make sure the current selection is recorded if not already handled by "Next Case" logic
-                                    if (!state.userChoices.containsKey(caseId) && currentSelection.containsKey(caseId)) {
-                                        currentSelection[caseId]?.let { selectedChoice ->
-                                            viewModel.onUserChoice(caseId, selectedChoice)
-                                            if (currentCase != null) {
-                                                calculateScore(currentCase, selectedChoice, context)
-                                            }
-                                        }
-                                    }
-                                    navController.navigate(Screens.AnalysisScreen.screen) // Just navigate
-                                },
-                                text = "Analyze",
-
-                                )
-                        }
+                                navController.navigate(Screens.AnalysisScreen.screen)
+                            },
+                            text = "Analyze",
+                        )
+                    } else if (currentCaseIndex >= cases.size) {
+                        // Waiting for the buffer, or it failed -- let the player bail out
+                        // to analysis on what they've already answered, or start over.
+                        GameButton(
+                            onClick = { navController.navigate(Screens.AnalysisScreen.screen) },
+                            text = "Analyze",
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        GameButton(
+                            onClick = {
+                                viewModel.resetGame()
+                                navController.navigate(Screens.SettingsScreen.screen)
+                            },
+                            text = "New Game",
+                        )
                     } else {
                         // No selection yet - show "New Game" button only
                         GameButton(
