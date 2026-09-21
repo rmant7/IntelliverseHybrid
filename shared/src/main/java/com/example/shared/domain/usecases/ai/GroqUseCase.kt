@@ -112,6 +112,24 @@ class GroqUseCase @Inject constructor(
     private fun isModelUnavailable(e: OpenAiHttpException): Boolean =
         SKIPPABLE_MODEL_ERROR_CODES.any { code -> e.message?.contains(code) == true }
 
+    // Confirmed on a real device: "rate_limit_exceeded" on output tokens per
+    // minute (OTPM) -- a genuine, short-lived per-minute cap shared across
+    // this app's own concurrent calls on the same key, not evidence the
+    // model or key is actually broken. Groq's own error message names
+    // exactly how long to wait ("Please try again in 5.04s"); parsed here
+    // rather than guessing a fixed delay, with a safe fallback if the
+    // message format ever changes.
+    private fun isRateLimited(e: OpenAiHttpException): Boolean =
+        e.message?.contains("rate_limit_exceeded") == true
+
+    private fun rateLimitRetryDelayMs(e: OpenAiHttpException): Long {
+        val seconds = Regex("""try again in ([\d.]+)s""")
+            .find(e.message.orEmpty())
+            ?.groupValues?.get(1)?.toDoubleOrNull()
+            ?: 5.0
+        return ((seconds + 0.5) * 1000).toLong().coerceAtMost(10_000L)
+    }
+
     // A DNS lookup or socket timeout says nothing about this model or key --
     // a real device log caught "Unable to resolve host api.groq.com" (a
     // plain transient connectivity blip, confirmed via the user's own
@@ -206,6 +224,16 @@ class GroqUseCase @Inject constructor(
                         Timber.w("Groq model $modelName not accessible with this key, trying next candidate")
                         lastFailure = e
                         break
+                    }
+                    if (httpException != null && isRateLimited(httpException) && networkRetriesLeft > 0) {
+                        networkRetriesLeft--
+                        val delayMs = rateLimitRetryDelayMs(httpException)
+                        Timber.w(
+                            "Groq model $modelName hit its per-minute rate limit, retrying in " +
+                                "${delayMs}ms ($networkRetriesLeft attempt(s) left)"
+                        )
+                        Thread.sleep(delayMs)
+                        continue
                     }
                     if (httpException == null && isTransientNetworkError(e) && networkRetriesLeft > 0) {
                         // Says nothing about this model or key -- worth one

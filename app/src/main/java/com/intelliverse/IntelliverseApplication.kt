@@ -35,6 +35,22 @@ class IntelliverseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Set before anything else opens a connection: GigaChatTokenProvider
+        // and GigaChatUseCase use raw HttpURLConnection (not Ktor), which on
+        // Android is backed by the same old bundled com.android.okhttp
+        // internals as Ktor's since-abandoned "android" engine -- it pools
+        // and reuses a keep-alive connection even after the server has
+        // already closed it, surfacing as SocketException("Software caused
+        // connection abort"). A real device log confirmed a per-request
+        // "Connection: close" response header alone doesn't prevent this --
+        // that only stops the connection being pooled AFTER this response;
+        // it does nothing about an already-stale connection picked from the
+        // pool when the request was opened. Disabling the pool globally via
+        // this system property, read once per JVM at connection-open time,
+        // is the actual fix: there's then no pooled connection left for a
+        // later request to reuse in the first place.
+        System.setProperty("http.keepAlive", "false")
+
         // Planted first and unconditionally (not just in debug builds): a
         // release or CI-built debug APK is exactly the case with no attached
         // computer to pull logcat from, which is the whole reason this

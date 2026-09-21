@@ -200,6 +200,19 @@ class GeminiApiService @Inject constructor(
                         apiKeyRotator.markExhausted(keyEntry.id)
                     }
                     Timber.w("Gemini HTTP ${response.status.value} -- ${bodyText.take(500)}")
+                    // 503 ("model is currently experiencing high demand ...
+                    // try again later") is Google's own server-side overload,
+                    // not this key or model's fault -- confirmed on a real
+                    // device happening moments after a 429 on the same
+                    // model, i.e. general load, not this account. Worth one
+                    // short retry before giving up, same treatment as a
+                    // transient network failure below.
+                    if (response.status == HttpStatusCode.ServiceUnavailable && networkRetriesLeft > 0) {
+                        networkRetriesLeft--
+                        Timber.w("Gemini reported high demand (503), retrying ($networkRetriesLeft attempt(s) left)")
+                        delay(NETWORK_RETRY_DELAY_MS)
+                        continue
+                    }
                     return Result.failure(UnableToAssistException)
                 }
 

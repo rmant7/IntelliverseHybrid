@@ -75,15 +75,14 @@ class GigaChatTokenProvider @Inject constructor() {
             // Required by GigaChat's own API — a fresh uuid4 per request.
             setRequestProperty("RqUID", UUID.randomUUID().toString())
             setRequestProperty("Authorization", "Basic $authorizationKey")
-            // Confirmed on a real device: raw HttpURLConnection on Android is
-            // backed by the same old bundled com.android.okhttp internals
-            // that Ktor's "android" engine was (see NetworkModule's own
-            // comment on switching Gemini/Groq away from it) -- it reuses a
-            // pooled keep-alive connection the server already closed,
-            // surfacing as SocketException("Software caused connection
-            // abort"). This class can't switch engines the way Ktor calls
-            // could; disabling keep-alive removes the stale pooled
-            // connection there'd otherwise be to reuse.
+            // The actual fix for this connection's stale-pooled-connection
+            // SocketException is IntelliverseApplication.onCreate() setting
+            // "http.keepAlive" to false JVM-wide -- see its own comment.
+            // This header alone was confirmed on a real device NOT to be
+            // enough (it only stops pooling this connection afterward, not
+            // reusing an already-stale one when opening it), but it's kept
+            // as it's still the semantically correct thing to tell the
+            // server for a connection this class never intends to reuse.
             setRequestProperty("Connection", "close")
         }
         connection.outputStream.use { it.write("scope=$scope".toByteArray(Charsets.UTF_8)) }
