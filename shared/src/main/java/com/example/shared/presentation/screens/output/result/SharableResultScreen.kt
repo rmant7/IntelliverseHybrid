@@ -9,11 +9,12 @@ import android.webkit.WebView
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.weight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -166,7 +167,7 @@ fun maybeShowAd(
 }
 
 @Composable
-fun ResultScreenContent(
+fun ColumnScope.ResultScreenContent(
     viewModel: BaseResultViewModel,
     solutionResults: Map<AIService, String?>,
     selectedSolutionService: AIService?,
@@ -248,9 +249,15 @@ fun ResultScreenContent(
         }
     }
 
-    // Solution Display
+    // Solution Display -- weight(1f), not a fixed height fraction: claims
+    // whatever's left after the progress row (when visible), the AI-service
+    // selector row, and the action-buttons row below all take what they
+    // actually need, instead of a guessed 65% of the whole screen regardless
+    // of how much those siblings use. A real device screenshot showed the
+    // fixed fraction leaving only about half the screen usable for the
+    // solution itself even with nothing else competing for the rest of it.
     Box(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(0.65f),
+        modifier = Modifier.fillMaxWidth().weight(1f),
         contentAlignment = Alignment.Center
     ) {
         val content = solutionResults[selectedSolutionService]
