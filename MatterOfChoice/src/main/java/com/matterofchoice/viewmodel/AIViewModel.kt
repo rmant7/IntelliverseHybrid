@@ -31,7 +31,13 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
     val state: State<GameState> = _state
 
     /**
-     * Initializes the first turn if not already started.
+     * Initializes the first turn if not already started. This is a guard
+     * against double-generating, meant for Game.kt's own auto-resume check
+     * (landing on the Game screen with no cases loaded yet) -- it only
+     * takes the fresh-start branch when the ViewModel is still at its
+     * pristine defaults. Settings' "Generate Cases" button must NOT call
+     * this; use startNewGame() there instead, which always starts a new
+     * game unconditionally regardless of what state a previous one left.
      */
     fun initiateGame() {
         if (_state.value.currentTurn == 1 && _state.value.casesList.isEmpty()) {
@@ -49,6 +55,33 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                 _state.value = _state.value.copy(isLoading = false)
             }
         }
+    }
+
+    /**
+     * Unconditionally starts a brand-new game: the user just picked new
+     * settings and clicked "Generate Cases", and that has to actually
+     * generate something regardless of whatever the ViewModel's in-memory
+     * state currently holds (a finished game, one abandoned mid-turn, or a
+     * stuck isLoading from earlier). See initiateGame()'s doc comment for
+     * why that guarded method isn't the right call here.
+     */
+    fun startNewGame() {
+        Timber.d("AIViewModel: starting a new game from Settings (forced).")
+        sharedPreferences.edit {
+            putInt("userScore", 0)
+            putInt("totalScore", 0)
+        }
+        allCasesList = emptyList()
+        _state.value = GameState(
+            isLoading = false,
+            casesList = emptyList(),
+            userChoices = emptyMap(),
+            currentTurn = 1,
+            analysisResult = null,
+            analysisData = null,
+            error = null
+        )
+        initiateGameForTurn(1)
     }
 
     fun onUserChoice(caseId: String, choice: String) {
