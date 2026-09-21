@@ -3,6 +3,7 @@ package com.example.shared.presentation.common
 import androidx.annotation.OptIn
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -74,10 +75,20 @@ fun MediaPlayer(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Button(onClick = {
-            val updatedSpeedIndex = viewModel.cycleSpeed()
-            audioPlayer.setPlaybackSpeed(playbackSpeeds[updatedSpeedIndex])
-        }) {
+        // A real device screenshot showed this button's own text ("1.0x")
+        // clipped -- Material3's default Button content padding (24dp
+        // horizontal) plus the Slider's fixed 75% width left too little of
+        // this Row's own width for this button and the play icon to fit
+        // their natural size. Tighter padding here, and the Slider below
+        // switched to weight(1f) instead of a fixed fraction, together give
+        // this button room to actually show its full label.
+        Button(
+            onClick = {
+                val updatedSpeedIndex = viewModel.cycleSpeed()
+                audioPlayer.setPlaybackSpeed(playbackSpeeds[updatedSpeedIndex])
+            },
+            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 6.dp)
+        ) {
             Text("${playbackSpeeds[currentSpeedIndex.value]}x")
         }
         RoundIconButton(
@@ -103,7 +114,7 @@ fun MediaPlayer(
 
         Slider(
             modifier = Modifier
-                .fillMaxWidth(0.75f)
+                .weight(1f)
                 .padding(horizontal = 10.dp),
             value = timeStampSlider.floatValue,
             onValueChange = {

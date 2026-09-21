@@ -2,6 +2,7 @@ package com.example.shared.presentation.common.button
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
@@ -9,7 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun RadioIndexButton(
@@ -54,10 +57,16 @@ fun RadioIndexButton(
     }
     */
 
+    // User request: narrow this row of provider-selector buttons to leave
+    // more vertical room elsewhere. Material3's RadioButton otherwise
+    // reserves a 48dp minimum touch target regardless of its small visible
+    // dot -- overriding it here shrinks the whole row without shrinking the
+    // dot's own tap area below what's still comfortably tappable.
     RadioButton(
         selected = isSelected,
         onClick = { onClick() },
         enabled = isEnabled,
+        modifier = Modifier.size(32.dp),
         colors = RadioButtonDefaults.colors(
             unselectedColor = animatedColor.value,
         )
