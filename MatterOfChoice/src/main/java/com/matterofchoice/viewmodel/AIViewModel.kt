@@ -27,7 +27,7 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPreferences =
         application.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-    private val geminiRepository = GeminiRepository()
+    private val geminiRepository = GeminiRepository(application)
 
     private var allCasesList: List<Case> = emptyList()
     private var i = 0 // File index counter

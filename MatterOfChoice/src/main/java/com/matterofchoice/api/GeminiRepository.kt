@@ -1,5 +1,14 @@
 package com.matterofchoice.api
 
+import android.content.Context
+import com.example.shared.data.keys.ApiKeyRotator
+import com.example.shared.data.keys.ApiProviderIds
+import com.example.shared.data.keys.BundledApiKeyStore
+import com.example.shared.data.keys.BundledApiKeys
+import com.example.shared.data.keys.PrefsApiKeyStore
+import com.example.shared.data.network.gigachat.GigaChatTokenProvider
+import com.example.shared.domain.usecases.ai.GigaChatUseCase
+import com.example.shared.domain.usecases.ai.GroqUseCase
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.RequestOptions
 import com.google.ai.client.generativeai.type.generationConfig
@@ -7,6 +16,8 @@ import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import com.matterofchoice.model.Case
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.IOException
 import java.util.UUID
@@ -101,9 +112,48 @@ object Prompts {
     """
 }
 
-class GeminiRepository {
+private class AllProvidersFailedException(mode: String, val failures: List<Pair<String, Exception>>) :
+    Exception("All providers failed during $mode: " + failures.joinToString { (name, e) -> "$name (${shortReason(e)})" })
+
+/**
+ * Reduces a raw SDK/network exception from any of the three providers to one
+ * short, readable phrase -- each provider's failures have a different raw
+ * shape (Gemini's is a JSON error body, Groq/GigaChat's own use cases throw
+ * plain IllegalStateException/HTTP-status exceptions), so this checks a few
+ * known patterns before falling back to a trimmed version of the raw message.
+ */
+private fun shortReason(e: Exception): String {
+    val raw = e.message ?: e.toString()
+    val status = Regex("\"status\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.get(1)
+    val apiMessage = Regex("\"message\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.get(1)
+
+    return when {
+        status == "FAILED_PRECONDITION" && apiMessage?.contains("location", ignoreCase = true) == true ->
+            "not available in your region"
+        apiMessage != null -> apiMessage
+        raw.contains("API key configured", ignoreCase = true) -> "not configured"
+        e is java.net.SocketTimeoutException -> "timed out"
+        raw.contains("Unable to resolve host", ignoreCase = true) -> "no internet"
+        else -> raw.take(100)
+    }
+}
+
+/**
+ * Despite the name (kept to avoid a churny rename across every call site),
+ * this now falls back across all three AI providers this shell already has
+ * working infrastructure for in the shared module -- Gemini, then Groq, then
+ * GigaChat -- the same providers (under different names) as the original
+ * Python backend's own get_response() fallback chain
+ * (Gemini -> Grok/XAI -> Mistral). Real-device testing hit Gemini's API
+ * refusing the request outright with a geographic restriction
+ * (FAILED_PRECONDITION "User location is not supported"), which used to mean
+ * the whole game failed to start; with nothing else to retry, Gemini alone
+ * was a single point of failure. See completeWithFallback().
+ */
+class GeminiRepository(context: Context) {
 
     private val gson = Gson()
+    private val appContext = context.applicationContext
 
     private val model = GenerativeModel(
         modelName = "gemini-flash-lite-latest",
@@ -117,6 +167,25 @@ class GeminiRepository {
             timeout = 180_000
         )
     )
+
+    // GroqUseCase/GigaChatUseCase are normally Hilt-injected (see the shared
+    // module's KeysModule) -- MatterOfChoice doesn't use Hilt at all, so
+    // these are built by hand, mirroring exactly what KeysModule's
+    // rotatorFor() does for each provider. @Inject/@Named/@ApplicationContext
+    // on their constructors are just annotations; nothing stops calling them
+    // directly like any other Kotlin constructor.
+    private val prefsKeyStore by lazy { PrefsApiKeyStore(appContext) }
+    private val bundledKeyStore by lazy { BundledApiKeyStore(appContext) }
+
+    private fun keyRotatorFor(providerId: String): ApiKeyRotator {
+        BundledApiKeys.sync(bundledKeyStore, providerId)
+        return ApiKeyRotator(store = prefsKeyStore, providerId = providerId, bundledStore = bundledKeyStore)
+    }
+
+    private val groqUseCase by lazy { GroqUseCase(keyRotatorFor(ApiProviderIds.GROQ)) }
+    private val gigaChatUseCase by lazy {
+        GigaChatUseCase(keyRotatorFor(ApiProviderIds.GIGACHAT), GigaChatTokenProvider())
+    }
 
     /**
      * Generate new cases for the game.
@@ -227,14 +296,18 @@ class GeminiRepository {
             else -> throw IllegalArgumentException("Invalid mode: $mode. Use 'generate' or 'analyze'.")
         }
 
-        Timber.i("GeminiRepository: $mode prompt sent to Gemini:\n${truncateForLog(prompt)}")
+        Timber.i("GeminiRepository: $mode prompt (with provider fallback):\n${truncateForLog(prompt)}")
 
-        var responseText: String? = null
+        val responseText = try {
+            completeWithFallback(prompt, mode)
+        } catch (e: AllProvidersFailedException) {
+            Timber.e(e, "GeminiRepository: all providers failed during $mode")
+            throw IOException(friendlyErrorMessage(e), e)
+        }
+
+        Timber.i("GeminiRepository: $mode raw response (${responseText.length} chars):\n${truncateForLog(responseText)}")
+
         try {
-            val response = model.generateContent(prompt)
-            responseText = response.text ?: throw IOException("Empty response from Gemini")
-            Timber.i("GeminiRepository: $mode raw response (${responseText.length} chars):\n${truncateForLog(responseText)}")
-
             val cleanJson = extractJson(responseText)
 
             return if (mode == "generate") {
@@ -254,37 +327,57 @@ class GeminiRepository {
             }
         } catch (e: JsonSyntaxException) {
             Timber.e(e, "GeminiRepository: JSON parsing failed during $mode. Response: $responseText")
-            throw IOException("Gemini returned invalid JSON.", e)
-        } catch (e: Exception) {
-            logGeminiError(mode, e)
-            // The raw exception (e.g. ServerException's message is the entire error JSON body,
-            // sometimes followed by an unrelated kotlinx.serialization.MissingFieldException from
-            // the SDK's own response parsing) is exactly what got logged above -- not what a
-            // player should see on screen. Rethrow with a short, readable message; the original
-            // is preserved as `cause` so nothing is lost for anyone reading the log/stack trace.
-            throw IOException(friendlyErrorMessage(e), e)
+            throw IOException("The AI's response wasn't in the expected format. Try again.", e)
         }
+    }
+
+    /**
+     * Tries Gemini, then Groq, then GigaChat in order, returning the first
+     * one that actually answers. Same text-in/text-out prompt for all three
+     * -- none of this app's calls use images, so there's no per-provider
+     * request-shape difference to handle (unlike this shell's other
+     * sub-apps, where GigaChat specifically can't take the image payload the
+     * others do).
+     *
+     * Sequential, not parallel: simpler to reason about for a chain whose
+     * whole point is "keep going until one works," and this app has no
+     * multi-provider comparison UI (unlike BaseResultViewModel's tabbed
+     * results) to make racing them worthwhile. Trade-off: a run where every
+     * provider times out takes roughly the sum of all three timeouts, not
+     * the max -- acceptable here since a provider being down or misconfigured
+     * (the common case: no key configured, or a geographic block) fails fast,
+     * not slow.
+     */
+    private suspend fun completeWithFallback(prompt: String, mode: String): String {
+        val providers = listOf<Pair<String, suspend () -> String>>(
+            "Gemini" to { model.generateContent(prompt).text ?: throw IOException("Empty response from Gemini") },
+            "Groq" to { withContext(Dispatchers.IO) { groqUseCase.generateGroqSolution(emptyList(), prompt).getOrThrow() } },
+            "GigaChat" to { gigaChatUseCase.generateGigaChatSolution(prompt).getOrThrow() }
+        )
+
+        val failures = mutableListOf<Pair<String, Exception>>()
+        for ((name, call) in providers) {
+            try {
+                Timber.i("GeminiRepository: trying $name for $mode")
+                return call()
+            } catch (e: Exception) {
+                if (name == "Gemini") logGeminiError(mode, e) else Timber.w(e, "GeminiRepository: $name failed for $mode")
+                failures += name to e
+            }
+        }
+        throw AllProvidersFailedException(mode, failures)
     }
 
     /**
      * Reduces a raw SDK/network exception to one short, human-readable sentence
      * for on-screen display. Full technical detail already went to the log via
-     * logGeminiError() before this is called -- this is display-only.
+     * completeWithFallback()/logGeminiError() before this is called -- this is
+     * display-only.
      */
-    private fun friendlyErrorMessage(e: Exception): String {
-        val raw = e.message ?: e.toString()
-        val status = Regex("\"status\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.get(1)
-        val apiMessage = Regex("\"message\"\\s*:\\s*\"([^\"]+)\"").find(raw)?.groupValues?.get(1)
-
-        return when {
-            status == "FAILED_PRECONDITION" && apiMessage?.contains("location", ignoreCase = true) == true ->
-                "Gemini isn't available from your current network/location (Google: \"$apiMessage\"). Try a different network or VPN region."
-            apiMessage != null -> apiMessage
-            e is java.net.SocketTimeoutException -> "The request timed out. Check your connection and try again."
-            raw.contains("Unable to resolve host", ignoreCase = true) -> "No internet connection."
-            else -> "Couldn't reach Gemini. Try again in a moment."
-        }
-    }
+    private fun friendlyErrorMessage(e: AllProvidersFailedException): String =
+        "Couldn't get a response from any AI provider (" +
+        e.failures.joinToString("; ") { (name, err) -> "$name: ${shortReason(err)}" } +
+        "). Try again later."
 
     /**
      * Gemini's own SDK surfaces a non-2xx HTTP response as an exception whose
