@@ -1,10 +1,8 @@
 package com.matterofchoice.screens
 
 
-import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,8 +40,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -65,12 +61,9 @@ import com.matterofchoice.GameState
 import com.matterofchoice.R
 import com.matterofchoice.Screens
 import com.matterofchoice.common.GameButton
-import com.matterofchoice.model.Case
-import com.matterofchoice.model.Option
 import com.matterofchoice.ui.theme.titleFont
 import com.matterofchoice.viewmodel.AIViewModel
 import kotlinx.coroutines.launch
-import androidx.core.content.edit
 
 
 @Composable
@@ -122,7 +115,6 @@ fun Loader() {
 
 @Composable
 fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: GameState) {
-    val context = LocalContext.current.applicationContext
     var currentCaseIndex by rememberSaveable { mutableIntStateOf(0) }
     var currentSelection by remember { mutableStateOf<Map<String, String>>(emptyMap()) } // Track current selections
 
@@ -197,7 +189,6 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
         // Handle the success state where we have cases
         val scrollState = rememberScrollState()
         val cases = state.casesList
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         val currentCaseToDisplayIndex = if (currentCaseIndex >= cases.size && cases.isNotEmpty()) cases.size - 1 else currentCaseIndex
         val currentCase = if (currentCaseToDisplayIndex < cases.size) cases[currentCaseToDisplayIndex] else null
@@ -234,33 +225,13 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                     .fillMaxSize()
                     .padding(top = 16.dp)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 10.dp, start = 16.dp, end = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "Scenario",
-                        fontFamily = titleFont,
-                        fontSize = 28.sp,
-                        modifier = Modifier.weight(1f),
-                        fontWeight = FontWeight.Bold
-                    )
-                    Image(
-                        painter = painterResource(R.drawable.fire),
-                        modifier = Modifier.size(28.dp),
-                        contentDescription = null
-                    )
-                    val userScore = sharedPreferences.getInt("userScore", 0)
-                    val totalScore = sharedPreferences.getInt("totalScore", 0)
-                    Text(
-                        text = "$userScore / $totalScore",
-                        fontFamily = titleFont,
-                        fontSize = 18.sp,
-                    )
-                }
+                Text(
+                    text = "Scenario",
+                    fontFamily = titleFont,
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 10.dp, start = 16.dp, end = 16.dp)
+                )
 
                 if (currentCaseIndex < cases.size && currentCase != null) {
                     Text(
@@ -356,9 +327,6 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                             onClick = {
                                 currentSelection[caseId]?.let { selectedChoice ->
                                     viewModel.onUserChoice(caseId, selectedChoice)
-                                    if (currentCase != null) {
-                                        calculateScore(currentCase, selectedChoice, context)
-                                    }
                                 }
                                 currentSelection = emptyMap() // Reset selection for next case
                                 coroutineScope.launch { scrollState.animateScrollTo(0) }
@@ -371,9 +339,6 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                                 if (!state.userChoices.containsKey(caseId) && currentSelection.containsKey(caseId)) {
                                     currentSelection[caseId]?.let { selectedChoice ->
                                         viewModel.onUserChoice(caseId, selectedChoice)
-                                        if (currentCase != null) {
-                                            calculateScore(currentCase, selectedChoice, context)
-                                        }
                                     }
                                 }
                                 navController.navigate(Screens.AnalysisScreen.screen)
@@ -393,31 +358,40 @@ fun SetUpCase(viewModel: AIViewModel, navController: NavHostController, state: G
                                 viewModel.resetGame()
                                 navController.navigate(Screens.SettingsScreen.screen)
                             },
-                            text = "New Game",
+                            text = "New Session",
                         )
                     } else {
-                        // No selection yet - show "New Game" button only
+                        // No selection made for the current case yet. If the player has
+                        // already answered earlier cases, still offer a way to Analyze --
+                        // this used to be reachable only via the bottom nav bar tab, which
+                        // real-device feedback flagged as not obviously available from here.
+                        if (state.userChoices.isNotEmpty()) {
+                            GameButton(
+                                onClick = { navController.navigate(Screens.AnalysisScreen.screen) },
+                                text = "Analyze",
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                        }
                         GameButton(
                             onClick = {
                                 viewModel.resetGame()
                                 navController.navigate(Screens.SettingsScreen.screen)
                             },
-                            text = "New Game",
-
-                            )
+                            text = "New Session",
+                        )
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
     } else {
-        // This is the initial state before the user has played a game or if list is empty
+        // This is the initial state before the player has started a simulation, or the list is empty
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             GameButton(
                 onClick = {
                     viewModel.initiateGame()
                 },
-                text = "Start Game"
+                text = "Start Simulation"
             )
         }
     }
@@ -470,54 +444,3 @@ fun Test(){
     }
 }
 
-
-
-fun calculateScore(case: Case, selectedChoice: String, context: Context) {
-    val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-
-    // Get the current total scores
-    val currentTotalUserScore = sharedPreferences.getInt("userScore", 0)
-    val currentTotalOptimalScore = sharedPreferences.getInt("totalScore", 0)
-
-    // Find the selected option
-    val selectedOptionNumber = selectedChoice[0] - 'A' + 1 // Convert letter to number
-    val selectedOption = case.options?.find { it.number == selectedOptionNumber }
-
-    // Find the optimal option (optimal field contains the option number as string)
-    val optimalOptionNumber = case.optimal?.toIntOrNull()
-    val optimalOption = case.options?.find { it.number == optimalOptionNumber }
-
-    var currentUserCaseScore = 0
-    var currentOptimalCaseScore = 0
-
-    // Calculate scores
-    selectedOption?.let {
-        currentUserCaseScore = it.knowledge + it.personalGrowth + it.timeManagement +
-                (it.health ?: 0) + (it.wealth ?: 0) + (it.relationships ?: 0) +
-                (it.happiness ?: 0) + (it.karma ?: 0) + (it.environmentalImpact ?: 0) +
-                (it.socialResponsibility ?: 0)
-    }
-
-    optimalOption?.let {
-        currentOptimalCaseScore = it.knowledge + it.personalGrowth + it.timeManagement +
-                (it.health ?: 0) + (it.wealth ?: 0) + (it.relationships ?: 0) +
-                (it.happiness ?: 0) + (it.karma ?: 0) + (it.environmentalImpact ?: 0) +
-                (it.socialResponsibility ?: 0)
-    }
-
-    // Add current case scores to the totals and save
-    sharedPreferences.edit {
-        putInt("userScore", currentTotalUserScore + currentUserCaseScore)
-        putInt("totalScore", currentTotalOptimalScore + currentOptimalCaseScore)
-        apply()
-    }
-
-    Log.d(
-        "ScoreUpdate",
-        "User Case Score: $currentUserCaseScore, New Total User Score: ${currentTotalUserScore + currentUserCaseScore}"
-    )
-    Log.d(
-        "ScoreUpdate",
-        "Optimal Case Score: $currentOptimalCaseScore, New Total Optimal Score: ${currentTotalOptimalScore + currentOptimalCaseScore}"
-    )
-}

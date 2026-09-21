@@ -107,13 +107,13 @@ fun AnalysisScreen(
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                         Text(
-                            text = "Answer at least one case in the game first.",
+                            text = "Answer at least one case first.",
                             fontSize = 16.sp,
                             modifier = Modifier.padding(bottom = 16.dp)
                         )
                         GameButton(
                             onClick = { navController.popBackStack() },
-                            text = "Back to Game"
+                            text = "Back to Simulation"
                         )
                     }
                 }
@@ -300,7 +300,7 @@ fun AnalysisResultsUI(
         ) {
             GameButton(
                 onClick = onBack,
-                text = "Back to Game",
+                text = "Back to Simulation",
             )
             GameButton(
                 onClick = onRestart,

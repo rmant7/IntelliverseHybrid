@@ -47,7 +47,7 @@ fun BottomNav(navController: NavHostController) {
                 }
             )
             BottomNavigationItem(
-                label = "Game",
+                label = "Simulation",
                 icon = R.drawable.game1,
                 isSelected = currentRoute == Screens.GameScreen.screen,
                 onClick = {

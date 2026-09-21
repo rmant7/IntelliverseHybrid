@@ -81,7 +81,7 @@
     <string name="pref_key_rounds" translatable="false">rounds</string>
 
     <string name="error_something_went_wrong">Something went wrong</string>
-    <string name="button_new_game">New Game</string>
+    <string name="button_new_game">New Session</string>
     <string name="text_round_number">Round %1$d</string>
     <string name="text_scenario">Scenario</string>
     <string name="button_next">Next</string>

@@ -106,7 +106,12 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 val userLanguage = sharedPreferences.getString("userLanguage", "English")!!
                 val questionType = sharedPreferences.getString(PrefKeys.USER_QUESTION_TYPE, "behavioral") ?: "behavioral"
-                val role = "Parent"
+                // Real-device report: hardcoding "Parent" here made the analysis prompt
+                // read "Analyze player decisions as a 'Parent' expert", which led the
+                // model to refer to the player as "the child" -- wrong for an age-neutral
+                // (age is an optional field, often left blank) study/hiring/behavioral
+                // game with no actual parent-child relationship implied anywhere else.
+                val role = "objective analyst"
 
                 val analysisResult = geminiRepository.submitAnalysis(
                     answers = _state.value.userChoices,
@@ -211,6 +216,13 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
                     error = null
                 )
                 Timber.i("AIViewModel: initial batch loaded (${cases.size} cases)")
+                // Real-device report: waiting on replenish only once unanswered dropped
+                // to CASE_BUFFER_MIN gave the fetch just those last few cases' worth of
+                // reading/tapping time to finish -- not always enough, and the player hit
+                // the "loading next case" wait this was supposed to prevent. Kicking off
+                // the next batch immediately, in parallel with the player working through
+                // this entire one, gives it the maximum possible lead time instead.
+                replenishCases()
             } catch (e: Exception) {
                 Timber.e(e, "AIViewModel: failed to load initial cases")
                 _state.value = _state.value.copy(
@@ -229,12 +241,21 @@ class AIViewModel(application: Application) : AndroidViewModel(application) {
      * backend's prefetch_only/commit_answers buffering
      * (unified_server/apps/MatterOfChoice/app.py), just without a separate
      * commit step since there's no server-side session to reconcile here.
+     *
+     * This is the ongoing top-up trigger for batch 3 onward; batch 2's fetch
+     * is kicked off proactively by loadInitialCases() itself instead of
+     * waiting for this threshold, since that first transition is the one
+     * most likely to run out the buffer's initial, non-replenished 6 cases
+     * before a fetch has even started.
      */
     private fun maybeReplenishCases() {
         val unanswered = _state.value.casesList.count { !_state.value.userChoices.containsKey(it.case_id) }
-        if (unanswered > CASE_BUFFER_MIN || _state.value.isFetchingMore || _state.value.isLoading) {
-            return
-        }
+        if (unanswered > CASE_BUFFER_MIN) return
+        replenishCases()
+    }
+
+    private fun replenishCases() {
+        if (_state.value.isFetchingMore || _state.value.isLoading) return
 
         viewModelScope.launch {
             _state.value = _state.value.copy(isFetchingMore = true)

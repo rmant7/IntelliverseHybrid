@@ -109,6 +109,10 @@ object Prompts {
         Focus on the player's overall $aspect.
         Write in $language.
 
+        Refer to the person who made these choices as "the user" throughout. Do not assume
+        or state their age, and do not refer to them as a child, student, or any other role
+        unless the data itself explicitly specifies it.
+
         DO NOT ANALYZE ANY CASE WHERE THE USER DID NOT ANSWER THE QUESTION -- leave it out of
         the JSON and focus only on answered ones.
 
