@@ -163,6 +163,7 @@ dependencies {
     implementation(project(":DietTracker"))
     implementation(project(":StyleTranslator"))
     implementation(project(":OneClickTrip"))
+    implementation(project(":MatterOfChoice"))
     implementation(project(":shared"))
     implementation(libs.timber)
     implementation(libs.play.services.ads.lite)

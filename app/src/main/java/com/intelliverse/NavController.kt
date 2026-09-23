@@ -15,6 +15,7 @@ fun Navigation() {
     val schoolKiller = stringResource(com.schoolkiller.R.string.app_name_schoolkiller)
     val styleTranslator = stringResource(com.styletranslator.R.string.app_name_styletranslator)
     val oneClickTrip = stringResource(com.oneclicktrip.R.string.app_name_oneclicktrip)
+    val matterOfChoice = stringResource(com.matterofchoice.R.string.app_name_matter_of_choice)
     val navController = rememberNavController()
 
     // Map app names to descriptions
@@ -23,7 +24,7 @@ fun Navigation() {
         schoolKiller to stringResource(com.schoolkiller.R.string.schoolkiller_info),
         dietTracker to stringResource(com.diettracker.R.string.diet_tracker_info),
         "CheapTrip" to stringResource(R.string.cheaptrip_info),
-        "Matter Of Choice" to stringResource(R.string.matterofchoice_info),
+        matterOfChoice to stringResource(com.matterofchoice.R.string.matterofchoice_info),
         styleTranslator to stringResource(com.styletranslator.R.string.styletranslator_info)
     )
 
@@ -49,6 +50,9 @@ fun Navigation() {
             com.oneclicktrip.presentation.navigation.Navigation(
                 navController
             )
+        }
+        composable(matterOfChoice) {
+            com.matterofchoice.Navigation(navController)
         }
     }
 }

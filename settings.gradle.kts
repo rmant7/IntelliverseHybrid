@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Intelliverse"
 include(":app", ":DietTracker", ":StyleTranslator", ":OneClickTrip", ":shared")
 include(":SchoolKiller")
+include(":MatterOfChoice")

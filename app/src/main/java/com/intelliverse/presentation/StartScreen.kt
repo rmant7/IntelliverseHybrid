@@ -57,6 +57,7 @@ fun StartScreen(navController: NavController, appDescriptions: Map<String, Strin
     val schoolKiller = stringResource(com.schoolkiller.R.string.app_name_schoolkiller)
     val styleTranslator = stringResource(com.styletranslator.R.string.app_name_styletranslator)
     val oneClickTrip = stringResource(com.oneclicktrip.R.string.app_name_oneclicktrip)
+    val matterOfChoice = stringResource(com.matterofchoice.R.string.app_name_matter_of_choice)
 
     // Holds the currently selected app for displaying description
     val selectedApp = remember { mutableStateOf<String?>(null) }
@@ -67,10 +68,7 @@ fun StartScreen(navController: NavController, appDescriptions: Map<String, Strin
         Triple(styleTranslator, R.drawable.styletranslator) { navController.navigate(styleTranslator) },
         Triple(dietTracker, R.drawable.diettracker) { navController.navigate(dietTracker) },
         Triple(schoolKiller, R.drawable.schoolkiller) { navController.navigate(schoolKiller) },
-        /*Triple("Matter Of Choice", R.drawable.matterofchoice) {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://reqeique--matter-of-choice-fastapi-app.modal.run/cases"))
-            context.startActivity(intent)
-        },*/
+        Triple(matterOfChoice, R.drawable.matterofchoice) { navController.navigate(matterOfChoice) },
         Triple("CheapTrip", R.drawable.cheaptrip) { openCheapTripApp(context) }
     )
 

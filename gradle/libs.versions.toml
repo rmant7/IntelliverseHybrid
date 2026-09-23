@@ -1,5 +1,7 @@
 [versions]
 accompanistPermissions = "0.36.0"
+accompanist = "0.36.0"
+accompanistPager = "0.12.0"
 agp = "8.13.0" # 8.6.0 predates compileSdk 37 (Android 17) support, which needs AGP >= 8.9
 analytics = "7.2.0"
 ktor = "2.2.3"
@@ -11,6 +13,7 @@ coilCompose = "2.7.0"
 datastorePreferences = "1.1.1"
 firebaseMessaging = "24.0.3"
 gradle = "4.0.2"
+gson = "2.10.1"
 
 hiltAndroid = "2.51.1"
 hiltNavigationCompose = "1.2.0"
@@ -20,6 +23,7 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 kotlinxSerializationJson = "1.6.3"
+kotlinxCoroutinesAndroid = "1.7.3"
 ktorClientAndroid = "2.3.10"
 ktorClientOkhttp = "2.3.10"
 ktorClientContentNegotiation = "2.3.10"
@@ -30,13 +34,16 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.10.01"
 lifecycleViewmodelKtx = "2.8.7"
+lottieCompose = "6.6.2"
 markdown = "0.7.3"
 media3Exoplayer = "1.5.0"
 navigationCompose = "2.8.3"
+okhttp = "4.12.0"
 playServicesAds = "23.5.0"
 roomKtx = "2.6.1"
 runner = "1.6.2"
 common = "0.10.0"
+generativeai = "0.9.0"
 secretsGradlePlugin = "2.0.1"
 timber = "5.0.1"
 playServicesAdsLite = "23.5.0"
@@ -57,12 +64,17 @@ material3Android = "1.3.1"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
+accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+accompanist-placeholder-material = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
 analytics = { module = "io.appmetrica.analytics:analytics", version.ref = "analytics" }
 
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3Exoplayer" }
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
 langchain4j = { module = "dev.langchain4j:langchain4j", version.ref = "devLangchain4jOpenAi" }
 dev-langchain4j-langchain4j-open-ai = { module = "dev.langchain4j:langchain4j-open-ai", version.ref = "devLangchain4jOpenAi" }
 
@@ -95,8 +107,12 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktorClientAndroid" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientOkhttp" }
 
