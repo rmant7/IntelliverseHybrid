@@ -32,6 +32,7 @@ class HuggingFaceResolver {
 
     private fun resolveRepo(repoId: String, quantPriority: List<String>?): Result<RemoteArtifact> {
         var attempt = 0
+        var backoffMs = 2_000L
         while (true) {
             attempt++
             try {
@@ -66,11 +67,26 @@ class HuggingFaceResolver {
                 } ?: candidates.minByOrNull { it.sizeBytes }!!
                 return Result.success(best)
             } catch (e: UnknownHostException) {
-                if (attempt >= 3) return Result.failure(e)
-                Thread.sleep(2_000)
+                // Confirmed on a real device: huggingface.co failed to
+                // resolve (EAI_NODATA) for all three catalog entries at
+                // once, right after a fresh app install -- not an ISP-level
+                // block (the phone's own browser reached the same host
+                // throughout), just a DNS hiccup that outlasted this retry
+                // budget; a manual retry moments later resolved instantly.
+                // Growing backoff over more attempts rides out a longer
+                // hiccup than a fixed short one, while still giving up on a
+                // genuinely dead network eventually -- same shape as
+                // ModelDownloader's own backoff.
+                if (attempt >= MAX_DNS_ATTEMPTS) return Result.failure(e)
+                Thread.sleep(backoffMs)
+                backoffMs = (backoffMs * 2).coerceAtMost(30_000L)
             } catch (e: Exception) {
                 return Result.failure(e)
             }
         }
+    }
+
+    private companion object {
+        const val MAX_DNS_ATTEMPTS = 6
     }
 }
