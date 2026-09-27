@@ -163,6 +163,7 @@ dependencies {
     implementation(project(":OneClickTrip"))
     implementation(project(":MatterOfChoice"))
     implementation(project(":shared"))
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.timber)
     implementation(libs.play.services.ads.lite)
     implementation(libs.firebase.common.ktx)
