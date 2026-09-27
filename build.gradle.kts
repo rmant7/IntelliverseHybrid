@@ -18,7 +18,7 @@ plugins {
     // Room
     id ("androidx.room") version "2.6.1" apply false
     // Dagger-Hilt
-    id("com.google.dagger.hilt.android") version "2.51.1" apply false
+    id("com.google.dagger.hilt.android") version "2.60.1" apply false
     // KSP
     alias(libs.plugins.ksp) apply false
     // Compose compiler — moved out of AGP/kotlinCompilerExtensionVersion and

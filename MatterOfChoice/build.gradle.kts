@@ -10,7 +10,7 @@ android {
     compileSdk = 37 // kept in sync with app/build.gradle.kts -- see its own comment
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

@@ -79,7 +79,7 @@ android {
 
     defaultConfig {
         applicationId = "com.intelliverse"
-        minSdk = 23
+        minSdk = 26
         targetSdk = 37
         versionCode = 23
         versionName = "1.22"
