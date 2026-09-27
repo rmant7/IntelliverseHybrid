@@ -6,17 +6,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # A debug APK compiles native code with CMAKE_BUILD_TYPE=Debug, and for Clang
-# that means -O0: no inlining, no auto-vectorisation. For ggml, which is
-# almost entirely tight numeric kernels, -O0 against -O3 is a tenfold
-# difference. This project ships a debug-signed release build as its only
-# build (see app/build.gradle.kts's own comment on signingConfig), so
-# optimisation is forced back up for every configuration -- ported verbatim
-# from rmant7/AI's own CMakeLists.txt, which hit this exact problem first.
+# that means -O0: no inlining, no auto-vectorisation. For ordinary app code that
+# is invisible; for ggml, which is almost entirely tight numeric kernels, -O0
+# against -O3 is a tenfold difference — the difference between "a few seconds"
+# and "several minutes" per answer. It also silently defeats the ARM flags set
+# below, because unoptimised code never vectorises those kernels at all.
+#
+# This project ships a debug-signed APK as its only build, so optimisation is
+# forced back up for every configuration.
 foreach(cfg DEBUG RELWITHDEBINFO MINSIZEREL RELEASE)
     set(CMAKE_C_FLAGS_${cfg}   "-O3 -DNDEBUG" CACHE STRING "" FORCE)
     set(CMAKE_CXX_FLAGS_${cfg} "-O3 -DNDEBUG" CACHE STRING "" FORCE)
 endforeach()
 add_compile_options(-O3)
+message(STATUS "llama_jni: CMAKE_BUILD_TYPE='${CMAKE_BUILD_TYPE}' -> forcing -O3")
 
 include(FetchContent)
 FetchContent_Declare(
@@ -26,8 +29,8 @@ FetchContent_Declare(
     GIT_SHALLOW    TRUE
 )
 
-# Cross-compiling to Android: never let ggml probe the *host* CPU, and skip
-# the parts of llama.cpp an embedded JNI build does not need.
+# Cross-compiling to Android: never let ggml probe the *host* CPU, and skip the
+# parts of llama.cpp an embedded JNI build does not need.
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 set(GGML_NATIVE OFF CACHE BOOL "" FORCE)
 set(GGML_OPENMP OFF CACHE BOOL "" FORCE)
@@ -37,40 +40,76 @@ set(LLAMA_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
 set(LLAMA_BUILD_SERVER OFF CACHE BOOL "" FORCE)
 set(LLAMA_CURL OFF CACHE BOOL "" FORCE)
 
-# Baseline only (armv8-a, no dotprod/i8mm) -- deliberately, for this first
-# working version: rmant7/AI's own project builds three CPU-feature variants
-# and picks the best one at runtime (see its ai.localstudio.whisper.CpuVariant)
-# specifically because a single dotprod or i8mm build SIGILLs on a CPU that
-# doesn't support those instructions. Baseline is the one variant guaranteed
-# to run on every arm64 device, at some inference-speed cost -- an acceptable
-# tradeoff to avoid porting that whole runtime-detection/multi-variant Gradle
-# module system in the same change as getting local inference working at all.
+# With GGML_NATIVE off and no explicit ARM arch, ggml appends no -march flags at
+# all and falls back to baseline armv8-a — without dotprod and fp16, which the
+# quantised matmul kernels (the dominant cost of inference) rely on. Setting it
+# explicitly is what makes on-device generation usable rather than a curiosity.
+#
+# Three CPU-feature variants of this library, one per configure, selected at
+# runtime from Kotlin (see com.intelliverse.llama.CpuVariant):
+#
+#   baseline  armv8-a                        libllama_jni.so          any arm64 CPU
+#   dotprod   armv8.2-a+dotprod+fp16         libllama_jni_dotprod.so  ~Snapdragon 845+, Cortex-A55/A75+
+#   i8mm      armv8.2-a+dotprod+fp16+i8mm    libllama_jni_i8mm.so     ~Snapdragon 8 Gen 1+, Tensor G3+
+#
+# Why not one build: compiling with a feature flag lets the compiler and
+# ggml's repack path emit those instructions anywhere, regardless of what the
+# CPU supports at runtime. A single +i8mm build died with SIGILL inside
+# ggml_gemm_q4_K_8x8_q8_K on a Samsung Galaxy S20 FE (Snapdragon 865: dotprod
+# and fp16, no i8mm); a single dotprod build would do the same on any
+# ARMv8.0 phone, while a single baseline build gives up the int8 kernels that
+# dominate prompt processing on newer ones. Ported wholesale (this file,
+# CpuVariant.kt, and the two native-variants/ Gradle modules below) from
+# rmant7/AI rather than only building the safe-but-slower baseline variant:
+# that project already found and fixed this exact SIGILL, so reusing its
+# proven runtime-detection/multi-variant system is lower risk than
+# reimplementing a narrower slice of it here.
+#
+# Why separate configures rather than GGML_CPU_ALL_VARIANTS: that needs ggml
+# as shared libraries loaded through its backend registry — separate
+# configures keep every variant a self-contained .so with its own static
+# ggml, exactly like a single build would be.
+#
+# :app's own configure builds the baseline; native-variants/llama-dotprod and
+# native-variants/llama-i8mm point at this same file with a different
+# LOCALAI_CPU_VARIANT.
+set(LOCALAI_CPU_VARIANT "baseline" CACHE STRING "baseline | dotprod | i8mm")
 if(ANDROID_ABI STREQUAL "arm64-v8a")
-    set(GGML_CPU_ARM_ARCH "armv8-a" CACHE STRING "" FORCE)
+    if(LOCALAI_CPU_VARIANT STREQUAL "i8mm")
+        set(GGML_CPU_ARM_ARCH "armv8.2-a+dotprod+fp16+i8mm" CACHE STRING "" FORCE)
+    elseif(LOCALAI_CPU_VARIANT STREQUAL "dotprod")
+        set(GGML_CPU_ARM_ARCH "armv8.2-a+dotprod+fp16" CACHE STRING "" FORCE)
+    elseif(LOCALAI_CPU_VARIANT STREQUAL "baseline")
+        set(GGML_CPU_ARM_ARCH "armv8-a" CACHE STRING "" FORCE)
+    else()
+        message(FATAL_ERROR "Unknown LOCALAI_CPU_VARIANT '${LOCALAI_CPU_VARIANT}'")
+    endif()
 endif()
+if(LOCALAI_CPU_VARIANT STREQUAL "baseline")
+    set(LOCALAI_JNI_LIB llama_jni)
+else()
+    set(LOCALAI_JNI_LIB llama_jni_${LOCALAI_CPU_VARIANT})
+endif()
+message(STATUS "llama_jni: variant=${LOCALAI_CPU_VARIANT} arch='${GGML_CPU_ARM_ARCH}' -> lib${LOCALAI_JNI_LIB}.so")
 
 FetchContent_MakeAvailable(llamacpp)
 
 # mtmd (multimodal: image/audio input) lives under tools/, which this project
-# never adds as a whole -- LLAMA_BUILD_TOOLS is OFF above, deliberately, to
+# never adds as a whole — LLAMA_BUILD_TOOLS is OFF above, deliberately, to
 # skip llama-cli/llama-server/the rest of the CLI tools this app has no use
 # for. The mtmd *library* target itself has no such gate in its own
-# CMakeLists.txt (only its CLI executables do, behind that same
-# LLAMA_BUILD_TOOLS), so it is added directly here instead of pulling in
-# everything else under tools/ just to reach it. llama_jni.cpp (ported
-# verbatim from rmant7/AI, only its JNI symbol names renamed for this app's
-# package) still references mtmd's headers even though nothing in this app
-# calls its vision entry points yet -- keeping the C++ file untouched rather
-# than surgically removing that code is the lower-risk choice here.
+# CMakeLists.txt (only its CLI executables — llama-mtmd-cli and friends — do,
+# behind that same LLAMA_BUILD_TOOLS), so it is added directly here instead
+# of pulling in everything else under tools/ just to reach it.
 add_subdirectory(${llamacpp_SOURCE_DIR}/tools/mtmd ${CMAKE_CURRENT_BINARY_DIR}/mtmd-build)
 
-add_library(llama_jni SHARED llama_jni.cpp)
+add_library(${LOCALAI_JNI_LIB} SHARED llama_jni.cpp)
 
-target_include_directories(llama_jni PRIVATE
+target_include_directories(${LOCALAI_JNI_LIB} PRIVATE
     ${llamacpp_SOURCE_DIR}/include
     ${llamacpp_SOURCE_DIR}/ggml/include
     ${llamacpp_SOURCE_DIR}/tools/mtmd
 )
 
 find_library(log-lib log)
-target_link_libraries(llama_jni llama ggml mtmd ${log-lib})
+target_link_libraries(${LOCALAI_JNI_LIB} llama ggml mtmd ${log-lib})

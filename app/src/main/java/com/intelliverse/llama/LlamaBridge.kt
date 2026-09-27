@@ -62,13 +62,19 @@ class LlamaBridge {
 
     companion object {
         /**
+         * Which CPU-feature build was loaded (llama_jni, llama_jni_dotprod,
+         * llama_jni_i8mm) -- the best this CPU supports, see [CpuVariant].
+         * Null when none could be loaded (e.g. an ABI this build doesn't
+         * cover).
+         */
+        val loadedLibrary: String? by lazy { CpuVariant.loadBest("llama_jni") }
+
+        /**
          * Whether the native library is present and loadable on this device.
          * False rather than a crash: an ABI this build does not cover must
          * degrade to "local models unavailable" instead of killing the app.
          */
-        val isAvailable: Boolean by lazy {
-            runCatching { System.loadLibrary("llama_jni") }.isSuccess
-        }
+        val isAvailable: Boolean by lazy { loadedLibrary != null }
 
         const val DEFAULT_CONTEXT_TOKENS = 4096
 

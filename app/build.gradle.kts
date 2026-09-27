@@ -184,6 +184,11 @@ dependencies {
     implementation(project(":OneClickTrip"))
     implementation(project(":MatterOfChoice"))
     implementation(project(":shared"))
+    // llama_jni's CPU-feature variants (see app/src/main/cpp/CMakeLists.txt
+    // and com.intelliverse.llama.CpuVariant) -- packaged alongside the
+    // baseline build from :app's own externalNativeBuild above.
+    implementation(project(":llama-dotprod"))
+    implementation(project(":llama-i8mm"))
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.timber)
     implementation(libs.play.services.ads.lite)
