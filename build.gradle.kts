@@ -20,9 +20,13 @@ plugins {
     // Dagger-Hilt
     id("com.google.dagger.hilt.android") version "2.51.1" apply false
     // KSP
-    id("com.google.devtools.ksp") version "1.9.20-1.0.14" apply false
+    alias(libs.plugins.ksp) apply false
+    // Compose compiler — moved out of AGP/kotlinCompilerExtensionVersion and
+    // into the Kotlin repo as of Kotlin 2.0; every module below that builds
+    // Compose UI now applies this instead.
+    alias(libs.plugins.compose.compiler) apply false
     // Serialization
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.20"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
     // Google Services
     id("com.google.gms.google-services") version "4.4.2" apply false
     alias(libs.plugins.android.library) apply false

@@ -25,6 +25,7 @@ val buildNumber = (project.findProperty("buildNumber") as String?) ?: "local"
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 
     // Room
     id("androidx.room")
@@ -126,9 +127,6 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.5"
     }
     packaging {
         resources {

@@ -17,7 +17,8 @@ gson = "2.10.1"
 
 hiltAndroid = "2.51.1"
 hiltNavigationCompose = "1.2.0"
-kotlin = "1.9.20"
+kotlin = "2.1.0"
+ksp = "2.1.0-1.0.29"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -147,5 +148,11 @@ androidx-material3-android = { group = "androidx.compose.material3", name = "mat
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+# Kotlin 2.0+ moved the Compose compiler into the Kotlin repo itself — this
+# plugin replaces the old composeOptions { kotlinCompilerExtensionVersion }
+# setting (removed from every module below), and its own version must match
+# the Kotlin version exactly, not the Compose BOM.
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version = "8.1.4" }
 android-library = { id = "com.android.library", version.ref = "agp" }
