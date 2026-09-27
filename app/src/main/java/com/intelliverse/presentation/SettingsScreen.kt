@@ -1,20 +1,33 @@
 package com.intelliverse.presentation
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 
 /**
@@ -22,12 +35,21 @@ import androidx.navigation.NavController
  * own in-flow options (SchoolKiller/DietTracker/StyleTranslator/OneClickTrip
  * have none of their own; MatterOfChoice's own Settings screen is local to
  * its game setup, not this). Reachable from the start screen's overflow
- * menu, same as Log. No settings exist yet -- this is the empty shell to
- * fill in once a concrete host-level preference is needed.
+ * menu (and, now that StyleTranslator actually uses local models, from
+ * every mini-app's own top bar too).
+ *
+ * Storage management is the first real content here: with local translation
+ * models now downloadable and actually used, "how much space is this taking
+ * up, and how do I clear it" is a genuine host-level concern -- the Models
+ * screen itself only offers deleting one model at a time.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(navController: NavController) {
+fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = hiltViewModel()) {
+    var showDeleteConfirm by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) { viewModel.refresh() }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -41,10 +63,70 @@ fun SettingsScreen(navController: NavController) {
         }
     ) { padding ->
         Column(modifier = Modifier.padding(padding).fillMaxSize().padding(16.dp)) {
-            Text(
-                text = "No app-wide settings yet.",
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            Text("Local models", style = MaterialTheme.typography.titleMedium)
+
+            if (viewModel.installedModels.isEmpty()) {
+                Text(
+                    "No local models installed.",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            } else {
+                Column(modifier = Modifier.padding(top = 8.dp)) {
+                    viewModel.installedModels.forEach { model ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                        ) {
+                            Text(model.title)
+                            Text(
+                                formatBytes(model.sizeBytes),
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        Text("Total", style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            formatBytes(viewModel.totalBytes),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                    TextButton(
+                        onClick = { showDeleteConfirm = true },
+                        modifier = Modifier.padding(top = 8.dp),
+                    ) {
+                        Text("Delete all local models")
+                    }
+                }
+            }
         }
     }
+
+    if (showDeleteConfirm) {
+        AlertDialog(
+            onDismissRequest = { showDeleteConfirm = false },
+            title = { Text("Delete all local models?") },
+            text = { Text("This frees ${formatBytes(viewModel.totalBytes)} of storage. You'll need to download a model again before using it.") },
+            confirmButton = {
+                Button(onClick = {
+                    viewModel.deleteAllModels()
+                    showDeleteConfirm = false
+                }) { Text("Delete") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteConfirm = false }) { Text("Cancel") }
+            }
+        )
+    }
+}
+
+private fun formatBytes(bytes: Long): String = when {
+    bytes >= 1_000_000_000 -> "%.1f GB".format(bytes / 1_000_000_000.0)
+    bytes >= 1_000_000 -> "%.0f MB".format(bytes / 1_000_000.0)
+    else -> "$bytes B"
 }
