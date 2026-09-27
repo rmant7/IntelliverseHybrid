@@ -75,7 +75,6 @@ dependencies {
 
     // Media player
     implementation (libs.androidx.media3.exoplayer)
-    implementation(libs.common)
     //Markdown to Html
     implementation(libs.markdown)
 

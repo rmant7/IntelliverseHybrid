@@ -55,7 +55,6 @@ dependencies {
     implementation(project(":shared"))
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.ui.text.google.fonts)
-    implementation(libs.generativeai)
     implementation(libs.gson)
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.systemuicontroller)

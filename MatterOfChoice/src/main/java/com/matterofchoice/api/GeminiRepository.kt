@@ -9,17 +9,18 @@ import com.example.shared.data.keys.PrefsApiKeyStore
 import com.example.shared.data.network.gigachat.GigaChatTokenProvider
 import com.example.shared.domain.usecases.ai.GigaChatUseCase
 import com.example.shared.domain.usecases.ai.GroqUseCase
-import com.google.ai.client.generativeai.GenerativeModel
-import com.google.ai.client.generativeai.type.RequestOptions
-import com.google.ai.client.generativeai.type.generationConfig
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import com.matterofchoice.model.Case
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.json.JSONObject
 import timber.log.Timber
 import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.UUID
 object Prompts {
     // Mirrors the persona/context/format split of the original Python
@@ -177,18 +178,66 @@ class GeminiRepository(context: Context) {
     private val gson = Gson()
     private val appContext = context.applicationContext
 
-    private val model = GenerativeModel(
-        modelName = "gemini-flash-lite-latest",
-        apiKey = com.example.shared.BuildConfig.gemini_api_key,
-        generationConfig = generationConfig {
-            temperature = 1f
-            topP = 0.9f
-            topK = 40
-        },
-        requestOptions = RequestOptions(
-            timeout = 180_000
+    /**
+     * Gemini via its plain REST API, called directly over
+     * [HttpURLConnection] -- not through com.google.ai.client.generativeai
+     * (the old Google AI client SDK), which Google has deprecated in favor
+     * of the Firebase AI Logic SDK. That replacement needs an actual
+     * Firebase project (google-services.json) wired into this module,
+     * which nothing in this repo currently has (no google-services.json
+     * anywhere, and the google-services plugin is declared apply-false at
+     * the root but never actually applied to any module) -- standing that
+     * infrastructure up is out of scope for a dependency bump. A direct
+     * REST call needs only the same bare API key every other provider in
+     * this app already uses, and matches the pattern [GeminiApiService] in
+     * :shared already uses for every other sub-app.
+     */
+    private fun callGemini(prompt: String): String {
+        val requestBody = JSONObject()
+            .put(
+                "contents",
+                JSONArray().put(
+                    JSONObject().put("parts", JSONArray().put(JSONObject().put("text", prompt)))
+                )
+            )
+            .put(
+                "generationConfig",
+                JSONObject().put("temperature", 1.0).put("topP", 0.9).put("topK", 40)
+            )
+            .toString()
+
+        val url = URL(
+            "https://generativelanguage.googleapis.com/v1beta/models/" +
+                "$GEMINI_MODEL:generateContent?key=${com.example.shared.BuildConfig.gemini_api_key}"
         )
-    )
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "POST"
+        connection.doOutput = true
+        connection.setRequestProperty("Content-Type", "application/json")
+        connection.connectTimeout = GEMINI_TIMEOUT_MS
+        connection.readTimeout = GEMINI_TIMEOUT_MS
+        connection.outputStream.use { it.write(requestBody.toByteArray(Charsets.UTF_8)) }
+
+        val status = connection.responseCode
+        val stream = if (status in 200..299) connection.inputStream else connection.errorStream
+        val body = stream?.bufferedReader()?.use { it.readText() }.orEmpty()
+        if (status !in 200..299) {
+            // Kept as one plain message (not a dedicated exception type):
+            // logGeminiError() below regex-scans .message for "code"/
+            // "status" fields regardless of where in the string they land,
+            // same as it did when the SDK's own exception carried the raw
+            // error body as its message.
+            throw IOException("Gemini returned HTTP $status: ${body.take(500)}")
+        }
+
+        val text = runCatching {
+            JSONObject(body)
+                .getJSONArray("candidates").getJSONObject(0)
+                .getJSONObject("content").getJSONArray("parts").getJSONObject(0)
+                .getString("text")
+        }.getOrNull()
+        return text?.takeIf { it.isNotBlank() } ?: throw IOException("Empty response from Gemini")
+    }
 
     // GroqUseCase/GigaChatUseCase are normally Hilt-injected (see the shared
     // module's KeysModule) -- MatterOfChoice doesn't use Hilt at all, so
@@ -372,7 +421,7 @@ class GeminiRepository(context: Context) {
      */
     private suspend fun completeWithFallback(prompt: String, mode: String): String {
         val providers = listOf<Pair<String, suspend () -> String>>(
-            "Gemini" to { model.generateContent(prompt).text ?: throw IOException("Empty response from Gemini") },
+            "Gemini" to { withContext(Dispatchers.IO) { callGemini(prompt) } },
             "Groq" to { withContext(Dispatchers.IO) { groqUseCase.generateGroqSolution(emptyList(), prompt).getOrThrow() } },
             "GigaChat" to { gigaChatUseCase.generateGigaChatSolution(prompt).getOrThrow() }
         )
@@ -482,5 +531,10 @@ class GeminiRepository(context: Context) {
         }
 
         return clean.trim()
+    }
+
+    private companion object {
+        const val GEMINI_MODEL = "gemini-flash-lite-latest"
+        const val GEMINI_TIMEOUT_MS = 180_000
     }
 }
