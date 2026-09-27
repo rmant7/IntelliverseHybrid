@@ -120,6 +120,20 @@ fun AppTopBar(navController: NavHostController?, appName: String, infoDialog: St
                 }
                 DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
                     DropdownMenuItem(
+                        text = { Text("Models") },
+                        onClick = {
+                            menuExpanded = false
+                            navController.navigate("models")
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Settings") },
+                        onClick = {
+                            menuExpanded = false
+                            navController.navigate("settings")
+                        }
+                    )
+                    DropdownMenuItem(
                         text = { Text("Log") },
                         onClick = {
                             menuExpanded = false

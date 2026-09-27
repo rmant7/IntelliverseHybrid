@@ -61,7 +61,14 @@ class ModelsViewModel @Inject constructor(
                     loadedModelId = seed.id
                 }
                 val prompt = TranslationPrompts.buildPrompt(seed, targetLang, text)
-                llama.generate(prompt).collect { token -> translateOutput += token }
+                // Accumulated raw, then stripped once complete -- a
+                // reasoning model's <think> block can't be cleanly removed
+                // from a live-streamed partial string, so this quick-test
+                // screen shows the final answer only, not a live typing
+                // effect.
+                val raw = StringBuilder()
+                llama.generate(prompt).collect { token -> raw.append(token) }
+                translateOutput = TranslationPrompts.stripThinking(raw.toString())
             } catch (e: Exception) {
                 errorMessage = e.message ?: "Translation failed"
             } finally {
