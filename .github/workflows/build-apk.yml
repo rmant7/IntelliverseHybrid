@@ -31,10 +31,17 @@ jobs:
       # legacy 'tools' package that no longer exists in Google's repository.
       # Just make sure the platform/build-tools this project needs are
       # present and licenses are accepted, using the SDK already there.
+      # cmake explicitly, matching the version app/build.gradle.kts pins for
+      # its native (llama.cpp JNI) build -- AGP can auto-download it on
+      # first use provided licenses are accepted (the --licenses line
+      # above), but requesting it up front here avoids depending on that
+      # working silently mid-build. The NDK itself is left unpinned: AGP
+      # auto-selects and auto-provisions its own default NDK version for
+      # this AGP release the same way.
       - name: Ensure Android SDK packages
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0" "build-tools;37.0.0"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0" "build-tools;37.0.0" "cmake;3.22.1"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4

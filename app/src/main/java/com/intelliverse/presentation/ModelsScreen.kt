@@ -8,16 +8,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -25,8 +28,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -36,9 +44,8 @@ import com.intelliverse.models.ModelsViewModel
 
 /**
  * Host-level catalog of on-device translation models: browse, download,
- * cancel, delete. This only manages the model FILES on disk -- no local
- * inference happens here yet, that needs a native (llama.cpp JNI) runtime
- * this app doesn't build yet. Reachable from the start screen's overflow
+ * cancel, delete, and (once installed) run a real local translation through
+ * the native llama.cpp bridge. Reachable from the start screen's overflow
  * menu, same as Log/Settings.
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,21 +65,30 @@ fun ModelsScreen(navController: NavController, viewModel: ModelsViewModel = hilt
             )
         }
     ) { padding ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            items(viewModel.catalog) { seed ->
-                ModelCard(
-                    seed = seed,
-                    state = states[seed.id] ?: DownloadState.Idle,
-                    onDownload = { viewModel.downloads.start(seed) },
-                    onCancel = { viewModel.downloads.cancel(seed) },
-                    onDelete = { viewModel.downloads.delete(seed) },
+        Column(modifier = Modifier.padding(padding).fillMaxSize()) {
+            if (!viewModel.nativeAvailable) {
+                Text(
+                    "Local inference isn't available on this build/device (unsupported ABI).",
+                    color = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.padding(16.dp),
                 )
+            }
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                items(viewModel.catalog) { seed ->
+                    ModelCard(
+                        seed = seed,
+                        state = states[seed.id] ?: DownloadState.Idle,
+                        viewModel = viewModel,
+                        onDownload = { viewModel.downloads.start(seed) },
+                        onCancel = { viewModel.downloads.cancel(seed) },
+                        onDelete = { viewModel.downloads.delete(seed) },
+                    )
+                }
             }
         }
     }
@@ -82,6 +98,7 @@ fun ModelsScreen(navController: NavController, viewModel: ModelsViewModel = hilt
 private fun ModelCard(
     seed: LocalModelSeed,
     state: DownloadState,
+    viewModel: ModelsViewModel,
     onDownload: () -> Unit,
     onCancel: () -> Unit,
     onDelete: () -> Unit,
@@ -140,6 +157,9 @@ private fun ModelCard(
                             color = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.padding(end = 8.dp),
                         )
+                        TextButton(onClick = { viewModel.toggleTest(seed) }) {
+                            Text(if (viewModel.testExpandedId == seed.id) "Hide test" else "Test")
+                        }
                         TextButton(onClick = onDelete) { Text("Delete") }
                     }
                     is DownloadState.Failed -> {
@@ -154,6 +174,63 @@ private fun ModelCard(
                     }
                 }
             }
+
+            if (state is DownloadState.Installed && viewModel.testExpandedId == seed.id) {
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                TestTranslatePanel(seed = seed, viewModel = viewModel)
+            }
+        }
+    }
+}
+
+/**
+ * A raw language-code text field rather than a full language picker: this is
+ * a quick way to prove the native pipeline actually works end to end (load a
+ * downloaded GGUF, run inference, stream text back), not the final
+ * translation UI -- that would need its own language list and, per model, a
+ * mapping to whatever code format that specific model expects (MADLAD wants
+ * a bare target-language code like "ru"; OmniTranslate's own model card
+ * recommends an ISO-639-3 + script code like "rus_Cyrl").
+ */
+@Composable
+private fun TestTranslatePanel(seed: LocalModelSeed, viewModel: ModelsViewModel) {
+    var targetLang by rememberSaveable { mutableStateOf("ru") }
+    var inputText by rememberSaveable { mutableStateOf("") }
+
+    Column {
+        OutlinedTextField(
+            value = targetLang,
+            onValueChange = { targetLang = it },
+            label = { Text("Target language code") },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            modifier = Modifier.fillMaxWidth(),
+        )
+        OutlinedTextField(
+            value = inputText,
+            onValueChange = { inputText = it },
+            label = { Text("Text to translate") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+        )
+        Button(
+            onClick = { viewModel.translate(seed, targetLang, inputText) },
+            enabled = !viewModel.isBusy && inputText.isNotBlank() && targetLang.isNotBlank(),
+            modifier = Modifier.padding(top = 8.dp),
+        ) {
+            Text(if (viewModel.isBusy) "Translating…" else "Translate")
+        }
+        viewModel.errorMessage?.let {
+            Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(top = 8.dp))
+        }
+        if (viewModel.translateOutput.isNotBlank()) {
+            Text(
+                viewModel.translateOutput,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+            )
         }
     }
 }

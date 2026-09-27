@@ -88,6 +88,27 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        // Local on-device translation inference (llama.cpp via JNI, see
+        // src/main/cpp/) -- arm64-v8a only, matching the source project this
+        // was ported from (rmant7/AI): its own real-device testing never
+        // covered any other ABI, and this app's Play-listed audience is
+        // effectively all arm64 anyway.
+        ndk {
+            abiFilters += "arm64-v8a"
+        }
+        externalNativeBuild {
+            cmake {
+                arguments += "-DANDROID_STL=c++_shared"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 
     buildTypes {

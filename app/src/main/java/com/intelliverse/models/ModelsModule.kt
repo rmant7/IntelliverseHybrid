@@ -1,6 +1,7 @@
 package com.intelliverse.models
 
 import android.content.Context
+import com.intelliverse.llama.LocalLlamaSession
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,4 +16,8 @@ object ModelsModule {
     @Singleton
     fun provideModelDownloads(@ApplicationContext context: Context): ModelDownloads =
         ModelDownloads(context)
+
+    @Provides
+    @Singleton
+    fun provideLocalLlamaSession(): LocalLlamaSession = LocalLlamaSession()
 }
