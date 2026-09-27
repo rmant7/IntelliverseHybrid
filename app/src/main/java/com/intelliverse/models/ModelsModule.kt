@@ -15,7 +15,7 @@ object ModelsModule {
     @Provides
     @Singleton
     fun provideModelDownloads(@ApplicationContext context: Context): ModelDownloads =
-        ModelDownloads(context)
+        ModelDownloads(context, onDownloadStarted = { ModelDownloadService.start(context) })
 
     @Provides
     @Singleton

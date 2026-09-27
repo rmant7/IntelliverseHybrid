@@ -17,6 +17,13 @@
         android:name="com.google.android.gms.permission.AD_ID"
         android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- ModelDownloadService: keeps a model download alive while the app is
+         backgrounded. Required on Android 14+ to start a foreground
+         service with an explicit type (dataSync, since this transfers a
+         file, not media/location/etc). -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name="com.intelliverse.IntelliverseApplication"
@@ -46,6 +53,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name="com.intelliverse.models.ModelDownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
