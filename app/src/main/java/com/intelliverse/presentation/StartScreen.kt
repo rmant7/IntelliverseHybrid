@@ -110,13 +110,29 @@ fun StartScreen(navController: NavController, appDescriptions: Map<String, Strin
                 }
             }
 
-            // Overflow menu: just "Log" for now -- a way to see what went
-            // wrong without needing a computer attached to pull logcat.
+            // Overflow menu: host-level screens that don't belong to any one
+            // mini-app -- Settings and Models are both empty shells for now,
+            // Log is a way to see what went wrong without needing a computer
+            // attached to pull logcat.
             Box(modifier = Modifier.align(Alignment.TopEnd)) {
                 IconButton(onClick = { menuExpanded = true }) {
                     Icon(Icons.Default.MoreVert, contentDescription = "Menu")
                 }
                 DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
+                    DropdownMenuItem(
+                        text = { Text("Settings") },
+                        onClick = {
+                            menuExpanded = false
+                            navController.navigate("settings")
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Models") },
+                        onClick = {
+                            menuExpanded = false
+                            navController.navigate("models")
+                        }
+                    )
                     DropdownMenuItem(
                         text = { Text("Log") },
                         onClick = {

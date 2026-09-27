@@ -6,6 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.intelliverse.presentation.LogScreen
+import com.intelliverse.presentation.ModelsScreen
+import com.intelliverse.presentation.SettingsScreen
 import com.intelliverse.presentation.StartScreen
 
 
@@ -31,6 +33,8 @@ fun Navigation() {
     NavHost(navController = navController, startDestination = "start") {
         composable("start") { StartScreen(navController, appDescriptions) }
         composable("log") { LogScreen(navController) }
+        composable("settings") { SettingsScreen(navController) }
+        composable("models") { ModelsScreen(navController) }
         composable(schoolKiller) {
             com.schoolkiller.presentation.navigation.Navigation(
                 navController
