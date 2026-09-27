@@ -14,7 +14,7 @@ firebaseMessaging = "24.0.3"
 gradle = "4.0.2"
 gson = "2.14.0"
 
-hiltAndroid = "2.60.1"
+hiltAndroid = "2.58" # newest before 2.59 made the Hilt Gradle plugin require AGP >= 9.0 (still on 8.13 here); 2.57+ already has the kotlinx-metadata unshading Kotlin 2.1 needs
 hiltNavigationCompose = "1.2.0"
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29"
