@@ -82,10 +82,6 @@ dependencies {
     // Coil
     implementation(libs.coil.compose)
 
-    // LangChain4j
-    implementation(libs.dev.langchain4j.langchain4j.open.ai)
-    implementation(libs.langchain4j)
-
     // Room Database
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)

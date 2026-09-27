@@ -5,7 +5,6 @@ import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
 import com.example.shared.domain.usecases.ai.GigaChatUseCase
 import com.example.shared.domain.usecases.ai.GroqUseCase
-import com.example.shared.domain.usecases.ai.OpenAiUseCase
 import com.example.shared.domain.usecases.AudioPlayer
 import com.example.shared.domain.usecases.ImageUtils
 import com.example.shared.ads.InterstitialAdUseCase
@@ -22,14 +21,13 @@ import javax.inject.Inject
 class ResultViewModel @Inject constructor(
     imageUtils: ImageUtils,
     geminiUseCaseClient: GeminiUseCaseClient,
-    openAiUseCase: OpenAiUseCase,
     groqUseCase: GroqUseCase,
     gigaChatUseCase: GigaChatUseCase,
     interstitialAdUseCase: InterstitialAdUseCase,
     speechConverter: SpeechConverter,
     audioPlayer: AudioPlayer,
     savedStateHandle: SavedStateHandle
-) : BaseResultViewModel(imageUtils, geminiUseCaseClient, openAiUseCase, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
+) : BaseResultViewModel(imageUtils, geminiUseCaseClient, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
 
     override val audioPrefixName: String
         get() = "schoolkiller"

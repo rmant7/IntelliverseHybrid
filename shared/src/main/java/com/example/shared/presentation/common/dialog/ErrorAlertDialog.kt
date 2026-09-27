@@ -10,7 +10,6 @@ import androidx.compose.ui.res.stringResource
 import com.example.shared.OutputSizeException
 import com.example.shared.R
 import com.example.shared.UnableToAssistException
-import dev.ai4j.openai4j.OpenAiHttpException
 import io.ktor.client.plugins.ServerResponseException
 import timber.log.Timber
 import java.net.UnknownHostException
@@ -92,7 +91,7 @@ private fun getAlertWindowData(errorsList: List<Throwable>): Pair<String, String
 }
 
 fun findNestedOpenAIException(exception: Exception): Boolean {
-    return exception is OpenAiHttpException || exception is UnknownHostException || (exception.cause as? Exception)?.let {
+    return exception is UnknownHostException || (exception.cause as? Exception)?.let {
         findNestedOpenAIException(
             it
         )

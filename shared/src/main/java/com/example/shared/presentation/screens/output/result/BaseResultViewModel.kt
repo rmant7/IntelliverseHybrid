@@ -18,7 +18,6 @@ import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.TextUtils
 import com.example.shared.domain.usecases.ai.GigaChatUseCase
 import com.example.shared.domain.usecases.ai.GroqUseCase
-import com.example.shared.domain.usecases.ai.OpenAiUseCase
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
 import com.example.shared.presentation.screens.AIService
 import com.example.shared.presentation.screens.output.SharedViewModel
@@ -36,7 +35,6 @@ import java.util.concurrent.atomic.AtomicInteger
 abstract class BaseResultViewModel(
     private val imageUtils: ImageUtils,
     private val geminiUseCaseClient: GeminiUseCaseClient,
-    private val openAiUseCase: OpenAiUseCase,
     private val groqUseCase: GroqUseCase,
     private val gigaChatUseCase: GigaChatUseCase,
     private val interstitialAdUseCase: InterstitialAdUseCase,
@@ -344,15 +342,11 @@ abstract class BaseResultViewModel(
             if (imageUsed && imagesBase64.isEmpty()) {
                 onSolutionResult(Result.failure(UnableToAssistException), AIService.GROQ)
             } else {
-                // GPT commented out: langchain4j's "demo" key (see
-                // OpenAiUseCase's own doc comment) never once produced an
-                // answer across this whole round of testing -- always the
-                // same 429 from its shared, worldwide, non-configurable
-                // quota. gpt() itself and OpenAiUseCase are left as-is
-                // (only removed from PRIMARY_SERVICES below, and this one
-                // launch{} call), so re-enabling this later (a real paid
-                // key) is one line, not a rewrite.
-                // launch { gpt(imagesBase64) }
+                // GPT (langchain4j's "demo" key, a shared worldwide
+                // non-configurable quota that never once produced an
+                // answer) has been removed entirely, along with langchain4j
+                // itself -- see OpenAiUseCase's deletion and GroqUseCase's
+                // rewrite onto direct HTTP.
                 launch { groq(imagesBase64) }
             }
             launch { gigaChat() }
@@ -369,36 +363,6 @@ abstract class BaseResultViewModel(
     // Log screen already records this regardless.
     private fun withProviderFooter(text: String, provider: String, model: String): String =
         "$text\n\n— $provider ($model)"
-
-    private suspend fun gpt(imagesBase64: List<String>) {
-        val result = openAiUseCase.generateOpenAiSolution(
-            imagesBase64 = imagesBase64,
-            prompt = prompt
-        )
-        result.onSuccess {
-            try {
-                val decodedResponse = decodeSolutionResponse(it)
-                val textWithFooter = withProviderFooter(decodedResponse.first, "GPT", "gpt-4o-mini")
-                onSolutionResult(Result.success(textWithFooter), AIService.GPT)
-                if (imageUsed && sharedViewModel.ocrResults.value[AIService.GPT].isNullOrBlank()) {
-                    sharedViewModel.updateOcrResults(
-                        AIService.GPT,
-                        decodedResponse.second,
-                        override = false
-                    )
-                }
-            } catch (e: Exception) {
-                // No separate Timber call here: onSolutionResult's own
-                // onFailure branch already logs this exact throwable --
-                // doing it twice was one more source of the Log screen's
-                // duplicated stack traces.
-                onSolutionResult(Result.failure(e), AIService.GPT)
-            }
-        }
-        result.onFailure {
-            onSolutionResult(Result.failure(it), AIService.GPT)
-        }
-    }
 
     private suspend fun groq(imagesBase64: List<String>) {
         val result = groqUseCase.generateGroqSolution(
@@ -510,10 +474,9 @@ abstract class BaseResultViewModel(
          * Used for [maxSolutionResultsCapacity]'s "+1" (GigaChat, always
          * attempted separately -- see [generateSolutions]) rather than to
          * gate GigaChat on these having failed, which is no longer how it
-         * works. GPT excluded while its launch{} call is commented out in
-         * [generateSolutions] -- otherwise maxSolutionResultsCapacity would
-         * count a result that never arrives, and solutionProgress would
-         * never reach 1f.
+         * works. GPT (and its provider) has been removed entirely --
+         * otherwise maxSolutionResultsCapacity would count a result that
+         * never arrives, and solutionProgress would never reach 1f.
          */
         val PRIMARY_SERVICES = listOf(AIService.GEMINI_THINKING, AIService.GROQ)
     }

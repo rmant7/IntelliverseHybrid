@@ -7,7 +7,6 @@ analytics = "8.5.1"
 ktor = "2.2.3"
 
 desugar_jdk_libs = "2.1.2"
-devLangchain4jOpenAi = "0.33.0" # Higher LangChain4j versions might be incompatible with older api.
 
 coilCompose = "2.7.0"
 datastorePreferences = "1.1.1"
@@ -76,8 +75,6 @@ desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref 
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
-langchain4j = { module = "dev.langchain4j:langchain4j", version.ref = "devLangchain4jOpenAi" }
-dev-langchain4j-langchain4j-open-ai = { module = "dev.langchain4j:langchain4j-open-ai", version.ref = "devLangchain4jOpenAi" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }

@@ -98,10 +98,6 @@ dependencies {
 
     implementation(libs.androidx.media3.exoplayer)
 
-    // LangChain4j
-    implementation(libs.dev.langchain4j.langchain4j.open.ai)
-    implementation(libs.langchain4j)
-
     //Markdown to Html
     implementation(libs.markdown)
 

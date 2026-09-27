@@ -2,29 +2,32 @@ package com.example.shared.domain.usecases.ai
 
 import com.example.shared.data.keys.ApiKeyRotator
 import com.example.shared.data.keys.ApiProviderIds
-import dev.ai4j.openai4j.OpenAiHttpException
-import dev.langchain4j.data.message.AiMessage
-import dev.langchain4j.data.message.Content
-import dev.langchain4j.data.message.ImageContent
-import dev.langchain4j.data.message.SystemMessage
-import dev.langchain4j.data.message.TextContent
-import dev.langchain4j.data.message.UserMessage
-import dev.langchain4j.model.openai.OpenAiChatModel
-import dev.langchain4j.model.output.Response
+import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
 import java.net.HttpURLConnection
+import java.net.SocketTimeoutException
 import java.net.URL
-import java.time.Duration
+import java.net.UnknownHostException
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 import javax.inject.Named
 
+/** Groq's own `{"error": {...}}` JSON body preserved verbatim for diagnostics. */
+class GroqHttpException(val status: Int, val body: String) : Exception(
+    "Groq returned HTTP $status: ${body.take(300)}"
+)
+
 /**
- * Groq (api.groq.com) via its OpenAI-compatible endpoint. Groq accepts the
- * exact same request/response shape OpenAI's does at a different base URL,
- * so this is [OpenAiUseCase] with [OpenAiChatModel.Builder.baseUrl] pointed
- * at Groq instead of OpenAI, plus key rotation across [apiKeyRotator]'s pool.
+ * Groq (api.groq.com) via its OpenAI-compatible REST endpoint, called
+ * directly over [HttpURLConnection] -- not through langchain4j. Dropped
+ * entirely from this app: its only other consumer was the old GPT "demo"
+ * key integration, which never produced a usable answer (permanently
+ * rate-limited -- a shared, worldwide, non-configurable quota), and
+ * langchain4j's own RetryUtils.withRetry() silently discarded the real
+ * OpenAiHttpException type on every failure, requiring an
+ * unwrap-from-.cause workaround here that a direct HTTP call has no need
+ * for.
  *
  * Model list is discovered at runtime via Groq's own `GET /models` endpoint
  * for the actual account behind [apiKeyRotator]'s active key, not a hardcoded
@@ -96,10 +99,7 @@ class GroqUseCase @Inject constructor(
             // .inputStream on ANY non-2xx status, with the real status only
             // reachable via .responseCode/.errorStream -- read it here so
             // "the account's key is rejected outright" (401/403) doesn't
-            // look identical to an ordinary network hiccup. A 401/403 here
-            // means this key is bad for every model, not just this
-            // endpoint -- resolveModelCandidates' caller still marks it
-            // exhausted itself once the real generate() call also gets one.
+            // look identical to an ordinary network hiccup.
             val status = runCatching { connection.responseCode }.getOrDefault(-1)
             Timber.w(
                 e,
@@ -109,8 +109,75 @@ class GroqUseCase @Inject constructor(
         }
     }
 
-    private fun isModelUnavailable(e: OpenAiHttpException): Boolean =
-        SKIPPABLE_MODEL_ERROR_CODES.any { code -> e.message?.contains(code) == true }
+    /** Groq's `/chat/completions` request body -- images (if any) as inline `data:` URIs, no external hosting required. */
+    private fun buildRequestBody(
+        modelName: String,
+        systemInstruction: String,
+        prompt: String,
+        imagesBase64: List<String>,
+    ): String {
+        val messages = JSONArray()
+        if (systemInstruction.isNotBlank()) {
+            messages.put(JSONObject().put("role", "system").put("content", systemInstruction))
+        }
+        val userContent: Any = if (imagesBase64.isEmpty()) {
+            prompt
+        } else {
+            val parts = JSONArray()
+            imagesBase64.forEach { base64Data ->
+                parts.put(
+                    JSONObject()
+                        .put("type", "image_url")
+                        .put("image_url", JSONObject().put("url", "data:image/jpeg;base64,$base64Data"))
+                )
+            }
+            parts.put(JSONObject().put("type", "text").put("text", prompt))
+            parts
+        }
+        messages.put(JSONObject().put("role", "user").put("content", userContent))
+
+        return JSONObject()
+            .put("model", modelName)
+            // Without this, Groq applies its own per-model server-side
+            // default -- confirmed too small via a real device log: a
+            // genuine, successful response (a multi-day trip itinerary, for
+            // OneClickTrip) got cut off mid-JSON, failing to decode with
+            // "Expected end of the object '}', but had 'EOF' instead". 8192
+            // comfortably covers this app's largest structured response
+            // shape with room to spare.
+            .put("max_tokens", 8192)
+            .put("messages", messages)
+            .toString()
+    }
+
+    private class HttpResult(val status: Int, val body: String)
+
+    private fun postChatCompletion(apiKey: String, requestBody: String): HttpResult {
+        val connection = URL("$BASE_URL/chat/completions").openConnection() as HttpURLConnection
+        connection.requestMethod = "POST"
+        connection.doOutput = true
+        connection.setRequestProperty("Authorization", "Bearer $apiKey")
+        connection.setRequestProperty("Content-Type", "application/json")
+        connection.connectTimeout = 90_000
+        connection.readTimeout = 90_000
+        connection.outputStream.use { it.write(requestBody.toByteArray(Charsets.UTF_8)) }
+        val status = connection.responseCode
+        val stream = if (status in 200..299) connection.inputStream else connection.errorStream
+        val body = stream?.bufferedReader()?.use { it.readText() }.orEmpty()
+        return HttpResult(status, body)
+    }
+
+    private fun extractContent(body: String): String? =
+        runCatching {
+            JSONObject(body).getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content")
+        }.getOrNull()
+
+    private fun extractErrorField(body: String, field: String): String? =
+        runCatching { JSONObject(body).getJSONObject("error").optString(field).takeIf { it.isNotBlank() } }
+            .getOrNull()
+
+    private fun isModelUnavailable(body: String): Boolean =
+        extractErrorField(body, "code") in SKIPPABLE_MODEL_ERROR_CODES
 
     // Confirmed on a real device: "rate_limit_exceeded" on output tokens per
     // minute (OTPM) -- a genuine, short-lived per-minute cap shared across
@@ -119,45 +186,17 @@ class GroqUseCase @Inject constructor(
     // exactly how long to wait ("Please try again in 5.04s"); parsed here
     // rather than guessing a fixed delay, with a safe fallback if the
     // message format ever changes.
-    private fun isRateLimited(e: OpenAiHttpException): Boolean =
-        e.message?.contains("rate_limit_exceeded") == true
+    private fun isRateLimited(status: Int, body: String): Boolean =
+        status == 429 || extractErrorField(body, "code") == "rate_limit_exceeded"
 
-    private fun rateLimitRetryDelayMs(e: OpenAiHttpException): Long {
+    private fun rateLimitRetryDelayMs(body: String): Long {
+        val message = extractErrorField(body, "message").orEmpty()
         val seconds = Regex("""try again in ([\d.]+)s""")
-            .find(e.message.orEmpty())
+            .find(message)
             ?.groupValues?.get(1)?.toDoubleOrNull()
             ?: 5.0
         return ((seconds + 0.5) * 1000).toLong().coerceAtMost(10_000L)
     }
-
-    // A DNS lookup or socket timeout says nothing about this model or key --
-    // a real device log caught "Unable to resolve host api.groq.com" (a
-    // plain transient connectivity blip, confirmed via the user's own
-    // device at the time) being treated as a hard failure that skipped
-    // trying every other candidate, even though nothing about the account
-    // or model was actually wrong. Walks the cause chain since it's usually
-    // wrapped (see httpExceptionOf's own comment on why RetryUtils wraps
-    // everything in a plain RuntimeException).
-    private fun isTransientNetworkError(e: Throwable): Boolean {
-        var cause: Throwable? = e
-        while (cause != null) {
-            if (cause is java.net.UnknownHostException || cause is java.net.SocketTimeoutException) return true
-            cause = cause.cause
-        }
-        return false
-    }
-
-    // langchain4j's RetryUtils.withRetry() (which OpenAiChatModel.generate()
-    // goes through) never lets the original OpenAiHttpException escape
-    // directly: after exhausting its retries it always rethrows
-    // `new RuntimeException(originalException)`, discarding the specific
-    // type and keeping it only as .cause. A `catch (e: OpenAiHttpException)`
-    // clause here previously looked correct but could never actually match
-    // -- confirmed by checking RetryUtils' own source, since a real device
-    // log kept showing the model-skip logic below never taking effect even
-    // after fixing isModelUnavailable() itself.
-    private fun httpExceptionOf(e: Throwable): OpenAiHttpException? =
-        e as? OpenAiHttpException ?: e.cause as? OpenAiHttpException
 
     /** Generate a Groq solution using text and optionally one or more base64-encoded JPEG images. */
     fun generateGroqSolution(
@@ -171,96 +210,77 @@ class GroqUseCase @Inject constructor(
             )
         val apiKey = keyEntry.key
 
-        val userMessage = if (imagesBase64.isNotEmpty()) {
-            val contents = mutableListOf<Content>()
-            imagesBase64.mapTo(contents) { base64Data ->
-                ImageContent.from(base64Data, "image/jpeg", ImageContent.DetailLevel.HIGH)
-            }
-            contents.add(TextContent.from(prompt))
-            UserMessage.from(contents)
-        } else {
-            UserMessage.from(TextContent.from(prompt))
-        }
-
         val modelCandidates = resolveModelCandidates(apiKey)
         var lastFailure: Throwable? = null
         for (modelName in modelCandidates) {
             var networkRetriesLeft = NETWORK_RETRY_ATTEMPTS
             while (true) {
-                val model = OpenAiChatModel.builder()
-                    .baseUrl(BASE_URL)
-                    .apiKey(apiKey)
-                    .modelName(modelName)
-                    .timeout(Duration.ofSeconds(90L))
-                    // Without this, langchain4j sends no max_tokens field at
-                    // all and Groq applies its own per-model server-side
-                    // default -- confirmed too small via a real device log: a
-                    // genuine, successful response (a multi-day trip
-                    // itinerary, for OneClickTrip) got cut off mid-JSON,
-                    // failing to decode with "Expected end of the object
-                    // '}', but had 'EOF' instead". 8192 comfortably covers
-                    // this app's largest structured response shape with room
-                    // to spare.
-                    .maxTokens(8192)
-                    .build()
-
+                val requestBody = buildRequestBody(modelName, systemInstruction, prompt, imagesBase64)
                 try {
-                    val response: Response<AiMessage> = if (systemInstruction.isBlank()) {
-                        model.generate(userMessage)
-                    } else {
-                        model.generate(SystemMessage.from(systemInstruction), userMessage)
+                    val response = postChatCompletion(apiKey, requestBody)
+
+                    if (response.status !in 200..299) {
+                        if (isModelUnavailable(response.body)) {
+                            // Expected/handled, not a real error -- the next
+                            // candidate is tried immediately. A one-line
+                            // note, not a full stack trace, keeps this from
+                            // flooding the Log screen every time Groq's
+                            // catalogue drifts under an already-broken model.
+                            Timber.w("Groq model $modelName not accessible with this key, trying next candidate")
+                            lastFailure = GroqHttpException(response.status, response.body)
+                            break
+                        }
+                        if (isRateLimited(response.status, response.body) && networkRetriesLeft > 0) {
+                            networkRetriesLeft--
+                            val delayMs = rateLimitRetryDelayMs(response.body)
+                            Timber.w(
+                                "Groq model $modelName hit its per-minute rate limit, retrying in " +
+                                    "${delayMs}ms ($networkRetriesLeft attempt(s) left)"
+                            )
+                            Thread.sleep(delayMs)
+                            continue
+                        }
+                        Timber.w("Groq model $modelName failed: HTTP ${response.status} -- ${response.body.take(300)}")
+                        // 401/403 alongside 429: consistent with a
+                        // rate-limited or otherwise rejected key, not a
+                        // per-model problem.
+                        if (response.status in setOf(401, 403, 429)) {
+                            apiKeyRotator.markExhausted(keyEntry.id)
+                        }
+                        return Result.failure(GroqHttpException(response.status, response.body))
+                    }
+
+                    val content = extractContent(response.body)
+                    if (content == null) {
+                        Timber.w("Groq model $modelName returned no parseable content: ${response.body.take(300)}")
+                        return Result.failure(IllegalStateException("Groq returned no parseable content"))
                     }
                     lastUsedModel = modelName
-                    return Result.success(cleanResult(response.content().text()))
-                } catch (e: RuntimeException) {
-                    val httpException = httpExceptionOf(e)
-                    if (httpException != null && isModelUnavailable(httpException)) {
-                        // Expected/handled, not a real error -- the next
-                        // candidate is tried immediately. A one-line note,
-                        // not the full stack trace every OTHER failure here
-                        // gets, keeps this from flooding the Log screen
-                        // every time Groq's catalogue drifts under an
-                        // already-broken model.
-                        Timber.w("Groq model $modelName not accessible with this key, trying next candidate")
-                        lastFailure = e
-                        break
-                    }
-                    if (httpException != null && isRateLimited(httpException) && networkRetriesLeft > 0) {
+                    return Result.success(cleanResult(content))
+                } catch (e: UnknownHostException) {
+                    // A DNS lookup failure says nothing about this model or
+                    // key -- a real device log caught "Unable to resolve
+                    // host api.groq.com" (a plain transient connectivity
+                    // blip) being treated as a hard failure that skipped
+                    // trying every other candidate, even though nothing
+                    // about the account or model was actually wrong.
+                    if (networkRetriesLeft > 0) {
                         networkRetriesLeft--
-                        val delayMs = rateLimitRetryDelayMs(httpException)
-                        Timber.w(
-                            "Groq model $modelName hit its per-minute rate limit, retrying in " +
-                                "${delayMs}ms ($networkRetriesLeft attempt(s) left)"
-                        )
-                        Thread.sleep(delayMs)
+                        Timber.w("Groq model $modelName hit a transient network error, retrying ($networkRetriesLeft attempt(s) left)")
                         continue
                     }
-                    if (httpException == null && isTransientNetworkError(e) && networkRetriesLeft > 0) {
-                        // Says nothing about this model or key -- worth one
-                        // more try on the exact same candidate before
-                        // treating it as a real failure or moving on.
+                    lastFailure = e
+                    return Result.failure(e)
+                } catch (e: SocketTimeoutException) {
+                    if (networkRetriesLeft > 0) {
                         networkRetriesLeft--
-                        Timber.w(
-                            "Groq model $modelName hit a transient network error, retrying " +
-                                "($networkRetriesLeft attempt(s) left)"
-                        )
+                        Timber.w("Groq model $modelName timed out, retrying ($networkRetriesLeft attempt(s) left)")
                         continue
                     }
-                    // No throwable passed here: BaseResultViewModel.groq()'s
-                    // own onFailure branch already logs this exact exception
-                    // with its trace -- this is only the one thing that log
-                    // line can't say on its own, which model was being tried.
-                    Timber.w("Groq model $modelName failed: ${e.message}")
-                    // 401/403 alongside 429: a real device log caught a
-                    // plain "Forbidden" (no error type/code, unlike the
-                    // structured model_not_found/model_decommissioned
-                    // bodies) on this exact key, on every model tried,
-                    // right after this same key's own GET /models call
-                    // also failed -- consistent with a rate-limited or
-                    // otherwise rejected key, not a per-model problem.
-                    if (httpException?.code() in setOf(401, 403, 429)) {
-                        apiKeyRotator.markExhausted(keyEntry.id)
-                    }
+                    lastFailure = e
+                    return Result.failure(e)
+                } catch (e: Exception) {
+                    Timber.w(e, "Groq model $modelName failed")
                     return Result.failure(e)
                 }
             }
