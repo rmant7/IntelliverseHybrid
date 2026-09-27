@@ -1,5 +1,6 @@
 package com.styletranslator.presentation.screens.output.result
 
+import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
@@ -8,11 +9,21 @@ import com.example.shared.domain.usecases.ai.GroqUseCase
 import com.example.shared.domain.usecases.AudioPlayer
 import com.example.shared.domain.usecases.ImageUtils
 import com.example.shared.ads.InterstitialAdUseCase
+import com.example.shared.presentation.screens.AIService
 import com.example.shared.presentation.screens.output.result.BaseResultViewModel
 import com.example.shared.presentation.screens.output.result.doubleQuotes
 import com.example.shared.presentation.screens.output.result.jsonResponseLanguage
 import com.example.shared.presentation.screens.output.result.ocrTextJsonEntry
+import com.intelliverse.llama.LocalLlamaSession
+import com.intelliverse.llama.TranslationPrompts
+import com.intelliverse.models.LocalModelSeed
+import com.intelliverse.models.ModelStore
+import com.intelliverse.models.TranslationModels
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -25,11 +36,67 @@ class ResultViewModel @Inject constructor(
     interstitialAdUseCase: InterstitialAdUseCase,
     speechConverter: SpeechConverter,
     audioPlayer: AudioPlayer,
+    private val localLlamaSession: LocalLlamaSession,
+    @ApplicationContext appContext: Context,
     savedStateHandle: SavedStateHandle
 ) : BaseResultViewModel(imageUtils, geminiUseCaseClient, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
 
     override val audioPrefixName: String
         get() = "styletranslator"
+
+    private val modelStore = ModelStore(appContext)
+
+    /**
+     * On-device local models as additional parallel tabs alongside
+     * Gemini/Groq/GigaChat -- literal translation only (source text plus a
+     * target language code), not this screen's own elaborate style/tone/
+     * gender/mentality prompt: these are small, specialized translation
+     * models, not general instruction followers, and can't reliably follow
+     * that whole prompt+JSON-output contract the way a cloud model does.
+     * Skipped entirely for an image-based run: none of the catalog models
+     * take image input, and there's no extracted OCR text ready at this
+     * point (that only exists after Gemini's own vision call resolves).
+     */
+    override suspend fun additionalProviderCount(): Int =
+        if (imageUsed) 0 else LOCAL_MODELS.count { (seed, _) -> modelStore.isInstalled(seed) }
+
+    override fun CoroutineScope.launchAdditionalProviders(imagesBase64: List<String>) {
+        if (!imageUsed) launch { runLocalModels() }
+    }
+
+    /**
+     * Sequential, not one launch{} per model: [LocalLlamaSession] only ever
+     * holds one loaded model at a time (matches this app's realistic phone
+     * RAM budget -- running two multi-GB local models concurrently isn't
+     * practical anyway), so running them one after another is both simpler
+     * and avoids two coroutines racing to load/evict each other's model
+     * mid-generation.
+     */
+    private suspend fun runLocalModels() {
+        val targetLang = selectedLanguage.locale
+        val sourceText = passedEditedResult.ifBlank { userTask }
+        for ((seed, aiService) in LOCAL_MODELS) {
+            if (!modelStore.isInstalled(seed)) continue
+            try {
+                val loaded = localLlamaSession.load(modelStore.finalFile(seed).absolutePath)
+                if (!loaded) {
+                    onSolutionResult(
+                        Result.failure(IllegalStateException("Failed to load ${seed.title}")),
+                        aiService,
+                    )
+                    continue
+                }
+                val prompt = TranslationPrompts.buildPrompt(seed, targetLang, sourceText)
+                val raw = StringBuilder()
+                localLlamaSession.generate(prompt).collect { token -> raw.append(token) }
+                val cleaned = TranslationPrompts.stripThinking(raw.toString())
+                onSolutionResult(Result.success(withProviderFooter(cleaned, "Local", seed.title)), aiService)
+            } catch (e: Exception) {
+                Timber.w(e, "Local model ${seed.id} failed to produce a translation")
+                onSolutionResult(Result.failure(e), aiService)
+            }
+        }
+    }
 
     private var tonePreference: String? = null
     private var style: String? = null
@@ -173,4 +240,12 @@ class ResultViewModel @Inject constructor(
     }
 
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeStyleSolutionResponse(response)
+
+    private companion object {
+        val LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> = listOfNotNull(
+            TranslationModels.byId("translategemma-4b")?.let { it to AIService.LOCAL_TRANSLATEGEMMA },
+            TranslationModels.byId("omnitranslate-1-1")?.let { it to AIService.LOCAL_OMNITRANSLATE },
+            TranslationModels.byId("madlad400-3b-mt-q4")?.let { it to AIService.LOCAL_MADLAD },
+        )
+    }
 }

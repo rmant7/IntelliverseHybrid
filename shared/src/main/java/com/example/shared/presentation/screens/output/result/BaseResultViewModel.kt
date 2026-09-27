@@ -21,6 +21,7 @@ import com.example.shared.domain.usecases.ai.GroqUseCase
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
 import com.example.shared.presentation.screens.AIService
 import com.example.shared.presentation.screens.output.SharedViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -229,8 +230,10 @@ abstract class BaseResultViewModel(
         _solutionTextDirection.update { solutionTextDirection }
     }
 
-    // When AI solution result fetched
-    private fun onSolutionResult(
+    // When AI solution result fetched -- protected, not private: a sub-app
+    // overriding launchAdditionalProviders() (StyleTranslator's local
+    // models) reports its own results through this same path.
+    protected fun onSolutionResult(
         result: Result<String>,
         aiService: AIService
     ) {
@@ -278,7 +281,8 @@ abstract class BaseResultViewModel(
                         updateSolutionResults(aiService, null)
                     }
                 }
-                AIService.GPT, AIService.GROQ, AIService.GIGACHAT -> {
+                AIService.GPT, AIService.GROQ, AIService.GIGACHAT,
+                AIService.LOCAL_TRANSLATEGEMMA, AIService.LOCAL_OMNITRANSLATE, AIService.LOCAL_MADLAD -> {
                     updateSolutionResults(aiService, null)
                 }
             }
@@ -325,7 +329,11 @@ abstract class BaseResultViewModel(
         updateSolutionProgress(0.0f)
         geminiAttempts.set(2)
         geminiThinkingAttempts.set(1)
-        maxSolutionResultsCapacity = PRIMARY_SERVICES.size + 1 // +1 for GigaChat, always attempted now
+        // +1 for GigaChat (always attempted); + however many extra
+        // providers this sub-app's own launchAdditionalProviders() will
+        // actually run this time (StyleTranslator: its installed local
+        // models) -- 0 for every other sub-app, which never overrides this.
+        maxSolutionResultsCapacity = PRIMARY_SERVICES.size + 1 + additionalProviderCount()
 
         val imagesBase64 = if (imageUsed) {
             passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) }
@@ -350,8 +358,26 @@ abstract class BaseResultViewModel(
                 launch { groq(imagesBase64) }
             }
             launch { gigaChat() }
+            launchAdditionalProviders(imagesBase64)
         }
     }
+
+    /**
+     * How many extra results [launchAdditionalProviders] will produce this
+     * run -- added to [maxSolutionResultsCapacity] so [solutionProgress]
+     * still reaches 1f. Default 0 (no extra providers); overridden by
+     * StyleTranslator to count its installed local models.
+     */
+    protected open suspend fun additionalProviderCount(): Int = 0
+
+    /**
+     * Extra result-producing coroutines beyond Gemini/Groq/GigaChat,
+     * launched inside [generateSolutions]' own coroutineScope (so it still
+     * waits for them before finishing) -- default none. StyleTranslator
+     * overrides this to also run its installed on-device translation
+     * models; every other sub-app leaves it as-is.
+     */
+    protected open fun CoroutineScope.launchAdditionalProviders(imagesBase64: List<String>) {}
 
     // TEMPORARY diagnostic: appended to the displayed answer text (after
     // decoding, never before -- some sub-apps' decodeSolutionResponse
@@ -361,7 +387,7 @@ abstract class BaseResultViewModel(
     // is now discovered per-account rather than fixed. Remove the helper
     // and its four call sites once multi-provider testing is done -- the
     // Log screen already records this regardless.
-    private fun withProviderFooter(text: String, provider: String, model: String): String =
+    protected fun withProviderFooter(text: String, provider: String, model: String): String =
         "$text\n\n— $provider ($model)"
 
     private suspend fun groq(imagesBase64: List<String>) {
