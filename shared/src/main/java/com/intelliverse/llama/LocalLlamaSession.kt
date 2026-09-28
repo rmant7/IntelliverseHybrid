@@ -63,10 +63,23 @@ class LocalLlamaSession {
     fun generate(
         prompt: String,
         maxTokens: Int = 512,
-        temperature: Float = 0.7f,
+        // Low, near-greedy temperature -- literal translation is a
+        // deterministic task, not creative writing, and this session is
+        // only ever used for translation (unlike rmant7/AI's own
+        // general-purpose LlamaCppRuntime, which reuses one chat-style
+        // 0.7 default across every use case). A real device test: MADLAD-
+        // 400 asked to translate the single word "Hi" at temperature 0.7
+        // produced a fluent but entirely unrelated sentence -- exactly the
+        // hallucination risk high-temperature sampling adds on a source
+        // text with almost no context for the model to anchor on.
+        temperature: Float = 0.2f,
         topP: Float = 0.9f,
         topK: Int = 40,
-        repeatPenalty: Float = 1.1f,
+        // 1.1 wasn't enough headroom for these small quantized models --
+        // they degenerate into repeating a word/phrase far more readily
+        // than larger models (same fix, same reasoning, as rmant7/AI's own
+        // Settings.DEFAULT_REPEAT_PENALTY).
+        repeatPenalty: Float = 1.2f,
     ): Flow<String> = callbackFlow {
         val activeHandle = handle
         if (activeHandle == 0L) {
