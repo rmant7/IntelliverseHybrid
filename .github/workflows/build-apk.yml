@@ -187,3 +187,20 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release delete latest-debug --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
+
+      # One-time cleanup: the per-branch "latest-<slug>" releases this same
+      # rolling-release step used to create, one per branch, before it was
+      # collapsed into the single shared "latest" release above. Nothing
+      # updates these anymore, so they just sit in the Releases list as
+      # stale clutter -- remove whichever of these still exist. Safe to
+      # remove this step once it's run and they're gone.
+      - name: Remove obsolete per-branch rolling releases
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for tag in latest-main latest-locales latest-migration latest-r8-prep \
+                     latest-claude-intelliverse-hybrid-app-f1et5v \
+                     latest-claude-fus0-matter-of-choice-check-p0dtnh; do
+            gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
+          done
