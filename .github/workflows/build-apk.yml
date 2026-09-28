@@ -126,6 +126,23 @@ jobs:
           path: app/build/outputs/bundle/release/named/*.aab
           if-no-files-found: error
 
+      # R8's mapping.txt for THIS build, named by run number -- the same
+      # "Build: #N" every Log-screen report starts with, so an emailed stack
+      # trace is matched to exactly the mapping that produced it, not to
+      # whatever build happened to run last. Retrace with:
+      #   retrace Intelliverse-N-mapping.txt stacktrace.txt
+      # (Play Console needs none of this: the AAB carries its own mapping
+      # in BUNDLE-METADATA and Android vitals deobfuscates with it
+      # automatically.) Deliberately NOT put on the rolling branch release
+      # above -- that's overwritten every push, which is exactly what makes
+      # a mapping useless for an older build's trace.
+      - name: Upload R8 mapping (workflow artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Intelliverse-${{ github.run_number }}-mapping
+          path: app/build/outputs/mapping/release/mapping.txt
+          if-no-files-found: error
+
       # Each branch gets its own rolling release instead of every branch
       # sharing one "latest" tag. With more than one branch building in
       # parallel (e.g. this branch and a matter-of-choice branch developed
