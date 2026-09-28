@@ -62,14 +62,20 @@ jobs:
       # back to the debug keystore otherwise, so a run before these secrets
       # exist still builds (just not Play-eligible), rather than failing.
       - name: Decode release keystore
-        if: ${{ secrets.RELEASE_KEYSTORE_BASE64 != '' }}
+        env:
+          RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: |
-          mkdir -p app/keystore
-          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 -d > app/keystore/release.keystore
-          echo "release_keystore_path=$GITHUB_WORKSPACE/app/keystore/release.keystore" >> local.properties
-          echo "release_keystore_password=${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" >> local.properties
-          echo "release_key_alias=${{ secrets.RELEASE_KEY_ALIAS }}" >> local.properties
-          echo "release_key_password=${{ secrets.RELEASE_KEY_PASSWORD }}" >> local.properties
+          if [ -n "$RELEASE_KEYSTORE_BASE64" ]; then
+            mkdir -p app/keystore
+            echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > app/keystore/release.keystore
+            echo "release_keystore_path=$GITHUB_WORKSPACE/app/keystore/release.keystore" >> local.properties
+            echo "release_keystore_password=$RELEASE_KEYSTORE_PASSWORD" >> local.properties
+            echo "release_key_alias=$RELEASE_KEY_ALIAS" >> local.properties
+            echo "release_key_password=$RELEASE_KEY_PASSWORD" >> local.properties
+          fi
 
       # APK: the one build someone is actually meant to install and test.
       # AAB: what actually gets uploaded to Google Play -- built in the same
