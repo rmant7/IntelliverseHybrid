@@ -30,7 +30,35 @@ class SpeechConverter @Inject constructor(
         textToSpeech = TextToSpeech(context, this, Engine.GOOGLE)
     }
 
-    fun isLanguageSupported(locale: Locale): Boolean {
+    /**
+     * True when the engine can speak [locale] itself, or -- now that
+     * LanguageRegistry offers 418 languages instead of the old 49 -- when
+     * TtsVoiceFallback knows a real, actually-available closest-sounding
+     * substitute (e.g. Haitian Creole has no voice of its own, but its
+     * lexifier French does, and TtsVoiceFallback says so). A caller that
+     * only cares "can this be spoken at all" doesn't need to know which of
+     * the two it got.
+     */
+    fun isLanguageSupported(locale: Locale): Boolean = resolveSpeakableLocale(locale) != null
+
+    fun setLanguage(locale: Locale): Boolean {
+        val resolvedLocale = resolveSpeakableLocale(locale) ?: return false
+        if (textToSpeech != null) textToSpeech!!.setLanguage(resolvedLocale)
+        else this.locale = resolvedLocale // Set language inside onInit()
+        return true
+    }
+
+    /** [locale] if the engine can actually speak it right now, else its
+     * TtsVoiceFallback substitute if THAT is actually available -- never a
+     * locale this hasn't just confirmed live against the engine. */
+    private fun resolveSpeakableLocale(locale: Locale): Locale? {
+        if (isDirectlyAvailable(locale)) return locale
+        val fallbackCode = TtsVoiceFallback.closestAvailable(locale.language) ?: return null
+        val fallbackLocale = Locale(fallbackCode)
+        return fallbackLocale.takeIf { isDirectlyAvailable(it) }
+    }
+
+    private fun isDirectlyAvailable(locale: Locale): Boolean {
         val result = textToSpeech?.isLanguageAvailable(locale)
         val langAvailableResults = arrayOf(
             TextToSpeech.LANG_AVAILABLE,
@@ -38,17 +66,6 @@ class SpeechConverter @Inject constructor(
             TextToSpeech.LANG_COUNTRY_VAR_AVAILABLE
         )
         return langAvailableResults.contains(result)
-    }
-
-    fun setLanguage(locale: Locale): Boolean {
-
-        val isLanguageSupported = isLanguageSupported(locale)
-        if (isLanguageSupported) {
-            if (textToSpeech != null) textToSpeech!!.setLanguage(locale)
-            else this.locale = locale // Set language inside onInit()
-        }
-
-        return isLanguageSupported
     }
 
 
