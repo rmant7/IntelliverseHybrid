@@ -10,6 +10,24 @@
 # "-keepclasseswithmembernames class * { native <methods>; }" rule, which
 # keeps both the class name and every native method name.
 
+# --- SLF4J optional binding, not shipped -----------------------------------
+# ktor-client-logging-jvm (a declared dependency in shared + 4 mini-apps,
+# for Ktor's Logging plugin) pulls in slf4j-api. R8 (build #128) flagged
+# org.slf4j.impl.StaticLoggerBinder as missing. Checked before suppressing:
+#   - Nowhere in this codebase calls install(Logging) or references
+#     Logger.SLF4J -- grepped the whole tree, zero matches. The Ktor class
+#     that would trigger org.slf4j.LoggerFactory.getLogger() is therefore
+#     never loaded at runtime; this app's actual logger is Timber.
+#   - No SLF4J binding (logback-classic, slf4j-simple, slf4j-android) is
+#     shipped -- there was never going to be a StaticLoggerBinder to find.
+#   - Even if that Ktor class WERE reached, SLF4J 1.7.x's own
+#     LoggerFactory.bind() catches NoClassDefFoundError internally and
+#     falls back to a no-op logger -- this is its documented, intended
+#     behavior without a binding on the classpath, not a bug.
+# Dead code path referencing an optional class we don't ship, not a real
+# missing dependency -- safe to silence.
+-dontwarn org.slf4j.**
+
 # Readable stack traces after retrace: keep line numbers, hide real
 # source file names. Needed for the Log screen's emailed reports and for
 # Play Console's crash deobfuscation alike.
