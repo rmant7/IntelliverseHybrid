@@ -72,22 +72,28 @@ class StartViewModel @Inject constructor(
     private val whatsNewPrefs = context.getSharedPreferences("whats-new", Context.MODE_PRIVATE)
 
     /**
-     * True exactly once per version bump -- the first StartScreen launch
-     * after an update installs a higher versionCode than the one last
-     * recorded here. False on a fresh install (nothing recorded yet --
-     * there's nothing to call "new" relative to), and false again on every
-     * later launch of the same version once this has returned true once.
+     * True exactly once per distinct build -- keyed on BuildConfig.BUILD_NUMBER
+     * (the CI run number), not VERSION_CODE: this app ships many CI test
+     * builds per Play versionCode bump (versionCode only changes right
+     * before an actual Play upload), so a versionCode-keyed check would
+     * never fire across a whole run of test builds sharing one versionCode
+     * -- which is exactly what happened testing this. A real Play install
+     * only ever corresponds to one specific BUILD_NUMBER per versionCode
+     * anyway, so this doesn't change production behavior. Also true on the
+     * very first launch ever on a device (nothing recorded yet) -- a fresh
+     * install seeing this once is an acceptable trade for CI test builds
+     * actually being able to show it.
      */
     fun consumeShouldShowWhatsNew(): Boolean {
-        val lastSeen = whatsNewPrefs.getInt(KEY_LAST_SEEN_VERSION, 0)
-        val current = BuildConfig.VERSION_CODE
-        if (lastSeen >= current) return false
-        whatsNewPrefs.edit().putInt(KEY_LAST_SEEN_VERSION, current).apply()
-        return lastSeen != 0
+        val lastSeen = whatsNewPrefs.getString(KEY_LAST_SEEN_BUILD, null)
+        val current = BuildConfig.BUILD_NUMBER
+        if (lastSeen == current) return false
+        whatsNewPrefs.edit().putString(KEY_LAST_SEEN_BUILD, current).apply()
+        return true
     }
 
     private companion object {
-        const val KEY_LAST_SEEN_VERSION = "lastSeenVersionCode"
+        const val KEY_LAST_SEEN_BUILD = "lastSeenBuildNumber"
     }
 }
 
