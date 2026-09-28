@@ -72,6 +72,14 @@ jobs:
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: |
+          # A trailing \r/\n riding along on a copy-pasted secret is a common,
+          # invisible way for a password that "looks right" to actually not
+          # match -- strip any CR/LF from the text secrets before they're
+          # used anywhere (base64 decoding already ignores embedded
+          # newlines by design, so RELEASE_KEYSTORE_BASE64 doesn't need this).
+          RELEASE_KEYSTORE_PASSWORD="$(printf '%s' "$RELEASE_KEYSTORE_PASSWORD" | tr -d '\r\n')"
+          RELEASE_KEY_ALIAS="$(printf '%s' "$RELEASE_KEY_ALIAS" | tr -d '\r\n')"
+          RELEASE_KEY_PASSWORD="$(printf '%s' "$RELEASE_KEY_PASSWORD" | tr -d '\r\n')"
           if [ -n "$RELEASE_KEYSTORE_BASE64" ]; then
             mkdir -p app/keystore
             echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > app/keystore/release.keystore
