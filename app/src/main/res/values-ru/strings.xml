@@ -2,4 +2,7 @@
     <string name="welcome_to_intelliverse">добро пожаловать в IntelliVerse</string>
     <string name="cheaptrip_info">CheapTrip — это уникальная поисковая система, которая находит самые дешевые маршруты между городами, комбинируя авиаперелеты, автобусы, поезда и паромы.</string>
     <string name="matterofchoice_info">Matter Of Choice предлагает интерактивные сценарии, помогающие обучиться принятию решений.</string>
+    <string name="whats_new_title">Что нового</string>
+    <string name="whats_new_body">Style Translator теперь может переводить офлайн с помощью ИИ-моделей прямо на устройстве — интернет не нужен.\n\nЯзык результата теперь можно выбрать из более чем 400 языков с поиском по названию.\n\nОзвучка результата тоже поддерживает намного больше языков.</string>
+    <string name="whats_new_got_it">Понятно</string>
 </resources>

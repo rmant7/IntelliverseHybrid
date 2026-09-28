@@ -89,7 +89,31 @@ class AppLog @Inject constructor(
         val description = last.description?.takeIf { it.isNotBlank() }?.let { " ($it)" }.orEmpty()
         val entry = "$reason$description"
         record("PROCESS_EXIT", entry)
-        pendingCrashNotice = entry
+        // Only an unambiguous crash/hang pops the interruptive dialog --
+        // see isDisruptiveExit. Everything else describeExitReason covers
+        // is still written to the log above either way.
+        if (isDisruptiveExit(last.reason)) {
+            pendingCrashNotice = entry
+        }
+    }
+
+    // REASON_LOW_MEMORY/REASON_OTHER/REASON_EXCESSIVE_RESOURCE_USAGE/
+    // REASON_DEPENDENCY_DIED are routine background-process kills, not
+    // something a user would call "the app crashed" -- this app loads
+    // multi-GB local models, so Android reclaiming a backgrounded process
+    // under memory pressure happens often and is expected. Popping the
+    // "app closed unexpectedly" dialog for those meant it kept showing up
+    // on ordinary relaunches with no actual crash, which is what widening
+    // describeExitReason (see its own comment) to catch REASON_SIGNALED
+    // ended up dragging in along with it. Narrowed back down to the
+    // reasons that are genuinely a crash or a hang.
+    private fun isDisruptiveExit(reason: Int): Boolean = when (reason) {
+        ApplicationExitInfo.REASON_CRASH_NATIVE,
+        ApplicationExitInfo.REASON_CRASH,
+        ApplicationExitInfo.REASON_ANR,
+        ApplicationExitInfo.REASON_SIGNALED,
+        ApplicationExitInfo.REASON_INITIALIZATION_FAILURE -> true
+        else -> false
     }
 
     // Widened from the original 4 codes -- a real device report of "there

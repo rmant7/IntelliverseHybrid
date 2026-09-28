@@ -52,19 +52,43 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.example.shared.log.AppLog
 import com.example.shared.presentation.common.ApplicationScaffold
+import com.intelliverse.BuildConfig
 import com.intelliverse.R
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 @HiltViewModel
 class StartViewModel @Inject constructor(
     private val appLog: AppLog,
+    @ApplicationContext context: Context,
 ) : ViewModel() {
     /** Non-null exactly once, right after a cold start that followed a
      * notable abnormal exit -- see [AppLog.consumePendingCrashNotice]. */
     fun consumePendingCrashNotice(): String? = appLog.consumePendingCrashNotice()
 
     fun readLog(): String = appLog.readAll()
+
+    private val whatsNewPrefs = context.getSharedPreferences("whats-new", Context.MODE_PRIVATE)
+
+    /**
+     * True exactly once per version bump -- the first StartScreen launch
+     * after an update installs a higher versionCode than the one last
+     * recorded here. False on a fresh install (nothing recorded yet --
+     * there's nothing to call "new" relative to), and false again on every
+     * later launch of the same version once this has returned true once.
+     */
+    fun consumeShouldShowWhatsNew(): Boolean {
+        val lastSeen = whatsNewPrefs.getInt(KEY_LAST_SEEN_VERSION, 0)
+        val current = BuildConfig.VERSION_CODE
+        if (lastSeen >= current) return false
+        whatsNewPrefs.edit().putInt(KEY_LAST_SEEN_VERSION, current).apply()
+        return lastSeen != 0
+    }
+
+    private companion object {
+        const val KEY_LAST_SEEN_VERSION = "lastSeenVersionCode"
+    }
 }
 
 
@@ -84,8 +108,15 @@ fun StartScreen(
     // one-shot read -- reopening this screen later in the same session
     // won't show it again.
     var crashNotice by remember { mutableStateOf<String?>(null) }
+    // "What's new" only shows when there's no crash notice to show instead
+    // this same launch -- a real crash report is more urgent than an
+    // announcement, and stacking two AlertDialogs on the very first frame
+    // is unpleasant either way.
+    var showWhatsNew by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
-        crashNotice = viewModel.consumePendingCrashNotice()
+        val notice = viewModel.consumePendingCrashNotice()
+        crashNotice = notice
+        if (notice == null) showWhatsNew = viewModel.consumeShouldShowWhatsNew()
     }
     val dietTracker = stringResource(com.diettracker.R.string.app_name_diet_tracker)
     val schoolKiller = stringResource(com.schoolkiller.R.string.app_name_schoolkiller)
@@ -207,6 +238,19 @@ fun StartScreen(
             dismissButton = {
                 TextButton(onClick = { crashNotice = null }) {
                     Text(stringResource(com.example.shared.R.string.cancel))
+                }
+            }
+        )
+    }
+
+    if (showWhatsNew) {
+        AlertDialog(
+            onDismissRequest = { showWhatsNew = false },
+            title = { Text(stringResource(R.string.whats_new_title)) },
+            text = { Text(stringResource(R.string.whats_new_body)) },
+            confirmButton = {
+                Button(onClick = { showWhatsNew = false }) {
+                    Text(stringResource(R.string.whats_new_got_it))
                 }
             }
         )
