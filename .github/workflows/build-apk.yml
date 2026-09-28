@@ -58,9 +58,13 @@ jobs:
           echo "app_metrica_api_key=${{ secrets.APP_METRICA_API_KEY }}" >> local.properties
 
       # Real Play Store upload key, only when RELEASE_KEYSTORE_BASE64 has
-      # actually been added as a repo secret -- app/build.gradle.kts falls
-      # back to the debug keystore otherwise, so a run before these secrets
-      # exist still builds (just not Play-eligible), rather than failing.
+      # actually been added as a repo secret AND the password/alias actually
+      # open it -- app/build.gradle.kts falls back to the debug keystore
+      # otherwise. Validated here with `keytool -list`, not left for
+      # packageRelease to discover: a bad password there fails the whole
+      # build (assembleRelease AND bundleRelease both lost, run #110), where
+      # someone just wants an installable APK out of a build regardless of
+      # whether the Play-signing secrets happen to be right yet.
       - name: Decode release keystore
         env:
           RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
@@ -71,10 +75,16 @@ jobs:
           if [ -n "$RELEASE_KEYSTORE_BASE64" ]; then
             mkdir -p app/keystore
             echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > app/keystore/release.keystore
-            echo "release_keystore_path=$GITHUB_WORKSPACE/app/keystore/release.keystore" >> local.properties
-            echo "release_keystore_password=$RELEASE_KEYSTORE_PASSWORD" >> local.properties
-            echo "release_key_alias=$RELEASE_KEY_ALIAS" >> local.properties
-            echo "release_key_password=$RELEASE_KEY_PASSWORD" >> local.properties
+            if keytool -list -keystore app/keystore/release.keystore \
+                -storepass "$RELEASE_KEYSTORE_PASSWORD" -alias "$RELEASE_KEY_ALIAS" > /dev/null 2>&1; then
+              echo "release_keystore_path=$GITHUB_WORKSPACE/app/keystore/release.keystore" >> local.properties
+              echo "release_keystore_password=$RELEASE_KEYSTORE_PASSWORD" >> local.properties
+              echo "release_key_alias=$RELEASE_KEY_ALIAS" >> local.properties
+              echo "release_key_password=$RELEASE_KEY_PASSWORD" >> local.properties
+            else
+              echo "::warning::RELEASE_KEYSTORE_BASE64 is set but keytool couldn't open it with RELEASE_KEYSTORE_PASSWORD/RELEASE_KEY_ALIAS -- falling back to debug signing for this build."
+              rm -f app/keystore/release.keystore
+            fi
           fi
 
       # APK: the one build someone is actually meant to install and test.
