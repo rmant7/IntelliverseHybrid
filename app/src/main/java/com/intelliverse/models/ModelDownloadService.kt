@@ -87,7 +87,15 @@ class ModelDownloadService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Intelliverse")
             .setContentText(text)
-            .setSmallIcon(com.intelliverse.R.mipmap.ic_launcher)
+            // NOT R.mipmap.ic_launcher: on API 26+ that resolves to an
+            // <adaptive-icon> (background+foreground layers), which
+            // Notification.Builder can't render as a status-bar icon --
+            // confirmed on a real device: the notification silently never
+            // appeared even with POST_NOTIFICATIONS granted, while the
+            // foreground service itself kept running (downloads still
+            // succeeded). ic_launcher_foreground is a plain vector, safe
+            // to use directly.
+            .setSmallIcon(com.intelliverse.R.drawable.ic_launcher_foreground)
             .setOngoing(true)
             .setContentIntent(openApp)
             .build()
