@@ -58,7 +58,7 @@ class ResultViewModel @Inject constructor(
      * point (that only exists after Gemini's own vision call resolves).
      */
     override suspend fun additionalProviderCount(): Int =
-        if (imageUsed) 0 else LOCAL_MODELS.count { (seed, _) -> modelStore.isInstalled(seed) }
+        if (imageUsed) 0 else ALL_LOCAL_MODELS.count { (seed, _) -> modelStore.isInstalled(seed) }
 
     override fun CoroutineScope.launchAdditionalProviders(imagesBase64: List<String>) {
         if (!imageUsed) launch { runLocalModels() }
@@ -72,30 +72,68 @@ class ResultViewModel @Inject constructor(
      * and avoids two coroutines racing to load/evict each other's model
      * mid-generation.
      */
+    /**
+     * OmniTranslate is only attempted if neither other installed local
+     * model produced a result -- a real device test found its translation
+     * quality noticeably weaker than TranslateGemma/MADLAD, especially on
+     * rarer and RTL languages (Hebrew came back wrong), so there's no
+     * reason to show it alongside a translation that already worked. Still
+     * counted in [additionalProviderCount] either way (it's "installed",
+     * whether or not it ends up actually running this time), so a skip
+     * reports a result too -- see the "skipped" failure below -- rather
+     * than leaving the progress bar short of 1f.
+     */
     private suspend fun runLocalModels() {
         val targetLangCode = selectedLanguage.code
         val targetLangName = selectedLanguage.promptName
         val sourceText = passedEditedResult.ifBlank { userTask }
-        for ((seed, aiService) in LOCAL_MODELS) {
+
+        var anyPrimarySucceeded = false
+        for ((seed, aiService) in PRIMARY_LOCAL_MODELS) {
             if (!modelStore.isInstalled(seed)) continue
-            try {
-                val loaded = localLlamaSession.load(modelStore.finalFile(seed).absolutePath)
-                if (!loaded) {
-                    onSolutionResult(
-                        Result.failure(IllegalStateException("Failed to load ${seed.title}")),
-                        aiService,
-                    )
-                    continue
-                }
-                val prompt = TranslationPrompts.buildPrompt(seed, targetLangCode, targetLangName, sourceText)
-                val raw = StringBuilder()
-                localLlamaSession.generate(prompt).collect { token -> raw.append(token) }
-                val cleaned = TranslationPrompts.stripThinking(raw.toString())
-                onSolutionResult(Result.success(withProviderFooter(cleaned, "Local", seed.title)), aiService)
-            } catch (e: Exception) {
-                Timber.w(e, "Local model ${seed.id} failed to produce a translation")
-                onSolutionResult(Result.failure(e), aiService)
+            val succeeded = runLocalModel(seed, aiService, targetLangCode, targetLangName, sourceText)
+            anyPrimarySucceeded = anyPrimarySucceeded || succeeded
+        }
+
+        val (omniSeed, omniService) = OMNITRANSLATE_MODEL ?: return
+        if (!modelStore.isInstalled(omniSeed)) return
+        if (anyPrimarySucceeded) {
+            onSolutionResult(
+                Result.failure(IllegalStateException("Skipped -- another local model already answered")),
+                omniService,
+            )
+        } else {
+            runLocalModel(omniSeed, omniService, targetLangCode, targetLangName, sourceText)
+        }
+    }
+
+    /** Returns true on a successful translation, false on any failure (load or generation) -- reports through [onSolutionResult] either way. */
+    private suspend fun runLocalModel(
+        seed: LocalModelSeed,
+        aiService: AIService,
+        targetLangCode: String,
+        targetLangName: String,
+        sourceText: String,
+    ): Boolean {
+        try {
+            val loaded = localLlamaSession.load(modelStore.finalFile(seed).absolutePath)
+            if (!loaded) {
+                onSolutionResult(
+                    Result.failure(IllegalStateException("Failed to load ${seed.title}")),
+                    aiService,
+                )
+                return false
             }
+            val prompt = TranslationPrompts.buildPrompt(seed, targetLangCode, targetLangName, sourceText)
+            val raw = StringBuilder()
+            localLlamaSession.generate(prompt).collect { token -> raw.append(token) }
+            val cleaned = TranslationPrompts.stripThinking(raw.toString())
+            onSolutionResult(Result.success(withProviderFooter(cleaned, "Local", seed.title)), aiService)
+            return true
+        } catch (e: Exception) {
+            Timber.w(e, "Local model ${seed.id} failed to produce a translation")
+            onSolutionResult(Result.failure(e), aiService)
+            return false
         }
     }
 
@@ -243,10 +281,15 @@ class ResultViewModel @Inject constructor(
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeStyleSolutionResponse(response)
 
     private companion object {
-        val LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> = listOfNotNull(
+        // OmniTranslate deliberately excluded here -- see runLocalModels'
+        // own doc comment on why it's only attempted as a fallback.
+        val PRIMARY_LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> = listOfNotNull(
             TranslationModels.byId("translategemma-4b")?.let { it to AIService.LOCAL_TRANSLATEGEMMA },
-            TranslationModels.byId("omnitranslate-1-1")?.let { it to AIService.LOCAL_OMNITRANSLATE },
             TranslationModels.byId("madlad400-3b-mt-q4")?.let { it to AIService.LOCAL_MADLAD },
         )
+        val OMNITRANSLATE_MODEL: Pair<LocalModelSeed, AIService>? =
+            TranslationModels.byId("omnitranslate-1-1")?.let { it to AIService.LOCAL_OMNITRANSLATE }
+        val ALL_LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> =
+            PRIMARY_LOCAL_MODELS + listOfNotNull(OMNITRANSLATE_MODEL)
     }
 }

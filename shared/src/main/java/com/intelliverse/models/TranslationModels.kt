@@ -20,14 +20,6 @@ object TranslationModels {
             approxSizeBytes = 2_450_000_000,
         ),
         LocalModelSeed(
-            id = "omnitranslate-1-1",
-            title = "OmniTranslate 1.1",
-            repoIds = listOf("mradermacher/OmniTranslate-1.1-GGUF"),
-            paramsLabel = "0.6B · Qwen3 · decoder-only",
-            note = "Small, fast translation-only model.",
-            approxSizeBytes = 500_000_000,
-        ),
-        LocalModelSeed(
             id = "madlad400-3b-mt-q4",
             title = "MADLAD-400 3B",
             repoIds = listOf(
@@ -38,6 +30,20 @@ object TranslationModels {
             note = "Broad language coverage, T5 encoder-decoder architecture.",
             approxSizeBytes = 1_650_000_000,
             isT5EncoderDecoder = true,
+        ),
+        // Listed last -- a real device test found its translation quality
+        // noticeably weaker than the other two, especially on rarer/RTL
+        // languages (Hebrew), despite the model card's own claims. See
+        // ResultViewModel.LOCAL_MODELS: it's also run last, and only
+        // attempted at all when neither other installed local model
+        // produced a result.
+        LocalModelSeed(
+            id = "omnitranslate-1-1",
+            title = "OmniTranslate 1.1",
+            repoIds = listOf("mradermacher/OmniTranslate-1.1-GGUF"),
+            paramsLabel = "0.6B · Qwen3 · decoder-only",
+            note = "Small, fast translation-only model -- weaker quality than the others, used as a fallback.",
+            approxSizeBytes = 500_000_000,
         ),
     )
 
