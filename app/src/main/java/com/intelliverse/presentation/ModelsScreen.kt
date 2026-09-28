@@ -1,5 +1,10 @@
 package com.intelliverse.presentation
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,8 +39,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.intelliverse.models.DownloadState
@@ -52,6 +59,25 @@ import com.intelliverse.models.ModelsViewModel
 @Composable
 fun ModelsScreen(navController: NavController, viewModel: ModelsViewModel = hiltViewModel()) {
     val states by viewModel.downloads.states.collectAsState()
+
+    // POST_NOTIFICATIONS is declared in the manifest but, on API 33+, must
+    // also be requested at runtime -- otherwise ModelDownloadService's
+    // foreground-service notification silently never appears (the download
+    // itself still runs either way; only the visible progress notification
+    // is affected). Requested right before a download starts rather than
+    // eagerly on screen entry, so it's tied to the action that actually
+    // needs it.
+    val context = LocalContext.current
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { /* download proceeds regardless -- see comment above */ }
+    fun ensureNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -84,7 +110,7 @@ fun ModelsScreen(navController: NavController, viewModel: ModelsViewModel = hilt
                         seed = seed,
                         state = states[seed.id] ?: DownloadState.Idle,
                         viewModel = viewModel,
-                        onDownload = { viewModel.downloads.start(seed) },
+                        onDownload = { ensureNotificationPermission(); viewModel.downloads.start(seed) },
                         onCancel = { viewModel.downloads.cancel(seed) },
                         onDelete = { viewModel.downloads.delete(seed) },
                     )
