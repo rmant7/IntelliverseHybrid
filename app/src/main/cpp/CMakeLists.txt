@@ -105,6 +105,15 @@ add_subdirectory(${llamacpp_SOURCE_DIR}/tools/mtmd ${CMAKE_CURRENT_BINARY_DIR}/m
 
 add_library(${LOCALAI_JNI_LIB} SHARED llama_jni.cpp)
 
+# Google Play requires native libraries to support 16 KB memory page
+# devices (rejected the first real-signing-key upload over exactly this).
+# llama/ggml/mtmd above are static (BUILD_SHARED_LIBS is OFF), so this .so
+# is the only actual shared object this file produces and packages into the
+# APK -- the only one that needs its ELF segments 16 KB-aligned. Set
+# explicitly rather than relying on the auto-provisioned NDK's own default,
+# since that NDK version isn't pinned here and older ones default to 4 KB.
+target_link_options(${LOCALAI_JNI_LIB} PRIVATE "-Wl,-z,max-page-size=16384")
+
 target_include_directories(${LOCALAI_JNI_LIB} PRIVATE
     ${llamacpp_SOURCE_DIR}/include
     ${llamacpp_SOURCE_DIR}/ggml/include
