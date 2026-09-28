@@ -12,9 +12,20 @@ import com.intelliverse.models.LocalModelSeed
  * format.
  */
 object TranslationPrompts {
-    fun buildPrompt(seed: LocalModelSeed, targetLang: String, text: String): String = when {
+    /**
+     * [targetLangCode] is a bare ISO-639-1 code ("he") -- what MADLAD's tag
+     * format and the OmniTranslate lookup table both key on. [targetLangName]
+     * is the full English name ("Hebrew language") -- what an ordinary chat
+     * model actually needs: a real device test asked TranslateGemma for "he"
+     * verbatim and got Arabic back (a bare 2-letter code is genuinely
+     * ambiguous to a small model outside a fixed code table, unlike
+     * OmniTranslate/MADLAD which were fine-tuned on exact codes). Matches
+     * rmant7/AI's own proven buildChatPrompt, which always passed a full
+     * language name, never a bare code, to this class of model.
+     */
+    fun buildPrompt(seed: LocalModelSeed, targetLangCode: String, targetLangName: String, text: String): String = when {
         // MADLAD-400's own T5 tag format -- no chat framing at all.
-        seed.isT5EncoderDecoder -> "<2$targetLang> $text"
+        seed.isT5EncoderDecoder -> "<2$targetLangCode> $text"
         // OmniTranslate's model card documents an ISO-639-3 + script code
         // ("rus_Cyrl", not "ru") as performing much better than a bare
         // 2-letter code or language name -- confirmed on a real device: a
@@ -23,12 +34,12 @@ object TranslationPrompts {
         // typed for a language not in this short table, rather than
         // blocking the test entirely.
         seed.id == "omnitranslate-1-1" -> {
-            val code = OMNITRANSLATE_CODES[targetLang.trim().lowercase()] ?: targetLang
+            val code = OMNITRANSLATE_CODES[targetLangCode.trim().lowercase()] ?: targetLangCode
             "Translate to $code: $text"
         }
         // Ordinary decoder-only chat GGUF (TranslateGemma) -- a plain
-        // instruction through its own chat template.
-        else -> "Translate the following text to $targetLang. Reply with only the translation, no explanation:\n\n$text"
+        // instruction through its own chat template, full language name.
+        else -> "Translate the following text to $targetLangName. Reply with only the translation, no explanation:\n\n$text"
     }
 
     /**

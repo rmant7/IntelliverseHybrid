@@ -15,6 +15,18 @@ if (localPropertiesFile.exists()) {
 }
 val appMetricaApiKey = localProperties.getProperty("app_metrica_api_key")
 
+// Real Play Store signing key, written into local.properties by CI from the
+// RELEASE_KEYSTORE_BASE64/RELEASE_KEYSTORE_PASSWORD/RELEASE_KEY_ALIAS/
+// RELEASE_KEY_PASSWORD repo secrets (see .github/workflows/build-apk.yml).
+// Absent locally and on any CI run before those secrets are added -- falls
+// back to the debug signingConfig below rather than failing the build, the
+// same graceful-degradation pattern this file already uses for API keys.
+val releaseKeystorePath = localProperties.getProperty("release_keystore_path")
+val releaseKeystorePassword = localProperties.getProperty("release_keystore_password")
+val releaseKeyAlias = localProperties.getProperty("release_key_alias")
+val releaseKeyPassword = localProperties.getProperty("release_key_password")
+val hasReleaseSigning = !releaseKeystorePath.isNullOrBlank() && file(releaseKeystorePath).exists()
+
 // Set by CI via -PbuildNumber=<github.run_number> so a build coming off the
 // "latest" release can be identified from inside the app itself (Log screen
 // header) -- matches the Intelliverse-<run_number>.apk filename in the
@@ -75,6 +87,18 @@ android {
             keyAlias = "androiddebugkey"
             keyPassword = "android"
         }
+        // Only registered once the real keystore is actually present --
+        // referencing a signingConfigs entry that doesn't exist is a Gradle
+        // configuration error, so this can't be an always-present config
+        // with blank credentials.
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(releaseKeystorePath!!)
+                storePassword = releaseKeystorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
     }
 
     defaultConfig {
@@ -118,14 +142,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 //"proguard-rules.pro"
             )
-            // Without a signingConfig, assembleRelease produces an unsigned
-            // APK that Android's package manager refuses to install at all --
-            // fine for a Play Store upload (which signs it itself), useless
-            // as the one APK someone is expected to actually install and test.
-            // The debug keystore is not a real release signature: this build
-            // still isn't suitable for the Play Store, only for installing
-            // and testing outside it.
-            signingConfig = signingConfigs.getByName("debug")
+            // Real upload-key signature once RELEASE_KEYSTORE_BASE64 etc. are
+            // set (see the secrets read above) -- otherwise falls back to
+            // the debug keystore so the build still produces something
+            // installable for testing, just not Play-eligible.
+            signingConfig = if (hasReleaseSigning) signingConfigs.getByName("release") else signingConfigs.getByName("debug")
         }
         all {
             buildConfigField("String", "app_metrica_api_key", "\"$appMetricaApiKey\"")

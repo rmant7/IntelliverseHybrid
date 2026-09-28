@@ -73,7 +73,8 @@ class ResultViewModel @Inject constructor(
      * mid-generation.
      */
     private suspend fun runLocalModels() {
-        val targetLang = selectedLanguage.locale
+        val targetLangCode = selectedLanguage.locale
+        val targetLangName = selectedLanguage.languageName
         val sourceText = passedEditedResult.ifBlank { userTask }
         for ((seed, aiService) in LOCAL_MODELS) {
             if (!modelStore.isInstalled(seed)) continue
@@ -86,7 +87,7 @@ class ResultViewModel @Inject constructor(
                     )
                     continue
                 }
-                val prompt = TranslationPrompts.buildPrompt(seed, targetLang, sourceText)
+                val prompt = TranslationPrompts.buildPrompt(seed, targetLangCode, targetLangName, sourceText)
                 val raw = StringBuilder()
                 localLlamaSession.generate(prompt).collect { token -> raw.append(token) }
                 val cleaned = TranslationPrompts.stripThinking(raw.toString())

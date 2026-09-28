@@ -11,6 +11,10 @@ app/build/
 
 app/google-services.json
 
+# Real Play Store signing key -- only ever materialized from the
+# RELEASE_KEYSTORE_BASE64 CI secret, never committed.
+app/keystore/release.keystore
+
 # Ignore OS-specific files
 gradle/.DS_Store
 .DS_Store

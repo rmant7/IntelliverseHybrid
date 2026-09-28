@@ -57,26 +57,49 @@ jobs:
           echo "gigachat_api_key=${{ secrets.GIGACHAT_API_KEY_1 }},${{ secrets.GIGACHAT_API_KEY_2 }}" >> local.properties
           echo "app_metrica_api_key=${{ secrets.APP_METRICA_API_KEY }}" >> local.properties
 
-      # Debug-signed (see app/build.gradle.kts's release signingConfig), not
-      # a real Play Store release build -- just the one APK someone is
-      # actually meant to install and test. No separate debug variant: it
-      # only ever differed by BuildConfig.DEBUG and the signing key, and
-      # this project's own diagnostic logging (AppLogTree) is planted
-      # unconditionally either way.
-      - name: Build APK
-        run: ./gradlew assembleRelease --no-daemon -PbuildNumber=${{ github.run_number }}
+      # Real Play Store upload key, only when RELEASE_KEYSTORE_BASE64 has
+      # actually been added as a repo secret -- app/build.gradle.kts falls
+      # back to the debug keystore otherwise, so a run before these secrets
+      # exist still builds (just not Play-eligible), rather than failing.
+      - name: Decode release keystore
+        if: ${{ secrets.RELEASE_KEYSTORE_BASE64 != '' }}
+        run: |
+          mkdir -p app/keystore
+          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 -d > app/keystore/release.keystore
+          echo "release_keystore_path=$GITHUB_WORKSPACE/app/keystore/release.keystore" >> local.properties
+          echo "release_keystore_password=${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" >> local.properties
+          echo "release_key_alias=${{ secrets.RELEASE_KEY_ALIAS }}" >> local.properties
+          echo "release_key_password=${{ secrets.RELEASE_KEY_PASSWORD }}" >> local.properties
 
-      - name: Rename APK with the build number
+      # APK: the one build someone is actually meant to install and test.
+      # AAB: what actually gets uploaded to Google Play -- built in the same
+      # run, off the same signing config, so a green build here means both
+      # are ready together rather than the AAB being a separate, untested
+      # afterthought at upload time.
+      - name: Build APK + AAB
+        run: ./gradlew assembleRelease bundleRelease --no-daemon -PbuildNumber=${{ github.run_number }}
+
+      - name: Rename outputs with the build number
         run: |
           mkdir -p app/build/outputs/apk/release/named
           cp app/build/outputs/apk/release/app-release.apk \
             "app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
+          mkdir -p app/build/outputs/bundle/release/named
+          cp app/build/outputs/bundle/release/app-release.aab \
+            "app/build/outputs/bundle/release/named/Intelliverse-${{ github.run_number }}.aab"
 
       - name: Upload APK (workflow artifact)
         uses: actions/upload-artifact@v4
         with:
           name: Intelliverse-${{ github.run_number }}
           path: app/build/outputs/apk/release/named/*.apk
+          if-no-files-found: error
+
+      - name: Upload AAB (workflow artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Intelliverse-${{ github.run_number }}-aab
+          path: app/build/outputs/bundle/release/named/*.aab
           if-no-files-found: error
 
       # Each branch gets its own rolling release instead of every branch
@@ -112,15 +135,16 @@ jobs:
           NOTES="Intelliverse, build #${{ github.run_number }} -- commit ${{ github.sha }}, branch \`${{ github.ref_name }}\`.
           Always overwritten by the next push to this branch -- not a pinned version, just the latest build."
           APK="app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
+          AAB="app/build/outputs/bundle/release/named/Intelliverse-${{ github.run_number }}.aab"
           if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             for asset in $(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json assets -q '.assets[].name'); do
               gh release delete-asset "$RELEASE_TAG" "$asset" --repo "$GITHUB_REPOSITORY" --yes
             done
-            gh release upload "$RELEASE_TAG" "$APK" --repo "$GITHUB_REPOSITORY"
+            gh release upload "$RELEASE_TAG" "$APK" "$AAB" --repo "$GITHUB_REPOSITORY"
             gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
               --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" --notes "$NOTES"
           else
-            gh release create "$RELEASE_TAG" "$APK" \
+            gh release create "$RELEASE_TAG" "$APK" "$AAB" \
               --repo "$GITHUB_REPOSITORY" \
               --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" \
               --notes "$NOTES"

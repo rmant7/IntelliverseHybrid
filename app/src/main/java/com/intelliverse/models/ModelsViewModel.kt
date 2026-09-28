@@ -60,7 +60,14 @@ class ModelsViewModel @Inject constructor(
                     }
                     loadedModelId = seed.id
                 }
-                val prompt = TranslationPrompts.buildPrompt(seed, targetLang, text)
+                // This quick-test field takes a bare code ("he"), not a
+                // full name -- Locale resolves the English display name
+                // from it for the chat-model prompt path (see
+                // TranslationPrompts.buildPrompt's own doc comment on why a
+                // bare code alone confused TranslateGemma on a real device).
+                val targetLangName = java.util.Locale(targetLang).getDisplayLanguage(java.util.Locale.ENGLISH)
+                    .ifBlank { targetLang }
+                val prompt = TranslationPrompts.buildPrompt(seed, targetLang, targetLangName, text)
                 // Accumulated raw, then stripped once complete -- a
                 // reasoning model's <think> block can't be cleanly removed
                 // from a live-streamed partial string, so this quick-test

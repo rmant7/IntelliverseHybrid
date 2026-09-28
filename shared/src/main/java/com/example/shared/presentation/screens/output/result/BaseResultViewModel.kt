@@ -7,6 +7,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.shared.BuildConfig
 import com.example.shared.UnableToAssistException
 import com.example.shared.ads.InterstitialAdUseCase
 import com.example.shared.data.network.gemini_api.client.GeminiApiService
@@ -329,11 +330,13 @@ abstract class BaseResultViewModel(
         updateSolutionProgress(0.0f)
         geminiAttempts.set(2)
         geminiThinkingAttempts.set(1)
-        // +1 for GigaChat (always attempted); + however many extra
-        // providers this sub-app's own launchAdditionalProviders() will
-        // actually run this time (StyleTranslator: its installed local
-        // models) -- 0 for every other sub-app, which never overrides this.
-        maxSolutionResultsCapacity = PRIMARY_SERVICES.size + 1 + additionalProviderCount()
+        // +1 for GigaChat, debug builds only (release ships no GigaChat key
+        // at all -- see shared/build.gradle.kts and gigaChat()'s own gate
+        // below); + however many extra providers this sub-app's own
+        // launchAdditionalProviders() will actually run this time
+        // (StyleTranslator: its installed local models) -- 0 for every other
+        // sub-app, which never overrides this.
+        maxSolutionResultsCapacity = PRIMARY_SERVICES.size + (if (BuildConfig.DEBUG) 1 else 0) + additionalProviderCount()
 
         val imagesBase64 = if (imageUsed) {
             passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) }
@@ -357,7 +360,7 @@ abstract class BaseResultViewModel(
                 // rewrite onto direct HTTP.
                 launch { groq(imagesBase64) }
             }
-            launch { gigaChat() }
+            if (BuildConfig.DEBUG) launch { gigaChat() }
             launchAdditionalProviders(imagesBase64)
         }
     }

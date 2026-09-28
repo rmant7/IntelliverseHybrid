@@ -42,12 +42,20 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // GigaChat stays debug-only (see BaseResultViewModel's
+            // BuildConfig.DEBUG gate on gigaChat()) -- its network security
+            // config trusts a Russian government CA chain (sberbank.ru),
+            // unusual enough to risk Play Store review scrutiny, and a
+            // release build has no business shipping a key it never calls.
+            buildConfigField("String", "gigachat_api_key", "\"\"")
+        }
+        debug {
+            buildConfigField("String", "gigachat_api_key", "\"$gigachatApiKey\"")
         }
         all {
             buildConfigField("boolean", "is_advertisement_disabled", isAdvertisementDisabled)
             buildConfigField("String", "gemini_api_key", "\"$geminiApiKey\"")
             buildConfigField("String", "groq_api_key", "\"$groqApiKey\"")
-            buildConfigField("String", "gigachat_api_key", "\"$gigachatApiKey\"")
         }
     }
     compileOptions {
