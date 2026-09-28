@@ -39,7 +39,7 @@ sealed class Screen: IScreen {
         val passedEditedResult: String,
         val userTask: String,
         val transformationLevel: String,
-        val selectedLanguageIndex: Int,
+        val selectedLanguageCode: String,
         val secretShowAd: Boolean,
         val sourceGender: String?,
         val targetGender: String?,
@@ -59,7 +59,7 @@ sealed class Screen: IScreen {
                 Uri.encode(passedEditedResult),
                 Uri.encode(sanitize(userTask)),
                 transformationLevel,
-                selectedLanguageIndex.toString(),
+                Uri.encode(selectedLanguageCode),
                 secretShowAd.toString()
             ).joinToString("/")
 
@@ -91,7 +91,7 @@ sealed class Screen: IScreen {
                 "passedEditedResult",
                 "userTask",
                 "transformationLevel",
-                "selectedLanguageIndex",
+                "selectedLanguageCode",
                 "secretShowAd"
             ).joinToString("/") { "{$it}" }
 

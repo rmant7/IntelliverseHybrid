@@ -84,7 +84,7 @@ class ResultViewModel @Inject constructor(
 
         - The response **must include a \"titles\" section** containing localized section headers.
         - **Use the exact keys from the example JSON below for \"titles\"**.
-        - The response must **translate** section titles (inside \"titles\") into ${selectedLanguage.languageName}.
+        - The response must **translate** section titles (inside \"titles\") into ${selectedLanguage.promptName}.
 
         Strictly format the response as a JSON object with the following structure:
 
@@ -115,7 +115,7 @@ class ResultViewModel @Inject constructor(
         }
 
         $doubleQuotes
-        ${jsonResponseLanguage(selectedLanguage.languageName)}
+        ${jsonResponseLanguage(selectedLanguage.promptName)}
     """.trimIndent()
         }
         prompt = buildSolvingPrompt()

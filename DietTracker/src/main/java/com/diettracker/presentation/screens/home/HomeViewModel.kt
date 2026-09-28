@@ -5,7 +5,8 @@ import com.diettracker.data.DataStoreRepository
 import com.example.shared.data.repositories.DeleteFileRepository
 import com.example.shared.data.repositories.SaveFileRepository
 import com.diettracker.domain.ParameterProperties
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
+import com.example.shared.domain.language.Language
+import com.example.shared.domain.language.LanguageRegistry
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.ads.OpenAdUseCase
 import com.example.shared.domain.prompt.options.GenderOption
@@ -63,7 +64,7 @@ class HomeViewModel @Inject constructor(
         persistPhysicalActivityOptionState(defaultProperties.physicalActivity)
     }
 
-    fun updateSelectedLanguageOption(newLanguageSelection: SolutionLanguageOption) {
+    fun updateSelectedLanguageOption(newLanguageSelection: Language) {
         _parametersPropertiesState.update { currentState ->
             currentState.copy(language = newLanguageSelection)
         }
@@ -105,9 +106,9 @@ class HomeViewModel @Inject constructor(
         persistAgeOptionState(newAge)
     }
 
-    private fun persistLanguageOptionState(solutionLanguageOption: SolutionLanguageOption) {
+    private fun persistLanguageOptionState(language: Language) {
         viewModelScope.launch(Dispatchers.IO) {
-            dataStoreRepository.persistLanguageOptionState(languageOption = solutionLanguageOption)
+            dataStoreRepository.persistLanguageOptionState(language = language)
         }
     }
 
@@ -211,19 +212,19 @@ class HomeViewModel @Inject constructor(
     private fun readLanguageOptionState() {
         viewModelScope.launch {
             dataStoreRepository.readLanguageOptionState
-                .map { SolutionLanguageOption.valueOf(it) }
+                .map { LanguageRegistry.byCode(it) ?: LanguageRegistry.DEFAULT }
                 .catch { exception ->
                     Timber.e(exception, "Error reading language option state")
-                    updateSelectedLanguageOption(SolutionLanguageOption.DEFAULT)
+                    updateSelectedLanguageOption(LanguageRegistry.DEFAULT)
                 }
-                .collect { languageOption ->
-                    updateSelectedLanguageOption(languageOption)
+                .collect { language ->
+                    updateSelectedLanguageOption(language)
                 }
         }
     }
 
-    fun getSelectedLanguage(): Int {
-        return parametersPropertiesState.value.language.arrayIndex
+    fun getSelectedLanguage(): String {
+        return parametersPropertiesState.value.language.code
     }
 
 }

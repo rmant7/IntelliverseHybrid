@@ -39,7 +39,7 @@ sealed class Screen: IScreen {
         val userTask: String,
         val grade: Int,
         val detailsLevel: String,
-        val selectedLanguageIndex: Int,
+        val selectedLanguageCode: String,
         val secretShowAd: Boolean
     ) : Screen() {
 
@@ -49,11 +49,11 @@ sealed class Screen: IScreen {
                 Uri.encode(
                     sanitize(userTask)
                 )
-            }/$grade/${Uri.encode(detailsLevel)}/$selectedLanguageIndex/$secretShowAd"
+            }/$grade/${Uri.encode(detailsLevel)}/${Uri.encode(selectedLanguageCode)}/$secretShowAd"
         }
 
         override fun templateRoute(): String {
-            return "$prefixRoute/{passedImageUris}/{passedEditedResult}/{userTask}/{grade}/{detailsLevel}/{selectedLanguageIndex}/{secretShowAd}"
+            return "$prefixRoute/{passedImageUris}/{passedEditedResult}/{userTask}/{grade}/{detailsLevel}/{selectedLanguageCode}/{secretShowAd}"
         }
 
         override val labelId: Int

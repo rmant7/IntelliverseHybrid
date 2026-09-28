@@ -456,6 +456,46 @@ object LanguageRegistry {
     }
 
     /**
+     * Every app's own persisted "selected language" preference (DataStore/
+     * SharedPreferences) stored the old SolutionLanguageOption enum's own
+     * `.name` -- e.g. "CHINESE_SIMPLIFIED" -- not a code. A pre-existing
+     * install reading that value back after this migration needs it
+     * resolved to the equivalent registry entry rather than silently
+     * falling back to English. All 49 of the old enum's names map onto a
+     * registry code one-to-one (confirmed when the registry itself was
+     * built: every code the old enum used already exists in MADLAD's own
+     * 417-entry list except Tagalog, added separately).
+     */
+    fun byLegacyEnumName(name: String): Language? = LEGACY_ENUM_NAME_TO_CODE[name]?.let(::byCode)
+
+    private val LEGACY_ENUM_NAME_TO_CODE: Map<String, String> = mapOf(
+        "AMHARIC" to "am", "ARABIC" to "ar", "BENGALI" to "bn", "BULGARIAN" to "bg",
+        "CHINESE_SIMPLIFIED" to "zh", "CROATIAN" to "hr", "CZECH" to "cs", "DANISH" to "da",
+        "DUTCH" to "nl", "ENGLISH" to "en", "ESTONIAN" to "et", "FINNISH" to "fi",
+        "FRENCH" to "fr", "GERMAN" to "de", "GREEK" to "el", "GUJARATI" to "gu",
+        "HEBREW" to "he", "HINDI" to "hi", "HUNGARIAN" to "hu", "INDONESIAN" to "id",
+        "ITALIAN" to "it", "JAPANESE" to "ja", "KANNADA" to "kn", "KOREAN" to "ko",
+        "LATVIAN" to "lv", "LITHUANIAN" to "lt", "MALAY" to "ms", "MARATHI" to "mr",
+        "NORWEGIAN" to "no", "PASHTO" to "ps", "PERSIAN" to "fa", "POLISH" to "pl",
+        "PORTUGUESE" to "pt", "ROMANIAN" to "ro", "RUSSIAN" to "ru", "SERBIAN" to "sr",
+        "SLOVAK" to "sk", "SLOVENIAN" to "sl", "SPANISH" to "es", "SWAHILI" to "sw",
+        "SWEDISH" to "sv", "TAGALOG" to "tl", "TAMIL" to "ta", "TELUGU" to "te",
+        "THAI" to "th", "TURKISH" to "tr", "UKRAINIAN" to "uk", "URDU" to "ur",
+        "VIETNAMESE" to "vi",
+    )
+
+    /**
+     * Resolves a value read back from persisted storage, whichever format
+     * it's in -- a registry code (new installs, and every install once this
+     * migration has run once), an old enum name (a pre-existing install's
+     * first read after updating), or unresolvable (never persisted, or
+     * corrupted) -- to [byCode]'s fallback rather than three call sites
+     * each reimplementing this chain themselves.
+     */
+    fun byPersistedValue(value: String?): Language? =
+        value?.let { byCode(it) ?: byLegacyEnumName(it) }
+
+    /**
      * Default "quick list" the language picker shows before a user has
      * picked enough languages themselves to build a real recent-languages
      * list -- English first, then the primary language of each of this

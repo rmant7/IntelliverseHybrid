@@ -74,7 +74,7 @@ private fun NavigationController(
         composable(Screen.Home.createRoute()) {
 
             HomeScreen(
-                onNavigateToResultScreen = { uriList, userTask, transformationLevel, selectedLanguageIndex, secretShowAd, sourceGender, targetGender, sourceAge, targetAge, category, style, mentality, tonePreference, translationScale ->
+                onNavigateToResultScreen = { uriList, userTask, transformationLevel, selectedLanguageCode, secretShowAd, sourceGender, targetGender, sourceAge, targetAge, category, style, mentality, tonePreference, translationScale ->
                     // removes the option to navigate to the ocr screen, as it becomes invalid
                     // when new results are computed
                     val ocrScreen = lastScreensVersions.find { it is Screen.Ocr }
@@ -86,7 +86,7 @@ private fun NavigationController(
                         passedEditedResult = "",
                         userTask,
                         transformationLevel,
-                        selectedLanguageIndex,
+                        selectedLanguageCode,
                         secretShowAd,
                         sourceGender,
                         targetGender,
@@ -108,7 +108,7 @@ private fun NavigationController(
         }
 
         composable(
-            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{transformationLevel}/{selectedLanguageIndex}/{secretShowAd}" +
+            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{transformationLevel}/{selectedLanguageCode}/{secretShowAd}" +
                     "?sourceGender={sourceGender}" +
                     "&targetGender={targetGender}" +
                     "&sourceAge={sourceAge}" +
@@ -123,7 +123,7 @@ private fun NavigationController(
                 navArgument("passedEditedResult") { type = NavType.StringType },
                 navArgument("userTask") { type = NavType.StringType },
                 navArgument("transformationLevel") { type = NavType.StringType },
-                navArgument("selectedLanguageIndex") { type = NavType.IntType },
+                navArgument("selectedLanguageCode") { type = NavType.StringType },
                 navArgument("secretShowAd") { type = NavType.BoolType },
 
                 navArgument("sourceGender") { type = NavType.StringType; nullable = true },
@@ -145,7 +145,7 @@ private fun NavigationController(
             val passedEditedResult = backStackEntry.arguments?.getString("passedEditedResult") ?: ""
             val userTask = backStackEntry.arguments?.getString("userTask") ?: ""
             val transformationLevel = backStackEntry.arguments?.getString("transformationLevel") ?: ""
-            val selectedLanguageIndex = backStackEntry.arguments?.getInt("selectedLanguageIndex") ?: 0
+            val selectedLanguageCode = backStackEntry.arguments?.getString("selectedLanguageCode") ?: "en"
             val secretShowAd = backStackEntry.arguments?.getBoolean("secretShowAd") ?: false
 
             // Nullable values
@@ -165,7 +165,7 @@ private fun NavigationController(
                 passedEditedResult = passedEditedResult,
                 userTask = userTask,
                 transformationLevel = transformationLevel,
-                selectedLanguageIndex = selectedLanguageIndex,
+                selectedLanguageCode = selectedLanguageCode,
                 secretShowAd = secretShowAd,
                 sourceGender = sourceGender,
                 targetGender = targetGender,

@@ -74,14 +74,14 @@ private fun NavigationController(
         composable(Screen.Home.createRoute()) {
 
             HomeScreen(
-                onNavigateToResultScreen = { uriList, userTask, selectedLanguageIndex, secretShowAd, physicalActivity, gender, age, height, weight ->
+                onNavigateToResultScreen = { uriList, userTask, selectedLanguageCode, secretShowAd, physicalActivity, gender, age, height, weight ->
                     // removes the option to navigate to the ocr screen, as it becomes invalid
                     // when new results are computed
                     val ocrScreen = lastScreensVersions.find { it is Screen.Ocr }
                     ocrScreen?.let { lastScreensVersions.remove(it) }
                     sharedViewModel.reset()
 
-                    val nextScreen = Screen.Result(uriList.map { it.toString() }, passedEditedResult = "", userTask, selectedLanguageIndex, secretShowAd, physicalActivity, gender, age, height, weight)
+                    val nextScreen = Screen.Result(uriList.map { it.toString() }, passedEditedResult = "", userTask, selectedLanguageCode, secretShowAd, physicalActivity, gender, age, height, weight)
                     val route = nextScreen.createRoute()
                     navController.navigate(route) {
                         popUpTo(Screen.Home.createRoute()) { saveState = true } // here we use inclusive = false
@@ -92,7 +92,7 @@ private fun NavigationController(
         }
 
         composable(
-            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{selectedLanguageIndex}/{secretShowAd}" +
+            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{selectedLanguageCode}/{secretShowAd}" +
                     "?physicalActivity={physicalActivity}" +
                     "&gender={gender}" +
                     "&age={age}" +
@@ -102,7 +102,7 @@ private fun NavigationController(
                 navArgument("passedImageUris") { type = NavType.StringType },
                 navArgument("passedEditedResult") { type = NavType.StringType },
                 navArgument("userTask") { type = NavType.StringType },
-                navArgument("selectedLanguageIndex") { type = NavType.IntType },
+                navArgument("selectedLanguageCode") { type = NavType.StringType },
                 navArgument("secretShowAd") { type = NavType.BoolType },
 
                 navArgument("physicalActivity") { type = NavType.StringType; nullable = true },
@@ -118,8 +118,8 @@ private fun NavigationController(
                 .mapNotNull { encoded -> Uri.decode(encoded).takeIf { it.isNotBlank() } }
             val passedEditedResult = backStackEntry.arguments?.getString("passedEditedResult") ?: ""
             val userTask = backStackEntry.arguments?.getString("userTask") ?: ""
-            val selectedLanguageIndex =
-                backStackEntry.arguments?.getInt("selectedLanguageIndex") ?: 0
+            val selectedLanguageCode =
+                backStackEntry.arguments?.getString("selectedLanguageCode") ?: "en"
             val secretShowAd = backStackEntry.arguments?.getBoolean("secretShowAd") ?: true
 
             val physicalActivity = backStackEntry.arguments?.getString("physicalActivity")
@@ -130,7 +130,7 @@ private fun NavigationController(
             val weight =
                 backStackEntry.arguments?.getString("weight")?.toIntOrNull()
 
-            val currScreen = Screen.Result(passedImageUris, passedEditedResult, userTask, selectedLanguageIndex, secretShowAd, physicalActivity, gender, age, height, weight)
+            val currScreen = Screen.Result(passedImageUris, passedEditedResult, userTask, selectedLanguageCode, secretShowAd, physicalActivity, gender, age, height, weight)
 
             val route = Screen.Ocr.createRoute()
             ResultScreen(

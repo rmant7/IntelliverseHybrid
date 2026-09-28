@@ -80,7 +80,7 @@ class ResultViewModel @Inject constructor(
 
         ### Input Parameters:
         ${if (description.isNotBlank()) "- Trip description: $description" else ""}
-        ${"- Solution language: ${selectedLanguage.languageName}"}
+        ${"- Solution language: ${selectedLanguage.promptName}"}
         ${if (originLocation.isNotBlank()) "- Origin location: $originLocation" else ""}
         ${cityPaths.takeIf { it.isNotEmpty() }?.let { "- Desired locations to visit: ${it.joinToString()}" } ?: ""}
         ${"- Trip type: ${if (oneWay) "One-way (no return to origin location at the end)." else "Round-trip (return to origin location at the end)."}"}
@@ -264,7 +264,7 @@ class ResultViewModel @Inject constructor(
         }
            
         $doubleQuotes
-        ${jsonResponseLanguage(selectedLanguage.languageName)}
+        ${jsonResponseLanguage(selectedLanguage.promptName)}
     """.trimIndent()
         }
         prompt = buildSolvingPrompt()

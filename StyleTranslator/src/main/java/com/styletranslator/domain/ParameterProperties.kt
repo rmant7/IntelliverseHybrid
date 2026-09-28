@@ -1,17 +1,18 @@
 package com.styletranslator.domain
 
+import com.example.shared.domain.language.Language
+import com.example.shared.domain.language.LanguageRegistry
 import com.example.shared.domain.prompt.options.Category
 import com.example.shared.domain.prompt.options.GenderOption
 import com.example.shared.domain.prompt.options.Mentality
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
 import com.example.shared.domain.prompt.options.Style
 import com.example.shared.domain.prompt.options.TonePreference
 import com.example.shared.domain.prompt.options.TransformationLevel
 import java.util.Locale
 
 data class ParameterProperties(
-    val language: SolutionLanguageOption = SolutionLanguageOption.fromLocale(Locale.getDefault())
-        ?: SolutionLanguageOption.DEFAULT,
+    val language: Language = LanguageRegistry.fromLocale(Locale.getDefault())
+        ?: LanguageRegistry.DEFAULT,
     val sourceGender: GenderOption? = null,
     val targetGender: GenderOption? = null,
     val sourceAge: Int? = null,

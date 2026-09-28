@@ -238,4 +238,9 @@
     <string name="reset_settings">Reset Settings</string>
     <string name="not_relevant">Not Relevant</string>
 
+    <string name="search_language_placeholder">Search by name or code</string>
+    <string name="recent_languages_header">Recent</string>
+    <string name="all_languages_header">All languages</string>
+    <string name="no_languages_found">No languages found</string>
+
 </resources>

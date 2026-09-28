@@ -73,7 +73,7 @@ private fun NavigationController(
         composable(Screen.Home.createRoute()) {
 
             HomeScreen(
-                onNavigateToResultScreen = { uriList, userTask, selectedLanguageIndex, originLocation, cityPaths, transportationTypes, tripStyles, oneWay, secretShowAd, maxBudget, tripDuration, travelersNumber ->
+                onNavigateToResultScreen = { uriList, userTask, selectedLanguageCode, originLocation, cityPaths, transportationTypes, tripStyles, oneWay, secretShowAd, maxBudget, tripDuration, travelersNumber ->
                     // removes the option to navigate to the ocr screen, as it becomes invalid
                     // when new results are computed
                     val ocrScreen = lastScreensVersions.find { it is Screen.Ocr }
@@ -83,7 +83,7 @@ private fun NavigationController(
                         uriList.map { it.toString() },
                         passedEditedResult = "",
                         userTask,
-                        selectedLanguageIndex,
+                        selectedLanguageCode,
                         originLocation,
                         cityPaths,
                         transportationTypes,
@@ -104,7 +104,7 @@ private fun NavigationController(
         }
 
         composable(
-            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{selectedLanguageIndex}/{originLocation}/{cityPaths}/{transportationTypes}/{tripStyles}/{oneWay}/{secretShowAd}" +
+            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{selectedLanguageCode}/{originLocation}/{cityPaths}/{transportationTypes}/{tripStyles}/{oneWay}/{secretShowAd}" +
                     "?maxBudget={maxBudget}" +
                     "&tripDuration={tripDuration}" +
                     "&travelersNumber={travelersNumber}",
@@ -112,7 +112,7 @@ private fun NavigationController(
                 navArgument("passedImageUris") { type = NavType.StringType },
                 navArgument("passedEditedResult") { type = NavType.StringType },
                 navArgument("userTask") { type = NavType.StringType },
-                navArgument("selectedLanguageIndex") { type = NavType.IntType },
+                navArgument("selectedLanguageCode") { type = NavType.StringType },
                 navArgument("originLocation") { type = NavType.StringType },
                 navArgument("cityPaths") { type = NavType.StringType },
                 navArgument("transportationTypes") { type = NavType.StringType },
@@ -147,7 +147,7 @@ private fun NavigationController(
 
             val passedEditedResult = backStackEntry.arguments?.getString("passedEditedResult") ?: ""
             val userTask = backStackEntry.arguments?.getString("userTask") ?: ""
-            val selectedLanguageIndex = backStackEntry.arguments?.getInt("selectedLanguageIndex") ?: 0
+            val selectedLanguageCode = backStackEntry.arguments?.getString("selectedLanguageCode") ?: "en"
             val originLocation = backStackEntry.arguments?.getString("originLocation") ?: ""
             val oneWay = backStackEntry.arguments?.getBoolean("oneWay") ?: false
             val secretShowAd = backStackEntry.arguments?.getBoolean("secretShowAd") ?: false
@@ -161,7 +161,7 @@ private fun NavigationController(
                 passedImageUris = passedImageUris,
                 passedEditedResult = passedEditedResult,
                 userTask = userTask,
-                selectedLanguageIndex = selectedLanguageIndex,
+                selectedLanguageCode = selectedLanguageCode,
                 originLocation = originLocation,
                 cityPaths = cityPaths,
                 transportationTypes = transportationTypes,

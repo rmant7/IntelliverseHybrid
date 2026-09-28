@@ -1,14 +1,15 @@
 package com.diettracker.domain
 
+import com.example.shared.domain.language.Language
+import com.example.shared.domain.language.LanguageRegistry
 import com.example.shared.domain.prompt.options.ExplanationLevelOption
 import com.example.shared.domain.prompt.options.GenderOption
 import com.example.shared.domain.prompt.options.PhysicalActivityOption
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
 import java.util.Locale
 
 data class ParameterProperties(
-    val language: SolutionLanguageOption = SolutionLanguageOption.fromLocale(Locale.getDefault())
-        ?: SolutionLanguageOption.DEFAULT,
+    val language: Language = LanguageRegistry.fromLocale(Locale.getDefault())
+        ?: LanguageRegistry.DEFAULT,
     val explanationLevel: ExplanationLevelOption = ExplanationLevelOption.SHORT_EXPLANATION,
     val physicalActivity: PhysicalActivityOption? = null,
     val gender: GenderOption? = null,

@@ -72,7 +72,7 @@ private fun NavigationController(
         composable(Screen.Home.createRoute()) {
 
             HomeScreen(
-                onNavigateToResultScreen = { uriList, userTask, grade, detailsLevel, selectedLanguageIndex, secretShowAd ->
+                onNavigateToResultScreen = { uriList, userTask, grade, detailsLevel, selectedLanguageCode, secretShowAd ->
                     // removes the option to navigate to the ocr screen, as it becomes invalid
                     // when new results are computed
                     val ocrScreen = lastScreensVersions.find { it is Screen.Ocr }
@@ -85,7 +85,7 @@ private fun NavigationController(
                         userTask,
                         grade,
                         detailsLevel,
-                        selectedLanguageIndex,
+                        selectedLanguageCode,
                         secretShowAd
                     )
                     val route = nextScreen.createRoute()
@@ -98,14 +98,14 @@ private fun NavigationController(
         }
 
         composable(
-            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{grade}/{detailsLevel}/{selectedLanguageIndex}/{secretShowAd}",
+            route = "${Screen.Result.prefixRoute}/{passedImageUris}/{passedEditedResult}/{userTask}/{grade}/{detailsLevel}/{selectedLanguageCode}/{secretShowAd}",
             arguments = listOf(
                 navArgument("passedImageUris") { type = NavType.StringType },
                 navArgument("passedEditedResult") { type = NavType.StringType },
                 navArgument("userTask") { type = NavType.StringType },
                 navArgument("grade") { type = NavType.IntType },
                 navArgument("detailsLevel") { type = NavType.StringType },
-                navArgument("selectedLanguageIndex") { type = NavType.IntType },
+                navArgument("selectedLanguageCode") { type = NavType.StringType },
                 navArgument("secretShowAd") { type = NavType.BoolType }
             )
         ) { backStackEntry ->
@@ -117,8 +117,8 @@ private fun NavigationController(
             val userTask = backStackEntry.arguments?.getString("userTask") ?: ""
             val detailsLevel = backStackEntry.arguments?.getString("detailsLevel") ?: ""
             val grade = backStackEntry.arguments?.getInt("grade") ?: 0
-            val selectedLanguageIndex =
-                backStackEntry.arguments?.getInt("selectedLanguageIndex") ?: 0
+            val selectedLanguageCode =
+                backStackEntry.arguments?.getString("selectedLanguageCode") ?: "en"
             val secretShowAd = backStackEntry.arguments?.getBoolean("secretShowAd") ?: true
 
             val currScreen = Screen.Result(
@@ -127,7 +127,7 @@ private fun NavigationController(
                 userTask,
                 grade,
                 detailsLevel,
-                selectedLanguageIndex,
+                selectedLanguageCode,
                 secretShowAd
             )
 

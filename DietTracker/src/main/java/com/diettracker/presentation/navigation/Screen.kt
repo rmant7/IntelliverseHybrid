@@ -36,7 +36,7 @@ sealed class Screen: IScreen {
         val passedImageUris: List<String>,
         val passedEditedResult: String,
         val userTask: String,
-        val selectedLanguageIndex: Int,
+        val selectedLanguageCode: String,
         val secretShowAd: Boolean,
         val physicalActivity: String?,
         val gender: String?,
@@ -51,7 +51,7 @@ sealed class Screen: IScreen {
                 encodedUriList,
                 Uri.encode(passedEditedResult),
                 Uri.encode(sanitize(userTask)),
-                selectedLanguageIndex.toString(),
+                Uri.encode(selectedLanguageCode),
                 secretShowAd.toString()
             ).joinToString("/")
 
@@ -76,7 +76,7 @@ sealed class Screen: IScreen {
                 "passedImageUris",
                 "passedEditedResult",
                 "userTask",
-                "selectedLanguageIndex",
+                "selectedLanguageCode",
                 "secretShowAd"
             ).joinToString("/") { "{$it}" }
             val optionalParams = listOf(

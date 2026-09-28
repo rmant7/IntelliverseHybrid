@@ -73,8 +73,8 @@ class ResultViewModel @Inject constructor(
      * mid-generation.
      */
     private suspend fun runLocalModels() {
-        val targetLangCode = selectedLanguage.locale
-        val targetLangName = selectedLanguage.languageName
+        val targetLangCode = selectedLanguage.code
+        val targetLangName = selectedLanguage.promptName
         val sourceText = passedEditedResult.ifBlank { userTask }
         for ((seed, aiService) in LOCAL_MODELS) {
             if (!modelStore.isInstalled(seed)) continue
@@ -142,7 +142,7 @@ class ResultViewModel @Inject constructor(
             
     - Generate a JSON response that includes a translation of the given text according to the specified input parameters.
     - The response **must include a \"titles\" section** containing localized section headers. **Use the exact keys from the example JSON below for \"titles\"**.
-    - The response must **translate** section titles (inside \"titles\") into ${selectedLanguage.languageName}.
+    - The response must **translate** section titles (inside \"titles\") into ${selectedLanguage.promptName}.
     
     ### **Requirements for AI Processing:**
     1. **Translate the given text** into the target language while preserving the original intent.
@@ -157,7 +157,7 @@ class ResultViewModel @Inject constructor(
     ### **Input Parameters:**
     ${if (description.isNotBlank()) "- **Texts to translate:** $description" else ""}
     
-    - **Target Language:** ${selectedLanguage.languageName}
+    - **Target Language:** ${selectedLanguage.promptName}
       - The language into which the text should be translated.
       - The output will be fully localized, including grammar, idioms, and cultural nuances.
       
@@ -233,7 +233,7 @@ class ResultViewModel @Inject constructor(
     }
     
     $doubleQuotes
-    ${jsonResponseLanguage(selectedLanguage.languageName)}
+    ${jsonResponseLanguage(selectedLanguage.promptName)}
 """.trimIndent()
 
         }

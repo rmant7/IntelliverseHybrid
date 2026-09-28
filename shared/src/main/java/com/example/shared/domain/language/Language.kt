@@ -52,6 +52,20 @@ data class Language(val code: String, val englishName: String) {
             ?: englishName
     }
 
+    /**
+     * What actually goes in a model prompt -- replaces the old
+     * SolutionLanguageOption.languageName ("Hebrew language"), a bare name
+     * a small chat-tuned local model turned out not to reliably resolve: a
+     * real device test asked TranslateGemma for target language "he" and
+     * got Arabic back. Structured as "English name (code, Script)" --
+     * "Seychellois Creole (crs, Latn)" -- so a name that's ambiguous or
+     * unfamiliar on its own (common past the original 49 languages) still
+     * carries an unambiguous code and script alongside it. Falls back to
+     * "English name (code)" when ICU has no script for this language.
+     */
+    val promptName: String
+        get() = script?.let { "$englishName ($code, $it)" } ?: "$englishName ($code)"
+
     private companion object {
         val RTL_SCRIPTS = setOf("Arab", "Hebr", "Thaa", "Syrc", "Nkoo", "Adlm", "Rohg", "Yezi", "Mand", "Samr")
     }

@@ -66,7 +66,7 @@ class ResultViewModel @Inject constructor(
       - The size (if the food is best measured by volume or dimensions, e.g., a milk carton, a loaf of bread).
       - **Do not include both weight and size—return only the most relevant measurement for each food.**"""} else ""}
       The digestion efficiency for each nutrient should take into account the combination of foods detected, adjusting absorption rates where necessary.
-    - The response must **translate** food names (inside \"foods\"), macronutrient and micronutrient names (inside \"macronutrients\", \"micronutrients\", \"digestedMacronutrients\", \"digestedMicronutrients\"), and section titles (inside \"titles\") into ${selectedLanguage.languageName}.
+    - The response must **translate** food names (inside \"foods\"), macronutrient and micronutrient names (inside \"macronutrients\", \"micronutrients\", \"digestedMacronutrients\", \"digestedMicronutrients\"), and section titles (inside \"titles\") into ${selectedLanguage.promptName}.
     - The response **must include a \"titles\" section** containing localized section headers. **Use the exact keys from the example JSON below for \"titles\"**.
 
     Strictly format the response as a JSON object with the following structure:
@@ -225,7 +225,7 @@ class ResultViewModel @Inject constructor(
     }
     
     $doubleQuotes
-    ${jsonResponseLanguage(selectedLanguage.languageName)}
+    ${jsonResponseLanguage(selectedLanguage.promptName)}
     If no foods detected, return an empty json response.
 """.trimIndent()
 

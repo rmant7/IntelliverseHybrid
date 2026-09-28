@@ -8,9 +8,10 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.schoolkiller.domain.ParameterProperties
+import com.example.shared.domain.language.Language
+import com.example.shared.domain.language.LanguageRegistry
 import com.example.shared.domain.prompt.options.ExplanationLevelOption
 import com.example.shared.domain.prompt.options.GradeOption
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
@@ -42,9 +43,9 @@ open class DataStoreRepository @Inject constructor(
         }
     }
 
-    suspend fun persistLanguageOptionState(languageOption: SolutionLanguageOption) {
+    suspend fun persistLanguageOptionState(language: Language) {
         dataStore.edit { preference ->
-            preference[PreferenceKeys.languageOptionState] = languageOption.name
+            preference[PreferenceKeys.languageOptionState] = language.code
         }
     }
 
@@ -76,9 +77,10 @@ open class DataStoreRepository @Inject constructor(
         .catch { exception ->
             emit(checkError(exception))
         }.map { preferences ->
-            preferences[PreferenceKeys.languageOptionState]
-                ?: SolutionLanguageOption.fromLocale(Locale.getDefault())?.name
-                ?: SolutionLanguageOption.DEFAULT.name
+            val stored = preferences[PreferenceKeys.languageOptionState]
+            LanguageRegistry.byPersistedValue(stored)?.code
+                ?: LanguageRegistry.fromLocale(Locale.getDefault())?.code
+                ?: LanguageRegistry.DEFAULT.code
         }
 
     val readExplanationLevelOptionState: Flow<String> = dataStore.data

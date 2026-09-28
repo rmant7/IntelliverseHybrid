@@ -7,10 +7,11 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.shared.domain.language.Language
+import com.example.shared.domain.language.LanguageRegistry
 import com.example.shared.domain.prompt.options.Category
 import com.example.shared.domain.prompt.options.GenderOption
 import com.example.shared.domain.prompt.options.Mentality
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
 import com.example.shared.domain.prompt.options.Style
 import com.example.shared.domain.prompt.options.TonePreference
 import com.example.shared.domain.prompt.options.TransformationLevel
@@ -48,9 +49,9 @@ open class DataStoreRepository @Inject constructor(
 
     private val dataStore = context.dataStore
 
-    suspend fun persistLanguageOptionState(languageOption: SolutionLanguageOption) {
+    suspend fun persistLanguageOptionState(language: Language) {
         dataStore.edit { preference ->
-            preference[PreferenceKeys.languageOptionState] = languageOption.name
+            preference[PreferenceKeys.languageOptionState] = language.code
         }
     }
 
@@ -160,13 +161,19 @@ open class DataStoreRepository @Inject constructor(
         }
     }
 
+    // Resolved here, not left to the caller: the stored value may still be
+    // an old SolutionLanguageOption enum name ("CHINESE_SIMPLIFIED") from
+    // before this migration, not a registry code -- always emits a valid
+    // code either way, so HomeViewModel's own .map only ever needs
+    // LanguageRegistry.byCode, not the full legacy-name fallback chain.
     val readLanguageOptionState: Flow<String> = dataStore.data
         .catch { exception ->
             emit(checkError(exception))
         }.map { preferences ->
-            preferences[PreferenceKeys.languageOptionState]
-                ?: SolutionLanguageOption.fromLocale(Locale.getDefault())?.name
-                ?: SolutionLanguageOption.DEFAULT.name
+            val stored = preferences[PreferenceKeys.languageOptionState]
+            LanguageRegistry.byPersistedValue(stored)?.code
+                ?: LanguageRegistry.fromLocale(Locale.getDefault())?.code
+                ?: LanguageRegistry.DEFAULT.code
         }
 
     val readSourceGenderOptionState: Flow<String?> = dataStore.data

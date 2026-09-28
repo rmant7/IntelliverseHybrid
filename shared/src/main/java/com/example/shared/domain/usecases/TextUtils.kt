@@ -2,7 +2,7 @@ package com.example.shared.domain.usecases
 
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.text.HtmlCompat
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
+import com.example.shared.domain.language.Language
 import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator
 import org.intellij.markdown.parser.MarkdownParser
@@ -21,8 +21,8 @@ object TextUtils {
         return if (isLtr) LayoutDirection.Ltr else LayoutDirection.Rtl
     }
 
-    fun getTextDirection(languageOption: SolutionLanguageOption): LayoutDirection =
-        if (languageOption.isRtl)
+    fun getTextDirection(language: Language): LayoutDirection =
+        if (language.isRtl)
             LayoutDirection.Rtl
         else
             LayoutDirection.Ltr

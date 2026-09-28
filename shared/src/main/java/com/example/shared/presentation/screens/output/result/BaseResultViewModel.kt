@@ -11,7 +11,8 @@ import com.example.shared.BuildConfig
 import com.example.shared.UnableToAssistException
 import com.example.shared.ads.InterstitialAdUseCase
 import com.example.shared.data.network.gemini_api.client.GeminiApiService
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
+import com.example.shared.domain.language.Language
+import com.example.shared.domain.language.LanguageRegistry
 import com.example.shared.domain.usecases.AudioPlayer
 import com.example.shared.domain.usecases.AudioPlayer.Companion.playbackSpeeds
 import com.example.shared.domain.usecases.ImageUtils
@@ -68,12 +69,12 @@ abstract class BaseResultViewModel(
     // attempt that will never come.
     private val geminiThinkingAttempts: AtomicInteger = AtomicInteger(1)
     /** System instructions and OpenAI prompt*/
-    protected var selectedLanguage: SolutionLanguageOption
+    protected var selectedLanguage: Language
 
     init {
-        val selectedLanguageIndex = savedStateHandle.get<Int>("selectedLanguageIndex") ?: 0
-        this.selectedLanguage = SolutionLanguageOption.getByIndex(selectedLanguageIndex)
-        val locale = Locale.forLanguageTag(selectedLanguage.languageTag)
+        val selectedLanguageCode = savedStateHandle.get<String>("selectedLanguageCode")
+        this.selectedLanguage = selectedLanguageCode?.let { LanguageRegistry.byCode(it) } ?: LanguageRegistry.DEFAULT
+        val locale = Locale.forLanguageTag(selectedLanguage.code)
         speechConverter.setLanguage(locale)
         speechConverter.onUtteranceFinished = { addFile(it) }
 

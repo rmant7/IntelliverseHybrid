@@ -1,6 +1,7 @@
 package com.schoolkiller.presentation.screens.home
 
 import com.example.shared.presentation.ExposedDropBox
+import com.example.shared.presentation.LanguagePickerField
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
@@ -32,7 +33,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.schoolkiller.R.string
 import com.example.shared.domain.prompt.options.ExplanationLevelOption
 import com.example.shared.domain.prompt.options.GradeOption
-import com.example.shared.domain.prompt.options.SolutionLanguageOption
 import com.example.shared.presentation.common.ApplicationScaffold
 import com.example.shared.presentation.screens.home.SettingsActionRow
 import com.example.shared.presentation.screens.home.UploadFileMethodOptions
@@ -151,32 +151,26 @@ fun HomeScreenContent(
                         modifier = Modifier.fillMaxWidth()
                     ) {
 
-                        ExposedDropBox(
-                            maxHeightIn = 400.dp,
+                        LanguagePickerField(
                             label = string.solution_language_label,
-                            selectedOption = parameterScreenProperties.language,
-                            options = SolutionLanguageOption.entries.toList(),
-                            onOptionSelected = {
-                                if (it != null) {
-                                    val locale = Locale.forLanguageTag(it.languageTag)
-                                    val isLanguageSupported = viewModel.isLanguageSupported(locale)
-                                    if (!isLanguageSupported) {
-                                        AlertDialog.Builder(context)
-                                            .setTitle(string.install_language)
-                                            .setMessage(string.language_not_supported)
-                                            .setPositiveButton(string.install) { _, _ ->
-                                                val intent = Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA)
-                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                                context.startActivity(intent)
-                                            }
-                                            .setNegativeButton(com.example.shared.R.string.cancel, null)
-                                            .show()
-                                    }
-                                    viewModel.updateSelectedLanguageOption(it)
+                            selectedLanguage = parameterScreenProperties.language,
+                            onLanguageSelected = {
+                                val locale = Locale.forLanguageTag(it.code)
+                                val isLanguageSupported = viewModel.isLanguageSupported(locale)
+                                if (!isLanguageSupported) {
+                                    AlertDialog.Builder(context)
+                                        .setTitle(string.install_language)
+                                        .setMessage(string.language_not_supported)
+                                        .setPositiveButton(string.install) { _, _ ->
+                                            val intent = Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA)
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                            context.startActivity(intent)
+                                        }
+                                        .setNegativeButton(com.example.shared.R.string.cancel, null)
+                                        .show()
                                 }
+                                viewModel.updateSelectedLanguageOption(it)
                             },
-                            optionToString = { option, context -> option.getString(context) },
-                            valueRequired = true
                         )
 
                         ExposedDropBox(
