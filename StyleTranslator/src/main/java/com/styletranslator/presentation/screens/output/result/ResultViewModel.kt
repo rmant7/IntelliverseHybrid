@@ -57,91 +57,88 @@ class ResultViewModel @Inject constructor(
      * take image input, and there's no extracted OCR text ready at this
      * point (that only exists after Gemini's own vision call resolves).
      */
+    // Exactly one local result per run (see runLocalModels), not one per
+    // installed model -- so this is 0 or 1, never a model count.
     override suspend fun additionalProviderCount(): Int =
-        if (imageUsed) 0 else ALL_LOCAL_MODELS.count { (seed, _) -> modelStore.isInstalled(seed) }
+        if (imageUsed) 0 else if (ALL_LOCAL_MODELS.any { (seed, _) -> modelStore.isInstalled(seed) }) 1 else 0
 
     override fun CoroutineScope.launchAdditionalProviders(imagesBase64: List<String>) {
         if (!imageUsed) launch { runLocalModels() }
     }
 
     /**
+     * Walks [ALL_LOCAL_MODELS] top to bottom -- TranslateGemma, then MADLAD,
+     * then OmniTranslate last (weakest quality, see its own catalog note) --
+     * and reports exactly one result: the first installed model that loads
+     * and produces a translation. Anything earlier in the list that fails
+     * to load or generate is skipped silently, no separate tab for it.
+     *
      * Sequential, not one launch{} per model: [LocalLlamaSession] only ever
      * holds one loaded model at a time (matches this app's realistic phone
-     * RAM budget -- running two multi-GB local models concurrently isn't
-     * practical anyway), so running them one after another is both simpler
-     * and avoids two coroutines racing to load/evict each other's model
-     * mid-generation.
-     */
-    /**
-     * OmniTranslate is only attempted if neither other installed local
-     * model produced a result -- a real device test found its translation
-     * quality noticeably weaker than TranslateGemma/MADLAD, especially on
-     * rarer and RTL languages (Hebrew came back wrong), so there's no
-     * reason to show it alongside a translation that already worked. Still
-     * counted in [additionalProviderCount] either way (it's "installed",
-     * whether or not it ends up actually running this time), so a skip
-     * reports a result too -- see the "skipped" failure below -- rather
-     * than leaving the progress bar short of 1f.
+     * RAM budget), so running candidates one after another is both simpler
+     * and avoids two coroutines racing to load/evict each other's model.
+     * It also means whichever model answered last run is still the one
+     * resident in memory -- [LocalLlamaSession.load] is then a no-op, so as
+     * long as the top-of-list model keeps succeeding, every run after the
+     * first is instant with no reload.
      */
     private suspend fun runLocalModels() {
         val targetLangCode = selectedLanguage.code
         val targetLangName = selectedLanguage.promptName
         val sourceText = passedEditedResult.ifBlank { userTask }
 
-        // Whichever primary model the session still holds from the previous
-        // run goes first: it answers without a reload, and only the other
-        // one pays the multi-second load cost.
-        val residentPath = localLlamaSession.loadedModelPath
-        val primaryOrder = PRIMARY_LOCAL_MODELS.sortedByDescending { (seed, _) ->
-            modelStore.finalFile(seed).absolutePath == residentPath
-        }
-
-        var anyPrimarySucceeded = false
-        for ((seed, aiService) in primaryOrder) {
+        var lastFailure: Throwable = IllegalStateException("No installed local model produced a translation")
+        var lastAttempted: AIService? = null
+        for ((seed, aiService) in ALL_LOCAL_MODELS) {
             if (!modelStore.isInstalled(seed)) continue
-            val succeeded = runLocalModel(seed, aiService, targetLangCode, targetLangName, sourceText)
-            anyPrimarySucceeded = anyPrimarySucceeded || succeeded
+            lastAttempted = aiService
+            val result = runLocalModel(seed, aiService, targetLangCode, targetLangName, sourceText)
+            result.onSuccess {
+                onSolutionResult(Result.success(it), aiService)
+                return
+            }
+            result.onFailure { lastFailure = it }
         }
-
-        val (omniSeed, omniService) = OMNITRANSLATE_MODEL ?: return
-        if (!modelStore.isInstalled(omniSeed)) return
-        if (anyPrimarySucceeded) {
-            onSolutionResult(
-                Result.failure(IllegalStateException("Skipped -- another local model already answered")),
-                omniService,
-            )
-        } else {
-            runLocalModel(omniSeed, omniService, targetLangCode, targetLangName, sourceText)
-        }
+        lastAttempted?.let { onSolutionResult(Result.failure(lastFailure), it) }
     }
 
-    /** Returns true on a successful translation, false on any failure (load or generation) -- reports through [onSolutionResult] either way. */
+    /** Loads and runs a single candidate model; does not report -- the caller reports exactly once for the whole run. */
     private suspend fun runLocalModel(
         seed: LocalModelSeed,
         aiService: AIService,
         targetLangCode: String,
         targetLangName: String,
         sourceText: String,
-    ): Boolean {
-        try {
+    ): Result<String> {
+        return try {
             val loaded = localLlamaSession.load(modelStore.finalFile(seed).absolutePath)
-            if (!loaded) {
-                onSolutionResult(
-                    Result.failure(IllegalStateException("Failed to load ${seed.title}")),
-                    aiService,
-                )
-                return false
-            }
+            if (!loaded) return Result.failure(IllegalStateException("Failed to load ${seed.title}"))
+
             val prompt = TranslationPrompts.buildPrompt(seed, targetLangCode, targetLangName, sourceText)
             val raw = StringBuilder()
             localLlamaSession.generate(prompt).collect { token -> raw.append(token) }
             val cleaned = TranslationPrompts.stripThinking(raw.toString())
-            onSolutionResult(Result.success(withProviderFooter(cleaned, "Local", seed.title)), aiService)
-            return true
+            Result.success(formatLocalResult(cleaned, seed.title))
         } catch (e: Exception) {
             Timber.w(e, "Local model ${seed.id} failed to produce a translation")
-            onSolutionResult(Result.failure(e), aiService)
-            return false
+            Result.failure(e)
+        }
+    }
+
+    /**
+     * A short translation (a word or two, the common case -- someone reads
+     * it and taps Play) doesn't need a full-size "— Local (Model)" footer
+     * eating space below it; the model name still shows, just small and
+     * above the text instead. Longer, multi-line output keeps the footer
+     * as before -- there the extra line at the bottom costs nothing.
+     */
+    private fun formatLocalResult(cleaned: String, modelTitle: String): String {
+        val lineCount = cleaned.count { it == '\n' } + 1
+        val isShort = lineCount <= SHORT_TEXT_MAX_LINES && cleaned.length <= SHORT_TEXT_MAX_CHARS
+        return if (isShort) {
+            "<small style=\"opacity:0.6\">Local — $modelTitle</small><br>$cleaned"
+        } else {
+            withProviderFooter(cleaned, "Local", modelTitle)
         }
     }
 
@@ -289,15 +286,18 @@ class ResultViewModel @Inject constructor(
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeStyleSolutionResponse(response)
 
     private companion object {
-        // OmniTranslate deliberately excluded here -- see runLocalModels'
-        // own doc comment on why it's only attempted as a fallback.
-        val PRIMARY_LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> = listOfNotNull(
+        // Attempt order for runLocalModels -- OmniTranslate deliberately
+        // last, see its own catalog note on why (weaker quality, especially
+        // rare/RTL languages).
+        val ALL_LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> = listOfNotNull(
             TranslationModels.byId("translategemma-4b")?.let { it to AIService.LOCAL_TRANSLATEGEMMA },
             TranslationModels.byId("madlad400-3b-mt-q4")?.let { it to AIService.LOCAL_MADLAD },
+            TranslationModels.byId("omnitranslate-1-1")?.let { it to AIService.LOCAL_OMNITRANSLATE },
         )
-        val OMNITRANSLATE_MODEL: Pair<LocalModelSeed, AIService>? =
-            TranslationModels.byId("omnitranslate-1-1")?.let { it to AIService.LOCAL_OMNITRANSLATE }
-        val ALL_LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> =
-            PRIMARY_LOCAL_MODELS + listOfNotNull(OMNITRANSLATE_MODEL)
+
+        // "Short" = the common one/two-word translation someone reads and
+        // immediately taps Play on -- see formatLocalResult.
+        const val SHORT_TEXT_MAX_LINES = 2
+        const val SHORT_TEXT_MAX_CHARS = 160
     }
 }
