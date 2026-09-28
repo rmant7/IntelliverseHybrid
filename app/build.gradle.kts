@@ -137,10 +137,16 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            // R8: shrink + obfuscate + optimize the whole program (library
+            // modules stay isMinifyEnabled = false -- the app module's R8
+            // pass already covers their code). Every keep rule is in
+            // proguard-rules.pro with the specific runtime lookup that
+            // needs it; mapping.txt for each build is uploaded by CI.
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                //"proguard-rules.pro"
+                "proguard-rules.pro"
             )
             // Real upload-key signature once RELEASE_KEYSTORE_BASE64 etc. are
             // set (see the secrets read above) -- otherwise falls back to

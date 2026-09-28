@@ -185,16 +185,17 @@ class IntelliverseApplication : Application() {
             // Probably doesn't work for older api.
             AppMetrica.enableActivityAutoTracking(this@IntelliverseApplication)
 
-            // A confirmation, not just an error path: a key that's present but
-            // wrong (typo, wrong console project, trailing whitespace from a
-            // copy-paste into the GitHub secret) activates without throwing --
+            // Debug level, not INFO: AppLogTree forwards INFO+ into the
+            // persisted on-device log (see its own doc comment on why),
+            // and this line fired on every single launch -- the same text
+            // every time, drowning out the log's actual purpose, which is
+            // surfacing what went WRONG. Still useful when diagnosing a
+            // wrong/misconfigured key (activates without throwing --
             // AppMetrica.activate() doesn't validate against the server
-            // synchronously -- so "nothing in the log" would otherwise look
-            // identical to "activated fine, dashboard just hasn't caught up
-            // yet." This line at least confirms which of those it is, and
-            // the key's last 4 characters are enough to tell whether it's
-            // the one actually configured in the AppMetrica console.
-            Timber.i(
+            // synchronously), so it's not deleted, just kept at a level
+            // that reaches logcat for local debugging without reaching
+            // the log a user might email in.
+            Timber.d(
                 "AppMetrica activated for package=$packageName, key ending in ...${apiKey.takeLast(4)}"
             )
         } catch (e: Exception) {

@@ -126,53 +126,55 @@ jobs:
           path: app/build/outputs/bundle/release/named/*.aab
           if-no-files-found: error
 
-      # Each branch gets its own rolling release instead of every branch
-      # sharing one "latest" tag. With more than one branch building in
-      # parallel (e.g. this branch and a matter-of-choice branch developed
-      # alongside it), a single shared "latest" release meant whichever
-      # branch pushed last silently overwrote the other's APK. Slugifying
-      # the branch name into the tag keeps each branch's rolling release
-      # independent; GitHub's own "/releases/latest" convenience link still
-      # resolves to whichever tagged release was published most recently,
-      # so nothing downstream that relied on that link breaks.
-      - name: Compute release tag
-        id: release_tag
-        run: |
-          SLUG=$(echo "${{ github.ref_name }}" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9' '-' | sed 's/-\+/-/g; s/^-//; s/-$//')
-          echo "tag=latest-$SLUG" >> "$GITHUB_OUTPUT"
+      # R8's mapping.txt for THIS build, named by run number -- the same
+      # "Build: #N" every Log-screen report starts with, so an emailed stack
+      # trace is matched to exactly the mapping that produced it, not to
+      # whatever build happened to run last. Retrace with:
+      #   retrace Intelliverse-N-mapping.txt stacktrace.txt
+      # (Play Console needs none of this: the AAB carries its own mapping
+      # in BUNDLE-METADATA and Android vitals deobfuscates with it
+      # automatically.) Deliberately NOT put on the rolling branch release
+      # above -- that's overwritten every push, which is exactly what makes
+      # a mapping useless for an older build's trace.
+      - name: Upload R8 mapping (workflow artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Intelliverse-${{ github.run_number }}-mapping
+          path: app/build/outputs/mapping/release/mapping.txt
+          if-no-files-found: error
 
       # Workflow artifacts (the upload-artifact step above) expire after 90
       # days and require being signed into the Actions UI to download. A
       # GitHub Release is a permanent, directly-downloadable link instead.
-      # One rolling release per branch, overwritten on every push to that
-      # same branch, rather than a new release per commit -- this branch
-      # pushes often enough that per-commit releases would flood the
-      # Releases page. Old asset is deleted first: its filename includes
-      # the build number, which changes every run, so a plain upload would
-      # just pile up a new file instead of replacing the old one.
-      - name: Publish to this branch's rolling release
+      #
+      # ONE rolling release total, tag "latest", shared by every branch this
+      # workflow builds -- not one per branch. Per-branch tags meant finding
+      # "the latest build" required scrolling the Releases list to find
+      # whichever branch you cared about; this build is always whatever ran
+      # most recently, across all branches, same as CI itself only ever
+      # reports on the one build that just ran.
+      #
+      # Deleted and recreated rather than edited in place: a GitHub Release
+      # sorts by its publish timestamp, and `gh release edit` doesn't bump
+      # that -- only a fresh `create` does. Recreating on every run is what
+      # actually keeps this at the top of the Releases list (above any
+      # version tag pushed from Termux, an older manually-created release,
+      # etc.), which is the entire point of a rolling release.
+      - name: Publish to the rolling "latest" release
         if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_TAG: ${{ steps.release_tag.outputs.tag }}
         run: |
+          RELEASE_TAG="latest"
           NOTES="Intelliverse, build #${{ github.run_number }} -- commit ${{ github.sha }}, branch \`${{ github.ref_name }}\`.
-          Always overwritten by the next push to this branch -- not a pinned version, just the latest build."
+          Always overwritten by the next build on any branch -- not a pinned version, just the most recent build."
           APK="app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
           AAB="app/build/outputs/bundle/release/named/Intelliverse-${{ github.run_number }}.aab"
-          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            for asset in $(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json assets -q '.assets[].name'); do
-              gh release delete-asset "$RELEASE_TAG" "$asset" --repo "$GITHUB_REPOSITORY" --yes
-            done
-            gh release upload "$RELEASE_TAG" "$APK" "$AAB" --repo "$GITHUB_REPOSITORY"
-            gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
-              --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" --notes "$NOTES"
-          else
-            gh release create "$RELEASE_TAG" "$APK" "$AAB" \
-              --repo "$GITHUB_REPOSITORY" \
-              --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" \
-              --notes "$NOTES"
-          fi
+          gh release delete "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
+          gh release create "$RELEASE_TAG" "$APK" "$AAB" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Intelliverse -- build #${{ github.run_number }} (${{ github.ref_name }})" \
+            --notes "$NOTES"
 
       # One-time cleanup: "latest-debug" was this same rolling release under
       # its old name/tag (debug + unsigned-release APK pair), replaced above
@@ -185,3 +187,20 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release delete latest-debug --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
+
+      # One-time cleanup: the per-branch "latest-<slug>" releases this same
+      # rolling-release step used to create, one per branch, before it was
+      # collapsed into the single shared "latest" release above. Nothing
+      # updates these anymore, so they just sit in the Releases list as
+      # stale clutter -- remove whichever of these still exist. Safe to
+      # remove this step once it's run and they're gone.
+      - name: Remove obsolete per-branch rolling releases
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for tag in latest-main latest-locales latest-migration latest-r8-prep \
+                     latest-claude-intelliverse-hybrid-app-f1et5v \
+                     latest-claude-fus0-matter-of-choice-check-p0dtnh; do
+            gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
+          done
