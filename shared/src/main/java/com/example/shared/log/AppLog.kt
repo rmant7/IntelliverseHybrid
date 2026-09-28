@@ -46,10 +46,26 @@ class AppLog @Inject constructor(
     }
 
     /**
+     * Set by [recordProcessExitIfNotable] when it just logged a genuinely
+     * abnormal exit -- a UI layer reads and clears this once (see
+     * [consumePendingCrashNotice]) to offer sending the log right away,
+     * rather than the user having to know to go find the Log screen
+     * themselves after something visibly went wrong.
+     */
+    @Volatile
+    private var pendingCrashNotice: String? = null
+
+    fun consumePendingCrashNotice(): String? {
+        val notice = pendingCrashNotice
+        pendingCrashNotice = null
+        return notice
+    }
+
+    /**
      * The one entry point here that can see a crash after the fact — an
-     * uncaught exception (or a native one, in a future release build with
-     * NDK code) can kill the process before any of our own Kotlin code gets
-     * a chance to write anything at that moment.
+     * uncaught exception (or a native one, e.g. the llama.cpp JNI bridge)
+     * can kill the process before any of our own Kotlin code gets a chance
+     * to write anything at that moment.
      * [ActivityManager.getHistoricalProcessExitReasons] (API 30+) is
      * Android's own record of why the previous process instance actually
      * died, queried fresh on the next cold start — call this once from
@@ -71,14 +87,32 @@ class AppLog @Inject constructor(
 
         val reason = describeExitReason(last.reason) ?: return // ordinary exits aren't worth logging
         val description = last.description?.takeIf { it.isNotBlank() }?.let { " ($it)" }.orEmpty()
-        record("PROCESS_EXIT", "$reason$description")
+        val entry = "$reason$description"
+        record("PROCESS_EXIT", entry)
+        pendingCrashNotice = entry
     }
 
+    // Widened from the original 4 codes -- a real device report of "there
+    // was a crash but the log had nothing" traced (most likely) to a
+    // reason code landing here as null and being silently dropped, not to
+    // this mechanism failing outright. REASON_SIGNALED in particular is
+    // what an unhandled native signal (SIGSEGV, SIGABRT -- exactly what a
+    // JNI use-after-free produces) can surface as instead of
+    // REASON_CRASH_NATIVE on some OEM builds/Android versions; better to
+    // over-report a genuinely abnormal exit than risk missing one.
+    // REASON_EXIT_SELF/REASON_USER_REQUESTED/REASON_USER_STOPPED/
+    // REASON_PERMISSION_CHANGE deliberately excluded -- ordinary,
+    // user- or system-intended exits, not failures.
     private fun describeExitReason(reason: Int): String? = when (reason) {
         ApplicationExitInfo.REASON_CRASH_NATIVE -> "native crash"
         ApplicationExitInfo.REASON_CRASH -> "crash (uncaught exception)"
         ApplicationExitInfo.REASON_LOW_MEMORY -> "killed by the system: low memory"
         ApplicationExitInfo.REASON_ANR -> "ANR (app not responding)"
+        ApplicationExitInfo.REASON_SIGNALED -> "killed by an unhandled signal (likely a native crash)"
+        ApplicationExitInfo.REASON_INITIALIZATION_FAILURE -> "failed to initialize"
+        ApplicationExitInfo.REASON_EXCESSIVE_RESOURCE_USAGE -> "killed by the system: excessive resource usage"
+        ApplicationExitInfo.REASON_DEPENDENCY_DIED -> "killed: a required system dependency died"
+        ApplicationExitInfo.REASON_OTHER -> "exited abnormally (system-classified as \"other\")"
         else -> null
     }
 

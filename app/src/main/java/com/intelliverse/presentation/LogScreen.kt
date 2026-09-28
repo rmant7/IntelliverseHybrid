@@ -4,6 +4,8 @@ import android.app.ActivityManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -96,6 +98,9 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
                     TextButton(onClick = { copyLogToClipboard(context, viewModel.logText) }) {
                         Text("Copy")
                     }
+                    TextButton(onClick = { sendLogsToDeveloper(context, viewModel.logText) }) {
+                        Text("Send")
+                    }
                     TextButton(onClick = { showClearConfirm = true }) {
                         Text("Clear")
                     }
@@ -154,6 +159,27 @@ private fun copyLogToClipboard(context: Context, logText: String) {
     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     clipboard.setPrimaryClip(ClipData.newPlainText("Intelliverse log", report))
 }
+
+// Play Store users have no other way to get a log off their device -- no
+// attached computer, no logcat access. ACTION_SENDTO with a mailto: URI
+// (not the broader ACTION_SEND) restricts the chooser to actual email
+// apps, matching EXTRA_EMAIL's own intent. The log's own 200KB/1000-line
+// cap (AppLog.MAX_BYTES/MAX_LINES) keeps this well within what mail apps
+// accept as plain body text -- no FileProvider attachment needed.
+fun sendLogsToDeveloper(context: Context, logText: String) {
+    val report = buildHeader(context) + "\n\n" + logText.ifBlank { "No errors logged yet." }
+    val intent = Intent(Intent.ACTION_SENDTO).apply {
+        data = Uri.parse("mailto:")
+        putExtra(Intent.EXTRA_EMAIL, arrayOf(DEVELOPER_EMAIL))
+        putExtra(Intent.EXTRA_SUBJECT, "Intelliverse log -- build #${BuildConfig.BUILD_NUMBER}")
+        putExtra(Intent.EXTRA_TEXT, report)
+    }
+    runCatching {
+        context.startActivity(Intent.createChooser(intent, "Send log to developer"))
+    }
+}
+
+private const val DEVELOPER_EMAIL = "roman.mantelmakher@gmail.com"
 
 /**
  * Version/build type, device model/OS/ABI, and free/total RAM -- everything

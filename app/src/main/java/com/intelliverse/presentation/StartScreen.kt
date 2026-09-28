@@ -29,7 +29,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,14 +47,46 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.example.shared.log.AppLog
 import com.example.shared.presentation.common.ApplicationScaffold
 import com.intelliverse.R
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class StartViewModel @Inject constructor(
+    private val appLog: AppLog,
+) : ViewModel() {
+    /** Non-null exactly once, right after a cold start that followed a
+     * notable abnormal exit -- see [AppLog.consumePendingCrashNotice]. */
+    fun consumePendingCrashNotice(): String? = appLog.consumePendingCrashNotice()
+
+    fun readLog(): String = appLog.readAll()
+}
 
 
 @Composable
-fun StartScreen(navController: NavController, appDescriptions: Map<String, String>) {
+fun StartScreen(
+    navController: NavController,
+    appDescriptions: Map<String, String>,
+    viewModel: StartViewModel = hiltViewModel(),
+) {
     val context = LocalContext.current
+
+    // Offered once, right on the next launch after a crash/ANR/other
+    // abnormal exit -- so sending a report is "tap Send, done" instead of
+    // requiring anyone to already know a Log screen exists and go find it
+    // themselves. Runs once per composition of this screen (LaunchedEffect
+    // keyed on Unit), and AppLog.consumePendingCrashNotice() itself is a
+    // one-shot read -- reopening this screen later in the same session
+    // won't show it again.
+    var crashNotice by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(Unit) {
+        crashNotice = viewModel.consumePendingCrashNotice()
+    }
     val dietTracker = stringResource(com.diettracker.R.string.app_name_diet_tracker)
     val schoolKiller = stringResource(com.schoolkiller.R.string.app_name_schoolkiller)
     val styleTranslator = stringResource(com.styletranslator.R.string.app_name_styletranslator)
@@ -154,6 +188,25 @@ fun StartScreen(navController: NavController, appDescriptions: Map<String, Strin
             confirmButton = {
                 Button(onClick = { selectedApp.value = null }) {
                     Text(stringResource(com.example.shared.R.string.Ok))
+                }
+            }
+        )
+    }
+
+    crashNotice?.let { notice ->
+        AlertDialog(
+            onDismissRequest = { crashNotice = null },
+            title = { Text("The app closed unexpectedly") },
+            text = { Text("$notice\n\nSend a log to the developer so this can be fixed?") },
+            confirmButton = {
+                Button(onClick = {
+                    sendLogsToDeveloper(context, viewModel.readLog())
+                    crashNotice = null
+                }) { Text("Send log") }
+            },
+            dismissButton = {
+                TextButton(onClick = { crashNotice = null }) {
+                    Text(stringResource(com.example.shared.R.string.cancel))
                 }
             }
         )
