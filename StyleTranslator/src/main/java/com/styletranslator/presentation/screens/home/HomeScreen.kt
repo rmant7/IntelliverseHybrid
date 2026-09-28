@@ -20,7 +20,7 @@ import com.example.shared.presentation.screens.home.HandlePermissions
 
 @Composable
 fun HomeScreen(
-    onNavigateToResultScreen: (List<Uri>, String, String, Int, Boolean, String?, String?, Int?, Int?, String?, String?, String?, String?, Float?) -> Unit
+    onNavigateToResultScreen: (List<Uri>, String, String, String, Boolean, String?, String?, Int?, Int?, String?, String?, String?, String?, Float?) -> Unit
 ) {
     val viewModel = hiltViewModel<HomeViewModel>()
     var isHomeScreenUIShowed by remember { mutableStateOf(false) }

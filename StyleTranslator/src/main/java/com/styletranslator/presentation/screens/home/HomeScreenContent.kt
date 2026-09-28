@@ -49,7 +49,7 @@ import java.util.Locale
 @Composable
 fun HomeScreenContent(
     viewModel: HomeViewModel,
-    onNavigateToResultScreen: (List<Uri>, String, String, Int, Boolean, String?, String?, Int?, Int?, String?, String?, String?, String?, Float?) -> Unit
+    onNavigateToResultScreen: (List<Uri>, String, String, String, Boolean, String?, String?, Int?, Int?, String?, String?, String?, String?, Float?) -> Unit
 ) {
     //val viewModel: HomeViewModel = hiltViewModel()
     val parameterScreenProperties =
