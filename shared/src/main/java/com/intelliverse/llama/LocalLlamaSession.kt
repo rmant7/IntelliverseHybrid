@@ -25,6 +25,11 @@ class LocalLlamaSession {
 
     @Volatile private var hasEncoder: Boolean = false
 
+    /** Path + context size of the model [handle] currently holds, or null when nothing is loaded. */
+    @Volatile var loadedModelPath: String? = null
+        private set
+    @Volatile private var loadedContextTokens: Int = 0
+
     val isLoaded: Boolean get() = handle != 0L
 
     /** Loads [modelPath], freeing any previously loaded model on this session first. */
@@ -35,10 +40,20 @@ class LocalLlamaSession {
             // external fun below, or every native call throws
             // UnsatisfiedLinkError instead of failing cleanly.
             if (!LlamaBridge.isAvailable) return@withLock false
+            // Same model already resident -- reuse it. A multi-GB nativeLoad
+            // is by far the slowest part of a local translation (tens of
+            // seconds on a phone, far longer than any cloud round trip), and
+            // re-reading the exact same file every single run was most of
+            // why local results only ever showed up after the cloud ones.
+            if (handle != 0L && loadedModelPath == modelPath && loadedContextTokens == contextTokens) {
+                return@withLock true
+            }
             unloadLocked()
             val newHandle = bridge.nativeLoad(modelPath, contextTokens, LlamaBridge.defaultThreads())
             if (newHandle == 0L) return@withLock false
             handle = newHandle
+            loadedModelPath = modelPath
+            loadedContextTokens = contextTokens
             hasEncoder = bridge.nativeHasEncoder(newHandle)
             true
         }
@@ -49,6 +64,8 @@ class LocalLlamaSession {
         if (handle != 0L) {
             bridge.nativeFree(handle)
             handle = 0
+            loadedModelPath = null
+            loadedContextTokens = 0
         }
     }
 

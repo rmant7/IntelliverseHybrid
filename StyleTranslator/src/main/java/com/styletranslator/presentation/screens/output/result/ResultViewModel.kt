@@ -88,8 +88,16 @@ class ResultViewModel @Inject constructor(
         val targetLangName = selectedLanguage.promptName
         val sourceText = passedEditedResult.ifBlank { userTask }
 
+        // Whichever primary model the session still holds from the previous
+        // run goes first: it answers without a reload, and only the other
+        // one pays the multi-second load cost.
+        val residentPath = localLlamaSession.loadedModelPath
+        val primaryOrder = PRIMARY_LOCAL_MODELS.sortedByDescending { (seed, _) ->
+            modelStore.finalFile(seed).absolutePath == residentPath
+        }
+
         var anyPrimarySucceeded = false
-        for ((seed, aiService) in PRIMARY_LOCAL_MODELS) {
+        for ((seed, aiService) in primaryOrder) {
             if (!modelStore.isInstalled(seed)) continue
             val succeeded = runLocalModel(seed, aiService, targetLangCode, targetLangName, sourceText)
             anyPrimarySucceeded = anyPrimarySucceeded || succeeded
