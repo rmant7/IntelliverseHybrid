@@ -81,30 +81,52 @@ class LocalLlamaSession {
         // Settings.DEFAULT_REPEAT_PENALTY).
         repeatPenalty: Float = 1.2f,
     ): Flow<String> = callbackFlow {
-        val activeHandle = handle
-        if (activeHandle == 0L) {
-            close(IllegalStateException("No model loaded"))
-            return@callbackFlow
-        }
         val callback = object : LlamaBridge.TokenSink {
             override fun onToken(text: String) {
                 trySend(text)
             }
         }
         val job = launch(Dispatchers.IO) {
-            val result = if (hasEncoder) {
-                bridge.nativeGenerateT5(
-                    activeHandle, prompt, maxTokens, temperature, topP, topK, repeatPenalty, callback,
-                )
-            } else {
-                bridge.nativeGenerate(
-                    activeHandle, null, prompt, maxTokens, temperature, topP, topK, repeatPenalty, callback,
-                )
+            // Held for the whole native call, not just load()/unload() --
+            // this session is a Hilt @Singleton shared across every screen
+            // that translates, and without this a concurrent load() (e.g.
+            // the user backs out mid-generation, changes settings, and
+            // starts a new translation before this coroutine's own
+            // cancellation has actually unwound) frees the native context
+            // this coroutine is still actively generating from underneath
+            // it. Confirmed on a real device: crash with nothing in the
+            // app's own log at all -- a native use-after-free/SIGSEGV,
+            // not a caught Kotlin exception, exactly this sequence
+            // (previous local-model generation still in flight when the
+            // next run's load() ran).
+            loadMutex.withLock {
+                val activeHandle = handle
+                if (activeHandle == 0L) {
+                    close(IllegalStateException("No model loaded"))
+                    return@withLock
+                }
+                val result = if (hasEncoder) {
+                    bridge.nativeGenerateT5(
+                        activeHandle, prompt, maxTokens, temperature, topP, topK, repeatPenalty, callback,
+                    )
+                } else {
+                    bridge.nativeGenerate(
+                        activeHandle, null, prompt, maxTokens, temperature, topP, topK, repeatPenalty, callback,
+                    )
+                }
+                if (result < 0) close(IllegalStateException("Generation failed (code $result)")) else close()
             }
-            if (result < 0) close(IllegalStateException("Generation failed (code $result)")) else close()
         }
         awaitClose {
-            bridge.nativeCancel(activeHandle)
+            // Signals the in-progress native loop to stop -- read live off
+            // [handle] rather than a captured value, since with the mutex
+            // above this can only be the handle generate() is (or was
+            // about to be) locked on; nativeCancel itself doesn't need the
+            // lock, it just flips a flag the generation loop checks
+            // between tokens so the withLock block above can return and
+            // release the mutex for whoever's waiting on it next (a
+            // concurrent load(), most commonly).
+            bridge.nativeCancel(handle)
             job.cancel()
         }
     }
