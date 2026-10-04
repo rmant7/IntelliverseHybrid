@@ -35,9 +35,8 @@ jobs:
       # its native (llama.cpp JNI) build -- AGP can auto-download it on
       # first use provided licenses are accepted (the --licenses line
       # above), but requesting it up front here avoids depending on that
-      # working silently mid-build. The NDK itself is left unpinned: AGP
-      # auto-selects and auto-provisions its own default NDK version for
-      # this AGP release the same way.
+      # working silently mid-build. The NDK is pinned in app/build.gradle.kts
+      # (ndkVersion); AGP auto-provisions exactly that version.
       - name: Ensure Android SDK packages
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
@@ -93,8 +92,12 @@ jobs:
               echo "play=true" >> "$GITHUB_OUTPUT"
               exit 0
             else
-              echo "::warning::RELEASE_KEYSTORE_BASE64 is set but keytool couldn't open it with RELEASE_KEYSTORE_PASSWORD/RELEASE_KEY_ALIAS -- falling back to debug signing for this build."
+              # Present but unusable is a broken production signing setup, not
+              # "no key configured": fail, don't quietly ship a debug-signed
+              # build. Only a completely absent secret falls back below.
+              echo "::error::RELEASE_KEYSTORE_BASE64 is set but keytool couldn't open it with RELEASE_KEYSTORE_PASSWORD/RELEASE_KEY_ALIAS -- fix the signing secrets."
               rm -f app/keystore/release.keystore
+              exit 1
             fi
           else
             echo "::warning::No RELEASE_KEYSTORE_BASE64 secret -- this build is debug-signed: an installable tester APK, NOT a Play artifact."

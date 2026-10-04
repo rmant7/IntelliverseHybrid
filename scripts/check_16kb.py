@@ -14,7 +14,8 @@ packaged just the same and is the usual offender:
    time, so their zip offset does not matter. An AAB has no such layout
    (Play builds the APKs), so only (1) applies to it.
 
-Usage: check_16kb.py ARTIFACT [ARTIFACT ...]   exit 1 on any violation.
+Usage: check_16kb.py ARTIFACT [ARTIFACT ...]   exit 1 on any violation, and
+on an artifact with no native libraries at all (a false green otherwise).
 """
 
 import struct
@@ -89,6 +90,11 @@ def main(paths):
         print(f"{path}: {checked} native libraries checked, {len(problems)} problem(s)")
         for p in problems:
             print(f"  16KB: {p}")
+        if checked == 0:
+            # This app always ships native code; finding none means the
+            # packaging or the lib/ path changed, not that all is well.
+            print(f"  16KB: no native libraries found -- nothing was checked")
+            failed = True
         failed |= bool(problems)
     return 1 if failed else 0
 
