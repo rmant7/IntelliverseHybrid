@@ -32,13 +32,13 @@ class ImageUtils @Inject constructor(
             byteArrayOutputStream.close()
             return byteArray
         } catch (e: SecurityException) {
-            Timber.e(e)
+            Timber.e(e, "Image unreadable: no permission for ${describe(imageUri)}")
             null
         } catch (e: NullPointerException) {
-            Timber.e(e)
+            Timber.e(e, "Image unreadable: ${describe(imageUri)}")
             null
         } catch (e: Exception) {
-            Timber.e(e)
+            Timber.e(e, "Image unreadable: ${describe(imageUri)}")
             null
         } finally {
             byteArrayOutputStream?.close()
@@ -58,17 +58,41 @@ class ImageUtils @Inject constructor(
      * inSampleSize, then the real decode uses it.
      */
     private fun decodeDownsampledBitmap(imageUri: Uri): Bitmap? {
+        // Each null below used to be silent: a photo that could not be read
+        // reached the providers as "no image" with nothing in the log (device
+        // build #145, DietTracker). Every one now says which step and what
+        // the system knows about the file.
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         context.contentResolver.openInputStream(imageUri)?.use { stream ->
             BitmapFactory.decodeStream(stream, null, bounds)
-        } ?: return null
+        } ?: run {
+            Timber.w("Image unreadable: no input stream for ${describe(imageUri)}")
+            return null
+        }
+        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) {
+            Timber.w("Image unreadable: no decodable header (mime ${bounds.outMimeType}) in ${describe(imageUri)}")
+            return null
+        }
 
         val options = BitmapFactory.Options().apply {
             inSampleSize = calculateInSampleSize(bounds.outWidth, bounds.outHeight, MAX_DIMENSION_PX)
         }
-        return context.contentResolver.openInputStream(imageUri)?.use { stream ->
+        val bitmap = context.contentResolver.openInputStream(imageUri)?.use { stream ->
             BitmapFactory.decodeStream(stream, null, options)
         }
+        if (bitmap == null) {
+            Timber.w(
+                "Image unreadable: decode failed for ${bounds.outWidth}x${bounds.outHeight} " +
+                    "${bounds.outMimeType} (sample ${options.inSampleSize}) in ${describe(imageUri)}"
+            )
+        }
+        return bitmap
+    }
+
+    /** Scheme, provider and MIME type -- enough to tell a picker, camera or document URI apart; no file contents. */
+    private fun describe(uri: Uri): String {
+        val mime = runCatching { context.contentResolver.getType(uri) }.getOrNull()
+        return "${uri.scheme}://${uri.authority} (type $mime)"
     }
 
     /** inSampleSize only downsamples by powers of 2 -- the coarsest one that still keeps the longer side at or above [maxDimension]. */

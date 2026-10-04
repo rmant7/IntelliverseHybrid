@@ -9,7 +9,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shared.BuildConfig
-import com.example.shared.UnableToAssistException
+import com.example.shared.PhotoUnreadableException
 import com.example.shared.ads.InterstitialAdUseCase
 import com.example.shared.data.network.gemini_api.client.GeminiApiService
 import com.example.shared.domain.language.Language
@@ -310,7 +310,9 @@ abstract class BaseResultViewModel(
                         fileByteArray = fileByteArray,
                         fileName = passedImageUri.toString()
                     )
-                    uploadResult.onSuccess { generativeLanguageURLs.add(it) }
+                    uploadResult
+                        .onSuccess { generativeLanguageURLs.add(it) }
+                        .onFailure { Timber.w(it, "Gemini image upload failed") }
                 }
             }
         }
@@ -350,10 +352,21 @@ abstract class BaseResultViewModel(
         coroutineScope {
             launch {
                 setGenerativeLangUrls()
-                geminiWithinApp(GeminiApiService.GeminiModel.GEMINI_3_6_FLASH, AIService.GEMINI_THINKING)
+                if (imageUsed && generativeLanguageURLs.isEmpty()) {
+                    // Without this Gemini was asked about "the photo" with no
+                    // photo attached, and answered anyway.
+                    val failure = if (imagesBase64.isEmpty()) {
+                        PhotoUnreadableException()
+                    } else {
+                        PhotoUnreadableException("The photo could not be uploaded to Gemini")
+                    }
+                    onSolutionResult(Result.failure(failure), AIService.GEMINI_THINKING)
+                } else {
+                    geminiWithinApp(GeminiApiService.GeminiModel.GEMINI_3_6_FLASH, AIService.GEMINI_THINKING)
+                }
             }
             if (imageUsed && imagesBase64.isEmpty()) {
-                onSolutionResult(Result.failure(UnableToAssistException), AIService.GROQ)
+                onSolutionResult(Result.failure(PhotoUnreadableException()), AIService.GROQ)
             } else {
                 // GPT (langchain4j's "demo" key, a shared worldwide
                 // non-configurable quota that never once produced an
