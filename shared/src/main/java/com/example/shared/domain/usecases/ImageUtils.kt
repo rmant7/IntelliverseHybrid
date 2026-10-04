@@ -63,9 +63,15 @@ class ImageUtils @Inject constructor(
         // build #145, DietTracker). Every one now says which step and what
         // the system knows about the file.
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        context.contentResolver.openInputStream(imageUri)?.use { stream ->
+        // decodeStream() with inJustDecodeBounds ALWAYS returns null -- it
+        // only fills [bounds]. Chaining `?: return null` onto it (as this did
+        // from 2026-09-28 until build #146's log showed it) rejected every
+        // photo, so whether the stream opened is tracked separately.
+        val opened = context.contentResolver.openInputStream(imageUri)?.use { stream ->
             BitmapFactory.decodeStream(stream, null, bounds)
-        } ?: run {
+            true
+        } ?: false
+        if (!opened) {
             Timber.w("Image unreadable: no input stream for ${describe(imageUri)}")
             return null
         }
