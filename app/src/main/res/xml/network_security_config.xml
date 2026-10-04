@@ -29,15 +29,12 @@
         </trust-anchors>
     </domain-config>
     <!--
-        AndroidManifest.xml's android:usesCleartextTraffic="true" is ignored
-        once a network security config is present at all; this base-config
-        exists only to keep that same cleartext-allowed behavior for
-        everything outside the domain-config above (targetSdk 35 would
-        otherwise default cleartext to disallowed, a behavior change this
-        file has no business introducing as a side effect of fixing
-        GigaChat's TLS trust).
+        HTTPS only, everywhere. No code in this app speaks plain HTTP; this
+        stops a library, a misconfigured endpoint or a future http:// URL
+        from silently sending traffic unencrypted. If something ever truly
+        needs HTTP, allow that one host in its own domain-config, never here.
     -->
-    <base-config cleartextTrafficPermitted="true">
+    <base-config cleartextTrafficPermitted="false">
         <trust-anchors>
             <certificates src="system" />
         </trust-anchors>

@@ -175,7 +175,9 @@ class IntelliverseApplication : Application() {
             Timber.d("Creating an extended library configuration.")
             val config = AppMetricaConfig
                 .newConfigBuilder(apiKey)
-                .withLocationTracking(true)
+                // Off: the app holds no location permission, and analytics
+                // needs none -- launches, sessions and errors only.
+                .withLocationTracking(false)
                 .withSessionsAutoTrackingEnabled(true)
                 .build()
 

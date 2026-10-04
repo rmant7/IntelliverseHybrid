@@ -27,6 +27,12 @@ val releaseKeyAlias = localProperties.getProperty("release_key_alias")
 val releaseKeyPassword = localProperties.getProperty("release_key_password")
 val hasReleaseSigning = !releaseKeystorePath.isNullOrBlank() && file(releaseKeystorePath).exists()
 
+// A release build signed with the debug key is never a Play artifact. Without
+// the real upload key, every release task fails -- unless this is set, which
+// CI does only to keep producing an installable tester APK when the signing
+// secrets are missing, and then labels the AAB as not for Play.
+val allowDebugSignedRelease = (findProperty("allowDebugSignedRelease") as String?).toBoolean()
+
 // Set by CI via -PbuildNumber=<github.run_number> so a build coming off the
 // "latest" release can be identified from inside the app itself (Log screen
 // header) -- matches the Intelliverse-<run_number>.apk filename in the
@@ -69,6 +75,11 @@ android {
     // as of 2026-08-31, so 35 fell below that floor, not just "not the
     // newest".
     compileSdk = 37
+    // The NDK AGP 8.13 already picked by default (CI log: "NDK (Side by side)
+    // 27.0.12077973") -- pinned so the llama.cpp/JNI build only changes NDK
+    // when this line does, not as a side effect of an AGP bump. r27 links
+    // with the 16 KB max-page-size set in app/src/main/cpp/CMakeLists.txt.
+    ndkVersion = "27.0.12077973"
 
     signingConfigs {
         // AGP's built-in "debug" signingConfig otherwise falls back to
@@ -234,5 +245,19 @@ dependencies {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+// See allowDebugSignedRelease above. preReleaseBuild runs before every
+// release task (assembleRelease, bundleRelease, install...), so this guards
+// all of them in one place.
+tasks.matching { it.name == "preReleaseBuild" }.configureEach {
+    doFirst {
+        if (!hasReleaseSigning && !allowDebugSignedRelease) {
+            throw GradleException(
+                "Release build without the release/upload keystore (release_keystore_path in local.properties). " +
+                    "A debug-signed release is not a Play artifact; pass -PallowDebugSignedRelease=true only for a tester build."
+            )
+        }
     }
 }

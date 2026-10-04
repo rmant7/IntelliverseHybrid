@@ -16,7 +16,11 @@
     <uses-permission
         android:name="com.google.android.gms.permission.AD_ID"
         android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- No location: nothing in the app asks for it at runtime (so it was never
+         granted), and AppMetrica's location tracking is off. Removed even if a
+         library's manifest declares it, so it never reaches Data Safety. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove" />
     <!-- ModelDownloadService: keeps a model download alive while the app is
          backgrounded. Required on Android 14+ to start a foreground
          service with an explicit type (dataSync, since this transfers a
@@ -34,7 +38,6 @@
         tools:replace="android:icon,android:roundIcon"
         android:supportsRtl="true"
         android:theme="@style/Theme.SchoolKiller"
-        android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan"
         tools:targetApi="35"
         android:dataExtractionRules="@xml/data_extraction_rules"

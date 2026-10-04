@@ -66,6 +66,7 @@ jobs:
       # someone just wants an installable APK out of a build regardless of
       # whether the Play-signing secrets happen to be right yet.
       - name: Decode release keystore
+        id: signing
         env:
           RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
@@ -89,19 +90,62 @@ jobs:
               echo "release_keystore_password=$RELEASE_KEYSTORE_PASSWORD" >> local.properties
               echo "release_key_alias=$RELEASE_KEY_ALIAS" >> local.properties
               echo "release_key_password=$RELEASE_KEY_PASSWORD" >> local.properties
+              echo "play=true" >> "$GITHUB_OUTPUT"
+              exit 0
             else
               echo "::warning::RELEASE_KEYSTORE_BASE64 is set but keytool couldn't open it with RELEASE_KEYSTORE_PASSWORD/RELEASE_KEY_ALIAS -- falling back to debug signing for this build."
               rm -f app/keystore/release.keystore
             fi
+          else
+            echo "::warning::No RELEASE_KEYSTORE_BASE64 secret -- this build is debug-signed: an installable tester APK, NOT a Play artifact."
           fi
+          echo "play=false" >> "$GITHUB_OUTPUT"
 
       # APK: the one build someone is actually meant to install and test.
       # AAB: what actually gets uploaded to Google Play -- built in the same
       # run, off the same signing config, so a green build here means both
       # are ready together rather than the AAB being a separate, untested
       # afterthought at upload time.
+      # Without the upload key app/build.gradle.kts refuses every release task;
+      # -PallowDebugSignedRelease is passed only then, to still get a tester
+      # APK -- and the AAB is named NOT-FOR-PLAY below.
       - name: Build APK + AAB
-        run: ./gradlew assembleRelease bundleRelease --no-daemon -PbuildNumber=${{ github.run_number }}
+        run: ./gradlew assembleRelease bundleRelease --no-daemon -PbuildNumber=${{ github.run_number }} ${{ steps.signing.outputs.play != 'true' && '-PallowDebugSignedRelease=true' || '' }}
+
+      # The certificate actually on the artifacts, not "a keystore was
+      # present": both must carry the upload key when it was available, the
+      # committed debug key otherwise. apksigner also fully verifies the APK.
+      - name: Verify signing certificates
+        env:
+          PLAY: ${{ steps.signing.outputs.play }}
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+        run: |
+          set -euo pipefail
+          norm() { sed 's/^[^:]*: *//' | tr -d ': \t' | tr 'A-F' 'a-f'; }
+          if [ "$PLAY" = "true" ]; then
+            RELEASE_KEYSTORE_PASSWORD="$(printf '%s' "$RELEASE_KEYSTORE_PASSWORD" | tr -d '\r\n')"
+            RELEASE_KEY_ALIAS="$(printf '%s' "$RELEASE_KEY_ALIAS" | tr -d '\r\n')"
+            expected=$(keytool -list -v -keystore app/keystore/release.keystore -storepass "$RELEASE_KEYSTORE_PASSWORD" -alias "$RELEASE_KEY_ALIAS" | grep 'SHA256:' | head -1 | norm)
+            label="upload key"
+          else
+            expected=$(keytool -list -v -keystore app/keystore/debug.keystore -storepass android -alias androiddebugkey | grep 'SHA256:' | head -1 | norm)
+            label="debug key"
+          fi
+          aab=$(keytool -printcert -jarfile app/build/outputs/bundle/release/app-release.aab | grep 'SHA256:' | head -1 | norm)
+          apk=$("$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --print-certs app/build/outputs/apk/release/app-release.apk | grep 'SHA-256 digest' | head -1 | norm)
+          echo "expected ($label): $expected"
+          echo "AAB:                $aab"
+          echo "APK:                $apk"
+          if [ -z "$expected" ] || [ "$aab" != "$expected" ] || [ "$apk" != "$expected" ]; then
+            echo "::error::Release artifacts are not signed with the $label."
+            exit 1
+          fi
+
+      # Every .so in the final APK and AAB -- prebuilt ones from AARs included
+      # -- must be 16 KB page-size compatible (scripts/check_16kb.py).
+      - name: Check 16 KB native library alignment
+        run: python3 scripts/check_16kb.py app/build/outputs/apk/release/app-release.apk app/build/outputs/bundle/release/app-release.aab
 
       - name: Rename outputs with the build number
         run: |
@@ -110,7 +154,7 @@ jobs:
             "app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
           mkdir -p app/build/outputs/bundle/release/named
           cp app/build/outputs/bundle/release/app-release.aab \
-            "app/build/outputs/bundle/release/named/Intelliverse-${{ github.run_number }}.aab"
+            "app/build/outputs/bundle/release/named/Intelliverse-${{ github.run_number }}${{ steps.signing.outputs.play != 'true' && '-NOT-FOR-PLAY' || '' }}.aab"
 
       - name: Upload APK (workflow artifact)
         uses: actions/upload-artifact@v4
@@ -169,7 +213,7 @@ jobs:
           NOTES="Intelliverse, build #${{ github.run_number }} -- commit ${{ github.sha }}, branch \`${{ github.ref_name }}\`.
           Always overwritten by the next build on any branch -- not a pinned version, just the most recent build."
           APK="app/build/outputs/apk/release/named/Intelliverse-${{ github.run_number }}.apk"
-          AAB="app/build/outputs/bundle/release/named/Intelliverse-${{ github.run_number }}.aab"
+          AAB="$(ls app/build/outputs/bundle/release/named/*.aab)"
           gh release delete "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
           gh release create "$RELEASE_TAG" "$APK" "$AAB" \
             --repo "$GITHUB_REPOSITORY" \
