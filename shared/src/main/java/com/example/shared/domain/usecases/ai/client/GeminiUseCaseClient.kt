@@ -1,10 +1,15 @@
 package com.example.shared.domain.usecases.ai.client
 
-import com.example.shared.data.network.gemini_api.client.GeminiRequestRejected
+import com.example.shared.data.network.gemini_api.client.GeminiHttpException
 import com.example.shared.domain.ai.EnforcementLadder
 import com.example.shared.domain.ai.FormatSupportErrors
 import com.example.shared.domain.ai.JsonEnforcement
 import com.example.shared.domain.ai.ResponseFormat
+import com.example.shared.domain.ai.ModelCooldownStore
+import com.example.shared.domain.ai.ModelRotation
+import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
+import java.io.File
 import timber.log.Timber
 
 import com.example.shared.data.network.gemini_api.client.GeminiApiService
@@ -12,16 +17,25 @@ import com.example.shared.data.network.gemini_api.client.GeminiRequest
 import javax.inject.Inject
 
 class GeminiUseCaseClient @Inject constructor(
-    private val geminiApiService: GeminiApiService
+    private val geminiApiService: GeminiApiService,
+    @ApplicationContext context: Context,
 ) {
+    private val cooldowns = ModelCooldownStore(File(context.filesDir, "gemini-model-cooldowns.json"))
 
-    /** Generate Gemini solution using the image */
+    /** The model that actually produced the last successful answer -- for the attribution footer. */
+    @Volatile
+    var lastUsedModel: String? = null
+        private set
+
     /**
-     * [responseFormat] [ResponseFormat.Json] asks Gemini for native structured
-     * output (JSON + the response model's schema). Only if Gemini answers that
-     * this model does not support that does the same request go out again
-     * with less enforcement (JSON syntax only, then prompt only) -- see
-     * [EnforcementLadder]; every other failure is returned as is.
+     * Tries [modelName] first, then its sibling models
+     * ([GeminiApiService.GeminiModel.ROTATION]) -- ported from rmant7/AI. A
+     * failure about the model itself (503 overloaded, 404 retired) cools
+     * that model down ([ModelCooldownStore]) and moves on to
+     * the next; any other failure is the answer. Within each model,
+     * [responseFormat] [ResponseFormat.Json] asks for native structured
+     * output, stepping down only when Gemini says explicitly that this model
+     * doesn't support the format ([EnforcementLadder]).
      */
     suspend fun generateGeminiSolution(
         generativeLanguageUrls: List<String> = emptyList(),
@@ -29,10 +43,28 @@ class GeminiUseCaseClient @Inject constructor(
         systemInstruction: String = "",
         modelName: String,
         responseFormat: ResponseFormat = ResponseFormat.Text,
+    ): Result<String> {
+        val rotation = ModelRotation(PROVIDER, listOf(modelName) + GeminiApiService.GeminiModel.ROTATION, cooldowns)
+        val (model, result) = rotation.run(
+            isModelProblem = { it is GeminiHttpException && it.status in MODEL_PROBLEM_STATUSES },
+            onModelProblem = { failed, failure, cooldownMs ->
+                Timber.w("Gemini $failed unavailable (${(failure as GeminiHttpException).status}); cooling it down ${cooldownMs / 1000}s, trying the next model")
+            },
+        ) { candidate -> withFormat(candidate, generativeLanguageUrls, prompt, systemInstruction, responseFormat) }
+        if (result.isSuccess) lastUsedModel = model
+        return result
+    }
+
+    private suspend fun withFormat(
+        modelName: String,
+        generativeLanguageUrls: List<String>,
+        prompt: String,
+        systemInstruction: String,
+        responseFormat: ResponseFormat,
     ): Result<String> = ladder.run(
         model = modelName,
         format = responseFormat,
-        isFormatUnsupported = { it is GeminiRequestRejected && FormatSupportErrors.isGeminiFormatUnsupported(it.status, it.body) },
+        isFormatUnsupported = { it is GeminiHttpException && FormatSupportErrors.isGeminiFormatUnsupported(it.status, it.body) },
     ) { enforcement ->
         val requestBody = GeminiRequest.buildGeminiRequest(
             fileUris = generativeLanguageUrls,
@@ -49,6 +81,16 @@ class GeminiUseCaseClient @Inject constructor(
     }
 
     private companion object {
+        const val PROVIDER = "gemini"
+
+        /**
+         * About the model, not the request or the key: overloaded (503) or
+         * retired/unknown (404) -- as in rmant7/AI. A 429 is the key's quota:
+         * GeminiApiService marks the key exhausted for the key rotator, and
+         * cooling a healthy model down for it would wrongly take it out.
+         */
+        val MODEL_PROBLEM_STATUSES = setOf(404, 503)
+
         /** Per model, for the process lifetime: a model that rejected a format isn't asked for it again. */
         val ladder = EnforcementLadder()
     }

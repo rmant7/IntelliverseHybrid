@@ -64,6 +64,19 @@ class GeminiApiService @Inject constructor(
         // newly added API keys specifically (an older/grandfathered key
         // still got as far as a 429 quota error on the same model name).
         const val GEMINI_3_6_FLASH = "gemini-3.6-flash"
+
+        /**
+         * Tried in this order after the requested model, when it is
+         * overloaded (503) or gone (404) -- the free
+         * Gemini models rmant7/AI rotates through (its CloudProviders list,
+         * proven on devices; gemini-2.0-flash-lite dropped there as retired).
+         */
+        val ROTATION = listOf(
+            "gemini-3.7-flash",
+            "gemini-3.5-flash",
+            "gemini-3.1-flash-lite",
+            "gemini-2.5-flash",
+        )
         //const val GEMINI_2_5_FLASH_LITE = "gemini-2.5-flash-lite"
     }
 
@@ -199,27 +212,13 @@ class GeminiApiService @Inject constructor(
                     if (response.status == HttpStatusCode.TooManyRequests) {
                         apiKeyRotator.markExhausted(keyEntry.id)
                     }
-                    Timber.w("Gemini HTTP ${response.status.value} -- ${bodyText.take(500)}")
-                    // 503 ("model is currently experiencing high demand ...
-                    // try again later") is Google's own server-side overload,
-                    // not this key or model's fault -- confirmed on a real
-                    // device happening moments after a 429 on the same
-                    // model, i.e. general load, not this account. Worth one
-                    // short retry before giving up, same treatment as a
-                    // transient network failure below.
-                    if (response.status == HttpStatusCode.ServiceUnavailable && networkRetriesLeft > 0) {
-                        networkRetriesLeft--
-                        Timber.w("Gemini reported high demand (503), retrying ($networkRetriesLeft attempt(s) left)")
-                        delay(NETWORK_RETRY_DELAY_MS)
-                        continue
-                    }
-                    // A 400 keeps its body: it is the only place a caller can
-                    // read *why* the request was refused (e.g. a response
-                    // format this model doesn't support -- GeminiUseCaseClient).
-                    if (response.status == HttpStatusCode.BadRequest) {
-                        return Result.failure(GeminiRequestRejected(response.status.value, bodyText))
-                    }
-                    return Result.failure(UnableToAssistException)
+                    Timber.w("Gemini $modelName HTTP ${response.status.value} -- ${bodyText.take(500)}")
+                    // No same-model retry on 503 any more: GeminiUseCaseClient
+                    // moves on to the next model instead (and cools this one
+                    // down) -- an overloaded model retried 500 ms later is
+                    // almost always still overloaded. The status and body
+                    // travel with the failure so that decision can be made.
+                    return Result.failure(GeminiHttpException(response.status.value, bodyText))
                 }
 
                 val plainTextResponse = jsonResponseToString(bodyText)
@@ -325,5 +324,5 @@ data class UploadModel(
     val errorCode: Int? = null
 )
 
-/** Gemini answered HTTP 400; [body] is its JSON error object, verbatim. */
-class GeminiRequestRejected(val status: Int, val body: String) : Exception("Gemini rejected the request (HTTP $status): ${body.take(300)}")
+/** Gemini answered with a non-2xx status; [body] is its JSON error object, verbatim. */
+class GeminiHttpException(val status: Int, val body: String) : Exception("Gemini returned HTTP $status: ${body.take(300)}")

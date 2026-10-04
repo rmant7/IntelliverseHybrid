@@ -469,7 +469,7 @@ abstract class BaseResultViewModel(
         result.onSuccess {
             try {
                 val decodedResponse = decodeSolutionResponse(it)
-                val textWithFooter = withProviderFooter(decodedResponse.first, "Gemini", modelName)
+                val textWithFooter = withProviderFooter(decodedResponse.first, "Gemini", geminiUseCaseClient.lastUsedModel ?: modelName)
                 onSolutionResult(Result.success(textWithFooter), aiService)
                 if (imageUsed && sharedViewModel.ocrResults.value[aiService].isNullOrBlank()) {
                     sharedViewModel.updateOcrResults(
