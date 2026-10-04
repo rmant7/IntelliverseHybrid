@@ -11,9 +11,15 @@ For each model it sends one tiny request per enforcement level the app uses
 provider's own error message -- the text the app's "format unsupported"
 detection (shared/.../domain/ai/ResponseFormatSupport.kt) reads. Use it to
 confirm that detection matches what the providers really say.
+
+With --image photo.jpg it also sends each Groq model one plain request with
+that picture and prints the answer or error -- the text GroqModelPolicy's
+"this model takes no images" detection (shared/.../domain/ai/GroqModelPolicy.kt)
+reads to move on to the next model.
 """
 
 import argparse
+import base64
 import json
 import os
 import sys
@@ -78,10 +84,22 @@ def probe_groq(key, model):
         print(f"groq    {model:45} {level:10} HTTP {status}  {'ok' if status == 200 else error_message(text)}")
 
 
+def probe_groq_image(key, model, image_b64):
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    content = [
+        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_b64}"}},
+        {"type": "text", "text": "Describe this picture in five words."},
+    ]
+    body = {"model": model, "max_tokens": 50, "messages": [{"role": "user", "content": content}]}
+    status, text = post(url, body, {"Authorization": f"Bearer {key}"})
+    print(f"groq    {model:45} {'IMAGE':10} HTTP {status}  {'ok' if status == 200 else error_message(text)}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gemini-model", action="append", default=None)
     ap.add_argument("--groq-model", action="append", default=None, help="default: every model the key can see")
+    ap.add_argument("--image", help="a JPEG: also probe which Groq models accept image input")
     args = ap.parse_args()
 
     gemini_key, groq_key = os.environ.get("GEMINI_API_KEY"), os.environ.get("GROQ_API_KEY")
@@ -91,8 +109,11 @@ def main():
         for model in args.gemini_model or ["gemini-3.6-flash"]:
             probe_gemini(gemini_key, model)
     if groq_key:
+        image_b64 = base64.b64encode(open(args.image, "rb").read()).decode() if args.image else None
         for model in args.groq_model or groq_models(groq_key):
             probe_groq(groq_key, model)
+            if image_b64:
+                probe_groq_image(groq_key, model, image_b64)
 
 
 if __name__ == "__main__":

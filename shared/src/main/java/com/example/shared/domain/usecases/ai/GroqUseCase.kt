@@ -4,6 +4,7 @@ import com.example.shared.data.keys.ApiKeyRotator
 import com.example.shared.data.keys.ApiProviderIds
 import com.example.shared.domain.ai.EnforcementLadder
 import com.example.shared.domain.ai.FormatSupportErrors
+import com.example.shared.domain.ai.GroqModelPolicy
 import com.example.shared.domain.ai.ResponseFormat
 import org.json.JSONObject
 import timber.log.Timber
@@ -41,15 +42,14 @@ class GroqHttpException(val status: Int, val body: String) : Exception(
  * environment with no network access to api.groq.com to verify against.
  * [FALLBACK_MODEL_CANDIDATES] (the old hardcoded guesses) is only a
  * last-resort if the discovery call itself fails (network error, no key,
- * ...); when it works, [resolveModelCandidates] ranks the account's own
- * models by [VISION_HINT_REGEX] and tries all of them in that order,
- * skipping one that comes back unavailable (see
- * [SKIPPABLE_MODEL_ERROR_CODES]) in favor of the next, rather than treating
- * one bad guess as a permanent failure for the whole provider. Vision-hinted
- * models are ranked first since this app's core flows are photo-driven
- * (diet photos, homework photos, ...) -- Groq's own docs
- * (console.groq.com/docs/vision) confirm its gpt-oss reasoning models do not
- * accept image input at all.
+ * ...); when it works, [GroqModelPolicy] ranks the account's own models
+ * (known vision models first) and they are tried in that order, skipping
+ * one that comes back unavailable (see [SKIPPABLE_MODEL_ERROR_CODES]) or,
+ * for a request with images, one that rejects image input -- remembered as
+ * text-only, not offered images again. Groq's own docs
+ * (console.groq.com/docs/vision) confirm most of its models (gpt-oss, ...)
+ * do not accept image input at all; a text-only Qwen ranked by name before
+ * the vision one used to end the whole Groq attempt with HTTP 400.
  */
 class GroqUseCase @Inject constructor(
     @Named(ApiProviderIds.GROQ) private val apiKeyRotator: ApiKeyRotator,
@@ -70,8 +70,9 @@ class GroqUseCase @Inject constructor(
     }
 
     /**
-     * The account's own model catalog, ranked vision-hinted-first, or
-     * [FALLBACK_MODEL_CANDIDATES] if the discovery call itself fails.
+     * The account's own model catalog (ranked per request by
+     * [GroqModelPolicy]), or [FALLBACK_MODEL_CANDIDATES] if the discovery
+     * call itself fails.
      * Cached per API key for the process lifetime -- a model catalog does
      * not change within one app session, and this avoids paying an extra
      * HTTP round trip on every single Groq call.
@@ -79,11 +80,7 @@ class GroqUseCase @Inject constructor(
     private fun resolveModelCandidates(apiKey: String): List<String> =
         modelCacheByKey.getOrPut(apiKey) {
             val discovered = fetchAccountModelIds(apiKey)
-            if (discovered.isNullOrEmpty()) {
-                FALLBACK_MODEL_CANDIDATES
-            } else {
-                discovered.sortedByDescending { VISION_HINT_REGEX.containsMatchIn(it) }
-            }
+            if (discovered.isNullOrEmpty()) FALLBACK_MODEL_CANDIDATES else discovered
         }
 
     /** `null` on any failure (network, auth, parse, ...) -- distinguished from "account has zero models". */
@@ -179,7 +176,14 @@ class GroqUseCase @Inject constructor(
             )
         val apiKey = keyEntry.key
 
-        val modelCandidates = resolveModelCandidates(apiKey)
+        val hasImages = imagesBase64.isNotEmpty()
+        val modelCandidates = modelPolicy.candidates(resolveModelCandidates(apiKey), hasImages)
+        if (modelCandidates.isEmpty()) {
+            return Result.failure(IllegalStateException("No Groq model on this account accepts image input"))
+        }
+        // Every model tried and why it was passed over -- in the failure
+        // itself, so the Log screen shows whether the vision model was reached.
+        val attempts = mutableListOf<String>()
         var lastFailure: Throwable? = null
         for (modelName in modelCandidates) {
             var networkRetriesLeft = NETWORK_RETRY_ATTEMPTS
@@ -198,6 +202,13 @@ class GroqUseCase @Inject constructor(
                                 continue
                             }
                         }
+                        if (hasImages && GroqModelPolicy.isImageInputRejected(response.status, response.body)) {
+                            Timber.w("Groq model $modelName does not accept images, trying next candidate")
+                            modelPolicy.markTextOnly(modelName)
+                            attempts += "$modelName: no image input"
+                            lastFailure = GroqHttpException(response.status, response.body)
+                            break
+                        }
                         if (isModelUnavailable(response.body)) {
                             // Expected/handled, not a real error -- the next
                             // candidate is tried immediately. A one-line
@@ -205,6 +216,7 @@ class GroqUseCase @Inject constructor(
                             // flooding the Log screen every time Groq's
                             // catalogue drifts under an already-broken model.
                             Timber.w("Groq model $modelName not accessible with this key, trying next candidate")
+                            attempts += "$modelName: ${extractErrorField(response.body, "code")}"
                             lastFailure = GroqHttpException(response.status, response.body)
                             break
                         }
@@ -218,7 +230,7 @@ class GroqUseCase @Inject constructor(
                             Thread.sleep(delayMs)
                             continue
                         }
-                        Timber.w("Groq model $modelName failed: HTTP ${response.status} -- ${response.body.take(300)}")
+                        Timber.w("Groq model $modelName failed: HTTP ${response.status} -- ${response.body.take(300)}${triedBefore(attempts)}")
                         // 401/403 alongside 429: consistent with a
                         // rate-limited or otherwise rejected key, not a
                         // per-model problem.
@@ -230,7 +242,7 @@ class GroqUseCase @Inject constructor(
 
                     val content = extractContent(response.body)
                     if (content == null) {
-                        Timber.w("Groq model $modelName returned no parseable content: ${response.body.take(300)}")
+                        Timber.w("Groq model $modelName returned no parseable content: ${response.body.take(300)}${triedBefore(attempts)}")
                         return Result.failure(IllegalStateException("Groq returned no parseable content"))
                     }
                     lastUsedModel = modelName
@@ -258,31 +270,34 @@ class GroqUseCase @Inject constructor(
                     lastFailure = e
                     return Result.failure(e)
                 } catch (e: Exception) {
-                    Timber.w(e, "Groq model $modelName failed")
+                    Timber.w(e, "Groq model $modelName failed${triedBefore(attempts)}")
                     return Result.failure(e)
                 }
             }
         }
-        // Every candidate came back unavailable (not found, decommissioned,
-        // ...) -- this API key's account has access to none of them, not a
-        // transient issue a retry would fix. Surfaced as its own message
-        // (rather than just the last model's raw error) so the Log screen
-        // shows this is a full-list exhaustion, not one model's ordinary
-        // hiccup.
+        // Every candidate was passed over (not found, decommissioned, no
+        // image input) -- not a transient issue a retry would fix. Surfaced
+        // as its own message, each model with its reason, so the Log screen
+        // shows a full-list exhaustion rather than one model's hiccup.
         return Result.failure(
             IllegalStateException(
-                "None of Groq's candidate models (${modelCandidates.joinToString()}) " +
-                    "are accessible with this API key",
+                "None of Groq's candidate models could take this request: ${attempts.joinToString("; ")}",
                 lastFailure,
             )
         )
     }
+
+    private fun triedBefore(attempts: List<String>): String =
+        if (attempts.isEmpty()) "" else " (passed over before it: ${attempts.joinToString("; ")})"
 
     private companion object {
         const val BASE_URL = "https://api.groq.com/openai/v1"
 
         /** Per model, for the process lifetime -- see [EnforcementLadder]. */
         val formatLadder = EnforcementLadder()
+
+        /** Per model, for the process lifetime -- which ones rejected images. */
+        val modelPolicy = GroqModelPolicy()
 
         // Last resort only, when GET /models itself fails. qwen/qwen3.6-27b
         // is listed first: it's not a guess, it's the model this same Groq
@@ -300,16 +315,6 @@ class GroqUseCase @Inject constructor(
             "llama-3.2-90b-vision-preview",
             "llama-3.2-11b-vision-preview",
         )
-
-        // Heuristic only: Groq's /models response has no explicit
-        // vision-capability field, so this ranks by naming convention
-        // (current and past vision-capable Groq models all contain one of
-        // these -- "qwen" per rmant7/AI's own confirmed-working
-        // qwen/qwen3.6-27b). A model that matches nothing is still tried --
-        // just later in the order -- rather than excluded outright, since a
-        // wrong guess here should degrade to "tried later," never "never
-        // tried".
-        val VISION_HINT_REGEX = Regex("vision|llama-4|scout|maverick|qwen|-vl-|vl$", RegexOption.IGNORE_CASE)
 
         // Groq uses more than one distinct error code for "this model is not
         // usable, stop trying it" -- a real device log caught
