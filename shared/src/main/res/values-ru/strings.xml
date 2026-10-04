@@ -187,4 +187,5 @@
     <string name="reset_settings">Сброс настроек</string>
     <string name="not_relevant">Не актуально</string>
 
+    <string name="clear_text_content_description">Очистить текст</string>
 </resources>

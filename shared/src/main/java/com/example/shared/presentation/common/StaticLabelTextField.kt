@@ -3,6 +3,10 @@ package com.example.shared.presentation.common
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -11,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.OffsetMapping
@@ -18,6 +23,7 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.shared.R
 
 @Composable
 fun StaticLabelTextField(
@@ -29,7 +35,22 @@ fun StaticLabelTextField(
     label: String,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null
+    trailingIcon: @Composable (() -> Unit)? = null,
+    /**
+     * An "X" that empties the field in one tap, shown only once there is
+     * text to clear -- every mini-app's own round eraser button below the
+     * field does the same thing (`onEraseClick` -> `updateUserTextTask("")`)
+     * but sits a row away, among the camera/upload icons, so it reads as
+     * "start over" rather than "clear this field". This is the one place
+     * shared by every app's text input, so the button appears everywhere
+     * at once (DietTracker, OneClickTrip, SchoolKiller, StyleTranslator)
+     * without each app wiring it separately.
+     *
+     * A caller's own [trailingIcon] always wins the slot (OneClickTrip's
+     * trip-duration field uses it for a "days" suffix) -- this button only
+     * fills an otherwise-empty trailing slot.
+     */
+    showClearButton: Boolean = true,
 ){
 
     val textColor = if (value.isEmpty())
@@ -38,6 +59,21 @@ fun StaticLabelTextField(
 
     val placeHolder = remember {
         mutableStateOf(placeholderText)
+    }
+
+    val resolvedTrailingIcon: (@Composable () -> Unit)? = trailingIcon ?: run {
+        if (showClearButton && value.isNotEmpty()) {
+            {
+                IconButton(onClick = { onValueChange("") }) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = stringResource(R.string.clear_text_content_description),
+                    )
+                }
+            }
+        } else {
+            null
+        }
     }
 
     OutlinedTextField(
@@ -65,7 +101,7 @@ fun StaticLabelTextField(
         textStyle = TextStyle(color = textColor, fontSize = 18.sp),
         singleLine = singleLine,
         leadingIcon = leadingIcon,
-        trailingIcon = trailingIcon,
+        trailingIcon = resolvedTrailingIcon,
         keyboardOptions = keyboardOptions
     )
 }
