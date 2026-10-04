@@ -2,7 +2,9 @@ package com.example.shared.domain.usecases.ai
 
 import com.example.shared.data.keys.ApiKeyRotator
 import com.example.shared.data.keys.ApiProviderIds
-import org.json.JSONArray
+import com.example.shared.domain.ai.EnforcementLadder
+import com.example.shared.domain.ai.FormatSupportErrors
+import com.example.shared.domain.ai.ResponseFormat
 import org.json.JSONObject
 import timber.log.Timber
 import java.net.HttpURLConnection
@@ -109,47 +111,6 @@ class GroqUseCase @Inject constructor(
         }
     }
 
-    /** Groq's `/chat/completions` request body -- images (if any) as inline `data:` URIs, no external hosting required. */
-    private fun buildRequestBody(
-        modelName: String,
-        systemInstruction: String,
-        prompt: String,
-        imagesBase64: List<String>,
-    ): String {
-        val messages = JSONArray()
-        if (systemInstruction.isNotBlank()) {
-            messages.put(JSONObject().put("role", "system").put("content", systemInstruction))
-        }
-        val userContent: Any = if (imagesBase64.isEmpty()) {
-            prompt
-        } else {
-            val parts = JSONArray()
-            imagesBase64.forEach { base64Data ->
-                parts.put(
-                    JSONObject()
-                        .put("type", "image_url")
-                        .put("image_url", JSONObject().put("url", "data:image/jpeg;base64,$base64Data"))
-                )
-            }
-            parts.put(JSONObject().put("type", "text").put("text", prompt))
-            parts
-        }
-        messages.put(JSONObject().put("role", "user").put("content", userContent))
-
-        return JSONObject()
-            .put("model", modelName)
-            // Without this, Groq applies its own per-model server-side
-            // default -- confirmed too small via a real device log: a
-            // genuine, successful response (a multi-day trip itinerary, for
-            // OneClickTrip) got cut off mid-JSON, failing to decode with
-            // "Expected end of the object '}', but had 'EOF' instead". 8192
-            // comfortably covers this app's largest structured response
-            // shape with room to spare.
-            .put("max_tokens", 8192)
-            .put("messages", messages)
-            .toString()
-    }
-
     private class HttpResult(val status: Int, val body: String)
 
     private fun postChatCompletion(apiKey: String, requestBody: String): HttpResult {
@@ -198,11 +159,19 @@ class GroqUseCase @Inject constructor(
         return ((seconds + 0.5) * 1000).toLong().coerceAtMost(10_000L)
     }
 
-    /** Generate a Groq solution using text and optionally one or more base64-encoded JPEG images. */
+    /**
+     * Generate a Groq solution using text and optionally one or more
+     * base64-encoded JPEG images. [responseFormat] [ResponseFormat.Json] asks
+     * for `json_schema` first; a model that explicitly answers it doesn't
+     * support that is asked again on the same request with `json_object`,
+     * then without `response_format` (remembered per model) -- any other
+     * error is handled exactly as before.
+     */
     fun generateGroqSolution(
         imagesBase64: List<String>,
         prompt: String,
         systemInstruction: String = "",
+        responseFormat: ResponseFormat = ResponseFormat.Text,
     ): Result<String> {
         val keyEntry = apiKeyRotator.activeKey()
             ?: return Result.failure(
@@ -214,12 +183,21 @@ class GroqUseCase @Inject constructor(
         var lastFailure: Throwable? = null
         for (modelName in modelCandidates) {
             var networkRetriesLeft = NETWORK_RETRY_ATTEMPTS
+            var enforcement = formatLadder.start(modelName, responseFormat)
             while (true) {
-                val requestBody = buildRequestBody(modelName, systemInstruction, prompt, imagesBase64)
+                val requestBody = GroqRequest.body(modelName, systemInstruction, prompt, imagesBase64, responseFormat, enforcement)
                 try {
                     val response = postChatCompletion(apiKey, requestBody)
 
                     if (response.status !in 200..299) {
+                        if (FormatSupportErrors.isGroqFormatUnsupported(response.status, response.body)) {
+                            val weaker = formatLadder.stepDown(modelName, enforcement)
+                            if (weaker != null) {
+                                Timber.w("Groq model $modelName does not support $enforcement output, retrying with $weaker")
+                                enforcement = weaker
+                                continue
+                            }
+                        }
                         if (isModelUnavailable(response.body)) {
                             // Expected/handled, not a real error -- the next
                             // candidate is tried immediately. A one-line
@@ -302,6 +280,9 @@ class GroqUseCase @Inject constructor(
 
     private companion object {
         const val BASE_URL = "https://api.groq.com/openai/v1"
+
+        /** Per model, for the process lifetime -- see [EnforcementLadder]. */
+        val formatLadder = EnforcementLadder()
 
         // Last resort only, when GET /models itself fails. qwen/qwen3.6-27b
         // is listed first: it's not a guess, it's the model this same Groq

@@ -7,7 +7,7 @@ val doubleQuotes: String
 
 fun jsonResponseLanguage(language: String): String = "**Provide the Json response in $language.**"
 
-fun ocrTextJsonEntry(imageUsed: Boolean): String = if (imageUsed) """- \"ocrText\" (String) - The text detected from the images (in its original language).""" else ""
+fun ocrTextJsonEntry(imageUsed: Boolean): String = if (imageUsed) """- "ocrText" (String) - The text detected from the images (in its original language).""" else ""
 
 val audioPath: String
     get() = "/storage/emulated/0/Android/data/com.$appName/files/"

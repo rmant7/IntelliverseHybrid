@@ -1,5 +1,6 @@
 package com.oneclicktrip.presentation.screens.output.result
 
+import com.example.shared.domain.ai.ResponseFormat
 import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import com.example.shared.domain.usecases.SpeechConverter
@@ -121,145 +122,145 @@ class ResultViewModel @Inject constructor(
            
         Strictly format the response as a JSON object with the following structure:
 
-        - \"titles\" (Map<String, String>) – A map of localized section headers (must match the keys used in the JSON body).
+        - "titles" (Map<String, String>) – A map of localized section headers (must match the keys used in the JSON body).
 
-        - \"days\" (List<Map<String, Any>>) – A list of days in the itinerary. Each day contains:
-           - \"activities\" (List<Map<String, Any>>) – A list of recommended activities for the current day. Each activity includes:
-             - \"name\" (String) – The name of the activity.
-             - \"description\" (String) – A full description of the activity.
-             - \"time\" (String) – The scheduled time (e.g., \"10:00 - 12:00\").
-             - \"links\" (List<String>) – A list of URLs or references related to the activity.
-             - \"tips\" (List<String>) – Helpful tips for the activity.
-             - \"activityCost\" (String) – The estimated cost in USD for the activity (e.g., \"35 USD\").
-             - \"midwayStops\" (List<Map<String, Any>>) – (Optional) Suggested midway stops during long transportation segments. Each stop includes:
-               - \"name\" (String) – Name of the midway stop.
-               - \"description\" (String) – Description of the stop.
-               - \"time\" (String) – Estimated stop duration (e.g., \"30 min\").
-               - \"links\" (List<String>) – A list of URLs or references related to the stop.
-               - \"tips\" (List<String>) – Helpful tips for the stop.
+        - "days" (List<Map<String, Any>>) – A list of days in the itinerary. Each day contains:
+           - "activities" (List<Map<String, Any>>) – A list of recommended activities for the current day. Each activity includes:
+             - "name" (String) – The name of the activity.
+             - "description" (String) – A full description of the activity.
+             - "time" (String) – The scheduled time (e.g., "10:00 - 12:00").
+             - "links" (List<String>) – A list of URLs or references related to the activity.
+             - "tips" (List<String>) – Helpful tips for the activity.
+             - "activityCost" (String) – The estimated cost in USD for the activity (e.g., "35 USD").
+             - "midwayStops" (List<Map<String, Any>>) – (Optional) Suggested midway stops during long transportation segments. Each stop includes:
+               - "name" (String) – Name of the midway stop.
+               - "description" (String) – Description of the stop.
+               - "time" (String) – Estimated stop duration (e.g., "30 min").
+               - "links" (List<String>) – A list of URLs or references related to the stop.
+               - "tips" (List<String>) – Helpful tips for the stop.
 
-           - \"accommodations\" (List<Map<String, Any>>) – A list of accommodations for that day. Each item includes:
-             - \"name\" (String) – The name or label for the accommodation.
-             - \"link\" (String) – A link to the accommodation (e.g., \"Booking.com, Airbnb\").
+           - "accommodations" (List<Map<String, Any>>) – A list of accommodations for that day. Each item includes:
+             - "name" (String) – The name or label for the accommodation.
+             - "link" (String) – A link to the accommodation (e.g., "Booking.com, Airbnb").
 
-        - \"summary\" (Map<String, String>) – An overview of the itinerary including:
-           - \"totalCost\" (String) – The total estimated cost of the trip in USD.
-           - \"visitedDestinations\" (String) – Total number of destinations visited.
-           - \"transitTime\" (String) – Total estimated time spent in transit.
-           - \"transportTypes\" (String) – All types of transportation used during the trip.
-           - \"lodgingTypes\" (String) – Types of accommodations used (e.g., \"Hotel, Airbnb\").
-           - \"categories\" (String) – Categories covered (e.g., \"nature, cultural, adventure, culinary\").
+        - "summary" (Map<String, String>) – An overview of the itinerary including:
+           - "totalCost" (String) – The total estimated cost of the trip in USD.
+           - "visitedDestinations" (String) – Total number of destinations visited.
+           - "transitTime" (String) – Total estimated time spent in transit.
+           - "transportTypes" (String) – All types of transportation used during the trip.
+           - "lodgingTypes" (String) – Types of accommodations used (e.g., "Hotel, Airbnb").
+           - "categories" (String) – Categories covered (e.g., "nature, cultural, adventure, culinary").
            
         ${ocrTextJsonEntry(imageUsed)}
            
            
         Example Output:
         {
-          \"titles\": {
-            \"day\": \"<'Day' translated>\",
-            \"activities\": \"<'Activities' translated>\",
-            \"description\": \"<'Description' translated>\",
-            \"time\": \"<'Time' translated>\",
-            \"links\": \"<'Links' translated>\",
-            \"tips\": \"<'Tips' translated>\",
-            \"activityCost\": \"<'Activity Cost' translated>\",
-            \"midwayStops\": \"<'Midway Stops' translated>\",
-            \"accommodations\": \"<'Accommodations' translated>\",
-            \"link\": \"<'Link' translated>\",
-            \"summary\": \"<'Summary' translated>\",
-            \"totalCost\": \"<'Total Cost' translated>\",
-            \"visitedDestinations\": \"<'Total Visited Destinations' translated>\",
-            \"transitTime\": \"<'Total Transit Time' translated>\",
-            \"transportTypes\": \"<'Transport Methods' translated>\",
-            \"lodgingTypes\": \"<'Lodging Types' translated>\",
-            \"categories\": \"<'Covered Categories' translated>\"
+          "titles": {
+            "day": "<'Day' translated>",
+            "activities": "<'Activities' translated>",
+            "description": "<'Description' translated>",
+            "time": "<'Time' translated>",
+            "links": "<'Links' translated>",
+            "tips": "<'Tips' translated>",
+            "activityCost": "<'Activity Cost' translated>",
+            "midwayStops": "<'Midway Stops' translated>",
+            "accommodations": "<'Accommodations' translated>",
+            "link": "<'Link' translated>",
+            "summary": "<'Summary' translated>",
+            "totalCost": "<'Total Cost' translated>",
+            "visitedDestinations": "<'Total Visited Destinations' translated>",
+            "transitTime": "<'Total Transit Time' translated>",
+            "transportTypes": "<'Transport Methods' translated>",
+            "lodgingTypes": "<'Lodging Types' translated>",
+            "categories": "<'Covered Categories' translated>"
           },
-          ${if (imageUsed) {"""\"ocrText\": \"A trip of 3 days with many cultural events.\","""} else ""}
-          \"days\": [
+          ${if (imageUsed) {""""ocrText": "A trip of 3 days with many cultural events.","""} else ""}
+          "days": [
             {
-              \"activities\": [
+              "activities": [
                 {
-                  \"name\": \"Visit the Colosseum\",
-                  \"description\": \"Explore the ancient Roman Colosseum with a guided tour. Learn about gladiators and Roman history.\",
-                  \"time\": \"09:00 - 11:00\",
-                  \"links\": [
-                    \"https://example.com/colosseum-tickets\",
-                    \"https://www.google.com/maps/search/Colosseum+Rome\"
+                  "name": "Visit the Colosseum",
+                  "description": "Explore the ancient Roman Colosseum with a guided tour. Learn about gladiators and Roman history.",
+                  "time": "09:00 - 11:00",
+                  "links": [
+                    "https://example.com/colosseum-tickets",
+                    "https://www.google.com/maps/search/Colosseum+Rome"
                   ],
-                  \"tips\": [
-                    \"Book tickets in advance to skip the line.\",
-                    \"Bring water and wear comfortable shoes.\"
+                  "tips": [
+                    "Book tickets in advance to skip the line.",
+                    "Bring water and wear comfortable shoes."
                   ],
-                  \"activityCost\": \"16 USD\"
+                  "activityCost": "16 USD"
                 },
                 {
-                  \"name\": \"Lunch at Trastevere\",
-                  \"description\": \"Enjoy authentic Roman cuisine at a cozy restaurant in Trastevere.\",
-                  \"time\": \"12:30 - 13:30\",
-                  \"links\": [
-                    \"https://example.com/trastevere-restaurant\",
-                    \"https://www.google.com/maps/search/Trastevere+Rome\"
+                  "name": "Lunch at Trastevere",
+                  "description": "Enjoy authentic Roman cuisine at a cozy restaurant in Trastevere.",
+                  "time": "12:30 - 13:30",
+                  "links": [
+                    "https://example.com/trastevere-restaurant",
+                    "https://www.google.com/maps/search/Trastevere+Rome"
                   ],
-                  \"tips\": [
-                    \"Try the Cacio e Pepe or Carbonara.\",
-                    \"Lunch menus are often cheaper before 2pm.\"
+                  "tips": [
+                    "Try the Cacio e Pepe or Carbonara.",
+                    "Lunch menus are often cheaper before 2pm."
                   ],
-                  \"activityCost\": \"20 USD\"
+                  "activityCost": "20 USD"
                 }
               ],
-              \"accommodations\": [
+              "accommodations": [
                 {
-                  \"name\": \"Hotel Center Rome\",
-                  \"link\": \"https://booking.com/hotel-rome-center\"
+                  "name": "Hotel Center Rome",
+                  "link": "https://booking.com/hotel-rome-center"
                 }
               ]
             },
             {
-              \"activities\": [
+              "activities": [
                 {
-                  \"name\": \"Train to Florence\",
-                  \"description\": \"Travel from Rome to Florence by high-speed train.\",
-                  \"time\": \"10:00 - 11:30\",
-                  \"links\": [
-                    \"https://italotreno.it\",
-                    \"https://www.google.com/maps/search/Rome+to+Florence+Train\"
+                  "name": "Train to Florence",
+                  "description": "Travel from Rome to Florence by high-speed train.",
+                  "time": "10:00 - 11:30",
+                  "links": [
+                    "https://italotreno.it",
+                    "https://www.google.com/maps/search/Rome+to+Florence+Train"
                   ],
-                  \"tips\": [
-                    \"Reserve seats in advance for cheaper rates.\",
-                    \"Arrive at the station 15 minutes early.\"
+                  "tips": [
+                    "Reserve seats in advance for cheaper rates.",
+                    "Arrive at the station 15 minutes early."
                   ],
-                  \"activityCost\": \"35 USD\",
-                  \"midwayStops\": [
+                  "activityCost": "35 USD",
+                  "midwayStops": [
                    {
-                     \"name\": \"Orvieto Station\",
-                     \"description\": \"Optional quick stop to explore the historic hill town of Orvieto if using a slower regional train.\",
-                     \"time\": \"30 minutes\",
-                     \"links\": [
-                       \"https://example.com/orvieto\",
-                       \"https://www.google.com/maps/search/Orvieto+Station\"
+                     "name": "Orvieto Station",
+                     "description": "Optional quick stop to explore the historic hill town of Orvieto if using a slower regional train.",
+                     "time": "30 minutes",
+                     "links": [
+                       "https://example.com/orvieto",
+                       "https://www.google.com/maps/search/Orvieto+Station"
                      ],
-                     \"tips\": [
-                       \"Check luggage storage options if planning a stop.\"
+                     "tips": [
+                       "Check luggage storage options if planning a stop."
                      ]
                    }
                   ]
                 }
               ],
-              \"accommodations\": [
+              "accommodations": [
                 {
-                  \"name\": \"Florence Apartment\",
-                  \"link\": \"https://airbnb.com/florence-apartment\"
+                  "name": "Florence Apartment",
+                  "link": "https://airbnb.com/florence-apartment"
                 }
               ]
             }
           ],
-          \"summary\": {
-            \"totalCost\": \"320 USD\",
-            \"visitedDestinations\": \"2\",
-            \"transitTime\": \"3h 30m\",
-            \"transportTypes\": \"Train, Walking\",
-            \"lodgingTypes\": \"Hotel, Airbnb\",
-            \"categories\": \"Cultural, Culinary\"
+          "summary": {
+            "totalCost": "320 USD",
+            "visitedDestinations": "2",
+            "transitTime": "3h 30m",
+            "transportTypes": "Train, Walking",
+            "lodgingTypes": "Hotel, Airbnb",
+            "categories": "Cultural, Culinary"
           }
         }
            
@@ -271,4 +272,7 @@ class ResultViewModel @Inject constructor(
     }
 
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeTripSolutionResponse(response)
+
+    /** Gemini/Groq are asked for [TripSolutionResponse] as structured JSON; [decodeTripSolutionResponse] still decodes it. */
+    override val responseFormat: ResponseFormat = ResponseFormat.Json.of("trip_solution", TripSolutionResponse.serializer())
 }

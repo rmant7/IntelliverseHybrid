@@ -43,7 +43,8 @@ data class DietSolutionResponse(
     val digestedMacronutrients: Map<String, NutrientDetailsTotal>,
     val digestedMicronutrients: Map<String, NutrientDetailsTotal>,
     val adjustedCalories: String,
-    val healthTips: List<String>
+    // No tips is a complete answer; the nutrition figures above are not optional.
+    val healthTips: List<String> = emptyList()
 )
 
 private val json = Json { ignoreUnknownKeys = true }

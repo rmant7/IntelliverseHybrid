@@ -1,5 +1,6 @@
 package com.example.shared.presentation.screens.output.result
 
+import com.example.shared.domain.ai.ResponseFormat
 import android.content.Context
 import android.net.Uri
 import android.util.Base64
@@ -397,7 +398,8 @@ abstract class BaseResultViewModel(
     private suspend fun groq(imagesBase64: List<String>) {
         val result = groqUseCase.generateGroqSolution(
             imagesBase64 = imagesBase64,
-            prompt = prompt
+            prompt = prompt,
+            responseFormat = responseFormat,
         )
         result.onSuccess {
             try {
@@ -461,7 +463,8 @@ abstract class BaseResultViewModel(
                 emptyList()
             },
             prompt = prompt,
-            modelName = modelName
+            modelName = modelName,
+            responseFormat = responseFormat,
         )
         result.onSuccess {
             try {
@@ -498,6 +501,16 @@ abstract class BaseResultViewModel(
      * and the recognized-properties text which will be displayed on the OCRScreen
      */
     abstract fun decodeSolutionResponse(response: String): Pair<String, String>
+
+    /**
+     * The answer shape this sub-app expects from the AI providers -- its own
+     * response model, as [ResponseFormat.Json], when [decodeSolutionResponse]
+     * parses JSON. Gemini and Groq turn it into native structured output;
+     * GigaChat has no such mechanism and is unaffected. [decodeSolutionResponse]
+     * stays the typed boundary: an answer that still doesn't decode fails
+     * that provider only, exactly as before.
+     */
+    protected open val responseFormat: ResponseFormat = ResponseFormat.Text
 
     private companion object {
         /**

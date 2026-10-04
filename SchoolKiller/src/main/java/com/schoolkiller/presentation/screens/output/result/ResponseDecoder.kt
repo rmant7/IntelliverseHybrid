@@ -7,8 +7,10 @@ import kotlinx.serialization.json.Json
 data class TaskSolutionResponse(
     val titles: Map<String, String>,
     val solutions: List<String>,
-    val qrContents: List<String>,
-    val barcodeContents: List<String>,
+    // Nothing to read is the normal case (no QR/barcode in the photo, or no
+    // photo at all): empty, not a reason to discard the solutions.
+    val qrContents: List<String> = emptyList(),
+    val barcodeContents: List<String> = emptyList(),
     val ocrText: String? = null,
 )
 

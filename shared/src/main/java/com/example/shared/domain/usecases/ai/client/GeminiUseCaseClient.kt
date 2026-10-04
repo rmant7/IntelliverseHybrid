@@ -1,5 +1,12 @@
 package com.example.shared.domain.usecases.ai.client
 
+import com.example.shared.data.network.gemini_api.client.GeminiRequestRejected
+import com.example.shared.domain.ai.EnforcementLadder
+import com.example.shared.domain.ai.FormatSupportErrors
+import com.example.shared.domain.ai.JsonEnforcement
+import com.example.shared.domain.ai.ResponseFormat
+import timber.log.Timber
+
 import com.example.shared.data.network.gemini_api.client.GeminiApiService
 import com.example.shared.data.network.gemini_api.client.GeminiRequest
 import javax.inject.Inject
@@ -9,20 +16,41 @@ class GeminiUseCaseClient @Inject constructor(
 ) {
 
     /** Generate Gemini solution using the image */
+    /**
+     * [responseFormat] [ResponseFormat.Json] asks Gemini for native structured
+     * output (JSON + the response model's schema). Only if Gemini answers that
+     * this model does not support that does the same request go out again
+     * with less enforcement (JSON syntax only, then prompt only) -- see
+     * [EnforcementLadder]; every other failure is returned as is.
+     */
     suspend fun generateGeminiSolution(
         generativeLanguageUrls: List<String> = emptyList(),
         prompt: String,
         systemInstruction: String = "",
-        modelName: String
-    ): Result<String> {
-
+        modelName: String,
+        responseFormat: ResponseFormat = ResponseFormat.Text,
+    ): Result<String> = ladder.run(
+        model = modelName,
+        format = responseFormat,
+        isFormatUnsupported = { it is GeminiRequestRejected && FormatSupportErrors.isGeminiFormatUnsupported(it.status, it.body) },
+    ) { enforcement ->
         val requestBody = GeminiRequest.buildGeminiRequest(
             fileUris = generativeLanguageUrls,
             prompt = prompt,
-            systemInstruction = systemInstruction
+            systemInstruction = systemInstruction,
+            responseFormat = responseFormat,
+            enforcement = enforcement,
         )
+        fetchGeminiResponse(requestBody, modelName).also { result ->
+            if (enforcement != JsonEnforcement.SCHEMA && responseFormat is ResponseFormat.Json && result.isSuccess) {
+                Timber.w("Gemini $modelName answered ${responseFormat.name} at reduced enforcement $enforcement")
+            }
+        }
+    }
 
-        return fetchGeminiResponse(requestBody, modelName)
+    private companion object {
+        /** Per model, for the process lifetime: a model that rejected a format isn't asked for it again. */
+        val ladder = EnforcementLadder()
     }
 
 

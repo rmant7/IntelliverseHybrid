@@ -115,6 +115,13 @@ jobs:
       - name: Build APK + AAB
         run: ./gradlew assembleRelease bundleRelease --no-daemon -PbuildNumber=${{ github.run_number }} ${{ steps.signing.outputs.play != 'true' && '-PallowDebugSignedRelease=true' || '' }}
 
+      # JVM unit tests of the modules that carry AI response contracts:
+      # shared (response formats, Gemini/Groq request bodies, the
+      # "format unsupported" step-down) and each sub-app's decoder/schema.
+      # Release variant: reuses what the build step just compiled.
+      - name: Unit tests
+        run: ./gradlew :shared:testReleaseUnitTest :OneClickTrip:testReleaseUnitTest :DietTracker:testReleaseUnitTest :SchoolKiller:testReleaseUnitTest :StyleTranslator:testReleaseUnitTest --no-daemon -PbuildNumber=${{ github.run_number }} ${{ steps.signing.outputs.play != 'true' && '-PallowDebugSignedRelease=true' || '' }}
+
       # The certificate actually on the artifacts, not "a keystore was
       # present": both must carry the upload key when it was available, the
       # committed debug key otherwise. apksigner also fully verifies the APK.

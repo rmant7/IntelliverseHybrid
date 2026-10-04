@@ -1,5 +1,6 @@
 package com.styletranslator.presentation.screens.output.result
 
+import com.example.shared.domain.ai.ResponseFormat
 import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import com.example.shared.domain.usecases.SpeechConverter
@@ -184,8 +185,8 @@ class ResultViewModel @Inject constructor(
             return """
             
     - Generate a JSON response that includes a translation of the given text according to the specified input parameters.
-    - The response **must include a \"titles\" section** containing localized section headers. **Use the exact keys from the example JSON below for \"titles\"**.
-    - The response must **translate** section titles (inside \"titles\") into ${selectedLanguage.promptName}.
+    - The response **must include a "titles" section** containing localized section headers. **Use the exact keys from the example JSON below for "titles"**.
+    - The response must **translate** section titles (inside "titles") into ${selectedLanguage.promptName}.
     
     ### **Requirements for AI Processing:**
     1. **Translate the given text** into the target language while preserving the original intent.
@@ -223,8 +224,8 @@ class ResultViewModel @Inject constructor(
       - The gender of the **person speaking** in the translated text.
       - The translation **must adjust** not only **pronouns** but also **perspective, relationship roles, and emotional framing**.
       - Example:
-        - **Male → Female Flip:** *\"I take care of my girlfriend\"* → *\"I love how my boyfriend takes care of me.\"*
-        - **Female → Male Flip:** *\"I feel safe with my boyfriend\"* → *\"I always protect my girlfriend.\"*"""
+        - **Male → Female Flip:** *"I take care of my girlfriend"* → *"I love how my boyfriend takes care of me."*
+        - **Female → Male Flip:** *"I feel safe with my boyfriend"* → *"I always protect my girlfriend."*"""
     } else ""}
     
     ${if (targetGender != null) {"""
@@ -262,17 +263,17 @@ class ResultViewModel @Inject constructor(
       
 
     Strictly format the response as a JSON object with the following structure:
-    - \"titles\" (Map<String, String>) - A map of **localized section headers** (must match the keys in the example JSON).
-    - \"translatedText\" (String) - The translated text in the specified language, considering category, tone, style, and mentality.
+    - "titles" (Map<String, String>) - A map of **localized section headers** (must match the keys in the example JSON).
+    - "translatedText" (String) - The translated text in the specified language, considering category, tone, style, and mentality.
     ${ocrTextJsonEntry(imageUsed)}
     
     Example Output:
     {
-      \"titles\": {
-          \"translated_text\": \"<'Translated Text' translated>\",
+      "titles": {
+          "translated_text": "<'Translated Text' translated>",
       },
-      ${if (imageUsed) {"""\"ocrText\": \"I am delighted to take care of my girlfriend, always ensuring that she feels loved and protected.\","""} else ""}
-      \"translatedText\": \"I feel so lucky to have a boyfriend who always makes me feel loved and protected.\",
+      ${if (imageUsed) {""""ocrText": "I am delighted to take care of my girlfriend, always ensuring that she feels loved and protected.","""} else ""}
+      "translatedText": "I feel so lucky to have a boyfriend who always makes me feel loved and protected.",
     }
     
     $doubleQuotes
@@ -284,6 +285,9 @@ class ResultViewModel @Inject constructor(
     }
 
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeStyleSolutionResponse(response)
+
+    /** Gemini/Groq are asked for [StyleSolutionResponse] as structured JSON; [decodeStyleSolutionResponse] still decodes it. */
+    override val responseFormat: ResponseFormat = ResponseFormat.Json.of("style_solution", StyleSolutionResponse.serializer())
 
     private companion object {
         // Attempt order for runLocalModels -- OmniTranslate deliberately

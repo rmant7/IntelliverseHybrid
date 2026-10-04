@@ -213,6 +213,12 @@ class GeminiApiService @Inject constructor(
                         delay(NETWORK_RETRY_DELAY_MS)
                         continue
                     }
+                    // A 400 keeps its body: it is the only place a caller can
+                    // read *why* the request was refused (e.g. a response
+                    // format this model doesn't support -- GeminiUseCaseClient).
+                    if (response.status == HttpStatusCode.BadRequest) {
+                        return Result.failure(GeminiRequestRejected(response.status.value, bodyText))
+                    }
                     return Result.failure(UnableToAssistException)
                 }
 
@@ -318,3 +324,6 @@ data class UploadModel(
     val uploadUrl: String,
     val errorCode: Int? = null
 )
+
+/** Gemini answered HTTP 400; [body] is its JSON error object, verbatim. */
+class GeminiRequestRejected(val status: Int, val body: String) : Exception("Gemini rejected the request (HTTP $status): ${body.take(300)}")

@@ -1,5 +1,6 @@
 package com.schoolkiller.presentation.screens.output.result
 
+import com.example.shared.domain.ai.ResponseFormat
 import androidx.lifecycle.SavedStateHandle
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
@@ -82,35 +83,35 @@ class ResultViewModel @Inject constructor(
         - Generate a JSON response that includes the solutions.
           $details
 
-        - The response **must include a \"titles\" section** containing localized section headers.
-        - **Use the exact keys from the example JSON below for \"titles\"**.
-        - The response must **translate** section titles (inside \"titles\") into ${selectedLanguage.promptName}.
+        - The response **must include a "titles" section** containing localized section headers.
+        - **Use the exact keys from the example JSON below for "titles"**.
+        - The response must **translate** section titles (inside "titles") into ${selectedLanguage.promptName}.
 
         Strictly format the response as a JSON object with the following structure:
 
-        - \"titles\" (Map<String, String>) – A map of **localized section headers** (must match the keys in the example JSON).
-        - \"solutions\" (List<String>) – A list of the solutions corresponding to the detected tasks. $onlySolutions
-        - \"qrContents\" (List<String>) – A list of contents corresponding to the content extracted and analyzed from QR codes (if such exist) in the images. Each content matches one QR code.
-        - \"barcodeContents\" (List<String>) – A list of contents corresponding to the content extracted and analyzed from barcodes (if such exist) in the images. Each content matches one barcode.
+        - "titles" (Map<String, String>) – A map of **localized section headers** (must match the keys in the example JSON).
+        - "solutions" (List<String>) – A list of the solutions corresponding to the detected tasks. $onlySolutions
+        - "qrContents" (List<String>) – A list of contents corresponding to the content extracted and analyzed from QR codes (if such exist) in the images. Each content matches one QR code.
+        - "barcodeContents" (List<String>) – A list of contents corresponding to the content extracted and analyzed from barcodes (if such exist) in the images. Each content matches one barcode.
         ${ocrTextJsonEntry(imageUsed)}
 
         Example Output:
         {
-          \"titles\": {
-            \"solutions\": \"<'Solutions' translated>\",
-            \"qrContents\": \"<'QR Contents' translated>\",
-            \"barcodeContents\": \"<'barcode Contents' translated>\"
+          "titles": {
+            "solutions": "<'Solutions' translated>",
+            "qrContents": "<'QR Contents' translated>",
+            "barcodeContents": "<'barcode Contents' translated>"
           },
-          ${if (imageUsed) {"""\"ocrText\": \"x + 4 = 9\","""} else ""}
-          \"solutions\": [
-            \"x + 5 = 10 -> x = 10 - 5 -> x = 5\",
-            \"The area of a rectangle with length 5 and width 10 is 5 * 10 = 50\"
+          ${if (imageUsed) {""""ocrText": "x + 4 = 9","""} else ""}
+          "solutions": [
+            "x + 5 = 10 -> x = 10 - 5 -> x = 5",
+            "The area of a rectangle with length 5 and width 10 is 5 * 10 = 50"
           ],
-          \"qrContents\": [
-            \"Trip description: Visit the Colosseum and the Vatican.\"
+          "qrContents": [
+            "Trip description: Visit the Colosseum and the Vatican."
           ],
-          \"barcodeContents\": [
-            \"Special discount code: SAVE10.\"
+          "barcodeContents": [
+            "Special discount code: SAVE10."
           ]
         }
 
@@ -123,4 +124,7 @@ class ResultViewModel @Inject constructor(
 
     override fun toHtml(content: String): String = TextUtils.markdownToHtml(content)
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeTaskSolutionResponse(response)
+
+    /** Gemini/Groq are asked for [TaskSolutionResponse] as structured JSON; [decodeTaskSolutionResponse] still decodes it. */
+    override val responseFormat: ResponseFormat = ResponseFormat.Json.of("task_solution", TaskSolutionResponse.serializer())
 }

@@ -37,8 +37,12 @@ data class Accommodation(
 
 @Serializable
 data class Day(
-    val activities: List<Activity>,
-    val accommodations: List<Accommodation>
+    // A day with no activities or no accommodation is a valid answer (a
+    // travel day, the last night at home) -- confirmed on a real device: a
+    // Groq answer omitted "activities" for one day, and the required field
+    // discarded the whole itinerary. Rendering handles an empty list.
+    val activities: List<Activity> = emptyList(),
+    val accommodations: List<Accommodation> = emptyList()
 )
 
 @Serializable
