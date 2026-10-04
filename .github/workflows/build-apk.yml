@@ -122,7 +122,10 @@ jobs:
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
         run: |
           set -euo pipefail
-          norm() { sed 's/^[^:]*: *//' | tr -d ': \t' | tr 'A-F' 'a-f'; }
+          # Whatever the tool's line prefix, the fingerprint is the one run of
+          # 64 hex digits once colons are gone (keytool prints AB:CD:..,
+          # apksigner plain hex).
+          norm() { tr -d ':' | grep -oiE '[0-9a-f]{64}' | head -1 | tr 'A-F' 'a-f'; }
           if [ "$PLAY" = "true" ]; then
             RELEASE_KEYSTORE_PASSWORD="$(printf '%s' "$RELEASE_KEYSTORE_PASSWORD" | tr -d '\r\n')"
             RELEASE_KEY_ALIAS="$(printf '%s' "$RELEASE_KEY_ALIAS" | tr -d '\r\n')"
