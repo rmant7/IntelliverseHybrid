@@ -13,7 +13,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest (moving to Ubuntu 26 from 2026-10-19) stopped being picked up for this
+    # public repository on 2026-10-05 -- four runs in a row "not acquired by Runner of type hosted".
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
