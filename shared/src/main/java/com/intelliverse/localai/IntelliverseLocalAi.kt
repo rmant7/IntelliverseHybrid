@@ -291,7 +291,7 @@ class IntelliverseLocalAi @Inject constructor(
 
     companion object {
         /** Chat sampling's repetition penalty -- 1.2 (translation's) makes a chat model avoid words it needs. */
-        const val CHAT_REPEAT_PENALTY = 1.1f
+        const val CHAT_REPEAT_PENALTY = 1.1
         const val ANSWER_MAX_TOKENS = 1024
         const val TRANSLATION_TIMEOUT_MS = 5 * 60_000L
         const val CHECK_QUESTION_TIMEOUT_MS = 5 * 60_000L
