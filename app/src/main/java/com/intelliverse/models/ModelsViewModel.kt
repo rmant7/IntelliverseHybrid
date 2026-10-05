@@ -12,7 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.intelliverse.llama.LlamaBridge
+import ai.localstudio.app.llama.LlamaBridge
 import com.intelliverse.localai.IntelliverseLocalAi
 import com.intelliverse.localai.LocalAiSettings
 import com.intelliverse.localai.LocalChecks

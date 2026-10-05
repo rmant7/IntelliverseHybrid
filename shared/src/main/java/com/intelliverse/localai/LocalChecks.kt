@@ -4,7 +4,7 @@ import ai.localstudio.sdk.CheckResult
 import ai.localstudio.sdk.LocalCapability
 import android.content.Context
 import android.os.Build
-import com.intelliverse.llama.LlamaBridge
+import ai.localstudio.app.llama.LlamaBridge
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -69,7 +69,8 @@ class LocalChecks @Inject constructor(@ApplicationContext context: Context) {
     private val json = Json { ignoreUnknownKeys = true }
 
     val device: String get() = "${Build.MANUFACTURER} ${Build.MODEL}"
-    val runtime: String get() = "llama.cpp $LLAMA_CPP_TAG (${LlamaBridge.loadedLibrary ?: "unavailable"})"
+    /** The native runtime: llama.cpp build and rmant7/AI's JNI revision -- the same words rmant7/AI uses -- and the CPU build loaded. */
+    val runtime: String get() = "$RUNTIME_VERSION (${LlamaBridge.loadedLibrary ?: "unavailable"})"
 
     fun stored(modelId: String): StoredCheck? = runCatching {
         File(dir, "$modelId.json").takeIf { it.isFile }?.let { json.decodeFromString(StoredCheck.serializer(), it.readText()) }
@@ -137,11 +138,14 @@ class LocalChecks @Inject constructor(@ApplicationContext context: Context) {
     }
 
     companion object {
-        /** The llama.cpp release app/src/main/cpp/CMakeLists.txt builds. */
+        /** The llama.cpp release llama-runtime/src/main/cpp/CMakeLists.txt builds. */
         const val LLAMA_CPP_TAG = "b10448"
 
-        /** Bumped whenever the questions change: older checks then read STALE. */
-        const val CHECK_VERSION = 1
+        /** What the engine's RAM figures and every check are tied to: another runtime is another figure, another check. */
+        val RUNTIME_VERSION: String get() = "llama.cpp $LLAMA_CPP_TAG / jni ${LlamaBridge.JNI_REVISION}"
+
+        /** Bumped whenever the questions change: older checks then read STALE. 2: run on rmant7/AI's engine. */
+        const val CHECK_VERSION = 2
 
         val TEXT: List<Probe> = listOf(
             Probe("What is the capital of France?", "What is the capital of France? Answer with one word.", listOf("Paris")),

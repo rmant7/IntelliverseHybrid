@@ -124,27 +124,15 @@ android {
             useSupportLibrary = true
         }
 
-        // Local on-device translation inference (llama.cpp via JNI, see
-        // src/main/cpp/) -- arm64-v8a only, matching the source project this
-        // was ported from (rmant7/AI): its own real-device testing never
-        // covered any other ABI, and this app's Play-listed audience is
-        // effectively all arm64 anyway.
+        // On-device models (llama.cpp via JNI, built by :llama-runtime) --
+        // arm64-v8a only, matching rmant7/AI, where the engine comes from:
+        // its real-device testing never covered any other ABI, and this app's
+        // Play-listed audience is effectively all arm64 anyway.
         ndk {
             abiFilters += "arm64-v8a"
         }
-        externalNativeBuild {
-            cmake {
-                arguments += "-DANDROID_STL=c++_shared"
-            }
-        }
     }
 
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
-        }
-    }
 
     buildTypes {
         release {
@@ -222,11 +210,6 @@ dependencies {
     implementation(project(":OneClickTrip"))
     implementation(project(":MatterOfChoice"))
     implementation(project(":shared"))
-    // llama_jni's CPU-feature variants (see app/src/main/cpp/CMakeLists.txt
-    // and com.intelliverse.llama.CpuVariant) -- packaged alongside the
-    // baseline build from :app's own externalNativeBuild above.
-    implementation(project(":llama-dotprod"))
-    implementation(project(":llama-i8mm"))
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.timber)
     implementation(libs.play.services.ads.lite)

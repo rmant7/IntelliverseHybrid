@@ -75,6 +75,8 @@ dependencies {
 
     // On-device AI through rmant7/AI's SDK contract (see local-ai-sdk/SOURCE).
     api(project(":local-ai-sdk"))
+    // rmant7/AI's engine: llama.cpp JNI, LlamaCppRuntime, RAM admission and measuring (LocalModelEngine).
+    api(project(":llama-runtime"))
 
     // Dagger - Hilt
     implementation(libs.hilt.android)

@@ -13,8 +13,11 @@ import ai.localstudio.sdk.ModelCandidate
 import ai.localstudio.sdk.ModelSource
 import ai.localstudio.sdk.TranslationRequest
 import android.content.Context
+import ai.localstudio.app.llama.EngineModel
+import ai.localstudio.app.llama.LocalModelEngine
+import ai.localstudio.core.runtime.GenerationRequest
+import ai.localstudio.core.runtime.InsufficientMemoryException
 import com.example.shared.log.AppLog
-import com.intelliverse.llama.LocalLlamaSession
 import com.intelliverse.llama.TranslationPrompts
 import com.intelliverse.models.ChatModels
 import com.intelliverse.models.LocalModelCatalog
@@ -43,20 +46,21 @@ import javax.inject.Singleton
 data class RunningCheck(val modelId: String, val question: Int, val questions: Int)
 
 /**
- * [LocalAi] -- rmant7/AI's SDK contract -- backed by this app's own catalog
- * ([LocalModelCatalog]), downloads and its one-model llama.cpp session
- * ([LocalLlamaSession]). Everything in this app that runs a local model
- * goes through here, so one model is loaded at a time and a request never
- * finds another model swapped in under it ([operation]).
+ * [LocalAi] -- rmant7/AI's SDK contract -- backed by this app's catalog
+ * ([LocalModelCatalog]) and downloads, running models on rmant7/AI's own
+ * engine ([LocalModelEngine]): every load admitted against this phone's free
+ * RAM and what the model was measured to cost here, idle models evicted
+ * first, weights mapped or read into memory per file (Auto), RAM measured on
+ * every load. Everything in this app that runs a local model goes through
+ * here; requests run one at a time ([operation]).
  *
- * Not here yet: images (no projector downloads in this app), discovery of
- * new models (the catalog is fixed), and a RAM manager -- a model that
- * does not fit fails to load and says so.
+ * Not here yet: images (no projector downloads in this app) and discovery
+ * of new models (the catalog is fixed).
  */
 @Singleton
 class IntelliverseLocalAi @Inject constructor(
     @ApplicationContext context: Context,
-    private val session: LocalLlamaSession,
+    private val engine: LocalModelEngine,
     private val settings: LocalAiSettings,
     private val checks: LocalChecks,
     private val log: AppLog,
@@ -64,7 +68,7 @@ class IntelliverseLocalAi @Inject constructor(
 
     private val store = ModelStore(context)
 
-    /** Load + answer as one step: nothing else loads a model in between. */
+    /** One request at a time: a second model is never loaded next to one still answering. */
     private val operation = Mutex()
 
     private val _runningCheck = MutableStateFlow<RunningCheck?>(null)
@@ -123,17 +127,17 @@ class IntelliverseLocalAi @Inject constructor(
     override fun generate(input: LocalAiInput, options: GenerationOptions, modelId: String?): Flow<String> = flow {
         val seed = resolve(ModelPurpose.CHAT, modelId)
         if (input.images.isNotEmpty()) throw LocalAiException.ImageNotSeen("${seed.title} cannot see images in this app")
+        val request = GenerationRequest(
+            prompt = input.text,
+            systemPrompt = input.systemPrompt,
+            maxTokens = options.maxTokens,
+            temperature = options.temperature,
+            repeatPenalty = CHAT_REPEAT_PENALTY,
+        )
         operation.withLock {
-            load(seed)
             try {
                 withTimeout(options.timeoutMs) {
-                    session.generate(
-                        prompt = input.text,
-                        maxTokens = options.maxTokens,
-                        temperature = options.temperature.toFloat(),
-                        repeatPenalty = CHAT_REPEAT_PENALTY,
-                        systemPrompt = input.systemPrompt,
-                    ).collect { emit(it) }
+                    withModel(seed) { handle -> handle.generate(request).collect { emit(it) } }
                 }
             } catch (e: TimeoutCancellationException) {
                 throw LocalAiException.Timeout(options.timeoutMs)
@@ -144,36 +148,40 @@ class IntelliverseLocalAi @Inject constructor(
     override suspend fun translate(request: TranslationRequest, modelId: String?): String {
         val seed = resolve(ModelPurpose.TRANSLATION, modelId)
         val prompt = TranslationPrompts.buildPrompt(seed, request.target.code, request.target.name, request.text)
-        val reply = operation.withLock {
-            load(seed)
-            answer(prompt, TRANSLATION_TIMEOUT_MS)
-        }
+        val reply = operation.withLock { answer(seed, prompt, TRANSLATION_TIMEOUT_MS) }
         return finalAnswer(reply)?.takeIf { it.isNotBlank() }
             ?: throw LocalAiException.Failed("${seed.title} gave no translation" + if (finalAnswer(reply) == null) " (still reasoning when the reply ended)" else "")
     }
 
-    /** Loads [seed] unless it is the one loaded; must hold [operation]. */
-    private suspend fun load(seed: LocalModelSeed) {
+    /**
+     * Runs [block] with [seed] loaded on the engine -- reused when it is the
+     * resident one, else admitted (other idle models evicted first). A model
+     * that does not fit here fails as NotEnoughMemory, with the figures.
+     */
+    private suspend fun <T> withModel(seed: LocalModelSeed, block: suspend (ai.localstudio.core.runtime.TextModelHandle) -> T): T {
         val file = store.finalFile(seed)
-        if (session.loadedModelPath == file.absolutePath) return
-        val started = System.currentTimeMillis()
-        val ok = withContext(Dispatchers.IO) { session.load(file.absolutePath, seed.contextTokens) }
-        if (!ok) {
-            log.record("LOCAL_AI", "${seed.id}: load FAILED (${file.length() / 1_000_000} MB)")
-            throw LocalAiException.Failed("${seed.title} could not be loaded -- most likely not enough free memory")
+        return try {
+            engine.withModel(EngineModel(seed.id, file, contextLength = seed.contextTokens), seed.contextTokens, block)
+        } catch (e: InsufficientMemoryException) {
+            log.record("LOCAL_AI", "${seed.id}: not admitted -- ${e.message}")
+            throw LocalAiException.NotEnoughMemory(e.requestedBytes, e.budgetBytes)
+        } catch (e: ai.localstudio.core.runtime.ModelLoadException) {
+            log.record("LOCAL_AI", "${seed.id}: load FAILED -- ${e.message}")
+            throw LocalAiException.Failed("${seed.title} could not be loaded: ${e.message}", e)
         }
-        log.record("LOCAL_AI", "${seed.id}: loaded in ${System.currentTimeMillis() - started} ms")
     }
 
-    /** The whole reply to [prompt] at near-greedy settings; must hold [operation]. */
-    private suspend fun answer(prompt: String, timeoutMs: Long, onFirstToken: () -> Unit = {}): String = try {
+    /** The whole reply to [prompt] at near-greedy settings, translation's repetition penalty; must hold [operation]. */
+    private suspend fun answer(seed: LocalModelSeed, prompt: String, timeoutMs: Long, onFirstToken: () -> Unit = {}): String = try {
         withTimeout(timeoutMs) {
-            val reply = StringBuilder()
-            session.generate(prompt, maxTokens = ANSWER_MAX_TOKENS, temperature = 0f).collect {
-                if (reply.isEmpty()) onFirstToken()
-                reply.append(it)
+            withModel(seed) { handle ->
+                val reply = StringBuilder()
+                handle.generate(GenerationRequest(prompt = prompt, maxTokens = ANSWER_MAX_TOKENS, temperature = 0.0)).collect {
+                    if (reply.isEmpty()) onFirstToken()
+                    reply.append(it)
+                }
+                reply.toString()
             }
-            reply.toString()
         }
     } catch (e: TimeoutCancellationException) {
         throw LocalAiException.Timeout(timeoutMs)
@@ -207,12 +215,7 @@ class IntelliverseLocalAi @Inject constructor(
                 var asked = 0
                 var error: String? = null
                 val results = linkedMapOf<String, CapabilityCheck>()
-                try {
-                    load(seed)
-                } catch (e: LocalAiException) {
-                    error = e.message
-                }
-                if (error == null) {
+                run {
                     for ((capability, probes) in suites) {
                         val steps = mutableListOf<ProbeStep>()
                         var failure: String? = null
@@ -221,7 +224,7 @@ class IntelliverseLocalAi @Inject constructor(
                             val askedAt = System.currentTimeMillis()
                             var firstAt = 0L
                             val step = try {
-                                val reply = answer(probe.prompt, CHECK_QUESTION_TIMEOUT_MS) { firstAt = System.currentTimeMillis() }
+                                val reply = answer(seed, probe.prompt, CHECK_QUESTION_TIMEOUT_MS) { firstAt = System.currentTimeMillis() }
                                 val final = finalAnswer(reply)
                                 val passed = final != null && final.isNotBlank() && probe.passes(final)
                                 ProbeStep(
@@ -234,6 +237,11 @@ class IntelliverseLocalAi @Inject constructor(
                                 )
                             } catch (e: CancellationException) {
                                 throw e
+                            } catch (e: LocalAiException.NotEnoughMemory) {
+                                // Not the model's answer: this phone could not hold it now. Nothing is checked.
+                                error = e.message
+                                results.clear()
+                                return@run
                             } catch (e: Exception) {
                                 ProbeStep(probe.title, passed = false, error = e.message ?: e.javaClass.simpleName, totalMs = System.currentTimeMillis() - askedAt)
                             }

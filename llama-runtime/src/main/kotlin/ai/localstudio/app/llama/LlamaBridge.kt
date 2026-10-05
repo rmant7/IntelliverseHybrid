@@ -1,0 +1,272 @@
+package ai.localstudio.app.llama
+
+import kotlinx.coroutines.sync.Mutex
+import java.io.File
+
+/**
+ * Which token(s) of an embedding model's output become the sentence vector —
+ * `llama_pooling_type`'s ordinal values, as defined in llama.h at this app's
+ * pinned commit (`MEAN=1, CLS=2, LAST=3`). Not every embedding checkpoint
+ * agrees on this: e5-family models are trained for [MEAN]; others expect the
+ * [CLS] token instead. Using the wrong one for a given model does not
+ * error — it produces vectors that still look valid (right dimension, right
+ * rough magnitude) while retrieval quality quietly degrades, which is why
+ * this is a real, per-model choice rather than a hardcoded default.
+ */
+enum class EmbeddingPooling(internal val nativeValue: Int) {
+    MEAN(1),
+    CLS(2),
+    LAST(3),
+}
+
+/**
+ * The JNI surface of llama.cpp. One instance owns one loaded model.
+ *
+ * Kept as thin as possible: everything that can be decided in Kotlin is decided
+ * in Kotlin, because native code cannot be tested without a device.
+ */
+class LlamaBridge {
+
+    /** Receives generated text as it is produced. Called on the generating thread. */
+    interface TokenSink {
+        fun onToken(text: String)
+    }
+
+    external fun nativeSystemInfo(): String
+
+    /**
+     * Whether this model's own chat template was found and applied, or the
+     * generic fallback scaffold had to stand in for it. Worth a log line per
+     * load: without the model's turn markers an instruction-tuned model
+     * stops answering and starts continuing the prompt as prose, and that
+     * failure is otherwise indistinguishable from the model just being bad.
+     */
+    external fun nativeChatTemplateInfo(handle: Long): String
+
+    /**
+     * Where the last turn's time went: prompt tokens, how many of them the
+     * KV cache reused from the previous turn, and the rate of each phase.
+     * "Slow" on its own has never been enough to act on — a large prompt at
+     * a normal rate and a small one at a collapsed rate look identical from
+     * Kotlin, and want opposite fixes.
+     */
+    external fun nativeLastTurnStats(handle: Long): String
+
+    /** Returns a handle, or 0 when the model could not be loaded. */
+    external fun nativeLoad(modelPath: String, contextTokens: Int, threads: Int, mapWeights: Boolean): Long
+
+    /**
+     * Loads a GGUF for [nativeEmbed] rather than [nativeGenerate] — a
+     * separate context configuration (embeddings enabled, [pooling]), not
+     * interchangeable with a handle from [nativeLoad]. Returns a handle, or 0
+     * when the model could not be loaded, same contract as [nativeLoad].
+     */
+    fun nativeLoadEmbeddingModel(modelPath: String, contextTokens: Int, threads: Int, pooling: EmbeddingPooling): Long =
+        nativeLoadEmbeddingModel(modelPath, contextTokens, threads, pooling.nativeValue)
+
+    private external fun nativeLoadEmbeddingModel(modelPath: String, contextTokens: Int, threads: Int, pooling: Int): Long
+
+    /**
+     * The reason the *last* [nativeLoadEmbeddingModel] call on this bridge
+     * failed — empty if it didn't fail, or if it hasn't been called yet. The
+     * only way that reason reaches a caller with no adb/logcat access: every
+     * failure path already logs the same text natively, but only to logcat.
+     */
+    external fun nativeLastLoadError(): String
+
+    /**
+     * The pooled, L2-normalized embedding of [text] — a plain dot product
+     * between two results is then equivalent to cosine similarity. [handle]
+     * must come from [nativeLoadEmbeddingModel]. An empty array on any
+     * failure (blank text, decode failure) rather than an exception: this
+     * feeds a background retrieval-quality signal, not something a caller
+     * should have to guard a whole turn against.
+     */
+    external fun nativeEmbed(handle: Long, text: String): FloatArray
+
+    /** The fixed length of every [nativeEmbed] vector for this [handle] — read from the model, never assumed by a caller. */
+    external fun nativeEmbeddingDimension(handle: Long): Int
+
+    external fun nativeFree(handle: Long)
+
+    /** Asks generation to stop; takes effect at the next token, not instantly. */
+    external fun nativeCancel(handle: Long)
+
+    /** Returns the number of tokens produced, or a negative code on failure. */
+    external fun nativeGenerate(
+        handle: Long,
+        systemPrompt: String?,
+        userPrompt: String,
+        maxTokens: Int,
+        temperature: Float,
+        topP: Float,
+        topK: Int,
+        repeatPenalty: Float,
+        callback: TokenSink,
+    ): Int
+
+    /**
+     * True for an encoder-decoder (T5-family) GGUF — MADLAD-400 is the one
+     * this app knows about (see `TranslationModels.kt`) — false for every
+     * ordinary decoder-only chat GGUF. Read once, right after [nativeLoad],
+     * to decide whether a turn goes through [nativeGenerate]'s chat-template
+     * path or [nativeGenerateT5]'s.
+     */
+    external fun nativeHasEncoder(handle: Long): Boolean
+
+    /**
+     * Generation for an encoder-decoder model loaded via [nativeLoad] when
+     * [nativeHasEncoder] is true — [sourceText] is fed to the encoder whole
+     * (MADLAD-400's own expected format, `<2xx> source text`, built by the
+     * caller — see [ai.localstudio.app.TranslationActivity]), then the
+     * decoder is sampled token by token the same way [nativeGenerate]'s chat
+     * turns are. Not a variant of [nativeGenerate]: there is no chat
+     * template for a T5 model and no cross-call prefix cache worth keeping
+     * for a one-shot translation, so this is its own, shorter native path.
+     * Same return contract as [nativeGenerate]: tokens produced, or a
+     * negative code on failure.
+     */
+    external fun nativeGenerateT5(
+        handle: Long,
+        sourceText: String,
+        maxTokens: Int,
+        temperature: Float,
+        topP: Float,
+        topK: Int,
+        repeatPenalty: Float,
+        callback: TokenSink,
+    ): Int
+
+    /**
+     * Loads the vision encoder a multimodal model ships as a separate file
+     * (mmproj) alongside its main GGUF — llama.cpp keeps the two apart, so
+     * this is a second call after [nativeLoad], not part of it. Returns
+     * false for a model with no real projector at that path, or one whose
+     * projector doesn't actually report vision support; either way
+     * [nativeGenerateWithImages] then has nothing to work with.
+     */
+    external fun nativeLoadMmproj(handle: Long, mmprojPath: String, threads: Int): Boolean
+
+    /**
+     * Same contract as [nativeGenerate], for a turn with one or more
+     * attached images, shown in order — each of [images] is the raw file
+     * content (whatever format stb_image handles: jpg, png, bmp, gif, ...),
+     * not a path or URI. Requires [nativeLoadMmproj] to have already
+     * succeeded for this handle; the prompt-cache reuse [nativeGenerate]
+     * does across turns does not apply here (see the native side's own doc
+     * comment) — every image turn starts the KV cache clean.
+     */
+    external fun nativeGenerateWithImages(
+        handle: Long,
+        systemPrompt: String?,
+        userPrompt: String,
+        images: Array<ByteArray>,
+        maxTokens: Int,
+        temperature: Float,
+        topP: Float,
+        topK: Int,
+        repeatPenalty: Float,
+        callback: TokenSink,
+    ): Int
+
+    companion object {
+        /**
+         * This app's own native inference layer (llama_jni.cpp), versioned
+         * separately from llama.cpp itself: bump it whenever a change there
+         * can change what a model answers -- the KV-cache fallback for
+         * models that cannot trim a prefix, how images reach the model.
+         * Part of [ai.localstudio.model.install.VerificationContext]: a
+         * device check run before such a change is STALE after it.
+         * 1: before tracking. 2: seq_rm fallback, NDEBUG, several images per turn.
+         * 3: positions after a text chunk between images (a second image was decoded over the first).
+         */
+        const val JNI_REVISION = 3
+
+        /**
+         * Whether the native library is present and loadable on this device.
+         *
+         * False rather than a crash: an ABI this build does not cover, or a CPU
+         * older than the one the kernels were compiled for, must degrade to
+         * "local models unavailable" instead of killing the app on startup.
+         */
+        val isAvailable: Boolean by lazy { loadedLibrary != null }
+
+        /**
+         * Which CPU-feature build was loaded (llama_jni, llama_jni_dotprod,
+         * llama_jni_i8mm) — the best this CPU supports, see
+         * [ai.localstudio.core.runtime.CpuVariant]. Null when none could be.
+         */
+        val loadedLibrary: String? by lazy { ai.localstudio.core.runtime.CpuVariant.loadBest("llama_jni") }
+
+        // Matches NodeExecutors' default context-assembly budget (4096) —
+        // deliberately, on both sides: raising this without raising the RAM
+        // budget alongside it is what let a model that barely fit start
+        // allocating a KV cache twice the size it used to, on devices
+        // already running at 90-95% of total RAM. A mismatch here rejects a
+        // turn cleanly (a "context exceeded" error); an oversized KV cache
+        // on a memory-starved device gets the process killed outright, which
+        // is the worse failure to risk by default.
+        const val DEFAULT_CONTEXT_TOKENS = 4096
+
+        /**
+         * Phone SoCs are big.LITTLE and ggml splits each matmul evenly across
+         * its threads, so handing work to the efficiency cores makes every
+         * other thread wait on them each round — [detectPerformanceClusterCoreCount]
+         * reads which cores this specific device's SoC actually gives that
+         * cluster to, rather than assuming a flat number that's right for
+         * some phones and leaves others' extra cores idle (an 8-core phone
+         * capped at 4 threads) or, on a device with a smaller performance
+         * cluster, hands work to efficiency cores anyway (a phone with only
+         * 2 real big cores still getting 4 threads).
+         */
+        fun defaultThreads(): Int =
+            detectPerformanceClusterCoreCount()
+                ?: Runtime.getRuntime().availableProcessors().coerceIn(1, 4)
+
+        /**
+         * Counts this SoC's performance cores (see [CpuClusters]) via the
+         * same per-core `/sys/devices/system/cpu/cpuN/cpufreq/cpuinfo_max_freq`
+         * read [ai.localstudio.core.runtime.CpuVariant.detect] already relies on
+         * for ISA features, just grouped by clock speed instead of
+         * instruction set. Null (falls back to the flat guess above) when
+         * the read fails or fewer cores were readable than
+         * [Runtime.availableProcessors] reports — an emulator, a sandboxed
+         * environment, or a kernel that hides this file — and also when
+         * every core reports the same max frequency (no big.LITTLE split to
+         * detect; the flat guess's own cap already handles a single-cluster
+         * SoC fine).
+         */
+        private fun detectPerformanceClusterCoreCount(): Int? {
+            val totalCores = Runtime.getRuntime().availableProcessors()
+            val maxFreqs = (0 until totalCores).mapNotNull { core ->
+                runCatching {
+                    File("/sys/devices/system/cpu/cpu$core/cpufreq/cpuinfo_max_freq").readText().trim().toLong()
+                }.getOrNull()
+            }
+            return CpuClusters.performanceCoreCount(maxFreqs, totalCores)
+        }
+
+        /**
+         * Serializes every blocking native llama.cpp call across the whole
+         * app — chat generation, model loads, and memory embedding alike,
+         * any model or context, any [LlamaBridge] instance.
+         *
+         * Root-caused from a real on-device native crash (segfault) reported
+         * during ordinary use: [LlamaCppMemoryEmbedder]'s periodic
+         * `embedPending()` backfill loop and a live query's
+         * `embedForQuery()` both call [nativeEmbed] on the very same loaded
+         * embedding context from independent coroutines, with nothing in
+         * Kotlin stopping them from doing so at the same instant. A single
+         * `llama_context`'s KV cache and batch buffers are not safe to touch
+         * from two threads at once — this is not a hypothetical race, it is
+         * exactly what a live device hit. Sharing this one mutex between
+         * [LlamaCppRuntime]'s chat calls and [LlamaCppMemoryEmbedder]'s
+         * embedding calls (different contexts, but the same native process
+         * and thread pool) is the same "queued after, not in parallel with"
+         * guarantee [LlamaCppRuntime] already relied on for chat generation
+         * and model loads — this just closes the gap that the embedding
+         * path never went through it.
+         */
+        val nativeOpMutex = Mutex()
+    }
+}

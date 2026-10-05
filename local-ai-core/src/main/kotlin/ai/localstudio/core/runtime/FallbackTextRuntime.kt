@@ -1,0 +1,250 @@
+package ai.localstudio.core.runtime
+
+import ai.localstudio.core.registry.ModelDescriptor
+import ai.localstudio.core.registry.RuntimeBinding
+import ai.localstudio.core.registry.RuntimeKind
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+
+/**
+ * The label prefixing whichever candidate actually answered — shared with
+ * [ai.localstudio.core.memory.LlmMemoryExtractor], which strips lines
+ * starting with it before consolidating a conversation, and with
+ * [ai.localstudio.app.ChatActivity]'s own copy of this same footer for the
+ * single-candidate case this class never sees. Fixed in English rather than
+ * following the device's language: this module has no access to Android
+ * string resources, and a label two different producers could render
+ * differently would silently break the strip-before-consolidating regex.
+ */
+const val ANSWERED_BY_LABEL = "Answer from: "
+
+/**
+ * How long the winning candidate actually took, appended after
+ * [ANSWERED_BY_LABEL] — on a local model, "which model answered" alone
+ * hides the one number that actually explains a slow reply: 5 tok/s and a
+ * 2000-token prompt is a 400-second wait no amount of routing logic fixes,
+ * and without a number on screen that reads as "the app hung," not "the
+ * model is just this slow on this device."
+ */
+private fun formatElapsed(ms: Long): String = when {
+    ms < 1_000 -> "${ms}ms"
+    ms < 60_000 -> "%.1fs".format(ms / 1000.0)
+    else -> "%dm %02ds".format(ms / 60_000, (ms % 60_000) / 1000)
+}
+
+/** One provider this chain can fall through to, tried in the order the list is built in. */
+data class FallbackCandidate(
+    val label: String,
+    val runtime: ModelRuntime,
+    val model: ModelDescriptor,
+    val binding: RuntimeBinding,
+    /**
+     * Notified with the raw exception whenever this candidate fails to
+     * answer — load or generate, same as what feeds [failures] below. Lets
+     * the caller apply its own cooldown policy for a specific kind of
+     * failure (an HTTP 503 from a specific cloud model, say) without this
+     * class needing to know what that failure type even is.
+     */
+    val onFailure: ((Throwable) -> Unit)? = null,
+    /**
+     * Consulted right before this candidate would be attempted; returning
+     * true skips it — recorded as an ordinary failure, so the chain still
+     * moves on to whatever comes after it — without ever calling [load] or
+     * [runtime]'s generate. The caller's own escape hatch for "this
+     * candidate's failure means every other candidate sharing something
+     * with it will fail identically": an HTTP 413 (request too large) from
+     * one of a provider's free-tier models means every sibling model on
+     * that same provider will reject the same oversized prompt too, so
+     * trying each of them in turn before finally reaching a different
+     * provider wastes a full round trip per sibling for a failure that's
+     * already certain.
+     */
+    val shouldSkip: (() -> Boolean)? = null,
+    /**
+     * Whether this candidate accepts an attached image at all. Checked only
+     * when [GenerationRequest.images] is non-empty for a given turn — a
+     * text-only turn against a text-only candidate is unaffected either way
+     * — so unlike [shouldSkip] this needs no per-candidate closure: it is a
+     * static fact about the model, known at construction time, not something
+     * that changes turn to turn. True by default, preserving this class's
+     * original behavior for every candidate that predates this field: send
+     * the image and let an unsupported model reject it with its own error.
+     * Set to false only where that rejection was confirmed to actually
+     * happen — see the caller that builds this candidate (CloudProviders'
+     * own visionModels, in the app module) for which ones and why.
+     */
+    val supportsImages: Boolean = true,
+)
+
+/**
+ * Not a real inference backend — an ordered list of other runtimes, tried in
+ * turn within a single request. "Local first, cloud as a safety net" is a
+ * policy the caller expresses by ordering [candidates]; this class just
+ * tries each in order and moves on when one throws or produces nothing.
+ *
+ * Every answer carries a trailing "Ответ от: <label>" line naming whichever
+ * candidate actually produced it — with no attribution at all, "местная
+ * модель" and "Gemini's third free-tier fallback model" are indistinguishable
+ * from the outside, which is exactly what made a wrong-looking answer
+ * impossible to diagnose without the underlying request/response logs.
+ *
+ * This only rescues Kotlin-level failures — a thrown exception, a timeout, an
+ * empty response. A genuine native crash (a segfault in llama.cpp, say) kills
+ * the process outright and nothing runs afterward, in Kotlin or otherwise;
+ * what this buys is a local model erroring or hanging no longer being a dead
+ * end for the turn when a cloud provider is configured as a fallback.
+ */
+class FallbackTextRuntime(private val candidates: List<FallbackCandidate>) : ModelRuntime {
+
+    init {
+        require(candidates.isNotEmpty()) { "FallbackTextRuntime needs at least one candidate" }
+    }
+
+    override val kind: RuntimeKind = RuntimeKind.FALLBACK_CHAIN
+
+    override fun canRun(model: ModelDescriptor, binding: RuntimeBinding): Boolean = true
+
+    override suspend fun load(model: ModelDescriptor, binding: RuntimeBinding): LoadedModel =
+        FallbackTextModel(candidates)
+}
+
+private class FallbackTextModel(private val candidates: List<FallbackCandidate>) : TextModelHandle {
+    override val modelId: String = "fallback-chain"
+    override val ramBytes: Long = 0
+
+    @Volatile
+    private var active: TextModelHandle? = null
+
+    /**
+     * Candidates loaded so far, by index, kept across turns.
+     *
+     * This used to load and then close every candidate inside a single
+     * generate() call, which meant a local model was read off disk again for
+     * every message the moment any second provider was enabled — six to
+     * twenty seconds per turn for a 4B GGUF on a real device. Worse, a fresh
+     * llama.cpp context starts with an empty KV cache, so the prefix reuse
+     * in llama_jni.cpp had nothing to match against and the entire prompt
+     * was re-prefilled every turn too. The single-candidate path never had
+     * this problem: it goes through RuntimeManager, which keeps the model
+     * resident. This map is the equivalent for the chain, and
+     * [close] — called by RuntimeManager when this chain itself is evicted —
+     * is what eventually frees them.
+     */
+    private val loaded = mutableMapOf<Int, TextModelHandle>()
+
+    override fun generate(request: GenerationRequest): Flow<String> = flow {
+        val turnStart = System.currentTimeMillis()
+        val failures = mutableListOf<String>()
+        for ((index, candidate) in candidates.withIndex()) {
+            if (candidate.shouldSkip?.invoke() == true) {
+                failures += "${candidate.label}: skipped"
+                continue
+            }
+            if (request.images.isNotEmpty() && !candidate.supportsImages) {
+                failures += "${candidate.label}: doesn't support images"
+                continue
+            }
+            val handle = try {
+                loaded.getOrPut(index) {
+                    candidate.runtime.load(candidate.model, candidate.binding) as? TextModelHandle
+                        ?: throw ModelLoadException("${candidate.label} did not load as a text model")
+                }
+            } catch (e: CancellationException) {
+                // A cancelled load (the user stopped generation, or the
+                // overall request timed out) is not this candidate failing —
+                // treating it as one used to make the chain silently move on
+                // to the *next* candidate instead of actually stopping,
+                // which from the outside looked exactly like Stop doing
+                // nothing while the app kept querying a different provider.
+                throw e
+            } catch (e: Exception) {
+                candidate.onFailure?.invoke(e)
+                failures += "${candidate.label}: ${e.message ?: e.toString()}"
+                continue
+            }
+
+            active = handle
+            var emittedAny = false
+            try {
+                // Emitted live rather than buffered to the end. Buffering was
+                // how a candidate that produced several tokens and then threw
+                // could still be replaced silently by the next one — but it
+                // also meant nothing at all reached the screen until the whole
+                // answer was finished, which for a slow local model is minutes
+                // of a blank bubble. That cost is paid on every turn; the
+                // failure it guarded against is rare, and is still handled:
+                // falling through to the next candidate stays possible right
+                // up until the first token is emitted, and after that point a
+                // failure is reported rather than silently papered over with a
+                // second candidate's answer appended to the first one's.
+                handle.generate(request).collect {
+                    emittedAny = true
+                    emit(it)
+                }
+                if (emittedAny) {
+                    // Always attached, not just on fallback: with no
+                    // attribution at all a plain answer just reads as "the
+                    // model" with no way to tell which provider or which of
+                    // several free-tier models on that provider actually
+                    // produced it — and when a fallback earlier in the
+                    // chain DID fail, that reason is exactly the signal
+                    // needed to tell whether "local doesn't really work yet"
+                    // is a real problem or a one-off, which silently
+                    // discarding it once something else answers would lose.
+                    emit(attributionFooter(candidate.label, failures, System.currentTimeMillis() - turnStart))
+                    return@flow
+                }
+                failures += "${candidate.label}: empty response"
+            } catch (e: CancellationException) {
+                // Same reasoning as the load-side catch above: propagate
+                // instead of recording it as this candidate's failure and
+                // falling through to the next one.
+                throw e
+            } catch (e: Exception) {
+                candidate.onFailure?.invoke(e)
+                failures += "${candidate.label}: ${e.message ?: e.toString()}"
+                // A handle that threw mid-generation is not trusted for the
+                // next turn — dropped from the cache and closed here rather
+                // than reused, unlike the success path.
+                loaded.remove(index)?.let { broken -> runCatching { broken.close() } }
+                if (emittedAny) {
+                    // Part of this candidate's answer is already on screen.
+                    // Falling through to the next candidate would append a
+                    // second, unrelated answer to the first one's remains, so
+                    // this is reported instead of silently recovered from.
+                    throw e
+                }
+            } finally {
+                active = null
+            }
+        }
+        throw ModelLoadException("No source answered:\n" + failures.joinToString("\n"))
+    }
+
+    private fun attributionFooter(answeredBy: String, failures: List<String>, elapsedMs: Long) = buildString {
+        append("\n\n---\n")
+        if (failures.isNotEmpty()) {
+            append("⚠ ")
+            append(failures.joinToString("; "))
+            append("\n")
+        }
+        append(ANSWERED_BY_LABEL)
+        append(answeredBy)
+        append(" · ")
+        append(formatElapsed(elapsedMs))
+    }
+
+    override fun requestCancel() {
+        active?.requestCancel()
+    }
+
+    override fun close() {
+        // Every candidate this chain ever loaded, not just whichever one
+        // answered last: they are kept resident across turns now (see
+        // [loaded]), so this is the only place they are released.
+        loaded.values.forEach { runCatching { it.close() } }
+        loaded.clear()
+        active = null
+    }
+}
