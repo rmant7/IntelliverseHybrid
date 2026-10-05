@@ -4,10 +4,10 @@
     <string name="cheaptrip_info">CheapTrip is a unique search engine that finds the cheapest ways between cities, combining flights, buses, trains and ferries.</string>
     <string name="matterofchoice_info">Matter Of Choice presents interactive scenarios to help you learn decision-making skills.</string>
     <string name="whats_new_title">What\'s new</string>
-    <string name="whats_new_body">On-device chat: menu → Chat (on-device). Everything runs on your phone; nothing leaves it.
+    <string name="whats_new_body">On-device AI: your chat model now answers in every mini-app next to the cloud models (questions without a photo), and in a new on-device Chat (menu). Everything runs on your phone.
 
 One Models screen for chat and translation models: search and filters, which model answers chat and which translates, and a check that shows whether a model really works on this phone.
 
-Style Translator uses the translation model you choose there.</string>
+Settings → On-device AI turns the mini-app answers on or off.</string>
     <string name="whats_new_got_it">Got it</string>
 </resources>

@@ -27,8 +27,9 @@ class ResultViewModel @Inject constructor(
     interstitialAdUseCase: InterstitialAdUseCase,
     speechConverter: SpeechConverter,
     audioPlayer: AudioPlayer,
-    savedStateHandle: SavedStateHandle
-) : BaseResultViewModel(imageUtils, geminiUseCaseClient, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
+    savedStateHandle: SavedStateHandle,
+    localChat: com.intelliverse.localai.LocalChatProvider,
+) : BaseResultViewModel(imageUtils, geminiUseCaseClient, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle, localChat) {
 
     override val audioPrefixName: String
         get() = "schoolkiller"

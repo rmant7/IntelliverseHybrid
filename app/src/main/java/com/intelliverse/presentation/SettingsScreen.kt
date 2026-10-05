@@ -14,6 +14,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -21,10 +22,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -63,6 +66,30 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
         }
     ) { padding ->
         Column(modifier = Modifier.padding(padding).fillMaxSize().padding(16.dp)) {
+            val selection by viewModel.selection.collectAsState()
+            Text("On-device AI", style = MaterialTheme.typography.titleMedium)
+            Text(
+                "Chat: ${viewModel.chatModelTitle() ?: "no chat model installed"}\n" +
+                    "Translation: ${viewModel.translationModelTitle() ?: "no translation model installed"}",
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(top = 8.dp),
+            )
+            TextButton(onClick = { navController.navigate("models") }) { Text("Choose models") }
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Answer in the mini-apps too")
+                    Text(
+                        "The chat model answers next to the cloud models, for questions without a photo (Matter of Choice: when the cloud does not answer).",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Switch(checked = selection.useInApps, onCheckedChange = { viewModel.setUseInApps(it) })
+            }
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
             Text("Local models", style = MaterialTheme.typography.titleMedium)
 
             if (viewModel.installedModels.isEmpty()) {

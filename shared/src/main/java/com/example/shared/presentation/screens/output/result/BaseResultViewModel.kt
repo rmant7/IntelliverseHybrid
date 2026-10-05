@@ -44,7 +44,8 @@ abstract class BaseResultViewModel(
     private val interstitialAdUseCase: InterstitialAdUseCase,
     protected val speechConverter: SpeechConverter,
     val audioPlayer: AudioPlayer,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
+    private val localChat: com.intelliverse.localai.LocalChatProvider,
 ): ViewModel() {
 
     abstract val audioPrefixName: String
@@ -340,7 +341,9 @@ abstract class BaseResultViewModel(
         // launchAdditionalProviders() will actually run this time
         // (StyleTranslator: its installed local models) -- 0 for every other
         // sub-app, which never overrides this.
-        maxSolutionResultsCapacity = PRIMARY_SERVICES.size + (if (BuildConfig.DEBUG) 1 else 0) + additionalProviderCount()
+        // The on-device chat model answers too (Settings: on by default once one is installed), text-only runs.
+        val askLocal = offersLocalChat && !imageUsed && localChat.available()
+        maxSolutionResultsCapacity = PRIMARY_SERVICES.size + (if (BuildConfig.DEBUG) 1 else 0) + (if (askLocal) 1 else 0) + additionalProviderCount()
 
         val imagesBase64 = if (imageUsed) {
             passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) }
@@ -376,6 +379,7 @@ abstract class BaseResultViewModel(
                 launch { groq(imagesBase64) }
             }
             if (BuildConfig.DEBUG) launch { gigaChat() }
+            if (askLocal) launch { localModel() }
             launchAdditionalProviders(imagesBase64)
         }
     }
@@ -387,6 +391,37 @@ abstract class BaseResultViewModel(
      * StyleTranslator to count its installed local models.
      */
     protected open suspend fun additionalProviderCount(): Int = 0
+
+    /**
+     * Whether this sub-app's runs also ask the on-device chat model (see
+     * [com.intelliverse.localai.LocalChatProvider]). StyleTranslator says no:
+     * it asks its translation model instead ([launchAdditionalProviders]).
+     */
+    protected open val offersLocalChat: Boolean = true
+
+    /**
+     * The same prompt the cloud models get, answered on the phone. A small
+     * model often wraps the JSON asked for in a code fence or a sentence, or
+     * answers in plain text: the object inside is decoded when there is one,
+     * otherwise the answer is shown as written rather than thrown away.
+     */
+    private suspend fun localModel() {
+        val result = try {
+            Result.success(localChat.answer(prompt))
+        } catch (e: kotlinx.coroutines.CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        result.onSuccess { reply ->
+            val decoded = runCatching { decodeSolutionResponse(reply) }
+                .recoverCatching { decodeSolutionResponse(com.intelliverse.localai.LocalChatProvider.jsonIn(reply)) }
+                .getOrNull()
+            val text = decoded?.first?.takeIf { it.isNotBlank() } ?: reply
+            onSolutionResult(Result.success(withProviderFooter(text, "On-device", localChat.modelTitle())), AIService.LOCAL)
+        }
+        result.onFailure { onSolutionResult(Result.failure(it), AIService.LOCAL) }
+    }
 
     /**
      * Extra result-producing coroutines beyond Gemini/Groq/GigaChat,

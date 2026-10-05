@@ -254,6 +254,7 @@ class GeminiRepository(context: Context) {
     }
 
     private val groqUseCase by lazy { GroqUseCase(keyRotatorFor(ApiProviderIds.GROQ)) }
+    private val localChat by lazy { com.intelliverse.localai.LocalAiAccess.localChat(appContext) }
     private val gigaChatUseCase by lazy {
         GigaChatUseCase(keyRotatorFor(ApiProviderIds.GIGACHAT), GigaChatTokenProvider())
     }
@@ -403,8 +404,9 @@ class GeminiRepository(context: Context) {
     }
 
     /**
-     * Tries Gemini, then Groq, then GigaChat in order, returning the first
-     * one that actually answers. Same text-in/text-out prompt for all three
+     * Tries Gemini, then Groq, then GigaChat, then the on-device chat model
+     * when one is installed and allowed, returning the first one that
+     * actually answers. Same text-in/text-out prompt for all three
      * -- none of this app's calls use images, so there's no per-provider
      * request-shape difference to handle (unlike this shell's other
      * sub-apps, where GigaChat specifically can't take the image payload the
@@ -423,7 +425,11 @@ class GeminiRepository(context: Context) {
         val providers = listOf<Pair<String, suspend () -> String>>(
             "Gemini" to { withContext(Dispatchers.IO) { callGemini(prompt) } },
             "Groq" to { withContext(Dispatchers.IO) { groqUseCase.generateGroqSolution(emptyList(), prompt).getOrThrow() } },
-            "GigaChat" to { gigaChatUseCase.generateGigaChatSolution(prompt).getOrThrow() }
+            "GigaChat" to { gigaChatUseCase.generateGigaChatSolution(prompt).getOrThrow() },
+        ) + listOfNotNull(
+            // Last: the on-device chat model (Settings → on by default once one is installed) -- the game keeps
+            // working with no network. Its JSON goes through the same extractJson() as everyone else's.
+            localChat.takeIf { it.available() }?.let { local -> "On-device (${local.modelTitle()})" to suspend { local.answer(prompt) } },
         )
 
         val failures = mutableListOf<Pair<String, Exception>>()

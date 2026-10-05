@@ -39,11 +39,15 @@ class ResultViewModel @Inject constructor(
     audioPlayer: AudioPlayer,
     private val localAi: LocalAi,
     private val localAiSettings: LocalAiSettings,
-    savedStateHandle: SavedStateHandle
-) : BaseResultViewModel(imageUtils, geminiUseCaseClient, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
+    savedStateHandle: SavedStateHandle,
+    localChat: com.intelliverse.localai.LocalChatProvider,
+) : BaseResultViewModel(imageUtils, geminiUseCaseClient, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle, localChat) {
 
     override val audioPrefixName: String
         get() = "styletranslator"
+
+    /** Local answers here come from the translation model ([runLocalModels]), not the chat model. */
+    override val offersLocalChat: Boolean = false
 
     /**
      * On-device local models as additional parallel tabs alongside

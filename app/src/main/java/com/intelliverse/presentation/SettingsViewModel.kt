@@ -5,7 +5,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.intelliverse.localai.IntelliverseLocalAi
+import com.intelliverse.localai.LocalAiSettings
 import com.intelliverse.models.ModelDownloads
+import com.intelliverse.models.ModelPurpose
 import com.intelliverse.models.ModelStore
 import com.intelliverse.models.LocalModelCatalog
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,8 +20,20 @@ data class InstalledModelInfo(val title: String, val sizeBytes: Long)
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val downloads: ModelDownloads,
+    private val localAiSettings: LocalAiSettings,
+    private val localAi: IntelliverseLocalAi,
     @ApplicationContext context: Context,
 ) : ViewModel() {
+    val selection = localAiSettings.selection
+
+    fun setUseInApps(on: Boolean) {
+        localAiSettings.useInApps = on
+    }
+
+    fun chatModelTitle(): String? = localAi.defaultFor(ModelPurpose.CHAT)?.title
+
+    fun translationModelTitle(): String? = localAi.defaultFor(ModelPurpose.TRANSLATION)?.title
+
     private val store = ModelStore(context)
 
     var installedModels by mutableStateOf(loadInstalled())
