@@ -97,6 +97,8 @@ class LocalLlamaSession {
         // than larger models (same fix, same reasoning, as rmant7/AI's own
         // Settings.DEFAULT_REPEAT_PENALTY).
         repeatPenalty: Float = 1.2f,
+        /** A system turn ahead of [prompt], through the model's own chat template; ignored by a T5 model. */
+        systemPrompt: String? = null,
     ): Flow<String> = callbackFlow {
         val callback = object : LlamaBridge.TokenSink {
             override fun onToken(text: String) {
@@ -128,7 +130,7 @@ class LocalLlamaSession {
                     )
                 } else {
                     bridge.nativeGenerate(
-                        activeHandle, null, prompt, maxTokens, temperature, topP, topK, repeatPenalty, callback,
+                        activeHandle, systemPrompt, prompt, maxTokens, temperature, topP, topK, repeatPenalty, callback,
                     )
                 }
                 if (result < 0) close(IllegalStateException("Generation failed (code $result)")) else close()

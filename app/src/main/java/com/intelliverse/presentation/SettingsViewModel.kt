@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.intelliverse.models.ModelDownloads
 import com.intelliverse.models.ModelStore
-import com.intelliverse.models.TranslationModels
+import com.intelliverse.models.LocalModelCatalog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -33,14 +33,14 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun deleteAllModels() {
-        TranslationModels.ALL.forEach { seed ->
+        LocalModelCatalog.ALL.forEach { seed ->
             if (store.isInstalled(seed)) downloads.delete(seed)
         }
         refresh()
     }
 
     private fun loadInstalled(): List<InstalledModelInfo> =
-        TranslationModels.ALL
+        LocalModelCatalog.ALL
             .filter { store.isInstalled(it) }
             .map { InstalledModelInfo(it.title, store.finalFile(it).length()) }
 }

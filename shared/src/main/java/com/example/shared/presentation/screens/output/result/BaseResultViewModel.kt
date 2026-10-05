@@ -285,7 +285,7 @@ abstract class BaseResultViewModel(
                     }
                 }
                 AIService.GPT, AIService.GROQ, AIService.GIGACHAT,
-                AIService.LOCAL_TRANSLATEGEMMA, AIService.LOCAL_OMNITRANSLATE, AIService.LOCAL_MADLAD -> {
+                AIService.LOCAL_TRANSLATEGEMMA, AIService.LOCAL_OMNITRANSLATE, AIService.LOCAL_MADLAD, AIService.LOCAL -> {
                     updateSolutionResults(aiService, null)
                 }
             }

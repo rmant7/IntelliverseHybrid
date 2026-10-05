@@ -118,7 +118,15 @@ fun AppTopBar(navController: NavHostController?, appName: String, infoDialog: St
                         tint = MaterialTheme.colorScheme.onPrimary
                     )
                 }
+                // Same order as the start screen's: on-device Chat, Models, Settings, Log last.
                 DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
+                    DropdownMenuItem(
+                        text = { Text("Chat (on-device)") },
+                        onClick = {
+                            menuExpanded = false
+                            navController.navigate("chat")
+                        }
+                    )
                     DropdownMenuItem(
                         text = { Text("Models") },
                         onClick = {

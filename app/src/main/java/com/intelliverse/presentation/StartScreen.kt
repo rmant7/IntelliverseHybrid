@@ -182,19 +182,19 @@ fun StartScreen(
             }
 
             // Overflow menu: host-level screens that don't belong to any one
-            // mini-app -- Settings and Models are both empty shells for now,
-            // Log is a way to see what went wrong without needing a computer
+            // mini-app -- on-device chat and models, settings; Log is a way to see what went wrong without needing a computer
             // attached to pull logcat.
             Box(modifier = Modifier.align(Alignment.TopEnd)) {
                 IconButton(onClick = { menuExpanded = true }) {
                     Icon(Icons.Default.MoreVert, contentDescription = "Menu")
                 }
+                // On-device AI first (Chat, Models), then Settings; Log always last.
                 DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
                     DropdownMenuItem(
-                        text = { Text("Settings") },
+                        text = { Text("Chat (on-device)") },
                         onClick = {
                             menuExpanded = false
-                            navController.navigate("settings")
+                            navController.navigate("chat")
                         }
                     )
                     DropdownMenuItem(
@@ -202,6 +202,13 @@ fun StartScreen(
                         onClick = {
                             menuExpanded = false
                             navController.navigate("models")
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Settings") },
+                        onClick = {
+                            menuExpanded = false
+                            navController.navigate("settings")
                         }
                     )
                     DropdownMenuItem(

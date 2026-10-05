@@ -1,7 +1,6 @@
 package com.styletranslator.presentation.screens.output.result
 
 import com.example.shared.domain.ai.ResponseFormat
-import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
@@ -15,13 +14,14 @@ import com.example.shared.presentation.screens.output.result.BaseResultViewModel
 import com.example.shared.presentation.screens.output.result.doubleQuotes
 import com.example.shared.presentation.screens.output.result.jsonResponseLanguage
 import com.example.shared.presentation.screens.output.result.ocrTextJsonEntry
-import com.intelliverse.llama.LocalLlamaSession
-import com.intelliverse.llama.TranslationPrompts
-import com.intelliverse.models.LocalModelSeed
-import com.intelliverse.models.ModelStore
-import com.intelliverse.models.TranslationModels
+import ai.localstudio.sdk.Language
+import ai.localstudio.sdk.LocalAi
+import ai.localstudio.sdk.LocalCapability
+import ai.localstudio.sdk.LocalModel
+import ai.localstudio.sdk.ModelQuery
+import ai.localstudio.sdk.TranslationRequest
+import com.intelliverse.localai.LocalAiSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -37,15 +37,13 @@ class ResultViewModel @Inject constructor(
     interstitialAdUseCase: InterstitialAdUseCase,
     speechConverter: SpeechConverter,
     audioPlayer: AudioPlayer,
-    private val localLlamaSession: LocalLlamaSession,
-    @ApplicationContext appContext: Context,
+    private val localAi: LocalAi,
+    private val localAiSettings: LocalAiSettings,
     savedStateHandle: SavedStateHandle
 ) : BaseResultViewModel(imageUtils, geminiUseCaseClient, groqUseCase, gigaChatUseCase, interstitialAdUseCase, speechConverter, audioPlayer, savedStateHandle) {
 
     override val audioPrefixName: String
         get() = "styletranslator"
-
-    private val modelStore = ModelStore(appContext)
 
     /**
      * On-device local models as additional parallel tabs alongside
@@ -61,69 +59,49 @@ class ResultViewModel @Inject constructor(
     // Exactly one local result per run (see runLocalModels), not one per
     // installed model -- so this is 0 or 1, never a model count.
     override suspend fun additionalProviderCount(): Int =
-        if (imageUsed) 0 else if (ALL_LOCAL_MODELS.any { (seed, _) -> modelStore.isInstalled(seed) }) 1 else 0
+        if (imageUsed) 0 else if (translators().isNotEmpty()) 1 else 0
+
+    /** Every installed model that translates, through the SDK -- the Models screen decides which goes first. */
+    private suspend fun translators(): List<LocalModel> =
+        runCatching { localAi.models(ModelQuery(capability = LocalCapability.TRANSLATION)) }.getOrDefault(emptyList())
 
     override fun CoroutineScope.launchAdditionalProviders(imagesBase64: List<String>) {
         if (!imageUsed) launch { runLocalModels() }
     }
 
     /**
-     * Walks [ALL_LOCAL_MODELS] top to bottom -- TranslateGemma, then MADLAD,
-     * then OmniTranslate last (weakest quality, see its own catalog note) --
-     * and reports exactly one result: the first installed model that loads
-     * and produces a translation. Anything earlier in the list that fails
-     * to load or generate is skipped silently, no separate tab for it.
-     *
-     * Sequential, not one launch{} per model: [LocalLlamaSession] only ever
-     * holds one loaded model at a time (matches this app's realistic phone
-     * RAM budget), so running candidates one after another is both simpler
-     * and avoids two coroutines racing to load/evict each other's model.
-     * It also means whichever model answered last run is still the one
-     * resident in memory -- [LocalLlamaSession.load] is then a no-op, so as
-     * long as the top-of-list model keeps succeeding, every run after the
-     * first is instant with no reload.
+     * Exactly one local result per run, through the SDK: the translation
+     * model chosen on the Models screen first, then every other installed
+     * translator in turn -- the first that answers is the result. One model
+     * is loaded at a time (the SDK serializes), so whichever answered stays
+     * loaded for the next run.
      */
     private suspend fun runLocalModels() {
-        val targetLangCode = selectedLanguage.code
-        val targetLangName = selectedLanguage.promptName
-        val sourceText = passedEditedResult.ifBlank { userTask }
-
+        val request = TranslationRequest(
+            text = passedEditedResult.ifBlank { userTask },
+            source = Language("auto", "the source language"),
+            target = Language(selectedLanguage.code, selectedLanguage.promptName),
+        )
+        val chosen = localAiSettings.translationModelId
+        // Chosen first; then dedicated translators (TranslateGemma, MADLAD, OmniTranslate -- catalog
+        // order, OmniTranslate last for its weaker quality) before chat models asked to translate.
+        val models = translators().sortedWith(
+            compareByDescending<LocalModel> { it.id == chosen }.thenBy { LocalCapability.TEXT in it.capabilities },
+        )
         var lastFailure: Throwable = IllegalStateException("No installed local model produced a translation")
-        var lastAttempted: AIService? = null
-        for ((seed, aiService) in ALL_LOCAL_MODELS) {
-            if (!modelStore.isInstalled(seed)) continue
-            lastAttempted = aiService
-            val result = runLocalModel(seed, aiService, targetLangCode, targetLangName, sourceText)
-            result.onSuccess {
-                onSolutionResult(Result.success(it), aiService)
+        for (model in models) {
+            val result = runCatching { localAi.translate(request, model.id) }
+            result.onSuccess { text ->
+                onSolutionResult(Result.success(formatLocalResult(text, model.displayName)), serviceFor(model.id))
                 return
             }
-            result.onFailure { lastFailure = it }
+            result.onFailure {
+                if (it is kotlinx.coroutines.CancellationException) throw it
+                Timber.w(it, "Local translation by ${model.id} failed")
+                lastFailure = it
+            }
         }
-        lastAttempted?.let { onSolutionResult(Result.failure(lastFailure), it) }
-    }
-
-    /** Loads and runs a single candidate model; does not report -- the caller reports exactly once for the whole run. */
-    private suspend fun runLocalModel(
-        seed: LocalModelSeed,
-        aiService: AIService,
-        targetLangCode: String,
-        targetLangName: String,
-        sourceText: String,
-    ): Result<String> {
-        return try {
-            val loaded = localLlamaSession.load(modelStore.finalFile(seed).absolutePath)
-            if (!loaded) return Result.failure(IllegalStateException("Failed to load ${seed.title}"))
-
-            val prompt = TranslationPrompts.buildPrompt(seed, targetLangCode, targetLangName, sourceText)
-            val raw = StringBuilder()
-            localLlamaSession.generate(prompt).collect { token -> raw.append(token) }
-            val cleaned = TranslationPrompts.stripThinking(raw.toString())
-            Result.success(formatLocalResult(cleaned, seed.title))
-        } catch (e: Exception) {
-            Timber.w(e, "Local model ${seed.id} failed to produce a translation")
-            Result.failure(e)
-        }
+        models.lastOrNull()?.let { onSolutionResult(Result.failure(lastFailure), serviceFor(it.id)) }
     }
 
     /**
@@ -293,11 +271,13 @@ class ResultViewModel @Inject constructor(
         // Attempt order for runLocalModels -- OmniTranslate deliberately
         // last, see its own catalog note on why (weaker quality, especially
         // rare/RTL languages).
-        val ALL_LOCAL_MODELS: List<Pair<LocalModelSeed, AIService>> = listOfNotNull(
-            TranslationModels.byId("translategemma-4b")?.let { it to AIService.LOCAL_TRANSLATEGEMMA },
-            TranslationModels.byId("madlad400-3b-mt-q4")?.let { it to AIService.LOCAL_MADLAD },
-            TranslationModels.byId("omnitranslate-1-1")?.let { it to AIService.LOCAL_OMNITRANSLATE },
-        )
+        /** The result tab a local model's answer lands in: its own for the three translation models, one shared for any other. */
+        fun serviceFor(modelId: String): AIService = when (modelId) {
+            "translategemma-4b" -> AIService.LOCAL_TRANSLATEGEMMA
+            "madlad400-3b-mt-q4" -> AIService.LOCAL_MADLAD
+            "omnitranslate-1-1" -> AIService.LOCAL_OMNITRANSLATE
+            else -> AIService.LOCAL
+        }
 
         // "Short" = the common one/two-word translation someone reads and
         // immediately taps Play on -- see formatLocalResult.

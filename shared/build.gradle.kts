@@ -73,6 +73,9 @@ android {
 
 dependencies {
 
+    // On-device AI through rmant7/AI's SDK contract (see local-ai-sdk/SOURCE).
+    api(project(":local-ai-sdk"))
+
     // Dagger - Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.navigation.runtime.ktx)

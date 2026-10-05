@@ -21,6 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Intelliverse"
 include(":app", ":DietTracker", ":StyleTranslator", ":OneClickTrip", ":shared")
+// rmant7/AI's on-device AI contract (vendored, see local-ai-sdk/SOURCE).
+include(":local-ai-sdk")
 include(":SchoolKiller")
 include(":MatterOfChoice")
 

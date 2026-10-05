@@ -14,4 +14,6 @@ enum class AIService {
     LOCAL_TRANSLATEGEMMA,
     LOCAL_OMNITRANSLATE,
     LOCAL_MADLAD,
+    // Any other on-device model asked through the local-AI SDK (a chat model translating, for one).
+    LOCAL,
 }

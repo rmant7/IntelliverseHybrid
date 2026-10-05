@@ -5,6 +5,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+import com.intelliverse.models.PurposeFilter
+import com.intelliverse.presentation.ChatScreen
 import com.intelliverse.presentation.LogScreen
 import com.intelliverse.presentation.ModelsScreen
 import com.intelliverse.presentation.SettingsScreen
@@ -34,7 +38,15 @@ fun Navigation() {
         composable("start") { StartScreen(navController, appDescriptions) }
         composable("log") { LogScreen(navController) }
         composable("settings") { SettingsScreen(navController) }
-        composable("models") { ModelsScreen(navController) }
+        // "models" or "models?purpose=CHAT": opens filtered to one purpose (Chat's gear does).
+        composable(
+            "models?purpose={purpose}",
+            arguments = listOf(navArgument("purpose") { type = NavType.StringType; nullable = true; defaultValue = null }),
+        ) { entry ->
+            val purpose = entry.arguments?.getString("purpose")?.let { name -> PurposeFilter.entries.firstOrNull { it.name == name } }
+            ModelsScreen(navController, initialPurpose = purpose)
+        }
+        composable("chat") { ChatScreen(navController) }
         composable(schoolKiller) {
             com.schoolkiller.presentation.navigation.Navigation(
                 navController

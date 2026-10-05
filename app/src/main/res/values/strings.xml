@@ -4,6 +4,10 @@
     <string name="cheaptrip_info">CheapTrip is a unique search engine that finds the cheapest ways between cities, combining flights, buses, trains and ferries.</string>
     <string name="matterofchoice_info">Matter Of Choice presents interactive scenarios to help you learn decision-making skills.</string>
     <string name="whats_new_title">What\'s new</string>
-    <string name="whats_new_body">Style Translator can now translate offline using on-device AI models — no internet connection needed.\n\nChoose your result language from over 400 languages, searchable by name.\n\nVoice playback now supports many more languages too.</string>
+    <string name="whats_new_body">On-device chat: menu → Chat (on-device). Everything runs on your phone; nothing leaves it.
+
+One Models screen for chat and translation models: search and filters, which model answers chat and which translates, and a check that shows whether a model really works on this phone.
+
+Style Translator uses the translation model you choose there.</string>
     <string name="whats_new_got_it">Got it</string>
 </resources>

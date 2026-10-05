@@ -50,7 +50,7 @@ class ModelDownloads(
     private val cancelFlags = mutableMapOf<String, Boolean>()
 
     init {
-        TranslationModels.ALL.forEach { seed ->
+        LocalModelCatalog.ALL.forEach { seed ->
             if (store.isInstalled(seed)) setState(seed.id, DownloadState.Installed)
         }
     }
