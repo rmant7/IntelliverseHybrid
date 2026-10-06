@@ -43,20 +43,7 @@ class ResultViewModel @Inject constructor(
 
         fun buildSolvingPrompt(): String {
 
-            val details = when (detailsLevel) {
-                ExplanationLevelOption.DETAILED_EXPLANATION.detailsLevel -> {
-                    "Use a step-by-step approach (chain of thought) to analyze each problem before solving it. Provide a detailed explanation for each solution, ensuring clarity and logical progression."
-                }
-                ExplanationLevelOption.NO_EXPLANATION.detailsLevel -> {
-                    "Show calculations/solutions only, without any verbal explanations."
-                }
-                ExplanationLevelOption.SHORT_EXPLANATION.detailsLevel -> {
-                    "Provide concise answers, focusing on the key points and omitting unnecessary details. Keep the answers short and to the point."
-                }
-                else -> {
-                    throw IllegalStateException("Illegal details level inside ResultViewModel")
-                }
-            }
+            val details = detailsInstruction()
 
             val gradeInfo = if (grade != 0) "${grade}th grader" else "students"
 
@@ -122,6 +109,21 @@ class ResultViewModel @Inject constructor(
         }
         prompt = buildSolvingPrompt()
     }
+
+    private fun detailsInstruction(): String = when (detailsLevel) {
+        ExplanationLevelOption.DETAILED_EXPLANATION.detailsLevel ->
+            "Use a step-by-step approach (chain of thought) to analyze each problem before solving it. Provide a detailed explanation for each solution, ensuring clarity and logical progression."
+        ExplanationLevelOption.NO_EXPLANATION.detailsLevel ->
+            "Show calculations/solutions only, without any verbal explanations."
+        ExplanationLevelOption.SHORT_EXPLANATION.detailsLevel ->
+            "Provide concise answers, focusing on the key points and omitting unnecessary details. Keep the answers short and to the point."
+        else -> throw IllegalStateException("Illegal details level inside ResultViewModel")
+    }
+
+    override fun localRequirements(): List<String> = listOfNotNull(
+        grade.takeIf { it != 0 }?.let { "The student is in grade $it: solve and explain at that level." },
+        detailsInstruction(),
+    )
 
     override fun toHtml(content: String): String = TextUtils.markdownToHtml(content)
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeTaskSolutionResponse(response)

@@ -235,6 +235,17 @@ class ResultViewModel @Inject constructor(
         prompt = buildSolvingPrompt()
     }
 
+    override fun localRequirements(): List<String> = listOfNotNull(
+        listOfNotNull(
+            gender?.let { "gender $it" },
+            age?.let { "age $it" },
+            height?.let { "height $it cm" },
+            weight?.let { "weight $it kg" },
+            physicalActivity?.let { "physical activity: $it" },
+        ).takeIf { it.isNotEmpty() }?.let { "The person: ${it.joinToString()}. Base BMI, daily calories and the tips on exactly these figures." },
+        "Scale every value to the whole amount of food detected, not per 100 g.",
+    )
+
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeDietSolutionResponse(response)
 
     /** Gemini/Groq are asked for [DietSolutionResponse] as structured JSON; [decodeDietSolutionResponse] still decodes it. */

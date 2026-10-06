@@ -46,8 +46,33 @@ class ResultViewModel @Inject constructor(
     override val audioPrefixName: String
         get() = "styletranslator"
 
-    /** Local answers here come from the translation model ([runLocalModels]), not the chat model. */
-    override val offersLocalChat: Boolean = false
+    /**
+     * A plain translation is what a dedicated translator (TranslateGemma,
+     * MADLAD) does, and all it is told is the text and the target language.
+     * Tone, style, mentality, category, the speakers' gender and age, and
+     * the length were lost on the phone; now any of them sends the whole
+     * prompt to the on-device chat model as well. (The transformation level
+     * reshapes the text around those same parameters, so it alone is not one.)
+     */
+    override val offersLocalChat: Boolean get() = asksForStyle()
+
+    private fun asksForStyle(): Boolean =
+        listOf(tonePreference, style, mentality, category, sourceGender, targetGender).any { it != null } ||
+            sourceAge != null || targetAge != null || translationScale != null
+
+    override fun localRequirements(): List<String> = listOfNotNull(
+        "Translate into ${selectedLanguage.promptName}; the translated text is the answer.",
+        transformationLevel.takeIf { it.isNotBlank() },
+        tonePreference?.let { "Tone: $it." },
+        style?.let { "Style: $it." },
+        mentality?.let { "Mentality: $it." },
+        category?.let { "Context: $it." },
+        sourceGender?.let { "The speaker is $it." },
+        targetGender?.let { "The reader is $it." },
+        sourceAge?.let { "The speaker is $it years old." },
+        targetAge?.let { "The reader is $it years old." },
+        translationScale?.let { "About $it times the original length." },
+    )
 
     /**
      * On-device local models as additional parallel tabs alongside
@@ -65,9 +90,15 @@ class ResultViewModel @Inject constructor(
     override suspend fun additionalProviderCount(): Int =
         if (imageUsed) 0 else if (translators().isNotEmpty()) 1 else 0
 
-    /** Every installed model that translates, through the SDK -- the Models screen decides which goes first. */
+    /**
+     * Every installed model that translates, through the SDK -- the Models
+     * screen decides which goes first. With style asked for, only dedicated
+     * translators: chat models answer through the full prompt instead (see
+     * [offersLocalChat]).
+     */
     private suspend fun translators(): List<LocalModel> =
         runCatching { localAi.models(ModelQuery(capability = LocalCapability.TRANSLATION)) }.getOrDefault(emptyList())
+            .filter { !asksForStyle() || LocalCapability.TEXT !in it.capabilities }
 
     override fun CoroutineScope.launchAdditionalProviders(imagesBase64: List<String>) {
         if (!imageUsed) launch { runLocalModels() }
@@ -96,7 +127,8 @@ class ResultViewModel @Inject constructor(
         for (model in models) {
             val result = runCatching { localAi.translate(request, model.id) }
             result.onSuccess { text ->
-                onSolutionResult(Result.success(formatLocalResult(text, model.displayName)), serviceFor(model.id))
+                val title = if (asksForStyle()) "${model.displayName} · plain translation, tone and style not applied" else model.displayName
+                onSolutionResult(Result.success(formatLocalResult(text, title)), serviceFor(model.id))
                 return
             }
             result.onFailure {

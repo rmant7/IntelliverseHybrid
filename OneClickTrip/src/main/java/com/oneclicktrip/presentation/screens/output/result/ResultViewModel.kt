@@ -272,6 +272,17 @@ class ResultViewModel @Inject constructor(
         prompt = buildSolvingPrompt()
     }
 
+    override fun localRequirements(): List<String> = listOfNotNull(
+        originLocation.takeIf { it.isNotBlank() }?.let { "Start from $it." },
+        cityPaths.takeIf { it.isNotEmpty() }?.let { "Visit: ${it.joinToString()}." },
+        if (oneWay) "One-way: do not return to the start." else "Round trip: end where it started.",
+        transportationTypes.takeIf { it.isNotEmpty() }?.let { "Travel by ${it.joinToString()} whenever possible." },
+        tripStyles.takeIf { it.isNotEmpty() }?.let { "Trip style: ${it.joinToString()}." },
+        travelersNumber?.let { "$it traveler(s)." },
+        tripDuration?.let { "Exactly $it day(s)." },
+        maxBudget?.let { "Total cost at most $it USD." },
+    )
+
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeTripSolutionResponse(response)
 
     /** Gemini/Groq are asked for [TripSolutionResponse] as structured JSON; [decodeTripSolutionResponse] still decodes it. */

@@ -441,9 +441,23 @@ abstract class BaseResultViewModel(
             "even when the task is written in another language. Only text read from the images stays in its original language."
     }
 
-    private fun localSystemPrompt(): String? = answerLanguageRule()
+    /**
+     * The choices made on the input screen, one short line each, for an
+     * on-device model: they are all in [prompt] too, but spread through a
+     * long text a small model follows only in part (see [answerLanguageRule]).
+     * Each mini-app lists its own; empty by default.
+     */
+    protected open fun localRequirements(): List<String> = emptyList()
 
-    private fun localPrompt(): String = answerLanguageRule()?.let { "$prompt\n\n$it" } ?: prompt
+    /** [answerLanguageRule] and [localRequirements] as one block; null when there is nothing to stress. */
+    private fun localRules(): String? = (listOfNotNull(answerLanguageRule()) + localRequirements())
+        .takeIf { it.isNotEmpty() }
+        ?.joinToString("\n", prefix = "Follow these choices exactly:\n") { "- $it" }
+
+    private fun localSystemPrompt(): String? = localRules()
+
+    /** The cloud models' prompt, with the choices again at its end, where a small model keeps them. */
+    private fun localPrompt(): String = localRules()?.let { "$prompt\n\n$it" } ?: prompt
 
     /**
      * Extra result-producing coroutines beyond Gemini/Groq/GigaChat,
