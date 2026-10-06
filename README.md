@@ -33,8 +33,9 @@ Android-приложение Intelliverse (модуль `app` + под-прил�
 
 Локальные модели (чат и перевод) работают через контракт `LocalAi` и на
 движке rmant7/AI. Три модуля скопированы из AI как есть (откуда и какой
-коммит — `local-ai-sdk/SOURCE`; обновлять только
-`scripts/sync-local-ai-sdk.sh`, свои здесь — лишь `build.gradle.kts`):
+коммит — первая строка `local-ai-sdk/SOURCE`; обновлять только
+`scripts/sync-local-ai-sdk.sh`, свои здесь — лишь `build.gradle.kts`; CI
+сверяет их с rmant7/AI на этом коммите — `scripts/check-local-ai-sync.sh`):
 
 - `:local-ai-sdk` — контракт `LocalAi`;
 - `:local-ai-core` — `RuntimeManager` (допуск модели по свободной RAM и по

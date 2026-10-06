@@ -22,6 +22,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # The on-device AI modules are vendored from rmant7/AI: proven identical to the
+      # commit local-ai-sdk/SOURCE names before anything is built from them.
+      - name: Vendored local-AI sources match rmant7/AI
+        run: scripts/check-local-ai-sync.sh
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:

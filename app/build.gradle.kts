@@ -78,7 +78,7 @@ android {
     // The NDK AGP 8.13 already picked by default (CI log: "NDK (Side by side)
     // 27.0.12077973") -- pinned so the llama.cpp/JNI build only changes NDK
     // when this line does, not as a side effect of an AGP bump. r27 links
-    // with the 16 KB max-page-size set in app/src/main/cpp/CMakeLists.txt.
+    // with the 16 KB max-page-size set in llama-runtime/src/main/cpp/CMakeLists.txt.
     ndkVersion = "27.0.12077973"
 
     signingConfigs {

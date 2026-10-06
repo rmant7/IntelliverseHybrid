@@ -24,5 +24,9 @@ rm -rf "$here/llama-runtime/src"
 mkdir -p "$here/llama-runtime/src"
 cp -r "$src/llama-runtime/src/main" "$here/llama-runtime/src/main"
 
-echo "rmant7/AI at $(git -C "$src" rev-parse --short HEAD) ($(git -C "$src" rev-parse --abbrev-ref HEAD)): local-ai-sdk/src, core/src/main -> local-ai-core, llama-runtime/src/main" > "$here/local-ai-sdk/SOURCE"
-echo "synced: $(cat "$here/local-ai-sdk/SOURCE")"
+# First line: the full commit, read by scripts/check-local-ai-sync.sh (CI) -- keep it first and bare.
+{
+  git -C "$src" rev-parse HEAD
+  echo "rmant7/AI ($(git -C "$src" rev-parse --abbrev-ref HEAD)): local-ai-sdk/src, core/src/main -> local-ai-core, llama-runtime/src/main"
+} > "$here/local-ai-sdk/SOURCE"
+echo "synced: $(head -1 "$here/local-ai-sdk/SOURCE")"

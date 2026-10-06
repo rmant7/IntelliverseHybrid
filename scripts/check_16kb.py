@@ -14,8 +14,15 @@ packaged just the same and is the usual offender:
    time, so their zip offset does not matter. An AAB has no such layout
    (Play builds the APKs), so only (1) applies to it.
 
-Usage: check_16kb.py ARTIFACT [ARTIFACT ...]   exit 1 on any violation, and
-on an artifact with no native libraries at all (a false green otherwise).
+Usage: check_16kb.py [--ours NAME,NAME] ARTIFACT [ARTIFACT ...]
+exit 1 on any violation, and on an artifact with no native libraries at all
+(a false green otherwise). With --ours, only libraries this project builds
+(lib<NAME>*.so) fail the check; a prebuilt one from a dependency is reported
+as a warning -- for a build that is not a Play artifact, where the finding
+is real but not ours to fix.
+
+Shared with IntelliVerse (its scripts/check_16kb.py), which runs it on its
+release APK and AAB without --ours.
 """
 
 import struct
@@ -83,13 +90,28 @@ def check(path: str):
     return checked, problems
 
 
-def main(paths):
+def is_ours(problem: str, ours) -> bool:
+    if ours is None:
+        return True
+    name = problem.split(":", 1)[0].rsplit("/", 1)[-1]
+    return any(name.startswith("lib" + prefix) for prefix in ours)
+
+
+def main(args):
+    ours = None
+    if args[:1] == ["--ours"]:
+        ours = [p for p in args[1].split(",") if p]
+        args = args[2:]
     failed = False
-    for path in paths:
-        checked, problems = check(path)
+    for path in args:
+        checked, all_problems = check(path)
+        problems = [p for p in all_problems if is_ours(p, ours)]
         print(f"{path}: {checked} native libraries checked, {len(problems)} problem(s)")
         for p in problems:
             print(f"  16KB: {p}")
+        for p in all_problems:
+            if p not in problems:
+                print(f"  16KB (prebuilt, not ours -- warning only): {p}")
         if checked == 0:
             # This app always ships native code; finding none means the
             # packaging or the lib/ path changed, not that all is well.
