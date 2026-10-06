@@ -73,6 +73,22 @@ class ModelRouterTest {
     }
 
     @Test
+    fun `nothing fits -- the reason names a catalog model that would`() {
+        // #172: E2B and E4B could see, 4.7 GB was free; Qwen3.5 0.8B's vision part was not downloaded.
+        available = 4_671_000_000
+        val router = ModelRouter(
+            installed = { listOf(e2b, e4b) },
+            capabilitiesOf = { setOf(LocalCapability.TEXT, LocalCapability.VISION) },
+            checkOf = { _, _ -> null },
+            chosenFor = { null },
+            admission = { seed, _ -> Admission.NotAdmitted(required.getValue(seed.id), available, Admission.Reason.INSUFFICIENT_MEMORY) },
+            obtainable = { listOf(tiny) },
+        )
+        val none = router.route(AiRequest(LocalCapability.VISION)) as RouteResult.NoModel
+        assertTrue(none.reason, "Qwen3.5 0.8B would fit" in none.reason)
+    }
+
+    @Test
     fun `a model refused at the load is not offered again`() {
         available = 8_000_000_000
         assertEquals(e2b.id, (router().route(AiRequest(LocalCapability.TEXT, exclude = setOf(e4b.id))) as RouteResult.Local).seed.id)

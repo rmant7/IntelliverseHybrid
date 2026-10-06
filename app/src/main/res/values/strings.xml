@@ -4,10 +4,10 @@
     <string name="cheaptrip_info">CheapTrip is a unique search engine that finds the cheapest ways between cities, combining flights, buses, trains and ferries.</string>
     <string name="matterofchoice_info">Matter Of Choice presents interactive scenarios to help you learn decision-making skills.</string>
     <string name="whats_new_title">What\'s new</string>
-    <string name="whats_new_body">On-device AI now sees pictures: the chat models download their vision part with them. Attach a photo in the on-device Chat (+), and mini-apps with a photo get an on-device answer too, from a model that can see.
+    <string name="whats_new_body">On-device AI picks the model that fits: if the one you chose does not fit in free memory right now, the next installed one answers, and the answer says which and why.
 
-Models: an Images filter, the vision part\'s download (paused and resumed like the model), and a check on this phone that now asks image questions as well.
+Photos are answered on your phone only for now -- they are not sent to cloud models. With no model that can see installed, or none that fits, the app offers one that would fit, with a button that opens it on Models.
 
-Settings → On-device AI turns the mini-app answers on or off.</string>
+Mini-apps: the on-device answer follows your chosen language and settings. Settings → On-device AI turns the mini-app answers on or off.</string>
     <string name="whats_new_got_it">Got it</string>
 </resources>

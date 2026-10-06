@@ -93,6 +93,8 @@ fun ModelsScreen(
     navController: NavController,
     viewModel: ModelsViewModel = hiltViewModel(),
     initialPurpose: PurposeFilter? = null,
+    /** Opened on one model (a mini-app's offer): the search shows just its card, ready to download. */
+    initialModelId: String? = null,
 ) {
     val states by viewModel.downloads.states.collectAsState()
     val selection by viewModel.selection.collectAsState()
@@ -102,6 +104,12 @@ fun ModelsScreen(
     @Suppress("UNUSED_VARIABLE") val checksVersion = viewModel.checksVersion
 
     LaunchedEffect(initialPurpose) { initialPurpose?.let { viewModel.purpose = it } }
+    LaunchedEffect(initialModelId) {
+        initialModelId?.let(com.intelliverse.models.LocalModelCatalog::byId)?.let {
+            viewModel.query = it.id
+            viewModel.status = com.intelliverse.models.StatusFilter.ALL
+        }
+    }
     LaunchedEffect(viewModel.message) {
         viewModel.message?.let {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()

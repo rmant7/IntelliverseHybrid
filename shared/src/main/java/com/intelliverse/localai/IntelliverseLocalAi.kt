@@ -142,7 +142,66 @@ class IntelliverseLocalAi @Inject constructor(
         },
         admission = { seed, contextTokens -> engine.admission(engineModel(seed), contextTokens) },
         log = { log.record("ROUTER", it) },
+        obtainable = { capability ->
+            LocalModelCatalog.ALL.filter { seed ->
+                when (capability) {
+                    LocalCapability.VISION -> seed.vision && !store.hasProjector(seed)
+                    LocalCapability.TEXT -> ModelPurpose.CHAT in seed.purposes && !seed.isT5EncoderDecoder && !store.isInstalled(seed)
+                    LocalCapability.TRANSLATION -> ModelPurpose.TRANSLATION in seed.purposes && !store.isInstalled(seed)
+                }
+            }
+        },
+        // Its measurement here when its weights are in (a vision part missing), else size x 1.3.
+        estimateBytes = { seed ->
+            store.finalFile(seed).takeIf { store.isInstalled(seed) }?.let { engine.admissionBytes(it, seed.contextTokens) }
+                ?: (seed.approxSizeBytes * 13 / 10)
+        },
     )
+
+    /**
+     * What to do when no installed model can take a [capability] request
+     * now; null when one can. The catalog models that offer it, each with
+     * what it would need here -- measured when its weights are in, else
+     * size x 1.3; for VISION its vision part on top, plus the free memory an
+     * image turn must keep (PROJECTOR_FREE_FLOOR_BYTES) -- against what the
+     * engine can give now: those that fit, biggest first, or the smallest and
+     * how much memory to free for it.
+     */
+    fun adviceFor(capability: LocalCapability): LocalModelAdvice? {
+        val route = router.route(AiRequest(capability))
+        if (route is RouteResult.Local) return null
+        val available = engine.availableBytes()
+        val options = LocalModelCatalog.ALL
+            .filter { seed ->
+                when (capability) {
+                    LocalCapability.VISION -> seed.vision && !store.hasProjector(seed)
+                    LocalCapability.TEXT -> ModelPurpose.CHAT in seed.purposes && !seed.isT5EncoderDecoder && !store.isInstalled(seed)
+                    LocalCapability.TRANSLATION -> ModelPurpose.TRANSLATION in seed.purposes && !store.isInstalled(seed)
+                }
+            }
+            .map { seed ->
+                val weights = store.finalFile(seed).takeIf { store.isInstalled(seed) }?.let { engine.admissionBytes(it, seed.contextTokens) }
+                    ?: (seed.approxSizeBytes * 13 / 10)
+                val vision = if (capability == LocalCapability.VISION) {
+                    (seed.projectorApproxBytes * ai.localstudio.app.llama.MMPROJ_RAM_SAFETY_FACTOR).toLong() + ai.localstudio.app.llama.PROJECTOR_FREE_FLOOR_BYTES
+                } else {
+                    0L
+                }
+                ModelOption(seed.id, seed.title, weights + vision, needsVisionPart = capability == LocalCapability.VISION && store.isInstalled(seed))
+            }
+        val fitting = options.filter { it.needBytes <= available }.sortedByDescending { it.needBytes }
+        val smallest = if (fitting.isEmpty()) options.minByOrNull { it.needBytes } else null
+        val why = (route as? RouteResult.NoModel)?.reason ?: route.skipped.joinToString("; ") { "${it.title} ${it.reason}" }
+        log.record("ROUTER", "advice for $capability: ${fitting.joinToString { it.modelId }.ifEmpty { "none fits ${available / 1_000_000} MB" }}" + (smallest?.let { "; smallest ${it.modelId} needs ${it.needBytes / 1_000_000} MB" } ?: ""))
+        return LocalModelAdvice(
+            capability = capability,
+            why = why,
+            fitting = fitting,
+            smallest = smallest,
+            freeBytes = smallest?.let { (it.needBytes - available).coerceAtLeast(0) },
+            availableBytes = available,
+        )
+    }
 
     private fun resolve(purpose: ModelPurpose, modelId: String?): LocalModelSeed {
         val capability = if (purpose == ModelPurpose.CHAT) LocalCapability.TEXT else LocalCapability.TRANSLATION

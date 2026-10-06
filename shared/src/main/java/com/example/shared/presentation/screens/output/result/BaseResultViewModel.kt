@@ -338,6 +338,10 @@ abstract class BaseResultViewModel(
         updateSolutionProgress(0.0f)
         geminiAttempts.set(2)
         geminiThinkingAttempts.set(1)
+        if (imageUsed) {
+            solvePhotoOnDevice()
+            return@launch
+        }
         // +1 for GigaChat, debug builds only (release ships no GigaChat key
         // at all -- see shared/build.gradle.kts and gigaChat()'s own gate
         // below); + however many extra providers this sub-app's own
@@ -385,6 +389,34 @@ abstract class BaseResultViewModel(
             if (askLocal) launch { localModel(if (imageUsed) passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) } else emptyList()) }
             launchAdditionalProviders(imagesBase64)
         }
+    }
+
+    private val _localModelAdvice = MutableStateFlow<com.intelliverse.localai.LocalModelAdvice?>(null)
+
+    /** Set when a photo run found no on-device model that can take it: which one to get (the result screen's dialog). */
+    val localModelAdvice: StateFlow<com.intelliverse.localai.LocalModelAdvice?> = _localModelAdvice
+
+    fun dismissLocalModelAdvice() {
+        _localModelAdvice.value = null
+    }
+
+    /**
+     * For now a photo is answered on this phone only: no cloud model receives
+     * it (Gemini, Groq, GigaChat and the sub-app's own extra providers are not
+     * asked), whatever Settings says about on-device answers -- it is the only
+     * answer. With no on-device model that can see and fits now, the run's
+     * answer is [LocalModelNeededException] and [localModelAdvice] says which
+     * model to get, or how much memory to free.
+     */
+    private suspend fun solvePhotoOnDevice() {
+        maxSolutionResultsCapacity = 1
+        val advice = localChat.adviceFor(withImages = true)
+        if (advice != null) {
+            _localModelAdvice.value = advice
+            onSolutionResult(Result.failure(com.example.shared.domain.ai.LocalModelNeededException("Photos are answered on this phone only. ${advice.why}")), AIService.LOCAL)
+            return
+        }
+        localModel(passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) })
     }
 
     /**
@@ -436,7 +468,11 @@ abstract class BaseResultViewModel(
             val text = decoded?.first?.takeIf { it.isNotBlank() } ?: reply
             onSolutionResult(Result.success(withProviderFooter(text, "On-device", answer.attribution)), AIService.LOCAL)
         }
-        result.onFailure { onSolutionResult(Result.failure(it), AIService.LOCAL) }
+        result.onFailure {
+            // Routed, then refused at the load by every model (memory moved): the same offer as before the run.
+            if (imageUsed && it is ai.localstudio.sdk.LocalAiException.NotEnoughMemory) _localModelAdvice.value = localChat.adviceFor(withImages = true)
+            onSolutionResult(Result.failure(it), AIService.LOCAL)
+        }
     }
 
     /**

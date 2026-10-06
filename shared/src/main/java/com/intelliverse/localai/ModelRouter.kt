@@ -58,6 +58,10 @@ class ModelRouter(
     private val chosenFor: (ModelPurpose) -> String?,
     private val admission: (LocalModelSeed, contextTokens: Int) -> Admission,
     private val log: (String) -> Unit = {},
+    /** Catalog models that would do [LocalCapability] once downloaded (or, for VISION, once their vision part is). */
+    private val obtainable: (LocalCapability) -> List<LocalModelSeed> = { emptyList() },
+    /** What one of those would need, before it was ever measured here. */
+    private val estimateBytes: (LocalModelSeed) -> Long = { it.approxSizeBytes * 13 / 10 },
 ) {
     fun route(request: AiRequest): RouteResult {
         val skipped = mutableListOf<Skipped>()
@@ -95,10 +99,18 @@ class ModelRouter(
             log("${request.capability}: cloud" + skippedNote(skipped))
             return RouteResult.Cloud(skipped)
         }
+        // What would help: the biggest catalog model that would fit what is free now (#172: only E2B and E4B
+        // could see, 4.7 GB was free, and nothing said a smaller model exists).
+        val free = skipped.mapNotNull { it.availableBytes }.maxOrNull()
+        val hint = obtainable(request.capability)
+            .filter { free == null || estimateBytes(it) <= free }
+            .maxByOrNull { it.approxSizeBytes }
+            ?.let { "; ${it.title} would fit -- download it on Models" }
+            .orEmpty()
         val reason = when {
             candidates.isEmpty() -> "no installed on-device model can do ${request.capability.name.lowercase()}"
             else -> "no on-device model fits now: " + skipped.joinToString("; ") { "${it.title} ${it.reason}" }
-        }
+        } + hint
         log("${request.capability}: none -- $reason")
         return RouteResult.NoModel(reason, skipped)
     }

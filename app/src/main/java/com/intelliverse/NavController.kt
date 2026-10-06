@@ -23,6 +23,10 @@ fun Navigation() {
     val oneClickTrip = stringResource(com.oneclicktrip.R.string.app_name_oneclicktrip)
     val matterOfChoice = stringResource(com.matterofchoice.R.string.app_name_matter_of_choice)
     val navController = rememberNavController()
+    // A mini-app's "get this model" offer (LocalModelAdviceDialog) opens the Models screen on it.
+    androidx.compose.runtime.LaunchedEffect(navController) {
+        com.intelliverse.localai.LocalModelNavigation.requests.collect { route -> navController.navigate(route) }
+    }
 
     // Map app names to descriptions
     val appDescriptions = mapOf(
@@ -38,13 +42,16 @@ fun Navigation() {
         composable("start") { StartScreen(navController, appDescriptions) }
         composable("log") { LogScreen(navController) }
         composable("settings") { SettingsScreen(navController) }
-        // "models" or "models?purpose=CHAT": opens filtered to one purpose (Chat's gear does).
+        // "models", "models?purpose=CHAT" (Chat's gear), or "models?purpose=VISION&model=<id>" (a mini-app's offer: that model's card).
         composable(
-            "models?purpose={purpose}",
-            arguments = listOf(navArgument("purpose") { type = NavType.StringType; nullable = true; defaultValue = null }),
+            "models?purpose={purpose}&model={model}",
+            arguments = listOf(
+                navArgument("purpose") { type = NavType.StringType; nullable = true; defaultValue = null },
+                navArgument("model") { type = NavType.StringType; nullable = true; defaultValue = null },
+            ),
         ) { entry ->
             val purpose = entry.arguments?.getString("purpose")?.let { name -> PurposeFilter.entries.firstOrNull { it.name == name } }
-            ModelsScreen(navController, initialPurpose = purpose)
+            ModelsScreen(navController, initialPurpose = purpose, initialModelId = entry.arguments?.getString("model"))
         }
         composable("chat") { ChatScreen(navController) }
         composable(schoolKiller) {

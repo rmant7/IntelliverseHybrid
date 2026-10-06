@@ -28,6 +28,10 @@ class LocalChatProvider @Inject constructor(
     /** The model that answers, for the answer's footer. */
     fun modelTitle(withImages: Boolean = false): String = answering(withImages)?.title ?: "on-device"
 
+    /** What to do when no installed model can take this request now; null when one can (see [IntelliverseLocalAi.adviceFor]). */
+    fun adviceFor(withImages: Boolean): LocalModelAdvice? =
+        models.adviceFor(if (withImages) ai.localstudio.sdk.LocalCapability.VISION else ai.localstudio.sdk.LocalCapability.TEXT)
+
     private fun answering(withImages: Boolean) = if (withImages) models.defaultSeeing() else models.defaultFor(ModelPurpose.CHAT)
 
     /**

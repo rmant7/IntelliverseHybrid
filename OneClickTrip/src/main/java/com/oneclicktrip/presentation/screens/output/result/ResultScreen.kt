@@ -1,5 +1,6 @@
 package com.oneclicktrip.presentation.screens.output.result
 
+import com.example.shared.presentation.screens.output.result.LocalModelAdviceDialog
 import android.webkit.WebView
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
@@ -61,6 +62,10 @@ fun ResultScreen(
 
     val shouldShowErrorDialog = viewModel.shouldShowErrorDialog.collectAsState()
     val errors = viewModel.errors.collectAsState()
+
+    // A photo run with no on-device model that can take it: which model to get (photos stay on the phone).
+    val localModelAdvice by viewModel.localModelAdvice.collectAsState()
+    localModelAdvice?.let { LocalModelAdviceDialog(it) { viewModel.dismissLocalModelAdvice() } }
 
     // ad views count, ad plays every 2 clicks or on first try
     val shouldShowAd = viewModel.shouldShowAd.collectAsState()
