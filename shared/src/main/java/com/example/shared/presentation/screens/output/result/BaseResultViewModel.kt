@@ -469,8 +469,11 @@ abstract class BaseResultViewModel(
             onSolutionResult(Result.success(withProviderFooter(text, "On-device", answer.attribution)), AIService.LOCAL)
         }
         result.onFailure {
-            // Routed, then refused at the load by every model (memory moved): the same offer as before the run.
-            if (imageUsed && it is ai.localstudio.sdk.LocalAiException.NotEnoughMemory) _localModelAdvice.value = localChat.adviceFor(withImages = true)
+            // Routed, then refused at the load by every model (memory moved), or the picture's own
+            // projector didn't fit (ImageNotSeen) even though the chat model itself loaded: the same offer as before the run.
+            if (imageUsed && (it is ai.localstudio.sdk.LocalAiException.NotEnoughMemory || it is ai.localstudio.sdk.LocalAiException.ImageNotSeen)) {
+                _localModelAdvice.value = localChat.adviceFor(withImages = true)
+            }
             onSolutionResult(Result.failure(it), AIService.LOCAL)
         }
     }
