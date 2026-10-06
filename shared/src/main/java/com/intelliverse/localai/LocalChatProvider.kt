@@ -31,9 +31,15 @@ class LocalChatProvider @Inject constructor(
     private fun answering(withImages: Boolean) = if (withImages) models.defaultSeeing() else models.defaultFor(ModelPurpose.CHAT)
 
     /** The model's whole answer to [prompt] (about [images], when there are any), reasoning removed. */
-    suspend fun answer(prompt: String, images: List<LocalImage> = emptyList(), systemPrompt: String? = null): String {
+    suspend fun answer(
+        prompt: String,
+        images: List<LocalImage> = emptyList(),
+        systemPrompt: String? = null,
+        maxTokens: Int = MAX_TOKENS,
+        timeoutMs: Long = GenerationOptions().timeoutMs,
+    ): String {
         val reply = StringBuilder()
-        localAi.generate(LocalAiInput(prompt, images = images, systemPrompt = systemPrompt), GenerationOptions(maxTokens = MAX_TOKENS, temperature = 0.3)).collect { reply.append(it) }
+        localAi.generate(LocalAiInput(prompt, images = images, systemPrompt = systemPrompt), GenerationOptions(maxTokens = maxTokens, temperature = 0.3, timeoutMs = timeoutMs)).collect { reply.append(it) }
         return IntelliverseLocalAi.finalAnswer(reply.toString())?.trim().orEmpty()
             .ifEmpty { throw IllegalStateException("${modelTitle(images.isNotEmpty())} gave no answer (still reasoning when it stopped)") }
     }

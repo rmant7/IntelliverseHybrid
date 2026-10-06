@@ -49,7 +49,7 @@ object Prompts {
             "Your role is to analyze human decision-making by creating complex, realistic scenarios."
     }
 
-    fun generationContext(questionType: String, subject: String, difficulty: String, age: Int): String = when (questionType) {
+    fun generationContext(questionType: String, subject: String, difficulty: String, age: Int, count: Int = CLOUD_CASES): String = when (questionType) {
         // Real-device feedback: with the shared JSON schema's old "situation
         // description" / "description of action" wording (see
         // caseFormatInstruction below), study mode kept generating scenarios
@@ -62,9 +62,26 @@ object Prompts {
             "question, fact, vocabulary item, grammar point, or problem to solve -- NOT a scenario about " +
             "study habits, learning strategies, or the best way to learn. Each \"option\" is a candidate " +
             "answer to that exact question, with exactly one of them correct."
-        "hiring" -> "Create 6 job interview scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
-        else -> "Create 6 realistic behavioral scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
+        "hiring" -> "Create $count job interview scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
+        else -> "Create $count realistic behavioral scenario questions about $subject at $difficulty difficulty level, appropriate for a $age-year-old."
     }
+
+    /** What one cloud request asks for. */
+    const val CLOUD_CASES = 6
+
+    /**
+     * What one on-device request asks for: a case with 8 rated options is
+     * ~700 tokens of JSON, so 6 (~4000) never fit the phone's 4096-token
+     * context and were cut off mid-JSON. 3 fit with the prompt; the game
+     * asks for more as it goes.
+     */
+    const val LOCAL_CASES = 3
+
+    /** Room for [LOCAL_CASES] cases' JSON, and a reasoning model's thinking before it. */
+    const val LOCAL_MAX_TOKENS = 3000
+
+    /** The few earlier cases an on-device prompt carries: each one costs context the answer needs. */
+    const val LOCAL_PREVIOUS_CASES = 4
 
     // The scoring dimensions below aren't part of the Python schema (Python's
     // game only needs the 'optimal' index), but Game.kt sums them to compare
@@ -326,6 +343,9 @@ class GeminiRepository(context: Context) {
         previousCases: List<Case> = emptyList(),
         role: String = "Psychologist"
     ): Any {
+        // The on-device model's own: fewer cases (see Prompts.LOCAL_CASES), and the choices said once more where it keeps them.
+        var localPrompt: String? = null
+        var localRules: String? = null
         val prompt = when (mode) {
             "generate" -> {
                 // Timber.i, not .d -- AppLogTree only forwards INFO+ into the
@@ -337,6 +357,17 @@ class GeminiRepository(context: Context) {
                     "difficulty=$difficulty, questionType=$questionType, subType=$subType, age=$age, " +
                     "sex=$sex, previousCases=${previousCases.size}"
                 )
+                localPrompt = buildGeneratePrompt(
+                    language, subject, difficulty, questionType, subType, age, sex, previousAnswers,
+                    previousCases.takeLast(Prompts.LOCAL_PREVIOUS_CASES), count = Prompts.LOCAL_CASES,
+                )
+                localRules = listOf(
+                    "Write every case and option in $language only.",
+                    "Exactly ${Prompts.LOCAL_CASES} cases about $subject, $difficulty difficulty, for a $age-year-old" +
+                        (if (sex != "any") " ($sex)" else "") + ", type: $questionType.",
+                    "Each case has exactly 8 options, every option rated 0-10 on all ten aspects, and one 'optimal' number.",
+                    "Answer with the JSON array only.",
+                ).joinToString("\n", prefix = "Follow these choices exactly:\n") { "- $it" }
                 buildGeneratePrompt(language, subject, difficulty, questionType, subType, age, sex, previousAnswers, previousCases)
             }
             "analyze" -> {
@@ -362,6 +393,7 @@ class GeminiRepository(context: Context) {
                         "user_choice" to previousAnswers[it.case_id]
                     )
                 })
+                localRules = "Follow these choices exactly:\n- Write the whole analysis in $language only.\n- Answer with the JSON object only."
                 Prompts.analysisPrompt(role, aspect, language, dataJson)
             }
 
@@ -371,7 +403,7 @@ class GeminiRepository(context: Context) {
         Timber.i("GeminiRepository: $mode prompt (with provider fallback):\n${truncateForLog(prompt)}")
 
         val responseText = try {
-            completeWithFallback(prompt, mode)
+            completeWithFallback(prompt, mode, localPrompt ?: prompt, localRules)
         } catch (e: AllProvidersFailedException) {
             Timber.e(e, "GeminiRepository: all providers failed during $mode")
             throw IOException(friendlyErrorMessage(e), e)
@@ -421,7 +453,7 @@ class GeminiRepository(context: Context) {
      * (the common case: no key configured, or a geographic block) fails fast,
      * not slow.
      */
-    private suspend fun completeWithFallback(prompt: String, mode: String): String {
+    private suspend fun completeWithFallback(prompt: String, mode: String, localPrompt: String, localRules: String?): String {
         val providers = listOf<Pair<String, suspend () -> String>>(
             "Gemini" to { withContext(Dispatchers.IO) { callGemini(prompt) } },
             "Groq" to { withContext(Dispatchers.IO) { groqUseCase.generateGroqSolution(emptyList(), prompt).getOrThrow() } },
@@ -429,7 +461,17 @@ class GeminiRepository(context: Context) {
         ) + listOfNotNull(
             // Last: the on-device chat model (Settings → on by default once one is installed) -- the game keeps
             // working with no network. Its JSON goes through the same extractJson() as everyone else's.
-            localChat.takeIf { it.available() }?.let { local -> "On-device (${local.modelTitle()})" to suspend { local.answer(prompt) } },
+            localChat.takeIf { it.available() }?.let { local ->
+                "On-device (${local.modelTitle()})" to suspend {
+                    local.answer(
+                        localRules?.let { "$localPrompt\n\n$it" } ?: localPrompt,
+                        systemPrompt = localRules,
+                        maxTokens = Prompts.LOCAL_MAX_TOKENS,
+                        // ~2000 tokens of JSON at 7-12 tok/s (Gemma 4 on a Pixel 10 Pro) is 3-5 minutes.
+                        timeoutMs = 10 * 60_000L,
+                    )
+                }
+            },
         )
 
         val failures = mutableListOf<Pair<String, Exception>>()
@@ -490,11 +532,12 @@ class GeminiRepository(context: Context) {
         age: Int,
         sex: String,
         previousAnswers: Map<String, String>,
-        previousCases: List<Case>
+        previousCases: List<Case>,
+        count: Int = Prompts.CLOUD_CASES,
     ): String {
         val sb = StringBuilder(Prompts.personaInstruction(questionType))
         sb.append("\n\n")
-        sb.append(Prompts.generationContext(questionType, subject, difficulty, age))
+        sb.append(Prompts.generationContext(questionType, subject, difficulty, age, count))
         sb.append(" Subtype: $subType. Audience gender: $sex.")
         sb.append("\n\n")
         sb.append(Prompts.caseFormatInstruction)
@@ -508,7 +551,7 @@ class GeminiRepository(context: Context) {
                 sb.append("Case: ${case.case}\n")
                 sb.append("Chosen option: ${answer ?: "N/A"}\n")
             }
-            sb.append("\nGenerate 6 new cases based on similar themes but avoid repetition. Maintain JSON format exactly.")
+            sb.append("\nGenerate $count new cases based on similar themes but avoid repetition. Maintain JSON format exactly.")
         }
 
         return sb.toString()
