@@ -346,16 +346,33 @@ private fun Tag(text: String, strong: Boolean) {
 /** The check in one line: per capability, out of date and why, or the question it is on. */
 @Composable
 private fun CheckLine(check: CheckView?, running: RunningCheck?) {
+    // joinToString's transform parameter is a nullable lambda type ((T) -> CharSequence)?, so even
+    // though joinToString itself is inline, this lambda is not -- a @Composable call inside it (as
+    // capabilityLabel/stringResource used to be) fails with "can only happen from a @Composable
+    // function". Every string the lambda below needs is resolved here instead, outside it.
+    val chatLabel = stringResource(R.string.label_chat)
+    val translationLabel = stringResource(R.string.label_translation)
+    val imagesLabel = stringResource(R.string.label_images)
+    val passMark = stringResource(R.string.check_pass_mark)
+    val failMark = stringResource(R.string.check_fail_mark)
+    val outOfDate = stringResource(R.string.check_out_of_date)
+    val notTested = stringResource(R.string.check_not_tested)
+    fun capLabel(name: String) = when (name) {
+        ai.localstudio.sdk.LocalCapability.TEXT.name -> chatLabel
+        ai.localstudio.sdk.LocalCapability.TRANSLATION.name -> translationLabel
+        ai.localstudio.sdk.LocalCapability.VISION.name -> imagesLabel
+        else -> name
+    }
     val text = when {
         running != null -> if (running.question == 0) stringResource(R.string.check_loading) else stringResource(R.string.check_question, running.question, running.questions)
         check == null || check.stored == null -> stringResource(R.string.check_not_yet)
         check.stored.error != null -> stringResource(R.string.check_failed, check.stored.error!!)
         else -> check.results.entries.joinToString(" · ") { (cap, result) ->
-            capabilityLabel(cap.name) + " " + when (result) {
-                CheckResult.PASS -> stringResource(R.string.check_pass_mark)
-                CheckResult.FAIL -> stringResource(R.string.check_fail_mark)
-                CheckResult.STALE -> stringResource(R.string.check_out_of_date)
-                CheckResult.NOT_TESTED -> stringResource(R.string.check_not_tested)
+            capLabel(cap.name) + " " + when (result) {
+                CheckResult.PASS -> passMark
+                CheckResult.FAIL -> failMark
+                CheckResult.STALE -> outOfDate
+                CheckResult.NOT_TESTED -> notTested
             }
         } + (check.staleReason?.let { stringResource(R.string.check_stale_suffix, it) } ?: "")
     }
@@ -366,15 +383,6 @@ private fun CheckLine(check: CheckView?, running: RunningCheck?) {
         fontWeight = FontWeight.Medium,
         color = if (good) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
     )
-}
-
-/** [ai.localstudio.sdk.LocalCapability]'s on-screen label, for the live check line above (the diagnostic report's own [ModelsViewModel.capabilityLabel] stays plain-English). */
-@Composable
-private fun capabilityLabel(name: String): String = when (name) {
-    ai.localstudio.sdk.LocalCapability.TEXT.name -> stringResource(R.string.label_chat)
-    ai.localstudio.sdk.LocalCapability.TRANSLATION.name -> stringResource(R.string.label_translation)
-    ai.localstudio.sdk.LocalCapability.VISION.name -> stringResource(R.string.label_images)
-    else -> name
 }
 
 @Composable
