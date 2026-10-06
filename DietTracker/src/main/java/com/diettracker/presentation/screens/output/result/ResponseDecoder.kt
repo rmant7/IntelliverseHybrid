@@ -57,7 +57,8 @@ fun decodeDietSolutionResponse(jsonResponse: String): Pair<String, String> {
     val dietSolutionResponse: DietSolutionResponse = json.decodeFromString(cleanedJson)
 
     return buildString {
-        appendLine("\n${dietSolutionResponse.titles["digested_calories"]}:")
+        // Its own key: "digested_calories" is each food's label -- one key for both gave every food the section's title.
+        appendLine("\n${dietSolutionResponse.titles["digested_section"] ?: dietSolutionResponse.titles["digested_calories"]}:")
         appendLine("- ${dietSolutionResponse.titles["total_digested_calories"]}: ${dietSolutionResponse.digestedCalories}")
         appendLine("- ${dietSolutionResponse.titles["daily_caloric_intake"]}: ${dietSolutionResponse.adjustedCalories}")
 

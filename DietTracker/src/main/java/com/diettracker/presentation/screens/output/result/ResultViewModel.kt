@@ -68,6 +68,7 @@ class ResultViewModel @Inject constructor(
       - The size (if the food is best measured by volume or dimensions, e.g., a milk carton, a loaf of bread).
       - **Do not include both weight and size—return only the most relevant measurement for each food.**"""} else ""}
       The digestion efficiency for each nutrient should take into account the combination of foods detected, adjusting absorption rates where necessary.
+    - "Digested" values (digestedCalories, digestedAmount, dailyPercentage) are what the body would absorb **if the food were eaten**. Never set them to 0 because a food looks spoiled, moldy or unsafe: a food with calories has digested calories. Say that a food is unsafe in "healthTips", as the first tip.
     - The response must **translate** food names (inside "foods"), macronutrient and micronutrient names (inside "macronutrients", "micronutrients", "digestedMacronutrients", "digestedMicronutrients"), and section titles (inside "titles") into ${selectedLanguage.promptName}.
     - The response **must include a "titles" section** containing localized section headers. **Use the exact keys from the example JSON below for "titles"**.
 
@@ -100,7 +101,7 @@ class ResultViewModel @Inject constructor(
        - "amount" (String) – The total micronutrient amount from all foods combined (e.g., "92 mg").
        - "digestedAmount" (String) - The total estimated absorbed amount from all foods combined (e.g., "80 mg").
        - "dailyPercentage" (String) - The percentage of the recommended daily intake from all digested foods combined (e.g., "102%").
-    - "adjustedCalories" (String) – The estimated daily caloric intake required based on the user's information. This represents the number of calories the user should consume per day to maintain their current weight.
+    - "adjustedCalories" (String) – The estimated daily caloric intake required based on the user's information. This represents the number of calories the user should consume per day to maintain their current weight. **Calculate it from the user's gender, age, height, weight and physical activity given below** (e.g. Mifflin-St Jeor times an activity factor) -- never a generic figure such as 2000.
     - "healthTips" (List<String>) – Tips for improvement based on the user's information.
     
     **User Information:**
@@ -122,7 +123,7 @@ class ResultViewModel @Inject constructor(
     Example Output:
     {
       "titles": {
-          "digested_calories": "<'Digested Calories & Nutrient Intake' translated>",
+          "digested_section": "<'Digested Calories & Nutrient Intake' translated>",
           "total_digested_calories": "<'Total Digested Calories' translated>",
           "daily_caloric_intake": "<'Total Daily Caloric Intake Required' translated>",
           "nutrients": "<'Nutrients Overview' translated>",
@@ -244,6 +245,8 @@ class ResultViewModel @Inject constructor(
             physicalActivity?.let { "physical activity: $it" },
         ).takeIf { it.isNotEmpty() }?.let { "The person: ${it.joinToString()}. Base BMI, daily calories and the tips on exactly these figures." },
         "Scale every value to the whole amount of food detected, not per 100 g.",
+        "Calculate the daily calories from the person's figures above, never a generic 2000.",
+        "Digested values are what the body would absorb if the food were eaten -- never 0 because it looks spoiled; say it is unsafe in the first health tip.",
     )
 
     override fun decodeSolutionResponse(response: String): Pair<String, String> = decodeDietSolutionResponse(response)
