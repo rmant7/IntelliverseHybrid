@@ -422,9 +422,17 @@ abstract class BaseResultViewModel(
         }
         result.onSuccess { answer ->
             val reply = answer.text
-            val decoded = runCatching { decodeSolutionResponse(reply) }
-                .recoverCatching { decodeSolutionResponse(com.intelliverse.localai.LocalChatProvider.jsonIn(reply)) }
-                .getOrNull()
+            val decodedResult = runCatching { decodeSolutionResponse(reply) }
+                .recoverCatching { e ->
+                    if (e is com.example.shared.domain.ai.NothingRecognizedException) throw e
+                    decodeSolutionResponse(com.intelliverse.localai.LocalChatProvider.jsonIn(reply))
+                }
+            // Found nothing: a failure, like any provider's -- not the raw empty JSON shown as the answer.
+            (decodedResult.exceptionOrNull() as? com.example.shared.domain.ai.NothingRecognizedException)?.let {
+                onSolutionResult(Result.failure(it), AIService.LOCAL)
+                return
+            }
+            val decoded = decodedResult.getOrNull()
             val text = decoded?.first?.takeIf { it.isNotBlank() } ?: reply
             onSolutionResult(Result.success(withProviderFooter(text, "On-device", answer.attribution)), AIService.LOCAL)
         }

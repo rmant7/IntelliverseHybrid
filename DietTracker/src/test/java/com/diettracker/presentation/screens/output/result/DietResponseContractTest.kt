@@ -45,6 +45,17 @@ class DietResponseContractTest {
     }
 
     @Test
+    fun an_answer_that_found_no_food_is_a_failure_not_a_solution() {
+        // Groq on a photo of tomatoes (#171): no foods, BMI 0.0 "Underweight" -- shown as an analysis.
+        try {
+            decode(answer(foods = "[]"))
+            fail("an empty food list must not decode as a solution")
+        } catch (e: com.example.shared.domain.ai.NothingRecognizedException) {
+            // expected
+        }
+    }
+
+    @Test
     fun the_nutrition_figures_stay_required() {
         assertFails("no bmi", answer().replace(""""bmi":"22",""", ""))
         assertFails("a nutrient that is not an object", answer(foods = """[{"food":"Apple","calories":"52","digestedCalories":"50","macronutrients":{"Protein":"10 g"},"micronutrients":{}}]"""))

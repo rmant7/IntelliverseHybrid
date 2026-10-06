@@ -55,6 +55,9 @@ fun decodeDietSolutionResponse(jsonResponse: String): Pair<String, String> {
         .trim()
 
     val dietSolutionResponse: DietSolutionResponse = json.decodeFromString(cleanedJson)
+    if (dietSolutionResponse.foods.isEmpty()) {
+        throw com.example.shared.domain.ai.NothingRecognizedException("No food was recognized")
+    }
 
     return buildString {
         // Its own key: "digested_calories" is each food's label -- one key for both gave every food the section's title.
