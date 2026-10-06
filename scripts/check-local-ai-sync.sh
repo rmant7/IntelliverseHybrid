@@ -21,4 +21,10 @@ for pair in "local-ai-sdk/src:local-ai-sdk/src" "core/src/main:local-ai-core/src
     status=1
   fi
 done
+if diff "$work/llama-runtime/consumer-rules.pro" "$here/llama-runtime/consumer-rules.pro" > /dev/null; then
+  echo "ok: llama-runtime/consumer-rules.pro == rmant7/AI@${commit:0:12}"
+else
+  echo "::error::llama-runtime/consumer-rules.pro differs from rmant7/AI@${commit:0:12}"
+  status=1
+fi
 exit $status

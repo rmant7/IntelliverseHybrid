@@ -19,6 +19,8 @@ android {
 
     defaultConfig {
         minSdk = 26
+        // rmant7/AI's R8 rules for the engine (JNI looks members up by name), synced with it.
+        consumerProguardFiles("consumer-rules.pro")
         ndk {
             abiFilters += "arm64-v8a"
         }

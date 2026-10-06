@@ -5,10 +5,8 @@
 # coroutines, AppMetrica, play-services) ship them as consumer rules
 # inside their own AARs/JARs; nothing is duplicated here for them.
 #
-# JNI entry points (Java_com_intelliverse_llama_LlamaBridge_native*) are
-# already covered by proguard-android-optimize.txt's own
-# "-keepclasseswithmembernames class * { native <methods>; }" rule, which
-# keeps both the class name and every native method name.
+# JNI entry points (Java_ai_localstudio_app_llama_LlamaBridge_native*) are
+# kept by the engine's own consumer rules -- see below.
 
 # --- SLF4J optional binding, not shipped -----------------------------------
 # ktor-client-logging-jvm (a declared dependency in shared + 4 mini-apps,
@@ -34,18 +32,12 @@
 -keepattributes SourceFile,LineNumberTable
 -renamesourcefileattribute SourceFile
 
-# --- llama.cpp JNI callback ------------------------------------------------
-# llama_jni.cpp calls back into Kotlin by NAME, three times:
-#   env->GetMethodID(env->GetObjectClass(callback), "onToken", "(Ljava/lang/String;)V")
-# Nothing on the Kotlin side ever calls onToken() itself, so without this
-# R8 would treat it as dead code and remove it (or rename it) -- the native
-# lookup then fails and the first local generation crashes natively.
--keep interface com.intelliverse.llama.LlamaBridge$TokenSink {
-    void onToken(java.lang.String);
-}
--keepclassmembers class * implements com.intelliverse.llama.LlamaBridge$TokenSink {
-    void onToken(java.lang.String);
-}
+# --- llama.cpp JNI ---------------------------------------------------------
+# The engine (:llama-runtime, from rmant7/AI) ships its own consumer rules for
+# what its JNI looks up by name (LlamaBridge$TokenSink.onToken, the native
+# methods): llama-runtime/consumer-rules.pro. Release #160 crashed on the first
+# local generation because the rules here still named the old
+# com.intelliverse.llama package. CI checks the R8 mapping for it.
 
 # --- MatterOfChoice: Gson reflection ----------------------------------------
 # Gson maps JSON keys to Kotlin FIELD NAMES by reflection (none of these use

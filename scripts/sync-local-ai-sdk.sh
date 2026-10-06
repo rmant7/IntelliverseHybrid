@@ -23,6 +23,8 @@ cp -r "$src/core/src/main" "$here/local-ai-core/src/main"
 rm -rf "$here/llama-runtime/src"
 mkdir -p "$here/llama-runtime/src"
 cp -r "$src/llama-runtime/src/main" "$here/llama-runtime/src/main"
+# The library's R8 rules (JNI looks members up by name) travel with it.
+cp "$src/llama-runtime/consumer-rules.pro" "$here/llama-runtime/consumer-rules.pro"
 
 # First line: the full commit, read by scripts/check-local-ai-sync.sh (CI) -- keep it first and bare.
 {
