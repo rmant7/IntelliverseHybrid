@@ -20,7 +20,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /** One turn: who said it, and what -- [thinking] while a reasoning model has not reached its answer yet. */
-data class ChatTurn(val fromUser: Boolean, val text: String, val thinking: Boolean = false, val failed: Boolean = false, val withImage: Boolean = false)
+data class ChatTurn(
+    val fromUser: Boolean,
+    val text: String,
+    val thinking: Boolean = false,
+    val failed: Boolean = false,
+    val withImage: Boolean = false,
+    /** Which model answered, when not the one in the title, and why (the router passed others over). */
+    val note: String? = null,
+)
 
 /**
  * On-device chat through the local-AI SDK, with the model chosen on the
@@ -61,17 +69,22 @@ class ChatViewModel @Inject constructor(
         busy = true
         job = viewModelScope.launch {
             val reply = StringBuilder()
+            var note: String? = null
             try {
-                localAi.generate(LocalAiInput(prompt, images = listOfNotNull(picture), systemPrompt = SYSTEM_PROMPT), GenerationOptions(maxTokens = 1024)).collect {
+                models.generateRouted(LocalAiInput(prompt, images = listOfNotNull(picture), systemPrompt = SYSTEM_PROMPT), GenerationOptions(maxTokens = 1024)) { route ->
+                    note = route.seed.title.takeIf { route.skipped.isNotEmpty() || it != modelTitle() }?.let { title ->
+                        "$title" + route.skipped.takeIf { it.isNotEmpty() }?.joinToString("; ", prefix = " -- ") { "${it.title}: ${it.reason}" }.orEmpty()
+                    }
+                }.collect {
                     reply.append(it)
                     val answer = IntelliverseLocalAi.finalAnswer(reply.toString())
-                    turns[index] = ChatTurn(false, answer.orEmpty(), thinking = answer == null || answer.isEmpty())
+                    turns[index] = ChatTurn(false, answer.orEmpty(), thinking = answer == null || answer.isEmpty(), note = note)
                 }
                 val answer = IntelliverseLocalAi.finalAnswer(reply.toString())
                 turns[index] = if (answer.isNullOrBlank()) {
-                    ChatTurn(false, "No answer (the model was still thinking when it stopped).", failed = true)
+                    ChatTurn(false, "No answer (the model was still thinking when it stopped).", failed = true, note = note)
                 } else {
-                    ChatTurn(false, answer)
+                    ChatTurn(false, answer, note = note)
                 }
             } catch (e: CancellationException) {
                 turns[index] = ChatTurn(false, IntelliverseLocalAi.finalAnswer(reply.toString()).orEmpty().ifBlank { "Stopped." })
@@ -83,6 +96,8 @@ class ChatViewModel @Inject constructor(
                     else "No chat model installed. Open Models and download one.",
                     failed = true,
                 )
+            } catch (e: LocalAiException.NotEnoughMemory) {
+                turns[index] = ChatTurn(false, "No on-device model fits in memory now (${e.message}). Close other apps, or pick a smaller model on Models.", failed = true)
             } catch (e: LocalAiException.ImageNotSeen) {
                 turns[index] = ChatTurn(false, "The picture was not seen: ${e.reason}", failed = true)
             } catch (e: Exception) {

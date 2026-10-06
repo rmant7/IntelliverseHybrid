@@ -129,6 +129,21 @@ class IntelliverseLocalAi @Inject constructor(
         return order.firstOrNull { purpose in it.purposes && store.isInstalled(it) }
     }
 
+    /** Which installed model a request without an id goes to, now (see [ModelRouter]). */
+    val router = ModelRouter(
+        installed = ::installed,
+        capabilitiesOf = ::capabilitiesOf,
+        checkOf = { seed, capability -> checks.results(seed.id, store.finalFile(seed), projectorOf(seed))[capability] },
+        chosenFor = { purpose ->
+            when (purpose) {
+                ModelPurpose.CHAT -> settings.chatModelId
+                ModelPurpose.TRANSLATION -> settings.translationModelId
+            }
+        },
+        admission = { seed, contextTokens -> engine.admission(engineModel(seed), contextTokens) },
+        log = { log.record("ROUTER", it) },
+    )
+
     private fun resolve(purpose: ModelPurpose, modelId: String?): LocalModelSeed {
         val capability = if (purpose == ModelPurpose.CHAT) LocalCapability.TEXT else LocalCapability.TRANSLATION
         if (modelId == null) return defaultFor(purpose) ?: throw LocalAiException.NoModel(capability)
@@ -139,12 +154,56 @@ class IntelliverseLocalAi @Inject constructor(
 
     // ── Asking ───────────────────────────────────────────────────────────
 
-    override fun generate(input: LocalAiInput, options: GenerationOptions, modelId: String?): Flow<String> = flow {
-        val seed = if (input.images.isNotEmpty() && modelId == null) {
-            defaultSeeing() ?: throw LocalAiException.NoModel(LocalCapability.VISION)
-        } else {
-            resolve(ModelPurpose.CHAT, modelId)
+    /** With an id: that model, whatever memory says. Without: the routed one ([generateRouted]). */
+    override fun generate(input: LocalAiInput, options: GenerationOptions, modelId: String?): Flow<String> =
+        if (modelId == null) generateRouted(input, options) else flow { stream(resolve(ModelPurpose.CHAT, modelId), input, options) { emit(it) } }
+
+    /**
+     * [input] answered by the model the router picks now ([onRouted] hears
+     * which, and what it passed over, before the first token). A model the
+     * load refuses after all (memory changed since the routing read it) is
+     * left out and the next one is routed -- only before anything was
+     * written. When nothing can take it: NoModel when nothing installed can,
+     * NotEnoughMemory (with the smallest need) when nothing fits now.
+     */
+    fun generateRouted(
+        input: LocalAiInput,
+        options: GenerationOptions,
+        onRouted: (RouteResult.Local) -> Unit = {},
+    ): Flow<String> = flow {
+        val capability = if (input.images.isNotEmpty()) LocalCapability.VISION else LocalCapability.TEXT
+        val tried = mutableSetOf<String>()
+        val refusedAtLoad = mutableListOf<Skipped>()
+        while (true) {
+            val route = router.route(AiRequest(capability, exclude = tried))
+            val local = route as? RouteResult.Local ?: throw unrouted(capability, route, refusedAtLoad)
+            onRouted(local.copy(skipped = refusedAtLoad + local.skipped))
+            var wrote = false
+            try {
+                stream(local.seed, input, options) { wrote = true; emit(it) }
+                return@flow
+            } catch (e: LocalAiException.NotEnoughMemory) {
+                if (wrote) throw e
+                tried += local.seed.id
+                refusedAtLoad += Skipped(local.seed.id, local.seed.title, "refused at the load: ${e.message}", e.neededBytes, e.availableBytes)
+                log.record("ROUTER", "${local.seed.id}: refused at the load after all -- trying the next model")
+            }
         }
+    }
+
+    /** What a request no on-device model can take fails with: typed by why. */
+    private fun unrouted(capability: LocalCapability, route: RouteResult, refusedAtLoad: List<Skipped>): LocalAiException {
+        val skipped = refusedAtLoad + route.skipped
+        val byMemory = skipped.filter { it.requiredBytes != null }
+        return when {
+            skipped.isEmpty() -> LocalAiException.NoModel(capability)
+            byMemory.size == skipped.size -> byMemory.minBy { it.requiredBytes!! }.let { LocalAiException.NotEnoughMemory(it.requiredBytes!!, it.availableBytes ?: 0) }
+            else -> LocalAiException.Failed((route as? RouteResult.NoModel)?.reason ?: "no on-device model can take this now")
+        }
+    }
+
+    /** [input] through [seed], tokens to [sink]; must not hold [operation]. */
+    private suspend fun stream(seed: LocalModelSeed, input: LocalAiInput, options: GenerationOptions, sink: suspend (String) -> Unit) {
         if (input.images.isNotEmpty() && LocalCapability.VISION !in capabilitiesOf(seed)) {
             throw LocalAiException.ImageNotSeen("${seed.title} has no vision part installed" + if (seed.vision) " -- download it on the Models screen" else "")
         }
@@ -159,7 +218,7 @@ class IntelliverseLocalAi @Inject constructor(
         operation.withLock {
             try {
                 withTimeout(options.timeoutMs) {
-                    withModel(seed) { handle -> handle.generate(request).collect { emit(it) } }
+                    withModel(seed) { handle -> handle.generate(request).collect { sink(it) } }
                 }
             } catch (e: TimeoutCancellationException) {
                 throw LocalAiException.Timeout(options.timeoutMs)
@@ -172,7 +231,23 @@ class IntelliverseLocalAi @Inject constructor(
     }
 
     override suspend fun translate(request: TranslationRequest, modelId: String?): String {
-        val seed = resolve(ModelPurpose.TRANSLATION, modelId)
+        if (modelId != null) return translateWith(resolve(ModelPurpose.TRANSLATION, modelId), request)
+        val tried = mutableSetOf<String>()
+        val refusedAtLoad = mutableListOf<Skipped>()
+        while (true) {
+            val route = router.route(AiRequest(LocalCapability.TRANSLATION, exclude = tried))
+            val local = route as? RouteResult.Local ?: throw unrouted(LocalCapability.TRANSLATION, route, refusedAtLoad)
+            try {
+                return translateWith(local.seed, request)
+            } catch (e: LocalAiException.NotEnoughMemory) {
+                tried += local.seed.id
+                refusedAtLoad += Skipped(local.seed.id, local.seed.title, "refused at the load: ${e.message}", e.neededBytes, e.availableBytes)
+                log.record("ROUTER", "${local.seed.id}: refused at the load after all -- trying the next model")
+            }
+        }
+    }
+
+    private suspend fun translateWith(seed: LocalModelSeed, request: TranslationRequest): String {
         val prompt = TranslationPrompts.buildPrompt(seed, request.target.code, request.target.name, request.text)
         val reply = operation.withLock { answer(seed, prompt, TRANSLATION_TIMEOUT_MS) }
         return finalAnswer(reply)?.takeIf { it.isNotBlank() }
@@ -185,12 +260,8 @@ class IntelliverseLocalAi @Inject constructor(
      * that does not fit here fails as NotEnoughMemory, with the figures.
      */
     private suspend fun <T> withModel(seed: LocalModelSeed, block: suspend (ai.localstudio.core.runtime.TextModelHandle) -> T): T {
-        val file = store.finalFile(seed)
-        val projector = projectorOf(seed)
-        // Its own id with a projector: a copy loaded before the projector arrived is never handed out for an image.
-        val id = if (projector != null) "${seed.id}+vision" else seed.id
         return try {
-            engine.withModel(EngineModel(id, file, projector = projector, contextLength = seed.contextTokens), seed.contextTokens, block)
+            engine.withModel(engineModel(seed), seed.contextTokens, block)
         } catch (e: InsufficientMemoryException) {
             log.record("LOCAL_AI", "${seed.id}: not admitted -- ${e.message}")
             throw LocalAiException.NotEnoughMemory(e.requestedBytes, e.budgetBytes)
@@ -220,6 +291,13 @@ class IntelliverseLocalAi @Inject constructor(
         }
     } catch (e: TimeoutCancellationException) {
         throw LocalAiException.Timeout(timeoutMs)
+    }
+
+    /** [seed] as the engine loads it -- its own id with a projector: a copy loaded before the projector arrived is never handed out for an image. */
+    private fun engineModel(seed: LocalModelSeed): EngineModel {
+        val projector = projectorOf(seed)
+        val id = if (projector != null) "${seed.id}+vision" else seed.id
+        return EngineModel(id, store.finalFile(seed), projector = projector, contextLength = seed.contextTokens)
     }
 
     // ── Checking ─────────────────────────────────────────────────────────

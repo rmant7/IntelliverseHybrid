@@ -420,12 +420,13 @@ abstract class BaseResultViewModel(
         } catch (e: Exception) {
             Result.failure(e)
         }
-        result.onSuccess { reply ->
+        result.onSuccess { answer ->
+            val reply = answer.text
             val decoded = runCatching { decodeSolutionResponse(reply) }
                 .recoverCatching { decodeSolutionResponse(com.intelliverse.localai.LocalChatProvider.jsonIn(reply)) }
                 .getOrNull()
             val text = decoded?.first?.takeIf { it.isNotBlank() } ?: reply
-            onSolutionResult(Result.success(withProviderFooter(text, "On-device", localChat.modelTitle(withImages = photos.isNotEmpty()))), AIService.LOCAL)
+            onSolutionResult(Result.success(withProviderFooter(text, "On-device", answer.attribution)), AIService.LOCAL)
         }
         result.onFailure { onSolutionResult(Result.failure(it), AIService.LOCAL) }
     }

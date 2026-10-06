@@ -161,6 +161,15 @@ private fun Bubble(turn: ChatTurn) {
                     Text("🖼 picture", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     SelectionContainer { Text(turn.text) }
                 }
+            } else if (turn.note != null) {
+                Column {
+                    Text("Answered by ${turn.note}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    if (turn.thinking && turn.text.isEmpty()) {
+                        Text("Thinking…", fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    } else {
+                        SelectionContainer { Text(turn.text) }
+                    }
+                }
             } else if (turn.thinking && turn.text.isEmpty()) {
                 Text("Thinking…", fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
             } else {

@@ -469,7 +469,7 @@ class GeminiRepository(context: Context) {
                         maxTokens = Prompts.LOCAL_MAX_TOKENS,
                         // ~2000 tokens of JSON at 7-12 tok/s (Gemma 4 on a Pixel 10 Pro) is 3-5 minutes.
                         timeoutMs = 10 * 60_000L,
-                    )
+                    ).also { Timber.i("GeminiRepository: on-device answer by ${it.attribution}") }.text
                 }
             },
         )

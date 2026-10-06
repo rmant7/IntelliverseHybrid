@@ -30,18 +30,35 @@ class LocalChatProvider @Inject constructor(
 
     private fun answering(withImages: Boolean) = if (withImages) models.defaultSeeing() else models.defaultFor(ModelPurpose.CHAT)
 
-    /** The model's whole answer to [prompt] (about [images], when there are any), reasoning removed. */
+    /**
+     * The routed model's whole answer to [prompt] (about [images], when there
+     * are any), reasoning removed -- with which model it was and which were
+     * passed over (the chosen one did not fit now, say): the footer says so.
+     */
     suspend fun answer(
         prompt: String,
         images: List<LocalImage> = emptyList(),
         systemPrompt: String? = null,
         maxTokens: Int = MAX_TOKENS,
         timeoutMs: Long = GenerationOptions().timeoutMs,
-    ): String {
+    ): LocalAnswer {
         val reply = StringBuilder()
-        localAi.generate(LocalAiInput(prompt, images = images, systemPrompt = systemPrompt), GenerationOptions(maxTokens = maxTokens, temperature = 0.3, timeoutMs = timeoutMs)).collect { reply.append(it) }
-        return IntelliverseLocalAi.finalAnswer(reply.toString())?.trim().orEmpty()
-            .ifEmpty { throw IllegalStateException("${modelTitle(images.isNotEmpty())} gave no answer (still reasoning when it stopped)") }
+        var route: RouteResult.Local? = null
+        models.generateRouted(
+            LocalAiInput(prompt, images = images, systemPrompt = systemPrompt),
+            GenerationOptions(maxTokens = maxTokens, temperature = 0.3, timeoutMs = timeoutMs),
+        ) { route = it }.collect { reply.append(it) }
+        val title = route?.seed?.title ?: modelTitle(images.isNotEmpty())
+        val text = IntelliverseLocalAi.finalAnswer(reply.toString())?.trim().orEmpty()
+            .ifEmpty { throw IllegalStateException("$title gave no answer (still reasoning when it stopped)") }
+        return LocalAnswer(text, title, route?.skipped.orEmpty())
+    }
+
+    /** An on-device answer, the model that gave it, and the models passed over for it. */
+    data class LocalAnswer(val text: String, val modelTitle: String, val skipped: List<Skipped>) {
+        /** For the answer's footer: the model, and why another did not answer. */
+        val attribution: String
+            get() = modelTitle + if (skipped.isEmpty()) "" else " (" + skipped.joinToString("; ") { "${it.title}: ${it.reason}" } + ")"
     }
 
     companion object {
