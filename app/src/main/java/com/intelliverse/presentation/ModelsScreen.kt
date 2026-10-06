@@ -349,7 +349,7 @@ private fun CheckLine(check: CheckView?, running: RunningCheck?) {
     val text = when {
         running != null -> if (running.question == 0) stringResource(R.string.check_loading) else stringResource(R.string.check_question, running.question, running.questions)
         check == null || check.stored == null -> stringResource(R.string.check_not_yet)
-        check.stored.error != null -> stringResource(R.string.check_failed, check.stored.error)
+        check.stored.error != null -> stringResource(R.string.check_failed, check.stored.error!!)
         else -> check.results.entries.joinToString(" · ") { (cap, result) ->
             capabilityLabel(cap.name) + " " + when (result) {
                 CheckResult.PASS -> stringResource(R.string.check_pass_mark)
