@@ -16,6 +16,8 @@ sealed interface DownloadState {
     data object Installed : DownloadState
     data class Resolving(val repoId: String) : DownloadState
     data class Running(val downloadedBytes: Long, val totalBytes: Long) : DownloadState
+    /** Part of the file is on disk -- cancelled, or the app was killed mid-download; starting again resumes from there. */
+    data class Paused(val downloadedBytes: Long, val totalBytes: Long) : DownloadState
     data class Failed(val message: String) : DownloadState
 }
 
@@ -50,8 +52,12 @@ class ModelDownloads(
     private val cancelFlags = mutableMapOf<String, Boolean>()
 
     init {
+        // After a crash or a kill mid-download the .part file is all that is left: shown as paused (Resume), not as never started.
         LocalModelCatalog.ALL.forEach { seed ->
-            if (store.isInstalled(seed)) setState(seed.id, DownloadState.Installed)
+            when {
+                store.isInstalled(seed) -> setState(seed.id, DownloadState.Installed)
+                store.partFile(seed).length() > 0 -> setState(seed.id, paused(seed))
+            }
         }
     }
 
@@ -88,13 +94,16 @@ class ModelDownloads(
                 store.partFile(seed).renameTo(store.finalFile(seed))
                 setState(seed.id, DownloadState.Installed)
             } catch (e: ModelDownloader.CancelledException) {
-                setState(seed.id, DownloadState.Idle)
+                setState(seed.id, if (store.partFile(seed).length() > 0) paused(seed) else DownloadState.Idle)
             } catch (e: Exception) {
                 Timber.w(e, "Model download failed for ${seed.id}")
                 setState(seed.id, DownloadState.Failed(e.message ?: "Download failed"))
             }
         }
     }
+
+    private fun paused(seed: LocalModelSeed) =
+        DownloadState.Paused(store.partFile(seed).length(), maxOf(seed.approxSizeBytes, store.partFile(seed).length()))
 
     fun cancel(seed: LocalModelSeed) {
         cancelFlags[seed.id] = true

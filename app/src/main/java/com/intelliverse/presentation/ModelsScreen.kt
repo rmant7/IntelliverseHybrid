@@ -264,7 +264,7 @@ private fun ModelCard(
                             DropdownMenuItem(text = { Text("Check on this phone") }, onClick = { menu = false; viewModel.verify(seed) })
                         }
                         DropdownMenuItem(text = { Text("Details") }, onClick = { menu = false; viewModel.detailsFor = seed })
-                        if (installed || state is DownloadState.Failed) {
+                        if (installed || state is DownloadState.Failed || state is DownloadState.Paused) {
                             DropdownMenuItem(text = { Text("Delete") }, onClick = { menu = false; viewModel.delete(seed) })
                         }
                     }
@@ -338,6 +338,19 @@ private fun DownloadRow(
                     modifier = Modifier.weight(1f),
                 )
                 TextButton(onClick = { viewModel.downloads.cancel(seed) }) { Text("Cancel") }
+            }
+        }
+        is DownloadState.Paused -> Column(Modifier.fillMaxWidth()) {
+            val progress = if (state.totalBytes > 0) (state.downloadedBytes.toFloat() / state.totalBytes).coerceIn(0f, 1f) else 0f
+            LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    "Paused · ${ModelsViewModel.formatBytes(state.downloadedBytes)} of ~${ModelsViewModel.formatBytes(state.totalBytes)}",
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.weight(1f),
+                )
+                TextButton(onClick = { viewModel.delete(seed) }) { Text("Delete") }
+                Button(onClick = onDownload) { Text("Resume") }
             }
         }
         is DownloadState.Installed -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
