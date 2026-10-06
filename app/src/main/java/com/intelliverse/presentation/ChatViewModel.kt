@@ -84,7 +84,7 @@ class ChatViewModel @Inject constructor(
                     failed = true,
                 )
             } catch (e: LocalAiException.ImageNotSeen) {
-                turns[index] = ChatTurn(false, "The picture was not seen: ${e.message}", failed = true)
+                turns[index] = ChatTurn(false, "The picture was not seen: ${e.reason}", failed = true)
             } catch (e: Exception) {
                 turns[index] = ChatTurn(false, e.message ?: "Failed", failed = true)
             } finally {

@@ -17,6 +17,7 @@ import ai.localstudio.app.llama.EngineModel
 import ai.localstudio.app.llama.LocalModelEngine
 import ai.localstudio.core.model.ImageRef
 import ai.localstudio.core.runtime.GenerationRequest
+import ai.localstudio.core.runtime.ImageNotSeenException
 import ai.localstudio.core.runtime.InsufficientMemoryException
 import com.example.shared.log.AppLog
 import com.intelliverse.llama.TranslationPrompts
@@ -162,6 +163,10 @@ class IntelliverseLocalAi @Inject constructor(
                 }
             } catch (e: TimeoutCancellationException) {
                 throw LocalAiException.Timeout(options.timeoutMs)
+            } catch (e: ImageNotSeenException) {
+                // No room for the vision part now, or a picture that would not decode: said, never answered as text.
+                log.record("LOCAL_AI", "${seed.id}: picture not seen -- ${e.reason}")
+                throw LocalAiException.ImageNotSeen(e.reason)
             }
         }
     }
