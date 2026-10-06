@@ -168,13 +168,18 @@ jobs:
       # llama_jni.cpp calls LlamaBridge$TokenSink.onToken by NAME: R8 renaming it
       # crashes the first local generation (release #160). Proven on the mapping.
       - name: JNI callback survives R8
+        # Native code calls TokenSink.onToken(String) by name. R8 lists a member in
+        # mapping.txt only when it renames it, so: the interface keeps its name, no
+        # onToken(String) anywhere is mapped to another name, and the name is in the dex.
         run: |
           m=app/build/outputs/mapping/release/mapping.txt
-          awk '/^ai\.localstudio\.app\.llama\.LlamaBridge\$TokenSink -> /{print; f=1; next} /^[^ ]/{f=0} f' "$m" | tee /tmp/sink.txt
-          grep -q '^ai\.localstudio\.app\.llama\.LlamaBridge\$TokenSink -> ai\.localstudio\.app\.llama\.LlamaBridge\$TokenSink:' /tmp/sink.txt \
-            || { echo "::error::LlamaBridge\$TokenSink was renamed by R8"; exit 1; }
-          grep -Eq 'onToken\(java\.lang\.String\)[:0-9]* -> onToken$' /tmp/sink.txt \
-            || { echo "::error::TokenSink.onToken was renamed or removed by R8"; exit 1; }
+          grep -q '^ai\.localstudio\.app\.llama\.LlamaBridge\$TokenSink -> ai\.localstudio\.app\.llama\.LlamaBridge\$TokenSink:' "$m" \
+            || { echo "::error::LlamaBridge\$TokenSink was renamed or removed by R8"; exit 1; }
+          renamed=$(grep -E '^ +[^ ]+ onToken\(java\.lang\.String\)[:0-9]* -> ' "$m" | grep -Ev ' -> onToken$' || true)
+          if [ -n "$renamed" ]; then echo "$renamed"; echo "::error::onToken(String) renamed by R8"; exit 1; fi
+          n=$(unzip -p app/build/outputs/apk/release/app-release.apk 'classes*.dex' | grep -ac 'onToken' || true)
+          echo "dex files mentioning onToken: $n"
+          [ "$n" -gt 0 ] || { echo "::error::onToken is not in the release dex"; exit 1; }
 
       - name: Check 16 KB native library alignment
         run: python3 scripts/check_16kb.py app/build/outputs/apk/release/app-release.apk app/build/outputs/bundle/release/app-release.aab
