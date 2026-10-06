@@ -5,15 +5,18 @@ import ai.localstudio.sdk.LocalAi
 import ai.localstudio.sdk.LocalAiException
 import ai.localstudio.sdk.LocalAiInput
 import ai.localstudio.sdk.LocalImage
+import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.intelliverse.R
 import com.intelliverse.localai.IntelliverseLocalAi
 import com.intelliverse.models.ModelPurpose
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -39,6 +42,7 @@ data class ChatTurn(
 class ChatViewModel @Inject constructor(
     private val localAi: LocalAi,
     private val models: IntelliverseLocalAi,
+    @ApplicationContext private val context: Context,
 ) : ViewModel() {
 
     val turns = mutableStateListOf<ChatTurn>()
@@ -82,26 +86,25 @@ class ChatViewModel @Inject constructor(
                 }
                 val answer = IntelliverseLocalAi.finalAnswer(reply.toString())
                 turns[index] = if (answer.isNullOrBlank()) {
-                    ChatTurn(false, "No answer (the model was still thinking when it stopped).", failed = true, note = note)
+                    ChatTurn(false, context.getString(R.string.chat_no_answer), failed = true, note = note)
                 } else {
                     ChatTurn(false, answer, note = note)
                 }
             } catch (e: CancellationException) {
-                turns[index] = ChatTurn(false, IntelliverseLocalAi.finalAnswer(reply.toString()).orEmpty().ifBlank { "Stopped." })
+                turns[index] = ChatTurn(false, IntelliverseLocalAi.finalAnswer(reply.toString()).orEmpty().ifBlank { context.getString(R.string.chat_stopped) })
                 throw e
             } catch (e: LocalAiException.NoModel) {
                 turns[index] = ChatTurn(
                     false,
-                    if (picture != null) "No installed model can see pictures. On Models, filter Images and download one."
-                    else "No chat model installed. Open Models and download one.",
+                    context.getString(if (picture != null) R.string.chat_no_vision_model else R.string.chat_no_chat_model),
                     failed = true,
                 )
             } catch (e: LocalAiException.NotEnoughMemory) {
-                turns[index] = ChatTurn(false, "No on-device model fits in memory now (${e.message}). Close other apps, or pick a smaller model on Models.", failed = true)
+                turns[index] = ChatTurn(false, context.getString(R.string.chat_not_enough_memory, e.message), failed = true)
             } catch (e: LocalAiException.ImageNotSeen) {
-                turns[index] = ChatTurn(false, "The picture was not seen: ${e.reason}", failed = true)
+                turns[index] = ChatTurn(false, context.getString(R.string.chat_image_not_seen, e.reason), failed = true)
             } catch (e: Exception) {
-                turns[index] = ChatTurn(false, e.message ?: "Failed", failed = true)
+                turns[index] = ChatTurn(false, e.message ?: context.getString(R.string.chat_failed_generic), failed = true)
             } finally {
                 busy = false
             }

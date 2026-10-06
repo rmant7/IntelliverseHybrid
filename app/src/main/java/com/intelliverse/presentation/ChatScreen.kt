@@ -7,6 +7,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.TextButton
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.intelliverse.R
 import com.intelliverse.localai.LocalImages
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -54,10 +56,11 @@ import androidx.navigation.NavController
 fun ChatScreen(navController: NavController, viewModel: ChatViewModel = hiltViewModel()) {
     val listState = rememberLazyListState()
     val context = LocalContext.current
+    val pictureUnreadable = stringResource(R.string.toast_picture_unreadable)
     val pickImage = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) {
             viewModel.image = LocalImages.fromUri(context, uri)
-            if (viewModel.image == null) Toast.makeText(context, "That picture could not be read", Toast.LENGTH_SHORT).show()
+            if (viewModel.image == null) Toast.makeText(context, pictureUnreadable, Toast.LENGTH_SHORT).show()
         }
     }
     LaunchedEffect(viewModel.turns.size, viewModel.turns.lastOrNull()?.text?.length) {
@@ -68,20 +71,20 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel = hiltView
             TopAppBar(
                 title = {
                     Column {
-                        Text("Chat")
+                        Text(stringResource(R.string.chat_title))
                         Text(
-                            viewModel.modelTitle()?.let { "on-device · $it" } ?: "no chat model installed",
+                            viewModel.modelTitle()?.let { stringResource(R.string.chat_subtitle_on_device, it) } ?: stringResource(R.string.chat_subtitle_no_model),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.Default.ArrowBack, contentDescription = "Back") }
+                    IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.cd_back)) }
                 },
                 actions = {
-                    IconButton(onClick = { viewModel.clear() }) { Icon(Icons.Default.Delete, contentDescription = "Clear the conversation") }
-                    IconButton(onClick = { navController.navigate("models?purpose=CHAT") }) { Icon(Icons.Default.Settings, contentDescription = "Chat model") }
+                    IconButton(onClick = { viewModel.clear() }) { Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.cd_clear_conversation)) }
+                    IconButton(onClick = { navController.navigate("models?purpose=CHAT") }) { Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.cd_chat_model)) }
                 },
             )
         },
@@ -96,8 +99,7 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel = hiltView
                 if (viewModel.turns.isEmpty()) {
                     item {
                         Text(
-                            if (viewModel.modelTitle() == null) "Download a chat model on the Models screen (gear icon) to start."
-                            else "Ask anything. Everything runs on this phone; nothing leaves it.",
+                            if (viewModel.modelTitle() == null) stringResource(R.string.chat_empty_no_model) else stringResource(R.string.chat_empty_hint),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(8.dp),
                         )
@@ -108,31 +110,31 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel = hiltView
             if (viewModel.image != null) {
                 Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        "Picture attached" + (viewModel.modelTitle()?.let { " · $it will look at it" } ?: " · no installed model can see it"),
+                        viewModel.modelTitle()?.let { stringResource(R.string.chat_picture_will_see, it) } ?: stringResource(R.string.chat_picture_none_sees),
                         style = MaterialTheme.typography.labelMedium,
                         color = if (viewModel.canSee()) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
                         modifier = Modifier.weight(1f),
                     )
-                    TextButton(onClick = { viewModel.image = null }) { Text("Remove") }
+                    TextButton(onClick = { viewModel.image = null }) { Text(stringResource(R.string.action_remove)) }
                 }
             }
             Row(Modifier.fillMaxWidth().padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
                 IconButton(
                     onClick = { pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
                     enabled = !viewModel.busy,
-                ) { Icon(Icons.Default.Add, contentDescription = "Attach a picture") }
+                ) { Icon(Icons.Default.Add, contentDescription = stringResource(R.string.cd_attach_picture)) }
                 OutlinedTextField(
                     value = viewModel.input,
                     onValueChange = { viewModel.input = it },
-                    placeholder = { Text("Message") },
+                    placeholder = { Text(stringResource(R.string.chat_message_hint)) },
                     modifier = Modifier.weight(1f),
                     maxLines = 5,
                 )
                 if (viewModel.busy) {
-                    IconButton(onClick = { viewModel.stop() }) { Icon(Icons.Default.Close, contentDescription = "Stop") }
+                    IconButton(onClick = { viewModel.stop() }) { Icon(Icons.Default.Close, contentDescription = stringResource(R.string.cd_stop)) }
                 } else {
                     IconButton(onClick = { viewModel.send() }, enabled = viewModel.input.isNotBlank()) {
-                        Icon(Icons.Default.Send, contentDescription = "Send")
+                        Icon(Icons.Default.Send, contentDescription = stringResource(R.string.cd_send))
                     }
                 }
             }
@@ -158,20 +160,20 @@ private fun Bubble(turn: ChatTurn) {
         ) {
             if (turn.fromUser && turn.withImage) {
                 Column {
-                    Text("🖼 picture", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.chat_picture_label), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     SelectionContainer { Text(turn.text) }
                 }
             } else if (turn.note != null) {
                 Column {
-                    Text("Answered by ${turn.note}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.chat_answered_by, turn.note), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     if (turn.thinking && turn.text.isEmpty()) {
-                        Text("Thinking…", fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.chat_thinking), fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     } else {
                         SelectionContainer { Text(turn.text) }
                     }
                 }
             } else if (turn.thinking && turn.text.isEmpty()) {
-                Text("Thinking…", fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(R.string.chat_thinking), fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
             } else {
                 SelectionContainer { Text(turn.text) }
             }

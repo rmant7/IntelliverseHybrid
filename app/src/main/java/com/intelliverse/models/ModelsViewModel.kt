@@ -7,6 +7,7 @@ import ai.localstudio.sdk.LocalAiInput
 import ai.localstudio.sdk.LocalCapability
 import ai.localstudio.sdk.LocalImage
 import ai.localstudio.sdk.TranslationRequest
+import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -14,11 +15,13 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ai.localstudio.app.llama.LlamaBridge
+import com.intelliverse.R
 import com.intelliverse.localai.IntelliverseLocalAi
 import com.intelliverse.localai.LocalAiSettings
 import com.intelliverse.localai.LocalChecks
 import com.intelliverse.localai.StoredCheck
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import java.text.DateFormat
@@ -26,11 +29,11 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
-/** What the Models list shows for: everything, or one purpose. */
-enum class PurposeFilter(val label: String) { ALL("All"), CHAT("Chat"), TRANSLATION("Translation"), VISION("Images") }
+/** What the Models list shows for: everything, or one purpose. Its on-screen label is a Composable (see ModelsScreen.kt's own label()): a plain enum carries no Context to resolve a string. */
+enum class PurposeFilter { ALL, CHAT, TRANSLATION, VISION }
 
 /** Which of them: all, only those on the phone, only those not downloaded, only those that passed a check here. */
-enum class StatusFilter(val label: String) { ALL("Any"), INSTALLED("Installed"), AVAILABLE("Not installed"), CHECKED("Checked ✓") }
+enum class StatusFilter { ALL, INSTALLED, AVAILABLE, CHECKED }
 
 /** A model's device check, as the list and the details read it. */
 data class CheckView(
@@ -53,6 +56,7 @@ class ModelsViewModel @Inject constructor(
     private val localAi: IntelliverseLocalAi,
     private val settings: LocalAiSettings,
     private val checks: LocalChecks,
+    @ApplicationContext private val context: Context,
 ) : ViewModel() {
 
     val nativeAvailable: Boolean get() = LlamaBridge.isAvailable
@@ -111,17 +115,17 @@ class ModelsViewModel @Inject constructor(
 
     fun useForChat(seed: LocalModelSeed) {
         settings.chatModelId = seed.id
-        message = "${seed.title} now answers chat"
+        message = context.getString(R.string.msg_now_answers_chat, seed.title)
     }
 
     fun useForTranslation(seed: LocalModelSeed) {
         settings.translationModelId = seed.id
-        message = "${seed.title} now translates"
+        message = context.getString(R.string.msg_now_translates, seed.title)
     }
 
     fun delete(seed: LocalModelSeed) {
         if (runningCheck.value?.modelId == seed.id) {
-            message = "${seed.title} is being checked -- delete it after the check"
+            message = context.getString(R.string.msg_being_checked, seed.title)
             return
         }
         downloads.delete(seed)
@@ -141,7 +145,7 @@ class ModelsViewModel @Inject constructor(
 
     fun verify(seed: LocalModelSeed) {
         if (runningCheck.value != null) {
-            message = "Another check is running -- one at a time"
+            message = context.getString(R.string.msg_check_running)
             return
         }
         viewModelScope.launch {
@@ -150,13 +154,20 @@ class ModelsViewModel @Inject constructor(
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                message = "Check failed: ${e.message}"
+                message = context.getString(R.string.msg_check_failed, e.message)
             }
             checksVersion++
         }
     }
 
-    /** The whole check of [seed] as one plain text, for copying into a message. */
+    /**
+     * The whole check of [seed] as one plain text, for copying into a
+     * message -- a diagnostic dump (pasted into a bug report, read by the
+     * developer), kept plain English by design, the same as rmant7/AI's own
+     * VerificationText and this screen's own [capabilityLabel] below: unlike
+     * the live UI strings elsewhere in this file, this text is never shown
+     * as part of the app's own interface.
+     */
     fun report(seed: LocalModelSeed): String = buildString {
         append(seed.title).append(" (").append(seed.id).append(")\n")
         append(seed.paramsLabel).append(" · ").append(seed.repoIds.joinToString(", ")).append("\n")
@@ -213,7 +224,7 @@ class ModelsViewModel @Inject constructor(
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                tryOutput = "Failed: ${e.message}"
+                tryOutput = context.getString(R.string.msg_try_failed, e.message)
             } finally {
                 tryBusy = false
             }
@@ -221,6 +232,7 @@ class ModelsViewModel @Inject constructor(
     }
 
     companion object {
+        /** [report]'s own label, plain English by design -- see its doc comment. The live check line (ModelsScreen.kt's CheckLine) has its own localized version instead. */
         fun capabilityLabel(name: String) = when (name) {
             LocalCapability.TEXT.name -> "Chat"
             LocalCapability.TRANSLATION.name -> "Translation"

@@ -65,12 +65,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.intelliverse.R
 import com.intelliverse.localai.RunningCheck
 import com.intelliverse.models.CheckView
 import com.intelliverse.models.DownloadState
@@ -130,10 +132,10 @@ fun ModelsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Models") },
+                title = { Text(stringResource(R.string.models_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
             )
@@ -147,7 +149,7 @@ fun ModelsScreen(
             if (!viewModel.nativeAvailable) {
                 item {
                     Text(
-                        "On-device models can't run on this phone (unsupported processor).",
+                        stringResource(R.string.models_native_unavailable),
                         color = MaterialTheme.colorScheme.error,
                     )
                 }
@@ -157,11 +159,11 @@ fun ModelsScreen(
                 OutlinedTextField(
                     value = viewModel.query,
                     onValueChange = { viewModel.query = it },
-                    placeholder = { Text("Search models") },
+                    placeholder = { Text(stringResource(R.string.models_search_hint)) },
                     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                     trailingIcon = {
                         if (viewModel.query.isNotEmpty()) {
-                            IconButton(onClick = { viewModel.query = "" }) { Icon(Icons.Default.Clear, contentDescription = "Clear") }
+                            IconButton(onClick = { viewModel.query = "" }) { Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.cd_clear)) }
                         }
                     },
                     singleLine = true,
@@ -172,17 +174,17 @@ fun ModelsScreen(
             item {
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(PurposeFilter.entries.toList()) { f ->
-                        FilterChip(selected = viewModel.purpose == f, onClick = { viewModel.purpose = f }, label = { Text(f.label) })
+                        FilterChip(selected = viewModel.purpose == f, onClick = { viewModel.purpose = f }, label = { Text(f.label()) })
                     }
                     item { Spacer(Modifier.width(8.dp)) }
                     items(StatusFilter.entries.toList()) { f ->
-                        FilterChip(selected = viewModel.status == f, onClick = { viewModel.status = f }, label = { Text(f.label) })
+                        FilterChip(selected = viewModel.status == f, onClick = { viewModel.status = f }, label = { Text(f.label()) })
                     }
                 }
             }
             val visible = viewModel.visible(states)
             if (visible.isEmpty()) {
-                item { Text("No model matches.", color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                item { Text(stringResource(R.string.models_no_match), color = MaterialTheme.colorScheme.onSurfaceVariant) }
             }
             items(visible, key = { it.id }) { seed ->
                 ModelCard(
@@ -211,14 +213,32 @@ fun ModelsScreen(
     }
 }
 
+/** [PurposeFilter]'s on-screen label (the filter itself carries no Context to resolve one). */
+@Composable
+private fun PurposeFilter.label(): String = when (this) {
+    PurposeFilter.ALL -> stringResource(R.string.label_all_models)
+    PurposeFilter.CHAT -> stringResource(R.string.label_chat)
+    PurposeFilter.TRANSLATION -> stringResource(R.string.label_translation)
+    PurposeFilter.VISION -> stringResource(R.string.label_images)
+}
+
+/** [StatusFilter]'s on-screen label. */
+@Composable
+private fun StatusFilter.label(): String = when (this) {
+    StatusFilter.ALL -> stringResource(R.string.label_any)
+    StatusFilter.INSTALLED -> stringResource(R.string.label_installed)
+    StatusFilter.AVAILABLE -> stringResource(R.string.label_not_installed)
+    StatusFilter.CHECKED -> stringResource(R.string.label_checked)
+}
+
 /** Which model answers chat and which translates, at a glance. */
 @Composable
 private fun InUseCard(viewModel: ModelsViewModel, chosenChat: String?, chosenTranslation: String?) {
     Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)) {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text("In use", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-            InUseLine("Chat", viewModel.chatModel(), chosen = chosenChat != null)
-            InUseLine("Translation", viewModel.translationModel(), chosen = chosenTranslation != null)
+            Text(stringResource(R.string.models_in_use), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+            InUseLine(stringResource(R.string.label_chat), viewModel.chatModel(), chosen = chosenChat != null)
+            InUseLine(stringResource(R.string.label_translation), viewModel.translationModel(), chosen = chosenTranslation != null)
         }
     }
 }
@@ -226,10 +246,10 @@ private fun InUseCard(viewModel: ModelsViewModel, chosenChat: String?, chosenTra
 @Composable
 private fun InUseLine(what: String, model: LocalModelSeed?, chosen: Boolean) {
     Text(
-        "$what: " + when {
-            model == null -> "none installed — download one below"
-            chosen -> model.title
-            else -> "${model.title} (best installed)"
+        when {
+            model == null -> stringResource(R.string.models_in_use_line_none, what)
+            chosen -> stringResource(R.string.models_in_use_line_chosen, what, model.title)
+            else -> stringResource(R.string.models_in_use_line_best, what, model.title)
         },
         style = MaterialTheme.typography.bodyMedium,
     )
@@ -264,29 +284,31 @@ private fun ModelCard(
                     )
                 }
                 Box {
-                    IconButton(onClick = { menu = true }) { Icon(Icons.Default.MoreVert, contentDescription = "More") }
+                    IconButton(onClick = { menu = true }) { Icon(Icons.Default.MoreVert, contentDescription = stringResource(R.string.cd_more)) }
                     DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
                         if (installed && ModelPurpose.CHAT in seed.purposes && !forChat) {
-                            DropdownMenuItem(text = { Text("Use for chat") }, onClick = { menu = false; viewModel.useForChat(seed) })
+                            DropdownMenuItem(text = { Text(stringResource(R.string.action_use_for_chat)) }, onClick = { menu = false; viewModel.useForChat(seed) })
                         }
                         if (installed && ModelPurpose.TRANSLATION in seed.purposes && !forTranslation) {
-                            DropdownMenuItem(text = { Text("Use for translation") }, onClick = { menu = false; viewModel.useForTranslation(seed) })
+                            DropdownMenuItem(text = { Text(stringResource(R.string.action_use_for_translation)) }, onClick = { menu = false; viewModel.useForTranslation(seed) })
                         }
                         if (installed) {
-                            DropdownMenuItem(text = { Text("Try it") }, onClick = { menu = false; viewModel.tryFor = seed })
-                            DropdownMenuItem(text = { Text("Check on this phone") }, onClick = { menu = false; viewModel.verify(seed) })
+                            DropdownMenuItem(text = { Text(stringResource(R.string.action_try_it)) }, onClick = { menu = false; viewModel.tryFor = seed })
+                            DropdownMenuItem(text = { Text(stringResource(R.string.action_check_on_phone)) }, onClick = { menu = false; viewModel.verify(seed) })
                         }
-                        DropdownMenuItem(text = { Text("Details") }, onClick = { menu = false; viewModel.detailsFor = seed })
+                        DropdownMenuItem(text = { Text(stringResource(R.string.action_details)) }, onClick = { menu = false; viewModel.detailsFor = seed })
                         if (installed || state is DownloadState.Failed || state is DownloadState.Paused) {
-                            DropdownMenuItem(text = { Text("Delete") }, onClick = { menu = false; viewModel.delete(seed) })
+                            DropdownMenuItem(text = { Text(stringResource(R.string.action_delete)) }, onClick = { menu = false; viewModel.delete(seed) })
                         }
                     }
                 }
             }
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                if (ModelPurpose.CHAT in seed.purposes) Tag(if (forChat) "Chat ✓" else "Chat", strong = forChat)
-                if (ModelPurpose.TRANSLATION in seed.purposes) Tag(if (forTranslation) "Translation ✓" else "Translation", strong = forTranslation)
-                if (seed.vision) Tag("Images", strong = installed && viewModel.sees(seed))
+                if (ModelPurpose.CHAT in seed.purposes) Tag(if (forChat) stringResource(R.string.tag_chat_selected) else stringResource(R.string.label_chat), strong = forChat)
+                if (ModelPurpose.TRANSLATION in seed.purposes) {
+                    Tag(if (forTranslation) stringResource(R.string.tag_translation_selected) else stringResource(R.string.label_translation), strong = forTranslation)
+                }
+                if (seed.vision) Tag(stringResource(R.string.label_images), strong = installed && viewModel.sees(seed))
             }
             if (seed.note.isNotBlank()) {
                 Text(seed.note, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -304,12 +326,12 @@ private fun VisionMissing(seed: LocalModelSeed, viewModel: ModelsViewModel, onDo
     val errors by viewModel.projectorErrors.collectAsState()
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
-            errors[seed.id]?.let { "Vision part not available: $it" } ?: "Cannot see pictures yet: its vision part is not downloaded",
+            errors[seed.id]?.let { stringResource(R.string.models_vision_part_error, it) } ?: stringResource(R.string.models_vision_part_missing),
             style = MaterialTheme.typography.bodySmall,
             color = if (errors[seed.id] != null) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f),
         )
-        TextButton(onClick = onDownload) { Text(if (errors[seed.id] != null) "Retry" else "Add") }
+        TextButton(onClick = onDownload) { Text(if (errors[seed.id] != null) stringResource(R.string.action_retry) else stringResource(R.string.action_add)) }
     }
 }
 
@@ -325,17 +347,17 @@ private fun Tag(text: String, strong: Boolean) {
 @Composable
 private fun CheckLine(check: CheckView?, running: RunningCheck?) {
     val text = when {
-        running != null -> if (running.question == 0) "Checking: loading…" else "Checking: question ${running.question} of ${running.questions}…"
-        check == null || check.stored == null -> "Not checked on this phone yet"
-        check.stored.error != null -> "Check failed: ${check.stored.error}"
+        running != null -> if (running.question == 0) stringResource(R.string.check_loading) else stringResource(R.string.check_question, running.question, running.questions)
+        check == null || check.stored == null -> stringResource(R.string.check_not_yet)
+        check.stored.error != null -> stringResource(R.string.check_failed, check.stored.error)
         else -> check.results.entries.joinToString(" · ") { (cap, result) ->
-            ModelsViewModel.capabilityLabel(cap.name) + " " + when (result) {
-                CheckResult.PASS -> "✓"
-                CheckResult.FAIL -> "✗"
-                CheckResult.STALE -> "out of date"
-                CheckResult.NOT_TESTED -> "not tested"
+            capabilityLabel(cap.name) + " " + when (result) {
+                CheckResult.PASS -> stringResource(R.string.check_pass_mark)
+                CheckResult.FAIL -> stringResource(R.string.check_fail_mark)
+                CheckResult.STALE -> stringResource(R.string.check_out_of_date)
+                CheckResult.NOT_TESTED -> stringResource(R.string.check_not_tested)
             }
-        } + (check.staleReason?.let { "\n$it — check again" } ?: "")
+        } + (check.staleReason?.let { stringResource(R.string.check_stale_suffix, it) } ?: "")
     }
     val good = check?.results?.isNotEmpty() == true && check.results.values.all { it == CheckResult.PASS } && running == null
     Text(
@@ -344,6 +366,15 @@ private fun CheckLine(check: CheckView?, running: RunningCheck?) {
         fontWeight = FontWeight.Medium,
         color = if (good) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
     )
+}
+
+/** [ai.localstudio.sdk.LocalCapability]'s on-screen label, for the live check line above (the diagnostic report's own [ModelsViewModel.capabilityLabel] stays plain-English). */
+@Composable
+private fun capabilityLabel(name: String): String = when (name) {
+    ai.localstudio.sdk.LocalCapability.TEXT.name -> stringResource(R.string.label_chat)
+    ai.localstudio.sdk.LocalCapability.TRANSLATION.name -> stringResource(R.string.label_translation)
+    ai.localstudio.sdk.LocalCapability.VISION.name -> stringResource(R.string.label_images)
+    else -> name
 }
 
 @Composable
@@ -356,19 +387,19 @@ private fun DownloadRow(
     forTranslation: Boolean,
 ) {
     when (state) {
-        is DownloadState.Idle -> Button(onClick = onDownload) { Text("Download") }
-        is DownloadState.Resolving -> OutlinedButton(onClick = {}, enabled = false) { Text("Looking up the file…") }
+        is DownloadState.Idle -> Button(onClick = onDownload) { Text(stringResource(R.string.action_download)) }
+        is DownloadState.Resolving -> OutlinedButton(onClick = {}, enabled = false) { Text(stringResource(R.string.download_resolving)) }
         is DownloadState.Running -> Column(Modifier.fillMaxWidth()) {
             val progress = if (state.totalBytes > 0) (state.downloadedBytes.toFloat() / state.totalBytes).coerceIn(0f, 1f) else 0f
             LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    (if (state.projector) "Vision part · " else "") +
+                    (if (state.projector) stringResource(R.string.download_vision_prefix) else "") +
                         "${ModelsViewModel.formatBytes(state.downloadedBytes)} / ${ModelsViewModel.formatBytes(state.totalBytes)}",
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.weight(1f),
                 )
-                TextButton(onClick = { viewModel.downloads.cancel(seed) }) { Text("Cancel") }
+                TextButton(onClick = { viewModel.downloads.cancel(seed) }) { Text(stringResource(com.example.shared.R.string.cancel)) }
             }
         }
         is DownloadState.Paused -> Column(Modifier.fillMaxWidth()) {
@@ -376,26 +407,26 @@ private fun DownloadRow(
             LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    (if (state.projector) "Vision part paused · " else "Paused · ") +
+                    (if (state.projector) stringResource(R.string.download_vision_paused_prefix) else stringResource(R.string.download_paused_prefix)) +
                         "${ModelsViewModel.formatBytes(state.downloadedBytes)} of ~${ModelsViewModel.formatBytes(state.totalBytes)}",
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.weight(1f),
                 )
-                TextButton(onClick = { viewModel.delete(seed) }) { Text("Delete") }
-                Button(onClick = onDownload) { Text("Resume") }
+                TextButton(onClick = { viewModel.delete(seed) }) { Text(stringResource(R.string.action_delete)) }
+                Button(onClick = onDownload) { Text(stringResource(R.string.action_resume)) }
             }
         }
         is DownloadState.Installed -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             // The one action that matters next: put it to use, for whatever it is not used for yet.
             when {
-                ModelPurpose.CHAT in seed.purposes && !forChat -> Button(onClick = { viewModel.useForChat(seed) }) { Text("Use for chat") }
-                ModelPurpose.TRANSLATION in seed.purposes && !forTranslation -> Button(onClick = { viewModel.useForTranslation(seed) }) { Text("Use for translation") }
-                else -> OutlinedButton(onClick = { viewModel.tryFor = seed }) { Text("Try it") }
+                ModelPurpose.CHAT in seed.purposes && !forChat -> Button(onClick = { viewModel.useForChat(seed) }) { Text(stringResource(R.string.action_use_for_chat)) }
+                ModelPurpose.TRANSLATION in seed.purposes && !forTranslation -> Button(onClick = { viewModel.useForTranslation(seed) }) { Text(stringResource(R.string.action_use_for_translation)) }
+                else -> OutlinedButton(onClick = { viewModel.tryFor = seed }) { Text(stringResource(R.string.action_try_it)) }
             }
         }
         is DownloadState.Failed -> Column {
             Text(state.message, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
-            Button(onClick = onDownload) { Text("Retry") }
+            Button(onClick = onDownload) { Text(stringResource(R.string.action_retry)) }
         }
     }
 }
@@ -405,6 +436,7 @@ private fun DownloadRow(
 private fun DetailsSheet(seed: LocalModelSeed, viewModel: ModelsViewModel) {
     val context = LocalContext.current
     val report = viewModel.report(seed)
+    val copiedLabel = stringResource(R.string.toast_copied)
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(bottom = 24.dp).verticalScroll(rememberScrollState())) {
         Text(seed.title, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
         Spacer(Modifier.padding(4.dp))
@@ -414,10 +446,10 @@ private fun DetailsSheet(seed: LocalModelSeed, viewModel: ModelsViewModel) {
             Button(onClick = {
                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 clipboard.setPrimaryClip(ClipData.newPlainText(seed.title, report))
-                Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
-            }) { Text("Copy") }
+                Toast.makeText(context, copiedLabel, Toast.LENGTH_SHORT).show()
+            }) { Text(stringResource(R.string.action_copy)) }
             if (viewModel.isInstalled(seed)) {
-                OutlinedButton(onClick = { viewModel.verify(seed) }) { Text("Check on this phone") }
+                OutlinedButton(onClick = { viewModel.verify(seed) }) { Text(stringResource(R.string.action_check_on_phone)) }
             }
         }
     }
@@ -435,34 +467,34 @@ private fun TrySheet(seed: LocalModelSeed, viewModel: ModelsViewModel) {
         if (uri != null) picture = com.intelliverse.localai.LocalImages.fromUri(context, uri)
     }
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text("Try ${seed.title}", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-        OutlinedTextField(value = text, onValueChange = { text = it }, label = { Text("Text") }, modifier = Modifier.fillMaxWidth())
+        Text(stringResource(R.string.try_title, seed.title), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+        OutlinedTextField(value = text, onValueChange = { text = it }, label = { Text(stringResource(R.string.try_text_label)) }, modifier = Modifier.fillMaxWidth())
         OutlinedTextField(
             value = target,
             onValueChange = { target = it.trim() },
-            label = { Text("Translate into (language code, e.g. ru, he, fr)") },
+            label = { Text(stringResource(R.string.try_target_label)) },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
         )
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { viewModel.tryTranslate(seed, target, text) }, enabled = !viewModel.tryBusy && text.isNotBlank() && target.isNotBlank()) {
-                Text("Translate")
+                Text(stringResource(R.string.action_translate))
             }
             if (canChat) {
                 OutlinedButton(onClick = { viewModel.tryChat(seed, text, picture) }, enabled = !viewModel.tryBusy && text.isNotBlank()) {
-                    Text(if (picture != null) "Ask about the picture" else "Ask")
+                    Text(if (picture != null) stringResource(R.string.action_ask_about_picture) else stringResource(R.string.action_ask))
                 }
             }
         }
         if (canChat && viewModel.sees(seed)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    if (picture != null) "Picture attached" else "It can see: attach a picture and ask about it",
+                    if (picture != null) stringResource(R.string.models_picture_attached) else stringResource(R.string.models_try_can_see_hint),
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.weight(1f),
                 )
-                if (picture != null) TextButton(onClick = { picture = null }) { Text("Remove") }
-                TextButton(onClick = { pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) { Text("Pick") }
+                if (picture != null) TextButton(onClick = { picture = null }) { Text(stringResource(R.string.action_remove)) }
+                TextButton(onClick = { pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) { Text(stringResource(R.string.action_pick)) }
             }
         }
         if (viewModel.tryBusy) LinearProgressIndicator(Modifier.fillMaxWidth())

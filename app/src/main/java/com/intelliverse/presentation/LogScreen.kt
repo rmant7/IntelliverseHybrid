@@ -34,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,6 +43,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.example.shared.log.AppLog
 import com.intelliverse.BuildConfig
+import com.intelliverse.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import javax.inject.Inject
@@ -75,6 +77,8 @@ class LogViewModel @Inject constructor(
 fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewModel()) {
     val context = LocalContext.current
     var showClearConfirm by remember { mutableStateOf(false) }
+    val logCopiedLabel = stringResource(R.string.toast_log_copied)
+    val logEmpty = stringResource(R.string.log_empty)
 
     // A plain periodic poll rather than a reactive flow: this is a read-only
     // diagnostic screen, not a latency-sensitive one, and re-reading a small
@@ -89,24 +93,24 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Log") },
+                title = { Text(stringResource(R.string.log_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 },
                 actions = {
                     TextButton(onClick = {
                         copyLogToClipboard(context, viewModel.logText)
-                        Toast.makeText(context, "Newest entries copied", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, logCopiedLabel, Toast.LENGTH_SHORT).show()
                     }) {
-                        Text("Copy")
+                        Text(stringResource(R.string.action_copy))
                     }
                     TextButton(onClick = { sendLogsToDeveloper(context, viewModel.logText) }) {
-                        Text("Send")
+                        Text(stringResource(R.string.action_send))
                     }
                     TextButton(onClick = { showClearConfirm = true }) {
-                        Text("Clear")
+                        Text(stringResource(R.string.cd_clear))
                     }
                 }
             )
@@ -132,7 +136,7 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
                 )
                 HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
                 Text(
-                    text = viewModel.logText.ifBlank { "No errors logged yet." },
+                    text = viewModel.logText.ifBlank { logEmpty },
                     fontFamily = FontFamily.Monospace,
                     fontSize = 11.sp,
                 )
@@ -143,16 +147,16 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
     if (showClearConfirm) {
         AlertDialog(
             onDismissRequest = { showClearConfirm = false },
-            title = { Text("Clear log?") },
-            text = { Text("This deletes the on-device log file. It cannot be undone.") },
+            title = { Text(stringResource(R.string.log_clear_title)) },
+            text = { Text(stringResource(R.string.log_clear_text)) },
             confirmButton = {
                 TextButton(onClick = {
                     viewModel.clear()
                     showClearConfirm = false
-                }) { Text("Clear") }
+                }) { Text(stringResource(R.string.cd_clear)) }
             },
             dismissButton = {
-                TextButton(onClick = { showClearConfirm = false }) { Text("Cancel") }
+                TextButton(onClick = { showClearConfirm = false }) { Text(stringResource(com.example.shared.R.string.cancel)) }
             }
         )
     }
@@ -164,6 +168,11 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
  * at the same spot, the newest entries (how the check ended) lost. So the
  * copy keeps the newest [COPY_RECENT_CHARS], whole lines, and says what it
  * left out; Send still mails the whole file.
+ *
+ * This function and [sendLogsToDeveloper]/[buildHeader] below build a
+ * diagnostic report (the clipboard/email text itself, pasted into a bug
+ * report or read by the developer), not the screen's own UI -- their text
+ * stays plain English by design, like [AppLog]'s own log lines.
  */
 private fun copyLogToClipboard(context: Context, logText: String) {
     val recent = if (logText.length <= COPY_RECENT_CHARS) {

@@ -245,7 +245,7 @@
 
     <string name="clear_text_content_description">Clear text</string>
 
-    <!-- No on-device model fits a request right now -- LocalModelAdviceDialog. -->
+    <!-- No on-device model fits a request right now: LocalModelAdviceDialog. -->
     <string name="local_advice_title_vision">A model that can see is needed</string>
     <string name="local_advice_title_text">An on-device model is needed</string>
     <string name="local_advice_vision_only_on_device">Photos are answered on this phone only -- for now they are not sent to cloud models.</string>

@@ -191,28 +191,28 @@ fun StartScreen(
                 // On-device AI first (Chat, Models), then Settings; Log always last.
                 DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
                     DropdownMenuItem(
-                        text = { Text("Chat (on-device)") },
+                        text = { Text(stringResource(R.string.menu_chat_on_device)) },
                         onClick = {
                             menuExpanded = false
                             navController.navigate("chat")
                         }
                     )
                     DropdownMenuItem(
-                        text = { Text("Models") },
+                        text = { Text(stringResource(R.string.menu_models)) },
                         onClick = {
                             menuExpanded = false
                             navController.navigate("models")
                         }
                     )
                     DropdownMenuItem(
-                        text = { Text("Settings") },
+                        text = { Text(stringResource(R.string.menu_settings)) },
                         onClick = {
                             menuExpanded = false
                             navController.navigate("settings")
                         }
                     )
                     DropdownMenuItem(
-                        text = { Text("Log") },
+                        text = { Text(stringResource(R.string.menu_log)) },
                         onClick = {
                             menuExpanded = false
                             navController.navigate("log")
@@ -228,7 +228,7 @@ fun StartScreen(
         AlertDialog(
             onDismissRequest = { selectedApp.value = null },
             title = { Text(appName) },
-            text = { Text(appDescriptions[appName] ?: "No description available.") },
+            text = { Text(appDescriptions[appName] ?: stringResource(R.string.no_description_available)) },
             confirmButton = {
                 Button(onClick = { selectedApp.value = null }) {
                     Text(stringResource(com.example.shared.R.string.Ok))
@@ -240,13 +240,13 @@ fun StartScreen(
     crashNotice?.let { notice ->
         AlertDialog(
             onDismissRequest = { crashNotice = null },
-            title = { Text("The app closed unexpectedly") },
-            text = { Text("$notice\n\nSend a log to the developer so this can be fixed?") },
+            title = { Text(stringResource(R.string.crash_notice_title)) },
+            text = { Text(stringResource(R.string.crash_notice_text, notice)) },
             confirmButton = {
                 Button(onClick = {
                     sendLogsToDeveloper(context, viewModel.readLog())
                     crashNotice = null
-                }) { Text("Send log") }
+                }) { Text(stringResource(R.string.action_send_log)) }
             },
             dismissButton = {
                 TextButton(onClick = { crashNotice = null }) {

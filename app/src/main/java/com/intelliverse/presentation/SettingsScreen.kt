@@ -29,9 +29,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.intelliverse.R
 
 /**
  * Host-level Settings -- app-wide preferences, distinct from any mini-app's
@@ -56,10 +58,10 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Settings") },
+                title = { Text(stringResource(R.string.settings_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.cd_back))
                     }
                 }
             )
@@ -67,22 +69,22 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
     ) { padding ->
         Column(modifier = Modifier.padding(padding).fillMaxSize().padding(16.dp)) {
             val selection by viewModel.selection.collectAsState()
-            Text("On-device AI", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.settings_on_device_ai), style = MaterialTheme.typography.titleMedium)
             Text(
-                "Chat: ${viewModel.chatModelTitle() ?: "no chat model installed"}\n" +
-                    "Translation: ${viewModel.translationModelTitle() ?: "no translation model installed"}",
+                stringResource(R.string.settings_chat_line, viewModel.chatModelTitle() ?: stringResource(R.string.settings_no_chat_model)) + "\n" +
+                    stringResource(R.string.settings_translation_line, viewModel.translationModelTitle() ?: stringResource(R.string.settings_no_translation_model)),
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(top = 8.dp),
             )
-            TextButton(onClick = { navController.navigate("models") }) { Text("Choose models") }
+            TextButton(onClick = { navController.navigate("models") }) { Text(stringResource(R.string.action_choose_models)) }
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Answer in the mini-apps too")
+                    Text(stringResource(R.string.settings_answer_in_mini_apps))
                     Text(
-                        "The chat model answers next to the cloud models, for questions without a photo (Matter of Choice: when the cloud does not answer).",
+                        stringResource(R.string.settings_answer_in_mini_apps_desc),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -90,11 +92,11 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                 Switch(checked = selection.useInApps, onCheckedChange = { viewModel.setUseInApps(it) })
             }
             HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-            Text("Local models", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.settings_local_models), style = MaterialTheme.typography.titleMedium)
 
             if (viewModel.installedModels.isEmpty()) {
                 Text(
-                    "No local models installed.",
+                    stringResource(R.string.settings_no_local_models),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 8.dp),
                 )
@@ -117,7 +119,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
-                        Text("Total", style = MaterialTheme.typography.bodyMedium)
+                        Text(stringResource(R.string.settings_total), style = MaterialTheme.typography.bodyMedium)
                         Text(
                             formatBytes(viewModel.totalBytes),
                             style = MaterialTheme.typography.bodyMedium,
@@ -127,7 +129,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                         onClick = { showDeleteConfirm = true },
                         modifier = Modifier.padding(top = 8.dp),
                     ) {
-                        Text("Delete all local models")
+                        Text(stringResource(R.string.action_delete_all_local_models))
                     }
                 }
             }
@@ -137,16 +139,16 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
     if (showDeleteConfirm) {
         AlertDialog(
             onDismissRequest = { showDeleteConfirm = false },
-            title = { Text("Delete all local models?") },
-            text = { Text("This frees ${formatBytes(viewModel.totalBytes)} of storage. You'll need to download a model again before using it.") },
+            title = { Text(stringResource(R.string.settings_delete_all_title)) },
+            text = { Text(stringResource(R.string.settings_delete_all_text, formatBytes(viewModel.totalBytes))) },
             confirmButton = {
                 Button(onClick = {
                     viewModel.deleteAllModels()
                     showDeleteConfirm = false
-                }) { Text("Delete") }
+                }) { Text(stringResource(R.string.action_delete)) }
             },
             dismissButton = {
-                TextButton(onClick = { showDeleteConfirm = false }) { Text("Cancel") }
+                TextButton(onClick = { showDeleteConfirm = false }) { Text(stringResource(com.example.shared.R.string.cancel)) }
             }
         )
     }
