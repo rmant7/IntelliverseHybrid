@@ -244,4 +244,16 @@
     <string name="no_languages_found">No languages found</string>
 
     <string name="clear_text_content_description">Clear text</string>
+
+    <!-- No on-device model fits a request right now -- LocalModelAdviceDialog. -->
+    <string name="local_advice_title_vision">A model that can see is needed</string>
+    <string name="local_advice_title_text">An on-device model is needed</string>
+    <string name="local_advice_vision_only_on_device">Photos are answered on this phone only -- for now they are not sent to cloud models.</string>
+    <string name="local_advice_fitting_header">These fit in the ~%1$s free now:</string>
+    <string name="local_advice_smallest_needs">Even the smallest, %1$s, needs ~%2$s; ~%3$s is free now. Close other apps (Local AI Studio, if a model is loaded there) to free ~%4$s, then try again -- or get it now:</string>
+    <string name="local_advice_none_in_catalog">No model in the catalog offers this.</string>
+    <string name="local_advice_vision_part_hint">A model\'s vision part downloads right after the model itself. If its card then says \"Cannot see pictures yet\", tap Add on that card to download the vision part.</string>
+    <string name="local_advice_close">Close</string>
+    <string name="local_advice_add_vision_to">Add vision to %1$s (needs ~%2$s)</string>
+    <string name="local_advice_download">Download %1$s (needs ~%2$s)</string>
 </resources>
