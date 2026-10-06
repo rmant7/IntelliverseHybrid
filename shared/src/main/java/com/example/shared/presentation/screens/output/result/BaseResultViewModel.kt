@@ -73,6 +73,9 @@ abstract class BaseResultViewModel(
     /** System instructions and OpenAI prompt*/
     protected var selectedLanguage: Language
 
+    /** Whether the user picked the answer's language on the input screen (mini-apps without that choice have none). */
+    private val languageChosen: Boolean = savedStateHandle.get<String>("selectedLanguageCode") != null
+
     init {
         val selectedLanguageCode = savedStateHandle.get<String>("selectedLanguageCode")
         this.selectedLanguage = selectedLanguageCode?.let { LanguageRegistry.byCode(it) } ?: LanguageRegistry.DEFAULT
@@ -411,7 +414,7 @@ abstract class BaseResultViewModel(
             return
         }
         val result = try {
-            Result.success(localChat.answer(prompt, photos.map(com.intelliverse.localai.LocalImages::jpeg)))
+            Result.success(localChat.answer(localPrompt(), photos.map(com.intelliverse.localai.LocalImages::jpeg), localSystemPrompt()))
         } catch (e: kotlinx.coroutines.CancellationException) {
             throw e
         } catch (e: Exception) {
@@ -426,6 +429,21 @@ abstract class BaseResultViewModel(
         }
         result.onFailure { onSolutionResult(Result.failure(it), AIService.LOCAL) }
     }
+
+    /**
+     * The answer's language for an on-device model, said where a small model
+     * keeps it. The cloud models follow the prompt's one closing line
+     * ("Provide the Json response in English"); Gemma 4 E2B, asked about a
+     * task written in Russian, answered in Russian (SchoolKiller, #163).
+     */
+    private fun answerLanguageRule(): String? = selectedLanguage.promptName.takeIf { languageChosen }?.let {
+        "Write every text value of the answer -- solutions, explanations, titles -- in $it, " +
+            "even when the task is written in another language. Only text read from the images stays in its original language."
+    }
+
+    private fun localSystemPrompt(): String? = answerLanguageRule()
+
+    private fun localPrompt(): String = answerLanguageRule()?.let { "$prompt\n\n$it" } ?: prompt
 
     /**
      * Extra result-producing coroutines beyond Gemini/Groq/GigaChat,
