@@ -15,6 +15,7 @@ import ai.localstudio.sdk.TranslationRequest
 import android.content.Context
 import ai.localstudio.app.llama.EngineModel
 import ai.localstudio.app.llama.LocalModelEngine
+import ai.localstudio.core.model.ImageRef
 import ai.localstudio.core.runtime.GenerationRequest
 import ai.localstudio.core.runtime.InsufficientMemoryException
 import com.example.shared.log.AppLog
@@ -54,8 +55,9 @@ data class RunningCheck(val modelId: String, val question: Int, val questions: I
  * every load. Everything in this app that runs a local model goes through
  * here; requests run one at a time ([operation]).
  *
- * Not here yet: images (no projector downloads in this app) and discovery
- * of new models (the catalog is fixed).
+ * Images go to a model whose vision projector is installed
+ * ([ModelStore.hasProjector]); to any other, they fail as ImageNotSeen.
+ * Not here yet: discovery of new models (the catalog is fixed).
  */
 @Singleton
 class IntelliverseLocalAi @Inject constructor(
@@ -83,8 +85,8 @@ class IntelliverseLocalAi @Inject constructor(
             id = seed.id,
             displayName = seed.title,
             capabilities = capabilitiesOf(seed),
-            verified = checks.results(seed.id, store.finalFile(seed)),
-            sizeBytes = store.finalFile(seed).length(),
+            verified = checks.results(seed.id, store.finalFile(seed), projectorOf(seed)),
+            sizeBytes = store.finalFile(seed).length() + (projectorOf(seed)?.length() ?: 0L),
             source = ModelSource.CATALOG,
         )
     }
@@ -93,11 +95,23 @@ class IntelliverseLocalAi @Inject constructor(
 
     fun fileOf(seed: LocalModelSeed): File = store.finalFile(seed)
 
-    /** What [seed] can be asked: chat models take text and translate; translation models only translate. */
+    /** [seed]'s vision projector when it is installed; null for a model that cannot see here. */
+    fun projectorOf(seed: LocalModelSeed): File? = store.projectorFile(seed).takeIf { store.hasProjector(seed) }
+
+    /** What [seed] can be asked: chat models take text and translate, and see with their projector; translation models only translate. */
     fun capabilitiesOf(seed: LocalModelSeed): Set<LocalCapability> = buildSet {
         if (ModelPurpose.CHAT in seed.purposes && !seed.isT5EncoderDecoder) add(LocalCapability.TEXT)
         if (ModelPurpose.TRANSLATION in seed.purposes) add(LocalCapability.TRANSLATION)
+        if (LocalCapability.TEXT in this && store.hasProjector(seed)) add(LocalCapability.VISION)
     }
+
+    /**
+     * The model a question with images goes to: the chat model when it can
+     * see, else the first installed one that can (smallest first).
+     */
+    fun defaultSeeing(): LocalModelSeed? =
+        defaultFor(ModelPurpose.CHAT)?.takeIf { LocalCapability.VISION in capabilitiesOf(it) }
+            ?: ChatModels.ALL.firstOrNull { store.isInstalled(it) && LocalCapability.VISION in capabilitiesOf(it) }
 
     /**
      * The model a request without an id goes to: the one chosen for
@@ -125,11 +139,18 @@ class IntelliverseLocalAi @Inject constructor(
     // ── Asking ───────────────────────────────────────────────────────────
 
     override fun generate(input: LocalAiInput, options: GenerationOptions, modelId: String?): Flow<String> = flow {
-        val seed = resolve(ModelPurpose.CHAT, modelId)
-        if (input.images.isNotEmpty()) throw LocalAiException.ImageNotSeen("${seed.title} cannot see images in this app")
+        val seed = if (input.images.isNotEmpty() && modelId == null) {
+            defaultSeeing() ?: throw LocalAiException.NoModel(LocalCapability.VISION)
+        } else {
+            resolve(ModelPurpose.CHAT, modelId)
+        }
+        if (input.images.isNotEmpty() && LocalCapability.VISION !in capabilitiesOf(seed)) {
+            throw LocalAiException.ImageNotSeen("${seed.title} has no vision part installed" + if (seed.vision) " -- download it on the Models screen" else "")
+        }
         val request = GenerationRequest(
             prompt = input.text,
             systemPrompt = input.systemPrompt,
+            images = input.images.map { imageRef(it.bytes, it.mimeType) },
             maxTokens = options.maxTokens,
             temperature = options.temperature,
             repeatPenalty = CHAT_REPEAT_PENALTY,
@@ -160,8 +181,11 @@ class IntelliverseLocalAi @Inject constructor(
      */
     private suspend fun <T> withModel(seed: LocalModelSeed, block: suspend (ai.localstudio.core.runtime.TextModelHandle) -> T): T {
         val file = store.finalFile(seed)
+        val projector = projectorOf(seed)
+        // Its own id with a projector: a copy loaded before the projector arrived is never handed out for an image.
+        val id = if (projector != null) "${seed.id}+vision" else seed.id
         return try {
-            engine.withModel(EngineModel(seed.id, file, contextLength = seed.contextTokens), seed.contextTokens, block)
+            engine.withModel(EngineModel(id, file, projector = projector, contextLength = seed.contextTokens), seed.contextTokens, block)
         } catch (e: InsufficientMemoryException) {
             log.record("LOCAL_AI", "${seed.id}: not admitted -- ${e.message}")
             throw LocalAiException.NotEnoughMemory(e.requestedBytes, e.budgetBytes)
@@ -172,11 +196,17 @@ class IntelliverseLocalAi @Inject constructor(
     }
 
     /** The whole reply to [prompt] at near-greedy settings, translation's repetition penalty; must hold [operation]. */
-    private suspend fun answer(seed: LocalModelSeed, prompt: String, timeoutMs: Long, onFirstToken: () -> Unit = {}): String = try {
+    private suspend fun answer(
+        seed: LocalModelSeed,
+        prompt: String,
+        timeoutMs: Long,
+        images: List<ImageRef> = emptyList(),
+        onFirstToken: () -> Unit = {},
+    ): String = try {
         withTimeout(timeoutMs) {
             withModel(seed) { handle ->
                 val reply = StringBuilder()
-                handle.generate(GenerationRequest(prompt = prompt, maxTokens = ANSWER_MAX_TOKENS, temperature = 0.0)).collect {
+                handle.generate(GenerationRequest(prompt = prompt, images = images, maxTokens = ANSWER_MAX_TOKENS, temperature = 0.0)).collect {
                     if (reply.isEmpty()) onFirstToken()
                     reply.append(it)
                 }
@@ -191,12 +221,14 @@ class IntelliverseLocalAi @Inject constructor(
 
     /**
      * Asks [modelId] the check's questions now -- chat (unless it only
-     * translates) and translation -- and records what it answered, for its
-     * file's exact bytes on this phone with this runtime.
+     * translates), translation, and images when its projector is installed
+     * -- and records what it answered, for its files' exact bytes on this
+     * phone with this runtime.
      */
     override suspend fun verify(modelId: String): Map<LocalCapability, CheckResult> {
         val seed = LocalModelCatalog.byId(modelId)?.takeIf { store.isInstalled(it) } ?: throw LocalAiException.UnknownModel(modelId)
         val file = store.finalFile(seed)
+        val projector = projectorOf(seed)
         val suites = buildMap {
             if (LocalCapability.TEXT in capabilitiesOf(seed)) put(LocalCapability.TEXT, LocalChecks.TEXT)
             put(
@@ -205,6 +237,7 @@ class IntelliverseLocalAi @Inject constructor(
                     Probe("EN→FR \"$sentence\"", TranslationPrompts.buildPrompt(seed, "fr", "French", sentence), listOf(expected), letters = true)
                 },
             )
+            if (LocalCapability.VISION in capabilitiesOf(seed)) put(LocalCapability.VISION, LocalChecks.VISION)
         }
         val total = suites.values.sumOf { it.size }
         operation.withLock {
@@ -212,6 +245,7 @@ class IntelliverseLocalAi @Inject constructor(
             try {
                 log.record("LOCAL_AI", "${seed.id}: check started ($total questions)")
                 val sha = withContext(Dispatchers.IO) { checks.sha256(file) }
+                val projectorSha = projector?.let { withContext(Dispatchers.IO) { checks.sha256(it) } }
                 var asked = 0
                 var error: String? = null
                 val results = linkedMapOf<String, CapabilityCheck>()
@@ -224,7 +258,12 @@ class IntelliverseLocalAi @Inject constructor(
                             val askedAt = System.currentTimeMillis()
                             var firstAt = 0L
                             val step = try {
-                                val reply = answer(seed, probe.prompt, CHECK_QUESTION_TIMEOUT_MS) { firstAt = System.currentTimeMillis() }
+                                if (probe.reloadBefore) {
+                                    log.record("LOCAL_AI", "${seed.id}: unloading to check a reload")
+                                    engine.evictIdle()
+                                }
+                                val images = probe.images.map { imageRef(ProbeImage.png(it), "image/png") }
+                                val reply = answer(seed, probe.prompt, CHECK_QUESTION_TIMEOUT_MS, images) { firstAt = System.currentTimeMillis() }
                                 val final = finalAnswer(reply)
                                 val passed = final != null && final.isNotBlank() && probe.passes(final)
                                 ProbeStep(
@@ -238,6 +277,13 @@ class IntelliverseLocalAi @Inject constructor(
                             } catch (e: CancellationException) {
                                 throw e
                             } catch (e: LocalAiException.NotEnoughMemory) {
+                                if (capability == LocalCapability.VISION) {
+                                    // The weights fit (chat and translation were answered); weights and projector together do not, now.
+                                    // Images FAIL for this phone's memory, said as such; what was answered stays.
+                                    steps += ProbeStep(probe.title, passed = false, error = "not enough free memory for the vision part: ${e.message}", totalMs = System.currentTimeMillis() - askedAt)
+                                    failure = "not enough free memory for weights and vision part together"
+                                    break
+                                }
                                 // Not the model's answer: this phone could not hold it now. Nothing is checked.
                                 error = e.message
                                 results.clear()
@@ -249,7 +295,8 @@ class IntelliverseLocalAi @Inject constructor(
                             if (!step.passed && failure == null) {
                                 failure = "wrong answer to: ${probe.title} (expected ${probe.expectAnyOf.joinToString(" or ")})"
                             }
-                            if (!step.passed) break
+                            // Every image step is asked: which part of seeing fails is the finding.
+                            if (!step.passed && capability != LocalCapability.VISION) break
                         }
                         results[capability.name] = CapabilityCheck(failure == null, failure, steps)
                     }
@@ -257,6 +304,7 @@ class IntelliverseLocalAi @Inject constructor(
                 val check = StoredCheck(
                     modelId = seed.id,
                     sha256 = sha,
+                    projectorSha256 = projectorSha,
                     device = checks.device,
                     runtime = checks.runtime,
                     checkVersion = LocalChecks.CHECK_VERSION,
@@ -273,7 +321,7 @@ class IntelliverseLocalAi @Inject constructor(
                 _runningCheck.value = null
             }
         }
-        return checks.results(seed.id, file)
+        return checks.results(seed.id, file, projector)
     }
 
     // ── Discovery ────────────────────────────────────────────────────────
@@ -295,6 +343,10 @@ class IntelliverseLocalAi @Inject constructor(
         const val ANSWER_MAX_TOKENS = 1024
         const val TRANSLATION_TIMEOUT_MS = 5 * 60_000L
         const val CHECK_QUESTION_TIMEOUT_MS = 5 * 60_000L
+
+        /** An image for the runtime: a data URI, the form llama-runtime decodes. */
+        fun imageRef(bytes: ByteArray, mimeType: String): ImageRef =
+            ImageRef("data:$mimeType;base64," + android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP))
 
         /**
          * The answer in [reply]: after the last `</think>`, or all of it when

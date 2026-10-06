@@ -1,5 +1,13 @@
 package com.intelliverse.presentation
 
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.TextButton
+import androidx.compose.ui.platform.LocalContext
+import com.intelliverse.localai.LocalImages
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -45,6 +53,13 @@ import androidx.navigation.NavController
 @Composable
 fun ChatScreen(navController: NavController, viewModel: ChatViewModel = hiltViewModel()) {
     val listState = rememberLazyListState()
+    val context = LocalContext.current
+    val pickImage = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) {
+            viewModel.image = LocalImages.fromUri(context, uri)
+            if (viewModel.image == null) Toast.makeText(context, "That picture could not be read", Toast.LENGTH_SHORT).show()
+        }
+    }
     LaunchedEffect(viewModel.turns.size, viewModel.turns.lastOrNull()?.text?.length) {
         if (viewModel.turns.isNotEmpty()) listState.animateScrollToItem(viewModel.turns.lastIndex)
     }
@@ -90,7 +105,22 @@ fun ChatScreen(navController: NavController, viewModel: ChatViewModel = hiltView
                 }
                 itemsIndexed(viewModel.turns) { _, turn -> Bubble(turn) }
             }
+            if (viewModel.image != null) {
+                Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        "Picture attached" + (viewModel.modelTitle()?.let { " · $it will look at it" } ?: " · no installed model can see it"),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = if (viewModel.canSee()) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
+                        modifier = Modifier.weight(1f),
+                    )
+                    TextButton(onClick = { viewModel.image = null }) { Text("Remove") }
+                }
+            }
             Row(Modifier.fillMaxWidth().padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                IconButton(
+                    onClick = { pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
+                    enabled = !viewModel.busy,
+                ) { Icon(Icons.Default.Add, contentDescription = "Attach a picture") }
                 OutlinedTextField(
                     value = viewModel.input,
                     onValueChange = { viewModel.input = it },
@@ -126,7 +156,12 @@ private fun Bubble(turn: ChatTurn) {
                 )
                 .padding(horizontal = 14.dp, vertical = 10.dp),
         ) {
-            if (turn.thinking && turn.text.isEmpty()) {
+            if (turn.fromUser && turn.withImage) {
+                Column {
+                    Text("🖼 picture", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    SelectionContainer { Text(turn.text) }
+                }
+            } else if (turn.thinking && turn.text.isEmpty()) {
                 Text("Thinking…", fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
             } else {
                 SelectionContainer { Text(turn.text) }

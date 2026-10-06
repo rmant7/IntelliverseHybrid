@@ -5,6 +5,7 @@ import ai.localstudio.sdk.GenerationOptions
 import ai.localstudio.sdk.Language
 import ai.localstudio.sdk.LocalAiInput
 import ai.localstudio.sdk.LocalCapability
+import ai.localstudio.sdk.LocalImage
 import ai.localstudio.sdk.TranslationRequest
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -26,7 +27,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 /** What the Models list shows for: everything, or one purpose. */
-enum class PurposeFilter(val label: String) { ALL("All"), CHAT("Chat"), TRANSLATION("Translation") }
+enum class PurposeFilter(val label: String) { ALL("All"), CHAT("Chat"), TRANSLATION("Translation"), VISION("Images") }
 
 /** Which of them: all, only those on the phone, only those not downloaded, only those that passed a check here. */
 enum class StatusFilter(val label: String) { ALL("Any"), INSTALLED("Installed"), AVAILABLE("Not installed"), CHECKED("Checked ✓") }
@@ -83,6 +84,7 @@ class ModelsViewModel @Inject constructor(
                 PurposeFilter.ALL -> true
                 PurposeFilter.CHAT -> ModelPurpose.CHAT in seed.purposes
                 PurposeFilter.TRANSLATION -> ModelPurpose.TRANSLATION in seed.purposes
+                PurposeFilter.VISION -> seed.vision
             }
             val statusOk = when (status) {
                 StatusFilter.ALL -> true
@@ -96,6 +98,11 @@ class ModelsViewModel @Inject constructor(
     }
 
     fun isInstalled(seed: LocalModelSeed) = localAi.installed().any { it.id == seed.id }
+
+    /** Whether [seed]'s vision part is installed: it can be asked about pictures. */
+    fun sees(seed: LocalModelSeed) = localAi.projectorOf(seed) != null
+
+    val projectorErrors = downloads.projectorErrors
 
     /** The model chat goes to now -- the chosen one, or the best installed one when none is chosen. */
     fun chatModel(): LocalModelSeed? = localAi.defaultFor(ModelPurpose.CHAT)
@@ -127,8 +134,9 @@ class ModelsViewModel @Inject constructor(
     fun check(seed: LocalModelSeed): CheckView? {
         if (!isInstalled(seed)) return null
         val file = localAi.fileOf(seed)
+        val projector = localAi.projectorOf(seed)
         val stored = checks.stored(seed.id)
-        return CheckView(checks.results(seed.id, file), stored, stored?.let { checks.staleReason(it, file) })
+        return CheckView(checks.results(seed.id, file, projector), stored, stored?.let { checks.staleReason(it, file, projector) })
     }
 
     fun verify(seed: LocalModelSeed) {
@@ -153,6 +161,9 @@ class ModelsViewModel @Inject constructor(
         append(seed.title).append(" (").append(seed.id).append(")\n")
         append(seed.paramsLabel).append(" · ").append(seed.repoIds.joinToString(", ")).append("\n")
         if (isInstalled(seed)) append("File: ").append(formatBytes(localAi.fileOf(seed).length())).append("\n")
+        if (seed.vision && isInstalled(seed)) {
+            append("Vision part: ").append(localAi.projectorOf(seed)?.let { formatBytes(it.length()) } ?: "not installed").append("\n")
+        }
         val view = check(seed)
         val stored = view?.stored
         if (stored == null) {
@@ -162,6 +173,7 @@ class ModelsViewModel @Inject constructor(
         append("\nChecked ").append(DateFormat.getDateTimeInstance().format(Date(stored.checkedAtEpochMs)))
         append("\n").append(stored.device).append(" · ").append(stored.runtime)
         append("\nsha256 ").append(stored.sha256)
+        stored.projectorSha256?.let { append("\nvision part sha256 ").append(it) }
         view.staleReason?.let { append("\nOUT OF DATE: ").append(it) }
         stored.error?.let { append("\nFailed: ").append(it) }
         stored.results.forEach { (cap, result) ->
@@ -185,9 +197,9 @@ class ModelsViewModel @Inject constructor(
         localAi.translate(TranslationRequest(text, Language("auto", "the source language"), Language(targetCode, name)), seed.id)
     }
 
-    fun tryChat(seed: LocalModelSeed, text: String) = runTry {
+    fun tryChat(seed: LocalModelSeed, text: String, image: LocalImage? = null) = runTry {
         val reply = StringBuilder()
-        localAi.generate(LocalAiInput(text), GenerationOptions(maxTokens = 512), seed.id).collect { reply.append(it) }
+        localAi.generate(LocalAiInput(text, images = listOfNotNull(image)), GenerationOptions(maxTokens = 512), seed.id).collect { reply.append(it) }
         IntelliverseLocalAi.finalAnswer(reply.toString()) ?: reply.toString()
     }
 

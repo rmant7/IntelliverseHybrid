@@ -20,11 +20,24 @@ import javax.inject.Singleton
  * same way. [letters]: compared on letters and digits only (a translation
  * "Bon jour" still carries "bonjour").
  */
-data class Probe(val title: String, val prompt: String, val expectAnyOf: List<String>, val letters: Boolean = false) {
-    fun passes(answer: String): Boolean = expectAnyOf.any { expected ->
+data class Probe(
+    val title: String,
+    val prompt: String,
+    val expectAnyOf: List<String>,
+    val letters: Boolean = false,
+    /** Shown with [prompt], in this order; empty for a text question. */
+    val images: List<ProbeImage> = emptyList(),
+    /** Each must also be in the answer -- a question about two pictures is answered for both. */
+    val alsoExpect: List<String> = emptyList(),
+    /** Unload the model (weights and projector) first: the answer comes from a fresh load. */
+    val reloadBefore: Boolean = false,
+) {
+    fun passes(answer: String): Boolean =
+        expectAnyOf.any { expected -> contains(answer, expected, letters) } && alsoExpect.all { contains(answer, it, letters = false) }
+
+    private fun contains(answer: String, expected: String, letters: Boolean): Boolean =
         if (letters) lettersOnly(answer).contains(lettersOnly(expected))
         else Regex("(?<![\\p{L}\\p{N}])" + Regex.escape(expected) + "(?![\\p{L}\\p{N}])", RegexOption.IGNORE_CASE).containsMatchIn(answer)
-    }
 
     private fun lettersOnly(text: String) = Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD).filter { it.isLetterOrDigit() }
 }
@@ -53,6 +66,8 @@ data class CapabilityCheck(val passed: Boolean, val detail: String? = null, val 
 data class StoredCheck(
     val modelId: String,
     val sha256: String,
+    /** The vision projector's bytes when one was installed for the check; null when it ran without one. */
+    val projectorSha256: String? = null,
     val device: String,
     val runtime: String,
     val checkVersion: Int,
@@ -89,8 +104,10 @@ class LocalChecks @Inject constructor(@ApplicationContext context: Context) {
      * not identified since they changed), another phone, another runtime,
      * other questions; null while it holds.
      */
-    fun staleReason(check: StoredCheck, file: File): String? = when {
+    fun staleReason(check: StoredCheck, file: File, projector: File? = null): String? = when {
         knownSha256(file) != check.sha256 -> "the model file changed since it was checked"
+        (projector?.let(::knownSha256)) != check.projectorSha256 ->
+            if (check.projectorSha256 == null) "its vision part was added since it was checked" else "its vision part changed since it was checked"
         check.device != device -> "checked on another phone: ${check.device}"
         check.runtime != runtime -> "the runtime changed: ${check.runtime} -> $runtime"
         check.checkVersion != CHECK_VERSION -> "the questions changed"
@@ -98,9 +115,9 @@ class LocalChecks @Inject constructor(@ApplicationContext context: Context) {
     }
 
     /** What a check of [modelId] says now for each capability it covers: PASS/FAIL while it holds, STALE once it does not. */
-    fun results(modelId: String, file: File): Map<LocalCapability, CheckResult> {
+    fun results(modelId: String, file: File, projector: File? = null): Map<LocalCapability, CheckResult> {
         val check = stored(modelId) ?: return emptyMap()
-        val stale = staleReason(check, file) != null
+        val stale = staleReason(check, file, projector) != null
         return check.results.mapNotNull { (cap, result) ->
             val capability = runCatching { LocalCapability.valueOf(cap) }.getOrNull() ?: return@mapNotNull null
             capability to when {
@@ -150,6 +167,34 @@ class LocalChecks @Inject constructor(@ApplicationContext context: Context) {
         val TEXT: List<Probe> = listOf(
             Probe("What is the capital of France?", "What is the capital of France? Answer with one word.", listOf("Paris")),
             Probe("What is 7 + 5?", "What is 7 + 5? Answer with the number only.", listOf("12", "twelve")),
+        )
+
+        /**
+         * The life of a vision model on one phone, in order, each with an
+         * answer that is not a matter of opinion -- rmant7/AI's own steps:
+         * one picture, another, two in one turn, text after them, then
+         * unload everything and one picture again from a fresh load. Every
+         * step is asked even after a wrong one, so the report shows which
+         * part of seeing fails.
+         */
+        val VISION: List<Probe> = listOf(
+            Probe("image: the digit 7", "What digit is shown in this image? Answer with the digit only.", listOf("7", "seven"), images = listOf(ProbeImage.Digit(7))),
+            Probe("image: a red circle", "What color is the circle in this image? Answer with one word.", listOf("red"), images = listOf(ProbeImage.Disc(ProbeImage.Disc.RED))),
+            Probe(
+                "two images in one turn: the digit 4, a blue circle",
+                "There are two images. What digit is in the first image, and what color is the circle in the second? Answer briefly.",
+                listOf("4", "four"),
+                images = listOf(ProbeImage.Digit(4), ProbeImage.Disc(ProbeImage.Disc.BLUE)),
+                alsoExpect = listOf("blue"),
+            ),
+            Probe("text after the images: 7 + 5", "What is 7 + 5? Answer with the number only.", listOf("12", "twelve")),
+            Probe(
+                "image after unloading and reloading the model: the digit 3",
+                "What digit is shown in this image? Answer with the digit only.",
+                listOf("3", "three"),
+                images = listOf(ProbeImage.Digit(3)),
+                reloadBefore = true,
+            ),
         )
 
         /** English to French: (sentence, a word the French must contain). */

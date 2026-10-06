@@ -1,5 +1,6 @@
 package com.intelliverse.presentation
 
+import androidx.activity.result.PickVisualMediaRequest
 import ai.localstudio.sdk.CheckResult
 import android.Manifest
 import android.content.ClipData
@@ -245,7 +246,11 @@ private fun ModelCard(
                 Column(Modifier.weight(1f)) {
                     Text(seed.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                     Text(
-                        "${seed.paramsLabel} · ~${ModelsViewModel.formatBytes(seed.approxSizeBytes)}",
+                        "${seed.paramsLabel} · ~${ModelsViewModel.formatBytes(seed.approxSizeBytes)}" + when {
+                            !seed.vision -> ""
+                            seed.projectorApproxBytes > 0 -> " + vision ~${ModelsViewModel.formatBytes(seed.projectorApproxBytes)}"
+                            else -> " + vision part"
+                        },
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -273,13 +278,30 @@ private fun ModelCard(
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 if (ModelPurpose.CHAT in seed.purposes) Tag(if (forChat) "Chat ✓" else "Chat", strong = forChat)
                 if (ModelPurpose.TRANSLATION in seed.purposes) Tag(if (forTranslation) "Translation ✓" else "Translation", strong = forTranslation)
+                if (seed.vision) Tag("Images", strong = installed && viewModel.sees(seed))
             }
             if (seed.note.isNotBlank()) {
                 Text(seed.note, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             if (installed) CheckLine(check, running)
+            if (installed && seed.vision && !viewModel.sees(seed)) VisionMissing(seed, viewModel, onDownload)
             DownloadRow(seed, state, viewModel, onDownload, forChat, forTranslation)
         }
+    }
+}
+
+/** A vision model whose weights are in but not its vision part: it chats, it cannot see yet. */
+@Composable
+private fun VisionMissing(seed: LocalModelSeed, viewModel: ModelsViewModel, onDownload: () -> Unit) {
+    val errors by viewModel.projectorErrors.collectAsState()
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            errors[seed.id]?.let { "Vision part not available: $it" } ?: "Cannot see pictures yet: its vision part is not downloaded",
+            style = MaterialTheme.typography.bodySmall,
+            color = if (errors[seed.id] != null) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.weight(1f),
+        )
+        TextButton(onClick = onDownload) { Text(if (errors[seed.id] != null) "Retry" else "Add") }
     }
 }
 
@@ -333,7 +355,8 @@ private fun DownloadRow(
             LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    "${ModelsViewModel.formatBytes(state.downloadedBytes)} / ${ModelsViewModel.formatBytes(state.totalBytes)}",
+                    (if (state.projector) "Vision part · " else "") +
+                        "${ModelsViewModel.formatBytes(state.downloadedBytes)} / ${ModelsViewModel.formatBytes(state.totalBytes)}",
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.weight(1f),
                 )
@@ -345,7 +368,8 @@ private fun DownloadRow(
             LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    "Paused · ${ModelsViewModel.formatBytes(state.downloadedBytes)} of ~${ModelsViewModel.formatBytes(state.totalBytes)}",
+                    (if (state.projector) "Vision part paused · " else "Paused · ") +
+                        "${ModelsViewModel.formatBytes(state.downloadedBytes)} of ~${ModelsViewModel.formatBytes(state.totalBytes)}",
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.weight(1f),
                 )
@@ -397,6 +421,11 @@ private fun TrySheet(seed: LocalModelSeed, viewModel: ModelsViewModel) {
     var text by rememberSaveable { mutableStateOf("") }
     var target by rememberSaveable { mutableStateOf("ru") }
     val canChat = ModelPurpose.CHAT in seed.purposes && !seed.isT5EncoderDecoder
+    val context = LocalContext.current
+    var picture by remember { mutableStateOf<ai.localstudio.sdk.LocalImage?>(null) }
+    val pickImage = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) picture = com.intelliverse.localai.LocalImages.fromUri(context, uri)
+    }
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text("Try ${seed.title}", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
         OutlinedTextField(value = text, onValueChange = { text = it }, label = { Text("Text") }, modifier = Modifier.fillMaxWidth())
@@ -412,7 +441,20 @@ private fun TrySheet(seed: LocalModelSeed, viewModel: ModelsViewModel) {
                 Text("Translate")
             }
             if (canChat) {
-                OutlinedButton(onClick = { viewModel.tryChat(seed, text) }, enabled = !viewModel.tryBusy && text.isNotBlank()) { Text("Ask") }
+                OutlinedButton(onClick = { viewModel.tryChat(seed, text, picture) }, enabled = !viewModel.tryBusy && text.isNotBlank()) {
+                    Text(if (picture != null) "Ask about the picture" else "Ask")
+                }
+            }
+        }
+        if (canChat && viewModel.sees(seed)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    if (picture != null) "Picture attached" else "It can see: attach a picture and ask about it",
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.weight(1f),
+                )
+                if (picture != null) TextButton(onClick = { picture = null }) { Text("Remove") }
+                TextButton(onClick = { pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) { Text("Pick") }
             }
         }
         if (viewModel.tryBusy) LinearProgressIndicator(Modifier.fillMaxWidth())

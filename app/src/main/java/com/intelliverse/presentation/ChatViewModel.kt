@@ -4,6 +4,7 @@ import ai.localstudio.sdk.GenerationOptions
 import ai.localstudio.sdk.LocalAi
 import ai.localstudio.sdk.LocalAiException
 import ai.localstudio.sdk.LocalAiInput
+import ai.localstudio.sdk.LocalImage
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /** One turn: who said it, and what -- [thinking] while a reasoning model has not reached its answer yet. */
-data class ChatTurn(val fromUser: Boolean, val text: String, val thinking: Boolean = false, val failed: Boolean = false)
+data class ChatTurn(val fromUser: Boolean, val text: String, val thinking: Boolean = false, val failed: Boolean = false, val withImage: Boolean = false)
 
 /**
  * On-device chat through the local-AI SDK, with the model chosen on the
@@ -36,24 +37,32 @@ class ChatViewModel @Inject constructor(
     var input by mutableStateOf("")
     var busy by mutableStateOf(false)
         private set
+
+    /** A picture going with the next message; it goes to a model that can see. */
+    var image by mutableStateOf<LocalImage?>(null)
     private var job: Job? = null
 
     /** The model answering now, for the title; null when no chat model is installed. */
-    fun modelTitle(): String? = models.defaultFor(ModelPurpose.CHAT)?.title
+    fun modelTitle(): String? = (if (image != null) models.defaultSeeing() else models.defaultFor(ModelPurpose.CHAT))?.title
+
+    /** Whether any installed model can see a picture now. */
+    fun canSee(): Boolean = models.defaultSeeing() != null
 
     fun send() {
         val text = input.trim()
         if (text.isEmpty() || busy) return
         input = ""
         val prompt = promptWith(text)
-        turns += ChatTurn(fromUser = true, text = text)
+        val picture = image
+        image = null
+        turns += ChatTurn(fromUser = true, text = text, withImage = picture != null)
         turns += ChatTurn(fromUser = false, text = "", thinking = true)
         val index = turns.lastIndex
         busy = true
         job = viewModelScope.launch {
             val reply = StringBuilder()
             try {
-                localAi.generate(LocalAiInput(prompt, systemPrompt = SYSTEM_PROMPT), GenerationOptions(maxTokens = 1024)).collect {
+                localAi.generate(LocalAiInput(prompt, images = listOfNotNull(picture), systemPrompt = SYSTEM_PROMPT), GenerationOptions(maxTokens = 1024)).collect {
                     reply.append(it)
                     val answer = IntelliverseLocalAi.finalAnswer(reply.toString())
                     turns[index] = ChatTurn(false, answer.orEmpty(), thinking = answer == null || answer.isEmpty())
@@ -68,7 +77,14 @@ class ChatViewModel @Inject constructor(
                 turns[index] = ChatTurn(false, IntelliverseLocalAi.finalAnswer(reply.toString()).orEmpty().ifBlank { "Stopped." })
                 throw e
             } catch (e: LocalAiException.NoModel) {
-                turns[index] = ChatTurn(false, "No chat model installed. Open Models and download one.", failed = true)
+                turns[index] = ChatTurn(
+                    false,
+                    if (picture != null) "No installed model can see pictures. On Models, filter Images and download one."
+                    else "No chat model installed. Open Models and download one.",
+                    failed = true,
+                )
+            } catch (e: LocalAiException.ImageNotSeen) {
+                turns[index] = ChatTurn(false, "The picture was not seen: ${e.message}", failed = true)
             } catch (e: Exception) {
                 turns[index] = ChatTurn(false, e.message ?: "Failed", failed = true)
             } finally {

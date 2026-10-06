@@ -26,4 +26,13 @@ data class LocalModelSeed(
     val isT5EncoderDecoder: Boolean = false,
     /** What it is offered for -- see [ModelPurpose]. */
     val purposes: Set<ModelPurpose> = setOf(ModelPurpose.TRANSLATION),
+    /**
+     * It can see images once its vision projector ("mmproj") is installed --
+     * a second file from its repository, downloaded with it. Which file is
+     * read from the repository at download time (see
+     * [HuggingFaceResolver.resolveProjector]), never assumed from a name.
+     */
+    val vision: Boolean = false,
+    /** A rough size of the projector, for the list before anything is resolved; 0 when not known. */
+    val projectorApproxBytes: Long = 0,
 )

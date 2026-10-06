@@ -341,8 +341,8 @@ abstract class BaseResultViewModel(
         // launchAdditionalProviders() will actually run this time
         // (StyleTranslator: its installed local models) -- 0 for every other
         // sub-app, which never overrides this.
-        // The on-device chat model answers too (Settings: on by default once one is installed), text-only runs.
-        val askLocal = offersLocalChat && !imageUsed && localChat.available()
+        // The on-device model answers too (Settings: on by default once one is installed); a photo run only when one can see.
+        val askLocal = offersLocalChat && localChat.available(withImages = imageUsed)
         maxSolutionResultsCapacity = PRIMARY_SERVICES.size + (if (BuildConfig.DEBUG) 1 else 0) + (if (askLocal) 1 else 0) + additionalProviderCount()
 
         val imagesBase64 = if (imageUsed) {
@@ -379,7 +379,7 @@ abstract class BaseResultViewModel(
                 launch { groq(imagesBase64) }
             }
             if (BuildConfig.DEBUG) launch { gigaChat() }
-            if (askLocal) launch { localModel() }
+            if (askLocal) launch { localModel(if (imageUsed) passedImageUris.mapNotNull { imageUtils.convertUriToByteArray(it) } else emptyList()) }
             launchAdditionalProviders(imagesBase64)
         }
     }
@@ -405,9 +405,13 @@ abstract class BaseResultViewModel(
      * answers in plain text: the object inside is decoded when there is one,
      * otherwise the answer is shown as written rather than thrown away.
      */
-    private suspend fun localModel() {
+    private suspend fun localModel(photos: List<ByteArray>) {
+        if (imageUsed && photos.isEmpty()) {
+            onSolutionResult(Result.failure(PhotoUnreadableException()), AIService.LOCAL)
+            return
+        }
         val result = try {
-            Result.success(localChat.answer(prompt))
+            Result.success(localChat.answer(prompt, photos.map(com.intelliverse.localai.LocalImages::jpeg)))
         } catch (e: kotlinx.coroutines.CancellationException) {
             throw e
         } catch (e: Exception) {
@@ -418,7 +422,7 @@ abstract class BaseResultViewModel(
                 .recoverCatching { decodeSolutionResponse(com.intelliverse.localai.LocalChatProvider.jsonIn(reply)) }
                 .getOrNull()
             val text = decoded?.first?.takeIf { it.isNotBlank() } ?: reply
-            onSolutionResult(Result.success(withProviderFooter(text, "On-device", localChat.modelTitle())), AIService.LOCAL)
+            onSolutionResult(Result.success(withProviderFooter(text, "On-device", localChat.modelTitle(withImages = photos.isNotEmpty()))), AIService.LOCAL)
         }
         result.onFailure { onSolutionResult(Result.failure(it), AIService.LOCAL) }
     }

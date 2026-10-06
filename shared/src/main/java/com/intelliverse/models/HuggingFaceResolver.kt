@@ -30,7 +30,26 @@ class HuggingFaceResolver {
         return Result.failure(IllegalStateException("No repo resolved: ${failures.joinToString("; ")}"))
     }
 
-    private fun resolveRepo(repoId: String, quantPriority: List<String>?): Result<RemoteArtifact> {
+    /**
+     * The vision projector for weights downloaded from [repoIds]: the
+     * repository's own `mmproj*.gguf` -- F16 first (what llama.cpp's
+     * projectors are usually published and checked as), then BF16, Q8_0,
+     * else the smallest. The repositories are tried in the seed's order;
+     * all of them are the same base model, so a projector from the next one
+     * fits weights from the first. A wrong pairing is not silent: the
+     * device check asks image questions.
+     */
+    fun resolveProjector(repoIds: List<String>): Result<RemoteArtifact> {
+        val failures = mutableListOf<String>()
+        for (repoId in repoIds) {
+            resolveRepo(repoId, PROJECTOR_PRIORITY, projector = true)
+                .onSuccess { return Result.success(it) }
+                .onFailure { failures += "$repoId: ${it.message}" }
+        }
+        return Result.failure(IllegalStateException("No vision projector found: ${failures.joinToString("; ")}"))
+    }
+
+    private fun resolveRepo(repoId: String, quantPriority: List<String>?, projector: Boolean = false): Result<RemoteArtifact> {
         var attempt = 0
         var backoffMs = 2_000L
         while (true) {
@@ -48,6 +67,8 @@ class HuggingFaceResolver {
                     val entry = tree.getJSONObject(i)
                     val path = entry.optString("path")
                     if (!path.endsWith(".gguf", ignoreCase = true)) continue
+                    // A projector is never the weights, and the weights are never a projector.
+                    if (path.substringAfterLast('/').contains("mmproj", ignoreCase = true) != projector) continue
                     // Exclude multi-part splits (-00001-of-00005.gguf): this
                     // resolver only handles a single downloadable file.
                     if (Regex("-\\d{5}-of-\\d{5}\\.").containsMatchIn(path)) continue
@@ -59,7 +80,9 @@ class HuggingFaceResolver {
                         fileName = path,
                     )
                 }
-                if (candidates.isEmpty()) return Result.failure(IllegalStateException("No .gguf file found in $repoId"))
+                if (candidates.isEmpty()) {
+                    return Result.failure(IllegalStateException(if (projector) "no mmproj .gguf in $repoId" else "No .gguf file found in $repoId"))
+                }
 
                 val priority = quantPriority ?: defaultQuantPriority
                 val best = priority.firstNotNullOfOrNull { quant ->
@@ -88,5 +111,6 @@ class HuggingFaceResolver {
 
     private companion object {
         const val MAX_DNS_ATTEMPTS = 6
+        val PROJECTOR_PRIORITY = listOf("-F16.", "_F16.", "BF16", "Q8_0") // "-F16." so BF16 is not taken for F16
     }
 }

@@ -3,6 +3,7 @@ package com.intelliverse.localai
 import ai.localstudio.sdk.GenerationOptions
 import ai.localstudio.sdk.LocalAi
 import ai.localstudio.sdk.LocalAiInput
+import ai.localstudio.sdk.LocalImage
 import com.intelliverse.models.ModelPurpose
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,8 +12,9 @@ import javax.inject.Singleton
  * The on-device chat model as one more answer in every mini-app, next to
  * the cloud models -- the way rmant7/AI offers "Local" among its providers:
  * on when Settings says so ([LocalAiSettings.useInApps]) and a chat model is
- * installed; the model is the one chosen for chat on the Models screen.
- * Text-only questions: this app's local models do not see images yet.
+ * installed; the model is the one chosen for chat on the Models screen. A
+ * run with a photo goes to a model that can see (its vision part installed):
+ * the chat model when it can, else the first that can.
  */
 @Singleton
 class LocalChatProvider @Inject constructor(
@@ -20,18 +22,20 @@ class LocalChatProvider @Inject constructor(
     private val models: IntelliverseLocalAi,
     private val settings: LocalAiSettings,
 ) {
-    /** Whether a mini-app's run gets a local answer: switched on, and a chat model installed. */
-    fun available(): Boolean = settings.useInApps && models.defaultFor(ModelPurpose.CHAT) != null
+    /** Whether a mini-app's run gets a local answer: switched on, and a model installed that can take it (one that sees, for a photo). */
+    fun available(withImages: Boolean = false): Boolean = settings.useInApps && answering(withImages) != null
 
     /** The model that answers, for the answer's footer. */
-    fun modelTitle(): String = models.defaultFor(ModelPurpose.CHAT)?.title ?: "on-device"
+    fun modelTitle(withImages: Boolean = false): String = answering(withImages)?.title ?: "on-device"
 
-    /** The chat model's whole answer to [prompt], reasoning removed. */
-    suspend fun answer(prompt: String): String {
+    private fun answering(withImages: Boolean) = if (withImages) models.defaultSeeing() else models.defaultFor(ModelPurpose.CHAT)
+
+    /** The model's whole answer to [prompt] (about [images], when there are any), reasoning removed. */
+    suspend fun answer(prompt: String, images: List<LocalImage> = emptyList()): String {
         val reply = StringBuilder()
-        localAi.generate(LocalAiInput(prompt), GenerationOptions(maxTokens = MAX_TOKENS, temperature = 0.3)).collect { reply.append(it) }
+        localAi.generate(LocalAiInput(prompt, images = images), GenerationOptions(maxTokens = MAX_TOKENS, temperature = 0.3)).collect { reply.append(it) }
         return IntelliverseLocalAi.finalAnswer(reply.toString())?.trim().orEmpty()
-            .ifEmpty { throw IllegalStateException("${modelTitle()} gave no answer (still reasoning when it stopped)") }
+            .ifEmpty { throw IllegalStateException("${modelTitle(images.isNotEmpty())} gave no answer (still reasoning when it stopped)") }
     }
 
     companion object {

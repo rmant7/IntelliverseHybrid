@@ -2,9 +2,10 @@ package com.intelliverse.models
 
 /**
  * On-device chat models -- the same entries rmant7/AI ships and checked on a
- * Pixel 10 Pro (text and translation pass there; images are not used in this
- * app yet). Each also translates, by instruction, so it is offered for both.
- * Smallest first.
+ * Pixel 10 Pro. Each also translates, by instruction, so it is offered for
+ * both. All four are image-text models: each downloads its vision projector
+ * with it ([LocalModelSeed.vision]); whether it actually sees is what the
+ * device check's image questions find out. Smallest first.
  */
 object ChatModels {
     private val CHAT_AND_TRANSLATION = setOf(ModelPurpose.CHAT, ModelPurpose.TRANSLATION)
@@ -18,6 +19,7 @@ object ChatModels {
             note = "Tiny and fast; short answers, weak on facts.",
             approxSizeBytes = 550_000_000,
             purposes = CHAT_AND_TRANSLATION,
+            vision = true,
         ),
         LocalModelSeed(
             id = "qwen3.5-4b-q4",
@@ -27,6 +29,7 @@ object ChatModels {
             note = "Good all-rounder for a phone; thinks before it answers.",
             approxSizeBytes = 2_500_000_000,
             purposes = CHAT_AND_TRANSLATION,
+            vision = true,
         ),
         LocalModelSeed(
             id = "gemma-4-e2b-it-q4",
@@ -37,6 +40,7 @@ object ChatModels {
             note = "Google's small Gemma 4: fast, many languages.",
             approxSizeBytes = 3_350_000_000,
             purposes = CHAT_AND_TRANSLATION,
+            vision = true,
         ),
         LocalModelSeed(
             id = "gemma-4-e4b-it-q4",
@@ -46,6 +50,9 @@ object ChatModels {
             note = "Stronger Gemma 4; needs about 8 GB of free RAM.",
             approxSizeBytes = 4_980_000_000,
             purposes = CHAT_AND_TRANSLATION,
+            vision = true,
+            // mmproj-F16.gguf in unsloth/gemma-4-E4B-it-GGUF, as rmant7/AI's catalog records it.
+            projectorApproxBytes = 990_000_000,
         ),
     )
 }
