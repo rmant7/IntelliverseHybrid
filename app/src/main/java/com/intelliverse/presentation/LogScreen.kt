@@ -1,5 +1,6 @@
 package com.intelliverse.presentation
 
+import android.widget.Toast
 import android.app.ActivityManager
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -95,7 +96,10 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
                     }
                 },
                 actions = {
-                    TextButton(onClick = { copyLogToClipboard(context, viewModel.logText) }) {
+                    TextButton(onClick = {
+                        copyLogToClipboard(context, viewModel.logText)
+                        Toast.makeText(context, "Newest entries copied", Toast.LENGTH_SHORT).show()
+                    }) {
                         Text("Copy")
                     }
                     TextButton(onClick = { sendLogsToDeveloper(context, viewModel.logText) }) {
@@ -154,8 +158,23 @@ fun LogScreen(navController: NavController, viewModel: LogViewModel = hiltViewMo
     }
 }
 
+/**
+ * The newest part of the log: a pasted report is read in a chat, and a chat
+ * cuts a long paste at its end -- twice the same #163 log arrived cut mid-line
+ * at the same spot, the newest entries (how the check ended) lost. So the
+ * copy keeps the newest [COPY_RECENT_CHARS], whole lines, and says what it
+ * left out; Send still mails the whole file.
+ */
 private fun copyLogToClipboard(context: Context, logText: String) {
-    val report = buildHeader(context) + "\n\n" + logText.ifBlank { "No errors logged yet." }
+    val recent = if (logText.length <= COPY_RECENT_CHARS) {
+        logText
+    } else {
+        val tail = logText.takeLast(COPY_RECENT_CHARS)
+        val fromLine = tail.substringAfter('\n', tail)
+        val omittedLines = logText.substring(0, logText.length - fromLine.length).count { it == '\n' }
+        "[$omittedLines earlier lines left out -- Send mails the whole log]\n$fromLine"
+    }
+    val report = buildHeader(context) + "\n\n" + recent.ifBlank { "No errors logged yet." }
     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     clipboard.setPrimaryClip(ClipData.newPlainText("Intelliverse log", report))
 }
@@ -180,6 +199,9 @@ fun sendLogsToDeveloper(context: Context, logText: String) {
 }
 
 private const val DEVELOPER_EMAIL = "roman.mantelmakher@gmail.com"
+
+/** What fits a chat message with room to spare. */
+private const val COPY_RECENT_CHARS = 12_000
 
 /**
  * Version/build type, device model/OS/ABI, and free/total RAM -- everything
