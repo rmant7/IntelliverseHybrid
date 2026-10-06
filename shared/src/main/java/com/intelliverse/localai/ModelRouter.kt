@@ -62,6 +62,8 @@ class ModelRouter(
     private val obtainable: (LocalCapability) -> List<LocalModelSeed> = { emptyList() },
     /** What one of those would need, before it was ever measured here. */
     private val estimateBytes: (LocalModelSeed) -> Long = { it.approxSizeBytes * 13 / 10 },
+    /** VISION only: what [seed]'s own vision projector needs on top of its weights (safety factor and free-floor included). [admission] alone does not know about it. */
+    private val visionNeedBytes: (LocalModelSeed) -> Long = { 0L },
 ) {
     fun route(request: AiRequest): RouteResult {
         val skipped = mutableListOf<Skipped>()
@@ -83,6 +85,18 @@ class ModelRouter(
             }
             when (val verdict = admission(seed, request.contextTokens ?: seed.contextTokens)) {
                 is Admission.Admitted -> {
+                    val visionNeed = if (request.capability == LocalCapability.VISION) visionNeedBytes(seed) else 0L
+                    val headroomAfter = verdict.availableBytes - (if (verdict.resident) 0L else verdict.requiredBytes)
+                    if (visionNeed > 0 && headroomAfter < visionNeed) {
+                        skipped += Skipped(
+                            seed.id,
+                            seed.title,
+                            "fits, but its vision part needs ~${visionNeed / MB} MB, ~${headroomAfter / MB} MB left",
+                            visionNeed,
+                            headroomAfter,
+                        )
+                        continue
+                    }
                     log("${request.capability}: ${seed.id}" + (if (verdict.resident) " (already loaded)" else "") + skippedNote(skipped))
                     return RouteResult.Local(seed, skipped)
                 }

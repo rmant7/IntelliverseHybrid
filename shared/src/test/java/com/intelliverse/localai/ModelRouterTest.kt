@@ -89,6 +89,23 @@ class ModelRouterTest {
     }
 
     @Test
+    fun `a model that fits but whose vision projector would not is skipped for vision`() {
+        // #176: Gemma 4 E2B's weights fit (resident), but its projector needs more than is really left.
+        available = 1_576_000_000
+        val router = ModelRouter(
+            installed = { listOf(e2b) },
+            capabilitiesOf = { setOf(LocalCapability.TEXT, LocalCapability.VISION) },
+            checkOf = { _, _ -> null },
+            chosenFor = { null },
+            admission = { _, _ -> Admission.Admitted(0L, available, resident = true) },
+            visionNeedBytes = { 2_381_000_000L },
+        )
+        val none = router.route(AiRequest(LocalCapability.VISION)) as RouteResult.NoModel
+        assertTrue(none.reason, "vision part needs" in none.reason)
+        assertEquals(1, none.skipped.size)
+    }
+
+    @Test
     fun `a model refused at the load is not offered again`() {
         available = 8_000_000_000
         assertEquals(e2b.id, (router().route(AiRequest(LocalCapability.TEXT, exclude = setOf(e4b.id))) as RouteResult.Local).seed.id)

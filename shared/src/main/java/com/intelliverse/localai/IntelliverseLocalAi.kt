@@ -156,6 +156,14 @@ class IntelliverseLocalAi @Inject constructor(
             store.finalFile(seed).takeIf { store.isInstalled(seed) }?.let { engine.admissionBytes(it, seed.contextTokens) }
                 ?: (seed.approxSizeBytes * 13 / 10)
         },
+        // Its own vision projector's need, from the file already on the phone -- admission() above only knows the weights.
+        visionNeedBytes = { seed ->
+            if (store.hasProjector(seed)) {
+                (store.projectorFile(seed).length() * ai.localstudio.app.llama.MMPROJ_RAM_SAFETY_FACTOR).toLong() + ai.localstudio.app.llama.PROJECTOR_FREE_FLOOR_BYTES
+            } else {
+                0L
+            }
+        },
     )
 
     /**
